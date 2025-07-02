@@ -1,4 +1,4 @@
-# Project_IA
+# IA4Edu
 Aplicación para el desarrollo de proyectos educativos teniendo en cuenta la diversidad del aula. 
 
 ## Licencia
