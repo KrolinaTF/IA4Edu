@@ -21,12 +21,13 @@ class Alumno(models.Model):
 class Proyecto(models.Model):
     titulo = models.CharField(max_length=200)
     descripcion_breve = models.TextField()
+    objetivos = models.TextField(blank=True)
     areas_curriculares = models.CharField(max_length=200)
     duracion_sesiones = models.IntegerField()
     contenido_completo = models.JSONField()
     adaptaciones_tea = models.TextField(blank=True)
     adaptaciones_tdah = models.TextField(blank=True)
     adaptaciones_aacc = models.TextField(blank=True)
-    
+
     def __str__(self):
         return self.titulo
