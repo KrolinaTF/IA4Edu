@@ -53,3 +53,6 @@ Thumbs.db
 
 #devcontainer
 .devcontainer/.env
+
+# Django
+staticfiles/
