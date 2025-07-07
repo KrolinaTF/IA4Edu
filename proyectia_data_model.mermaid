@@ -1,0 +1,169 @@
+erDiagram
+    PROFESOR {
+        id integer PK
+        nombre string
+        email string
+        centro_id integer FK
+        perfil_pedagogico json
+        fecha_registro date
+        activo boolean
+    }
+
+    CENTRO {
+        id integer PK
+        nombre string
+        tipo_entorno string
+        direccion string
+        espacios_disponibles json
+        entorno_proximo json
+        calendario_escolar json
+    }
+
+    CURSO {
+        id integer PK
+        nombre string
+        nivel_educativo string
+        curriculo_oficial json
+    }
+
+    AULA {
+        id integer PK
+        curso_id integer FK
+        grupo string
+        numero_alumnos integer
+        centro_id integer FK
+    }
+
+    PROFESOR_AULA {
+        id integer PK
+        profesor_id integer FK
+        aula_id integer FK
+        tipo_relacion string
+        materias json
+        activo boolean
+    }
+
+    ALUMNO {
+        id integer PK
+        nombre string
+        fecha_nacimiento date
+        aula_id integer FK
+        caracteristicas_tea boolean
+        caracteristicas_tdah boolean
+        caracteristicas_aacc boolean
+        diversidad_sensorial json
+        estilo_aprendizaje string
+        motivaciones_intereses json
+        estado_curricular_individual json
+        activo boolean
+    }
+
+    COMPETENCIA_CURRICULAR {
+        id integer PK
+        curso_id integer FK
+        codigo string
+        nombre string
+        area_curricular string
+        bloque_curricular string
+        descripcion text
+    }
+
+    HITO_ALUMNO {
+        id integer PK
+        alumno_id integer FK
+        competencia_id integer FK
+        alcanzado boolean
+        fecha_registro date
+        contexto_observacion text
+        profesor_id integer FK
+    }
+
+    PROYECTO {
+        id integer PK
+        titulo string
+        aula_id integer FK
+        profesor_id integer FK
+        materia_principal string
+        duracion_estimada string
+        contexto_generacion json
+        contenido_completo json
+        adaptaciones_incluidas json
+        recursos_sugeridos json
+        estado string
+        fecha_creacion date
+        fecha_inicio date
+        fecha_fin_estimada date
+        fecha_fin_real date
+    }
+
+    ACTIVIDAD_PROYECTO {
+        id integer PK
+        proyecto_id integer FK
+        nombre string
+        tipo_actividad string
+        habilidades_requeridas json
+        dificultad_emocional integer
+        orden_ejecucion integer
+    }
+
+    ASIGNACION_ACTIVIDAD {
+        id integer PK
+        actividad_id integer FK
+        alumno_id integer FK
+        asignacion_automatica boolean
+        motivo_asignacion text
+        satisfaccion_alumno integer
+        completada boolean
+        fecha_asignacion date
+        fecha_completacion date
+    }
+
+    HISTORIAL_ROTACION {
+        id integer PK
+        alumno_id integer FK
+        tipo_actividad string
+        veces_realizada integer
+        ultima_vez date
+        preferencia_detectada integer
+    }
+
+    SEGUIMIENTO_PROYECTO {
+        id integer PK
+        proyecto_id integer FK
+        tiempo_completado_estimado boolean
+        tareas_segun_reparto boolean
+        cambios_realizados text
+        adaptaciones_funcionaron boolean
+        satisfaccion_general integer
+        observaciones_generales text
+        fecha_seguimiento date
+    }
+
+    %% Relaciones Básicas
+    PROFESOR ||--|| CENTRO : "trabaja_en"
+    CENTRO ||--o{ AULA : "tiene"
+    CURSO ||--o{ AULA : "se_imparte_en"
+    CURSO ||--o{ COMPETENCIA_CURRICULAR : "define"
+
+    %% Relaciones Profesor-Aula
+    PROFESOR ||--o{ PROFESOR_AULA : "tiene_asignacion"
+    AULA ||--o{ PROFESOR_AULA : "recibe_asignacion"
+
+    %% Relaciones Aula-Alumno
+    AULA ||--o{ ALUMNO : "contiene"
+
+    %% Módulo Curricular
+    ALUMNO ||--o{ HITO_ALUMNO : "alcanza"
+    COMPETENCIA_CURRICULAR ||--o{ HITO_ALUMNO : "se_evalua_en"
+    PROFESOR ||--o{ HITO_ALUMNO : "registra"
+
+    %% Módulo Proyectos
+    AULA ||--o{ PROYECTO : "desarrolla"
+    PROFESOR ||--o{ PROYECTO : "crea"
+    PROYECTO ||--|| SEGUIMIENTO_PROYECTO : "tiene"
+    PROYECTO ||--o{ ACTIVIDAD_PROYECTO : "contiene"
+
+    %% Gestión de Rotaciones
+    ACTIVIDAD_PROYECTO ||--o{ ASIGNACION_ACTIVIDAD : "se_asigna_como"
+    ALUMNO ||--o{ ASIGNACION_ACTIVIDAD : "recibe"
+    ALUMNO ||--o{ HISTORIAL_ROTACION : "construye"

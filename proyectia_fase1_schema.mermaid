@@ -1,0 +1,105 @@
+erDiagram
+    CENTRO {
+        id integer PK
+        nombre string
+        tipo_entorno string
+        direccion string
+        espacios_disponibles json
+        entorno_proximo json
+        calendario_escolar json
+    }
+
+    CURSO {
+        id integer PK
+        nombre string
+        nivel_educativo string
+        curriculo_oficial json
+    }
+
+    AULA {
+        id integer PK
+        curso_id integer FK
+        grupo string
+        numero_alumnos integer
+        centro_id integer FK
+    }
+
+    PROFESOR {
+        id integer PK
+        nombre string
+        email string
+        centro_id integer FK
+        fecha_registro date
+        activo boolean
+    }
+
+    PROFESOR_AULA {
+        id integer PK
+        profesor_id integer FK
+        aula_id integer FK
+        tipo_relacion string
+        activo boolean
+    }
+
+    ALUMNO {
+        id integer PK
+        nombre_anonimo string
+        edad integer
+        aula_id integer FK
+        caracteristicas_tea boolean
+        detalles_tea json
+        caracteristicas_tdah boolean
+        detalles_tdah json
+        caracteristicas_aacc boolean
+        detalles_aacc json
+        diversidad_sensorial json
+        estilo_aprendizaje string
+        motivaciones_intereses json
+        personalidad_educativa json
+        activo boolean
+    }
+
+    COMPETENCIA_CURRICULAR {
+        id integer PK
+        curso_id integer FK
+        codigo string
+        nombre string
+        area_curricular string
+        bloque_curricular string
+        descripcion text
+    }
+
+    PROYECTO {
+        id integer PK
+        titulo string
+        aula_id integer FK
+        profesor_id integer FK
+        materia_principal string
+        duracion_estimada string
+        prompt_profesor text
+        contexto_generacion json
+        contenido_completo json
+        adaptaciones_especificas json
+        recursos_sugeridos json
+        estado string
+        fecha_creacion date
+        fecha_inicio date
+        fecha_fin_estimada date
+    }
+
+    %% Relaciones Básicas
+    CENTRO ||--o{ AULA : "tiene"
+    CURSO ||--o{ AULA : "se_imparte_en"
+    CURSO ||--o{ COMPETENCIA_CURRICULAR : "define"
+
+    %% Relaciones Profesor
+    PROFESOR ||--|| CENTRO : "trabaja_en"
+    PROFESOR ||--o{ PROFESOR_AULA : "tiene_asignacion"
+    AULA ||--|| PROFESOR_AULA : "recibe_tutor"
+
+    %% Relaciones Aula-Alumno
+    AULA ||--o{ ALUMNO : "contiene"
+
+    %% Módulo Proyectos Básico
+    AULA ||--o{ PROYECTO : "desarrolla"
+    PROFESOR ||--o{ PROYECTO : "crea"
