@@ -4,16 +4,14 @@ erDiagram
         nombre string
         tipo_entorno string
         direccion string
-        espacios_disponibles json
-        entorno_proximo json
-        calendario_escolar json
+        activo boolean
     }
 
     CURSO {
         id integer PK
         nombre string
         nivel_educativo string
-        curriculo_oficial json
+        activo boolean
     }
 
     AULA {
@@ -22,6 +20,7 @@ erDiagram
         grupo string
         numero_alumnos integer
         centro_id integer FK
+        activo boolean
     }
 
     PROFESOR {
@@ -47,15 +46,11 @@ erDiagram
         edad integer
         aula_id integer FK
         caracteristicas_tea boolean
-        detalles_tea json
         caracteristicas_tdah boolean
-        detalles_tdah json
         caracteristicas_aacc boolean
-        detalles_aacc json
         diversidad_sensorial json
         estilo_aprendizaje string
         motivaciones_intereses json
-        personalidad_educativa json
         activo boolean
     }
 
@@ -65,8 +60,18 @@ erDiagram
         codigo string
         nombre string
         area_curricular string
-        bloque_curricular string
         descripcion text
+        activo boolean
+    }
+
+    HITO_ALUMNO {
+        id integer PK
+        alumno_id integer FK
+        competencia_id integer FK
+        alcanzado boolean
+        fecha_registro date
+        contexto_observacion text
+        profesor_id integer FK
     }
 
     PROYECTO {
@@ -74,17 +79,24 @@ erDiagram
         titulo string
         aula_id integer FK
         profesor_id integer FK
-        materia_principal string
-        duracion_estimada string
         prompt_profesor text
         contexto_generacion json
-        contenido_completo json
-        adaptaciones_especificas json
-        recursos_sugeridos json
+        contenido_generado json
         estado string
+        validado_profesor boolean
         fecha_creacion date
+        fecha_validacion date
+        proyecto_ejecutado_id integer FK
+    }
+
+    PROYECTO_EJECUTADO {
+        id integer PK
+        proyecto_base_id integer FK
+        cambios_realizados text
+        satisfaccion_general integer
+        observaciones text
         fecha_inicio date
-        fecha_fin_estimada date
+        fecha_fin date
     }
 
     %% Relaciones Básicas
@@ -100,6 +112,12 @@ erDiagram
     %% Relaciones Aula-Alumno
     AULA ||--o{ ALUMNO : "contiene"
 
-    %% Módulo Proyectos Básico
+    %% Módulo Curricular Simple
+    ALUMNO ||--o{ HITO_ALUMNO : "alcanza"
+    COMPETENCIA_CURRICULAR ||--o{ HITO_ALUMNO : "se_evalua_en"
+    PROFESOR ||--o{ HITO_ALUMNO : "registra"
+
+    %% Módulo Proyectos Simple
     AULA ||--o{ PROYECTO : "desarrolla"
     PROFESOR ||--o{ PROYECTO : "crea"
+    PROYECTO ||--o| PROYECTO_EJECUTADO : "se_ejecuta_como"
