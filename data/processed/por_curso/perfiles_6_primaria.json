@@ -1,0 +1,548 @@
+{
+  "metadata": {
+    "curso": "6_primaria",
+    "total_perfiles": 2,
+    "distribucion_tipos": {
+      "doble_excepcionalidad": 2
+    },
+    "curriculo_aplicado": [
+      "matematicas",
+      "lengua",
+      "ciencias"
+    ],
+    "items_curriculares_total": 22,
+    "progreso_medio_curso": 81.8,
+    "fecha_generacion": "2025-07-12T01:19:59.051972",
+    "version": "1.0"
+  },
+  "curriculo_referencia": {
+    "matematicas": {
+      "enteros": "Números enteros y negativos",
+      "algebra_basica": "Ecuaciones de primer grado simples",
+      "geometria_completa": "Área y perímetro de figuras complejas",
+      "estadistica_avanzada": "Gráficos complejos, probabilidad",
+      "proporcionalidad_compuesta": "Regla de tres compuesta",
+      "raices": "Raíz cuadrada",
+      "notacion_cientifica": "Notación científica básica",
+      "problemas_reales": "Problemas de la vida real complejos"
+    },
+    "lengua": {
+      "sintaxis_compleja": "Oraciones compuestas",
+      "literatura_analisis": "Análisis de textos literarios",
+      "ensayo": "Escribir ensayos cortos",
+      "investigacion_avanzada": "Proyectos de investigación",
+      "comunicacion_digital": "Normas comunicación online",
+      "creatividad_literaria": "Crear textos creativos complejos",
+      "critica_literaria": "Opinar sobre obras leídas",
+      "preparacion_eso": "Preparación para secundaria"
+    },
+    "ciencias": {
+      "evolucion": "Conceptos básicos de evolución",
+      "universo": "Galaxias, estrellas avanzado",
+      "quimica_basica": "Elementos y compuestos",
+      "energia_renovable": "Tipos de energía renovable",
+      "biotecnologia": "Aplicaciones básicas",
+      "investigacion_cientifica": "Proyectos científicos complejos"
+    }
+  },
+  "perfiles": [
+    {
+      "identificacion": {
+        "id_perfil": "2e_ac_adhd_009",
+        "edad": 10,
+        "genero": "femenino",
+        "nivel_educativo": "primaria",
+        "curso": "6_primaria",
+        "tipo_estudiante": "doble_excepcionalidad"
+      },
+      "perfil_academico": {
+        "rendimiento_general": 3,
+        "matematicas": 4,
+        "lengua_castellana": 2,
+        "ciencias_naturales": 4,
+        "ciencias_sociales": 4,
+        "educacion_artistica": 5,
+        "educacion_fisica": 4,
+        "segunda_lengua": 3,
+        "competencia_digital": 4,
+        "altas_capacidades_identificadas": true,
+        "area_talento_principal": "ciencias",
+        "dificultades_aprendizaje": true,
+        "tipo_dificultad": "ADHD"
+      },
+      "perfil_cognitivo": {
+        "atencion_concentracion": 2,
+        "memoria_trabajo": 3,
+        "velocidad_procesamiento": 3,
+        "razonamiento_logico": 4,
+        "creatividad": 4,
+        "resolucion_problemas": 5,
+        "planificacion_organizacion": 2,
+        "flexibilidad_cognitiva": 3,
+        "metacognicion": 4
+      },
+      "perfil_conductual": {
+        "atencion_sostenida": 2,
+        "hiperactividad": 5,
+        "impulsividad": 4,
+        "autorregulacion": 1,
+        "habilidades_sociales": 3,
+        "tolerancia_frustracion": 3,
+        "motivacion_intrinseca": 3,
+        "perseverancia": 2,
+        "autonomia": 3
+      },
+      "estilo_aprendizaje": {
+        "canal_preferente": "visual",
+        "ritmo_aprendizaje": "rapido",
+        "tipo_agrupamiento": "pequeno_grupo",
+        "nivel_autonomia": "media",
+        "motivacion_principal": "novedad"
+      },
+      "adaptaciones": {
+        "necesita_apoyo_atencion": 5,
+        "requiere_descansos_frecuentes": 5,
+        "necesita_estimulacion_cognitiva": 5,
+        "requiere_flexibilidad_curricular": 4,
+        "necesita_colaboracion_familia": 5,
+        "requiere_gestion_comportamiento": 4,
+        "necesita_engagement_especial": 5,
+        "requiere_estrategias_adaptadas": 5,
+        "necesita_medicacion": false,
+        "requiere_evaluacion_adaptada": true
+      },
+      "contexto": {
+        "apoyo_familiar": 4,
+        "recursos_disponibles": 4,
+        "estabilidad_emocional": 3,
+        "motivacion_estudiante": 3,
+        "expectativas_familia": 4
+      },
+      "observaciones_libres": "Estudiante con altas capacidades en tecnología y ADHD. Muestra gran creatividad pero dificultades de atención y organización. Requiere estrategias que combinen enriquecimiento cognitivo con apoyo ejecutivo.",
+      "metadatos": {
+        "fecha_creacion": "2025-07-12T01:10:16.368049",
+        "fuente_datos": "generado_2e_ttess",
+        "confianza_perfil": 4,
+        "campos_imputados": [
+          "algunos_valores_especificos"
+        ],
+        "requiere_validacion": true,
+        "version_estructura": "goldilocks_v1",
+        "tiene_estado_curricular": true,
+        "fecha_estado_curricular": "2025-07-12T01:19:59.023965",
+        "version_curriculo": "primaria_espana_v1"
+      },
+      "estado_curricular": {
+        "matematicas": {
+          "enteros": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Números enteros y negativos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "algebra_basica": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Ecuaciones de primer grado simples",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "geometria_completa": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Área y perímetro de figuras complejas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "estadistica_avanzada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Gráficos complejos, probabilidad",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "proporcionalidad_compuesta": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Regla de tres compuesta",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "raices": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Raíz cuadrada",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "notacion_cientifica": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Notación científica básica",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "problemas_reales": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Problemas de la vida real complejos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        },
+        "lengua": {
+          "sintaxis_compleja": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Oraciones compuestas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "literatura_analisis": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Análisis de textos literarios",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "ensayo": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Escribir ensayos cortos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "investigacion_avanzada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Proyectos de investigación",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "comunicacion_digital": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Normas comunicación online",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "creatividad_literaria": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Crear textos creativos complejos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "critica_literaria": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Opinar sobre obras leídas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "preparacion_eso": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Preparación para secundaria",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        },
+        "ciencias": {
+          "evolucion": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conceptos básicos de evolución",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "universo": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Galaxias, estrellas avanzado",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "quimica_basica": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Elementos y compuestos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "energia_renovable": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tipos de energía renovable",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "biotecnologia": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Aplicaciones básicas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "investigacion_cientifica": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Proyectos científicos complejos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        }
+      }
+    },
+    {
+      "identificacion": {
+        "id_perfil": "2e_ac_otros_002",
+        "edad": 10,
+        "genero": "femenino",
+        "nivel_educativo": "primaria",
+        "curso": "6_primaria",
+        "tipo_estudiante": "doble_excepcionalidad"
+      },
+      "perfil_academico": {
+        "rendimiento_general": 3,
+        "matematicas": 5,
+        "lengua_castellana": 2,
+        "ciencias_naturales": 5,
+        "ciencias_sociales": 4,
+        "educacion_artistica": 5,
+        "educacion_fisica": 3,
+        "segunda_lengua": 4,
+        "competencia_digital": 5,
+        "altas_capacidades_identificadas": true,
+        "area_talento_principal": "matematicas",
+        "dificultades_aprendizaje": true,
+        "tipo_dificultad": "disgrafia"
+      },
+      "perfil_cognitivo": {
+        "atencion_concentracion": 3,
+        "memoria_trabajo": 4,
+        "velocidad_procesamiento": 4,
+        "razonamiento_logico": 5,
+        "creatividad": 4,
+        "resolucion_problemas": 5,
+        "planificacion_organizacion": 4,
+        "flexibilidad_cognitiva": 4,
+        "metacognicion": 3
+      },
+      "perfil_conductual": {
+        "atencion_sostenida": 4,
+        "hiperactividad": 1,
+        "impulsividad": 2,
+        "autorregulacion": 4,
+        "habilidades_sociales": 4,
+        "tolerancia_frustracion": 2,
+        "motivacion_intrinseca": 5,
+        "perseverancia": 3,
+        "autonomia": 3
+      },
+      "estilo_aprendizaje": {
+        "canal_preferente": "visual",
+        "ritmo_aprendizaje": "rapido",
+        "tipo_agrupamiento": "individual",
+        "nivel_autonomia": "alta",
+        "motivacion_principal": "reto"
+      },
+      "adaptaciones": {
+        "necesita_apoyo_especifico": 5,
+        "requiere_material_adaptado": 4,
+        "necesita_estimulacion_cognitiva": 5,
+        "requiere_flexibilidad_curricular": 4,
+        "necesita_colaboracion_familia": 4,
+        "requiere_gestion_comportamiento": 2,
+        "necesita_engagement_especial": 4,
+        "requiere_estrategias_adaptadas": 5,
+        "necesita_tecnologia_asistiva": true,
+        "requiere_evaluacion_adaptada": true
+      },
+      "contexto": {
+        "apoyo_familiar": 3,
+        "recursos_disponibles": 4,
+        "estabilidad_emocional": 4,
+        "motivacion_estudiante": 5,
+        "expectativas_familia": 5
+      },
+      "observaciones_libres": "Estudiante con altas capacidades y disgrafia. Requiere adaptaciones específicas en área de dificultad manteniendo alto nivel de exigencia cognitiva en fortalezas.",
+      "metadatos": {
+        "fecha_creacion": "2025-07-12T01:10:16.368049",
+        "fuente_datos": "generado_2e_ttess",
+        "confianza_perfil": 4,
+        "campos_imputados": [
+          "algunos_valores_especificos"
+        ],
+        "requiere_validacion": true,
+        "version_estructura": "goldilocks_v1",
+        "tiene_estado_curricular": true,
+        "fecha_estado_curricular": "2025-07-12T01:19:59.024994",
+        "version_curriculo": "primaria_espana_v1"
+      },
+      "estado_curricular": {
+        "matematicas": {
+          "enteros": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Números enteros y negativos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "algebra_basica": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Ecuaciones de primer grado simples",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "geometria_completa": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Área y perímetro de figuras complejas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "estadistica_avanzada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Gráficos complejos, probabilidad",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "proporcionalidad_compuesta": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Regla de tres compuesta",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "raices": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Raíz cuadrada",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "notacion_cientifica": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Notación científica básica",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "problemas_reales": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Problemas de la vida real complejos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        },
+        "lengua": {
+          "sintaxis_compleja": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Oraciones compuestas",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "literatura_analisis": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Análisis de textos literarios",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "ensayo": {
+            "estado": "en_proceso",
+            "nivel_numerico": 2,
+            "descripcion": "Escribir ensayos cortos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": false
+          },
+          "investigacion_avanzada": {
+            "estado": "en_proceso",
+            "nivel_numerico": 2,
+            "descripcion": "Proyectos de investigación",
+            "necesita_refuerzo": false,
+            "puede_avanzar": false
+          },
+          "comunicacion_digital": {
+            "estado": "en_proceso",
+            "nivel_numerico": 2,
+            "descripcion": "Normas comunicación online",
+            "necesita_refuerzo": false,
+            "puede_avanzar": false
+          },
+          "creatividad_literaria": {
+            "estado": "no_iniciado",
+            "nivel_numerico": 0,
+            "descripcion": "Crear textos creativos complejos",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "critica_literaria": {
+            "estado": "no_iniciado",
+            "nivel_numerico": 0,
+            "descripcion": "Opinar sobre obras leídas",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "preparacion_eso": {
+            "estado": "en_proceso",
+            "nivel_numerico": 2,
+            "descripcion": "Preparación para secundaria",
+            "necesita_refuerzo": false,
+            "puede_avanzar": false
+          }
+        },
+        "ciencias": {
+          "evolucion": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conceptos básicos de evolución",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "universo": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Galaxias, estrellas avanzado",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "quimica_basica": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Elementos y compuestos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "energia_renovable": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Tipos de energía renovable",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "biotecnologia": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Aplicaciones básicas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "investigacion_cientifica": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Proyectos científicos complejos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,841 @@
+{
+  "metadata": {
+    "curso": "2_primaria",
+    "total_perfiles": 3,
+    "distribucion_tipos": {
+      "doble_excepcionalidad": 3
+    },
+    "curriculo_aplicado": [
+      "matematicas",
+      "lengua",
+      "ciencias"
+    ],
+    "items_curriculares_total": 24,
+    "progreso_medio_curso": 86.1,
+    "fecha_generacion": "2025-07-12T01:19:59.031968",
+    "version": "1.0"
+  },
+  "curriculo_referencia": {
+    "matematicas": {
+      "numeros_0_100": "Leer y escribir números hasta 100",
+      "decenas_unidades": "Entender decenas y unidades",
+      "sumas_llevada": "Sumas con llevada hasta 100",
+      "restas_llevada": "Restas con llevada hasta 100",
+      "tabla_2": "Tabla de multiplicar del 2",
+      "tabla_5": "Tabla de multiplicar del 5",
+      "tabla_10": "Tabla de multiplicar del 10",
+      "problemas_dos_operaciones": "Problemas con 2 operaciones",
+      "medidas_tiempo": "Leer reloj (horas en punto)",
+      "euros_centimos": "Reconocer monedas y billetes básicos"
+    },
+    "lengua": {
+      "leer_textos_cortos": "Leer textos de 4-6 líneas",
+      "escribir_frases": "Escribir frases completas",
+      "ortografia_basica": "Uso básico de mayúsculas y punto",
+      "comprension_lectora": "Responder preguntas sobre texto leído",
+      "vocabulario_amplio": "Conocer 500-700 palabras",
+      "describir_imagenes": "Describir lo que ve en una imagen",
+      "narrar_experiencias": "Contar experiencias personales",
+      "uso_diccionario": "Buscar palabras en diccionario infantil"
+    },
+    "ciencias": {
+      "ciclo_agua": "Entender evaporación y lluvia básica",
+      "habitats": "Conocer donde viven diferentes animales",
+      "alimentacion": "Clasificar alimentos básicos",
+      "estaciones": "Reconocer las 4 estaciones",
+      "plantas_crecimiento": "Entender qué necesitan las plantas",
+      "cuidado_ambiente": "Conceptos básicos de reciclaje"
+    }
+  },
+  "perfiles": [
+    {
+      "identificacion": {
+        "id_perfil": "2e_ac_adhd_002",
+        "edad": 8,
+        "genero": "femenino",
+        "nivel_educativo": "primaria",
+        "curso": "2_primaria",
+        "tipo_estudiante": "doble_excepcionalidad"
+      },
+      "perfil_academico": {
+        "rendimiento_general": 3,
+        "matematicas": 5,
+        "lengua_castellana": 3,
+        "ciencias_naturales": 5,
+        "ciencias_sociales": 3,
+        "educacion_artistica": 5,
+        "educacion_fisica": 2,
+        "segunda_lengua": 3,
+        "competencia_digital": 5,
+        "altas_capacidades_identificadas": true,
+        "area_talento_principal": "matematicas",
+        "dificultades_aprendizaje": true,
+        "tipo_dificultad": "ADHD"
+      },
+      "perfil_cognitivo": {
+        "atencion_concentracion": 1,
+        "memoria_trabajo": 2,
+        "velocidad_procesamiento": 2,
+        "razonamiento_logico": 5,
+        "creatividad": 5,
+        "resolucion_problemas": 5,
+        "planificacion_organizacion": 1,
+        "flexibilidad_cognitiva": 4,
+        "metacognicion": 3
+      },
+      "perfil_conductual": {
+        "atencion_sostenida": 2,
+        "hiperactividad": 5,
+        "impulsividad": 5,
+        "autorregulacion": 2,
+        "habilidades_sociales": 3,
+        "tolerancia_frustracion": 2,
+        "motivacion_intrinseca": 3,
+        "perseverancia": 3,
+        "autonomia": 2
+      },
+      "estilo_aprendizaje": {
+        "canal_preferente": "visual",
+        "ritmo_aprendizaje": "rapido",
+        "tipo_agrupamiento": "pequeno_grupo",
+        "nivel_autonomia": "media",
+        "motivacion_principal": "novedad"
+      },
+      "adaptaciones": {
+        "necesita_apoyo_atencion": 5,
+        "requiere_descansos_frecuentes": 5,
+        "necesita_estimulacion_cognitiva": 5,
+        "requiere_flexibilidad_curricular": 4,
+        "necesita_colaboracion_familia": 5,
+        "requiere_gestion_comportamiento": 4,
+        "necesita_engagement_especial": 5,
+        "requiere_estrategias_adaptadas": 5,
+        "necesita_medicacion": true,
+        "requiere_evaluacion_adaptada": true
+      },
+      "contexto": {
+        "apoyo_familiar": 3,
+        "recursos_disponibles": 3,
+        "estabilidad_emocional": 3,
+        "motivacion_estudiante": 4,
+        "expectativas_familia": 5
+      },
+      "observaciones_libres": "Estudiante con altas capacidades en tecnología y ADHD. Muestra gran creatividad pero dificultades de atención y organización. Requiere estrategias que combinen enriquecimiento cognitivo con apoyo ejecutivo.",
+      "metadatos": {
+        "fecha_creacion": "2025-07-12T01:10:16.368049",
+        "fuente_datos": "generado_2e_ttess",
+        "confianza_perfil": 4,
+        "campos_imputados": [
+          "algunos_valores_especificos"
+        ],
+        "requiere_validacion": true,
+        "version_estructura": "goldilocks_v1",
+        "tiene_estado_curricular": true,
+        "fecha_estado_curricular": "2025-07-12T01:19:59.023965",
+        "version_curriculo": "primaria_espana_v1"
+      },
+      "estado_curricular": {
+        "matematicas": {
+          "numeros_0_100": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Leer y escribir números hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "decenas_unidades": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender decenas y unidades",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "sumas_llevada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Sumas con llevada hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "restas_llevada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Restas con llevada hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_2": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 2",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_5": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 5",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_10": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 10",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "problemas_dos_operaciones": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Problemas con 2 operaciones",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "medidas_tiempo": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Leer reloj (horas en punto)",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "euros_centimos": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Reconocer monedas y billetes básicos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        },
+        "lengua": {
+          "leer_textos_cortos": {
+            "estado": "no_iniciado",
+            "nivel_numerico": 0,
+            "descripcion": "Leer textos de 4-6 líneas",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "escribir_frases": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Escribir frases completas",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "ortografia_basica": {
+            "estado": "no_iniciado",
+            "nivel_numerico": 0,
+            "descripcion": "Uso básico de mayúsculas y punto",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "comprension_lectora": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Responder preguntas sobre texto leído",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "vocabulario_amplio": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Conocer 500-700 palabras",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "describir_imagenes": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Describir lo que ve en una imagen",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "narrar_experiencias": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Contar experiencias personales",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "uso_diccionario": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Buscar palabras en diccionario infantil",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          }
+        },
+        "ciencias": {
+          "ciclo_agua": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender evaporación y lluvia básica",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "habitats": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conocer donde viven diferentes animales",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "alimentacion": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Clasificar alimentos básicos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "estaciones": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Reconocer las 4 estaciones",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "plantas_crecimiento": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender qué necesitan las plantas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "cuidado_ambiente": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conceptos básicos de reciclaje",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        }
+      }
+    },
+    {
+      "identificacion": {
+        "id_perfil": "2e_ac_adhd_005",
+        "edad": 9,
+        "genero": "femenino",
+        "nivel_educativo": "primaria",
+        "curso": "2_primaria",
+        "tipo_estudiante": "doble_excepcionalidad"
+      },
+      "perfil_academico": {
+        "rendimiento_general": 4,
+        "matematicas": 5,
+        "lengua_castellana": 4,
+        "ciencias_naturales": 5,
+        "ciencias_sociales": 3,
+        "educacion_artistica": 5,
+        "educacion_fisica": 3,
+        "segunda_lengua": 4,
+        "competencia_digital": 4,
+        "altas_capacidades_identificadas": true,
+        "area_talento_principal": "ciencias",
+        "dificultades_aprendizaje": true,
+        "tipo_dificultad": "ADHD"
+      },
+      "perfil_cognitivo": {
+        "atencion_concentracion": 2,
+        "memoria_trabajo": 2,
+        "velocidad_procesamiento": 3,
+        "razonamiento_logico": 5,
+        "creatividad": 5,
+        "resolucion_problemas": 5,
+        "planificacion_organizacion": 2,
+        "flexibilidad_cognitiva": 3,
+        "metacognicion": 4
+      },
+      "perfil_conductual": {
+        "atencion_sostenida": 1,
+        "hiperactividad": 5,
+        "impulsividad": 4,
+        "autorregulacion": 2,
+        "habilidades_sociales": 2,
+        "tolerancia_frustracion": 1,
+        "motivacion_intrinseca": 4,
+        "perseverancia": 2,
+        "autonomia": 3
+      },
+      "estilo_aprendizaje": {
+        "canal_preferente": "visual",
+        "ritmo_aprendizaje": "rapido",
+        "tipo_agrupamiento": "pequeno_grupo",
+        "nivel_autonomia": "media",
+        "motivacion_principal": "reto"
+      },
+      "adaptaciones": {
+        "necesita_apoyo_atencion": 5,
+        "requiere_descansos_frecuentes": 5,
+        "necesita_estimulacion_cognitiva": 5,
+        "requiere_flexibilidad_curricular": 4,
+        "necesita_colaboracion_familia": 5,
+        "requiere_gestion_comportamiento": 4,
+        "necesita_engagement_especial": 5,
+        "requiere_estrategias_adaptadas": 5,
+        "necesita_medicacion": false,
+        "requiere_evaluacion_adaptada": true
+      },
+      "contexto": {
+        "apoyo_familiar": 3,
+        "recursos_disponibles": 4,
+        "estabilidad_emocional": 3,
+        "motivacion_estudiante": 3,
+        "expectativas_familia": 4
+      },
+      "observaciones_libres": "Estudiante con altas capacidades en matemáticas y ADHD. Muestra gran creatividad pero dificultades de atención y organización. Requiere estrategias que combinen enriquecimiento cognitivo con apoyo ejecutivo.",
+      "metadatos": {
+        "fecha_creacion": "2025-07-12T01:10:16.368049",
+        "fuente_datos": "generado_2e_ttess",
+        "confianza_perfil": 4,
+        "campos_imputados": [
+          "algunos_valores_especificos"
+        ],
+        "requiere_validacion": true,
+        "version_estructura": "goldilocks_v1",
+        "tiene_estado_curricular": true,
+        "fecha_estado_curricular": "2025-07-12T01:19:59.023965",
+        "version_curriculo": "primaria_espana_v1"
+      },
+      "estado_curricular": {
+        "matematicas": {
+          "numeros_0_100": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Leer y escribir números hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "decenas_unidades": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender decenas y unidades",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "sumas_llevada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Sumas con llevada hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "restas_llevada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Restas con llevada hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_2": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 2",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_5": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 5",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_10": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 10",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "problemas_dos_operaciones": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Problemas con 2 operaciones",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "medidas_tiempo": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Leer reloj (horas en punto)",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "euros_centimos": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Reconocer monedas y billetes básicos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        },
+        "lengua": {
+          "leer_textos_cortos": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Leer textos de 4-6 líneas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "escribir_frases": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Escribir frases completas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "ortografia_basica": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Uso básico de mayúsculas y punto",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "comprension_lectora": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Responder preguntas sobre texto leído",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "vocabulario_amplio": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conocer 500-700 palabras",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "describir_imagenes": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Describir lo que ve en una imagen",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "narrar_experiencias": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Contar experiencias personales",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "uso_diccionario": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Buscar palabras en diccionario infantil",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        },
+        "ciencias": {
+          "ciclo_agua": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender evaporación y lluvia básica",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "habitats": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Conocer donde viven diferentes animales",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "alimentacion": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Clasificar alimentos básicos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "estaciones": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Reconocer las 4 estaciones",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "plantas_crecimiento": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender qué necesitan las plantas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "cuidado_ambiente": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conceptos básicos de reciclaje",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        }
+      }
+    },
+    {
+      "identificacion": {
+        "id_perfil": "2e_ac_adhd_010",
+        "edad": 11,
+        "genero": "masculino",
+        "nivel_educativo": "primaria",
+        "curso": "2_primaria",
+        "tipo_estudiante": "doble_excepcionalidad"
+      },
+      "perfil_academico": {
+        "rendimiento_general": 3,
+        "matematicas": 4,
+        "lengua_castellana": 3,
+        "ciencias_naturales": 5,
+        "ciencias_sociales": 4,
+        "educacion_artistica": 4,
+        "educacion_fisica": 3,
+        "segunda_lengua": 4,
+        "competencia_digital": 5,
+        "altas_capacidades_identificadas": true,
+        "area_talento_principal": "ciencias",
+        "dificultades_aprendizaje": true,
+        "tipo_dificultad": "ADHD"
+      },
+      "perfil_cognitivo": {
+        "atencion_concentracion": 1,
+        "memoria_trabajo": 3,
+        "velocidad_procesamiento": 3,
+        "razonamiento_logico": 4,
+        "creatividad": 4,
+        "resolucion_problemas": 5,
+        "planificacion_organizacion": 2,
+        "flexibilidad_cognitiva": 3,
+        "metacognicion": 3
+      },
+      "perfil_conductual": {
+        "atencion_sostenida": 1,
+        "hiperactividad": 5,
+        "impulsividad": 5,
+        "autorregulacion": 1,
+        "habilidades_sociales": 2,
+        "tolerancia_frustracion": 2,
+        "motivacion_intrinseca": 3,
+        "perseverancia": 4,
+        "autonomia": 3
+      },
+      "estilo_aprendizaje": {
+        "canal_preferente": "visual",
+        "ritmo_aprendizaje": "rapido",
+        "tipo_agrupamiento": "pequeno_grupo",
+        "nivel_autonomia": "media",
+        "motivacion_principal": "reto"
+      },
+      "adaptaciones": {
+        "necesita_apoyo_atencion": 5,
+        "requiere_descansos_frecuentes": 5,
+        "necesita_estimulacion_cognitiva": 5,
+        "requiere_flexibilidad_curricular": 4,
+        "necesita_colaboracion_familia": 5,
+        "requiere_gestion_comportamiento": 4,
+        "necesita_engagement_especial": 5,
+        "requiere_estrategias_adaptadas": 5,
+        "necesita_medicacion": true,
+        "requiere_evaluacion_adaptada": true
+      },
+      "contexto": {
+        "apoyo_familiar": 3,
+        "recursos_disponibles": 2,
+        "estabilidad_emocional": 3,
+        "motivacion_estudiante": 3,
+        "expectativas_familia": 5
+      },
+      "observaciones_libres": "Estudiante con altas capacidades en ciencias y ADHD. Muestra gran creatividad pero dificultades de atención y organización. Requiere estrategias que combinen enriquecimiento cognitivo con apoyo ejecutivo.",
+      "metadatos": {
+        "fecha_creacion": "2025-07-12T01:10:16.368049",
+        "fuente_datos": "generado_2e_ttess",
+        "confianza_perfil": 4,
+        "campos_imputados": [
+          "algunos_valores_especificos"
+        ],
+        "requiere_validacion": true,
+        "version_estructura": "goldilocks_v1",
+        "tiene_estado_curricular": true,
+        "fecha_estado_curricular": "2025-07-12T01:19:59.023965",
+        "version_curriculo": "primaria_espana_v1"
+      },
+      "estado_curricular": {
+        "matematicas": {
+          "numeros_0_100": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Leer y escribir números hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "decenas_unidades": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender decenas y unidades",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "sumas_llevada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Sumas con llevada hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "restas_llevada": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Restas con llevada hasta 100",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_2": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 2",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_5": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 5",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "tabla_10": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Tabla de multiplicar del 10",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "problemas_dos_operaciones": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Problemas con 2 operaciones",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "medidas_tiempo": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Leer reloj (horas en punto)",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "euros_centimos": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Reconocer monedas y billetes básicos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        },
+        "lengua": {
+          "leer_textos_cortos": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Leer textos de 4-6 líneas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "escribir_frases": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Escribir frases completas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "ortografia_basica": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Uso básico de mayúsculas y punto",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "comprension_lectora": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Responder preguntas sobre texto leído",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "vocabulario_amplio": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conocer 500-700 palabras",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "describir_imagenes": {
+            "estado": "iniciado",
+            "nivel_numerico": 1,
+            "descripcion": "Describir lo que ve en una imagen",
+            "necesita_refuerzo": true,
+            "puede_avanzar": false
+          },
+          "narrar_experiencias": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Contar experiencias personales",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "uso_diccionario": {
+            "estado": "conseguido",
+            "nivel_numerico": 3,
+            "descripcion": "Buscar palabras en diccionario infantil",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        },
+        "ciencias": {
+          "ciclo_agua": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender evaporación y lluvia básica",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "habitats": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conocer donde viven diferentes animales",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "alimentacion": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Clasificar alimentos básicos",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "estaciones": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Reconocer las 4 estaciones",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "plantas_crecimiento": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Entender qué necesitan las plantas",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          },
+          "cuidado_ambiente": {
+            "estado": "superado",
+            "nivel_numerico": 4,
+            "descripcion": "Conceptos básicos de reciclaje",
+            "necesita_refuerzo": false,
+            "puede_avanzar": true
+          }
+        }
+      }
+    }
+  ]
+}
