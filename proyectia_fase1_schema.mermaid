@@ -1,0 +1,123 @@
+erDiagram
+    CENTRO {
+        id integer PK
+        nombre string
+        tipo_entorno string
+        direccion string
+        activo boolean
+    }
+
+    CURSO {
+        id integer PK
+        nombre string
+        nivel_educativo string
+        activo boolean
+    }
+
+    AULA {
+        id integer PK
+        curso_id integer FK
+        grupo string
+        numero_alumnos integer
+        centro_id integer FK
+        activo boolean
+    }
+
+    PROFESOR {
+        id integer PK
+        nombre string
+        email string
+        centro_id integer FK
+        fecha_registro date
+        activo boolean
+    }
+
+    PROFESOR_AULA {
+        id integer PK
+        profesor_id integer FK
+        aula_id integer FK
+        tipo_relacion string
+        activo boolean
+    }
+
+    ALUMNO {
+        id integer PK
+        nombre_anonimo string
+        edad integer
+        aula_id integer FK
+        caracteristicas_tea boolean
+        caracteristicas_tdah boolean
+        caracteristicas_aacc boolean
+        diversidad_sensorial json
+        estilo_aprendizaje string
+        motivaciones_intereses json
+        activo boolean
+    }
+
+    COMPETENCIA_CURRICULAR {
+        id integer PK
+        curso_id integer FK
+        codigo string
+        nombre string
+        area_curricular string
+        descripcion text
+        activo boolean
+    }
+
+    HITO_ALUMNO {
+        id integer PK
+        alumno_id integer FK
+        competencia_id integer FK
+        alcanzado boolean
+        fecha_registro date
+        contexto_observacion text
+        profesor_id integer FK
+    }
+
+    PROYECTO {
+        id integer PK
+        titulo string
+        aula_id integer FK
+        profesor_id integer FK
+        prompt_profesor text
+        contexto_generacion json
+        contenido_generado json
+        estado string
+        validado_profesor boolean
+        fecha_creacion date
+        fecha_validacion date
+        proyecto_ejecutado_id integer FK
+    }
+
+    PROYECTO_EJECUTADO {
+        id integer PK
+        proyecto_base_id integer FK
+        cambios_realizados text
+        satisfaccion_general integer
+        observaciones text
+        fecha_inicio date
+        fecha_fin date
+    }
+
+    %% Relaciones Básicas
+    CENTRO ||--o{ AULA : "tiene"
+    CURSO ||--o{ AULA : "se_imparte_en"
+    CURSO ||--o{ COMPETENCIA_CURRICULAR : "define"
+
+    %% Relaciones Profesor
+    PROFESOR ||--|| CENTRO : "trabaja_en"
+    PROFESOR ||--o{ PROFESOR_AULA : "tiene_asignacion"
+    AULA ||--|| PROFESOR_AULA : "recibe_tutor"
+
+    %% Relaciones Aula-Alumno
+    AULA ||--o{ ALUMNO : "contiene"
+
+    %% Módulo Curricular Simple
+    ALUMNO ||--o{ HITO_ALUMNO : "alcanza"
+    COMPETENCIA_CURRICULAR ||--o{ HITO_ALUMNO : "se_evalua_en"
+    PROFESOR ||--o{ HITO_ALUMNO : "registra"
+
+    %% Módulo Proyectos Simple
+    AULA ||--o{ PROYECTO : "desarrolla"
+    PROFESOR ||--o{ PROYECTO : "crea"
+    PROYECTO ||--o| PROYECTO_EJECUTADO : "se_ejecuta_como"

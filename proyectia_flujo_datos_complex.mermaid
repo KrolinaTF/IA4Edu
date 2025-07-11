@@ -1,0 +1,292 @@
+graph TB
+    %% ===== CONFIGURACIÓN GLOBAL =====
+    %%{init: {'theme':'base', 'themeVariables': { 'primaryColor': '#ffffff', 'primaryTextColor': '#000000', 'primaryBorderColor': '#000000', 'lineColor': '#000000', 'arrowheadColor': '#000000', 'background': '#ffffff', 'mainBkg': '#ffffff', 'secondBkg': '#ffffff', 'tertiaryColor': '#ffffff'}}}%%
+
+    %% ===== FRONTEND LAYER =====
+    subgraph FRONTEND["🖥️ FRONTEND (Templates/React)"]
+        direction LR
+        DASHBOARD_MAIN[Dashboard Principal<br/>Lista proyectos profesor]
+        PROJECT_FORM_UI[Formulario Proyecto<br/>Inputs estructurados]
+        PROJECT_VIEWER[Visor Proyecto<br/>Contenido generado]
+        
+        ITERATION_UI[Interfaz Iteración<br/>Modificaciones profesor]
+        STATE_MANAGER_UI[Gestor Estados<br/>Cambiar estado proyecto]
+        
+        HITOS_TABLE_UI[Tabla Hitos<br/>Grid interactivo competencias]
+        EXECUTION_FORM[Formulario Ejecución<br/>Cambios vs planificado]
+        SATISFACTION_FORM[Formulario Satisfacción<br/>Feedback post-proyecto]
+        
+        STUDENT_PROGRESS_UI[Progreso Estudiantes<br/>Individual + comparativas]
+        CLASS_OVERVIEW[Vista Aula<br/>Estado curricular global]
+        TEACHER_INSIGHTS_UI[Insights Profesor<br/>Patrones + recomendaciones]
+        ROTATION_DASHBOARD[Dashboard Rotaciones<br/>Quién hizo qué]
+    end
+
+    %% ===== DJANGO VIEWS LAYER =====
+    subgraph VIEWS["🌐 DJANGO VIEWS (Controllers)"]
+        direction TB
+        
+        subgraph GENERATION_VIEWS["Views de Generación"]
+            direction LR
+            PROJECT_LIST_VIEW[ProjectListView<br/>GET projects list]
+            PROJECT_CREATE_VIEW[ProjectCreateView<br/>POST create project]
+            PROJECT_DETAIL_VIEW[ProjectDetailView<br/>GET project detail]
+            PROJECT_ITERATION_VIEW[ProjectIterationView<br/>PUT modify project]
+        end
+        
+        subgraph TRACKING_VIEWS["Views de Seguimiento"]
+            direction LR
+            HITOS_VIEW[HitosView<br/>POST update hitos]
+            PROJECT_STATE_VIEW[ProjectStateView<br/>PUT change state]
+            EXECUTION_VIEW[ExecutionView<br/>POST execution data]
+            SATISFACTION_VIEW[SatisfactionView<br/>POST feedback]
+        end
+        
+        subgraph ANALYTICS_VIEWS["Views de Análisis"]
+            direction LR
+            PROGRESS_VIEW[ProgressView<br/>GET student progress]
+            CLASS_OVERVIEW_VIEW[ClassOverviewView<br/>GET class state]
+            INSIGHTS_VIEW[InsightsView<br/>GET teacher insights]
+            ROTATION_VIEW[RotationView<br/>GET rotation data]
+        end
+    end
+
+    %% ===== DJANGO SERVICES LAYER =====
+    subgraph SERVICES["🔧 DJANGO SERVICES"]
+        direction TB
+        
+        subgraph GEN_SERVICES["Servicios de Generación"]
+            direction LR
+            PROJECT_GENERATOR_SERVICE[ProjectGeneratorService<br/>Orquesta generación completa]
+            GAP_CALCULATOR[GapCalculator<br/>Calcula competencias faltantes]
+            CONTEXT_BUILDER[ContextBuilder<br/>Recopila contexto aula]
+            DATA_ANONYMIZER[DataAnonymizer<br/>Protege datos para LLM]
+        end
+        
+        subgraph AI_SERVICES["Servicios de IA"]
+            direction LR
+            PROMPT_BUILDER[PromptBuilder<br/>Estructura prompt LLM]
+            LLM_SERVICE[LLMService<br/>Llama Hugging Face API]
+            ITERATION_HANDLER[IterationHandler<br/>Gestiona modificaciones]
+            CONTENT_VALIDATOR[ContentValidator<br/>Valida respuesta LLM]
+            PROJECT_PARSER[ProjectParser<br/>Estructura resultado]
+            ACTIVITY_PLANNER[ActivityPlanner<br/>Planifica actividades]
+            ROTATION_SUGGESTER[RotationSuggester<br/>Sugiere rotaciones]
+        end
+        
+        subgraph TRACK_SERVICES["Servicios de Seguimiento"]
+            direction LR
+            HITO_SERVICE[HitoService<br/>Gestiona progreso alumnos]
+            PROJECT_STATE_SERVICE[ProjectStateService<br/>Gestiona estados proyecto]
+            EXECUTION_TRACKER[ExecutionTracker<br/>Rastrea vs planificado]
+            SATISFACTION_COLLECTOR[SatisfactionCollector<br/>Recopila feedback]
+            PROGRESS_CALCULATOR[ProgressCalculator<br/>Calcula progresos]
+        end
+        
+        subgraph ROTATION_SERVICES["Servicios de Rotación"]
+            direction LR
+            ASSIGNMENT_TRACKER[AssignmentTracker<br/>Rastrea asignaciones]
+            EQUITY_MONITOR[EquityMonitor<br/>Monitorea equidad]
+            ROTATION_UPDATER[RotationUpdater<br/>Actualiza historial]
+        end
+        
+        subgraph LEARNING_SERVICES["Servicios de Aprendizaje"]
+            direction LR
+            TEACHER_PROFILER[TeacherProfiler<br/>Perfila docente]
+            ADAPTATION_ANALYZER[AdaptationAnalyzer<br/>Analiza adaptaciones]
+            SUCCESS_PREDICTOR[SuccessPredictor<br/>Predice éxito]
+            GAP_DETECTOR[GapDetector<br/>Detecta lagunas]
+            PROMPT_OPTIMIZER[PromptOptimizer<br/>Optimiza prompts]
+            SUGGESTION_ENGINE[SuggestionEngine<br/>Motor sugerencias]
+            INSIGHTS_GENERATOR[InsightsGenerator<br/>Genera insights]
+        end
+    end
+
+    %% ===== DJANGO ORM LAYER =====
+    subgraph ORM["🗃️ DJANGO ORM (Models)"]
+        direction TB
+        
+        subgraph CORE_MODELS["Modelos Core"]
+            direction LR
+            CENTRO_MODEL[Centro.objects]
+            CURSO_MODEL[Curso.objects]
+            AULA_MODEL[Aula.objects]
+            PROFESOR_MODEL[Profesor.objects]
+            MATERIA_MODEL[Materia.objects]
+        end
+        
+        subgraph PROFILE_MODELS["Modelos de Perfiles"]
+            direction LR
+            ALUMNO_MODEL[Alumno.objects]
+            COMPETENCIA_MODEL[Competencia.objects]
+            HITO_MODEL[Hito.objects]
+        end
+        
+        subgraph PROJECT_MODELS["Modelos de Proyectos"]
+            direction LR
+            PROYECTO_MODEL[Proyecto.objects]
+            ACTIVIDAD_PLAN_MODEL[ActividadPlanificada.objects]
+            ACTIVIDAD_EJEC_MODEL[ActividadEjecutada.objects]
+            ASIGNACION_PLAN_MODEL[AsignacionPlanificada.objects]
+            ASIGNACION_EJEC_MODEL[AsignacionEjecutada.objects]
+            SEGUIMIENTO_MODEL[Seguimiento.objects]
+            HISTORIAL_ROT_MODEL[HistorialRotacion.objects]
+        end
+    end
+
+    %% ===== DATABASE LAYER =====
+    subgraph DB["🗄️ POSTGRESQL DATABASE"]
+        direction TB
+        
+        subgraph CORE_TABLES["Tablas Core"]
+            direction LR
+            CENTRO_TABLE[core_centro]
+            CURSO_TABLE[core_curso]
+            AULA_TABLE[core_aula]
+            PROFESOR_TABLE[core_profesor]
+            MATERIA_TABLE[core_materia]
+        end
+        
+        subgraph PROFILE_TABLES["Tablas de Perfiles"]
+            direction LR
+            ALUMNO_TABLE[core_alumno]
+            COMPETENCIA_TABLE[core_competencia]
+            HITO_TABLE[core_hito]
+        end
+        
+        subgraph PROJECT_TABLES["Tablas de Proyectos"]
+            direction LR
+            PROYECTO_TABLE[core_proyecto]
+            ACTIVIDAD_PLAN_TABLE[core_actividadplanificada]
+            ACTIVIDAD_EJEC_TABLE[core_actividadejecutada]
+            ASIGNACION_PLAN_TABLE[core_asignacionplanificada]
+            ASIGNACION_EJEC_TABLE[core_asignacionejecutada]
+            SEGUIMIENTO_TABLE[core_seguimiento]
+            HISTORIAL_ROT_TABLE[core_historialrotacion]
+        end
+    end
+
+    %% ===== FLUJOS PRINCIPALES =====
+    
+    %% Frontend to Views
+    DASHBOARD_MAIN --> PROJECT_LIST_VIEW
+    PROJECT_FORM_UI --> PROJECT_CREATE_VIEW
+    PROJECT_VIEWER --> PROJECT_DETAIL_VIEW
+    ITERATION_UI --> PROJECT_ITERATION_VIEW
+    STATE_MANAGER_UI --> PROJECT_STATE_VIEW
+    HITOS_TABLE_UI --> HITOS_VIEW
+    EXECUTION_FORM --> EXECUTION_VIEW
+    SATISFACTION_FORM --> SATISFACTION_VIEW
+    STUDENT_PROGRESS_UI --> PROGRESS_VIEW
+    CLASS_OVERVIEW --> CLASS_OVERVIEW_VIEW
+    TEACHER_INSIGHTS_UI --> INSIGHTS_VIEW
+    ROTATION_DASHBOARD --> ROTATION_VIEW
+
+    %% Views to Services (Generation)
+    PROJECT_CREATE_VIEW --> PROJECT_GENERATOR_SERVICE
+    PROJECT_ITERATION_VIEW --> ITERATION_HANDLER
+    
+    %% Views to Services (Tracking)
+    HITOS_VIEW --> HITO_SERVICE
+    PROJECT_STATE_VIEW --> PROJECT_STATE_SERVICE
+    EXECUTION_VIEW --> EXECUTION_TRACKER
+    SATISFACTION_VIEW --> SATISFACTION_COLLECTOR
+    
+    %% Views to Services (Analytics)
+    PROGRESS_VIEW --> PROGRESS_CALCULATOR
+    CLASS_OVERVIEW_VIEW --> GAP_DETECTOR
+    INSIGHTS_VIEW --> INSIGHTS_GENERATOR
+    ROTATION_VIEW --> ASSIGNMENT_TRACKER
+
+    %% Service Orchestration (Generation)
+    PROJECT_GENERATOR_SERVICE --> GAP_CALCULATOR
+    PROJECT_GENERATOR_SERVICE --> CONTEXT_BUILDER
+    PROJECT_GENERATOR_SERVICE --> DATA_ANONYMIZER
+    PROJECT_GENERATOR_SERVICE --> PROMPT_BUILDER
+    PROJECT_GENERATOR_SERVICE --> LLM_SERVICE
+    PROJECT_GENERATOR_SERVICE --> PROJECT_PARSER
+    PROJECT_GENERATOR_SERVICE --> ACTIVITY_PLANNER
+    PROJECT_GENERATOR_SERVICE --> ROTATION_SUGGESTER
+
+    %% Service Orchestration (Tracking)
+    EXECUTION_TRACKER --> ASSIGNMENT_TRACKER
+    ASSIGNMENT_TRACKER --> EQUITY_MONITOR
+    EQUITY_MONITOR --> ROTATION_UPDATER
+    SATISFACTION_COLLECTOR --> TEACHER_PROFILER
+
+    %% Service Orchestration (Learning)
+    TEACHER_PROFILER --> PROMPT_OPTIMIZER
+    HITO_SERVICE --> ADAPTATION_ANALYZER
+    ASSIGNMENT_TRACKER --> SUCCESS_PREDICTOR
+    HITO_SERVICE --> GAP_DETECTOR
+    ADAPTATION_ANALYZER --> SUGGESTION_ENGINE
+    GAP_DETECTOR --> SUGGESTION_ENGINE
+    SUCCESS_PREDICTOR --> INSIGHTS_GENERATOR
+    TEACHER_PROFILER --> INSIGHTS_GENERATOR
+
+    %% Services to ORM
+    GAP_CALCULATOR --> COMPETENCIA_MODEL
+    GAP_CALCULATOR --> HITO_MODEL
+    GAP_CALCULATOR --> ALUMNO_MODEL
+    CONTEXT_BUILDER --> CENTRO_MODEL
+    CONTEXT_BUILDER --> AULA_MODEL
+    CONTEXT_BUILDER --> CURSO_MODEL
+    PROJECT_GENERATOR_SERVICE --> PROYECTO_MODEL
+    ACTIVITY_PLANNER --> ACTIVIDAD_PLAN_MODEL
+    ROTATION_SUGGESTER --> ASIGNACION_PLAN_MODEL
+    HITO_SERVICE --> HITO_MODEL
+    HITO_SERVICE --> ALUMNO_MODEL
+    PROJECT_STATE_SERVICE --> PROYECTO_MODEL
+    EXECUTION_TRACKER --> ACTIVIDAD_EJEC_MODEL
+    EXECUTION_TRACKER --> ASIGNACION_EJEC_MODEL
+    SATISFACTION_COLLECTOR --> SEGUIMIENTO_MODEL
+    ROTATION_UPDATER --> HISTORIAL_ROT_MODEL
+    TEACHER_PROFILER --> PROFESOR_MODEL
+
+    %% ORM to Database
+    CENTRO_MODEL --> CENTRO_TABLE
+    CURSO_MODEL --> CURSO_TABLE
+    AULA_MODEL --> AULA_TABLE
+    PROFESOR_MODEL --> PROFESOR_TABLE
+    MATERIA_MODEL --> MATERIA_TABLE
+    ALUMNO_MODEL --> ALUMNO_TABLE
+    COMPETENCIA_MODEL --> COMPETENCIA_TABLE
+    HITO_MODEL --> HITO_TABLE
+    PROYECTO_MODEL --> PROYECTO_TABLE
+    ACTIVIDAD_PLAN_MODEL --> ACTIVIDAD_PLAN_TABLE
+    ACTIVIDAD_EJEC_MODEL --> ACTIVIDAD_EJEC_TABLE
+    ASIGNACION_PLAN_MODEL --> ASIGNACION_PLAN_TABLE
+    ASIGNACION_EJEC_MODEL --> ASIGNACION_EJEC_TABLE
+    SEGUIMIENTO_MODEL --> SEGUIMIENTO_TABLE
+    HISTORIAL_ROT_MODEL --> HISTORIAL_ROT_TABLE
+
+    %% Response Flows
+    PROJECT_LIST_VIEW --> DASHBOARD_MAIN
+    PROJECT_CREATE_VIEW --> PROJECT_VIEWER
+    PROJECT_DETAIL_VIEW --> PROJECT_VIEWER
+    PROJECT_ITERATION_VIEW --> PROJECT_VIEWER
+    HITOS_VIEW --> HITOS_TABLE_UI
+    PROGRESS_VIEW --> STUDENT_PROGRESS_UI
+    CLASS_OVERVIEW_VIEW --> CLASS_OVERVIEW
+    INSIGHTS_VIEW --> TEACHER_INSIGHTS_UI
+    ROTATION_VIEW --> ROTATION_DASHBOARD
+
+    %% ===== ESTILOS DJANGO =====
+    classDef frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef views fill:#fff3e0,stroke:#f57c00,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef services fill:#f1f8e9,stroke:#388e3c,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef ai fill:#ffecb3,stroke:#ff8f00,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef orm fill:#f3e5f5,stroke:#7b1fa2,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef database fill:#fce4ec,stroke:#c2185b,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+
+    class DASHBOARD_MAIN,PROJECT_FORM_UI,PROJECT_VIEWER,ITERATION_UI,STATE_MANAGER_UI,HITOS_TABLE_UI,EXECUTION_FORM,SATISFACTION_FORM,STUDENT_PROGRESS_UI,CLASS_OVERVIEW,TEACHER_INSIGHTS_UI,ROTATION_DASHBOARD frontend
+
+    class PROJECT_LIST_VIEW,PROJECT_CREATE_VIEW,PROJECT_DETAIL_VIEW,PROJECT_ITERATION_VIEW,HITOS_VIEW,PROJECT_STATE_VIEW,EXECUTION_VIEW,SATISFACTION_VIEW,PROGRESS_VIEW,CLASS_OVERVIEW_VIEW,INSIGHTS_VIEW,ROTATION_VIEW views
+
+    class PROJECT_GENERATOR_SERVICE,GAP_CALCULATOR,CONTEXT_BUILDER,DATA_ANONYMIZER,HITO_SERVICE,PROJECT_STATE_SERVICE,EXECUTION_TRACKER,SATISFACTION_COLLECTOR,PROGRESS_CALCULATOR,ASSIGNMENT_TRACKER,EQUITY_MONITOR,ROTATION_UPDATER,TEACHER_PROFILER,ADAPTATION_ANALYZER,SUCCESS_PREDICTOR,GAP_DETECTOR,SUGGESTION_ENGINE services
+
+    class PROMPT_BUILDER,LLM_SERVICE,ITERATION_HANDLER,CONTENT_VALIDATOR,PROJECT_PARSER,ACTIVITY_PLANNER,ROTATION_SUGGESTER,PROMPT_OPTIMIZER,INSIGHTS_GENERATOR ai
+
+    class CENTRO_MODEL,CURSO_MODEL,AULA_MODEL,PROFESOR_MODEL,MATERIA_MODEL,ALUMNO_MODEL,COMPETENCIA_MODEL,HITO_MODEL,PROYECTO_MODEL,ACTIVIDAD_PLAN_MODEL,ACTIVIDAD_EJEC_MODEL,ASIGNACION_PLAN_MODEL,ASIGNACION_EJEC_MODEL,SEGUIMIENTO_MODEL,HISTORIAL_ROT_MODEL orm
+
+    class CENTRO_TABLE,CURSO_TABLE,AULA_TABLE,PROFESOR_TABLE,MATERIA_TABLE,ALUMNO_TABLE,COMPETENCIA_TABLE,HITO_TABLE,PROYECTO_TABLE,ACTIVIDAD_PLAN_TABLE,ACTIVIDAD_EJEC_TABLE,ASIGNACION_PLAN_TABLE,ASIGNACION_EJEC_TABLE,SEGUIMIENTO_TABLE,HISTORIAL_ROT_TABLE database

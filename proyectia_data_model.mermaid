@@ -1,0 +1,228 @@
+erDiagram
+    CENTRO {
+        id integer PK
+        nombre string
+        tipo_entorno string
+        direccion string
+        espacios_disponibles json
+        entorno_proximo json
+        calendario_escolar json
+        activo boolean
+    }
+
+    CURSO {
+        id integer PK
+        nombre string
+        nivel_educativo string
+        curriculo_oficial json
+        activo boolean
+    }
+
+    AULA {
+        id integer PK
+        curso_id integer FK
+        grupo string
+        numero_alumnos integer
+        centro_id integer FK
+        estado_curricular json
+        activo boolean
+    }
+
+    PROFESOR {
+        id integer PK
+        nombre string
+        email string
+        centro_id integer FK
+        perfil_pedagogico json
+        preferencias_metodologicas json
+        fecha_registro date
+        activo boolean
+    }
+
+    PROFESOR_AULA {
+        id integer PK
+        profesor_id integer FK
+        aula_id integer FK
+        tipo_relacion string
+        materias json
+        activo boolean
+    }
+
+    ALUMNO {
+        id integer PK
+        nombre_anonimo string
+        edad integer
+        aula_id integer FK
+        caracteristicas_tea boolean
+        detalles_tea json
+        caracteristicas_tdah boolean
+        detalles_tdah json
+        caracteristicas_aacc boolean
+        detalles_aacc json
+        diversidad_sensorial json
+        estilo_aprendizaje string
+        motivaciones_intereses json
+        personalidad_educativa json
+        estado_curricular_individual json
+        activo boolean
+    }
+
+    COMPETENCIA_CURRICULAR {
+        id integer PK
+        curso_id integer FK
+        codigo string
+        nombre string
+        area_curricular string
+        bloque_curricular string
+        descripcion text
+        criterios_evaluacion json
+        peso_curricular float
+        activo boolean
+    }
+
+    HITO_ALUMNO {
+        id integer PK
+        alumno_id integer FK
+        competencia_id integer FK
+        alcanzado boolean
+        nivel_dominio string
+        fecha_registro date
+        contexto_observacion text
+        profesor_id integer FK
+        evidencias json
+    }
+
+    PROYECTO {
+        id integer PK
+        titulo string
+        aula_id integer FK
+        profesor_id integer FK
+        prompt_profesor text
+        contexto_generacion json
+        contenido_generado json
+        adaptaciones_incluidas json
+        competencias_objetivo json
+        estado string
+        validado_profesor boolean
+        fecha_creacion date
+        fecha_validacion date
+        fecha_inicio_planificada date
+        duracion_estimada_dias integer
+    }
+
+    ACTIVIDAD_PLANIFICADA {
+        id integer PK
+        proyecto_id integer FK
+        nombre string
+        tipo_actividad string
+        orden_ejecucion integer
+        habilidades_requeridas json
+        dificultad_emocional integer
+        tiempo_estimado integer
+        descripcion text
+        recursos_necesarios json
+    }
+
+    ASIGNACION_PLANIFICADA {
+        id integer PK
+        actividad_id integer FK
+        alumno_id integer FK
+        rol_asignado string
+        justificacion_algoritmo text
+        peso_rotacion float
+        fecha_asignacion date
+    }
+
+    PROYECTO_EJECUTADO {
+        id integer PK
+        proyecto_base_id integer FK
+        cambios_realizados text
+        actividades_modificadas json
+        satisfaccion_general integer
+        tiempo_real_dedicado integer
+        dificultades_encontradas text
+        exito_adaptaciones boolean
+        observaciones text
+        fecha_inicio date
+        fecha_fin date
+    }
+
+    ACTIVIDAD_EJECUTADA {
+        id integer PK
+        proyecto_ejecutado_id integer FK
+        actividad_planificada_id integer FK
+        nombre_final string
+        tiempo_real integer
+        nivel_exito integer
+        modificaciones text
+        fecha_realizacion date
+    }
+
+    ASIGNACION_EJECUTADA {
+        id integer PK
+        actividad_ejecutada_id integer FK
+        alumno_id integer FK
+        rol_real string
+        nivel_participacion integer
+        satisfaccion_alumno integer
+        competencias_demostradas json
+        dificultades_individuales text
+        fecha_participacion date
+    }
+
+    HISTORIAL_ROTACION {
+        id integer PK
+        alumno_id integer FK
+        tipo_actividad string
+        veces_realizada integer
+        ultimo_rol string
+        ultima_fecha date
+        preferencia_detectada integer
+        equidad_score float
+    }
+
+    VALIDACION_PROYECTO {
+        id integer PK
+        proyecto_id integer FK
+        tipo_validacion string
+        resultado_validacion json
+        observaciones_ia text
+        fecha_validacion timestamp
+        validado_por string
+    }
+
+    %% Relaciones Básicas Expandidas
+    CENTRO ||--o{ AULA : "tiene"
+    CENTRO ||--o{ PROFESOR : "emplea"
+    CURSO ||--o{ AULA : "se_imparte_en"
+    CURSO ||--o{ COMPETENCIA_CURRICULAR : "define"
+
+    %% Relaciones Profesor Expandidas
+    PROFESOR ||--o{ PROFESOR_AULA : "tiene_asignacion"
+    AULA ||--o{ PROFESOR_AULA : "recibe_docente"
+
+    %% Relaciones Aula-Alumno
+    AULA ||--o{ ALUMNO : "contiene"
+
+    %% Módulo Curricular Completo
+    ALUMNO ||--o{ HITO_ALUMNO : "alcanza"
+    COMPETENCIA_CURRICULAR ||--o{ HITO_ALUMNO : "se_evalua_en"
+    PROFESOR ||--o{ HITO_ALUMNO : "registra"
+
+    %% Módulo Proyectos Completo
+    AULA ||--o{ PROYECTO : "desarrolla"
+    PROFESOR ||--o{ PROYECTO : "crea"
+    PROYECTO ||--o{ ACTIVIDAD_PLANIFICADA : "contiene"
+    PROYECTO ||--o| PROYECTO_EJECUTADO : "se_ejecuta_como"
+    PROYECTO ||--o{ VALIDACION_PROYECTO : "se_valida_con"
+
+    %% Planificación de Actividades
+    ACTIVIDAD_PLANIFICADA ||--o{ ASIGNACION_PLANIFICADA : "se_asigna_como"
+    ALUMNO ||--o{ ASIGNACION_PLANIFICADA : "recibe_planificada"
+    PROYECTO_EJECUTADO ||--o{ ACTIVIDAD_EJECUTADA : "contiene_ejecutada"
+    ACTIVIDAD_PLANIFICADA ||--o{ ACTIVIDAD_EJECUTADA : "se_convierte_en"
+
+    %% Ejecución y Rotaciones
+    ACTIVIDAD_EJECUTADA ||--o{ ASIGNACION_EJECUTADA : "se_asigna_realmente"
+    ALUMNO ||--o{ ASIGNACION_EJECUTADA : "participa_en"
+    ALUMNO ||--o{ HISTORIAL_ROTACION : "construye_historial"
