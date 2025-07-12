@@ -1,0 +1,107 @@
+graph TB
+    %% ===== FRONTEND/TEMPLATES =====
+    subgraph FRONTEND["🖥️ FRONTEND"]
+        DASHBOARD[Dashboard<br/>Lista de Proyectos]
+        PROJECT_FORM[Formulario<br/>Crear Proyecto]
+        PROJECT_DETAIL[Detalle Proyecto<br/>Ver Contenido]
+        HITOS_TABLE[Tabla Hitos<br/>Progreso Alumnos]
+    end
+
+    %% ===== DJANGO VIEWS =====
+    subgraph VIEWS["🌐 DJANGO VIEWS"]
+        PROJECT_LIST_VIEW[ProjectListView<br/>GET projects]
+        PROJECT_CREATE_VIEW[ProjectCreateView<br/>POST projects]
+        PROJECT_DETAIL_VIEW[ProjectDetailView<br/>GET project detail]
+        HITOS_VIEW[HitosView<br/>POST hitos]
+    end
+
+    %% ===== DJANGO SERVICES =====
+    subgraph SERVICES["🔧 DJANGO SERVICES"]
+        PROJECT_GENERATOR_SERVICE[ProjectGeneratorService<br/>Orquesta proceso]
+        GAP_CALCULATOR[GapCalculator<br/>Calcula gaps]
+        DATA_ANONYMIZER[DataAnonymizer<br/>Protege datos]
+        PROMPT_BUILDER[PromptBuilder<br/>Estructura prompt]
+        LLM_SERVICE[LLMService<br/>Llama IA]
+        HITO_SERVICE[HitoService<br/>Gestiona progreso]
+    end
+
+    %% ===== DJANGO ORM =====
+    subgraph ORM["🗃️ DJANGO ORM"]
+        CENTRO_MODEL[Centro.objects]
+        AULA_MODEL[Aula.objects]
+        ALUMNO_MODEL[Alumno.objects]
+        COMPETENCIA_MODEL[Competencia.objects]
+        PROYECTO_MODEL[Proyecto.objects]
+        HITO_MODEL[Hito.objects]
+    end
+
+    %% ===== BASE DE DATOS =====
+    subgraph DB["🗄️ DATABASE"]
+        CENTRO_TABLE[core_centro]
+        AULA_TABLE[core_aula]
+        ALUMNO_TABLE[core_alumno]
+        COMPETENCIA_TABLE[core_competencia]
+        PROYECTO_TABLE[core_proyecto]
+        HITO_TABLE[core_hito]
+    end
+
+    %% ===== FLUJOS PRINCIPALES =====
+    
+    %% Frontend to Views
+    DASHBOARD --> PROJECT_LIST_VIEW
+    PROJECT_FORM --> PROJECT_CREATE_VIEW
+    PROJECT_DETAIL --> PROJECT_DETAIL_VIEW
+    HITOS_TABLE --> HITOS_VIEW
+
+    %% Views to Services
+    PROJECT_CREATE_VIEW --> PROJECT_GENERATOR_SERVICE
+    HITOS_VIEW --> HITO_SERVICE
+
+    %% Service Orchestration
+    PROJECT_GENERATOR_SERVICE --> GAP_CALCULATOR
+    PROJECT_GENERATOR_SERVICE --> DATA_ANONYMIZER
+    PROJECT_GENERATOR_SERVICE --> PROMPT_BUILDER
+    PROJECT_GENERATOR_SERVICE --> LLM_SERVICE
+
+    %% Services to ORM
+    GAP_CALCULATOR --> COMPETENCIA_MODEL
+    GAP_CALCULATOR --> HITO_MODEL
+    GAP_CALCULATOR --> ALUMNO_MODEL
+    PROJECT_GENERATOR_SERVICE --> CENTRO_MODEL
+    PROJECT_GENERATOR_SERVICE --> AULA_MODEL
+    PROJECT_GENERATOR_SERVICE --> PROYECTO_MODEL
+    HITO_SERVICE --> HITO_MODEL
+    HITO_SERVICE --> ALUMNO_MODEL
+
+    %% Views to ORM
+    PROJECT_LIST_VIEW --> PROYECTO_MODEL
+    PROJECT_DETAIL_VIEW --> PROYECTO_MODEL
+    HITOS_VIEW --> COMPETENCIA_MODEL
+    HITOS_VIEW --> ALUMNO_MODEL
+
+    %% ORM to Database
+    CENTRO_MODEL --> CENTRO_TABLE
+    AULA_MODEL --> AULA_TABLE
+    ALUMNO_MODEL --> ALUMNO_TABLE
+    COMPETENCIA_MODEL --> COMPETENCIA_TABLE
+    PROYECTO_MODEL --> PROYECTO_TABLE
+    HITO_MODEL --> HITO_TABLE
+
+    %% Response Flow
+    PROJECT_LIST_VIEW --> DASHBOARD
+    PROJECT_CREATE_VIEW --> PROJECT_DETAIL
+    PROJECT_DETAIL_VIEW --> PROJECT_DETAIL
+    HITOS_VIEW --> HITOS_TABLE
+
+    %% ===== ESTILOS =====
+    classDef frontend fill:#e3f2fd,stroke:#1976d2,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef views fill:#fff3e0,stroke:#f57c00,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef services fill:#f1f8e9,stroke:#388e3c,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef orm fill:#f3e5f5,stroke:#7b1fa2,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+    classDef database fill:#fce4ec,stroke:#c2185b,stroke-width:5px,color:#000000,font-size:24px,padding:35px
+
+    class DASHBOARD,PROJECT_FORM,PROJECT_DETAIL,HITOS_TABLE frontend
+    class PROJECT_LIST_VIEW,PROJECT_CREATE_VIEW,PROJECT_DETAIL_VIEW,HITOS_VIEW views
+    class PROJECT_GENERATOR_SERVICE,GAP_CALCULATOR,DATA_ANONYMIZER,PROMPT_BUILDER,LLM_SERVICE,HITO_SERVICE services
+    class CENTRO_MODEL,AULA_MODEL,ALUMNO_MODEL,COMPETENCIA_MODEL,PROYECTO_MODEL,HITO_MODEL orm
+    class CENTRO_TABLE,AULA_TABLE,ALUMNO_TABLE,COMPETENCIA_TABLE,PROYECTO_TABLE,HITO_TABLE database

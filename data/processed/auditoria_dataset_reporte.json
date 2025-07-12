@@ -1,0 +1,76 @@
+{
+  "fecha_auditoria": "2025-07-12",
+  "total_perfiles": 394,
+  "resumen": {
+    "total_problemas": 3,
+    "alta_severidad": 2,
+    "media_severidad": 1,
+    "baja_severidad": 0,
+    "problemas": [
+      {
+        "tipo": "campo_faltante",
+        "descripcion": "perfil_cognitivo.ci_estimado faltante o null",
+        "detalles": {
+          "faltantes": 0,
+          "nulos": 2
+        },
+        "severidad": "media",
+        "afecta_perfiles": 2
+      },
+      {
+        "tipo": "incoherencia_edad_curso",
+        "descripcion": "Estudiantes con edad incoherente para su curso",
+        "detalles": [
+          "6_primaria"
+        ],
+        "severidad": "alta",
+        "afecta_perfiles": 1
+      },
+      {
+        "tipo": "distribucion_tipos_irreal",
+        "descripcion": "Distribución de tipos no realista",
+        "detalles": {
+          "tipico": 37.81725888324873,
+          "adhd": 29.441624365482234,
+          "altas_capacidades": 26.39593908629442,
+          "doble_excepcionalidad": 6.345177664974619
+        },
+        "severidad": "alta",
+        "afecta_perfiles": 394
+      }
+    ]
+  },
+  "problemas_detallados": [
+    {
+      "tipo": "campo_faltante",
+      "descripcion": "perfil_cognitivo.ci_estimado faltante o null",
+      "detalles": {
+        "faltantes": 0,
+        "nulos": 2
+      },
+      "severidad": "media",
+      "afecta_perfiles": 2
+    },
+    {
+      "tipo": "incoherencia_edad_curso",
+      "descripcion": "Estudiantes con edad incoherente para su curso",
+      "detalles": [
+        "6_primaria"
+      ],
+      "severidad": "alta",
+      "afecta_perfiles": 1
+    },
+    {
+      "tipo": "distribucion_tipos_irreal",
+      "descripcion": "Distribución de tipos no realista",
+      "detalles": {
+        "tipico": 37.81725888324873,
+        "adhd": 29.441624365482234,
+        "altas_capacidades": 26.39593908629442,
+        "doble_excepcionalidad": 6.345177664974619
+      },
+      "severidad": "alta",
+      "afecta_perfiles": 394
+    }
+  ]
+}

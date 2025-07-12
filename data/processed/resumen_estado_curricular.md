@@ -2,17 +2,18 @@
 # 📚 ESTADO CURRICULAR PROYECTIA - RESUMEN EJECUTIVO
 
 ## 🎯 TRANSFORMACIÓN COMPLETADA
-✅ **25 perfiles** enriquecidos con estado curricular específico
+✅ **394 perfiles** enriquecidos con estado curricular específico
 ✅ **6 cursos** de primaria con currículos completos  
 ✅ **División por curso** para matching preciso
 ✅ **Estados sintéticos** realistas basados en perfiles académicos
 
 ## 📊 DISTRIBUCIÓN POR CURSO
-- **5º Primaria**: 5 estudiantes
-- **2º Primaria**: 3 estudiantes
-- **3º Primaria**: 8 estudiantes
-- **4º Primaria**: 7 estudiantes
-- **6º Primaria**: 2 estudiantes
+- **3º Primaria**: 78 estudiantes
+- **4º Primaria**: 94 estudiantes
+- **6º Primaria**: 97 estudiantes
+- **5º Primaria**: 87 estudiantes
+- **2º Primaria**: 28 estudiantes
+- **1º Primaria**: 10 estudiantes
 
 ## 🧠 PRECISIÓN CURRICULAR LOGRADA
 
@@ -35,6 +36,7 @@
 4. **Adaptar** según tipo de estudiante (ADHD, AC, 2e, típico)
 
 ## 📁 ARCHIVOS GENERADOS
+- `data/processed/por_curso/perfiles_1_primaria.json`
 - `data/processed/por_curso/perfiles_2_primaria.json`
 - `data/processed/por_curso/perfiles_3_primaria.json`
 - `data/processed/por_curso/perfiles_4_primaria.json`
@@ -49,4 +51,4 @@
 
 ---
 **ProyectIA - Personalización Curricular Precisa con IA**
-*Generado: 12/07/2025 01:19*
+*Generado: 12/07/2025 14:26*
