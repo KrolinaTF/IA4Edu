@@ -1,0 +1,146 @@
+ID: 001
+FECHA_NACIMIENTO: 2016-03-15
+NOMBRE: ALEX M.
+AULA_ASIGNADA: AULA_A_4PRIM
+
+ALEX M. -  4º PRIMARIA
+
+NÚCLEO_COGNITIVO [Estabilidad: MUY_ALTA]
+CAPACIDADES_FUNDAMENTALES:
+
+CI base: 102 (promedio-alto estable)
+Patrones atencionales: Atención sostenida EXCELENTE (5/5), Selectiva EXCELENTE (5/5)
+Memoria de trabajo: EXCELENTE (5/5) - Base sólida para aprendizaje complejo
+Control inhibitorio: EXCELENTE (5/5) - Capacidad de autorregulación innata
+Flexibilidad cognitiva: BUENA (4/5) - Adaptación mental ágil
+Velocidad procesamiento: MEDIA (3/5) - Reflexivo, no impulsivo
+
+TEMPERAMENTO_BASE:
+
+Perfil: Reflexivo-organizativo-metódico
+Variabilidad rendimiento: BAJA (3/5) - Rendimiento consistente y predecible
+
+DIAGNÓSTICO_FORMAL:
+
+METADATOS_NÚCLEO:
+estabilidad: "muy_alta"
+triggers_actualización: ["evaluación_neuropsicológica", "traumatismo_craneal", "diagnóstico_neurológico"]
+última_actualización: "2025-07-12"
+confianza: 0.9
+
+CARACTERÍSTICAS_PERSONALES [Estabilidad: MODERADA]
+PERFIL_CONDUCTUAL:
+
+Regulación emocional: BUENA (4/5)
+Tolerancia frustración: BUENA (4/5)
+Habilidades sociales: BUENAS (4/5) - Competente pero selectivo
+Impulsividad: BAJA (2/5) - Niño reflexivo
+Nivel actividad: BAJO (2/5) - Temperamento tranquilo
+
+TRIGGERS_EMOCIONALES:
+
+Crítica pública (vulnerable al juicio)
+Presión de tiempo (necesita procesar con calma)
+
+MOTIVADORES_NÚCLEO:
+
+Autonomía en decisiones
+Reconocimiento de logros
+Colaboración estructurada
+
+ESTILO_APRENDIZAJE:
+
+Canal preferido: VISUAL (esquemas, diagramas, organizadores)
+Ritmo preferido: MEDIO (profundidad > velocidad)
+Agrupamiento óptimo: PEQUEÑO GRUPO (2-3 personas)
+Estructura necesaria: ALTA (4/5) - Necesita marcos claros
+Movimiento: NO necesario
+Sensibilidad ruido: NO
+
+ESTRATEGIAS_EFECTIVAS_CONSOLIDADAS:
+
+Instrucciones cortas y secuenciales
+Variedad de actividades (evita monotonía)
+Feedback inmediato y constructivo
+Ejemplos concretos antes de abstracciones
+
+METADATOS_PERSONALES:
+estabilidad: "moderada"
+triggers_actualización: ["crisis_familiar", "cambio_medicación", "evento_traumático_significativo", "cambio_centro"]
+última_actualización: "2025-07-12"
+confianza: 0.8
+
+ESTADO_CONTEXTUAL [Estabilidad: BAJA]
+ESTADO_EMOCIONAL_ACTUAL:
+
+Confianza académica: ALTA
+Motivación general: ESTABLE
+Relaciones sociales: 2-3 amigos cercanos, relaciones armoniosas
+Factores estresantes: NINGUNO significativo detectado
+Apoyo familiar: Estable (sin conflictos reportados)
+
+CONTEXTO_AULA_ACTUAL:
+
+Ubicación preferente: Implementada exitosamente
+Adaptaciones activas: Tiempo extra en evaluaciones, instrucciones fragmentadas
+Relación con docente: Positiva y colaborativa
+Dinámicas grupales: Integrado en pequeño círculo social
+
+ALERTAS_SITUACIONALES:
+
+Ninguna activa
+Monitorear: Cambios en rutina familiar, sobrecarga académica
+
+METADATOS_CONTEXTUALES:
+estabilidad: "baja"  
+triggers_actualización: ["cambio_rutina", "conflicto_social", "dificultad_académica_nueva", "evento_disruptivo"]
+actualización: "cada_2_semanas"
+última_actualización: "2025-07-12"
+confianza: 0.7
+
+PROGRESO_CURRICULAR_DINÁMICO [Estabilidad: MUY_BAJA]
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS (Balance: 45%)
+Números hasta 10.000: EMERGENTE → Usar base decimal conocida, representar con bloques, empezar con 1.000s conocidos
+Operaciones complejas: EMERGENTE → Conectar con operaciones simples dominadas, introducir paréntesis paso a paso
+Fracciones simples: INICIADO → Reforzar mitades/tercios de 3º con manipulativos, introducir operaciones gradualmente
+Conversiones medidas: INICIADO → Partir de unidades básicas conocidas, crear tabla de equivalencias visual
+Área rectángulos: EMERGENTE → Conectar con perímetros conocidos, usar cuadrículas tangibles
+Probabilidad básica: EMERGENTE → Empezar con juegos conocidos, vocabulario simple posible/imposible
+Divisiones con resto: EN_PROCESO → Consolidar algoritmo de 3º, aplicar en problemas reales con verificación
+Porcentajes básicos: EMERGENTE → Conectar con fracciones conocidas, usar contextos familiares
+Decimales avanzados: EMERGENTE → Ampliar décimas conocidas, usar dinero real como base
+
+LENGUA (Balance: 40%)
+
+Análisis sintáctico: INICIADO → Partir de tipos de palabras conocidos, identificar funciones paso a paso
+Tiempos verbales: EN_PROCESO → Consolidar básicos de 3º, ampliar a irregulares con esquemas visuales
+Ortografía completa: INICIADO → Reforzar reglas básicas dominadas, introducir acentuación sistemáticamente
+Textos informativos: INICIADO → Ampliar textos simples de 3º, estructurar párrafos con esquemas
+Teatro/representación: EN_PROCESO → Mantener participación cómoda de 3º, ampliar roles sin presión
+Vocabulario técnico: EMERGENTE → Introducir términos por materias, conectar con conocimientos previos
+Investigación fuentes: EMERGENTE → Partir de curiosidad natural, estructurar búsquedas simples
+Argumentación: EMERGENTE → Empezar con opiniones simples, enseñar estructura básica
+
+CIENCIAS (Balance: 15%)
+
+Fuerzas físicas: EMERGENTE → Experiencias cotidianas simples, observación guiada de fenómenos
+Método científico: EMERGENTE → Partir de observación natural, estructurar pasos básicos
+Reproducción/ciclos: INICIADO → Ampliar conceptos básicos de 3º, conectar con experiencias conocidas
+Cuerpo humano: INICIADO → Reforzar partes básicas de 3º, introducir funciones sistemáticamente
+Rocas/minerales: EMERGENTE → Empezar con colección táctil, clasificación simple por características
+Electricidad: EMERGENTE → Conceptos de seguridad primero, experiencias muy básicas
+
+
+HISTORIAL_ACTIVIDADES_RECIENTES: []
+HISTORIAL_MICROTAREAS: []
+// Se poblará con: {fecha, micro_tarea, competencia_trabajada, adaptacion_aplicada, resultado}
+
+ADAPTACIONES_EFECTIVAS_PROBADAS: {}
+// Se poblará con: {competencia: [adaptaciones_que_funcionan]}
+

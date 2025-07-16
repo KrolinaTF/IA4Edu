@@ -1,0 +1,148 @@
+ID: 008
+FECHA_NACIMIENTO: 2015-10-12
+NOMBRE: HUGO P.
+AULA_ASIGNADA: AULA_A_4PRIM
+
+HUGO P. - 4º PRIMARIA
+
+NÚCLEO_COGNITIVO [Estabilidad: MUY_ALTA]
+CAPACIDADES_FUNDAMENTALES:
+
+CI base: 114 (estimado por rendimiento consistente)
+Patrones atencionales: Atención sostenida BUENA (4/5), Selectiva BUENA (4/5)
+Memoria de trabajo: BUENA (4/5)
+Control inhibitorio: EXCELENTE (5/5)
+Flexibilidad cognitiva: LIMITADA (2/5) - Prefiere rutinas conocidas
+Velocidad procesamiento: MEDIA (3/5)
+
+TEMPERAMENTO_BASE:
+
+Perfil: Metódico-constante-lógico
+Variabilidad rendimiento: BAJA (2/5) - Muy consistente
+
+DIAGNÓSTICO_FORMAL:
+
+METADATOS_NÚCLEO:
+estabilidad: "muy_alta"
+triggers_actualización: ["evaluación_neuropsicológica", "traumatismo_craneal", "diagnóstico_neurológico"]
+última_actualización: "2025-07-12"
+confianza: 0.5
+
+CARACTERÍSTICAS_PERSONALES [Estabilidad: MODERADA]
+PERFIL_CONDUCTUAL:
+
+Regulación emocional: EXCELENTE (5/5)
+Tolerancia frustración: BUENA (4/5)
+Habilidades sociales: BUENAS (4/5) - Tranquilo, no líder pero colabora bien
+Impulsividad: BAJA (1/5)
+Nivel actividad: BAJA (2/5)
+
+TRIGGERS_EMOCIONALES:
+
+Cambios bruscos de actividad
+Presión para liderar
+Disrupciones en rutinas establecidas
+
+MOTIVADORES_NÚCLEO:
+
+Reconocimiento por constancia
+Tareas estructuradas
+Trabajo individual o en pareja
+Rutinas predecibles
+
+ESTILO_APRENDIZAJE:
+
+Canal preferido: VISUAL - Necesita ver para entender
+Ritmo preferido: MEDIO - Constante y sostenido
+Agrupamiento óptimo: INDIVIDUAL o pareja conocida
+Estructura necesaria: ALTA (4/5) - Necesita marcos claros
+Movimiento: NO necesario
+Sensibilidad ruido: NO
+
+ESTRATEGIAS_EFECTIVAS_CONSOLIDADAS:
+
+Instrucciones claras y secuenciales
+Tiempo suficiente para procesar
+Rutinas establecidas y predecibles
+Reconocimiento por esfuerzo constante
+
+METADATOS_PERSONALES:
+estabilidad: "moderada"
+triggers_actualización: ["crisis_familiar", "cambio_medicación", "evento_traumático_significativo", "cambio_centro"]
+última_actualización: "2025-07-12"
+confianza: 0.5
+
+ESTADO_CONTEXTUAL [Estabilidad: BAJA]
+ESTADO_EMOCIONAL_ACTUAL:
+
+Confianza académica: MEDIA-ALTA, estable y predecible
+Motivación general: ESTABLE - No grandes altibajos
+Relaciones sociales: Pocas pero sólidas, prefiere calidad sobre cantidad
+Factores estresantes: Cambios de rutina, liderazgo forzado
+Apoyo familiar: Estable, valora su constancia
+
+CONTEXTO_AULA_ACTUAL:
+
+Ubicación preferente: Lugar fijo, rutinas establecidas
+Adaptaciones activas: Instrucciones claras, tiempo suficiente
+Relación con docente: Buena, aprecia su estabilidad
+Dinámicas grupales: Colaborador tranquilo, no busca protagonismo
+
+ALERTAS_SITUACIONALES:
+
+Monitorear adaptación a cambios de rutina
+Vigilar que no se quede atrás en actividades dinámicas
+Observar participación en actividades grupales
+
+METADATOS_CONTEXTUALES:
+estabilidad: "baja"  
+triggers_actualización: ["cambio_rutina", "conflicto_social", "dificultad_académica_nueva", "evento_disruptivo"]
+actualización: "cada_2_semanas"
+última_actualización: "2025-07-12"
+confianza: 0.7
+
+PROGRESO_CURRICULAR_DINÁMICO [Estabilidad: MUY_BAJA]
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS (Balance: 45%)
+
+Números hasta 10.000: EN_PROCESO → Progreso constante, necesita rutinas
+Operaciones complejas: INICIADO → Algoritmos paso a paso, constante
+Fracciones simples: INICIADO → Comprende con manipulativos, necesita práctica
+Conversiones medidas: INICIADO → Unidades básicas, necesita consolidar
+Área rectángulos: EMERGENTE → Pendiente introducir con estructura clara
+Probabilidad básica: EMERGENTE → Pendiente introducir
+Divisiones con resto: INICIADO → Algoritmo sistemático, necesita automatización
+Porcentajes básicos: EMERGENTE → Pendiente introducir
+Decimales avanzados: EMERGENTE → Pendiente introducir
+
+LENGUA (Balance: 40%)
+
+Análisis sintáctico: INICIADO → Identifica elementos, necesita práctica sistemática
+Tiempos verbales: EN_PROCESO → Domina básicos, trabajando irregulares
+Ortografía completa: EN_PROCESO → Reglas sistemáticas, aplicación constante
+Textos informativos: INICIADO → Estructura básica, necesita modelos
+Teatro/representación: INICIADO → Participa sin liderar, necesita rutinas
+Vocabulario técnico: INICIADO → Incorpora términos sistemáticamente
+Investigación fuentes: EMERGENTE → Pendiente introducir con estructura
+Argumentación: INICIADO → Opiniones básicas, necesita estructura
+
+CIENCIAS (Balance: 15%)
+
+Fuerzas físicas: EMERGENTE → Pendiente introducir con rutinas claras
+Método científico: INICIADO → Observación sistemática, necesita estructura
+Reproducción/ciclos: INICIADO → Conceptos básicos, necesita consolidar
+Cuerpo humano: INICIADO → Sistemas básicos, estudio metódico
+Rocas/minerales: INICIADO → Clasificación sistemática, necesita práctica
+Electricidad: EMERGENTE → Pendiente introducir
+
+HISTORIAL ACTIVIDADES RECIENTES: []
+HISTORIAL MICROTAREAS: []
+// Se poblará con: {fecha, micro_tarea, competencia_trabajada, adaptacion_aplicada, resultado}
+
+ADAPTACIONES EFECTIVAS PROBADAS: {}
+// Se poblará con: {competencia: [adaptaciones_que_funcionan]}

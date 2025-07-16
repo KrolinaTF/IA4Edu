@@ -1,0 +1,154 @@
+{
+    "metadatos": {
+      "proyecto": "PoC_ProyectIA",
+      "fecha_creacion": "2025-07-14",
+      "ultima_actualizacion": "2025-07-14",
+      "total_estudiantes": 14,
+      "version": "1.0",
+      "formato_archivos": "XXX.txt (donde XXX es ID de 3 dígitos)"
+    },
+    "aulas": {
+      "AULA_A_4PRIM": {
+        "descripcion": "4º Primaria - 8 estudiantes",
+        "estudiantes": [
+          {
+            "id": "001",
+            "nombre": "ALEX M.",
+            "fecha_nacimiento": "2016-03-15",
+            "genero": "M",
+            "diagnostico": null,
+            "archivo": "001.txt"
+          },
+          {
+            "id": "002", 
+            "nombre": "MARÍA L.",
+            "fecha_nacimiento": "2015-11-22",
+            "genero": "F",
+            "diagnostico": null,
+            "archivo": "002.txt"
+          },
+          {
+            "id": "003",
+            "nombre": "ELENA R.", 
+            "fecha_nacimiento": "2016-01-08",
+            "genero": "F",
+            "diagnostico": "TEA",
+            "archivo": "003.txt"
+          },
+          {
+            "id": "004",
+            "nombre": "LUIS T.",
+            "fecha_nacimiento": "2015-09-30", 
+            "genero": "M",
+            "diagnostico": "TDAH_combinado",
+            "archivo": "004.txt"
+          },
+          {
+            "id": "005",
+            "nombre": "ANA V.",
+            "fecha_nacimiento": "2016-05-14",
+            "genero": "F", 
+            "diagnostico": "altas_capacidades",
+            "archivo": "005.txt"
+          },
+          {
+            "id": "006",
+            "nombre": "SARA M.",
+            "fecha_nacimiento": "2015-12-03",
+            "genero": "F",
+            "diagnostico": null,
+            "archivo": "006.txt"
+          },
+          {
+            "id": "007",
+            "nombre": "EMMA K.", 
+            "fecha_nacimiento": "2016-02-18",
+            "genero": "F",
+            "diagnostico": null,
+            "archivo": "007.txt"
+          },
+          {
+            "id": "008",
+            "nombre": "HUGO P.",
+            "fecha_nacimiento": "2015-10-12",
+            "genero": "M", 
+            "diagnostico": null,
+            "archivo": "008.txt"
+          }
+        ]
+      },
+      "AULA_B_3PRIM": {
+        "descripcion": "3º Primaria - 6 estudiantes", 
+        "estudiantes": [
+          {
+            "id": "009",
+            "nombre": "PABLO S.",
+            "fecha_nacimiento": "2017-04-25",
+            "genero": "M",
+            "diagnostico": null,
+            "archivo": "009.txt"
+          },
+          {
+            "id": "010",
+            "nombre": "DIEGO L.",
+            "fecha_nacimiento": "2016-12-07", 
+            "genero": "M",
+            "diagnostico": null,
+            "archivo": "010.txt"
+          },
+          {
+            "id": "011",
+            "nombre": "CARLOS R.",
+            "fecha_nacimiento": "2017-01-19",
+            "genero": "M",
+            "diagnostico": "altas_capacidades+dislexia",
+            "archivo": "011.txt"
+          },
+          {
+            "id": "012",
+            "nombre": "SOFÍA G.",
+            "fecha_nacimiento": "2017-06-11",
+            "genero": "F",
+            "diagnostico": "TDAH_inatento", 
+            "archivo": "012.txt"
+          },
+          {
+            "id": "013",
+            "nombre": "IKER M.",
+            "fecha_nacimiento": "2017-03-02",
+            "genero": "M",
+            "diagnostico": null,
+            "archivo": "013.txt"
+          },
+          {
+            "id": "014",
+            "nombre": "NAIA B.",
+            "fecha_nacimiento": "2016-08-29",
+            "genero": "F",
+            "diagnostico": null,
+            "archivo": "014.txt"
+          }
+        ]
+      }
+    },
+    "resumen_diagnosticos": {
+      "TEA": 1,
+      "TDAH_combinado": 1, 
+      "TDAH_inatento": 1,
+      "altas_capacidades": 1,
+      "doble_excepcionalidad": 1,
+      "tipicos": 9
+    },
+    "distribucion_genero": {
+      "total_M": 7,
+      "total_F": 7,
+      "AULA_A_M": 3,
+      "AULA_A_F": 5, 
+      "AULA_B_M": 4,
+      "AULA_B_F": 2
+    },
+    "rangos_edad_curso_2025": {
+      "AULA_A_4PRIM": "8-10 años (mayoría 9)",
+      "AULA_B_3PRIM": "7-9 años (mayoría 8)" 
+    }
+  }

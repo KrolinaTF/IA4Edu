@@ -1,0 +1,149 @@
+ID: 007
+FECHA_NACIMIENTO: 2016-02-18
+NOMBRE: EMMA K.
+AULA_ASIGNADA: AULA_A_4PRIM
+
+EMMA K. - 4º PRIMARIA
+
+NÚCLEO_COGNITIVO [Estabilidad: MUY_ALTA]
+CAPACIDADES_FUNDAMENTALES:
+
+CI base: 132 (estimado, nunca evaluado formalmente)
+Patrones atencionales: Atención sostenida BUENA (4/5), Selectiva BUENA (4/5)
+Memoria de trabajo: EXCELENTE (5/5)
+Control inhibitorio: BUENO (4/5)
+Flexibilidad cognitiva: BUENA (4/5)
+Velocidad procesamiento: LENTA (2/5) - Perfeccionismo
+
+TEMPERAMENTO_BASE:
+
+Perfil: Analítica-perfeccionista-introvertida
+Variabilidad rendimiento: BAJA (2/5) - Muy consistente
+
+DIAGNÓSTICO_FORMAL:
+
+METADATOS_NÚCLEO:
+estabilidad: "muy_alta"
+triggers_actualización: ["evaluación_neuropsicológica", "traumatismo_craneal", "diagnóstico_neurológico"]
+última_actualización: "2025-07-12"
+confianza: 0.6
+
+CARACTERÍSTICAS_PERSONALES [Estabilidad: MODERADA]
+PERFIL_CONDUCTUAL:
+
+Regulación emocional: BUENA (4/5)
+Tolerancia frustración: BAJA (2/5) - Perfeccionismo evitativo
+Habilidades sociales: BUENAS (4/5) pero selectiva
+Impulsividad: BAJA (1/5)
+Nivel actividad: BAJA (2/5)
+
+TRIGGERS_EMOCIONALES:
+
+Errores propios
+Presión de tiempo en escritura
+Crítica a su trabajo
+Comparaciones con otros
+
+MOTIVADORES_NÚCLEO:
+
+Reconocimiento de calidad
+Tiempo para perfeccionar
+Temas de análisis profundo
+Autonomía en el trabajo
+
+ESTILO_APRENDIZAJE:
+
+Canal preferido: VISUAL-AUDITIVO
+Ritmo preferido: LENTO-MEDIO
+Agrupamiento óptimo: INDIVIDUAL o pareja conocida
+Estructura necesaria: MEDIA (3/5)
+Movimiento: NO necesario
+Sensibilidad ruido: SÍ - Prefiere ambientes tranquilos
+
+ESTRATEGIAS_EFECTIVAS_CONSOLIDADAS:
+
+Tiempo suficiente para completar tareas
+Ambiente tranquilo y sin presión
+Feedback positivo enfocado en proceso
+Evitar comparaciones públicas
+
+METADATOS_PERSONALES:
+estabilidad: "moderada"
+triggers_actualización: ["crisis_familiar", "cambio_medicación", "evento_traumático_significativo", "cambio_centro"]
+última_actualización: "2025-07-12"
+confianza: 0.6
+
+ESTADO_CONTEXTUAL [Estabilidad: BAJA]
+ESTADO_EMOCIONAL_ACTUAL:
+
+Confianza académica: ALTA pero frágil por perfeccionismo
+Motivación general: ALTA si no hay presión temporal
+Relaciones sociales: Pocas pero sólidas, 1-2 amigas cercanas
+Factores estresantes: Presión temporal, evaluaciones públicas
+Apoyo familiar: Muy comprensivo con su perfeccionismo
+
+CONTEXTO_AULA_ACTUAL:
+
+Ubicación preferente: Zona tranquila, lejos de distracciones
+Adaptaciones activas: Tiempo extra, evaluaciones privadas
+Relación con docente: Excelente, comprende su necesidad de perfección
+Dinámicas grupales: Prefiere trabajar sola o con amigas cercanas
+
+ALERTAS_SITUACIONALES:
+
+Monitorear perfeccionismo paralizante
+Vigilar evitación de tareas por miedo al error
+Observar ansiedad en evaluaciones públicas
+
+METADATOS_CONTEXTUALES:
+estabilidad: "baja"  
+triggers_actualización: ["cambio_rutina", "conflicto_social", "dificultad_académica_nueva", "evento_disruptivo"]
+actualización: "cada_2_semanas"
+última_actualización: "2025-07-12"
+confianza: 0.7
+
+PROGRESO_CURRICULAR_DINÁMICO [Estabilidad: MUY_BAJA]
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS (Balance: 45%)
+
+Números hasta 10.000: EN_PROCESO → Comprende bien, lenta por perfeccionismo
+Operaciones complejas: INICIADO → Precisión alta, velocidad baja, necesita tiempo
+Fracciones simples: INICIADO → Comprende conceptos, aplicación cuidadosa
+Conversiones medidas: INICIADO → Precisión en medidas, necesita práctica
+Área rectángulos: EMERGENTE → Pendiente introducir sin presión temporal
+Probabilidad básica: EMERGENTE → Pendiente introducir
+Divisiones con resto: INICIADO → Algoritmo correcto, necesita velocidad
+Porcentajes básicos: EMERGENTE → Pendiente introducir
+Decimales avanzados: EMERGENTE → Pendiente introducir
+
+LENGUA (Balance: 40%)
+
+Análisis sintáctico: EN_PROCESO → Comprende patrones, análisis detallado
+Tiempos verbales: EN_PROCESO → Domina básicos, perfecciona complejos
+Ortografía completa: EN_PROCESO → Muy cuidadosa, pocas correcciones necesarias
+Textos informativos: EN_PROCESO → Estructura cuidadosa, necesita tiempo
+Teatro/representación: INICIADO → Ansiedad actuación, prefiere preparación detallada
+Vocabulario técnico: EN_PROCESO → Incorpora términos con precisión
+Investigación fuentes: INICIADO → Investigación cuidadosa, necesita estructura
+Argumentación: INICIADO → Opiniones reflexivas, desarrollando justificaciones
+
+CIENCIAS (Balance: 15%)
+
+Fuerzas físicas: EMERGENTE → Pendiente introducir con tiempo suficiente
+Método científico: INICIADO → Observación cuidadosa, hipótesis reflexivas
+Reproducción/ciclos: INICIADO → Comprende básicos, necesita consolidar
+Cuerpo humano: INICIADO → Estudio detallado, necesita tiempo
+Rocas/minerales: INICIADO → Clasificación cuidadosa, observación detallada
+Electricidad: EMERGENTE → Pendiente introducir
+
+HISTORIAL ACTIVIDADES RECIENTES: []
+HISTORIAL MICROTAREAS: []
+// Se poblará con: {fecha, micro_tarea, competencia_trabajada, adaptacion_aplicada, resultado}
+
+ADAPTACIONES EFECTIVAS PROBADAS: {}
+// Se poblará con: {competencia: [adaptaciones_que_funcionan]}

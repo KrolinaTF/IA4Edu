@@ -1,0 +1,151 @@
+ID: 013
+FECHA_NACIMIENTO: 2017-03-02
+NOMBRE: IKER M.
+AULA_ASIGNADA: AULA_B_3PRIM
+
+IKER M. - 3º PRIMARIA
+
+NÚCLEO_COGNITIVO [Estabilidad: MUY_ALTA]
+CAPACIDADES_FUNDAMENTALES:
+
+CI base: 88 (estimado por rendimiento consistente)
+Patrones atencionales: Atención sostenida MEDIA (observada), Selectiva MEDIA (observada)
+Memoria de trabajo: LIMITADA (observada) - Necesita apoyo constante
+Control inhibitorio: BUENO (observado) - Muy controlado
+Flexibilidad cognitiva: ALTA (5/5) - Muy adaptable y creativo
+Velocidad procesamiento: LENTA (observada) - Necesita tiempo
+
+TEMPERAMENTO_BASE:
+
+Perfil: Creativo-social-esforzado-perseverante
+Variabilidad rendimiento: ALTA (4/5) - Días buenos y malos
+
+DIAGNÓSTICO_FORMAL:
+
+METADATOS_NÚCLEO:
+estabilidad: "muy_alta"
+triggers_actualización: ["evaluación_neuropsicológica", "traumatismo_craneal", "diagnóstico_neurológico"]
+última_actualización: "2025-07-12"
+confianza: 0.5
+
+CARACTERÍSTICAS_PERSONALES [Estabilidad: MODERADA]
+PERFIL_CONDUCTUAL:
+
+Regulación emocional: BUENA (4/5) - Tranquilo ante dificultades
+Tolerancia frustración: EXCELENTE (5/5) - Muy perseverante
+Habilidades sociales: EXCELENTES (5/5) - Integrador natural del grupo
+Impulsividad: BAJA (2/5) - Reflexivo y cuidadoso
+Nivel actividad: MEDIA (3/5) - Equilibrado
+
+TRIGGERS_EMOCIONALES:
+
+Tareas muy abstractas sin apoyo visual
+Comparaciones académicas con otros
+Presión por velocidad
+
+MOTIVADORES_NÚCLEO:
+
+Creatividad y proyectos artísticos
+Colaboración y ayuda mutua
+Reconocimiento por esfuerzo y persistencia
+Proyectos manuales y construcción
+Actividades grupales
+
+ESTILO_APRENDIZAJE:
+
+Canal preferido: KINESTÉSICO-VISUAL - Aprende haciendo y viendo
+Ritmo preferido: LENTO - Necesita tiempo para procesar
+Agrupamiento óptimo: GRUPO - Florece socialmente
+Estructura necesaria: MEDIA (3/5) - Necesita apoyo pero no rigidez
+Movimiento: SÍ - Especialmente manipulativos
+Sensibilidad ruido: NO
+
+ESTRATEGIAS_EFECTIVAS_CONSOLIDADAS:
+
+Manipulativos y materiales concretos
+Apoyo visual constante
+Trabajo en grupos colaborativos
+Reconocimiento por esfuerzo
+Proyectos creativos y artísticos
+
+METADATOS_PERSONALES:
+estabilidad: "moderada"
+triggers_actualización: ["crisis_familiar", "cambio_medicación", "evento_traumático_significativo", "cambio_centro"]
+última_actualización: "2025-07-12"
+confianza: 0.6
+
+ESTADO_CONTEXTUAL [Estabilidad: BAJA]
+ESTADO_EMOCIONAL_ACTUAL:
+
+Confianza académica: MEDIA - Sabe que le cuesta pero no se rinde
+Motivación general: ALTA en actividades grupales y creativas
+Relaciones sociales: Muy integrado, querido por todos
+Factores estresantes: Tareas abstractas, comparaciones académicas
+Apoyo familiar: Muy comprensivo, valora su esfuerzo
+
+CONTEXTO_AULA_ACTUAL:
+
+Ubicación preferente: En grupos, acceso a materiales manipulativos
+Adaptaciones activas: Apoyos visuales, tiempo extra, trabajo grupal
+Relación con docente: Excelente, comprende sus necesidades
+Dinámicas grupales: Integrador natural, ayuda a cohesionar
+
+ALERTAS_SITUACIONALES:
+
+Monitorear frustración en tareas abstractas
+Vigilar autoestima por comparaciones académicas
+Observar que no se quede rezagado en tareas rápidas
+Evaluar equilibrio esfuerzo-resultados
+
+METADATOS_CONTEXTUALES:
+estabilidad: "baja"  
+triggers_actualización: ["cambio_rutina", "conflicto_social", "dificultad_académica_nueva", "evento_disruptivo"]
+actualización: "cada_2_semanas"
+última_actualización: "2025-07-12"
+confianza: 0.6
+
+PROGRESO_CURRICULAR_DINÁMICO [Estabilidad: MUY_BAJA]
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS (Balance: 45%)
+
+Números hasta 1.000: INICIADO → Cuenta con apoyos visuales, bloques base-10
+Tablas multiplicar: EMERGENTE → Memorización muy lenta, usar canciones
+Divisiones exactas: EMERGENTE → Concepto de repartir, muy gradual
+Fracciones mitad: EMERGENTE → Entiende con manipulativos, partir objetos
+Problemas complejos: EMERGENTE → Problemas muy simples, apoyo visual
+Geometría perímetro: INICIADO → Bueno con formas, manipulativos
+Medidas longitud: EMERGENTE → Metro/centímetro con reglas tangibles
+Medidas peso: EMERGENTE → Kilogramo con objetos familiares
+Gráficos barras: EMERGENTE → Lectura simple con apoyo
+
+LENGUA (Balance: 40%)
+
+Textos largos: EMERGENTE → Dificultad comprensión, textos cortos
+Resumir: EMERGENTE → Ideas principales con apoyo visual
+Ortografía avanzada: EMERGENTE → Reglas básicas, escritura cuidadosa
+Tipos palabras: EMERGENTE → Sustantivos/verbos con ejemplos concretos
+Escribir cuentos: INICIADO → Muy creativo oralmente, escribir con apoyo
+Comprensión avanzada: EMERGENTE → Preguntas literales, verificar comprensión
+Vocabulario rico: EMERGENTE → Ampliar desde experiencias familiares
+Expresión oral: EN_PROCESO → Muy comunicativo, ideas claras
+
+CIENCIAS (Balance: 15%)
+
+Sistema solar: INICIADO → Aprende con experimentos, modelos tangibles
+Ecosistemas: EMERGENTE → Animales conocidos, relaciones simples
+Cadena alimenticia: EMERGENTE → Quién come qué, cadenas muy básicas
+Estados materia: EMERGENTE → Sólido/líquido/gas, experiencias directas
+Energía: EMERGENTE → Movimiento/calor, observación con apoyo
+Máquinas simples: INICIADO → Le gusta construir, palancas simples
+
+HISTORIAL_ACTIVIDADES_RECIENTES: []
+HISTORIAL_MICROTAREAS: []
+// Se poblará con: {fecha, micro_tarea, competencia_trabajada, adaptacion_aplicada, resultado}
+
+ADAPTACIONES_EFECTIVAS_PROBADAS: {}
+// Se poblará con: {competencia: [adaptaciones_que_funcionan]}

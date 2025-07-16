@@ -1,0 +1,135 @@
+ID: 
+FECHA_NACIMIENTO: 
+NOMBRE: 
+AULA_ASIGNADA: 
+
+NÚCLEO_COGNITIVO [Estabilidad: MUY_ALTA]
+CAPACIDADES_FUNDAMENTALES:
+
+CI base: 
+Patrones atencionales: 
+Memoria de trabajo: 
+Control inhibitorio: 
+Flexibilidad cognitiva: 
+Velocidad procesamiento: 
+
+TEMPERAMENTO_BASE:
+
+Perfil: 
+Variabilidad rendimiento: 
+
+METADATOS_NÚCLEO:
+estabilidad: "muy alta"
+triggers_actualización: ["evaluación_neuropsicológica", "traumatismo_craneal", "diagnóstico_neurológico"]
+última_actualización: "2025-07-12"
+confianza: 0.9
+
+CARACTERÍSTICAS_PERSONALES [Estabilidad: MODERADA]
+PERFIL_CONDUCTUAL:
+
+Regulación emocional: 
+Tolerancia frustración: 
+Habilidades sociales: 
+Impulsividad: 
+Nivel actividad: 
+
+TRIGGERS_EMOCIONALES:
+
+
+
+MOTIVADORES_NÚCLEO:
+
+
+
+ESTILO_APRENDIZAJE:
+
+Canal preferido: 
+Ritmo preferido: 
+Agrupamiento óptimo: 
+Estructura necesaria: 
+Movimiento: 
+Sensibilidad ruido: 
+
+ESTRATEGIAS_EFECTIVAS_CONSOLIDADAS:
+
+
+
+METADATOS_PERSONALES:
+estabilidad: "moderada"
+triggers_actualización: ["crisis_familiar", "cambio_medicación", "evento_traumático_significativo", "cambio_centro"]
+última_actualización: "2025-07-12"
+confianza: 0.8
+
+ESTADO_CONTEXTUAL [Estabilidad: BAJA]
+ESTADO_EMOCIONAL_ACTUAL:
+
+Confianza académica: 
+Motivación general: 
+Relaciones sociales: 
+Factores estresantes: 
+Apoyo familiar: 
+
+CONTEXTO_AULA_ACTUAL:
+
+Ubicación preferente: 
+Adaptaciones activas: 
+Relación con docente: 
+Dinámicas grupales: 
+
+ALERTAS_SITUACIONALES:
+
+Ninguna activa
+Monitorear: Cambios en rutina familiar, sobrecarga académica
+
+METADATOS_CONTEXTUALES:
+estabilidad: "baja"  
+triggers_actualización: ["cambio_rutina", "conflicto_social", "dificultad_académica_nueva", "evento_disruptivo"]
+actualización: "cada_2_semanas"
+última_actualización: "2025-07-12"
+confianza: 0.7
+
+PROGRESO_CURRICULAR_DINÁMICO [Estabilidad: MUY_BAJA]
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS (Balance reciente: 45%)
+
+Números hasta 10.000: 
+Operaciones complejas: 
+Fracciones simples: 
+Conversiones medidas: 
+Área rectángulos: 
+Probabilidad básica: 
+Divisiones con resto: 
+Porcentajes básicos: 
+Decimales avanzados: 
+
+LENGUA (Balance reciente: 40%)
+
+Análisis sintáctico: 
+Tiempos verbales: 
+Ortografía completa: 
+Textos informativos: 
+Teatro/representación: 
+Vocabulario técnico: 
+Investigación fuentes: 
+Argumentación: 
+
+CIENCIAS (Balance reciente: 15%)
+
+Fuerzas físicas: 
+Método científico: 
+Reproducción/ciclos: 
+Cuerpo humano: 
+Rocas/minerales: 
+Electricidad: 
+
+HISTORIAL ACTIVIDADES RECIENTES: []
+HISTORIAL MICROTAREAS: []
+// Se poblará con: {fecha, micro_tarea, competencia_trabajada, adaptacion_aplicada, resultado}
+
+ADAPTACIONES EFECTIVAS PROBADAS: {}
+// Se poblará con: {competencia: [adaptaciones_que_funcionan]}

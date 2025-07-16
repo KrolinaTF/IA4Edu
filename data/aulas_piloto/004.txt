@@ -1,0 +1,155 @@
+ID: 004
+FECHA_NACIMIENTO: 2015-09-30
+NOMBRE: LUIS T.
+AULA_ASIGNADA: AULA_A_4PRIM
+
+LUIS T. - 4º PRIMARIA
+
+NÚCLEO_COGNITIVO [Estabilidad: MUY_ALTA]
+CAPACIDADES_FUNDAMENTALES:
+
+CI base: 102 (evaluación psicopedagógica 2024)
+Patrones atencionales: Atención sostenida BAJA (2/5), Selectiva BAJA (2/5)
+Memoria de trabajo: EXCELENTE (5/5) - Paradoja TDAH
+Control inhibitorio: BAJO (2/5) - Impulsividad motora
+Flexibilidad cognitiva: EXCELENTE (5/5) - Pensamiento divergente
+Velocidad procesamiento: ALTA (4/5) - Muy rápido
+
+TEMPERAMENTO_BASE:
+
+Perfil: Energético-creativo-variable
+Variabilidad rendimiento: MUY ALTA (5/5) - Días buenos/malos extremos
+
+DIAGNÓSTICO_FORMAL:
+
+TDAH combinado (DSM-5)
+Evaluación: Marzo 2024
+Sin medicación actual
+
+METADATOS_NÚCLEO:
+estabilidad: "muy_alta"
+triggers_actualización: ["evaluación_neuropsicológica", "traumatismo_craneal", "diagnóstico_neurológico"]
+última_actualización: "2025-07-12"
+confianza: 0.9
+
+CARACTERÍSTICAS_PERSONALES [Estabilidad: MODERADA]
+PERFIL_CONDUCTUAL:
+
+Regulación emocional: BAJA (2/5) - Explosiones ocasionales
+Tolerancia frustración: BAJA (2/5)
+Habilidades sociales: BUENAS (4/5) - Carismático
+Impulsividad: MUY ALTA (5/5)
+Nivel actividad: MUY ALTO (5/5) - Necesita movimiento constante
+
+TRIGGERS_EMOCIONALES:
+
+Esperar mucho tiempo
+Tareas largas y repetitivas
+Crítica pública
+Sobrecarga sensorial
+
+MOTIVADORES_NÚCLEO:
+
+Novedad constante
+Competición amistosa
+Reconocimiento inmediato
+Actividades físicas
+Creatividad libre
+
+ESTILO_APRENDIZAJE:
+
+Canal preferido: KINESTÉSICO (movimiento esencial)
+Ritmo preferido: MUY RÁPIDO
+Agrupamiento óptimo: PEQUEÑO GRUPO dinámico
+Estructura necesaria: MEDIA (3/5) - Ni muy rígida ni muy libre
+Movimiento: ESENCIAL
+Sensibilidad ruido: NO
+
+ESTRATEGIAS_EFECTIVAS_CONSOLIDADAS:
+
+Pausas frecuentes (cada 15 min)
+Tareas cortas y variadas
+Feedback inmediato y positivo
+Rol activo en grupos
+Espacios para movimiento
+
+METADATOS_PERSONALES:
+estabilidad: "moderada"
+triggers_actualización: ["crisis_familiar", "cambio_medicación", "evento_traumático_significativo", "cambio_centro"]
+última_actualización: "2025-07-12"
+confianza: 0.8
+
+ESTADO_CONTEXTUAL [Estabilidad: BAJA]
+ESTADO_EMOCIONAL_ACTUAL:
+
+Confianza académica: VARIABLE (depende del día)
+Motivación general: ALTA si la actividad es novedosa
+Relaciones sociales: Popular pero conflictos ocasionales por impulsividad
+Factores estresantes: Tareas largas, tiempos de espera
+Apoyo familiar: Comprensivo con necesidades TDAH
+
+CONTEXTO_AULA_ACTUAL:
+
+Ubicación preferente: Cerca del docente, acceso fácil para moverse
+Adaptaciones activas: Pausas frecuentes, tareas cortas, feedback inmediato
+Relación con docente: Buena, comprende necesidades de movimiento
+Dinámicas grupales: Roles activos, grupos pequeños dinámicos
+
+ALERTAS_SITUACIONALES:
+
+Monitorear signos de frustración antes de explosiones
+Vigilar sobrecarga por tareas largas
+Observar dinámicas sociales por impulsividad
+
+METADATOS_CONTEXTUALES:
+estabilidad: "baja"  
+triggers_actualización: ["cambio_rutina", "conflicto_social", "dificultad_académica_nueva", "evento_disruptivo"]
+actualización: "cada_2_semanas"
+última_actualización: "2025-07-12"
+confianza: 0.7
+
+PROGRESO_CURRICULAR_DINÁMICO [Estabilidad: MUY_BAJA]
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS (Balance: 45%)
+
+Números hasta 10.000: INICIADO → Comprende hasta 1.000, ampliando con bloques
+Operaciones complejas: EMERGENTE → Algoritmos simples dominados, introducir paréntesis
+Fracciones simples: EMERGENTE → Conceptos de partes, pendiente operaciones
+Conversiones medidas: INICIADO → Unidades básicas, conectando con experiencias
+Área rectángulos: EMERGENTE → Perímetros conocidos, introducir área gradualmente
+Probabilidad básica: EMERGENTE → Intuición para patrones, introducir vocabulario
+Divisiones con resto: INICIADO → Algoritmo básico, aplicación con verificación
+Porcentajes básicos: EMERGENTE → Pendiente introducir con juegos
+Decimales avanzados: EMERGENTE → Pendiente introducir
+
+LENGUA (Balance: 40%)
+
+Análisis sintáctico: EMERGENTE → Conoce tipos de palabras, identificar funciones
+Tiempos verbales: INICIADO → Domina básicos de 3º, ampliando aplicaciones
+Ortografía completa: INICIADO → Reglas básicas, errores por rapidez
+Textos informativos: EMERGENTE → Ideas claras, estructurar organización
+Teatro/representación: EN_PROCESO → Naturalidad escénica, energía positiva
+Vocabulario técnico: INICIADO → Incorpora términos en contextos dinámicos
+Investigación fuentes: EMERGENTE → Interés alto, necesita estructura inicial
+Argumentación: EMERGENTE → Opiniones claras, introducir justificaciones
+
+CIENCIAS (Balance: 15%)
+
+Fuerzas físicas: EMERGENTE → Experiencias cotidianas, observación kinestésica
+Método científico: EMERGENTE → Observación natural, introducir estructura
+Reproducción/ciclos: EMERGENTE → Conceptos básicos, conexiones por descubrir
+Cuerpo humano: INICIADO → Partes básicas de 3º, interés por movimiento
+Rocas/minerales: EMERGENTE → Exploración táctil, clasificación inicial
+Electricidad: EMERGENTE → Pendiente introducir con seguridad
+
+HISTORIAL ACTIVIDADES RECIENTES: []
+HISTORIAL MICROTAREAS: []
+// Se poblará con: {fecha, micro_tarea, competencia_trabajada, adaptacion_aplicada, resultado}
+
+ADAPTACIONES EFECTIVAS PROBADAS: {}
+// Se poblará con: {competencia: [adaptaciones_que_funcionan]}

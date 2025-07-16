@@ -1,0 +1,148 @@
+ID: 006
+FECHA_NACIMIENTO: 2015-12-03
+NOMBRE: SARA M.
+AULA_ASIGNADA: AULA_A_4PRIM
+
+SARA M. - 4º PRIMARIA
+
+NÚCLEO_COGNITIVO [Estabilidad: MUY_ALTA]
+CAPACIDADES_FUNDAMENTALES:
+
+CI base: 115 (estimado por rendimiento)
+Patrones atencionales: Atención sostenida BUENA en lengua, BAJA en matemáticas
+Memoria de trabajo: BUENA (4/5) - Especialmente para información verbal
+Control inhibitorio: BUENO (4/5)
+Flexibilidad cognitiva: BUENA (4/5)
+Velocidad procesamiento: MEDIA (3/5)
+
+TEMPERAMENTO_BASE:
+
+Perfil: Verbal-expresiva-social
+Variabilidad rendimiento: ALTA (4/5) - Muy variable según materia
+
+DIAGNÓSTICO_FORMAL:
+
+METADATOS_NÚCLEO:
+estabilidad: "muy_alta"
+triggers_actualización: ["evaluación_neuropsicológica", "traumatismo_craneal", "diagnóstico_neurológico"]
+última_actualización: "2025-07-12"
+confianza: 0.4
+
+CARACTERÍSTICAS_PERSONALES [Estabilidad: MODERADA]
+PERFIL_CONDUCTUAL:
+
+Regulación emocional: BUENA (4/5)
+Tolerancia frustración: MEDIA (3/5) - Baja en matemáticas
+Habilidades sociales: EXCELENTES (5/5)
+Impulsividad: BAJA (2/5)
+Nivel actividad: MEDIA (3/5)
+
+TRIGGERS_EMOCIONALES:
+
+Matemáticas complejas (observado)
+Comparaciones con compañeros en matemáticas
+Tareas que requieren lógica numérica
+
+MOTIVADORES_NÚCLEO:
+
+Expresión oral
+Lectura y literatura
+Interacción social
+Reconocimiento en lengua
+
+ESTILO_APRENDIZAJE:
+
+Canal preferido: AUDITIVO-VERBAL
+Ritmo preferido: RÁPIDO en lengua, LENTO en matemáticas
+Agrupamiento óptimo: GRUPO - Florece socialmente
+Estructura necesaria: ALTA (4/5) en matemáticas, BAJA en lengua
+Movimiento: NO necesario
+Sensibilidad ruido: NO
+
+ESTRATEGIAS_EFECTIVAS_CONSOLIDADAS:
+
+Conectar matemáticas con contextos verbales
+Usar fortalezas de expresión para explicar procesos
+Trabajo colaborativo en matemáticas
+Liderazgo en actividades de lengua
+
+METADATOS_PERSONALES:
+estabilidad: "moderada"
+triggers_actualización: ["crisis_familiar", "cambio_medicación", "evento_traumático_significativo", "cambio_centro"]
+última_actualización: "2025-07-12"
+confianza: 0.3
+
+ESTADO_CONTEXTUAL [Estabilidad: BAJA]
+ESTADO_EMOCIONAL_ACTUAL:
+
+Confianza académica: ALTA en lengua, BAJA en matemáticas
+Motivación general: Variable según materia
+Relaciones sociales: Muy integrada socialmente, múltiples amistades
+Factores estresantes: Evaluaciones matemáticas, comparaciones numéricas
+Apoyo familiar: Bueno, enfocado en fortalezas
+
+CONTEXTO_AULA_ACTUAL:
+
+Ubicación preferente: Cerca de compañeros colaborativos
+Adaptaciones activas: Apoyo matemático, liderazgo en lengua
+Relación con docente: Muy buena, especialmente en lengua
+Dinámicas grupales: Líder natural en actividades verbales
+
+ALERTAS_SITUACIONALES:
+
+Monitorear autoestima en matemáticas
+Vigilar evitación de tareas numéricas
+Observar balance entre fortalezas y debilidades
+
+METADATOS_CONTEXTUALES:
+estabilidad: "baja"  
+triggers_actualización: ["cambio_rutina", "conflicto_social", "dificultad_académica_nueva", "evento_disruptivo"]
+actualización: "cada_2_semanas"
+última_actualización: "2025-07-12"
+confianza: 0.6
+
+PROGRESO_CURRICULAR_DINÁMICO [Estabilidad: MUY_BAJA]
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS (Balance: 45%)
+
+Números hasta 10.000: INICIADO → Dificultad con composición, necesita apoyo verbal
+Operaciones complejas: EMERGENTE → Pendiente introducir con contextos verbales
+Fracciones simples: EMERGENTE → Pendiente introducir con representaciones
+Conversiones medidas: INICIADO → Conectar con contextos familiares
+Área rectángulos: EMERGENTE → Pendiente introducir con medidas reales
+Probabilidad básica: EMERGENTE → Pendiente introducir con lenguaje natural
+Divisiones con resto: INICIADO → Situaciones de reparto, necesita práctica
+Porcentajes básicos: EMERGENTE → Pendiente introducir con contextos sociales
+Decimales avanzados: EMERGENTE → Pendiente introducir
+
+LENGUA (Balance: 40%)
+
+Análisis sintáctico: EN_PROCESO → Identifica elementos bien, desarrollando análisis completo
+Tiempos verbales: EN_PROCESO → Domina básicos de 3º, aplicando narrativamente
+Ortografía completa: EN_PROCESO → Reglas básicas sólidas, trabajando acentuación
+Textos informativos: INICIADO → Estructura básica buena, ampliando complejidad
+Teatro/representación: EN_PROCESO → Naturalidad escénica, desarrollando liderazgo
+Vocabulario técnico: INICIADO → Incorpora términos bien, explicación emergente
+Investigación fuentes: EMERGENTE → Curiosidad natural, estructurando búsquedas
+Argumentación: INICIADO → Opiniones claras, desarrollando justificaciones
+
+CIENCIAS (Balance: 15%)
+
+Fuerzas físicas: EMERGENTE → Pendiente introducir con explicaciones verbales
+Método científico: INICIADO → Documentación verbal, estructura emergente
+Reproducción/ciclos: INICIADO → Narrativa natural, conexiones desarrollándose
+Cuerpo humano: INICIADO → Investigación verbal, explicaciones emergentes
+Rocas/minerales: INICIADO → Descripción verbal, geografía conectada
+Electricidad: EMERGENTE → Pendiente introducir
+
+HISTORIAL ACTIVIDADES RECIENTES: []
+HISTORIAL MICROTAREAS: []
+// Se poblará con: {fecha, micro_tarea, competencia_trabajada, adaptacion_aplicada, resultado}
+
+ADAPTACIONES EFECTIVAS PROBADAS: {}
+// Se poblará con: {competencia: [adaptaciones_que_funcionan]}
