@@ -1,0 +1,367 @@
+=== DISEÑO ACTIVIDAD GLOBAL MEJORADA ===
+
+ACTIVIDAD: Supermercado de Números
+OBJETIVO_PRINCIPAL: Trabajar matemáticas aplicadas con dinero real
+DURACIÓN_FLEXIBLE: 1-1.5 horas (termina cuando todos los clientes completan sus listas)
+PARTICIPANTES: 8 estudiantes de 4º Primaria (AULA_A)
+COMPETENCIAS_CURRICULARES: Números decimales, operaciones básicas, dinero, comunicación oral, escritura, medidas (peso/volumen), expresión, trabajo colaborativo
+
+=== CONTEXTO PEDAGÓGICO ===
+
+MOMENTO_CURSO: Semana 1 del curso - Repaso y evaluación inicial
+NIVEL_GRUPO: 4º_primaria_evaluación_inicial
+- Productos: Precios variados 6€-25€ (enteros) y algunos con decimales simples (.50€)
+- Operaciones: Sumas de múltiples dígitos con llevadas, algunos decimales .50
+- Presupuesto: 60€ por cliente (deben gestionar y que les sobre dinero)
+- Cambio: variado según compras (práctica realista)
+- Presión temporal: media-baja
+- Interacción social: normal, cortés
+
+MODALIDAD: preparación_integrada + ejecución_simultánea
+INSTALACIONES: Aula habitual convertida en centro comercial con 3 tiendas temáticas
+MATERIALES_GENERALES: Productos etiquetados, dinero real, cajas registradoras simuladas, materiales de decoración, papel, rotuladores, tijeras, lápices
+
+=== TIENDAS TEMÁTICAS ===
+
+TIENDA 1 - "MATERIAL ESCOLAR" (Cajero: Alex)
+Productos: Mochila 25€, Estuche 12€, Calculadora 18€, Set rotuladores 9€, Agenda 15€, Compás 11€
+Contexto: "Valorar cuánto gastan las familias en material escolar"
+
+TIENDA 2 - "SOUVENIRS DE VIAJE" (Cajero: Elena)  
+Productos: Camiseta 16€, Llavero 7€, Imán nevera 4€, Gorra 13€, Postal 2€, Taza 8€
+Contexto: "Compras de recuerdos para familiares"
+
+TIENDA 3 - "HOBBIES Y TIEMPO LIBRE" (Cajero: Emma)
+Productos: Libro 14€, Juego mesa 22€, Pelota 10€, Puzzle 17€, Cartas 6€, Kit manualidades 19€
+Contexto: "Actividades para el tiempo libre"
+
+=== GESTIÓN DOCENTE ===
+
+ROL_PROFESOR:
+1. **Explicación inicial** (5 min): Presentar actividad general a todos
+2. **Reuniones individuales** (durante preparación):
+   - Ana (Supervisor): Coordinar organización espacial y flujo de actividad
+   - Elena (Cajero TEA): Revisar secuencias, protocolo de interacción, uso de apoyos
+   - Luis (Cliente TDAH): Momento de centrado, revisar plan, estrategias de organización
+3. **Supervisión general**: Circular por aula, resolver dudas, gestionar tiempos
+4. **Apoyo en dictados**: Colaborar y supervisar en dictados individualizados
+5. **Registro de observaciones**: Documentar uso de adaptaciones y efectividad
+
+CRITERIO_FINALIZACIÓN:
+La actividad termina cuando todos los clientes han completado sus listas de compra, sin presión temporal. Se estima 1-1.5 horas incluyendo preparación.
+
+=== TAREAS IDENTIFICADAS ===
+
+1. CAJERO (3 estudiantes)
+   - Función: Cobrar productos, dar cambio, atender con cortesía, crear listados de precios (dictado)
+   - Competencias: Matemáticas dinero, atención sostenida, comunicación, medidas
+   - Interacciones: Clientes individuales, supervisor
+   - Preparación: Organizar caja, revisar dinero, preparar tickets, decorar puesto
+   - Entrega de cuentas: Reporte final de ventas y caja
+
+2. SUPERVISOR/REPONEDOR (1 estudiante)
+   - Función: Coordinar actividad, reponer productos, resolver problemas, realizar dictados
+   - Competencias: Liderazgo, organización, matemáticas básicas, comunicación, lectura
+   - Interacciones: Todos los roles, cajeros (consultas), clientes (dictados y problemas)
+   - Preparación: Organizar productos, crear señalización, preparar listas para dictado
+   - Informe de gestión: Síntesis de incidencias y coordinación
+
+3. CLIENTE (4 estudiantes)
+   - Función: Comprar productos según lista dictada, interactuar con cajeros
+   - Competencias: Escritura (dictado), planificación, cálculo presupuesto, comunicación
+   - Interacciones: Cajeros, supervisor (dictado), otros clientes (cola)
+   - Preparación: Escribir lista por dictado, calcular presupuesto aproximado, organizar compra por tiendas
+
+=== PARÁMETROS CONFIGURABLES POR TAREA ===
+
+COMPLEJIDAD_CÁLCULO:
+- básica: números enteros, operaciones simples
+- media: decimales básicos, operaciones combinadas
+- alta: decimales complejos, descuentos, estimaciones
+
+PRESIÓN_TEMPORAL:
+- baja: ritmo pausado, tiempo para reflexionar
+- media: ritmo normal, cierta urgencia
+- alta: ritmo acelerado, decisiones rápidas
+
+APOYO_DISPONIBLE:
+- ninguno: autonomía completa
+- visual: tablas, secuencias, guías, ábacos
+- manipulativo: dedos, pegatinas, objetos para contar
+- social: compañero para consultas
+- material: cascos reducción ruido, información estructurada, estrategias TDAH, cuerda delimitadora
+
+INTERACCIÓN_SOCIAL:
+- mínima: tareas individuales, comunicación básica
+- normal: comunicación estándar, cortesía
+- intensa: negociación, resolución conflictos, liderazgo
+
+=== BANCO DE RECURSOS DISPONIBLES ===
+
+ZONA_AUTOSELECCIÓN (disponible para quien la necesite):
+- Ábacos y manipulativos para cálculo
+- Pegatinas organizativas (productos, cantidades)
+- Folios con cuadrantes para organizar listas por tienda
+- Tablas de apoyo visual para operaciones
+- Cascos de reducción de ruido
+- Cuerdas delimitadoras para "cerrar tienda" temporalmente
+- Leyendas visuales de procedimientos
+- Carteles con precios únicos para todos
+
+DIFERENCIACIÓN_CONTROLADA:
+- Complejidad matemática gestionada desde dictados personalizados
+- Todos los cajeros manejan los mismos precios (simplifica gestión)
+- Adaptación por perfil mediante listas de compra individualizadas
+
+CONTROL_FINANCIERO_TOTAL:
+- 3 cajeros empiezan con 30€ cada uno = 90€ (cambio inicial)
+- 4 clientes empiezan con 60€ cada uno = 240€
+- TOTAL EN CIRCULACIÓN: 330€
+
+VERIFICACIÓN_FINAL (la magia de las matemáticas):
+- Suma dinero final de 3 cajeros + dinero final de 4 clientes = 330€
+- Cada cajero declara: 30€ inicial + ventas realizadas - dinero final = beneficio obtenido
+- Suma de beneficios de 3 cajeros = total gastado por 4 clientes
+- Si todo cuadra: ¡Las matemáticas funcionan!
+
+=== REPARTO REALIZADO ===
+
+001_ALEX → CAJERO
+Justificación: Perfil equilibrado, liderazgo horizontal, matemáticas sólidas
+Configuración: complejidad_media, presión_alta, apoyo_ninguno, interacción_normal
+Preparación: Organizar caja con precisión, decorar puesto creativamente, crear tabla de precios mediante dictado. 
+Expectativa: Rendimiento alto, mentoría espontánea, gestión eficaz
+
+002_MARÍA → CLIENTE
+Justificación: Fortaleza verbal, necesita trabajar matemáticas, interacción natural
+Configuración: complejidad_media, presión_media, apoyo_ninguno, interacción_normal
+Preparación: Escribir lista por dictado, calcular presupuesto
+Expectativa: Rendimiento medio-alto, comunicación fluida, confianza en matemáticas
+
+003_ELENA → CAJERO
+Justificación: TEA necesita estructura, matemáticas sólidas, interacción controlada
+Configuración: complejidad_media, presión_baja, apoyo_visual, interacción_mínima
+Preparación: Organizar caja sistemáticamente, crear secuencias visuales
+Adaptaciones específicas:
+- Lista estructurada de interacciones con clientes: 1.Saludar 2.Escuchar 3.Calcular 4.Cobrar 5.Despedir
+- Carteles con precios según su tarjeta de dificultad
+- Acceso a cascos de reducción de ruido si necesario
+- Posibilidad de "cerrar tienda" temporalmente con cuerda
+- Dictado personalizado de protocolo de atención (creación de su lista de precios)
+Expectativa: Rendimiento alto con rutinas, precisión excelente, menos clientes
+REGISTRO_ADAPTACIONES: Documentar uso de cascos, cierres temporales, efectividad de secuencias
+
+004_LUIS → CLIENTE
+Justificación: TDAH necesita movimiento, variedad, tareas dinámicas
+Configuración: complejidad_básica, presión_baja, apoyo_visual, interacción_normal
+Preparación: Escribir lista por dictado (apoyo en escritura), presupuesto visual
+Adaptaciones específicas:
+- Reunión individual previa: ayudar a centrar, tener "claro el plan", regular impulsos
+- Lista en formato estructurado con organización visual
+- Momento de revisión individualizada antes de empezar la compra
+Expectativa: Rendimiento medio con apoyo, energía canalizada, interacción positiva
+REGISTRO_ADAPTACIONES: Documentar efectividad de estructura previa, autocontrol
+
+005_ANA → SUPERVISOR/REPONEDOR
+Justificación: AACC verbal, liderazgo natural, coordinación eficaz
+Configuración: complejidad_alta, presión_media, apoyo_ninguno, interacción_intensa
+Preparación: Organizar toda la actividad, crear señalización, preparar dictados
+Adaptaciones específicas:
+- Reunión individual con profesor: detallar coordinación, decidir ubicación de tiendas
+- Autoridad para gestionar licencias de ubicación de tiendas
+- Responsabilidad de evaluar distribución espacial
+- Coordinación de dictados con profesor (voz baja, movimiento por mesas)
+Expectativa: Rendimiento muy alto, liderazgo efectivo, coordinación óptima
+REGISTRO_ADAPTACIONES: Documentar efectividad de liderazgo distribuido
+
+006_SARA → CLIENTE
+Justificación: Fortaleza verbal, dificultades matemáticas, interacción como apoyo
+Configuración: complejidad_básica, presión_baja, apoyo_social, interacción_normal
+Preparación: Escribir lista por dictado, presupuesto con recursos de apoyo
+Adaptaciones específicas:
+- Acceso preferente a banco de recursos (ábacos, pegatinas)
+- Folios con cuadrantes para organizar lista por tienda
+- Pegatinas de productos para organización visual y cálculo
+- Libertad para elegir materiales de apoyo
+Expectativa: Rendimiento medio con apoyo, confianza por interacción
+REGISTRO_ADAPTACIONES: Documentar materiales elegidos, efectividad de organización visual
+
+007_EMMA → CAJERO
+Justificación: Perfeccionista, matemáticas precisas, necesita tiempo
+Configuración: complejidad_media, presión_baja, apoyo_visual, interacción_mínima
+Preparación: Organizar caja meticulosamente, preparar tablas de apoyo (lista de precios mediante dictado)
+Expectativa: Rendimiento alto pero pausado, precisión excelente
+
+008_HUGO → CLIENTE
+Justificación: Metódico, constante, prefiere tareas estructuradas
+Configuración: complejidad_básica, presión_baja, apoyo_visual, interacción_mínima
+Preparación: Escribir lista por dictado ordenadamente, calcular con método
+Expectativa: Rendimiento constante, organización natural, compras sistemáticas
+
+=== SECUENCIA TEMPORAL DETALLADA ===
+
+FASE 1: EXPLICACIÓN Y ORGANIZACIÓN INICIAL (10 minutos)
+- Profesor presenta actividad general (5 min)
+- Reuniones individuales simultáneas:
+  * Ana: Coordinación espacial y responsabilidades
+  * Elena: Protocolo de atención, uso de apoyos
+  * Luis: Centrado y planificación personal
+
+FASE 2: PREPARACIÓN DIFERENCIADA (15-20 minutos)
+- Cajeros: Organizar cajas, revisar dinero, decorar puestos, preparar tickets
+- Supervisor: Organizar productos, crear señalización, preparar dictados
+- Clientes: Recibir dictado (supervisor + profesor), escribir lista, calcular presupuesto, acceder a banco de recursos
+
+FASE 3: EJECUCIÓN SIMULTÁNEA (40-60 minutos flexibles)
+- Todos los roles funcionan simultáneamente
+- Finalización: cuando todos los clientes completan sus listas
+- Supervisor coordina y resuelve problemas
+- Rotación natural si alguien necesita descanso
+- Uso libre del banco de recursos
+
+FASE 4: CIERRE DE CUENTAS Y VERIFICACIÓN MATEMÁTICA (20-25 minutos)
+- **Registro individual** (10 min):
+  * Cada cajero: Contar dinero final, calcular ventas (dinero_final - 30€_inicial)
+  * Cada cliente: Contar dinero restante, sumar gasto realizado
+  * Supervisor: Documentar todas las transacciones observadas
+
+- **Verificación grupal** (10 min):
+  * Sumar dinero final de todos (cajeros + clientes) = ¿330€?
+  * Sumar ventas totales de cajeros = ¿total gastado por clientes?
+  * Localizar discrepancias si las hay (¿quién tiene de más/menos?)
+
+- **Discusión y reflexión** (5 min):
+  * ¿Qué os ha parecido la actividad?
+  * ¿Os ha sorprendido que las cuentas cuadren?
+  * ¿Habéis aprendido algo sobre gestionar dinero?
+
+=== DICTADOS PERSONALIZADOS ===
+
+DICTADO_MARÍA (complejidad_media):
+"Lista de compras obligatoria:
+- Material Escolar: 1 estuche (12€) + 1 agenda (15€) = 27€
+- Souvenirs: 1 camiseta (16€) + 1 postal (2€) = 18€  
+- Hobbies: 1 libro (14€) = 14€"
+Presupuesto: 60€ - Total a gastar: 59€ - Cambio: 1€
+Operaciones: 27 + 18 + 14 = 59€
+
+DICTADO_LUIS (complejidad_básica + apoyo visual):
+"Lista de compras obligatoria:
+- Material Escolar: 1 set rotuladores (9€) + 1 compás (11€) = 20€
+- Souvenirs: 1 llavero (7€) + 1 imán (4€) + 1 postal (2€) = 13€
+- Hobbies: 1 cartas (6€) + 1 pelota (10€) = 16€"
+Presupuesto: 60€ - Total a gastar: 49€ - Cambio: 11€
+Apoyo: Lista con formato estructurado y revisión previa
+
+DICTADO_SARA (complejidad_básica + recursos):
+"Lista de compras obligatoria:
+- Material Escolar: 1 estuche (12€) + 1 set rotuladores (9€) = 21€
+- Souvenirs: 1 taza (8€) + 1 gorra (13€) = 21€
+- Hobbies: 1 puzzle (17€) = 17€"
+Presupuesto: 60€ - Total a gastar: 59€ - Cambio: 1€
+Recursos: Pegatinas y folios cuadrantes disponibles
+
+DICTADO_HUGO (complejidad_básica + método):
+"Lista de compras obligatoria:
+- Material Escolar: 1 calculadora (18€) + 1 agenda (15€) = 33€
+- Souvenirs: 1 llavero (7€) + 1 postal (2€) = 9€
+- Hobbies: 1 cartas (6€) = 6€"
+Presupuesto: 60€ - Total a gastar: 48€ - Cambio: 12€
+
+VERIFICACIÓN_TOTAL_CLIENTES:
+María: 59€ + Luis: 49€ + Sara: 59€ + Hugo: 48€ = 215€ gastados
+Dinero restante clientes: 1€ + 11€ + 1€ + 12€ = 25€
+Total: 215€ + 25€ = 240€ ✓
+
+=== SISTEMA DE REGISTRO Y EVALUACIÓN ===
+
+REGISTRO_INDIVIDUAL:
+- Rendimiento en preparación específica
+- Ejecución de rol asignado
+- Aplicación de competencias trabajadas
+- Adaptaciones utilizadas y efectividad
+- Materiales seleccionados del banco de recursos
+
+REGISTRO_GRUPAL:
+- Funcionamiento global del supermercado
+- Colaboración entre roles
+- Resolución de problemas emergentes
+- Calidad de interacciones
+- Tiempo total de actividad
+
+REGISTRO_ADAPTACIONES:
+- Elena: ¿Usó cascos? ¿Cerró tienda? ¿Siguió secuencias?
+- Luis: ¿Efectividad de reunión previa? ¿Autocontrol mantenido?
+- Sara: ¿Qué materiales eligió? ¿Cómo organizó su lista?
+- Ana: ¿Liderazgo efectivo? ¿Coordinación espacial lograda?
+
+EVALUACIÓN_SISTÉMICA:
+- Optimización del reparto realizado
+- Efectividad de adaptaciones aplicadas
+- Aprendizajes transferibles a futuras actividades
+- Ajustes necesarios en parámetros
+- Banco de recursos: ¿qué se usó más/menos?
+
+=== MATERIALES ESPECÍFICOS PREPARADOS ===
+
+CAJEROS (Alex, Elena, Emma):
+- Cajas registradoras simuladas (3)
+- Dinero real: monedas (1¢, 2¢, 5¢, 10¢, 20¢, 50¢) y billetes (1€, 2€, 5€)
+- Tickets en blanco, rotuladores
+- Materiales decoración: pegatinas, cartulinas
+- Tablas de apoyo visual (opcional)
+- Carteles con precios según tarjeta de dificultad
+- Secuencias visuales de atención (para Elena)
+
+SUPERVISOR (Ana):
+- Productos etiquetados con precios
+- Etiquetas adicionales y rotuladores
+- Cartulinas para señalización
+- Cronómetro y cuaderno
+- Listas de dictado preparadas
+- Autoridad para gestión espacial
+
+CLIENTES (María, Luis, Sara, Hugo):
+- Papel para listas de compra
+- Lápices/bolígrafos
+- Dinero asignado según dictado
+- Acceso a banco de recursos
+
+BANCO_RECURSOS_GENERALES:
+- Ábacos y manipulativos
+- Pegatinas de productos en cantidades
+- Folios con cuadrantes
+- Tablas de operaciones
+- Cascos de reducción de ruido
+- Cuerdas delimitadoras
+- Leyendas de procedimientos
+- Tarjetas de dificultad por colores
+
+=== RESULTADOS ESPERADOS ===
+
+COMPETENCIAS_DEMOSTRADAS:
+- Matemáticas aplicadas en contexto real
+- Escritura funcional (dictado, tickets, listas)
+- Comunicación oral efectiva
+- Trabajo colaborativo diferenciado
+- Medidas y estimaciones prácticas
+- Organización y planificación
+- Autoselección de recursos de apoyo
+
+EVIDENCIAS_APRENDIZAJE:
+- Listas de compra escritas
+- Tickets de compra completados
+- Observaciones directas de interacciones
+- Cálculos realizados correctamente
+- Organización de espacios lograda
+- Colaboración espontánea documentada
+- Registro de adaptaciones efectivas
+
+TRANSFERENCIA_ESPERADA:
+- Aplicación matemáticas a situaciones reales
+- Mejora en escritura funcional
+- Desarrollo de competencias sociales
+- Confianza en capacidades individuales
+- Valoración del trabajo colaborativo
+- Autonomía en selección de apoyos
+- Estrategias de autorregulación consolidadas
