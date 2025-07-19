@@ -125,7 +125,7 @@ cd IA4Edu/PoC/PoC_funcional
 python disenador_actividades_colaborativas.py
 ```
 
-### **3️⃣ ¡Alucinar con los resultados!** 🤯
+### **3️⃣ Resultados** 🤯
 - Ve cómo **ELENA (TEA)** obtiene roles estructurados automáticamente
 - Observa cómo **LUIS (TDAH)** recibe tareas con movimiento físico
 - Admira cómo **ANA (AACC)** obtiene desafíos de liderazgo intelectual
@@ -150,7 +150,7 @@ python disenador_actividades_colaborativas.py
 
 ---
 
-## 🛠️ **TECNOLOGÍA QUE IMPRESIONA**
+## 🛠️ **TECNOLOGÍA**
 
 ### **🧠 Stack Tecnológico**
 - **Python 3.6+** - Simplicidad y potencia
@@ -191,7 +191,7 @@ IA4EDU/
 
 ---
 
-## 🎯 **ROADMAP ÉPICO**
+## 🎯 **ROADMAP**
 
 ### **📍 AHORA: PoC Validada** ✅
 - ✅ Sistema funcional con 14 estudiantes reales
@@ -199,12 +199,12 @@ IA4EDU/
 - ✅ Personalización DUA automática
 - ✅ Métricas de efectividad demostradas
 
-### **🚀 SIGUIENTE: Validación Empírica** (3-6 meses)
+### **🚀 SIGUIENTE: Validación Empírica** 
 - 🎯 Piloto en aulas reales con los 14 estudiantes
 - 📊 Métricas de efectividad vs métodos tradicionales
 - 🔄 Refinamiento basado en feedback docente
 
-### **🌟 FUTURO: Producto Escalable** (6-18 meses)
+### **🌟 FUTURO: Producto Escalable** 
 - 🖥️ Interfaz web para demostraciones impactantes
 - 🤖 Sistema híbrido (rules + ML optimization)
 - 🌍 Expansión a Lengua, Ciencias y otros currículos
@@ -233,7 +233,7 @@ IA4EDU/
 ## 📞 **CONTACTO Y COLABORACIÓN**
 
 ### **🚀 Demo en Vivo**
-¿Quieres ver el sistema en acción? ¡Ejecuta la demo y alucina!
+¿Quieres ver el sistema en acción? ¡Ejecuta la demo!
 
 ### **🤝 Colaboraciones**
 - **Investigación**: Validación empírica en aulas reales
