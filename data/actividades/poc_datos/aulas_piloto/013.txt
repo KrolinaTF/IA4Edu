@@ -1,0 +1,53 @@
+ID: 013
+FECHA_NACIMIENTO: 2017-03-02
+NOMBRE: IKER M.
+AULA_ASIGNADA: AULA_B_3PRIM
+
+=== PERFIL_SÍNTESIS ===
+CI_base: 88
+temperamento_base: equilibrado
+canal_preferido: kinestésico
+nivel_apoyo: alto
+tolerancia_frustración: alta
+agrupamiento_óptimo: grupos
+diagnóstico_formal: ninguno
+
+=== PROGRESO_CURRICULAR_DINÁMICO === 
+
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS 
+
+Números hasta 10.000: EMERGENTE
+Operaciones complejas: EMERGENTE
+Fracciones simples: EMERGENTE
+Conversiones medidas: EMERGENTE
+Área rectángulos: EMERGENTE
+Probabilidad básica: EMERGENTE
+Divisiones con resto: EMERGENTE
+Porcentajes básicos: EMERGENTE
+Decimales avanzados: EMERGENTE
+
+LENGUA 
+
+Análisis sintáctico: EMERGENTE
+Tiempos verbales: INICIADO
+Ortografía completa: EMERGENTE
+Textos informativos: EMERGENTE
+Teatro/representación: EN_PROCESO
+Vocabulario técnico: EMERGENTE
+Investigación fuentes: EMERGENTE
+Argumentación: EMERGENTE
+
+CIENCIAS 
+
+Fuerzas físicas: EMERGENTE
+Método científico: EMERGENTE
+Reproducción/ciclos: EMERGENTE
+Cuerpo humano: EMERGENTE
+Rocas/minerales: EMERGENTE
+Electricidad: EMERGENTE

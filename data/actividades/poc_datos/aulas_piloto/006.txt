@@ -1,0 +1,53 @@
+ID: 006
+FECHA_NACIMIENTO: 2015-12-03
+NOMBRE: SARA M.
+AULA_ASIGNADA: AULA_A_4PRIM
+
+=== PERFIL_SÍNTESIS ===
+CI_base: 115
+temperamento_base: equilibrado
+canal_preferido: auditivo
+nivel_apoyo: medio
+tolerancia_frustración: media
+agrupamiento_óptimo: grupos
+diagnóstico_formal: ninguno
+
+=== PROGRESO_CURRICULAR_DINÁMICO === 
+
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS 
+
+Números hasta 10.000: INICIADO
+Operaciones complejas: EMERGENTE
+Fracciones simples: EMERGENTE
+Conversiones medidas: EMERGENTE
+Área rectángulos: EMERGENTE
+Probabilidad básica: EMERGENTE
+Divisiones con resto: INICIADO
+Porcentajes básicos: EMERGENTE
+Decimales avanzados: EMERGENTE
+
+LENGUA 
+
+Análisis sintáctico: INICIADO
+Tiempos verbales: EN_PROCESO
+Ortografía completa: EN_PROCESO
+Textos informativos: CONSEGUIDO
+Teatro/representación: SUPERADO
+Vocabulario técnico: EN_PROCESO
+Investigación fuentes: SUPERADO
+Argumentación: SUPERADO
+
+CIENCIAS 
+
+Fuerzas físicas: INICIADO
+Método científico: CONSEGUIDO
+Reproducción/ciclos: CONSEGUIDO
+Cuerpo humano: CONSEGUIDO
+Rocas/minerales: EN_PROCESO
+Electricidad: CONSEGUIDO

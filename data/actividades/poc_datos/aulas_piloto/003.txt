@@ -1,0 +1,53 @@
+ID: 003
+FECHA_NACIMIENTO: 2016-01-08
+NOMBRE: ELENA R.
+AULA_ASIGNADA: AULA_A_4PRIM
+
+=== PERFIL_SÍNTESIS ===
+CI_base: 118
+temperamento_base: reflexivo
+canal_preferido: visual
+nivel_apoyo: alto
+tolerancia_frustración: baja
+agrupamiento_óptimo: individual
+diagnóstico_formal: TEA_nivel_1
+
+=== PROGRESO_CURRICULAR_DINÁMICO === 
+
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS 
+
+Números hasta 10.000: CONSEGUIDO
+Operaciones complejas: INICIADO
+Fracciones simples: INICIADO
+Conversiones medidas: INICIADO
+Área rectángulos: EMERGENTE
+Probabilidad básica: EMERGENTE
+Divisiones con resto: EN_PROCESO
+Porcentajes básicos: EMERGENTE
+Decimales avanzados: EMERGENTE
+
+LENGUA 
+
+Análisis sintáctico: EMERGENTE
+Tiempos verbales: EN_PROCESO
+Ortografía completa: EN_PROCESO
+Textos informativos: INICIADO
+Teatro/representación: EMERGENTE
+Vocabulario técnico: INICIADO
+Investigación fuentes: EMERGENTE
+Argumentación: EMERGENTE
+
+CIENCIAS 
+
+Fuerzas físicas: EMERGENTE
+Método científico: EMERGENTE
+Reproducción/ciclos: INICIADO
+Cuerpo humano: INICIADO
+Rocas/minerales: INICIADO
+Electricidad: EMERGENTE

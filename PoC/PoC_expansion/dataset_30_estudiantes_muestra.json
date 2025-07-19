@@ -1,0 +1,1707 @@
+{
+  "metadatos": {
+    "total_estudiantes": 30,
+    "fecha_seleccion": "2025-07-18",
+    "fuente": "muestra_estratificada_30_de_394",
+    "version": "2.1_muestra"
+  },
+  "aulas": {
+    "AULA_1_PRIMARIA": {
+      "descripcion": "1 Primaria - 10 estudiantes (Muestra: 5 estudiantes)",
+      "estudiantes": {
+        "1_primaria_006": {
+          "datos_basicos": {
+            "id": "1_primaria_006",
+            "fecha_nacimiento": "209",
+            "nombre": "PABLO S.",
+            "aula": "AULA_1_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "100",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "INICIADO",
+            "Operaciones complejas": "EMERGENTE",
+            "Fracciones simples": "EMERGENTE",
+            "Conversiones medidas": "INICIADO",
+            "Área rectángulos": "EMERGENTE",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "INICIADO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "EMERGENTE"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "INICIADO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "INICIADO",
+            "Teatro/representación": "INICIADO",
+            "Vocabulario técnico": "INICIADO",
+            "Investigación fuentes": "INICIADO",
+            "Argumentación": "INICIADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "INICIADO",
+            "Método científico": "INICIADO",
+            "Reproducción/ciclos": "INICIADO",
+            "Cuerpo humano": "INICIADO",
+            "Rocas/minerales": "INICIADO",
+            "Electricidad": "EMERGENTE"
+          },
+          "necesidades_dua_inferidas": [
+            "instrucciones_orales_claras",
+            "trabajo_en_pareja",
+            "feedback_positivo_frecuente"
+          ],
+          "fortalezas_inferidas": [
+            "colaboracion_natural"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "1_primaria_003": {
+          "datos_basicos": {
+            "id": "1_primaria_003",
+            "fecha_nacimiento": "209",
+            "nombre": "ELENA G.",
+            "aula": "AULA_1_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "87",
+            "temperamento_base": "reflexivo",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "EN_PROCESO",
+            "Operaciones complejas": "INICIADO",
+            "Fracciones simples": "INICIADO",
+            "Conversiones medidas": "EN_PROCESO",
+            "Área rectángulos": "INICIADO",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "EN_PROCESO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "INICIADO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "EN_PROCESO",
+            "Tiempos verbales": "INICIADO",
+            "Ortografía completa": "INICIADO",
+            "Textos informativos": "EN_PROCESO",
+            "Teatro/representación": "INICIADO",
+            "Vocabulario técnico": "EN_PROCESO",
+            "Investigación fuentes": "EN_PROCESO",
+            "Argumentación": "INICIADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "tiempo_extra_procesamiento",
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "1_primaria_002": {
+          "datos_basicos": {
+            "id": "1_primaria_002",
+            "fecha_nacimiento": "209",
+            "nombre": "ALEX V.",
+            "aula": "AULA_1_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "126",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "INICIADO",
+            "Operaciones complejas": "EMERGENTE",
+            "Fracciones simples": "EMERGENTE",
+            "Conversiones medidas": "INICIADO",
+            "Área rectángulos": "EMERGENTE",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "INICIADO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "EMERGENTE"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "EN_PROCESO",
+            "Tiempos verbales": "INICIADO",
+            "Ortografía completa": "INICIADO",
+            "Textos informativos": "EN_PROCESO",
+            "Teatro/representación": "INICIADO",
+            "Vocabulario técnico": "EN_PROCESO",
+            "Investigación fuentes": "EN_PROCESO",
+            "Argumentación": "INICIADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "feedback_positivo_frecuente",
+            "tiempo_extra_procesamiento",
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "concentracion_prolongada",
+            "planificacion_eficiente",
+            "capacidad_cognitiva_alta",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "coordinador_procesos_estructurado"
+        },
+        "1_primaria_008": {
+          "datos_basicos": {
+            "id": "1_primaria_008",
+            "fecha_nacimiento": "209",
+            "nombre": "ALEX P.",
+            "aula": "AULA_1_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "114",
+            "temperamento_base": "impulsivo",
+            "canal_preferido": "kinestesico",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "EN_PROCESO",
+            "Operaciones complejas": "INICIADO",
+            "Fracciones simples": "INICIADO",
+            "Conversiones medidas": "EN_PROCESO",
+            "Área rectángulos": "INICIADO",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "EN_PROCESO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "INICIADO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "SUPERADO",
+            "Método científico": "SUPERADO",
+            "Reproducción/ciclos": "SUPERADO",
+            "Cuerpo humano": "SUPERADO",
+            "Rocas/minerales": "SUPERADO",
+            "Electricidad": "CONSEGUIDO"
+          },
+          "necesidades_dua_inferidas": [
+            "feedback_positivo_frecuente",
+            "aprendizaje_manipulativo",
+            "estructura_visual_clara"
+          ],
+          "fortalezas_inferidas": [
+            "colaboracion_natural"
+          ],
+          "rol_colaborativo_optimo": "facilitador_colaboracion"
+        },
+        "1_primaria_005": {
+          "datos_basicos": {
+            "id": "1_primaria_005",
+            "fecha_nacimiento": "209",
+            "nombre": "DIEGO B.",
+            "aula": "AULA_1_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "93",
+            "temperamento_base": "impulsivo",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "alto",
+            "tolerancia_frustración": "baja",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "TDAH_inatento"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "CONSEGUIDO",
+            "Operaciones complejas": "EN_PROCESO",
+            "Fracciones simples": "EN_PROCESO",
+            "Conversiones medidas": "CONSEGUIDO",
+            "Área rectángulos": "EN_PROCESO",
+            "Probabilidad básica": "INICIADO",
+            "Divisiones con resto": "CONSEGUIDO",
+            "Porcentajes básicos": "INICIADO",
+            "Decimales avanzados": "EN_PROCESO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "EN_PROCESO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "EN_PROCESO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "EN_PROCESO",
+            "Investigación fuentes": "EN_PROCESO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "estructura_visual_clara",
+            "trabajo_en_pareja",
+            "tiempo_extra_procesamiento",
+            "instrucciones_orales_claras",
+            "evaluacion_privada"
+          ],
+          "fortalezas_inferidas": [
+            "colaboracion_natural"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        }
+      }
+    },
+    "AULA_2_PRIMARIA": {
+      "descripcion": "2 Primaria - 28 estudiantes (Muestra: 5 estudiantes)",
+      "estudiantes": {
+        "2_primaria_025": {
+          "datos_basicos": {
+            "id": "2_primaria_025",
+            "fecha_nacimiento": "209",
+            "nombre": "MARÍA L.",
+            "aula": "AULA_2_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "131",
+            "temperamento_base": "impulsivo",
+            "canal_preferido": "visual",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "baja",
+            "agrupamiento_óptimo": "grupos",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "apoyo_visual_prioritario"
+          ],
+          "fortalezas_inferidas": [
+            "razonamiento_superior"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "2_primaria_024": {
+          "datos_basicos": {
+            "id": "2_primaria_024",
+            "fecha_nacimiento": "208",
+            "nombre": "ELENA V.",
+            "aula": "AULA_2_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "126",
+            "temperamento_base": "impulsivo",
+            "canal_preferido": "visual",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "baja",
+            "agrupamiento_óptimo": "grupos",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "apoyo_visual_prioritario"
+          ],
+          "fortalezas_inferidas": [
+            "capacidad_cognitiva_alta",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "2_primaria_011": {
+          "datos_basicos": {
+            "id": "2_primaria_011",
+            "fecha_nacimiento": "209",
+            "nombre": "CARLOS T.",
+            "aula": "AULA_2_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "122",
+            "temperamento_base": "reflexivo",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "EN_PROCESO",
+            "Tiempos verbales": "SUPERADO",
+            "Ortografía completa": "SUPERADO",
+            "Textos informativos": "EN_PROCESO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "EN_PROCESO",
+            "Investigación fuentes": "EN_PROCESO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "instrucciones_orales_claras",
+            "feedback_positivo_frecuente"
+          ],
+          "fortalezas_inferidas": [
+            "capacidad_cognitiva_alta",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "2_primaria_016": {
+          "datos_basicos": {
+            "id": "2_primaria_016",
+            "fecha_nacimiento": "209",
+            "nombre": "ELENA L.",
+            "aula": "AULA_2_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "117",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "SUPERADO",
+            "Método científico": "SUPERADO",
+            "Reproducción/ciclos": "SUPERADO",
+            "Cuerpo humano": "SUPERADO",
+            "Rocas/minerales": "SUPERADO",
+            "Electricidad": "CONSEGUIDO"
+          },
+          "necesidades_dua_inferidas": [
+            "instrucciones_orales_claras",
+            "feedback_positivo_frecuente",
+            "tiempo_extra_procesamiento",
+            "estructura_visual_clara"
+          ],
+          "fortalezas_inferidas": [
+            "capacidad_cognitiva_alta"
+          ],
+          "rol_colaborativo_optimo": "director_estrategico_mentor"
+        },
+        "2_primaria_021": {
+          "datos_basicos": {
+            "id": "2_primaria_021",
+            "fecha_nacimiento": "209",
+            "nombre": "LUIS M.",
+            "aula": "AULA_2_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "110",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "visual",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "CONSEGUIDO",
+            "Operaciones complejas": "EN_PROCESO",
+            "Fracciones simples": "EN_PROCESO",
+            "Conversiones medidas": "CONSEGUIDO",
+            "Área rectángulos": "EN_PROCESO",
+            "Probabilidad básica": "INICIADO",
+            "Divisiones con resto": "CONSEGUIDO",
+            "Porcentajes básicos": "INICIADO",
+            "Decimales avanzados": "EN_PROCESO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "SUPERADO",
+            "Ortografía completa": "SUPERADO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "feedback_positivo_frecuente",
+            "apoyo_visual_prioritario",
+            "tiempo_extra_procesamiento",
+            "estructura_visual_clara"
+          ],
+          "fortalezas_inferidas": [
+            "colaboracion_natural"
+          ],
+          "rol_colaborativo_optimo": "director_estrategico_mentor"
+        }
+      }
+    },
+    "AULA_3_PRIMARIA": {
+      "descripcion": "3 Primaria - 78 estudiantes (Muestra: 5 estudiantes)",
+      "estudiantes": {
+        "3_primaria_027": {
+          "datos_basicos": {
+            "id": "3_primaria_027",
+            "fecha_nacimiento": "208",
+            "nombre": "MARÍA G.",
+            "aula": "AULA_3_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "98",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "INICIADO",
+            "Operaciones complejas": "EMERGENTE",
+            "Fracciones simples": "EMERGENTE",
+            "Conversiones medidas": "INICIADO",
+            "Área rectángulos": "EMERGENTE",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "INICIADO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "EMERGENTE"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "INICIADO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "INICIADO",
+            "Teatro/representación": "INICIADO",
+            "Vocabulario técnico": "INICIADO",
+            "Investigación fuentes": "INICIADO",
+            "Argumentación": "INICIADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "autonomia_aprendizaje",
+            "instrucciones_orales_claras",
+            "evaluacion_privada",
+            "feedback_positivo_frecuente"
+          ],
+          "fortalezas_inferidas": [
+            "concentracion_prolongada",
+            "planificacion_eficiente"
+          ],
+          "rol_colaborativo_optimo": "coordinador_procesos_estructurado"
+        },
+        "3_primaria_046": {
+          "datos_basicos": {
+            "id": "3_primaria_046",
+            "fecha_nacimiento": "208",
+            "nombre": "ANA M.",
+            "aula": "AULA_3_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "124",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "visual",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "SUPERADO",
+            "Método científico": "SUPERADO",
+            "Reproducción/ciclos": "SUPERADO",
+            "Cuerpo humano": "SUPERADO",
+            "Rocas/minerales": "SUPERADO",
+            "Electricidad": "CONSEGUIDO"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "feedback_positivo_frecuente",
+            "apoyo_visual_prioritario",
+            "estructura_visual_clara"
+          ],
+          "fortalezas_inferidas": [
+            "capacidad_cognitiva_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "3_primaria_060": {
+          "datos_basicos": {
+            "id": "3_primaria_060",
+            "fecha_nacimiento": "208",
+            "nombre": "PABLO G.",
+            "aula": "AULA_3_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "109",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "CONSEGUIDO",
+            "Operaciones complejas": "EN_PROCESO",
+            "Fracciones simples": "EN_PROCESO",
+            "Conversiones medidas": "CONSEGUIDO",
+            "Área rectángulos": "EN_PROCESO",
+            "Probabilidad básica": "INICIADO",
+            "Divisiones con resto": "CONSEGUIDO",
+            "Porcentajes básicos": "INICIADO",
+            "Decimales avanzados": "EN_PROCESO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "tiempo_extra_procesamiento",
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "3_primaria_072": {
+          "datos_basicos": {
+            "id": "3_primaria_072",
+            "fecha_nacimiento": "208",
+            "nombre": "ALEX V.",
+            "aula": "AULA_3_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "145",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "baja",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "SUPERADO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "SUPERADO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "SUPERADO",
+            "Investigación fuentes": "SUPERADO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [],
+          "fortalezas_inferidas": [
+            "comunicacion_efectiva",
+            "razonamiento_superior",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "director_estrategico_mentor"
+        },
+        "3_primaria_057": {
+          "datos_basicos": {
+            "id": "3_primaria_057",
+            "fecha_nacimiento": "208",
+            "nombre": "MARÍA B.",
+            "aula": "AULA_3_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "87",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "EN_PROCESO",
+            "Operaciones complejas": "INICIADO",
+            "Fracciones simples": "INICIADO",
+            "Conversiones medidas": "EN_PROCESO",
+            "Área rectángulos": "INICIADO",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "EN_PROCESO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "INICIADO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "EN_PROCESO",
+            "Tiempos verbales": "INICIADO",
+            "Ortografía completa": "INICIADO",
+            "Textos informativos": "EN_PROCESO",
+            "Teatro/representación": "INICIADO",
+            "Vocabulario técnico": "EN_PROCESO",
+            "Investigación fuentes": "EN_PROCESO",
+            "Argumentación": "INICIADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "tiempo_extra_procesamiento",
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        }
+      }
+    },
+    "AULA_4_PRIMARIA": {
+      "descripcion": "4 Primaria - 94 estudiantes (Muestra: 5 estudiantes)",
+      "estudiantes": {
+        "4_primaria_082": {
+          "datos_basicos": {
+            "id": "4_primaria_082",
+            "fecha_nacimiento": "207",
+            "nombre": "SARA G.",
+            "aula": "AULA_4_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "138",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "baja",
+            "agrupamiento_óptimo": "individual",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "CONSEGUIDO",
+            "Operaciones complejas": "EN_PROCESO",
+            "Fracciones simples": "EN_PROCESO",
+            "Conversiones medidas": "CONSEGUIDO",
+            "Área rectángulos": "EN_PROCESO",
+            "Probabilidad básica": "INICIADO",
+            "Divisiones con resto": "CONSEGUIDO",
+            "Porcentajes básicos": "INICIADO",
+            "Decimales avanzados": "EN_PROCESO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "autonomia_alta_posible",
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "comunicacion_efectiva",
+            "razonamiento_superior"
+          ],
+          "rol_colaborativo_optimo": "director_estrategico_mentor"
+        },
+        "4_primaria_027": {
+          "datos_basicos": {
+            "id": "4_primaria_027",
+            "fecha_nacimiento": "207",
+            "nombre": "SARA M.",
+            "aula": "AULA_4_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "100",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "CONSEGUIDO",
+            "Operaciones complejas": "EN_PROCESO",
+            "Fracciones simples": "EN_PROCESO",
+            "Conversiones medidas": "CONSEGUIDO",
+            "Área rectángulos": "EN_PROCESO",
+            "Probabilidad básica": "INICIADO",
+            "Divisiones con resto": "CONSEGUIDO",
+            "Porcentajes básicos": "INICIADO",
+            "Decimales avanzados": "EN_PROCESO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "INICIADO",
+            "Método científico": "INICIADO",
+            "Reproducción/ciclos": "INICIADO",
+            "Cuerpo humano": "INICIADO",
+            "Rocas/minerales": "INICIADO",
+            "Electricidad": "EMERGENTE"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "tiempo_extra_procesamiento",
+            "autonomia_aprendizaje",
+            "instrucciones_orales_claras",
+            "evaluacion_privada",
+            "feedback_positivo_frecuente"
+          ],
+          "fortalezas_inferidas": [
+            "concentracion_prolongada",
+            "planificacion_eficiente",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "coordinador_procesos_estructurado"
+        },
+        "4_primaria_044": {
+          "datos_basicos": {
+            "id": "4_primaria_044",
+            "fecha_nacimiento": "207",
+            "nombre": "MARÍA M.",
+            "aula": "AULA_4_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "125",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "SUPERADO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "SUPERADO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "SUPERADO",
+            "Investigación fuentes": "SUPERADO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "SUPERADO",
+            "Método científico": "SUPERADO",
+            "Reproducción/ciclos": "SUPERADO",
+            "Cuerpo humano": "SUPERADO",
+            "Rocas/minerales": "SUPERADO",
+            "Electricidad": "CONSEGUIDO"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "tiempo_extra_procesamiento",
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "capacidad_cognitiva_alta",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "4_primaria_087": {
+          "datos_basicos": {
+            "id": "4_primaria_087",
+            "fecha_nacimiento": "207",
+            "nombre": "EMMA R.",
+            "aula": "AULA_4_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "129",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "baja",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "CONSEGUIDO",
+            "Operaciones complejas": "EN_PROCESO",
+            "Fracciones simples": "EN_PROCESO",
+            "Conversiones medidas": "CONSEGUIDO",
+            "Área rectángulos": "EN_PROCESO",
+            "Probabilidad básica": "INICIADO",
+            "Divisiones con resto": "CONSEGUIDO",
+            "Porcentajes básicos": "INICIADO",
+            "Decimales avanzados": "EN_PROCESO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "SUPERADO",
+            "Tiempos verbales": "SUPERADO",
+            "Ortografía completa": "SUPERADO",
+            "Textos informativos": "SUPERADO",
+            "Teatro/representación": "SUPERADO",
+            "Vocabulario técnico": "SUPERADO",
+            "Investigación fuentes": "SUPERADO",
+            "Argumentación": "SUPERADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "comunicacion_efectiva",
+            "capacidad_cognitiva_alta",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "director_estrategico_mentor"
+        },
+        "4_primaria_053": {
+          "datos_basicos": {
+            "id": "4_primaria_053",
+            "fecha_nacimiento": "207",
+            "nombre": "EMMA L.",
+            "aula": "AULA_4_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "110",
+            "temperamento_base": "impulsivo",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "EN_PROCESO",
+            "Operaciones complejas": "INICIADO",
+            "Fracciones simples": "INICIADO",
+            "Conversiones medidas": "EN_PROCESO",
+            "Área rectángulos": "INICIADO",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "EN_PROCESO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "INICIADO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "SUPERADO",
+            "Método científico": "SUPERADO",
+            "Reproducción/ciclos": "SUPERADO",
+            "Cuerpo humano": "SUPERADO",
+            "Rocas/minerales": "SUPERADO",
+            "Electricidad": "CONSEGUIDO"
+          },
+          "necesidades_dua_inferidas": [
+            "instrucciones_orales_claras"
+          ],
+          "fortalezas_inferidas": [
+            "colaboracion_natural"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        }
+      }
+    },
+    "AULA_5_PRIMARIA": {
+      "descripcion": "5 Primaria - 87 estudiantes (Muestra: 5 estudiantes)",
+      "estudiantes": {
+        "5_primaria_073": {
+          "datos_basicos": {
+            "id": "5_primaria_073",
+            "fecha_nacimiento": "206",
+            "nombre": "CARLOS B.",
+            "aula": "AULA_5_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "126",
+            "temperamento_base": "reflexivo",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "instrucciones_orales_claras"
+          ],
+          "fortalezas_inferidas": [
+            "capacidad_cognitiva_alta",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "5_primaria_044": {
+          "datos_basicos": {
+            "id": "5_primaria_044",
+            "fecha_nacimiento": "206",
+            "nombre": "CARLOS V.",
+            "aula": "AULA_5_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "142",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "baja",
+            "agrupamiento_óptimo": "individual",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "SUPERADO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "SUPERADO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "SUPERADO",
+            "Investigación fuentes": "SUPERADO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "SUPERADO",
+            "Método científico": "SUPERADO",
+            "Reproducción/ciclos": "SUPERADO",
+            "Cuerpo humano": "SUPERADO",
+            "Rocas/minerales": "SUPERADO",
+            "Electricidad": "CONSEGUIDO"
+          },
+          "necesidades_dua_inferidas": [
+            "autonomia_alta_posible",
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "comunicacion_efectiva",
+            "razonamiento_superior",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "director_estrategico_mentor"
+        },
+        "5_primaria_007": {
+          "datos_basicos": {
+            "id": "5_primaria_007",
+            "fecha_nacimiento": "206",
+            "nombre": "DIEGO G.",
+            "aula": "AULA_5_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "111",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "CONSEGUIDO",
+            "Operaciones complejas": "EN_PROCESO",
+            "Fracciones simples": "EN_PROCESO",
+            "Conversiones medidas": "CONSEGUIDO",
+            "Área rectángulos": "EN_PROCESO",
+            "Probabilidad básica": "INICIADO",
+            "Divisiones con resto": "CONSEGUIDO",
+            "Porcentajes básicos": "INICIADO",
+            "Decimales avanzados": "EN_PROCESO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "INICIADO",
+            "Tiempos verbales": "INICIADO",
+            "Ortografía completa": "INICIADO",
+            "Textos informativos": "INICIADO",
+            "Teatro/representación": "INICIADO",
+            "Vocabulario técnico": "INICIADO",
+            "Investigación fuentes": "INICIADO",
+            "Argumentación": "INICIADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "INICIADO",
+            "Método científico": "INICIADO",
+            "Reproducción/ciclos": "INICIADO",
+            "Cuerpo humano": "INICIADO",
+            "Rocas/minerales": "INICIADO",
+            "Electricidad": "EMERGENTE"
+          },
+          "necesidades_dua_inferidas": [
+            "evaluacion_privada",
+            "feedback_positivo_frecuente"
+          ],
+          "fortalezas_inferidas": [
+            "concentracion_prolongada",
+            "planificacion_eficiente",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "coordinador_procesos_estructurado"
+        },
+        "5_primaria_086": {
+          "datos_basicos": {
+            "id": "5_primaria_086",
+            "fecha_nacimiento": "206",
+            "nombre": "MARÍA S.",
+            "aula": "AULA_5_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "130",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "visual",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "grupos",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "INICIADO",
+            "Operaciones complejas": "EMERGENTE",
+            "Fracciones simples": "EMERGENTE",
+            "Conversiones medidas": "INICIADO",
+            "Área rectángulos": "EMERGENTE",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "INICIADO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "EMERGENTE"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "INICIADO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "INICIADO",
+            "Teatro/representación": "INICIADO",
+            "Vocabulario técnico": "INICIADO",
+            "Investigación fuentes": "INICIADO",
+            "Argumentación": "INICIADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "apoyo_visual_prioritario"
+          ],
+          "fortalezas_inferidas": [
+            "razonamiento_superior",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "5_primaria_077": {
+          "datos_basicos": {
+            "id": "5_primaria_077",
+            "fecha_nacimiento": "206",
+            "nombre": "CARLOS R.",
+            "aula": "AULA_5_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "128",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "individual",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "SUPERADO",
+            "Operaciones complejas": "CONSEGUIDO",
+            "Fracciones simples": "CONSEGUIDO",
+            "Conversiones medidas": "SUPERADO",
+            "Área rectángulos": "CONSEGUIDO",
+            "Probabilidad básica": "EN_PROCESO",
+            "Divisiones con resto": "SUPERADO",
+            "Porcentajes básicos": "EN_PROCESO",
+            "Decimales avanzados": "CONSEGUIDO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "autonomia_alta_posible"
+          ],
+          "fortalezas_inferidas": [
+            "comunicacion_efectiva",
+            "capacidad_cognitiva_alta",
+            "adaptabilidad_alta"
+          ],
+          "rol_colaborativo_optimo": "director_estrategico_mentor"
+        }
+      }
+    },
+    "AULA_6_PRIMARIA": {
+      "descripcion": "6 Primaria - 97 estudiantes (Muestra: 5 estudiantes)",
+      "estudiantes": {
+        "6_primaria_036": {
+          "datos_basicos": {
+            "id": "6_primaria_036",
+            "fecha_nacimiento": "205",
+            "nombre": "LUIS M.",
+            "aula": "AULA_6_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "125",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "kinestesico",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "EN_PROCESO",
+            "Operaciones complejas": "INICIADO",
+            "Fracciones simples": "INICIADO",
+            "Conversiones medidas": "EN_PROCESO",
+            "Área rectángulos": "INICIADO",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "EN_PROCESO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "INICIADO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "aprendizaje_manipulativo",
+            "tiempo_extra_procesamiento"
+          ],
+          "fortalezas_inferidas": [
+            "capacidad_cognitiva_alta"
+          ],
+          "rol_colaborativo_optimo": "colaborador_equilibrado_adaptativo"
+        },
+        "6_primaria_055": {
+          "datos_basicos": {
+            "id": "6_primaria_055",
+            "fecha_nacimiento": "204",
+            "nombre": "EMMA B.",
+            "aula": "AULA_6_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "103",
+            "temperamento_base": "reflexivo",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "alto",
+            "tolerancia_frustración": "baja",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "INICIADO",
+            "Operaciones complejas": "EMERGENTE",
+            "Fracciones simples": "EMERGENTE",
+            "Conversiones medidas": "INICIADO",
+            "Área rectángulos": "EMERGENTE",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "INICIADO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "EMERGENTE"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "EN_PROCESO",
+            "Tiempos verbales": "INICIADO",
+            "Ortografía completa": "INICIADO",
+            "Textos informativos": "EN_PROCESO",
+            "Teatro/representación": "INICIADO",
+            "Vocabulario técnico": "EN_PROCESO",
+            "Investigación fuentes": "EN_PROCESO",
+            "Argumentación": "INICIADO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "tiempo_extra_procesamiento",
+            "instrucciones_orales_claras",
+            "evaluacion_privada",
+            "feedback_positivo_frecuente"
+          ],
+          "fortalezas_inferidas": [
+            "colaboracion_natural"
+          ],
+          "rol_colaborativo_optimo": "facilitador_colaboracion"
+        },
+        "6_primaria_021": {
+          "datos_basicos": {
+            "id": "6_primaria_021",
+            "fecha_nacimiento": "205",
+            "nombre": "ANA V.",
+            "aula": "AULA_6_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "120",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "alto",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "TDAH_inatento"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "EN_PROCESO",
+            "Operaciones complejas": "INICIADO",
+            "Fracciones simples": "INICIADO",
+            "Conversiones medidas": "EN_PROCESO",
+            "Área rectángulos": "INICIADO",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "EN_PROCESO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "INICIADO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "EN_PROCESO",
+            "Tiempos verbales": "EN_PROCESO",
+            "Ortografía completa": "EN_PROCESO",
+            "Textos informativos": "EN_PROCESO",
+            "Teatro/representación": "EN_PROCESO",
+            "Vocabulario técnico": "EN_PROCESO",
+            "Investigación fuentes": "EN_PROCESO",
+            "Argumentación": "EN_PROCESO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "instrucciones_orales_claras",
+            "estructura_visual_clara"
+          ],
+          "fortalezas_inferidas": [
+            "capacidad_cognitiva_alta"
+          ],
+          "rol_colaborativo_optimo": "facilitador_colaboracion"
+        },
+        "6_primaria_006": {
+          "datos_basicos": {
+            "id": "6_primaria_006",
+            "fecha_nacimiento": "205",
+            "nombre": "PABLO B.",
+            "aula": "AULA_6_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "134",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "mixto",
+            "nivel_apoyo": "bajo",
+            "tolerancia_frustración": "alta",
+            "agrupamiento_óptimo": "pareja",
+            "diagnóstico_formal": "altas_capacidades"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "EN_PROCESO",
+            "Operaciones complejas": "INICIADO",
+            "Fracciones simples": "INICIADO",
+            "Conversiones medidas": "EN_PROCESO",
+            "Área rectángulos": "INICIADO",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "EN_PROCESO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "INICIADO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "SUPERADO",
+            "Tiempos verbales": "CONSEGUIDO",
+            "Ortografía completa": "CONSEGUIDO",
+            "Textos informativos": "SUPERADO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "SUPERADO",
+            "Investigación fuentes": "SUPERADO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "EN_PROCESO",
+            "Método científico": "EN_PROCESO",
+            "Reproducción/ciclos": "EN_PROCESO",
+            "Cuerpo humano": "EN_PROCESO",
+            "Rocas/minerales": "EN_PROCESO",
+            "Electricidad": "INICIADO"
+          },
+          "necesidades_dua_inferidas": [
+            "trabajo_en_pareja",
+            "feedback_positivo_frecuente",
+            "tiempo_extra_procesamiento",
+            "autonomia_aprendizaje"
+          ],
+          "fortalezas_inferidas": [
+            "comunicacion_efectiva",
+            "expresion_avanzada",
+            "razonamiento_superior"
+          ],
+          "rol_colaborativo_optimo": "facilitador_colaboracion"
+        },
+        "6_primaria_012": {
+          "datos_basicos": {
+            "id": "6_primaria_012",
+            "fecha_nacimiento": "205",
+            "nombre": "SARA S.",
+            "aula": "AULA_6_PRIMARIA"
+          },
+          "perfil_sintesis": {
+            "CI_base": "117",
+            "temperamento_base": "equilibrado",
+            "canal_preferido": "auditivo",
+            "nivel_apoyo": "medio",
+            "tolerancia_frustración": "media",
+            "agrupamiento_óptimo": "pequeño_grupo",
+            "diagnóstico_formal": "ninguno"
+          },
+          "competencias_matematicas": {
+            "Números hasta 10.000": "EN_PROCESO",
+            "Operaciones complejas": "INICIADO",
+            "Fracciones simples": "INICIADO",
+            "Conversiones medidas": "EN_PROCESO",
+            "Área rectángulos": "INICIADO",
+            "Probabilidad básica": "EMERGENTE",
+            "Divisiones con resto": "EN_PROCESO",
+            "Porcentajes básicos": "EMERGENTE",
+            "Decimales avanzados": "INICIADO"
+          },
+          "competencias_lengua": {
+            "Análisis sintáctico": "CONSEGUIDO",
+            "Tiempos verbales": "SUPERADO",
+            "Ortografía completa": "SUPERADO",
+            "Textos informativos": "CONSEGUIDO",
+            "Teatro/representación": "CONSEGUIDO",
+            "Vocabulario técnico": "CONSEGUIDO",
+            "Investigación fuentes": "CONSEGUIDO",
+            "Argumentación": "CONSEGUIDO"
+          },
+          "competencias_ciencias": {
+            "Fuerzas físicas": "CONSEGUIDO",
+            "Método científico": "CONSEGUIDO",
+            "Reproducción/ciclos": "CONSEGUIDO",
+            "Cuerpo humano": "CONSEGUIDO",
+            "Rocas/minerales": "CONSEGUIDO",
+            "Electricidad": "EN_PROCESO"
+          },
+          "necesidades_dua_inferidas": [
+            "instrucciones_orales_claras",
+            "tiempo_extra_procesamiento",
+            "feedback_positivo_frecuente"
+          ],
+          "fortalezas_inferidas": [
+            "comunicacion_efectiva",
+            "expresion_avanzada",
+            "concentracion_prolongada",
+            "planificacion_eficiente",
+            "capacidad_cognitiva_alta"
+          ],
+          "rol_colaborativo_optimo": "coordinador_procesos_estructurado"
+        }
+      }
+    }
+  }
+}

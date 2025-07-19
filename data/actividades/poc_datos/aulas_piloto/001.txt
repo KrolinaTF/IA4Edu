@@ -1,0 +1,53 @@
+ID: 001
+FECHA_NACIMIENTO: 2016-03-15
+NOMBRE: ALEX M.
+AULA_ASIGNADA: AULA_A_4PRIM
+
+=== PERFIL_SÍNTESIS ===
+CI_base: 102
+temperamento_base: reflexivo
+canal_preferido: visual
+nivel_apoyo: bajo
+tolerancia_frustración: alta
+agrupamiento_óptimo: individual
+diagnóstico_formal: ninguno
+
+=== PROGRESO_CURRICULAR_DINÁMICO === 
+
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS 
+
+Números hasta 10.000: CONSEGUIDO
+Operaciones complejas: EN_PROCESO
+Fracciones simples: EN_PROCESO
+Conversiones medidas: EN_PROCESO
+Área rectángulos: INICIADO
+Probabilidad básica: EMERGENTE
+Divisiones con resto: EN_PROCESO
+Porcentajes básicos: EMERGENTE
+Decimales avanzados: INICIADO
+
+LENGUA 
+
+Análisis sintáctico: EN_PROCESO
+Tiempos verbales: CONSEGUIDO
+Ortografía completa: CONSEGUIDO
+Textos informativos: CONSEGUIDO
+Teatro/representación: CONSEGUIDO
+Vocabulario técnico: EN_PROCESO
+Investigación fuentes: CONSEGUIDO
+Argumentación: CONSEGUIDO
+
+CIENCIAS 
+
+Fuerzas físicas: CONSEGUIDO
+Método científico: CONSEGUIDO
+Reproducción/ciclos: SUPERADO
+Cuerpo humano: SUPERADO
+Rocas/minerales: CONSEGUIDO
+Electricidad: SUPERADO

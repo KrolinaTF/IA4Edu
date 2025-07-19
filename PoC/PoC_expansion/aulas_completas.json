@@ -1,0 +1,224 @@
+{
+  "aulas_sistema": {
+    "metadatos": {
+      "total_estudiantes": 14,
+      "total_aulas": 2,
+      "ciclo_curricular": "2º ciclo primaria",
+      "diversidad_diagnosticos": 5,
+      "fecha_ultima_actualizacion": "2025-07-18"
+    },
+    "AULA_A_4PRIM": {
+      "curso": "4º primaria",
+      "total_estudiantes": 8,
+      "edad_media": 9,
+      "diversidad": "alta",
+      "estudiantes": {
+        "001": {
+          "nombre": "ALEX M.",
+          "diagnostico": "ninguno",
+          "perfil_tipo": "desarrollo_tipico_liderazgo",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "CONSEGUIDO",
+            "operaciones_basicas": "EN_PROCESO", 
+            "problemas_sencillos": "EN_PROCESO"
+          },
+          "necesidades_dua": ["instrucciones_claras", "oportunidades_liderazgo", "colaboracion_estructurada"],
+          "fortalezas": ["liderazgo_natural", "mediacion", "comunicacion_efectiva"],
+          "rol_colaborativo_optimo": "coordinador_facilitador"
+        },
+        "002": {
+          "nombre": "MARÍA L.",
+          "diagnostico": "ninguno", 
+          "perfil_tipo": "desarrollo_tipico_verbal",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "EN_PROCESO",
+            "operaciones_basicas": "INICIADO",
+            "problemas_sencillos": "INICIADO"
+          },
+          "necesidades_dua": ["refuerzo_matematicas", "aprovechamiento_fortaleza_verbal"],
+          "fortalezas": ["expresion_oral", "comprension_lectora", "creatividad"],
+          "rol_colaborativo_optimo": "comunicadora_relatora"
+        },
+        "003": {
+          "nombre": "ELENA R.",
+          "diagnostico": "TEA",
+          "perfil_tipo": "TEA_visual_estructurado",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "CONSEGUIDO",
+            "operaciones_basicas": "INICIADO",
+            "problemas_sencillos": "INICIADO"
+          },
+          "necesidades_dua": ["estructura_visual", "tiempo_extra", "rutinas_claras", "instrucciones_paso_a_paso"],
+          "fortalezas": ["precision_detalle", "atencion_sostenida", "matematicas_estructuradas"],
+          "rol_colaborativo_optimo": "especialista_precision"
+        },
+        "004": {
+          "nombre": "LUIS T.",
+          "diagnostico": "TDAH_combinado",
+          "perfil_tipo": "TDAH_dinamico_social",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "EN_PROCESO",
+            "operaciones_basicas": "INICIADO", 
+            "problemas_sencillos": "INICIADO"
+          },
+          "necesidades_dua": ["movimiento_fisico", "fragmentacion_tareas", "motivacion_extrinseca"],
+          "fortalezas": ["energia_entusiasmo", "creatividad", "trabajo_colaborativo"],
+          "rol_colaborativo_optimo": "dinamizador_coordinador_movil"
+        },
+        "005": {
+          "nombre": "ANA V.",
+          "diagnostico": "altas_capacidades",
+          "perfil_tipo": "AACC_autonoma_lider",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "SUPERADO",
+            "operaciones_basicas": "CONSEGUIDO",
+            "problemas_sencillos": "CONSEGUIDO"
+          },
+          "necesidades_dua": ["desafios_cognitivos", "autonomia_aprendizaje", "oportunidades_mentoria"],
+          "fortalezas": ["razonamiento_abstracto", "liderazgo_cognitivo", "transferencia_aprendizajes"],
+          "rol_colaborativo_optimo": "directora_estrategica_mentora"
+        },
+        "006": {
+          "nombre": "SARA M.",
+          "diagnostico": "ninguno",
+          "perfil_tipo": "desarrollo_tipico_social_apoyo",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "EN_PROCESO",
+            "operaciones_basicas": "INICIADO",
+            "problemas_sencillos": "EMERGENTE"
+          },
+          "necesidades_dua": ["refuerzo_matematicas", "apoyo_social", "colaboracion_estructurada"],
+          "fortalezas": ["empatia", "trabajo_equipo", "apoyo_companeros"],
+          "rol_colaborativo_optimo": "mediadora_apoyo_social"
+        },
+        "007": {
+          "nombre": "EMMA K.",
+          "diagnostico": "ninguno",
+          "perfil_tipo": "desarrollo_tipico_meticuloso",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "EN_PROCESO",
+            "operaciones_basicas": "EN_PROCESO",
+            "problemas_sencillos": "INICIADO"
+          },
+          "necesidades_dua": ["tiempo_procesamiento", "instrucciones_detalladas", "feedback_positivo"],
+          "fortalezas": ["atencion_detalle", "meticulosidad", "constancia"],
+          "rol_colaborativo_optimo": "verificadora_calidad"
+        },
+        "008": {
+          "nombre": "HUGO P.",
+          "diagnostico": "ninguno",
+          "perfil_tipo": "desarrollo_tipico_equilibrado",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "EN_PROCESO",
+            "operaciones_basicas": "INICIADO",
+            "problemas_sencillos": "INICIADO"
+          },
+          "necesidades_dua": ["instrucciones_estandar", "variedad_actividades", "colaboracion_flexible"],
+          "fortalezas": ["adaptabilidad", "equilibrio_areas", "trabajo_autonomo_y_grupal"],
+          "rol_colaborativo_optimo": "comodin_adaptativo"
+        }
+      }
+    },
+    "AULA_B_3PRIM": {
+      "curso": "3º primaria", 
+      "total_estudiantes": 6,
+      "edad_media": 8,
+      "diversidad": "media",
+      "estudiantes": {
+        "009": {
+          "nombre": "PABLO S.",
+          "diagnostico": "ninguno",
+          "perfil_tipo": "desarrollo_tipico_colaborativo",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "INICIADO",
+            "operaciones_basicas": "EMERGENTE",
+            "problemas_sencillos": "EMERGENTE"
+          },
+          "necesidades_dua": ["instrucciones_claras", "trabajo_colaborativo", "feedback_auditivo"],
+          "fortalezas": ["colaboracion_natural", "comunicacion", "adaptabilidad_alta"],
+          "rol_colaborativo_optimo": "facilitador_junior"
+        },
+        "010": {
+          "nombre": "DIEGO L.",
+          "diagnostico": "ninguno",
+          "perfil_tipo": "desarrollo_tipico_kinestesico", 
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "EMERGENTE",
+            "operaciones_basicas": "EMERGENTE", 
+            "problemas_sencillos": "EMERGENTE"
+          },
+          "necesidades_dua": ["aprendizaje_manipulativo", "movimiento", "experiencias_concretas"],
+          "fortalezas": ["aprendizaje_fisico", "energia_positiva", "construccion"],
+          "rol_colaborativo_optimo": "constructor_manipulativo"
+        },
+        "011": {
+          "nombre": "CARLOS R.",
+          "diagnostico": "altas_capacidades+dislexia",
+          "perfil_tipo": "doble_excepcionalidad_matematico",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "CONSEGUIDO",
+            "operaciones_basicas": "EN_PROCESO",
+            "problemas_sencillos": "EN_PROCESO"
+          },
+          "necesidades_dua": ["desafio_matematico", "apoyo_escritura", "expresion_oral"],
+          "fortalezas": ["razonamiento_matematico_superior", "pensamiento_lateral", "resolucion_creativa"],
+          "rol_colaborativo_optimo": "experto_matematico_oral"
+        },
+        "012": {
+          "nombre": "SOFÍA G.", 
+          "diagnostico": "TDAH_inatento",
+          "perfil_tipo": "TDAH_reflexivo_pareja",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "EMERGENTE",
+            "operaciones_basicas": "EMERGENTE",
+            "problemas_sencillos": "EMERGENTE"
+          },
+          "necesidades_dua": ["trabajo_pareja", "recordatorios_suaves", "procesamiento_auditivo"],
+          "fortalezas": ["reflexion_profunda", "trabajo_parejas", "escucha_activa"],
+          "rol_colaborativo_optimo": "colaboradora_reflexiva_pareja"
+        },
+        "013": {
+          "nombre": "IKER M.",
+          "diagnostico": "ninguno",
+          "perfil_tipo": "desarrollo_tipico_introvertido",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "EMERGENTE",
+            "operaciones_basicas": "EMERGENTE",
+            "problemas_sencillos": "EMERGENTE"
+          },
+          "necesidades_dua": ["trabajo_individual_con_apoyo", "tiempo_procesamiento", "grupos_pequenos"],
+          "fortalezas": ["concentracion_individual", "atencion_detalle", "trabajo_autonomo"],
+          "rol_colaborativo_optimo": "especialista_individual_apoyo"
+        },
+        "014": {
+          "nombre": "NAIA B.",
+          "diagnostico": "ninguno",
+          "perfil_tipo": "desarrollo_tipico_versatil",
+          "competencias_matematicas_actuales": {
+            "numeros_hasta_10000": "INICIADO",
+            "operaciones_basicas": "EMERGENTE", 
+            "problemas_sencillos": "EMERGENTE"
+          },
+          "necesidades_dua": ["variedad_metodologica", "desafios_progresivos", "trabajo_flexible"],
+          "fortalezas": ["versatilidad", "rapidez_aprendizaje", "adaptacion_contextos"],
+          "rol_colaborativo_optimo": "comodin_versatil"
+        }
+      }
+    }
+  },
+  "patrones_colaborativos": {
+    "complementariedad_roles": {
+      "lider_facilitador": ["coordinador_facilitador", "directora_estrategica_mentora"],
+      "precision_detalle": ["especialista_precision", "verificadora_calidad"],
+      "dinamismo_energia": ["dinamizador_coordinador_movil", "constructor_manipulativo"],
+      "apoyo_social": ["mediadora_apoyo_social", "colaboradora_reflexiva_pareja"],
+      "comunicacion": ["comunicadora_relatora", "facilitador_junior"],
+      "adaptabilidad": ["comodin_adaptativo", "comodin_versatil"]
+    },
+    "sinergias_optimas": {
+      "TEA_TDAH": "Elena (precision) + Luis (energia) = Complementariedad perfecta",
+      "AACC_tipicos": "Ana/Carlos (liderazgo cognitivo) + tipicos (colaboracion) = Mentoria natural",
+      "introvertido_facilitador": "Iker (individual) + Pablo (facilitador) = Apoyo estructurado"
+    }
+  }
+}

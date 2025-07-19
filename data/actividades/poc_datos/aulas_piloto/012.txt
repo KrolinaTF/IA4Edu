@@ -1,0 +1,53 @@
+ID: 012
+FECHA_NACIMIENTO: 2017-06-11
+NOMBRE: SOFÍA G.
+AULA_ASIGNADA: AULA_B_3PRIM
+
+=== PERFIL_SÍNTESIS ===
+CI_base: 103
+temperamento_base: reflexivo
+canal_preferido: auditivo
+nivel_apoyo: alto
+tolerancia_frustración: media
+agrupamiento_óptimo: parejas
+diagnóstico_formal: TDAH_inatento
+
+=== PROGRESO_CURRICULAR_DINÁMICO === 
+
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS 
+
+Números hasta 10.000: EMERGENTE
+Operaciones complejas: EMERGENTE
+Fracciones simples: EMERGENTE
+Conversiones medidas: EMERGENTE
+Área rectángulos: EMERGENTE
+Probabilidad básica: EMERGENTE
+Divisiones con resto: EMERGENTE
+Porcentajes básicos: EMERGENTE
+Decimales avanzados: EMERGENTE
+
+LENGUA 
+
+Análisis sintáctico: EMERGENTE
+Tiempos verbales: EMERGENTE
+Ortografía completa: EMERGENTE
+Textos informativos: EMERGENTE
+Teatro/representación: INICIADO
+Vocabulario técnico: EMERGENTE
+Investigación fuentes: EMERGENTE
+Argumentación: EMERGENTE
+
+CIENCIAS 
+
+Fuerzas físicas: EMERGENTE
+Método científico: EMERGENTE
+Reproducción/ciclos: EMERGENTE
+Cuerpo humano: EMERGENTE
+Rocas/minerales: EMERGENTE
+Electricidad: EMERGENTE

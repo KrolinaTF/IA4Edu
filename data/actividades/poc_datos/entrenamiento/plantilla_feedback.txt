@@ -1,0 +1,8 @@
+=== FEEDBACK POST-ACTIVIDAD ===
+
+INPUT_DOCENTE: [observación libre]
+
+=== ACTUALIZACIONES_CURRICULARES ===
+[ID_ESTUDIANTE]:
+- [competencia]: [estado_anterior] → [estado_nuevo]
+- adaptaciones_efectivas: [+nueva_adaptación o confirma_existente]

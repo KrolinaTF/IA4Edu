@@ -1,0 +1,107 @@
+{
+  "competencias_matematicas": {
+    "2_ciclo_3_4_primaria": {
+      "MAT_2C_01": {
+        "titulo": "Números hasta 10.000",
+        "ciclo": "2º",
+        "curso": "3º-4º",
+        "descripcion": "Leer, escribir, ordenar y representar números hasta 10.000",
+        "criterios_evaluacion": [
+          "Lee números hasta 10.000 correctamente",
+          "Escribe números hasta 10.000 en cifras y letras", 
+          "Ordena series de números hasta 10.000",
+          "Representa números en recta numérica"
+        ],
+        "actividad_principal": "Supermercado de precios",
+        "contexto_real": "Precios de productos, cantidades, numeración de códigos"
+      },
+      "MAT_2C_02": {
+        "titulo": "Operaciones básicas",
+        "ciclo": "2º", 
+        "curso": "3º-4º",
+        "descripcion": "Suma, resta y multiplicación con llevadas. División básica",
+        "criterios_evaluacion": [
+          "Realiza sumas con llevadas hasta 4 cifras",
+          "Realiza restas con llevadas hasta 4 cifras",
+          "Multiplica números de 2 cifras por 1 cifra",
+          "Divide números de 2 cifras entre 1 cifra"
+        ],
+        "actividad_principal": "Calculadora humana",
+        "contexto_real": "Cálculos de cambio, totales de compra, repartos"
+      },
+      "MAT_2C_03": {
+        "titulo": "Resolución problemas sencillos",
+        "ciclo": "2º",
+        "curso": "3º-4º", 
+        "descripcion": "Problemas de 1-2 operaciones con contexto cotidiano",
+        "criterios_evaluacion": [
+          "Identifica datos y pregunta en problemas",
+          "Elige operación correcta para resolver",
+          "Realiza cálculos necesarios",
+          "Expresa respuesta con unidades correctas"
+        ],
+        "actividad_principal": "Detective matemático",
+        "contexto_real": "Problemas de compras, tiempo, distancias cotidianas"
+      }
+    },
+    "3_ciclo_5_6_primaria": {
+      "MAT_3C_01": {
+        "titulo": "Decimales y fracciones",
+        "ciclo": "3º",
+        "curso": "5º-6º",
+        "descripcion": "Números decimales hasta centésimas y fracciones básicas", 
+        "criterios_evaluacion": [
+          "Lee y escribe números decimales hasta centésimas",
+          "Ordena números decimales",
+          "Representa fracciones simples (1/2, 1/4, 3/4)",
+          "Relaciona fracciones y decimales equivalentes"
+        ],
+        "actividad_principal": "Pizzería de fracciones",
+        "contexto_real": "Precios con céntimos, partes de pizza, medidas de cocina"
+      },
+      "MAT_3C_02": {
+        "titulo": "Operaciones complejas",
+        "ciclo": "3º",
+        "curso": "5º-6º",
+        "descripcion": "Operaciones con decimales, fracciones y números grandes",
+        "criterios_evaluacion": [
+          "Suma y resta números decimales",
+          "Multiplica decimales por enteros",
+          "Calcula porcentajes básicos (10%, 25%, 50%)",
+          "Opera con fracciones de igual denominador"
+        ],
+        "actividad_principal": "Banco de operaciones", 
+        "contexto_real": "Cálculos bancarios, descuentos, intereses simples"
+      },
+      "MAT_3C_03": {
+        "titulo": "Problemas multi-paso",
+        "ciclo": "3º",
+        "curso": "5º-6º",
+        "descripcion": "Problemas complejos que requieren varias operaciones y razonamiento",
+        "criterios_evaluacion": [
+          "Planifica secuencia de operaciones",
+          "Resuelve problemas de 3-4 pasos",
+          "Estima resultados antes de calcular",
+          "Verifica coherencia de la solución"
+        ],
+        "actividad_principal": "Arquitecto de proyectos",
+        "contexto_real": "Presupuestos, planificación eventos, cálculos de materiales"
+      }
+    }
+  },
+  "niveles_dominio": {
+    "EMERGENTE": "Reconoce conceptos básicos con apoyo intensivo",
+    "INICIADO": "Aplica conceptos simples con apoyo",
+    "EN_PROCESO": "Domina con apoyo ocasional",
+    "CONSEGUIDO": "Domina de forma autónoma",
+    "SUPERADO": "Domina y puede enseñar a otros"
+  },
+  "contextos_aplicacion": [
+    "supermercado",
+    "pizzeria", 
+    "banco",
+    "arquitectura",
+    "detective",
+    "calculadora_humana"
+  ]
+}

@@ -1,0 +1,33 @@
+=== DISEÑO ACTIVIDAD GLOBAL ===
+ACTIVIDAD: [NOMBRE]
+OBJETIVO_PRINCIPAL: [Descripción]
+DURACIÓN_FLEXIBLE: [Tiempo] (termina cuando [criterio])
+COMPETENCIAS_CURRICULARES: [Lista]
+
+=== CONTEXTO PEDAGÓGICO ===
+MOMENTO_CURSO: [Semana/mes]
+NIVEL_GRUPO: [Descripción de complejidad esperada]
+
+=== SECCIONES/ESTACIONES/ROLES/TAREAS ===
+[ROL 1] - [NOMBRE_DESCRIPTIVO]
+[ROL 2] - [NOMBRE_DESCRIPTIVO]
+[ROL 3] - [NOMBRE_DESCRIPTIVO]
+
+=== GESTIÓN DOCENTE ===
+ROL_PROFESOR: [Campo abierto]
+APOYO_ESPECÍFICO: [Campo abierto]
+
+=== REPARTO REALIZADO ===
+[ID_ESTUDIANTE] → [ROL_ASIGNADO]
+Justificación: [Razón pedagógica]
+Adaptaciones específicas: [Lista]
+Expectativa: [Resultado esperado]
+
+=== DESARROLLO PASO A PASO ===
+FASE 1: Preparación - [Descripción]
+FASE 2: Ejecución - [Descripción]  
+FASE 3: Cierre - [Descripción]
+
+=== MATERIALES/CONTENIDOS POR ROL ===
+[ROL 1]: [Materiales específicos]
+[ROL 2]: [Materiales específicos]

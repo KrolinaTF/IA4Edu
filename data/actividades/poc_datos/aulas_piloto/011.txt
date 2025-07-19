@@ -1,0 +1,53 @@
+ID: 011
+FECHA_NACIMIENTO: 2017-01-19
+NOMBRE: CARLOS R.
+AULA_ASIGNADA: AULA_B_3PRIM
+
+=== PERFIL_SÍNTESIS ===
+CI_base: 136
+temperamento_base: impulsivo
+canal_preferido: visual
+nivel_apoyo: alto
+tolerancia_frustración: baja
+agrupamiento_óptimo: individual
+diagnóstico_formal: altas_capacidades+dislexia
+
+=== PROGRESO_CURRICULAR_DINÁMICO === 
+
+COMPETENCIAS_SUPERADAS → DESARROLLAR_AUTONOMÍA_Y_MENTORÍA_PEDAGÓGICA
+COMPETENCIAS_CONSEGUIDAS → PROMOVER_TRANSFERENCIA_Y_APLICACIÓN_CONTEXTUAL
+COMPETENCIAS_EN_PROCESO → FACILITAR_EXPRESIÓN_AUTÓNOMA_CON_APOYO
+COMPETENCIAS_INICIADAS → PROPORCIONAR_ANDAMIAJE_Y_PRÁCTICA_GUIADA
+COMPETENCIAS_EMERGENTES → EXPLORAR_MÚLTIPLES_FORMAS_DE_REPRESENTACIÓN
+
+MATEMÁTICAS 
+
+Números hasta 10.000: CONSEGUIDO
+Operaciones complejas: EN_PROCESO
+Fracciones simples: EN_PROCESO
+Conversiones medidas: INICIADO
+Área rectángulos: INICIADO
+Probabilidad básica: EMERGENTE
+Divisiones con resto: CONSEGUIDO
+Porcentajes básicos: EMERGENTE
+Decimales avanzados: EMERGENTE
+
+LENGUA 
+
+Análisis sintáctico: EMERGENTE
+Tiempos verbales: INICIADO
+Ortografía completa: INICIADO
+Textos informativos: INICIADO
+Teatro/representación: EMERGENTE
+Vocabulario técnico: EMERGENTE
+Investigación fuentes: EMERGENTE
+Argumentación: EMERGENTE
+
+CIENCIAS 
+
+Fuerzas físicas: INICIADO
+Método científico: EN_PROCESO
+Reproducción/ciclos: INICIADO
+Cuerpo humano: INICIADO
+Rocas/minerales: INICIADO
+Electricidad: EMERGENTE
