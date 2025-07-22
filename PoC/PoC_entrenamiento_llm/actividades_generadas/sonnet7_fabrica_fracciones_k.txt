@@ -1,0 +1,83 @@
+================================================================================
+ACTIVIDAD GRUPAL: Matemáticas - fracciones
+AULA: AULA_A_4PRIM (8 estudiantes)
+================================================================================
+
+ESTUDIANTES DEL AULA:
+- 001: ALEX M. (ninguno, visual, apoyo bajo)
+- 002: MARÍA L. (ninguno, auditivo, apoyo medio)
+- 003: ELENA R. (TEA_nivel_1, visual, apoyo alto)
+- 004: LUIS T. (TDAH_combinado, kinestésico, apoyo alto)
+- 005: ANA V. (altas_capacidades, auditivo, apoyo bajo)
+- 006: SARA M. (ninguno, auditivo, apoyo medio)
+- 007: EMMA K. (ninguno, visual, apoyo medio)
+- 008: HUGO P. (ninguno, visual, apoyo bajo)
+
+DIVERSIDAD CONSIDERADA:
+- Diagnósticos: {'ninguno': 5, 'TEA_nivel_1': 1, 'TDAH_combinado': 1, 'altas_capacidades': 1}
+- Canales: {'visual': 4, 'auditivo': 3, 'kinestésico': 1}
+- Niveles apoyo: {'bajo': 3, 'medio': 3, 'alto': 2}
+- Temperamentos: {'reflexivo': 5, 'impulsivo': 1, 'equilibrado': 2}
+
+ACTIVIDAD GRUPAL:
+--------------------------------------------------
+**TÍTULO:** "La Fábrica de Fracciones"
+
+**OBJETIVO GENERAL:** Trabajar en equipo para diseñar y construir una fábrica de fracciones, resolviendo problemas y utilizando habilidades matemáticas para lograr un objetivo común.
+
+**DESCRIPCIÓN:** Vamos a contruir entre toda la clase una fábrica de fracciones. ¿pero la fábrica fabrica fracciones? o ¿la fábrica está hecha de fracciones? ¡Estamos fraccionando hasta el concepto!
+En esta actividad, vamos a crear un proceso de fraccionamiento de cualquier cosa. Trabajaremos, nuestra fábrica será como una cinta transportadora en la que se le dará un elemento, en una "pantalla" (dibujada, aparecerá en cuántas fracciones se tiene que dividir)
+Y con cinta aislante, celo, o incluso un marcador (dependiendo de las cosas que les vayamos a dar), se marcarán las fracciones. ¿debemos divirdirlos longitudinalmente, transversalmente, por ambos? ¿Si hacemos diagonales tenemos control de lo que fraccionamos? Los estudiantes tendrán que plantearse preguntas para resolver 
+estas cuestiones. El proceso de fábrica tendrá varias estaciones y cada cierto tiempo haremos unas rotaciones para que cada persona (o pareja, si consideramos que pueden ir por parejas) realice todas las estaciones. 
+Al final, tendremos varios objetos "fraccionados" y podemos hacer una reflexión sobre esto. ¿Son equivalentes en los objetos las fracciones? ¿Como se puede hacer para que sean equivalentes? 
+Antes de empezar a jugar, tenemos que preparar materiales y el aula. La cinta transportadora se inicia con una pareja que elige los objetos que pueden ser fraccionados. 
+Continúa con una pareja que elige en cuántos elementos se fraccionará cada objeto y les pone una etiqueta. La siguiente pareja se encarga de tomar la decisión de ejecutar lo que se le pide y dibujar o poner cinta sobre el objeto como consideran que estaría adecuadamente fraccionado. La ultima pareja realiza una clasificación. (Se puede elegir qué clasificación se quiere hacer de los objetos, puede tener que ver con las fracciones o no)
+Por ejemplo, se puede clasificar por "campo semántico" y ya introducimos otros concepto diferente y necesario. 
+
+**NIVEL DE LA ACTIVIDAD**
+Se describe brevemente qué nivel tiene la actividad 
+
+**ROLES Y TAREAS ESPECÍFICAS:**
+Las tareas específicas se realizarán previas, durante la preparación de la actividad, ya que luego habrá rotaciones y cada persona pasara por todas las estaciones. 
+
+* ALEX M. (001): **Mobiliario** Junto con Luis, colocarán las mesas del aula, tratando de no hacer ruido de manera que se pueda fabricar la "cinta transportadora" de 
+nuestra fábrica. 
+* MARÍA L. (002): **Carteles informativos** Debe recorrer con Elena todas las estaciones y realizar unos carteles que expresen lo que va a ocurrir en ellos.
+* ELENA R. (003): **Carteles informativos** Junto con María, recorrerá las 4 estaciones y realizará unos carteles que cuenten lo que ocurre en cada estación. 
+Esto a su vez, nos va a valer de apoyo visual (para ella y para cualquiera) pero como además ella participa en la creación, le sirve de repaso y para solucionar 
+dudas que pueda tener
+* LUIS T. (004): **Mobiliario** Junto con Alex, colocarán las mesas del aula, tratando de no hacer ruido de manera que se pueda fabricar la "cinta transportadora" 
+de nuestra fábrica. Esto le sirve como apoyo de aprendizaje con movimiento. Al fabricar la cinta completa, va repasando qué hace cada estación, 
+a su vez utiliza la fuerza y su cuerpo para tener un poco de desgaste de energía previa a comenzar. 
+* ANA V. (005): **Seleccionadora** Ana va a recorrer el aula y va a elegir los "objetos elegibles" para que los estudiantes no rebusquen entre todo el aula cosas. 
+Al principio de la cinta se designará un espacio para ellos. La idea es que sobren objetos para dar flexibilidad. 
+* SARA M. (006): **Seleccionadora** Junto con Ana, va a ayudar en la preparación de los materiales pero en este caso, de los que hacen falta en las otras 3 estaciones.  
+* EMMA K. (007): **Paneles de mando** Emma, junto con Hugo, van a dibujar paneles de mando para poner en diferentes estaciones y que les ayude a decorar y a jugar de una manera más interactiva. 
+* HUGO P. (008): **Paneles de mando** Junto con Emma, van a dibujar paneles de mando para poner en diferentes estaciones y que les ayude a decorar y a jugar de una manera más interactiva. 
+
+**MATERIALES NECESARIOS:** Papel, cartulina, cinta adhesiva, marcadores, herramientas de construcción (si es necesario).
+
+**PROCESO PASO A PASO:**
+
+1. **Diseño** (15 minutos): Cada pareja se encargará de realizar las tareas encomendadas.
+2. **Construcción** (30 minutos): Haremos, por rotaciones, las pruebas de neustra fábrica.
+3. **Prueba y ajuste** (15 minutos): Haremos una reflexión sobre lo que hemos visto. La primera reflexión la tendremos sobre lo que significa el concepto de 1. El hecho de que es arbitriario, que 
+las personas le ponemos 1 a lo que queremos y que a partir de ahi comienza una distribución pero que eso se podría denominar de otra manera. 
+
+**ADAPTACIONES ESPECÍFICAS POR DIAGNÓSTICO:**
+
+* TEA (ELENA R.): Se le fabricará sus propias instrucciones visuales y se le pedirá que siga un procedimiento establecido.
+* TDAH (LUIS T.): Se le proporcionará una estructura sencilla de cumplir y movimiento para desarrollarla, además su tarea le servirá de repaso para comprender todo el proceso e integrarlo.
+* Altas capacidades (ANA V.): Se le proporcionarán retos intelectuales y toma de decisiones. Visualización previa abstracta de cómo podrían quedar diferentes elementos para ser seleccionados. 
+
+**PRODUCTO FINAL DEL GRUPO:** Una fábrica de fracciones que pueda producir una variedad de fracciones.
+
+**EVALUACIÓN (INDIVIDUAL Y GRUPAL):**
+
+* La evaluación la haremos durante el proceso de reflexión de manera conjunta y podremos dedicar tiempo a ver cómo hemos trabajado cada uno/a de manera individual y hablar sobre ello también. 
+
+**DURACIÓN ESTIMADA:** 45-60 minutos.
+
+================================================================================
+Generado: 2025-07-21T11:09:55.826639
+Modelo: llama-3.1-8b-instant

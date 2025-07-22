@@ -1,0 +1,296 @@
+{
+  "metadatos": {
+    "proyecto": "PoC_Entrenamiento_LLM_Actividades",
+    "fecha_creacion": "2025-07-20",
+    "aula": "AULA_A_4PRIM",
+    "total_estudiantes": 8,
+    "objetivo": "Entrenar LLM local con Ollama para generar actividades educativas adaptadas",
+    "version": "1.0"
+  },
+  "estudiantes": [
+    {
+      "id": "001",
+      "nombre": "ALEX M.",
+      "edad": 9,
+      "grado": 4,
+      "materia_foco": "Matemáticas",
+      "ci_base": 102,
+      "temperamento": "reflexivo",
+      "canal_preferido": "visual",
+      "nivel_apoyo": "bajo",
+      "tolerancia_frustracion": "alta",
+      "agrupamiento_optimo": "individual",
+      "diagnostico_formal": "ninguno",
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "EN_PROCESO",
+        "fracciones_simples": "EN_PROCESO",
+        "divisiones_resto": "EN_PROCESO"
+      },
+      "lengua": {
+        "analisis_sintactico": "EN_PROCESO",
+        "tiempos_verbales": "CONSEGUIDO",
+        "ortografia_completa": "CONSEGUIDO",
+        "textos_informativos": "CONSEGUIDO"
+      },
+      "ciencias": {
+        "fuerzas_fisicas": "CONSEGUIDO",
+        "metodo_cientifico": "CONSEGUIDO",
+        "cuerpo_humano": "SUPERADO"
+      },
+      "intereses": ["ciencias", "experimentos", "lectura"],
+      "estilo_aprendizaje": "visual-reflexivo",
+      "idioma": "español"
+    },
+    {
+      "id": "002", 
+      "nombre": "MARÍA L.",
+      "edad": 9,
+      "grado": 4,
+      "materia_foco": "Lengua",
+      "ci_base": "no_evaluado",
+      "temperamento": "reflexivo",
+      "canal_preferido": "auditivo",
+      "nivel_apoyo": "medio",
+      "tolerancia_frustracion": "media",
+      "agrupamiento_optimo": "grupos",
+      "diagnostico_formal": "ninguno",
+      "matematicas": {
+        "numeros_10000": "EN_PROCESO",
+        "operaciones_complejas": "EMERGENTE",
+        "fracciones_simples": "EMERGENTE",
+        "divisiones_resto": "INICIADO"
+      },
+      "lengua": {
+        "analisis_sintactico": "EMERGENTE",
+        "tiempos_verbales": "INICIADO",
+        "ortografia_completa": "EMERGENTE",
+        "textos_informativos": "EMERGENTE"
+      },
+      "ciencias": {
+        "fuerzas_fisicas": "EMERGENTE",
+        "metodo_cientifico": "EMERGENTE",
+        "cuerpo_humano": "INICIADO"
+      },
+      "intereses": ["música", "cuentos", "trabajo_en_grupo"],
+      "estilo_aprendizaje": "auditivo-colaborativo",
+      "idioma": "español"
+    },
+    {
+      "id": "003",
+      "nombre": "ELENA R.",
+      "edad": 9,
+      "grado": 4,
+      "materia_foco": "Matemáticas",
+      "ci_base": 118,
+      "temperamento": "reflexivo",
+      "canal_preferido": "visual",
+      "nivel_apoyo": "alto",
+      "tolerancia_frustracion": "baja",
+      "agrupamiento_optimo": "individual",
+      "diagnostico_formal": "TEA_nivel_1",
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "INICIADO",
+        "fracciones_simples": "INICIADO",
+        "divisiones_resto": "EN_PROCESO"
+      },
+      "lengua": {
+        "analisis_sintactico": "EMERGENTE",
+        "tiempos_verbales": "EN_PROCESO",
+        "ortografia_completa": "EN_PROCESO",
+        "textos_informativos": "INICIADO"
+      },
+      "ciencias": {
+        "fuerzas_fisicas": "EMERGENTE",
+        "metodo_cientifico": "EMERGENTE",
+        "cuerpo_humano": "INICIADO"
+      },
+      "intereses": ["patrones", "orden", "matemáticas", "rutinas"],
+      "estilo_aprendizaje": "visual-estructurado",
+      "necesidades_especiales": ["rutinas_claras", "instrucciones_visuales", "tiempo_extra"],
+      "idioma": "español"
+    },
+    {
+      "id": "004",
+      "nombre": "LUIS T.",
+      "edad": 9,
+      "grado": 4,
+      "materia_foco": "Ciencias",
+      "ci_base": 102,
+      "temperamento": "impulsivo",
+      "canal_preferido": "kinestésico",
+      "nivel_apoyo": "alto",
+      "tolerancia_frustracion": "baja",
+      "agrupamiento_optimo": "grupos",
+      "diagnostico_formal": "TDAH_combinado",
+      "matematicas": {
+        "numeros_10000": "EN_PROCESO",
+        "operaciones_complejas": "INICIADO",
+        "fracciones_simples": "EMERGENTE",
+        "divisiones_resto": "INICIADO"
+      },
+      "lengua": {
+        "analisis_sintactico": "EMERGENTE",
+        "tiempos_verbales": "INICIADO",
+        "ortografia_completa": "INICIADO",
+        "teatro_representacion": "EN_PROCESO"
+      },
+      "ciencias": {
+        "fuerzas_fisicas": "INICIADO",
+        "metodo_cientifico": "EN_PROCESO",
+        "cuerpo_humano": "EN_PROCESO",
+        "electricidad": "EN_PROCESO"
+      },
+      "intereses": ["experimentos", "movimiento", "deportes", "construcción"],
+      "estilo_aprendizaje": "kinestésico-activo",
+      "necesidades_especiales": ["descansos_frecuentes", "actividades_físicas", "instrucciones_cortas"],
+      "idioma": "español"
+    },
+    {
+      "id": "005",
+      "nombre": "ANA V.",
+      "edad": 8,
+      "grado": 4,
+      "materia_foco": "Todas",
+      "ci_base": 141,
+      "temperamento": "reflexivo",
+      "canal_preferido": "auditivo",
+      "nivel_apoyo": "bajo",
+      "tolerancia_frustracion": "baja",
+      "agrupamiento_optimo": "individual",
+      "diagnostico_formal": "altas_capacidades",
+      "matematicas": {
+        "numeros_10000": "SUPERADO",
+        "operaciones_complejas": "CONSEGUIDO",
+        "fracciones_simples": "CONSEGUIDO",
+        "divisiones_resto": "SUPERADO",
+        "porcentajes_basicos": "INICIADO"
+      },
+      "lengua": {
+        "analisis_sintactico": "CONSEGUIDO",
+        "tiempos_verbales": "SUPERADO",
+        "ortografia_completa": "SUPERADO",
+        "textos_informativos": "SUPERADO",
+        "argumentacion": "SUPERADO"
+      },
+      "ciencias": {
+        "fuerzas_fisicas": "CONSEGUIDO",
+        "metodo_cientifico": "SUPERADO",
+        "cuerpo_humano": "SUPERADO",
+        "electricidad": "CONSEGUIDO"
+      },
+      "intereses": ["investigación", "lectura_avanzada", "ciencias", "filosofía"],
+      "estilo_aprendizaje": "auditivo-analítico",
+      "necesidades_especiales": ["retos_intelectuales", "profundización", "proyectos_autonomos"],
+      "idioma": "español"
+    },
+    {
+      "id": "006",
+      "nombre": "SARA M.",
+      "edad": 9,
+      "grado": 4,
+      "materia_foco": "Lengua",
+      "ci_base": 115,
+      "temperamento": "equilibrado",
+      "canal_preferido": "auditivo",
+      "nivel_apoyo": "medio",
+      "tolerancia_frustracion": "media",
+      "agrupamiento_optimo": "grupos",
+      "diagnostico_formal": "ninguno",
+      "matematicas": {
+        "numeros_10000": "INICIADO",
+        "operaciones_complejas": "EMERGENTE",
+        "fracciones_simples": "EMERGENTE",
+        "divisiones_resto": "INICIADO"
+      },
+      "lengua": {
+        "analisis_sintactico": "INICIADO",
+        "tiempos_verbales": "EN_PROCESO",
+        "ortografia_completa": "EN_PROCESO",
+        "textos_informativos": "CONSEGUIDO",
+        "teatro_representacion": "SUPERADO",
+        "argumentacion": "SUPERADO"
+      },
+      "ciencias": {
+        "fuerzas_fisicas": "INICIADO",
+        "metodo_cientifico": "CONSEGUIDO",
+        "cuerpo_humano": "CONSEGUIDO",
+        "electricidad": "CONSEGUIDO"
+      },
+      "intereses": ["teatro", "expresión_oral", "historias", "trabajo_colaborativo"],
+      "estilo_aprendizaje": "auditivo-expresivo",
+      "idioma": "español"
+    },
+    {
+      "id": "007",
+      "nombre": "EMMA K.",
+      "edad": 9,
+      "grado": 4,
+      "materia_foco": "Ciencias",
+      "ci_base": 132,
+      "temperamento": "reflexivo",
+      "canal_preferido": "visual",
+      "nivel_apoyo": "medio",
+      "tolerancia_frustracion": "baja",
+      "agrupamiento_optimo": "individual",
+      "diagnostico_formal": "ninguno",
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "EN_PROCESO",
+        "fracciones_simples": "EN_PROCESO",
+        "divisiones_resto": "CONSEGUIDO"
+      },
+      "lengua": {
+        "analisis_sintactico": "EN_PROCESO",
+        "tiempos_verbales": "CONSEGUIDO",
+        "ortografia_completa": "CONSEGUIDO",
+        "textos_informativos": "CONSEGUIDO"
+      },
+      "ciencias": {
+        "fuerzas_fisicas": "INICIADO",
+        "metodo_cientifico": "CONSEGUIDO",
+        "rocas_minerales": "SUPERADO",
+        "electricidad": "CONSEGUIDO"
+      },
+      "intereses": ["geología", "naturaleza", "observación", "clasificación"],
+      "estilo_aprendizaje": "visual-analítico",
+      "idioma": "español"
+    },
+    {
+      "id": "008",
+      "nombre": "HUGO P.",
+      "edad": 9,
+      "grado": 4,
+      "materia_foco": "Ciencias",
+      "ci_base": 114,
+      "temperamento": "equilibrado",
+      "canal_preferido": "visual",
+      "nivel_apoyo": "bajo",
+      "tolerancia_frustracion": "alta",
+      "agrupamiento_optimo": "individual",
+      "diagnostico_formal": "ninguno",
+      "matematicas": {
+        "numeros_10000": "EN_PROCESO",
+        "operaciones_complejas": "INICIADO",
+        "fracciones_simples": "INICIADO",
+        "divisiones_resto": "EN_PROCESO"
+      },
+      "lengua": {
+        "analisis_sintactico": "INICIADO",
+        "tiempos_verbales": "EN_PROCESO",
+        "ortografia_completa": "EN_PROCESO",
+        "textos_informativos": "EN_PROCESO"
+      },
+      "ciencias": {
+        "fuerzas_fisicas": "INICIADO",
+        "metodo_cientifico": "CONSEGUIDO",
+        "cuerpo_humano": "CONSEGUIDO",
+        "electricidad": "CONSEGUIDO"
+      },
+      "intereses": ["ciencias", "experimentos", "tecnología", "trabajo_independiente"],
+      "estilo_aprendizaje": "visual-práctico",
+      "idioma": "español"
+    }
+  ]
+}

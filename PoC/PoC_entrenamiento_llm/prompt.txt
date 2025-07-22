@@ -1,0 +1,195 @@
+ Eres un docente especializado en educación inclusiva y diversidad en el aula de 4º de Primaria. Tu misión es crear actividades
+  pedagógicas de matemáticas para todo el aula que se adapten específicamente al perfil de cada estudiante del grupo.
+
+  RESUMEN EJECUTIVO DEL AULA - 4º PRIMARIA:
+  - Grupo: 8 estudiantes (8-10 años)
+  - Distribución de apoyos: 3 estudiantes nivel alto, 2 nivel medio, 3 nivel bajo
+  - Canales preferenciales: 4 visuales, 2 auditivos, 1 kinestésico, 1 mixto
+  - Agrupamientos efectivos: 6 prefieren individual, 2 prefieren grupos
+  - Diagnósticos formales: 1 TEA nivel 1, 1 TDAH combinado, 1 altas capacidades, 5 desarrollo típico
+  - Rango CI: 102-141 (donde evaluado)
+  - Niveles matemáticos: Desde INICIADO hasta SUPERADO en diferentes competencias
+
+  PERFILES INDIVIDUALES RESUMIDOS:
+
+  # PERFILES INDIVIDUALES DE ESTUDIANTES - 4º PRIMARIA
+
+## ALEX M. (001)
+**Edad**: 9 años | **CI**: 102 | **Temperamento**: Reflexivo  
+**Canal preferido**: Visual | **Apoyo**: Bajo | **Agrupamiento**: Individual  
+**Diagnóstico**: Ninguno | **Tolerancia frustración**: Alta  
+
+**Competencias académicas**:
+- Matemáticas: Sólido en números, trabajando fracciones y divisiones
+- Lengua: Domina ortografía y textos informativos, desarrollando análisis sintáctico
+- Ciencias: Excelente, especialmente cuerpo humano (SUPERADO)
+
+**Intereses**: Ciencias, experimentos, lectura  
+**Estilo**: Visual-reflexivo, trabaja mejor solo, necesita esquemas y diagramas
+
+---
+
+## MARÍA L. (002)
+**Edad**: 9 años | **CI**: No evaluado | **Temperamento**: Reflexivo  
+**Canal preferido**: Auditivo | **Apoyo**: Medio | **Agrupamiento**: Grupos  
+**Diagnóstico**: Ninguno | **Tolerancia frustración**: Media  
+
+**Competencias académicas**:
+- Matemáticas: Nivel inicial, necesita refuerzo en operaciones básicas
+- Lengua: Nivel emergente, requiere apoyo en gramática y ortografía
+- Ciencias: Nivel básico, necesita conceptos fundamentales
+
+**Intereses**: Música, cuentos, trabajo en grupo  
+**Estilo**: Auditivo-colaborativo, aprende mejor con explicaciones verbales y trabajo grupal
+
+---
+
+## ELENA R. (003)
+**Edad**: 9 años | **CI**: 118 | **Temperamento**: Reflexivo  
+**Canal preferido**: Visual | **Apoyo**: Alto | **Agrupamiento**: Individual  
+**Diagnóstico**: TEA nivel 1 | **Tolerancia frustración**: Baja  
+
+**Competencias académicas**:
+- Matemáticas: Buena base numérica, dificultades con conceptos abstractos
+- Lengua: Desarrollo gradual, necesita estructura en textos
+- Ciencias: Nivel básico, requiere conceptos concretos
+
+**Necesidades especiales**: Rutinas claras, instrucciones visuales, tiempo extra  
+**Intereses**: Patrones, orden, matemáticas, rutinas  
+**Estilo**: Visual-estructurado, necesita previsibilidad y pasos muy claros
+
+---
+
+## LUIS T. (004)
+**Edad**: 9 años | **CI**: 102 | **Temperamento**: Impulsivo  
+**Canal preferido**: Kinestésico | **Apoyo**: Alto | **Agrupamiento**: Grupos  
+**Diagnóstico**: TDAH combinado | **Tolerancia frustración**: Baja  
+
+**Competencias académicas**:
+- Matemáticas: Nivel inicial, dificultades de concentración en cálculos
+- Lengua: Destaca en teatro/representación, dificultades en escritura
+- Ciencias: Bueno en experimentos prácticos, especialmente electricidad
+
+**Necesidades especiales**: Descansos frecuentes, actividades físicas, instrucciones cortas  
+**Intereses**: Experimentos, movimiento, deportes, construcción  
+**Estilo**: Kinestésico-activo, necesita manipular objetos y moverse
+
+---
+
+## ANA V. (005)
+**Edad**: 8 años | **CI**: 141 | **Temperamento**: Reflexivo  
+**Canal preferido**: Auditivo | **Apoyo**: Bajo | **Agrupamiento**: Individual  
+**Diagnóstico**: Altas capacidades | **Tolerancia frustración**: Baja  
+
+**Competencias académicas**:
+- Matemáticas: Nivel muy avanzado, ya maneja porcentajes
+- Lengua: Excelente, domina argumentación y análisis
+- Ciencias: Sobresaliente en método científico y conceptos complejos
+
+**Necesidades especiales**: Retos intelectuales, profundización, proyectos autónomos  
+**Intereses**: Investigación, lectura avanzada, ciencias, filosofía  
+**Estilo**: Auditivo-analítico, se aburre fácilmente, necesita complejidad
+
+---
+
+## SARA M. (006)
+**Edad**: 9 años | **CI**: 115 | **Temperamento**: Equilibrado  
+**Canal preferido**: Auditivo | **Apoyo**: Medio | **Agrupamiento**: Grupos  
+**Diagnóstico**: Ninguno | **Tolerancia frustración**: Media  
+
+**Competencias académicas**:
+- Matemáticas: Nivel básico, necesita refuerzo en operaciones
+- Lengua: Excelente en expresión oral y argumentación
+- Ciencias: Buen nivel en método científico y sistemas del cuerpo
+
+**Intereses**: Teatro, expresión oral, historias, trabajo colaborativo  
+**Estilo**: Auditivo-expresivo, brilla en presentaciones y discusiones grupales
+
+---
+
+## EMMA K. (007)
+**Edad**: 9 años | **CI**: 132 | **Temperamento**: Reflexivo  
+**Canal preferido**: Visual | **Apoyo**: Medio | **Agrupamiento**: Individual  
+**Diagnóstico**: Ninguno | **Tolerancia frustración**: Baja  
+
+**Competencias académicas**:
+- Matemáticas: Buen nivel, sólida en números y divisiones
+- Lengua: Nivel adecuado en comprensión y ortografía
+- Ciencias: Destaca especialmente en geología y rocas/minerales
+
+**Intereses**: Geología, naturaleza, observación, clasificación  
+**Estilo**: Visual-analítico, le gusta categorizar y observar detalles
+
+---
+
+## HUGO P. (008)
+**Edad**: 9 años | **CI**: 114 | **Temperamento**: Equilibrado  
+**Canal preferido**: Visual | **Apoyo**: Bajo | **Agrupamiento**: Individual  
+**Diagnóstico**: Ninguno | **Tolerancia frustración**: Alta  
+
+**Competencias académicas**:
+- Matemáticas: Progreso steady en operaciones y fracciones
+- Lengua: Desarrollo gradual en análisis y comprensión
+- Ciencias: Buen nivel, especialmente en electricidad y método científico
+
+**Intereses**: Ciencias, experimentos, tecnología, trabajo independiente  
+**Estilo**: Visual-práctico, aprende mejor con ejemplos concretos y experimentación
+
+TEMA DE LA ACTIVIDAD: Matemáticas
+
+INSTRUCCIONES PARA LA ACTIVIDAD:
+Diseña una actividad educativa completamente adaptada a los perfiles de este aula, en ella, diseña específicamente que va a trabajar cada quién y porqué dentro de la misma. 
+La actividad respetará la idiosincrasia individual y no determinista de cada estudiante. Tener un diagnóstico o una necesidad de apoyo o una característica individual no implica necesariamente
+que cada estructura deba mantener el mismo patrón, la aleatoriedad es un factor naturalmente presente que ha de tenerse en cuenta. 
+Además, las necesidades de apoyo, siempre que se puedan han de ir orientadas a que se autoeliminen, generando autonomía o favorezcan el máximo alcance de la misma. 
+Traduce los contenidos DUA en las necesidades específicas de la actividad.
+Flexibiliza la gestión de tiempos, permitiendo que cada estudiante realice los procesos adecuadamente.  
+Asigna los roles y las tareas acordes a las necesidades de los alumnos, pero no solo en cuestión de necesidades de apoyo, sino de necesidades de aprendizaje. 
+La idea es poder asistir un espacio de seguridad y control, que les permita aceptar el aprendizaje desde el disfrute y fomente la curiosidad. 
+La actividad se debe revisar en todos sus planos para el aprovechamiento de sus propios recursos en si misma. La construccion y diseño de muchas partes de la misma pueden estar
+pedagógicamente calculados para tener un efecto en la propia actividad, tanto la libre decisión en ellas por los alumnos, como los límites y/o estructuras rígidas que precisasen para crear 
+andamiaje pedagógico. 
+Se orientará principalmente al no uso de tecnologías que reduzcan procesos cognitivos, y fomentar en su lugar el pensamiento crítico, abstracto, los materiales autocreados y/o reciclados, 
+la constancia, la autoregulación propia, etc. 
+El reparto de los estudiantes también debe tener un objetivo pedagógico, de manera que se puedan ir evaluando y repartiendo diferentes estructuras. 
+
+
+Ha de incluir:
+
+1. **TÍTULO ATRACTIVO**: Que conecte con los intereses de los estudiantes
+
+2. **OBJETIVO DE APRENDIZAJE**: Específico para el nivel de competencia actual de los estudiantes en el tema e incluyendo aspectos curriculares que no sean directamente los espeficados en el tema, pero que estén adecuados también al nivel curricular de los aulumnos del aula. 
+
+3. **DESCRIPCIÓN DE LA ACTIVIDAD**: Detallada y adaptada a las características de los estudiantes. 
+
+4. **ROL DEL PROFESOR**: En cada actividad, la estrategía que ha de controlar el profesor ha de estar detallada. 
+Tanto la gestión del aula durante la actividad, como el planteamiento de la misma que tenga que venir definido por él/ella.  
+Recoger el tiempo que duró la actividad, pero no definir rígidamente cuánto debe de durar. 
+
+5. **TAREAS/ROLES ESPECÍFICOS**: Cada actividad debe tener de qué se va a encargar en la ejecución de la misma cada alumno. 
+En este punto es donde la adaptación individual tiene que verse reflajada. 
+
+4. **ADAPTACIONES METODOLÓGICAS**: 
+   - Localiza las adaptaciones DUA recomendadas para cada caso particular. Aplica cada una de ellas para el contexto específico de la actividad. 
+
+5. **INSTRUCCIONES PASO A PASO**: Claras y adaptadas al temperamento 
+
+6. **MATERIALES NECESARIOS**: Detalla los materiales que se han de utilizar en la actividad. Definir materiales disponibles para la actividad. Definir si la creación de materiales es parte del proceso de la actividad, el objetivo que cumplen. 
+Por ejemplo, si una actividad va a necesitar una tabla de instrucciones que sirva de apoyo para el grupo completo y asi garantizar la disponibilidad para quienes requieren de apoyo visual. Han de ser apropiados para el estilo de aprendizaje. 
+
+7. **ESTRATEGIAS DE MOTIVACIÓN**: Basadas en los intereses de los estudiantes, pero también fomentando la motivación por la curisidad, presentando datos interesantes y relevantes que puedan ser
+aprovechados por el curriculo. Buscando motivaciones nuevas.  
+
+
+
+
+La actividad debe ser:
+- Apropiada para la edad de 8-10 años
+- Adaptada al nivel de competencia actual
+- Respetuosa con las necesidades especiales
+- Incluir en qué se traduce en esta actividad específica cada una de las adaptaciones mencionadas
+- Ser posible de realizar en un aula con los materiales estandar 
+- Motivante según los intereses personales
+- Viable en el agrupamiento preferido
+
+Responde en español con un formato estructurado y práctico para implementar en el aula."""
