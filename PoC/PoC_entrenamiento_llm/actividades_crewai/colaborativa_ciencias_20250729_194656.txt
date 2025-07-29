@@ -1,0 +1,81 @@
+================================================================================
+ACTIVIDAD GENERADA CON CREWAI + OLLAMA
+================================================================================
+
+ID: colaborativa_ciencias_20250729_194656
+Título: Actividad Colaborativa - ciencias
+Materia: ciencias
+Tema: cuerpo humano
+Tipo: colaborativa
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-07-29T19:46:56.350731
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+=== ANÁLISIS DE DIVERSIDAD DEL AULA ===
+Thought: Estoy listo para analizar la diversidad del AULA_A_4PRIM y proporcionar un análisis detallado de los 8 estudiantes de 4º de Primaria. ¡Vamos a empezar!
+
+=== DISEÑO BASE DE LA ACTIVIDAD ===
+**Título:** "Descubriendo el Mito del Cuerpo Humano"
+**Objetivos pedagógicos:**
+- Conocer y comprender la estructura básica del cuerpo humano
+- Desarrollar habilidades de observación y descripción del cuerpo humano
+- Fomentar la creatividad y el pensamiento crítico en la construcción de modelos anatómicos
+- Valorar la importancia de la flexibilidad y movilidad en la vida diaria
+
+**Descripción general:** La actividad "Descubriendo el Mito del Cuerpo Humano" es un proceso de aprendizaje que busca fomentar la comprensión y el respeto hacia el cuerpo humano, a través de la observación, la descripción y la construcción de modelos anatómicos. Los estudiantes trabajarán en pequeños grupos, utilizando múltiples canales de aprendizaje (visual, auditivo, kinestésico) para analizar y representar las diferentes partes del cuerpo humano.
+
+**Proceso paso a paso:**
+
+1. **Preparación:** Los estudiantes recibirán un cartel con la estructura básica del cuerpo humano y deberán describir y dibujar las diferentes partes (cabeza, torso, brazos, piernas, etc.). Esto les permitirá familiarizarse con el tema y reflexionar sobre su conocimiento previo.
+2. **Observación:** Los estudiantes observarán modelos anatómicos en 3D y deberán describir las características de cada parte del cuerpo humano (forma, función, relación con otras partes, etc.). Esto les permitirá analizar y comprender la estructura del cuerpo humano.
+3. **Construcción de modelos:** Los estudiantes recibirán materiales para construir modelos anatómicos utilizando cartulina, pegamento, tijeras, etc. Deberán trabajar en pequeños grupos para crear sus propios modelos, utilizando las descripciones y observaciones realizadas anteriormente.
+4. **Presentación y reflexión:** Cada grupo presentará su modelo y realizará una breve presentación sobre la estructura del cuerpo humano. Los estudiantes reflexionarán sobre lo que han aprendido y cómo pueden aplicarlo en su vida diaria.
+
+**Materiales necesarios:**
+
+* Cartulina
+* Pegamento
+* Tijeras
+* Pinceles
+* Agua
+* Modelo anatómico 3D (opcional)
+
+**Criterios de evaluación:**
+
+* Comprensión y descripción de las partes del cuerpo humano
+* Conocimiento y aplicación de la estructura básica del cuerpo humano
+* Creatividad y pensamiento crítico en la construcción de modelos anatómicos
+* Presentación y reflexión efectivas sobre el tema
+
+**Duración estimada:** 3-4 sesiones de 45 minutos cada una, dependiendo de la velocidad y profundidad con que los estudiantes trabajen.
+
+Estoy listo para coordinar esta actividad educativa y adaptarla a las necesidades específicas de cada estudiante del AULA_A_4PRIM. ¡Vamos a empezar!
+
+=== COORDINACIÓN COLABORATIVA ===
+
+
+=== EVALUACIÓN Y OPTIMIZACIÓN ===
+Evaluación y optimización de la actividad colaborativa
+
+
+
+================================================================================
+METADATOS:
+{
+  "total_estudiantes": 8,
+  "modelos_usados": {
+    "perfiles": "llama3:latest",
+    "disenador": "llama3:latest",
+    "ambiente": "llama3:latest",
+    "evaluador": "llama3:latest"
+  },
+  "agentes_participantes": [
+    "perfiles",
+    "disenador",
+    "ambiente",
+    "evaluador"
+  ]
+}

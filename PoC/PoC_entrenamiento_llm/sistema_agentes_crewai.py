@@ -158,7 +158,7 @@ class SistemaAgentesEducativos:
                  ollama_host: str = "localhost", 
                  perfiles_model: str = "llama3:latest",      # Modelo para análisis de perfiles
                  disenador_model: str = "llama3:latest",     # Modelo para diseño de actividades
-                 colaborativo_model: str = "llama3:latest",  # Modelo para coordinación colaborativa
+                 ambiente_model: str = "llama3:latest",  # Modelo para coordinación colaborativa
                  evaluador_model: str = "llama3:latest",     # Modelo para evaluación
                  perfiles_path: str = "perfiles_4_primaria.json"):
         """
@@ -168,14 +168,14 @@ class SistemaAgentesEducativos:
             ollama_host: Host del servidor Ollama
             perfiles_model: Modelo para el agente de análisis de perfiles
             disenador_model: Modelo para el agente diseñador de actividades
-            colaborativo_model: Modelo para el agente de coordinación colaborativa
+            ambiente_model: Modelo para el agente de coordinación colaborativa
             evaluador_model: Modelo para el agente evaluador
             perfiles_path: Ruta al archivo de perfiles de estudiantes
         """
         self.ollama_host = ollama_host
         self.perfiles_model = perfiles_model
         self.disenador_model = disenador_model
-        self.colaborativo_model = colaborativo_model
+        self.ambiente_model = ambiente_model
         self.evaluador_model = evaluador_model
         self.perfiles_path = perfiles_path
         
@@ -193,7 +193,7 @@ class SistemaAgentesEducativos:
             logger.info(f"🔧 Configurando LiteLLM para Ollama local...")
             
             # Mapear todos los modelos para LiteLLM
-            modelos_unicos = set([self.perfiles_model, self.disenador_model, self.colaborativo_model, self.evaluador_model])
+            modelos_unicos = set([self.perfiles_model, self.disenador_model, self.ambiente_model, self.evaluador_model])
             for modelo in modelos_unicos:
                 litellm.model_cost[f"ollama/{modelo}"] = {
                     "input_cost_per_token": 0,
@@ -209,7 +209,7 @@ class SistemaAgentesEducativos:
             logger.info(f"🔄 Creando LLMs específicos:")
             logger.info(f"   📊 Perfiles: {self.perfiles_model}")
             logger.info(f"   🎨 Diseñador: {self.disenador_model}")
-            logger.info(f"   🤝 Colaborativo: {self.colaborativo_model}")
+            logger.info(f"   🤝 ambiente: {self.ambiente_model}")
             logger.info(f"   ✅ Evaluador: {self.evaluador_model}")
             
             self.perfiles_llm = Ollama(
@@ -222,8 +222,8 @@ class SistemaAgentesEducativos:
                 base_url=f"http://{ollama_host}:11434"
             )
             
-            self.colaborativo_llm = Ollama(
-                model=f"ollama/{self.colaborativo_model}",
+            self.ambiente_llm = Ollama(
+                model=f"ollama/{self.ambiente_model}",
                 base_url=f"http://{ollama_host}:11434"
             )
             
@@ -254,7 +254,7 @@ class SistemaAgentesEducativos:
         logger.info(f"🤖 Sistema de agentes inicializado con modelos:")
         logger.info(f"   Perfiles: {self.perfiles_model}")
         logger.info(f"   Diseñador: {self.disenador_model}")
-        logger.info(f"   Colaborativo: {self.colaborativo_model}")
+        logger.info(f"   ambiente: {self.ambiente_model}")
         logger.info(f"   Evaluador: {self.evaluador_model}")
     
     def _cargar_perfiles(self, perfiles_path: str) -> List[Dict]:
@@ -271,13 +271,72 @@ class SistemaAgentesEducativos:
     def _crear_agentes(self):
         """Crea los agentes especializados del sistema"""
         
+        # Agente Coordinador ambiente
+        self.agente_ambiente = Agent(
+            role="Especialista en crear ambientes adecuados para que el aprendizaje emerga de forma natural",
+            goal="Crear el ambiente que mejor se ajuste al momento vital del alumnado de manera que el aprendizaje emerja de forma natural",
+            backstory="""Eres un experto en pedagogía colaborativa y gestión de la diversidad en el aula. Sabes reconocer perfectamente
+            cuando el momento en el que los estudiantes están listos para continuar el aprendizaje y cuando necesitan asentar conocimientos. 
+            Además, reconoces en las características de cada estudiante y cada aula, las necesidades de gestión emocional que precisan, 
+            ayudando a dar los apoyos o permitir que se hagan responsables de una manera equilibrada en cada situación. Por ejemplo, en este aula
+            siempre lideran las dos mismas personas y hay otras que están preparadas para ejercer liderazgo pero no han tenido la oportunidad. 
+            El grupo tiene un gran interés por gestionar de manera autónoma así que les plantearemos actividades en las que han de resolver ciertos asuntos 
+            por si mismos, de manera que tengan que pensar, probar, y autoevaluarse. 
+            También según el horario en que se vayan a realizar las actividades. Por ejemplo, si hacemos la actividad después de una clase de 
+            gimnasia o deportiva, quizás necesiten un tiempo de relajación antes de poder concentrarse. Si la clase de al lado está haciendo música, 
+            quizás es un buen momento para hacer una actividad que no requiera estar muy concentrados y podamos hacer una charla común o cosas así. 
+            Se buscará favorecer la colaboración entre el aula lo máximo posible (ya sea con todo el aula, en parejas o grupos) pero teniendo en cuenta que las 
+            tareas individuales también son importantes. 
+            Una de las claves para mantener un clima adecuado en un aula es que todo el mundo tenga un rol y una responsabilidad en cada momento de la actividad. 
+            En este sentido eres como el jardinero que prepara el terreno para que las plantas tengan todo lo suficiente para crecer 
+            y desarrollarse, pero sin interferir en su crecimiento natural.
+
+            IMPORTANTE: Siempre responde en ESPAÑOL. Nunca uses inglés en tus respuestas. Todos los roles, responsabilidades y estrategias deben estar en español.""",
+            tools=[],  # Sin herramientas - usar solo LLM principal
+            llm=self.ambiente_llm,  # Modelo específico para coordinación del ambiente adecuado
+            verbose=True,
+            allow_delegation=False  # Desactivar delegación para evitar errores
+        )
+        # Agente Diseñador de Actividades
+        self.agente_disenador = Agent(
+            role="Diseñador de Actividades Educativas Adaptadas",
+            goal="Crear actividades educativas innovadoras y adaptadas a las necesidades específicas de cada estudiante",
+            backstory="""Eres un docente innovador especializado en metodologías activas y educación personalizada. 
+            Tu experiencia incluye trabajo con aulas diversas, DUA (Diseño Universal para el Aprendizaje). 
+            La actividad ha de estar diseñada para trabajar lo que se desea trabajar en el contexto del aula que tenemos. Se ha de diseñar 
+            detallando las tareas que se han de realizar y que estas sean acordes a lo que cada estudiante necesita trabajar. 
+            Tratarás de fomentar el pensamiento abstracto, el pensamiento crítico, la comprensión de los conceptos antes de trabajarlos, 
+            la creatividad, la colaboración y el aprendizaje autónomo. Siempre que sea posible NO se usarán elementos tecnológicos, para comprender
+            conceptos tecnológicos nos iremso a las opciones analógicas y de comprensión de las bases de la tecnología y no de su uso. 
+            Es mejor para aprender como funciona la tecnología que aprendan secuencias lógicas y desarrollen su pensamiento abstracto a que 
+            sepan usar una pantalla y pedirle al ordenador que les devuelva la respuesta correcta. NO ESTAS A FAVOR DEL USO DE LA TECNOLOGÍA en primaria
+            Prefieres construir las cosas con las manos, hacer experimentos, juegos de rol, actividades prácticas y creativas que fomenten el aprendizaje significativo.
+            La actividad tiene que estar detallada en sus tareas y el reparto de las mismas para cada estudiante de manera que estos siempre tengan cosas que hacer, 
+            y, en lo menos posible, que dependan de otros para poder avanzar. La posibilidad de trabajar de manera simultánea es una gran habilidad 
+            cuando se trabaja con grupos y tu la dominas a la perfección.
+            
+            IMPORTANTE: Siempre responde en ESPAÑOL. Nunca uses inglés en tus respuestas. Todos los nombres, descripciones y contenidos deben estar en español.""",
+            tools=[],  # Sin herramientas - usar solo LLM principal
+            llm=self.disenador_llm,  # Modelo específico para diseño de actividades
+            verbose=True,
+            allow_delegation=False  # Desactivar delegación para evitar errores
+        )
         # Agente Analizador de Perfiles
         self.agente_perfiles = Agent(
             role="Especialista en Análisis de Perfiles Educativos",
             goal="Analizar perfiles de estudiantes y identificar necesidades específicas para actividades educativas",
             backstory="""Eres un psicopedagogo experto con 15 años de experiencia en educación inclusiva. 
             Tu especialidad es analizar perfiles de estudiantes con diversas necesidades educativas (TEA, TDAH, 
-            altas capacidades) y determinar las mejores estrategias de adaptación para cada caso.
+            altas capacidades) y determinar las mejores estrategias de adaptación para cada caso. Puedes adaptar cualquier actividad que te proponga
+            a cualquier grupo gracias a una capacidad innata para solucionar problemas complejos y encontrar soluciones creativas. ¿Como puedo conseguir que este 
+            estudiante que tiene parálisis cerebral y no puede mover las manos consiga despegar una pegatina? Ok! puedo dejarle la pegatina ya un pelín despegada y poner 
+            la hoja en un atril rígido para que pueda llevarla hasta ahí. 
+            Una de tus grandes especialidades es que eres capaz de hacer las adaptaciones sin que ni siquiera se note que estás adaptando nada. Por ejemplo, tengo una niña TEA que necesita apoyo
+            visual para una actividad, pues la actividad tendrá unas instrucciones para llevarse a cabo que precisamente realizará esta niña. Así, puede construirse su propio apoyo visual 
+            mientras repasa todo el proceso y le ayuda a reducir la ansiedad que le genera no saber qué hacer. Este apoyo servirá para toda la clase y podremos
+            observar también si otras personas lo precisan y no contábamos con ello.
+            La inclusividad de la actividad ha de estar en la base de la misma y no aparecer como parches añadidos para que parezca que se está adaptando nada. 
+            Tu capacidad de adaptación reside en tu experiencia y creatividad para dar solución a cada situación. 
             
             Conoces perfectamente a estos 8 estudiantes del AULA_A_4PRIM y puedes analizar su diversidad sin necesidad de herramientas externas.
             
@@ -288,36 +347,6 @@ class SistemaAgentesEducativos:
             allow_delegation=False
         )
         
-        # Agente Diseñador de Actividades
-        self.agente_disenador = Agent(
-            role="Diseñador de Actividades Educativas Adaptadas",
-            goal="Crear actividades educativas innovadoras y adaptadas a las necesidades específicas de cada estudiante",
-            backstory="""Eres un docente innovador especializado en metodologías activas y educación personalizada. 
-            Tu experiencia incluye trabajo con aulas diversas, DUA (Diseño Universal para el Aprendizaje) y 
-            tecnologías educativas. Diseñas actividades que respetan los diferentes estilos de aprendizaje.
-            
-            IMPORTANTE: Siempre responde en ESPAÑOL. Nunca uses inglés en tus respuestas. Todos los nombres, descripciones y contenidos deben estar en español.""",
-            tools=[],  # Sin herramientas - usar solo LLM principal
-            llm=self.disenador_llm,  # Modelo específico para diseño de actividades
-            verbose=True,
-            allow_delegation=False  # Desactivar delegación para evitar errores
-        )
-        
-        # Agente Coordinador Colaborativo
-        self.agente_colaborativo = Agent(
-            role="Especialista en Aprendizaje Colaborativo",
-            goal="Diseñar actividades colaborativas que aprovechan la diversidad del aula como fortaleza",
-            backstory="""Eres un experto en pedagogía colaborativa y gestión de la diversidad en el aula. 
-            Tu enfoque se basa en crear interdependencia positiva donde cada estudiante aporta según 
-            sus fortalezas y recibe apoyo en sus áreas de mejora. Conoces técnicas avanzadas de 
-            trabajo cooperativo y mediación educativa.
-            
-            IMPORTANTE: Siempre responde en ESPAÑOL. Nunca uses inglés en tus respuestas. Todos los roles, responsabilidades y estrategias deben estar en español.""",
-            tools=[],  # Sin herramientas - usar solo LLM principal
-            llm=self.colaborativo_llm,  # Modelo específico para coordinación colaborativa
-            verbose=True,
-            allow_delegation=False  # Desactivar delegación para evitar errores
-        )
         
         # Agente Evaluador de Calidad
         self.agente_evaluador = Agent(
@@ -369,7 +398,7 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. No uses palabras en inglés.""",
         tarea_diseno_base = Task(
             description=f"""Basándote en el análisis de diversidad, diseña la estructura base de una actividad de {materia} {f'sobre {tema}' if tema else ''} que:
             1. Sea apropiada para 4º de Primaria
-            2. Permita trabajo colaborativo
+            2. Permita trabajo ambiente
             3. Incluya múltiples canales de aprendizaje (visual, auditivo, kinestésico)
             4. Tenga flexibilidad para adaptaciones
             5. Genere un producto final significativo
@@ -389,7 +418,7 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. No uses palabras en inglés.""",
             agent=self.agente_disenador,
             expected_output="Diseño estructural de actividad educativa lista para coordinación colaborativa"
         )
-               
+
         tarea_coordinacion_colaborativa = Task(
             description=f"""Toma la actividad diseñada y conviértela en una experiencia colaborativa asignando roles específicos a cada estudiante:
 
@@ -412,7 +441,7 @@ ASIGNA:
 6. Dinámicas de interacción y comunicación
 
 IMPORTANTE: Responde únicamente en ESPAÑOL. Todos los roles, responsabilidades y estrategias deben estar en español.""",
-                        agent=self.agente_colaborativo,
+                        agent=self.agente_ambiente,
             expected_output="Coordinación colaborativa con roles específicos y estrategias de inclusión"
         )
         
@@ -432,9 +461,9 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. Todos los roles, responsabilidades
             expected_output="Evaluación y optimización de la actividad colaborativa"
         )
         
-        # Crear y ejecutar el crew colaborativo con los 4 agentes
+        # Crear y ejecutar el crew ambiente con los 4 agentes
         crew = Crew(
-            agents=[self.agente_perfiles, self.agente_disenador, self.agente_colaborativo, self.agente_evaluador],
+            agents=[self.agente_ambiente, self.agente_disenador, self.agente_perfiles, self.agente_evaluador],
             tasks=[tarea_analisis_aula, tarea_diseno_base, tarea_coordinacion_colaborativa, tarea_revision_colaborativa],
             process=Process.sequential,
             verbose=True
@@ -471,7 +500,7 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. Todos los roles, responsabilidades
             id=f"colaborativa_{materia.lower()}_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
             titulo=f"Actividad Colaborativa - {materia}",
             materia=materia,
-            tema=tema or "Tema colaborativo",
+            tema=tema or "Tema ambiente",
             contenido=contenido_completo,
             estudiantes_objetivo=["001", "002", "003", "004", "005", "006", "007", "008"],
             tipo="colaborativa",
@@ -481,10 +510,10 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. Todos los roles, responsabilidades
                 "modelos_usados": {
                     "perfiles": self.perfiles_model,
                     "disenador": self.disenador_model,
-                    "colaborativo": self.colaborativo_model,
+                    "ambiente": self.ambiente_model,
                     "evaluador": self.evaluador_model
                 },
-                "agentes_participantes": ["perfiles", "disenador", "colaborativo", "evaluador"]
+                "agentes_participantes": ["perfiles", "disenador", "ambiente", "evaluador"]
             },
             timestamp=datetime.now().isoformat()
         )
@@ -528,7 +557,7 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. Todos los roles, responsabilidades
     def ejecutar_workflow_completo(self, materia: str, tema: str = None) -> Dict:
         """Ejecuta un workflow simplificado generando solo actividades colaborativas"""
         
-        logger.info(f"🚀 Iniciando workflow colaborativo para {materia}")
+        logger.info(f"🚀 Iniciando workflow ambiente para {materia}")
         
         resultados = {
             "materia": materia,
@@ -551,10 +580,10 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. Todos los roles, responsabilidades
             })
             resultados["archivos_creados"].append(archivo_colaborativa)
             
-            logger.info(f"✅ Workflow colaborativo terminado. 1 actividad generada.")
+            logger.info(f"✅ Workflow ambiente terminado. 1 actividad generada.")
             
         except Exception as e:
-            logger.error(f"❌ Error en workflow colaborativo: {e}")
+            logger.error(f"❌ Error en workflow ambiente: {e}")
             resultados["error"] = str(e)
         
         return resultados
@@ -572,7 +601,7 @@ def main():
         OLLAMA_HOST = "localhost"  # Ollama local
         PERFILES_MODEL = "llama3:latest"     # Modelo para análisis de perfiles
         DISENADOR_MODEL = "llama3:latest"    # Modelo para diseño de actividades  
-        COLABORATIVO_MODEL = "llama3:latest" # Modelo para coordinación colaborativa
+        ambiente_MODEL = "llama3:latest" # Modelo para coordinación colaborativa
         EVALUADOR_MODEL = "llama3:latest"    # Modelo para evaluación
         PERFILES_PATH = "perfiles_4_primaria.json"
         
@@ -581,7 +610,7 @@ def main():
         print(f"   Host Ollama: {OLLAMA_HOST}")
         print(f"   Modelo Perfiles: {PERFILES_MODEL}")
         print(f"   Modelo Diseñador: {DISENADOR_MODEL}")
-        print(f"   Modelo Colaborativo: {COLABORATIVO_MODEL}")
+        print(f"   Modelo ambiente: {ambiente_MODEL}")
         print(f"   Modelo Evaluador: {EVALUADOR_MODEL}")
         print(f"   Perfiles: {PERFILES_PATH}")
         
@@ -589,7 +618,7 @@ def main():
             ollama_host=OLLAMA_HOST,
             perfiles_model=PERFILES_MODEL,
             disenador_model=DISENADOR_MODEL,
-            colaborativo_model=COLABORATIVO_MODEL,
+            ambiente_model=ambiente_MODEL,
             evaluador_model=EVALUADOR_MODEL,
             perfiles_path=PERFILES_PATH
         )
@@ -601,7 +630,7 @@ def main():
             print("\n" + "="*50)
             print("🎯 SISTEMA DE ACTIVIDADES COLABORATIVAS")
             print("1. 🤝 Generar actividad colaborativa")
-            print("2. 🚀 Ejecutar workflow colaborativo")
+            print("2. 🚀 Ejecutar workflow ambiente")
             print("3. ❌ Salir")
             
             opcion = input("\n👉 Selecciona una opción (1-3): ").strip()
@@ -620,17 +649,17 @@ def main():
                 print(f"   👥 Estudiantes: {len(actividad.estudiantes_objetivo)}")
             
             elif opcion == "2":
-                print("\n🚀 WORKFLOW COLABORATIVO")
+                print("\n🚀 WORKFLOW ambiente")
                 materia = input("📚 Materia (Matemáticas/Lengua/Ciencias): ").strip()
                 tema = input("📝 Tema específico (opcional): ").strip() or None
                 
-                print(f"\n⏳ Ejecutando workflow colaborativo para {materia}...")
+                print(f"\n⏳ Ejecutando workflow ambiente para {materia}...")
                 print("   (Esto puede tomar varios minutos)")
                 
                 resultados = sistema.ejecutar_workflow_completo(materia, tema)
                 
                 if "error" not in resultados:
-                    print(f"\n🎉 ¡Workflow colaborativo completado exitosamente!")
+                    print(f"\n🎉 ¡Workflow ambiente completado exitosamente!")
                     print(f"   📊 Total actividades: {len(resultados['actividades_generadas'])}")
                     print(f"   📁 Archivos creados: {len(resultados['archivos_creados'])}")
                     print("\n📋 Resumen:")
