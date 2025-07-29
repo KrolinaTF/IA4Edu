@@ -1,0 +1,29 @@
+================================================================================
+ACTIVIDAD GENERADA CON CREWAI + OLLAMA
+================================================================================
+
+ID: colaborativa_mates_20250729_015324
+Título: Actividad Colaborativa - mates
+Materia: mates
+Tema: area
+Tipo: colaborativa
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-07-29T01:53:24.237297
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+I now can give a great answer
+
+================================================================================
+METADATOS:
+{
+  "total_estudiantes": 8,
+  "modelo_usado": "llama3:latest",
+  "agentes_participantes": [
+    "perfiles",
+    "colaborativo",
+    "evaluador"
+  ]
+}

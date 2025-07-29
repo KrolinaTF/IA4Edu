@@ -20,7 +20,7 @@ logger = logging.getLogger("OLLAMA_API")
 
 class OllamaAPIEducationGenerator:
     
-    def __init__(self, host: str = "localhost", port: int = 11434, model_name: str = "llama3.2"):
+    def __init__(self, host: str = "192.168.1.10", port: int = 11434, model_name: str = "llama3.2"):
         """
         Inicializa el generador con Ollama API
         
