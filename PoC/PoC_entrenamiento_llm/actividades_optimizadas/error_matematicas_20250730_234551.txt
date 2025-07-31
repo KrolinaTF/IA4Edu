@@ -1,0 +1,24 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA OPTIMIZADO CrewAI + Ollama
+================================================================================
+
+ID: error_matematicas_20250730_234551
+Título: Actividad Básica - matematicas
+Materia: matematicas
+Tema: tema general
+Tipo: error_fallback
+Estudiantes objetivo: 
+Timestamp: 2025-07-30T23:45:51.636973
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+Error generando actividad: litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=qwen2:latest
+ Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers
+
+================================================================================
+METADATOS DEL SISTEMA OPTIMIZADO:
+{
+  "error": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=qwen2:latest\n Pass model as E.g. For 'Huggingface' inference endpoints pass in `completion(model='huggingface/starcoder',..)` Learn more: https://docs.litellm.ai/docs/providers"
+}

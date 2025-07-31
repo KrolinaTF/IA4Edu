@@ -11,15 +11,15 @@ from typing import Dict, List, Optional
 from dataclasses import dataclass
 import logging
 
-# Configurar variables de entorno para LiteLLM/CrewAI (localhost)
-os.environ["OLLAMA_BASE_URL"] = "http://localhost:11434"
-os.environ["OLLAMA_HOST"] = "http://localhost:11434"
-os.environ["OLLAMA_API_BASE"] = "http://localhost:11434"
+# Configurar variables de entorno para LiteLLM/CrewAI (192.168.1.10)
+os.environ["OLLAMA_BASE_URL"] = "http://192.168.1.10:11434"
+os.environ["OLLAMA_HOST"] = "http://192.168.1.10:11434"
+os.environ["OLLAMA_API_BASE"] = "http://192.168.1.10:11434"
 os.environ["LITELLM_LOG"] = "DEBUG"  # Para debug
 
 # Configuración para forzar Ollama sin LiteLLM
 os.environ["OPENAI_API_KEY"] = "not-needed"  # Placeholder
-os.environ["OPENAI_MODEL_NAME"] = "llama3:latest"
+os.environ["OPENAI_MODEL_NAME"] = "qwen3:latest"
 # Desactivar LiteLLM en CrewAI
 os.environ["CREWAI_DISABLE_TELEMETRY"] = "true"
 
@@ -57,7 +57,7 @@ from prompt_template import PromptTemplateGenerator, TEMAS_MATEMATICAS_4_PRIMARI
 class DirectOllamaLLM(LLM):
     """LLM completamente personalizado que bypassa LiteLLM"""
     
-    def __init__(self, ollama_host: str = "localhost", ollama_model: str = "llama3:latest"):
+    def __init__(self, ollama_host: str = "192.168.1.10", ollama_model: str = "qwen3:latest"):
         super().__init__()
         
         # Separar host y puerto si viene junto
@@ -130,7 +130,7 @@ class OllamaIntegrationTool(BaseTool):
     # Declarar campos para Pydantic v2
     ollama_generator: Optional[object] = None
     
-    def __init__(self, ollama_host: str = "localhost", ollama_model: str = "llama3:latest", **kwargs):
+    def __init__(self, ollama_host: str = "192.168.1.10", ollama_model: str = "qwen3:latest", **kwargs):
         # Separar host y puerto si viene junto
         if ":" in ollama_host:
             host_only = ollama_host.split(":")[0]
@@ -155,11 +155,11 @@ class SistemaAgentesEducativos:
     """Sistema principal de agentes para generación de actividades educativas"""
     
     def __init__(self, 
-                 ollama_host: str = "localhost", 
-                 perfiles_model: str = "llama3:latest",      # Modelo para análisis de perfiles
-                 disenador_model: str = "llama3:latest",     # Modelo para diseño de actividades
-                 ambiente_model: str = "llama3:latest",  # Modelo para coordinación colaborativa
-                 evaluador_model: str = "llama3:latest",     # Modelo para evaluación
+                 ollama_host: str = "192.168.1.10", 
+                 perfiles_model: str = "qwen3:latest",      # Modelo para análisis de perfiles
+                 disenador_model: str = "qwen3:latest",     # Modelo para diseño de actividades
+                 ambiente_model: str = "qwen2:latest",  # Modelo para coordinación colaborativa
+                 evaluador_model: str = "mistral:latest",     # Modelo para evaluación
                  perfiles_path: str = "perfiles_4_primaria.json"):
         """
         Inicializa el sistema de agentes
@@ -173,9 +173,9 @@ class SistemaAgentesEducativos:
             perfiles_path: Ruta al archivo de perfiles de estudiantes
         """
         self.ollama_host = ollama_host
-        self.perfiles_model = perfiles_model
-        self.disenador_model = disenador_model
         self.ambiente_model = ambiente_model
+        self.disenador_model = disenador_model
+        self.perfiles_model = perfiles_model
         self.evaluador_model = evaluador_model
         self.perfiles_path = perfiles_path
         
@@ -193,7 +193,7 @@ class SistemaAgentesEducativos:
             logger.info(f"🔧 Configurando LiteLLM para Ollama local...")
             
             # Mapear todos los modelos para LiteLLM
-            modelos_unicos = set([self.perfiles_model, self.disenador_model, self.ambiente_model, self.evaluador_model])
+            modelos_unicos = set([self.ambiente_model, self.disenador_model, self.perfiles_model, self.evaluador_model])
             for modelo in modelos_unicos:
                 litellm.model_cost[f"ollama/{modelo}"] = {
                     "input_cost_per_token": 0,
@@ -212,8 +212,8 @@ class SistemaAgentesEducativos:
             logger.info(f"   🤝 ambiente: {self.ambiente_model}")
             logger.info(f"   ✅ Evaluador: {self.evaluador_model}")
             
-            self.perfiles_llm = Ollama(
-                model=f"ollama/{self.perfiles_model}",
+            self.ambiente_llm = Ollama(
+                model=f"ollama/{self.ambiente_model}",
                 base_url=f"http://{ollama_host}:11434"
             )
             
@@ -222,8 +222,8 @@ class SistemaAgentesEducativos:
                 base_url=f"http://{ollama_host}:11434"
             )
             
-            self.ambiente_llm = Ollama(
-                model=f"ollama/{self.ambiente_model}",
+            self.perfiles_llm = Ollama(
+                model=f"ollama/{self.perfiles_model}",
                 base_url=f"http://{ollama_host}:11434"
             )
             
@@ -252,9 +252,9 @@ class SistemaAgentesEducativos:
         self._crear_agentes()
         
         logger.info(f"🤖 Sistema de agentes inicializado con modelos:")
-        logger.info(f"   Perfiles: {self.perfiles_model}")
-        logger.info(f"   Diseñador: {self.disenador_model}")
         logger.info(f"   ambiente: {self.ambiente_model}")
+        logger.info(f"   Diseñador: {self.disenador_model}")
+        logger.info(f"   Perfiles: {self.perfiles_model}")
         logger.info(f"   Evaluador: {self.evaluador_model}")
     
     def _cargar_perfiles(self, perfiles_path: str) -> List[Dict]:
@@ -275,24 +275,14 @@ class SistemaAgentesEducativos:
         self.agente_ambiente = Agent(
             role="Especialista en crear ambientes adecuados para que el aprendizaje emerga de forma natural",
             goal="Crear el ambiente que mejor se ajuste al momento vital del alumnado de manera que el aprendizaje emerja de forma natural",
-            backstory="""Eres un experto en pedagogía colaborativa y gestión de la diversidad en el aula. Sabes reconocer perfectamente
-            cuando el momento en el que los estudiantes están listos para continuar el aprendizaje y cuando necesitan asentar conocimientos. 
-            Además, reconoces en las características de cada estudiante y cada aula, las necesidades de gestión emocional que precisan, 
-            ayudando a dar los apoyos o permitir que se hagan responsables de una manera equilibrada en cada situación. Por ejemplo, en este aula
-            siempre lideran las dos mismas personas y hay otras que están preparadas para ejercer liderazgo pero no han tenido la oportunidad. 
-            El grupo tiene un gran interés por gestionar de manera autónoma así que les plantearemos actividades en las que han de resolver ciertos asuntos 
-            por si mismos, de manera que tengan que pensar, probar, y autoevaluarse. 
-            También según el horario en que se vayan a realizar las actividades. Por ejemplo, si hacemos la actividad después de una clase de 
-            gimnasia o deportiva, quizás necesiten un tiempo de relajación antes de poder concentrarse. Si la clase de al lado está haciendo música, 
-            quizás es un buen momento para hacer una actividad que no requiera estar muy concentrados y podamos hacer una charla común o cosas así. 
-            Se buscará favorecer la colaboración entre el aula lo máximo posible (ya sea con todo el aula, en parejas o grupos) pero teniendo en cuenta que las 
-            tareas individuales también son importantes. 
-            Una de las claves para mantener un clima adecuado en un aula es que todo el mundo tenga un rol y una responsabilidad en cada momento de la actividad. 
-            En este sentido eres como el jardinero que prepara el terreno para que las plantas tengan todo lo suficiente para crecer 
-            y desarrollarse, pero sin interferir en su crecimiento natural.
+            backstory="""Eres un experto en pedagogía colaborativa y gestión de la diversidad en el aula. Eres experto en comprender qué tipo de actividad
+            necesita un grupo en un momento dado. Eres como el jardinero que sabe en qué momento exacto ha de regar, en qué momento hay que podar y en
+            qué momento hay que dejar que las plantas crezcan. Tu objetivo es crear un ambiente que favorezca que el aprendizaje emerja de forma natural. 
+            Tienes que ver el grupo como una unidad y encontrar el clima que favorezca el máximo al grupo. 
+            Tienes que responderte a preguntas del tipo: ¿qué nivel de agitación necesita este grupo en este momento? 
 
             IMPORTANTE: Siempre responde en ESPAÑOL. Nunca uses inglés en tus respuestas. Todos los roles, responsabilidades y estrategias deben estar en español.""",
-            tools=[],  # Sin herramientas - usar solo LLM principal
+            tools=[],  
             llm=self.ambiente_llm,  # Modelo específico para coordinación del ambiente adecuado
             verbose=True,
             allow_delegation=False  # Desactivar delegación para evitar errores
@@ -303,17 +293,12 @@ class SistemaAgentesEducativos:
             goal="Crear actividades educativas innovadoras y adaptadas a las necesidades específicas de cada estudiante",
             backstory="""Eres un docente innovador especializado en metodologías activas y educación personalizada. 
             Tu experiencia incluye trabajo con aulas diversas, DUA (Diseño Universal para el Aprendizaje). 
-            La actividad ha de estar diseñada para trabajar lo que se desea trabajar en el contexto del aula que tenemos. Se ha de diseñar 
-            detallando las tareas que se han de realizar y que estas sean acordes a lo que cada estudiante necesita trabajar. 
-            Tratarás de fomentar el pensamiento abstracto, el pensamiento crítico, la comprensión de los conceptos antes de trabajarlos, 
-            la creatividad, la colaboración y el aprendizaje autónomo. Siempre que sea posible NO se usarán elementos tecnológicos, para comprender
-            conceptos tecnológicos nos iremso a las opciones analógicas y de comprensión de las bases de la tecnología y no de su uso. 
-            Es mejor para aprender como funciona la tecnología que aprendan secuencias lógicas y desarrollen su pensamiento abstracto a que 
-            sepan usar una pantalla y pedirle al ordenador que les devuelva la respuesta correcta. NO ESTAS A FAVOR DEL USO DE LA TECNOLOGÍA en primaria
-            Prefieres construir las cosas con las manos, hacer experimentos, juegos de rol, actividades prácticas y creativas que fomenten el aprendizaje significativo.
-            La actividad tiene que estar detallada en sus tareas y el reparto de las mismas para cada estudiante de manera que estos siempre tengan cosas que hacer, 
-            y, en lo menos posible, que dependan de otros para poder avanzar. La posibilidad de trabajar de manera simultánea es una gran habilidad 
-            cuando se trabaja con grupos y tu la dominas a la perfección.
+            La actividad se ha de diseñar teniendo en cuenta las especificaciones y luego reconocer qué tareas precisa para que se lleve a cabo. Es muy importante
+            tener en cuenta que las tareas pueden ocurrir de manera secuencial o en paralelo, pero cada estudiante tiene que tener tarea (o tareas) a lo largo de todo el 
+            proceso de la actividad. La actividad tiene que estar diseñada para que todo el mundo vaya trabajando en unas cosas u otras y poco a poco compongan el aprendizaje colaborativo. 
+            Tu especialidad es diseñar actividades que fomenten la colaboración, la creatividad y el aprendizaje significativo.
+            El muy importante que reconozcas el tiempo que hay y el numero de estudiantes que van a llevar a cabo la actividad de manera que tengas en cuenta que todos
+            han de estar ocupados durante todo el tiempo que dure la actividad. 
             
             IMPORTANTE: Siempre responde en ESPAÑOL. Nunca uses inglés en tus respuestas. Todos los nombres, descripciones y contenidos deben estar en español.""",
             tools=[],  # Sin herramientas - usar solo LLM principal
@@ -323,20 +308,13 @@ class SistemaAgentesEducativos:
         )
         # Agente Analizador de Perfiles
         self.agente_perfiles = Agent(
-            role="Especialista en Análisis de Perfiles Educativos",
+            role="Especialista en repartir Perfiles Educativos",
             goal="Analizar perfiles de estudiantes y identificar necesidades específicas para actividades educativas",
             backstory="""Eres un psicopedagogo experto con 15 años de experiencia en educación inclusiva. 
             Tu especialidad es analizar perfiles de estudiantes con diversas necesidades educativas (TEA, TDAH, 
-            altas capacidades) y determinar las mejores estrategias de adaptación para cada caso. Puedes adaptar cualquier actividad que te proponga
-            a cualquier grupo gracias a una capacidad innata para solucionar problemas complejos y encontrar soluciones creativas. ¿Como puedo conseguir que este 
-            estudiante que tiene parálisis cerebral y no puede mover las manos consiga despegar una pegatina? Ok! puedo dejarle la pegatina ya un pelín despegada y poner 
-            la hoja en un atril rígido para que pueda llevarla hasta ahí. 
-            Una de tus grandes especialidades es que eres capaz de hacer las adaptaciones sin que ni siquiera se note que estás adaptando nada. Por ejemplo, tengo una niña TEA que necesita apoyo
-            visual para una actividad, pues la actividad tendrá unas instrucciones para llevarse a cabo que precisamente realizará esta niña. Así, puede construirse su propio apoyo visual 
-            mientras repasa todo el proceso y le ayuda a reducir la ansiedad que le genera no saber qué hacer. Este apoyo servirá para toda la clase y podremos
-            observar también si otras personas lo precisan y no contábamos con ello.
-            La inclusividad de la actividad ha de estar en la base de la misma y no aparecer como parches añadidos para que parezca que se está adaptando nada. 
-            Tu capacidad de adaptación reside en tu experiencia y creatividad para dar solución a cada situación. 
+            altas capacidades) y determinar las mejores estrategias de adaptación para cada caso. Eres capaz de adaptar cualquier actividad a las necesidades de
+            cada estudiante. Tienes la capacidad de coger un grupo de tareas y repartirlas de manera equilibrada según sus capacidades a un grup de alumnos 
+            de manera que todos hagan la tarea que mejor les compete. 
             
             Conoces perfectamente a estos 8 estudiantes del AULA_A_4PRIM y puedes analizar su diversidad sin necesidad de herramientas externas.
             
@@ -348,20 +326,25 @@ class SistemaAgentesEducativos:
         )
         
         
-        # Agente Evaluador de Calidad
+        # Agente Evaluador de Calidad (SUPERVISOR JERÁRQUICO)
         self.agente_evaluador = Agent(
-            role="Evaluador de Calidad Educativa",
-            goal="Revisar y mejorar las actividades generadas asegurando que cumplan con estándares pedagógicos",
-            backstory="""Eres un supervisor educativo con amplia experiencia en evaluación de materiales 
-            didácticos. Tu rol es asegurar que las actividades cumplan con los objetivos curriculares, 
-            sean inclusivas, apropiadas para la edad y nivel, y respeten las adaptaciones necesarias. 
-            Tienes conocimiento profundo del currículo de 4º de Primaria.
-            
-            IMPORTANTE: Siempre responde en ESPAÑOL. Nunca uses inglés en tus respuestas. Todas las evaluaciones y recomendaciones deben estar en español.""",
-            tools=[],  # Sin herramientas de archivo por ahora
-            llm=self.evaluador_llm,  # Modelo específico para evaluación
+            role="Supervisor Educativo y Coordinador del Equipo",
+            goal="Supervisar el trabajo de todos los agentes, coordinar tareas y garantizar que se cumplan todos los estándares pedagógicos y de calidad",
+            backstory="""Eres un SUPERVISOR EDUCATIVO con 20 años de experiencia en evaluación pedagógica.
+            Tu rol es revisar, validar que todas las premisas se cumplen. Si una premisa no se esta cumpliendo, has de devolver a los agentes la tarea 
+            para que la revisen. 
+            Tienes que asegurarte de que una actividad es:
+            - Relevante al tema que se está tratando
+            - Realizable en un aula estandar. 
+            - Que todos los estudiantes tienen tareas a lo largo de todo el proceso, nadie tiene momentos en los que está sin hacer nada.
+            - Que se cumplen los principios del DUA (Diseño Universal para el Aprendizaje)
+            - Que se cumplen los objetivos curriculares según la edad del grupo
+
+            IMPORTANTE: Siempre responde en ESPAÑOL y actúa como un supervisor constructivo.""",
+            tools=[],
+            llm=self.evaluador_llm,
             verbose=True,
-            allow_delegation=False
+            allow_delegation=False  # Sin delegación en proceso secuencial
         )
     
     def generar_actividad_colaborativa(self, materia: str, tema: str = None) -> ActividadEducativa:
@@ -391,17 +374,20 @@ PROPORCIONA (TODO EN ESPAÑOL):
 5. Recomendaciones para agrupamiento efectivo
 
 IMPORTANTE: Responde únicamente en ESPAÑOL. No uses palabras en inglés.""",
-            agent=self.agente_perfiles,
+            agent=self.agente_ambiente,
             expected_output="Análisis detallado de la diversidad del aula con estrategias específicas"
         )
         
         tarea_diseno_base = Task(
-            description=f"""Basándote en el análisis de diversidad, diseña la estructura base de una actividad de {materia} {f'sobre {tema}' if tema else ''} que:
-            1. Sea apropiada para 4º de Primaria
-            2. Permita trabajo ambiente
-            3. Incluya múltiples canales de aprendizaje (visual, auditivo, kinestésico)
-            4. Tenga flexibilidad para adaptaciones
-            5. Genere un producto final significativo
+            description=f"""Basándote en el analisis de la diversidad de los perfiles, diseña la estructura base de una actividad de {materia} {f'sobre {tema}' if tema else ''} que:
+            1. Debe ser adecuada para el nivel del grupo que va a trabajar.
+            2. Debe definir sus tareas de manera que cada estudiante esté ocupado en una u otra tarea a lo largo de toda la actividad.
+            3. Estas tareas han de pensarse específicamente para el grupo en su conjunto y los estudiantes de forma individual, pudiendo agregar o quitar 
+            tareas que nos interesen para el aprendizaje. 
+            4. Siempre que se pueda incorporará otros aspectos curriculares relevantes en el momento en el que está el grupo. 
+            5. Debe tener en cuenta los principios del DUA (Diseño Universal para el Aprendizaje).
+            6. Debe ser viable en un aula estandar.
+
             
             Diseña:
             - Título y objetivos pedagógicos
@@ -411,12 +397,359 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. No uses palabras en inglés.""",
             - Criterios de evaluación
             - Duración estimada
             
+            Este es un ejemplo: ACTIVIDAD: Supermercado de Números
+OBJETIVO_PRINCIPAL: Trabajar matemáticas aplicadas con dinero real
+DURACIÓN_FLEXIBLE: 1-1.5 horas (termina cuando todos los clientes completan sus listas)
+PARTICIPANTES: 8 estudiantes de 4º Primaria (AULA_A)
+COMPETENCIAS_CURRICULARES: Números decimales, operaciones básicas, dinero, comunicación oral, escritura, medidas (peso/volumen), expresión, trabajo colaborativo
+
+=== CONTEXTO PEDAGÓGICO ===
+
+MOMENTO_CURSO: Semana 1 del curso - Repaso y evaluación inicial
+NIVEL_GRUPO: 4º_primaria_evaluación_inicial
+- Productos: Precios variados 6€-25€ (enteros) y algunos con decimales simples (.50€)
+- Operaciones: Sumas de múltiples dígitos con llevadas, algunos decimales .50
+- Presupuesto: 60€ por cliente (deben gestionar y que les sobre dinero)
+- Cambio: variado según compras (práctica realista)
+- Presión temporal: media-baja
+- Interacción social: normal, cortés
+
+MODALIDAD: preparación_integrada + ejecución_simultánea
+INSTALACIONES: Aula habitual convertida en centro comercial con 3 tiendas temáticas
+MATERIALES_GENERALES: Productos etiquetados, dinero real, cajas registradoras simuladas, materiales de decoración, papel, rotuladores, tijeras, lápices
+
+=== TIENDAS TEMÁTICAS ===
+
+TIENDA 1 - "MATERIAL ESCOLAR" (Cajero: Alex)
+Productos: Mochila 25€, Estuche 12€, Diccionario 18€, Set rotuladores 9€, Agenda 15€, Compás 11€
+Contexto: "Valorar cuánto gastan las familias en material escolar"
+
+TIENDA 2 - "SOUVENIRS DE VIAJE" (Cajero: Elena)  
+Productos: Camiseta 16€, Llavero 7€, Imán nevera 4€, Gorra 13€, Postal 2€, Taza 8€
+Contexto: "Compras de recuerdos para familiares"
+
+TIENDA 3 - "HOBBIES Y TIEMPO LIBRE" (Cajero: Emma)
+Productos: Libro 14€, Juego mesa 22€, Pelota 10€, Puzzle 17€, Cartas 6€, Kit manualidades 19€
+Contexto: "Actividades para el tiempo libre"
+
+=== GESTIÓN DOCENTE ===
+
+ROL_PROFESOR:
+1. **Explicación inicial** (5 min): Presentar actividad general a todos
+2. **Reuniones individuales** (durante preparación):
+   - Ana (Supervisor): Coordinar organización espacial y flujo de actividad
+   - Elena (Cajero TEA): Revisar secuencias, protocolo de interacción, uso de apoyos
+   - Luis (Cliente TDAH): Momento de centrado, revisar plan, estrategias de organización
+3. **Supervisión general**: Circular por aula, resolver dudas, gestionar tiempos
+4. **Apoyo en dictados**: Colaborar y supervisar en dictados individualizados
+5. **Registro de observaciones**: Documentar uso de adaptaciones y efectividad
+
+CRITERIO_FINALIZACIÓN:
+La actividad termina cuando todos los clientes han completado sus listas de compra, sin presión temporal. Se estima 1-1.5 horas incluyendo preparación.
+
+=== TAREAS IDENTIFICADAS ===
+
+1. CAJERO (3 estudiantes)
+   - Función: Cobrar productos, dar cambio, atender con cortesía, crear listados de precios (dictado)
+   - Competencias: Matemáticas dinero, atención sostenida, comunicación, medidas
+   - Interacciones: Clientes individuales, supervisor
+   - Preparación: Organizar caja, revisar dinero, preparar tickets, decorar puesto
+   - Entrega de cuentas: Reporte final de ventas y caja
+
+2. SUPERVISOR/REPONEDOR (1 estudiante)
+   - Función: Coordinar actividad, reponer productos, resolver problemas, realizar dictados
+   - Competencias: Liderazgo, organización, matemáticas básicas, comunicación, lectura
+   - Interacciones: Todos los roles, cajeros (consultas), clientes (dictados y problemas)
+   - Preparación: Organizar productos, crear señalización, preparar listas para dictado
+   - Informe de gestión: Síntesis de incidencias y coordinación
+
+3. CLIENTE (4 estudiantes)
+   - Función: Comprar productos según lista dictada, interactuar con cajeros
+   - Competencias: Escritura (dictado), planificación, cálculo presupuesto, comunicación
+   - Interacciones: Cajeros, supervisor (dictado), otros clientes (cola)
+   - Preparación: Escribir lista por dictado, calcular presupuesto aproximado, organizar compra por tiendas
+   - Compras:
+		- Sara: mochila (25), llavero (7), libro (14) y gorra (13) = 59 
+		- Luis: estuche (12), kit de manualidades (19), puzzle (17) y postal (2) = 50
+		- María: diccionario (18), iman de nevera (4), taza (8) y pelota (10) = 40
+		- Hugo: camiseta (16), juegos de mesa (22), cartas (6), set de rotuladores (9) = 52
+
+=== PARÁMETROS CONFIGURABLES POR TAREA ===
+
+COMPLEJIDAD_CÁLCULO:
+- básica: números enteros, operaciones simples
+- media: decimales básicos, operaciones combinadas
+- alta: decimales complejos, descuentos, estimaciones
+
+PRESIÓN_TEMPORAL:
+- baja: ritmo pausado, tiempo para reflexionar
+- media: ritmo normal, cierta urgencia
+- alta: ritmo acelerado, decisiones rápidas
+
+APOYO_DISPONIBLE:
+
+- visual: tablas, secuencias, guías, ábacos
+- manipulativo: dedos, pegatinas, objetos para contar
+- social: compañero para consultas
+- material: cascos reducción ruido, información estructurada, estrategias TDAH, cuerda delimitadora
+
+INTERACCIÓN_SOCIAL:
+- mínima: tareas individuales, comunicación básica
+- normal: comunicación estándar, cortesía
+- intensa: negociación, resolución conflictos, liderazgo
+
+=== BANCO DE RECURSOS DISPONIBLES ===
+
+ZONA_AUTOSELECCIÓN (disponible para quien la necesite):
+- Ábacos y manipulativos para cálculo
+- Pegatinas organizativas (productos, cantidades)
+- Folios con cuadrantes para organizar listas por tienda
+- Tablas de apoyo visual para operaciones
+- Cascos de reducción de ruido
+- Cuerdas delimitadoras para "cerrar tienda" temporalmente
+- Leyendas visuales de procedimientos
+- Carteles con precios únicos para todos
+
+DIFERENCIACIÓN_CONTROLADA:
+- Complejidad matemática gestionada desde dictados personalizados
+- Todos los cajeros manejan los mismos precios (simplifica gestión)
+- Adaptación por perfil mediante listas de compra individualizadas
+
+CONTROL_FINANCIERO_TOTAL:
+- 3 cajeros empiezan con 30€ cada uno = 90€ (cambio inicial)
+- 4 clientes empiezan con 60€ cada uno = 240€
+- TOTAL EN CIRCULACIÓN: 330€
+
+VERIFICACIÓN_FINAL (la magia de las matemáticas):
+- Suma dinero final de 3 cajeros + dinero final de 4 clientes = 330€
+- Cada cajero declara: 30€ inicial + ventas realizadas - dinero final = beneficio obtenido
+- Suma de beneficios de 3 cajeros = total gastado por 4 clientes
+- Si todo cuadra: ¡Las matemáticas funcionan!
+
+Este es otro ejemplo: 
+
+Sumas Con Llevadas
+
+¿Qué significa "me llevo 1"?
+
+Descripción de la actividad:
+
+Realizaremos sumas conjuntas. 
+Colocaremos 6 mesas, dos a dos, separadas para poder moverse entre ellas y enfrentadas entre si. 
+6 estudiantes se colocarán a cada lado, mirándose. Cada pareja que se mira será, respectivamente, las unidades, las decenas y las centenas. 
+
+Daremos dos números, por ejemplo: 145 + 168 
+
+Cada estudiante recibe en su lado de la mesa su cantidad correspondiente, en unidades o en paquetes (bolsas de 10, cajitas de 100). 
+La clave es que ninguno puede tener más de 9 en sus mesas conjuntas. 
+Al crear una bolsa o un paquete, han de pasarlo a sus compañeros y el resultado de cada pareja ha de quedar en el centro de la mesa.
+
+Finalmente, reconocemos el número de resultado debería reflejar 313. 
+
+Mientras, las 2 personas que no están en las mesas, han hecho las cuentas individualmente (en pizarra, cuadernos, como quieran). Si tenemos suficientes paquetes, pueden ponerse a realizar estas sumas de manera individual con ellos.
+
+Finalmente, todxs deberíamos tener el mismo resultado. 
+
+Hacemos rotaciones y vamos haciendo cuentas. Quizás la cosa fluya a que cada uno quiere hacer cuentas individualmente o por parejas o equipos. Se permite la exploración. 
+
+
+Materiales:
+Lentejas, garbanzos, cuentas, fichas, bolsas, cajitas.
+
+Preparación:
+
+Luis y Emma pueden preparar las mesas. 
+
+El resto pueden ir haciendo paquetes de 10. Teniendo unos cuantos de 10 e individuales ya podemos dar las cantidades de salida. 
+Quizás para Elena (o para cualqier otro) esta pueda ser una tarea estimulante, si se hacen bastantes nos da más flexibilidad para trastear. 
+Cuando creamos que tenemos suficientes, podemos empezar. 
+Si el material se elige con cierta conciencia, puede servir de estrategia metodológica, puede ser muy reutilizable para múltiples tareas y como estrategia cognitiva del aula para realizar cuentas. 
+Por ejemplo, usar lentejas potencia la concentración, la motricidad fina. Se pueden guardar en bolsitas herméticas de 10 que ocupan poco espaci. Los paquetes 100 pueden ser cajitas o bolsas más grandes, pero es accesible de guardar en un aula. 
+
+Versión para peques:
+
+Imprimimos folios con 10 (circulos, estrellas..) tamaño pegatina y que ponga 1 en cada dibujito y 10 en grande como título del folio. Tenemos que tener pegatinas o se pueden colorear con pintura de dedos, rotus de punta gorda...
+Cada vez que completamos el folio lo pasamos al otro lado. Cuando tengamos 10 folios, lo metemos en un portafolio con un cartel que ponga 10. Al final tenemos un resultado, reconocemos el numero y lo escribimos. 
+
+Versión más compleja: 
+
+A las bolsas de 10 les podemos ahora cambiar el nombre a 1, y al resto de forma correspondiente. De este modo, podemos trabajar con decimales. ¿0.5 = 1/2?. Podemos representarlo. 
+
+Este es otro ejemplo: Mejoren las habilidades de orientación espacial y reconstrucción de mapas.
+
+Además, la actividad incorpora aspectos curriculares transversales como:
+
+Ciencias Naturales: Propiedades del agua (volumen), la forma de los objetos.
+
+Lengua Castellana: Vocabulario geométrico, descripción de procesos de resolución, comunicación oral.
+
+Habilidades del Siglo XXI: Pensamiento crítico, resolución de problemas, colaboración.
+
+Descripción de la Actividad
+La actividad se llevará a lo largo de la semana que culminará el viernes en una Feria Matemática. 
+
+Rol del Profesor
+El docente irá presentando las actividades sin hacer referencia a que vayan a ser utilizadas más adelante. Simplemente permitiendo que se despierte o no su curiosidad y estas cosas son las que iremos viendo del desarrollo del aula. 
+
+Gestión del Aula durante la Actividad:
+Observación Activa y Guía Discreta: Circulará por las estaciones, observando las dinámicas de las parejas y los desafíos individuales. Proporcionará pistas indirectas a través de preguntas abiertas ("¿Habéis probado a...? ¿Qué pasaría si...?"), en lugar de dar soluciones.
+
+Gestión del Clima Emocional: Monitoreará la frustración y el aburrimiento. Recordará la importancia del tono tranquilo y respetuoso entre los compañeros, y el valor del esfuerzo. Puede sugerir pequeños "descansos cerebrales" si percibe altos niveles de ansiedad, especialmente para Elena y Luis.
+
+Fomento de la Autonomía: Evitará la sobreintervención. Su objetivo es que los estudiantes encuentren sus propias soluciones y estrategias.
+
+Gestión del Tiempo: Aunque la actividad es flexible, el docente puede dar avisos de tiempo para que las parejas avancen y no se queden atascadas demasiado tiempo en un reto.
+
+Registro de Observaciones: Anotará qué estrategias utiliza cada pareja, qué desafíos surgen, y cómo colaboran, para la evaluación formativa posterior.
+
+Planteamiento de la Actividad:
+Narrativa Inmersiva: Presentará la actividad con una historia de piratas y tesoros, enfatizando que el verdadero tesoro es el conocimiento y la capacidad de resolver misterios.
+
+Preparación de Estaciones: Asegurará que cada estación esté perfectamente preparada con los materiales adecuados y las instrucciones visuales/auditivas necesarias.
+
+
+Agrupamientos y Tareas/Roles Específicos por Pareja
+Las parejas se han formado buscando un equilibrio entre niveles de apoyo, canales preferentes y temperamentos, fomentando la ayuda mutua y el desafío óptimo para ambos miembros. Los roles dentro de cada pareja serán flexibles, permitiendo a los estudiantes decidir cómo se dividen el trabajo.
+ 
+Preparación de la actividad: 
+
+Durante la semana iremos preparando los materiales que vamos a necesitar.
+Se pedirá que traigan botellas durante la semana y el jueves las trabajaremos.  
+
+Lunes: Taller formas geométricas. 1.Recortables y montables. Hacer etiquetas con los nombres y guardarlas en un bote, carpeta... 2. Encontrar objetos en el aula (se puede favorecer por ejemplo, con dados de varias caras), categorizarlos, creandos dos tarjetas por objeto: nombre y forma geométrica. Y se guardan las tarjetas en otro bote o carpeta. 
+
+Martes: Haremos una dinámica de cómo calcular áreas con diferentes materiales, con cuerdas para círculos y rectas, con bloques de dominó, imanix, la idea es jugar con diferentes formas de calcular cuánto ocupan las cosas. Una superficie puede ocupar un folio y 5 imanix. Dentro de esta actividad, dejaremos hechas, como 3 por estudiante, tarjetas con nombres de objetos del aula que podríamos medir con cualquier cosa. Por ejemplo puede haber tarjetas en las que ponga, "el libro de ciencias" o "el respaldo de las sillas", se deja libertad. Estas tarjetas también se guardan en un bote o carpetita.  Así mismo, se crearán tarjetas con los objetos que puedan servir de unidades de medida (los imanix, dominó, cuerda) que también se guardan. 
+
+Miércoles:
+Dinámica de lógica: 
+Sacaremos diferentes actividades típicas de:
+estrella+estrella=16
+
+estrella+luna=25
+
+luna−sol=10
+
+sol×estrella+luna=?
+
+Se puede hacer una actividad grupal de ir haciéndo varias en la pizarra entre todos primero. Y luego se les pide que traten de crear una ellos. Se deja el tiempo necesario hasta que todos han hecho por lo menos, una. Si en ese tiempo alguien hace más, se incluirán en su respectivo bote o carpeta. Todos los ejercicios han de ser validados antes de incluirlos. Dependiendo del ritmo se pueden hacer más. 
+
+Jueves:
+Botellas y revelación. 
+Durante la semana habremos ido recopilando botellas en algún espacio del aula. Hoy las vamos a contar y catalogar. 
+La idea es tener varias garrafas por ejemplo de 6 y 8 litros. Las dejaremos aparte y crearemos tarjetas de cantidades que podrían entrar (por ejemplo, 4,75L, 5,5L, 7,60L) bote totales
+Todas las que sean como de 1,5L (aprox) para abajo, las iremos cogiendo una a una y escribiremos un cartelito por cada una con el volumen en decimales y fracciones, por ejemplo 0,5L y 1/2L. Y esos cartelitos se guardan también en un bote o carpeta. bote cálculos
+ 
+Una vez cerrado el material, se revela la actividad: !Haremos una Feria Matemática!
+
+Se explican los puestos brevemente. 
+
+Garrafas. 
+Se sacará una tarjeta del bote cantidades y dos tarjetas de las botellas. Cada equipo tendrá que elegir una garrafa y usar las dos botellas pequeñas que correspondan a sus tarjetas para rellenar la garrafa. 
+
+Geometría.
+Se descolocan las figuras geométricas. 
+Cada equipo tendrá que colocar cada figura geométrica con su nombre correspondiente. Además, sacará 5 tarjetas de nombre de objeto y tendrá a disposición otra tanda de nombes de formas donde elegir. 
+
+Lógica:
+Cada equipo sacará 2 (o 3, dependiendo de cuántas se crearan) de las actividades que diseñaron ellos mismos y tendrán que resolverlas. 
+
+Áreas:
+Cogerán una tarjeta de objeto de aula y dos tarjetas de unidades de medida. Tendrán que encontrar la manera de describir en términos de las unidades que les hayan salido, cuánto ocupa el objeto. 
+
+Repartiremos un puesto por grupo: 
+
+Alex y María: equipo equilibrado, pareja bastante parecida a nivel funcional. 
+
+Elena y Emma: tarea que puede generar tensión a Elena y Emma es muy tranquila. 
+
+Ana y Hugo: ambos van a incurrir en conversación para llegar a una lógica. Buenos argumentando. 
+
+Sara y Luis: Sara ayudará con buena argumentación y Luis creará opciones creativas. 
+
+Cada equipo elige un puesto o coge una tarjetita aleatoria y el resto del día lo dedicaremos a organizar la feria. Primeramente cada equipo tendrá que crear un panel informativo de en qué consiste el puesto. Evaluaremos como van integrando la información. Ayudaremos a que cada uno tenga claro, al menos, su puesto. Así podrán crear las tarjetas con sentido. Después seguiremos decorando y colocando: dejar las garrafas preparadas, las carpetas o botes de cada puesto, hacer dibujos, etc. 
+
+Viernes:
+
+Ya tenemos todo preparado y debería haber al menos algo de expectación. 
+
+Cada equipo puede coger una tarjeta de puesto, o coger un número y será el orden para elegir. 
+La idea es incluir muchos aspectos de probabilidad y aleatoriedad en la dinámica. 
+Cada equipo empieza en un puesto y luego rotan en un sentido o otro. En este momento hay que dar cierta libertad al juego, pero tratando de mantener un volumen adecuado. Aquí el profesor tendrá que ir validando la realización de cada prueba. Los grupos tendrán que esperar a que el/la profe esté disponible para ir a revisar y mientras deberán repasar sus resultados. 
+
+Al acabar cada ronda, reciben por ejemplo, un trozo de frase de algún matemático famoso o referente a la magia de las matemáticas. Una vez que tienen todos sus trozos construyen su frase. 
+O al acabar todas las pruebas cada equipo recibe un trozo de acertijo que tienen que resolver entre todo el aula. 
+
+
+
+Adaptaciones: 
+
+Elena siempre debería tener a disposición sus cascos y estrategias de regulación (por ejemplo, llevar un trozo de plastilina en la mano). 
+El aula debe disponer de diferentes materiales que les sirvan de estrategia de organización, cuadernos, lápices, cuentas, etc. 
+Para Luis es una actividad movida, motivante y estructurada. 
+Para Ana es un reto donde además, juega el papel de la aleatoriedad. 
+
+
+Proporcionar múltiples medios de representación (El "Qué" del Aprendizaje): tienen las garrafas y tienen las tarjetas, o los simbolos y las cuentas, las formas geométricas estrictas y las del "mundo", junto con nombres escritos. Numerosos materiales con los que medir áreas... 
+
+Todos: La propia acción de verter agua, mover fichas, colocar carteles facilita la comprensión concreta.
+
+Proporcionar múltiples medios de acción y expresión (El "Cómo" del Aprendizaje):
+
+Expresión Oral: Discusión de estrategias en pareja, justificación de respuestas al profesor, explicación de conceptos.
+
+Expresión Escrita/Dibujo: Registro de cálculos, diagramas, esquemas, listas de fracciones, dibujos de las soluciones de área.
+
+Manipulación: Solución física de los problemas (llenar garrafas, cubrir áreas).
+
+Autoregulación:
+
+Gestión del tiempo: Reloj en el aula. 
+
+Estrategias de afrontamiento: Se recordarán herramientas para la frustración (pausas, respiración, pedir ayuda). En los momentos entre ronda y ronda, se pueden hacer pausas estratégicas, parales un poco, antes de seguir. 
+
+Elección: Dentro de cada reto, las parejas podrán decidir cómo se organizan el trabajo.
+
+Proporcionar múltiples medios de implicación (El "Por qué" del Aprendizaje):
+
+Colaboración y Pertenencia: El trabajo en pareja y la posterior resolución conjunta.
+
+Novedad y Curiosidad: toda la actividad está diseñada para despertar curiosidad y puesta en conciencia.
+
+Retroalimentación Inmediata y Formativa: La validación del profesor en cada reto ofrece retroalimentación instantánea, y la incapacidad de avanzar sin una respuesta correcta fomenta la auto-corrección.
+
+
+
+
+
+Si hay opción de incorporar material nuevo al aula. Puede haber un premio de la feria que sea nuevo un libro para el aula, de curiosidades matemáticas, con datos interesantes y acertijos nuevos.
+
+Los premios pueden ser "tesoros de conocimiento". Al acabar la última ronda, cada equipo recibe un "dato mágico" o una pregunta sobre una curiosidad que cuestionarse. 
+
+"El número Pi (π) es un número infinito que nos ayuda a calcular la circunferencia de cualquier círculo. Se usa desde la construcción de las pirámides hasta los viajes al espacio." (Con un número largo de Pi escrito)
+
+"¿Sabías que un rayo puede contener tanta energía como 100 bombillas encendidas durante un día? La electricidad es una forma de energía que se mide con números muy grandes y muy pequeños." (Con un dibujo de un rayo y una bombilla).
+
+"Las abejas construyen sus panales con hexágonos perfectos. Esta forma geométrica es la más eficiente para guardar miel, ¡porque ocupa el mínimo espacio y usa el mínimo material!" (Con una imagen de un panal y un hexágono).
+
+"Nuestro cerebro pesa solo un 2% de nuestro cuerpo, ¡pero consume un 20% de toda la energía que usamos! Es una máquina increíble para resolver problemas, como los que habéis resuelto hoy."
+
+Conexión con Intereses: Si es posible, se puede intentar que el dato final conecte con un interés general del grupo (ciencia, naturaleza, el cuerpo humano, etc.).
+
+Capacidad de reflexión y de pensamiento abstracto. Durante la semana, si empiezan a ver que algo se cuece, y al organizar la actividad el jueves, van recreando posibles opciones que les pueden tocar, conocen los materiales, y las posibilidades. 
+
+La Curiosidad como Motor
+
+Autonomía en la Resolución: El docente no da las soluciones, lo que empodera a los estudiantes a confiar en sus propias capacidades para encontrar las respuestas.
+
             IMPORTANTE: 
-            - Enfocate en la estructura y contenido pedagógico, no en roles específicos (eso lo hará otro agente)
+            - Enfocate el/la profesor/a en estos ejemplos, sabe exactamente qué hace cada uno en cada momento. Sabe si puede realizar las cuentas o las 
+            tareas que se les asigna o no. 
+            - Las tareas estan repartidas, no se dejan como "libres" o "a elección", sino que cada uno tiene una tarea concreta y definida.
             - Responde únicamente en ESPAÑOL. No uses palabras en inglés
             - Todos los títulos, descripciones y materiales deben estar en español""",
             agent=self.agente_disenador,
-            expected_output="Diseño estructural de actividad educativa lista para coordinación colaborativa"
+            context=[tarea_analisis_aula],
+            expected_output="Diseño estructural de actividad educativa lista y detallada para coordinación colaborativa"
         )
 
         tarea_coordinacion_colaborativa = Task(
@@ -441,31 +774,47 @@ ASIGNA:
 6. Dinámicas de interacción y comunicación
 
 IMPORTANTE: Responde únicamente en ESPAÑOL. Todos los roles, responsabilidades y estrategias deben estar en español.""",
-                        agent=self.agente_ambiente,
+                        agent=self.agente_perfiles,
+            context=[tarea_diseno_base],
             expected_output="Coordinación colaborativa con roles específicos y estrategias de inclusión"
         )
         
-        tarea_revision_colaborativa = Task(
-            description="""Revisa la actividad colaborativa y verifica que:
-            1. Todos los estudiantes tienen roles significativos y apropiados
-            2. Las adaptaciones para necesidades especiales están incluidas
-            3. La interdependencia es auténtica (no artificial)
-            4. El producto final justifica la colaboración
-            5. Los objetivos curriculares se cumplen
-            6. La evaluación es justa para todos
+        tarea_supervision_final = Task(
+            description="""Como SUPERVISOR FINAL, revisa y valida todo el trabajo realizado por el equipo:
             
-            Proporciona recomendaciones específicas para optimizar la colaboración.
+            REVISIÓN Y VALIDACIÓN COMPLETA:
+            1. EVALÚA el análisis de perfiles del especialista en diversidad
+            2. VALIDA el diseño pedagógico del diseñador de actividades  
+            3. SUPERVISA la propuesta colaborativa del especialista en ambiente
+            4. INTEGRA todas las fases en una propuesta coherente y optimizada
             
-            IMPORTANTE: Responde únicamente en ESPAÑOL. Todas las evaluaciones y recomendaciones deben estar en español.""",
+            CRITERIOS DE SUPERVISIÓN:
+            ✅ Todos los estudiantes tienen roles significativos y apropiados
+            ✅ Las adaptaciones para TEA, TDAH y altas capacidades son efectivas
+            ✅ La interdependencia es auténtica y pedagogicamente justificada
+            ✅ Los objetivos curriculares de 4º Primaria se cumplen completamente
+            ✅ La evaluación es equitativa y adaptada a cada perfil
+            ✅ La actividad es viable y realista para el aula
+            ✅ Se respetan los principios del DUA
+            
+            ENTREGA FINAL:
+            - Actividad completamente validada y optimizada
+            - Justificación pedagógica de todas las decisiones
+            - Plan de implementación claro para el docente
+            - Criterios de éxito específicos y medibles
+            
+            IMPORTANTE: Como supervisor, tienes la responsabilidad final de la calidad. Responde únicamente en ESPAÑOL.""",
             agent=self.agente_evaluador,
-            expected_output="Evaluación y optimización de la actividad colaborativa"
+
+            expected_output="Actividad colaborativa completamente supervisada, validada y optimizada con plan de implementación"
         )
         
-        # Crear y ejecutar el crew ambiente con los 4 agentes
+        # Crear y ejecutar el crew con proceso secuencial supervisado
+
         crew = Crew(
-            agents=[self.agente_ambiente, self.agente_disenador, self.agente_perfiles, self.agente_evaluador],
-            tasks=[tarea_analisis_aula, tarea_diseno_base, tarea_coordinacion_colaborativa, tarea_revision_colaborativa],
-            process=Process.sequential,
+            agents=[self.agente_perfiles, self.agente_disenador, self.agente_ambiente, self.agente_evaluador],
+            tasks=[tarea_analisis_aula, tarea_diseno_base, tarea_coordinacion_colaborativa, tarea_supervision_final],
+            process=Process.sequential,  # Cambiar a secuencial para evitar problemas de delegación
             verbose=True
         )
         
@@ -486,7 +835,7 @@ IMPORTANTE: Responde únicamente en ESPAÑOL. Todos los roles, responsabilidades
                 contenido_completo += "=== COORDINACIÓN COLABORATIVA ===\n"
                 contenido_completo += str(resultado.tasks_output[2]) + "\n\n"
                 
-                contenido_completo += "=== EVALUACIÓN Y OPTIMIZACIÓN ===\n"
+                contenido_completo += "=== SUPERVISIÓN Y VALIDACIÓN FINAL ===\n"
                 contenido_completo += str(resultado.tasks_output[3]) + "\n\n"
             else:
                 # Fallback al resultado principal
@@ -598,11 +947,11 @@ def main():
     
     try:
         # Configuración (ajusta según tu setup)
-        OLLAMA_HOST = "localhost"  # Ollama local
-        PERFILES_MODEL = "llama3:latest"     # Modelo para análisis de perfiles
-        DISENADOR_MODEL = "llama3:latest"    # Modelo para diseño de actividades  
-        ambiente_MODEL = "llama3:latest" # Modelo para coordinación colaborativa
-        EVALUADOR_MODEL = "llama3:latest"    # Modelo para evaluación
+        OLLAMA_HOST = "192.168.1.10"  # Ollama local
+        PERFILES_MODEL = "qwen3:latest"     # Modelo para análisis de perfiles
+        DISENADOR_MODEL = "qwen3:latest"    # Modelo para diseño de actividades  
+        ambiente_MODEL = "qwen3:latest" # Modelo para coordinación colaborativa
+        EVALUADOR_MODEL = "qwen3:latest"    # Modelo para evaluación
         PERFILES_PATH = "perfiles_4_primaria.json"
         
         # Inicializar sistema

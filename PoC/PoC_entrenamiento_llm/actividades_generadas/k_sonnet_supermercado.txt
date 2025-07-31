@@ -22,7 +22,7 @@ MATERIALES_GENERALES: Productos etiquetados, dinero real, cajas registradoras si
 === TIENDAS TEMÁTICAS ===
 
 TIENDA 1 - "MATERIAL ESCOLAR" (Cajero: Alex)
-Productos: Mochila 25€, Estuche 12€, Calculadora 18€, Set rotuladores 9€, Agenda 15€, Compás 11€
+Productos: Mochila 25€, Estuche 12€, Diccionario 18€, Set rotuladores 9€, Agenda 15€, Compás 11€
 Contexto: "Valorar cuánto gastan las familias en material escolar"
 
 TIENDA 2 - "SOUVENIRS DE VIAJE" (Cajero: Elena)  
@@ -69,6 +69,11 @@ La actividad termina cuando todos los clientes han completado sus listas de comp
    - Competencias: Escritura (dictado), planificación, cálculo presupuesto, comunicación
    - Interacciones: Cajeros, supervisor (dictado), otros clientes (cola)
    - Preparación: Escribir lista por dictado, calcular presupuesto aproximado, organizar compra por tiendas
+   - Compras:
+		- Sara: mochila (25), llavero (7), libro (14) y gorra (13) = 59 
+		- Luis: estuche (12), kit de manualidades (19), puzzle (17) y postal (2) = 50
+		- María: diccionario (18), iman de nevera (4), taza (8) y pelota (10) = 40
+		- Hugo: camiseta (16), juegos de mesa (22), cartas (6), set de rotuladores (9) = 52
 
 === PARÁMETROS CONFIGURABLES POR TAREA ===
 

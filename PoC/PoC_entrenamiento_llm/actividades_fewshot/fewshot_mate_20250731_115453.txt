@@ -1,0 +1,247 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA FEW-SHOT CrewAI + Ollama
+================================================================================
+
+ID: fewshot_mate_20250731_115453
+Título: Actividad Few-Shot - mate
+Materia: mate
+Tema: area y volumen
+Tipo: colaborativa_fewshot
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-07-31T11:54:53.741705
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+=== SEMILLA CREATIVA E INSPIRACIÓN ===
+=== SEMILLA CREATIVA ===  
+**NOMBRE:** *La Expedición al Planeta GeoVolumen*  
+**NARRATIVA:** Los estudiantes son miembros de una expedición espacial que debe construir una base lunar para estudiar un planeta misterioso. Para garantizar que la base tenga suficiente espacio para vivienda, laboratorios y almacenamiento, deben calcular áreas y volúmenes de estructuras usando recursos limitados. La misión se complica cuando un terremoto lunar destruye parte de la base, y solo el cálculo preciso de materiales salvaguardará la misión.  
+**CONCEPTO CENTRAL:** La integración de matemáticas, ciencia y resolución de problemas en un contexto de exploración espacial, donde el cálculo de áreas y volúmenes se convierte en una herramienta esencial para la supervivencia.  
+**GANCHO INICIAL:** Al inicio, los estudiantes reciben un mensaje de la NASA: “La base lunar ‘GeoVolumen’ ha sido destruida. Solo 3 días quedan para construir una nueva. ¿Podréis calcular los recursos necesarios antes de que el planeta se vuelva intransitable?” Los estudiantes deben formar equipos de 4 y comenzar a planificar.  
+**CLIMAX PEDAGÓGICO:** En la última fase, los estudiantes construyen modelos 3D de la base usando materiales reciclados (cartón, plastilina, etc.), calculan áreas de cada sección y volúmenes de depósitos de oxígeno, y presentan su diseño a un “comité de científicos” (el profesor y compañeros). Si sus cálculos son correctos, la base “funciona” y reciben un “certificado de exploradores espaciales”.  
+**INTEGRACIÓN CURRICULAR:**  
+- **Matemáticas:** Cálculo de áreas (rectángulos, triángulos) y volúmenes (prismas, cilindros).  
+- **Ciencias:** Propiedades de los materiales, gravedad lunar, y conceptos básicos de ingeniería.  
+- **Lengua Castellana:** Redacción de informes de diseño, uso de vocabulario técnico (ej.: “superficie”, “capacidad”).  
+- **Habilidades del Siglo XXI:** Trabajo colaborativo, pensamiento crítico (evaluar eficiencia de diseños), resolución de problemas (ajustar cálculos si hay errores).  
+- **Educación en Valores:** Sostenibilidad (usar materiales reciclados) y responsabilidad (garantizar que los cálculos no falten).  
+**CARACTERÍSTICAS ADICIONALES:**  
+- **Roles específicos:**  
+  - *Comandante de la misión:* Coordina el equipo y supervisa los cálculos.  
+  - *Ingeniero de estructuras:* Diseña y construye modelos.  
+  - *Científico de datos:* Realiza cálculos y verifica resultados.  
+  - *Explorador de recursos:* Busca materiales reciclados y gestiona su distribución.  
+- **Flexibilidad:** Los estudiantes pueden elegir entre cálculos con unidades convencionales o no convencionales (ej.: “cuantos bloques de arena se necesitan para el depósito”).  
+- **Adaptación a estilos de aprendizaje:**  
+  - *Visual:* Uso de modelos 3D y gráficos.  
+  - *Kinestésico:* Construcción física de la base.  
+  - *Auditivo:* Discusiones grupales y explicaciones de procesos.  
+- **Elemento emocional:** La narrativa de salvar una misión espacial fomenta la motivación y la empatía por los científicos que trabajan en el espacio.
+
+=== ESTRUCTURA PEDAGÓGICA ===
+**=== MARCO PEDAGÓGICO ===**  
+- **Objetivos de aprendizaje específicos y medibles:**  
+  - Calcular áreas de figuras planas (rectángulos, triángulos) y volúmenes de cuerpos geométricos (prismas, cilindros) para resolver problemas reales.  
+  - Aplicar el cálculo de áreas y volúmenes en la planificación de una base lunar usando materiales reciclados.  
+  - Presentar informes técnicos de diseño con vocabulario matemático y científico.  
+  - Desarrollar habilidades de trabajo en equipo, evaluación crítica y resolución de problemas en contextos simulados.  
+
+- **Competencias curriculares que se desarrollan:**  
+  - **Matemáticas:** Interpretación de datos, cálculo de áreas y volúmenes, y resolución de problemas.  
+  - **Ciencias:** Comprensión de propiedades de materiales, gravedad lunar y conceptos básicos de ingeniería.  
+  - **Lengua Castellana:** Redacción de textos técnicos, uso de términos específicos y comunicación oral.  
+  - **Habilidades del Siglo XXI:** Trabajo colaborativo, pensamiento crítico, creatividad y gestión de recursos.  
+  - **Educación en Valores:** Sostenibilidad, responsabilidad y empatía por el entorno.  
+
+- **Nivel de complejidad apropiado para 4º Primaria:**  
+  - Actividades escalonadas: desde cálculos simples (áreas de figuras básicas) hasta problemas complejos (volúmenes de depósitos).  
+  - Uso de recursos reciclados y modelos 3D para concretizar abstracciones matemáticas.  
+  - Integración de roles específicos (comandante, ingeniero, científico, explorador) para fomentar la participación activa.  
+
+- **Criterios de evaluación formativa:**  
+  - Precisión en los cálculos (ej.: verificar que el volumen del depósito corresponda a la capacidad necesaria).  
+  - Colaboración en el equipo (ej.: participación equitativa en la planificación y construcción).  
+  - Calidad del informe técnico (uso de términos correctos y claridad en la explicación).  
+  - Creatividad en el diseño de la base (eficiencia en el uso de materiales y adaptación a la narrativa lunar).  
+
+- **Conexiones con otras materias:**  
+  - **Ciencias:** Propiedades de materiales, gravedad lunar y conceptos de ingeniería.  
+  - **Lengua:** Redacción de informes técnicos y uso de vocabulario específico.  
+  - **Arte:** Diseño de modelos 3D y representación visual de estructuras.  
+  - **Educación para la Ciudadanía:** Sostenibilidad y responsabilidad en la gestión de recursos.  
+
+**=== ESTRUCTURA EDUCATIVA ===**  
+- **Metodología principal:** Aprendizaje basado en proyectos (PBL) en entorno colaborativo, integrando narrativa espacial, cálculos matemáticos y creatividad.  
+- **Principios DUA aplicados:**  
+  - **Diversidad:** Adaptación de cálculos a estilos de aprendizaje (ej.: usar bloques de arena para volúmenes o unidades no convencionales).  
+  - **Accesibilidad:** Uso de materiales reciclados (cartón, plastilina) y herramientas digitales (planillas de cálculo simples).  
+  - **Inclusividad:** Roles específicos (comandante, ingeniero) para garantizar participación de todos.  
+- **Estrategias de motivación:**  
+  - Narrativa emocional de salvar una misión espacial.  
+  - Certificado de exploradores espaciales como recompensa por cálculos correctos.  
+  - Presentación ante un "comité de científicos" (profesor y compañeros) para fomentar la autoevaluación.  
+- **Gestión de la diversidad del aula:**  
+  - Grupos heterogéneos de 4 estudiantes con roles rotativos para equilibrar participación.  
+  - Flexibilidad en la elección de unidades (ej.: bloques de arena vs. centímetros cúbicos).  
+  - Apoyo individualizado para estudiantes con dificultades en cálculos mediante herramientas visuales (ej.: gráficos de áreas).  
+- **Recursos pedagógicos necesarios:**  
+  - Materiales reciclados (cartón, plastilina, cajas de cartón).  
+  - Herramientas de medición (reglas, cinta métrica).  
+  - Plantillas de figuras geométricas y ejemplos de cálculos.  
+  - Acceso a dispositivos digitales para registrar datos y presentar el informe final.  
+
+**=== JUSTIFICACIÓN CURRICULAR ===**  
+- **Por qué esta actividad es valiosa para este grupo:**  
+  - Combina el entusiasmo por la exploración espacial con conceptos matemáticos y científicos, lo que motiva a los estudiantes a aplicar conocimientos en contextos reales.  
+  - Fomenta el pensamiento crítico y la resolución de problemas, habilidades clave para el desarrollo cognitivo y emocional.  
+- **Qué necesidades educativas específicas atiende:**  
+  - Refuerza la comprensión de áreas y volúmenes mediante la manipulación de materiales concretos.  
+  - Atiende a estudiantes con dificultades en matemáticas mediante estrategias visuales y colaborativas.  
+  - Promueve la inclusión de estudiantes con diferentes estilos de aprendizaje (visual, kinestésico, auditivo).  
+- **Conexión con aprendizajes previos y futuros:**  
+  - Conecta con conocimientos previos de geometría básica y propiedades de materiales.  
+  - Prepara para temas futuros como la geometría espacial, la física de fuerzas y la ingeniería.  
+  - Refuerza la importancia de la sostenibilidad y la responsabilidad en la gestión de recursos, valores clave para el desarrollo integral.
+
+=== ARQUITECTURA DE LA EXPERIENCIA ===
+--- ARQUITECTURA TEMPORAL ---
+
+**Fases de preparación (construcción progresiva)**:
+1. **Introducción al tema**: Establecer la conexión entre el aprendizaje de áreas y volúmenes con la misión espacial lunar. 
+2. **Conocimiento previo revisado**: Revisar conceptos básicos como el área, volumen y propiedades de los materiales.
+3. **Roles y responsabilidades asignados**: Cada estudiante será designado a un papel específico: Comandante, Ingeniero, científico o Explorador.
+
+**Desarrollo principal (experiencia cumbre)**:
+1. **Aplicación de conceptos prácticos**: Los estudiantes calcularán áreas y volúmenes de diferentes figuras planas y geométricas.
+2. **Diseño y construcción de una base lunar**: Utilizando recursos reciclados y materiales disponibles, los estudiantes desarrollarán su propio diseño para una base lunar.
+3. **Presentación técnica del diseño**: Los estudiantes presentarán su informe técnico del diseño de la base lunar, utilizando términos matemáticos y científicos apropiados.
+
+**Cierre y consolidación**:
+1. **Apertura de discusión**: Discusión general acerca del problema planteado y cómo se aplicaron los conceptos matemáticos y científicos en el diseño.
+2. **Revisión y retroalimentación**: Los estudiantes recibirán retroalimentación sobre sus presentaciones técnicas y su comprensión de las áreas y volúmenes.
+
+--- FLUJO DE PARTICIPACIÓN---
+
+**Cómo se involucra progresivamente a los estudiantes**:
+- Actividades grupales de cálculo de áreas y volúmenes.
+- Trabajo individual en la creación de diseños para su base lunar, seguido de una discusión colectiva y colaborativa.
+
+**Momentos de trabajo individual vs. colaborativo**:
+- Cálculos individuales con la aplicación de los conceptos matemáticos.
+- Colaboración en el diseño y construcción de la base lunar como equipo.
+
+**Transiciones entre actividades**:
+- Transiciones fluidas entre cálculo teórico, manipulaciones prácticas y discusiones grupales para mantener la atención del estudiante.
+
+--- ROLES Y RESPONSIBILIDADES---
+
+**3 roles principales necesarios**:
+1. **Comandante**: Coordinar la actividad y asegurar que se siguen las directrices.
+2. **Ingeniero**: Realizar cálculos de áreas y volúmenes para el diseño de la base lunar.
+3. **Explorador/Científico**: Evaluar los materiales disponibles y propuestas de diseño.
+
+**Función específica de cada rol**:
+- Comandante: Coordinar tareas, medir el progreso del equipo y administrar las responsabilidades.
+- Ingeniero: Realizar cálculos matemáticos necesarios para la construcción de la base lunar.
+- Explorador/Científico: Evaluar los recursos disponibles y realizar pruebas de diseño.
+
+**Interacciones entre roles**:
+- Comunicación constante entre los diferentes roles para asegurar una cooperación efectiva en el proceso de creación de la base lunar.
+
+--- MATERIALES Y ESPACIOS---
+
+**Organización física del aula**: Espacio suficiente para trabajar en equipos, colocar materiales reciclados y herramientas disponibles. Una pizarra grande o tableros móviles son útiles para compartir el progreso del equipo y discusiones grupales.
+
+**Materiales específicos necesarios**:
+- Materiales reciclados (cartón, plastilina)
+- Herramientas de medición (reglas, cinta métrica)
+- Plantillas de figuras geométricas
+- Acceso a dispositivos digitales para registros y presentaciones
+
+**Preparación previa requerida**: Estudiantes deben familiarizarse con los términos matemáticos y científicos relevantes.
+**Recursos de apoyo disponibles**: Guías de cálculo, plantillas de figuras geométricas predefinidas.
+
+--- RESUMEN DE LA EXPERIENCIA---
+
+La actividad propuesta es una experiencia educativa escalonada que combina la enseñanza de matemáticas y ciencias con el aprendizaje basado en proyectos. Los estudiantes interactuarán con conceptos matemáticos a través de cálculos y manipulaciones prácticas utilizando recursos reciclados. A medida que avanzan, desarrollarán habilidades de trabajo en equipo, pensamiento crítico y resolución de problemas. La aplicación del conocimiento de áreas y volúmenes para diseñar una base lunar proporciona un contexto emocionalmente interesante e inspirador, fomentando la empatía por el entorno y promoviendo la sostenibilidad. El flujo constante de roles, transiciones y cierres estructurados aseguran que los estudiantes estén involucrados y comprometidos en cada etapa del proceso educativo.
+
+=== DIFERENCIACIÓN PERSONALIZADA ===
+La actividad propuesta se personalizará para cada estudiante específico del aula de la siguiente manera:
+
+**NOMBRE**: **ROLE ASIGNADO**
+- Función específica:
+  - Comandante: ALEX M. (coordinar la actividad y asegurar que se siguen las directrices)
+  - Ingeniero: MARÍA L. (realizar cálculos de áreas y volúmenes para el diseño de la base lunar)
+  - Explorador/Científico: ELENA R. (evaluar los materiales disponibles y propuestas de diseño)
+  - Comandante: LUIS T. (coordinar la actividad con apoyo en movimientos y retroalimentación frecuente)
+  - Ingeniero: ANA V. (realizar cálculos matemáticos necesarios para la construcción de la base lunar, con desafíos adicionales y liderazgo)
+  - Explorador/Científico: SARA M. (evaluar los materiales disponibles y propuestas de diseño)
+  - Comandante: EMMA K. (coordinar la actividad con apoyo en pausas y estructura visual)
+  - Ingeniero: HUGO P. (realizar cálculos matemáticos necesarios para la construcción de la base lunar con apoyo bajo)
+- Por qué este rol: Cada estudiante aprovecha sus fortalezas en el diseño y construcción de la base lunar, coordinando las tareas del equipo y realizando cálculos matemáticos.
+- Adaptaciones: se proporcionarán apoyos específicos para cada estudiante según su nivel de apoyo (bajo/medio/alto) y necesidades especiales (TEA, TDAH combinado).
+- Nivel de desafío: Se adaptará el nivel de desafío según la ZDP de cada estudiante.
+- Interacciones: Los estudiantes colaborarán principalmente en grupos y se comunicarán constantemente entre los diferentes roles para asegurar una cooperación efectiva en el proceso de creación de la base lunar.
+- Productos/evidencias: Los estudiantes generarán un informe técnico del diseño de la base lunar, utilizando términos matemáticos y científicos apropiados. También se presentarán resultados de los cálculos realizados durante la actividad.
+
+ADAPTACIONES ESPECIALES:
+- Elena (TEA): Se le proporcionarán estrategias de regulación y pausas adicionales para ayudarla a concentrarse en su trabajo.
+- Luis (TDAH combinado): Le serán proveídos movimientos y tareas dinámicas que lo ayuden a mantenerse activo durante la actividad. También recibirá retroalimentación frecuente para asegurar su comprensión de los conceptos.
+- Ana (Altas capacidades): Se le proporcionarán desafíos adicionales, liderazgo y mentoreo en el proceso de diseño de la base lunar.
+
+=== VALIDACIÓN DE CALIDAD ===
+La actividad propuesta alcanza un nivel de calidad muy cercano a los estándares de los ejemplos k_, pero requiere ajustes menores para optimizar su integración curricular y profundizar la narrativa.  
+
+**NARRATIVA ENVOLVENTE (9/10):**  
+La actividad presenta una historia clara de "construir una base lunar" que motiva desde el inicio, con roles como Comandante, Ingeniero y Explorador/Científico que simulan una misión espacial. Genera curiosidad al vincular matemáticas, ciencia y trabajo en equipo. Sin embargo, podría mejorar al incluir un contexto más específico (ej.: una crisis en la Luna) para aumentar la inmersión y la expectativa.  
+
+**CONSTRUCCIÓN PROGRESIVA (9/10):**  
+La actividad tiene una estructura clara con preparación previa (roles, adaptaciones) y un clímax en la presentación del informe técnico. Los estudiantes participan activamente en la construcción del diseño, con anticipación en cálculos y descubrimiento en la resolución de problemas. Sin embargo, se podría añadir una fase de "revisión colaborativa" para que los estudiantes reflexionen sobre el proceso antes de finalizar.  
+
+**FLEXIBILIDAD ESTRUCTURADA (9/10):**  
+La estructura permite autonomía (ej.: desafíos adaptados para Altas Capacidades) y respeta ritmos de aprendizaje (apoyos para TEA y TDAH). Los estudiantes toman decisiones dentro del marco, pero se podría mejorar al incluir más opciones de enfoque (ej.: permitir que los Exploradores propongan materiales alternativos).  
+
+**INTEGRACIÓN CURRICULAR NATURAL (8/10):**  
+Se trabajan matemáticas (cálculos), ciencia (evaluación de materiales) y habilidades sociales (colaboración). Sin embargo, la conexión entre las disciplinas podría ser más explícita. Por ejemplo, integrar un componente de geografía (ubicación de la base lunar) o historia (contexto de la exploración espacial) para hacer las conexiones más orgánicas.  
+
+**ROLES ESPECÍFICOS Y NECESARIOS (10/10):**  
+Cada estudiante tiene una función clara (Comandante, Ingeniero, Explorador) con interdependencia real (ej.: el Comandante coordina, el Ingeniero calcula, el Explorador evalúa). Todos están activos en todas las fases, y las adaptaciones (ej.: pausas para TEA) garantizan inclusión.  
+
+**PUNTUACIÓN FINAL: 8.5/10**  
+La actividad es excelente, pero para acercarse aún más a los estándares k_, se sugiere:  
+1. **Refinar la narrativa** con un contexto más específico (ej.: "salvar una colonia en la Luna").  
+2. **Aumentar la integración curricular** al incluir elementos interdisciplinares (geografía, historia).  
+3. **Reforzar la reflexión final** con una fase de revisión colaborativa del proceso.  
+
+**ENTREGA FINAL VALIDADA:**  
+La actividad está bien estructurada, con roles claros, adaptaciones personalizadas y un enfoque en la colaboración. Para optimizarla, se recomienda enriquecer la narrativa y las conexiones curriculares, manteniendo su enfoque en la autonomía y la integración natural de competencias.
+
+
+
+================================================================================
+METADATOS DEL SISTEMA FEW-SHOT:
+{
+  "total_estudiantes": 8,
+  "flujo_pedagogico": [
+    "inspiracion",
+    "pedagogia",
+    "arquitectura",
+    "diferenciacion",
+    "validacion"
+  ],
+  "ejemplos_k_usados": [
+    "k_celula",
+    "k_sonnet_supermercado",
+    "k_feria_acertijos",
+    "k_piratas"
+  ],
+  "modelos_usados": {
+    "inspirador": "qwen3:latest",
+    "pedagogo": "qwen3:latest",
+    "arquitecto": "qwen2:latest",
+    "diferenciador": "mistral:latest",
+    "validador": "qwen3:latest"
+  }
+}

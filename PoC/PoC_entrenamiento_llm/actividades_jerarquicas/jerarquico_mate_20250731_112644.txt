@@ -1,0 +1,143 @@
+ACTIVIDAD EDUCATIVA JERÁRQUICA
+==================================================
+
+ID: jerarquico_mate_20250731_112644
+Título: Actividad de mate - fracciones
+Materia: mate
+Tema: fracciones
+Tipo: colaborativa_jerarquica
+Timestamp: 2025-07-31T11:26:44.844926
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Adaptaciones: inclusiva, diferenciada
+
+CONTENIDO DE LA ACTIVIDAD:
+==================================================
+<think>
+Okay, I need to create a comprehensive educational activity that's ready to implement, aligned with DUA principles, and includes clear teacher guidance. Let me start by breaking down the user's requirements. The activity should integrate all elements, be practical, focus on learning objectives, include adaptations, and have clear implementation, follow-up, and evaluation guidelines.
+
+First, I'll outline the main components of the activity. The example given uses fractions with a market context, which is good. I need to ensure that each part of the activity addresses different learning needs. For example, tactile materials for students with sensory needs, visual aids for those with learning difficulties, and digital tools for high achievers. 
+
+Next, I should check if all DUA principles are covered. Multiple means of representation, action, and engagement. The current plan includes various materials and formats, but maybe I can add more specific strategies. For instance, braille or audio for visually impaired students, or more options for expression like oral presentations with support.
+
+I also need to make sure the teacher guidance is clear. The user mentioned including orientations for implementation, follow-up, and evaluation. I should detail each step, assign roles to students, and outline how to monitor progress. Maybe include a checklist for the teacher to ensure all elements are covered.
+
+The evaluation part should be formative, focusing on participation, creativity, and reflection. Adding self-assessment tools could help students take ownership of their learning. Also, considering the physical environment, like adjustable lighting and acoustics, is important for sensory needs.
+
+Wait, the user wants the final answer to be the complete content, not a summary. So I need to structure everything in a way that's easy to follow, with sections for objectives, materials, activities, roles, timeline, and evaluation. Including contingency plans for unexpected issues will make it more robust.
+
+Let me make sure each part is addressed: clear objectives, practical activities, teacher guidance, adaptations, and evaluation. Also, ensuring that the plan is feasible with available resources and can be adjusted as needed. I should also validate that all student profiles are considered and that the activity is inclusive.
+
+Okay, putting it all together now. Start with the activity title, then objectives, materials, detailed steps, roles, timeline, evaluation, and contingencies. Make sure each section is clear and actionable for the teacher.
+</think>
+
+**Actividad Educativa: "Mercado de Fracciones"**  
+**Objetivo:** Comprender y aplicar fracciones en contextos reales mediante un modelo de mercado, fomentando la colaboración, la creatividad y el pensamiento crítico.  
+
+---
+
+### **1. Materiales y Recursos**  
+- **Físicos:**  
+  - Tazas de fracciones (1/2, 1/4, 1/8), cartulina, marcadores, papeles de trabajo, stands de madera.  
+  - Herramientas para dibujo (lápices, bolígrafos, tabletas digitales).  
+- **Digitales:**  
+  - Apps: Canva (diseño de stands), Stop Motion Studio (animación de comercio), GeoGebra (repaso de conceptos).  
+- **Adaptaciones:**  
+  - Guías multilingües, herramientas de traducción en tiempo real, teclados táctiles, auriculares para reducir ruido.  
+
+---
+
+### **2. Actividades Detalladas**  
+#### **Fase 1: Introducción (15 min)**  
+- **1.1 Demostración de fracciones:**  
+  - El docente muestra tazas de fracciones y pide a los estudiantes que identifiquen las partes (ej.: "¿Cuántas tazas de 1/4 hacen 1/2?").  
+- **1.2 Pregunta guía:**  
+  - "¿Cómo se repartirían 3 tamales entre 4 personas?"  
+  - Los estudiantes trabajan en parejas para resolverlo usando tazas y cartulina.  
+
+#### **Fase 2: Trabajo en Grupo (30 min)**  
+- **2.1 Diseño del mercado:**  
+  - Los estudiantes forman grupos de 4 y crean un "mercado" con stands de madera.  
+  - Cada grupo elige un producto (ej.: tamales, frutas) y calcula precios usando fracciones (ej.: "1/2 kg de frutas cuesta $2").  
+- **2.2 Resolución de problemas:**  
+  - Cada grupo resuelve 3 problemas de fracciones usando contextos reales (ej.: "¿Cuánto queda de un pastel si se comieron 1/3?").  
+  - Los estudiantes usan apps como GeoGebra para verificar cálculos.  
+- **2.3 Presentación de resultados:**  
+  - Cada grupo usa una app (ej.: Canva) para diseñar un stand y mostrar su solución mediante una animación.  
+
+#### **Fase 3: Presentación y Reflexión (20 min)**  
+- **3.1 Exposición oral:**  
+  - Los grupos explican su modelo de mercado y cómo usaron fracciones.  
+- **3.2 Debate final:**  
+  - "¿Por qué es útil entender fracciones en la vida real?"  
+  - Los estudiantes responden usando diarios matemáticos o apps de audiovisual.  
+
+---
+
+### **3. Roles y Tareas**  
+- **Roles definidos:**  
+  - **Líder de grupo:** Coordina el trabajo.  
+  - **Gestor de materiales:** Revisa el uso de recursos.  
+  - **Presentador:** Explica el modelo de mercado.  
+  - **Secretario digital:** Documenta soluciones en apps.  
+- **Dependencias:**  
+  - Tarea 1.1 → 1.2 → 2.1 → 2.2 → 2.3 → 3.1 → 3.2.  
+
+---
+
+### **4. Cronograma y Seguimiento**  
+- **Tiempo total:** 65 min.  
+- **Pausas:** 2 min cada 15 min (para descanso y ajustes).  
+- **Seguimiento:**  
+  - **1.2:** Feedback colectivo para resolver dudas.  
+  - **2.1:** Revisión parcial del diseño de stands.  
+  - **2.2:** Autoevaluación en diarios matemáticos.  
+  - **3.1:** Retroalimentación docente en presentaciones.  
+
+---
+
+### **5. Evaluación Formativa**  
+- **Criterios:**  
+  - Participación activa, precisión en cálculos, creatividad en el diseño del mercado, y reflexión en diarios.  
+- **Herramientas:**  
+  - Escalas visuales (ej.: 1-5) para autoevaluación.  
+  - Preguntas guiadas: "¿Qué me ayudó a entender las fracciones?"  
+- **Retroalimentación:**  
+  - Feedback individualizado en grupos pequeños.  
+
+---
+
+### **6. Adaptaciones y Contingencias**  
+- **Tiempo:**  
+  - Pausas obligatorias si se detecta fatiga.  
+- **Recursos:**  
+  - Alternativas como apps de GeoGebra o materiales culturales (ej.: tamales).  
+- **Diversidad:**  
+  - Apoyo sensorial (auriculares, teclados táctiles).  
+  - Guías multilingües y traducción en tiempo real.  
+- **Contingencias:**  
+  - Repaso de conceptos básicos si se identifica dificultad.  
+  - Rotación de roles si un estudiante no puede cumplir su tarea.  
+
+---
+
+### **7. Factibilidad y Equidad**  
+- **Recursos:** Asegurar acceso a tablets, pizarras digitales, y materiales culturales.  
+- **Participación:** Rotación de roles, participación en parejas, y uso de herramientas inclusivas.  
+- **Equidad:**  
+  - Diseño de stands ajustables para estudiantes con movilidad reducida.  
+  - Contenido adaptado a intereses (ej.: tamales vs. pizza).  
+
+---
+
+**Nota:** Esta actividad garantiza una implementación fluida, con ajustes proactivos y recursos inclusivos para todos los perfiles de estudiantes, asegurando que cada uno pueda participar, expresarse y reflexionar sobre el aprendizaje de fracciones.
+
+==================================================
+METADATOS:
+{
+  "sistema": "jerarquico",
+  "niveles": [
+    "coordinacion",
+    "direccion",
+    "especialistas"
+  ]
+}

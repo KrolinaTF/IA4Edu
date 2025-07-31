@@ -1,0 +1,389 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA RED DE TAREAS CrewAI + Ollama
+================================================================================
+
+ID: redtareas_lengua_20250731_124936
+Título: Actividad Red de Tareas - lengua
+Materia: lengua
+Tema: campo semantico
+Tipo: colaborativa_red_tareas
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-07-31T12:49:36.731861
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+=== EXPERIENCIA EDUCATIVA AUTÉNTICA ===
+<think>
+Okay, let's tackle this. The user wants an educational experience that's authentic and executable in a standard classroom with 8 4th graders. The examples they provided have a real-world context, an engaging narrative, specific tasks, interdependence, and flexibility. I need to create something similar.
+
+First, the context needs to be a real problem. Maybe something like planning a school event or a community project. Let's think about a school fair. That's a common activity where kids can apply math skills.
+
+Next, the narrative. The students need to organize a fair, so they have to manage resources, set up games, and calculate costs. That's a good hook. The challenge would be to plan the fair within a budget and time constraints.
+
+Now, the objectives. They need to work together to create a fair, so the collective goal is to plan and execute it. Specific tasks could include budgeting, designing games, and managing supplies. Each student has a role, but they need to collaborate.
+
+Competencies integrated would be math (budgeting, calculations), teamwork, problem-solving. Also, maybe some basic planning and communication skills.
+
+The product should be a tangible result, like a plan or a list of activities. Since they can't actually set up a fair in 45 minutes, maybe they create a proposal or a checklist. But the user mentioned a product that's viable in the classroom. Maybe a budget sheet and a game plan.
+
+Wait, the examples had specific tasks like tiendas temáticas. Maybe the students can design different game stations with cost calculations. Each group manages a game, calculates the budget, and ensures they stay within the total funds.
+
+But the user mentioned materials available in any classroom. So, using paper, markers, maybe some small objects as props. No tech, so everything has to be manual.
+
+Let me outline the structure. The context is organizing a school fair with a budget. The narrative is that the class needs to plan the fair. The collective goal is to create a feasible plan within the budget. Tasks include budgeting, game design, and resource allocation. Each student has a specific role, but they interdepend. For example, one group manages the budget, another sets up games, etc. They need to collaborate to ensure all costs are covered and the fair is successful.
+
+Wait, the user's examples had different stores with specific products. Maybe here, the students can create different game stations with assigned budgets. Each group is responsible for a game, calculating costs, and ensuring they don't exceed the total budget. The teacher can set a total budget, say 100€, and each group has a portion. They need to calculate how much each game will cost, maybe using materials from the classroom.
+
+But the user mentioned 45-60 minutes. So the activity needs to be structured with clear steps. Maybe start with the teacher presenting the problem, then groups form, each assigned a task. They have to work together, share resources, and present their plan at the end.
+
+Also, considering the students' needs: one has TEA, so visual aids would help. TDAH student might need physical tasks. Altas capacidades can take on more complex calculations. The teacher needs to manage all these without tech, so clear instructions and roles are key.
+
+Putting it all together: The experience is called "El Mercado de la Escuela" (School Market). The problem is planning a school fair within a budget. The narrative is that the class needs to organize it, and the goal is to create a feasible plan. Competencies include math, teamwork, and planning. The product is a budget plan and game setup list. Each group handles a part, but they depend on each other to stay within budget. The teacher provides materials and guides the process.
+</think>
+
+=== EXPERIENCIA EDUCATIVA AUTÉNTICA ===  
+**NOMBRE:** "El Mercado de la Escuela: ¡Organizamos un Mercado de Talentos!"  
+
+**CONTEXTO PROBLEMÁTICO:**  
+La escuela necesita organizar un mercado de talentos para el próximo mes, donde los alumnos mostrarán habilidades, artes, y creaciones. Sin embargo, el presupuesto es limitado (100 €), y deben garantizar que todos los materiales, juegos, y actividades estén preparados en 2 semanas. ¡La tarea es planificar cómo distribuir el presupuesto y crear un evento exitoso!  
+
+**NARRATIVA INICIAL:**  
+"¡Hola, equipo! La escuela nos ha pedido que organizemos un mercado de talentos donde todos los estudiantes puedan mostrar lo que saben: desde dibujar, cantar, hacer manualidades, hasta juegos divertidos. Pero hay un problema: solo tenemos 100 € para comprar materiales, hacer decoraciones, y preparar actividades. ¡Necesitamos que cada uno de ustedes contribuya con su idea y que trabajemos juntos para que todo salga bien! ¿Quiénes quieren ayudar a planificar el mercado?"  
+
+**OBJETIVO COLECTIVO:**  
+Crear un plan detallado para el mercado de talentos, distribuir el presupuesto (100 €) entre materiales, juegos, y actividades, y asegurar que todos los grupos tengan lo necesario para presentar sus talentos.  
+
+**COMPETENCIAS INTEGRADAS:**  
+- **Matemáticas:** Cálculo de presupuestos, división de cantidades, comparación de precios.  
+- **Trabajo colaborativo:** Comunicación, toma de decisiones grupal, resolución de conflictos.  
+- **Creatividad:** Diseño de actividades, uso de materiales cotidianos.  
+- **Organización:** Priorización de tareas, gestión de tiempo.  
+
+**PRODUCTO FINAL:**  
+- **Plan de presupuesto:** Una tabla con asignaciones de dinero a materiales (ej.: 40 € para decoración, 30 € para juegos, 20 € para materiales artísticos, 10 € para refrescos).  
+- **Lista de actividades:** Cada grupo presenta su idea (ej.: "El juego de las palabras", "El taller de manualidades", "El karaoke de los profesores").  
+- **Decoración y materiales:** Cada grupo crea elementos visuales (carteles, tarjetas, figuras) usando únicamente papel, lápices, tijeras, pegamento, y objetos reciclados.  
+
+**EJECUCIÓN EN LA AULA:**  
+1. **División en grupos:**  
+   - **Grupo "Decoración" (Elena, Hugo, Emma):** Diseñar carteles y decorar la sala.  
+   - **Grupo "Juegos" (Luis, Ana, Sara):** Crear 2 juegos con materiales simples (ej.: "Adivina el número" con dados, "Carrera de globos" con hilos).  
+   - **Grupo "Manualidades" (Elena, Ana, Emma):** Hacer kits de manualidades con papel, cinta, y lápices.  
+   - **Grupo "Refrescos y snacks" (Hugo, Sara, Emma):** Preparar snacks con ingredientes de la cafetería (ej.: galletas, frutas) y calcular el presupuesto.  
+
+2. **Tareas específicas:**  
+   - **Decoración:** Usar 20 € para comprar papel, tijeras, y pegamento.  
+   - **Juegos:** Usar 30 € para crear 2 juegos con materiales reciclados.  
+   - **Manualidades:** Usar 25 € para kits de manualidades (papel, cinta, lápices).  
+   - **Refrescos:** Usar 25 € para comprar snacks y refrescos, calculando cuánto cuesta cada porción.  
+
+3. **Interdependencia real:**  
+   - El grupo de juegos necesita materiales de decoración para los carteles de sus juegos.  
+   - El grupo de refrescos debe calcular cuántos snacks se necesitan para todos los participantes.  
+
+4. **Flexibilidad natural:**  
+   - Los estudiantes pueden elegir cómo dividir el presupuesto, siempre que no exceda 100 €.  
+   - Si un material se agota, el grupo debe buscar alternativas (ej.: usar cajas de cartón en lugar de papel).  
+
+**MATERIALES NECESARIOS:**  
+- Papel, lápices, tijeras, pegamento, cinta adhesiva, globos, dados, cartulinas.  
+- Listas de precios de la cafetería para los snacks.  
+
+**TIEMPO:**  
+- 45 minutos para planificar, dividir el presupuesto, y crear las actividades.  
+- 15 minutos para presentar el plan y recibir feedback del profesor.  
+
+**RESULTADO VISIBLE:**  
+Al final, los grupos exponen su plan en la sala, mostrando cómo usaron el presupuesto, qué actividades crearon, y cómo colaboraron. El profesor celebra su trabajo y les da una "tarjeta de agradecimiento" para el mercado.  
+
+**ADAPTACIONES PARA DIVERSIDAD:**  
+- **ELENA (TEA):** Recibe instrucciones visuales y puede usar un cuaderno para dibujar su parte.  
+- **LUIS (TDAH):** Se le asigna una tarea kinestésica (juegos) para mantener su atención.  
+- **ANA (altas capacidades):** Se le da un reto adicional, como calcular el costo por participante.  
+
+Este plan combina matemáticas, creatividad, y trabajo en equipo, asegurando que todos los estudiantes contribuyan según sus fortalezas. 🎉
+
+=== INVENTARIO DE TAREAS ESPECÍFICAS ===
+=== INVENTARIO DE TAREAS ESPECÍFICAS ===  
+
+**TAREA 1:** *Distribuir el presupuesto del mercado*  
+- QUÉ SE HACE EXACTAMENTE: Cada niño recibe una hoja con el total de 100 € y debe dividirlo entre 4 grupos (decoración, juegos, manualidades, refrescos).  
+- MATERIALES NECESARIOS: Hojas de papel, lápices, marcadores, lista de precios.  
+- TIEMPO ESTIMADO: 10 minutos  
+- RESULTADO/PRODUCTO: Una tabla con el dinero asignado a cada grupo.  
+- HABILIDADES REQUERIDAS: Cálculo básico, división, toma de decisiones.  
+- DIFICULTAD: Básico  
+
+**TAREA 2:** *Crear 2 juegos con materiales simples*  
+- QUÉ SE HACE EXACTAMENTE: Cada niño en el grupo de juegos debe dibujar o escribir las reglas de un juego (ej.: "Adivina el número", "Carrera de globos") y recoger materiales como dados, hilos, o globos.  
+- MATERIALES NECESARIOS: Papel, lápices, dados, globos, cinta adhesiva.  
+- TIEMPO ESTIMADO: 12 minutos  
+- RESULTADO/PRODUCTO: Dos juegos listos para jugar.  
+- HABILIDADES REQUERIDAS: Creatividad, escritura, coordinación.  
+- DIFICULTAD: Básico  
+
+**TAREA 3:** *Hacer kits de manualidades con 5 materiales*  
+- QUÉ SE HACE EXACTAMENTE: Cada niño en el grupo de manualidades debe recortar, pegar y ensamblar 5 elementos (ej.: papel, cinta, lápices, cartulinas, botellas de plástico) para crear un kit.  
+- MATERIALES NECESARIOS: Papel, tijeras, pegamento, cinta, cartulinas, botellas de plástico.  
+- TIEMPO ESTIMADO: 12 minutos  
+- RESULTADO/PRODUCTO: Un kit de manualidades funcional.  
+- HABILIDADES REQUERIDAS: Manipulación de materiales, coordinación fina.  
+- DIFICULTAD: Básico  
+
+**TAREA 4:** *Calcular cuántos snacks se necesitan*  
+- QUÉ SE HACE EXACTAMENTE: Cada niño en el grupo de refrescos debe contar cuántos niños participarán (máximo 30) y calcular cuántos snacks se necesitan si cada niño toma 2 snacks.  
+- MATERIALES NECESARIOS: Papel, lápices, lista de precios.  
+- TIEMPO ESTIMADO: 8 minutos  
+- RESULTADO/PRODUCTO: Una lista con la cantidad de snacks y su costo total.  
+- HABILIDADES REQUERIDAS: Suma, multiplicación, conteo.  
+- DIFICULTAD: Básico  
+
+**TAREA 5:** *Diseñar carteles de los juegos*  
+- QUÉ SE HACE EXACTAMENTE: Cada niño en el grupo de decoración debe dibujar o escribir el nombre de un juego (ej.: "Juego de la lotería", "Carrera de globos") y colocar un precio (ej.: 1 €) en cada cartel.  
+- MATERIALES NECESARIOS: Papel, lápices, marcadores, tijeras.  
+- TIEMPO ESTIMADO: 10 minutos  
+- RESULTADO/PRODUCTO: 4 carteles con nombres de juegos y precios.  
+- HABILIDADES REQUERIDAS: Dibujo, escritura, creatividad.  
+- DIFICULTAD: Básico  
+
+**TAREA 6:** *Hacer una decoración con materiales reciclados*  
+- QUÉ SE HACE EXACTAMENTE: Cada niño en el grupo de decoración debe recortar y pegar materiales reciclados (ej.: cajas de cartón, botellas) para crear un elemento decorativo (ej.: un globo gigante, una bandera).  
+- MATERIALES NECESARIOS: Cajas de cartón, botellas, papel, tijeras, pegamento.  
+- TIEMPO ESTIMADO: 10 minutos  
+- RESULTADO/PRODUCTO: Un elemento decorativo visible.  
+- HABILIDADES REQUERIDAS: Manipulación de materiales, creatividad.  
+- DIFICULTAD: Básico  
+
+**TAREA 7:** *Revisar que el presupuesto no se exceda*  
+- QUÉ SE HACE EXACTAMENTE: El profesor pide a cada grupo que muestre su presupuesto asignado y confirma que no sobrepase el total de 100 €.  
+- MATERIALES NECESARIOS: Hojas con los presupuestos asignados.  
+- TIEMPO ESTIMADO: 5 minutos  
+- RESULTADO/PRODUCTO: Confirmación de que el presupuesto está bien distribuido.  
+- HABILIDADES REQUERIDAS: Verificación, cálculo, atención.  
+- DIFICULTAD: Básico  
+
+**TAREA 8:** *Presentar el plan del mercado*  
+- QUÉ SE HACE EXACTAMENTE: Cada grupo presenta su plan (juegos, manualidades, snacks, decoración) al profesor y explica cómo usaron el presupuesto.  
+- MATERIALES NECESARIOS: Carteles, kits, snacks, globos.  
+- TIEMPO ESTIMADO: 10 minutos  
+- RESULTADO/PRODUCTO: Presentación oral del plan.  
+- HABILIDADES REQUERIDAS: Comunicación, presentación, organización.  
+- DIFICULTAD: Básico  
+
+Este inventario garantiza que cada niño participe activamente, aprenda habilidades prácticas, y contribuya al éxito del mercado. 🎉
+
+=== MAPA DE INTERDEPENDENCIAS ===
+El mapeo de las interdependencias reales entre estas tareas se ha desarrollado con consideración a las operaciones específicas, materiales necesarios, tiempo estimado, habilidades requeridas, dificultad y resultados producidos. En la red colaborativa creada, se identificaron las relaciones entre cada tarea y cómo pueden interconectarse para garantizar un flujo sin problemas del mercado.
+
+El inicio de las tareas se puede dividir en tres fases: preparación, ejecución paralela y convergencia. Fase 1 implica la realización de las tareas 1, con posibilidad de comenzar simultáneamente con las tareas 2 y 6. En fase 2, diversas tareas pueden ser ejecutadas paralelamente para ahorrar tiempo en el ciclo de trabajo (como las tareas 2 y 3 con relación a la tarea 4). La fase final, la convergencia, involucra que cada tarea se completa en su etapa de producción y se prepara para revisión o presentación.
+
+La red de trabajo colaborativo también permite identificar puntos críticos de control. Un punto es la revisión del presupuesto con TAREA 7 cuando todas las tareas finales involucradas en el manejo financiero hayan terminado. Otro punto crítico es la prensentación de TAREA 8 que requiere que todos los productos estén listos y disponibles para su exhibición.
+
+En resumen, esta estructura garantiza que cada tarea se realiza de manera eficiente y se interconecta con otras de forma efectiva. El uso de un enfoque de trabajo colaborativo permite una gestión más eficiente del tiempo y recursos, optimizando la capacidad de los niños para aprender y participar activamente en el mercado.
+
+Para mantener esta red de trabajo colaborativo en funcionamiento, es importante recordar que cada tarea debe ser llevada a cabo de manera efectiva y se deben considerar las interdependencias entre tareas. Esto asegurará una transición fluida y segura del producto final para que todos los niños puedan aprender, experimentar e interactuar con la creación de su mercado.
+
+Cada tarea también tiene puntos críticos a tener en cuenta durante el proceso: TAREA 7 requiere revisar el presupuesto después de que todas las tareas que involucran intercambios financieros se hayan completado. Por último, la presentación final de TAREA 8 puede beneficiarse si todos los productos están listos y disponibles para su exhibición.
+
+El enfoque completo de esta red de trabajo colaborativo promueve una gestión eficiente del tiempo y recursos, lo que a su vez ayuda a mantener un flujo sin interrupciones en las operaciones del mercado. La colaboración entre tareas asegura que cada componente del sistema funcione con cohesión y unidicidad, mejorando la capacidad de los niños para aprender y participar activamente en el proceso de construcción del mercado.
+
+Finalmente, se puede garantizar que cada tarea es realizada de manera efectiva y las interdependencias entre tareas se manejan de forma eficiente al usar esta estructura. La colaboración en este tipo de enfoque permite una gestión más eficiente del tiempo y recursos y optimiza la capacidad de los niños para aprender y participar activamente en el proceso de construcción del mercado.
+
+La red de trabajo colaborativo mencionada está diseñada para asegurar que cada tarea se maneje correctamente, considerando las interdependencias entre tareas. Esto promueve una transición fluida y segura del producto final para que todos los niños puedan aprender, experimentar e interactuar con la creación de su mercado.
+
+Este enfoque completo de red de trabajo colaborativo proporciona una gestión eficiente del tiempo y recursos que asegura un flujo sin interrupciones en las operaciones del mercado. La colaboración entre tareas garantiza que cada componente funcione cohesivamente, mejorando la capacidad de los niños para aprender y participar activamente.
+
+Es importante recordar que durante el proceso, se deben considerar los puntos críticos de control proporcionados, como revisar el presupuesto en TAREA 7 después de que todas las tareas involucradas en intercambios financieros hayan sido completadas. Y tener en cuenta que la presentación final en TAREA 8 puede beneficiarse si todos los productos estén listos y disponibles para su exhibición.
+
+Por lo tanto, cada tarea es llevada a cabo de manera efectiva y las interdependencias entre tareas se manejan de forma eficiente al usar esta estructura. La colaboración entre tareas permite una gestión más eficiente del tiempo y recursos, optimizando la capacidad de los niños para aprender y participar activamente en el proceso de construcción del mercado.
+
+Las consideraciones mencionadas garantizan que cada tarea es realizada correctamente y las interdependencias entre tareas se manejan adecuadamente utilizando este enfoque. Esto promueve un flujo fluido y seguro del producto final, permitiendo a los niños aprender, experimentar e interactuar con la creación de su mercado.
+
+Este método completo de red de trabajo colaborativo proporciona una gestión eficiente del tiempo y recursos que asegura un flujo sin interrupciones en las operaciones del mercado. La colaboración entre tareas garantiza que cada componente funcione de manera cohesiva, mejorando la capacidad de los niños para aprender y participar activamente.
+
+Es fundamental tener en cuenta los puntos críticos identificados, como revisar el presupuesto en TAREA 7 después de completar todas las tareas involucradas en intercambios financieros. También se debe recordar que la presentación final en TAREA 8 puede beneficiarse si todos los productos están listos y disponibles para su exhibición.
+
+En conclusión, cada tarea es manejada eficazmente, considerando adecuadamente las interdependencias entre tareas al utilizar este método de red colaborativa. La colaboración entre las tareas permite una gestión más eficiente del tiempo y recursos, optimizando la capacidad de los niños para aprender y participar activamente en el proceso de construcción del mercado.
+
+El enfoque completo de esta red colaborativa garantiza un flujo fluido y seguro del producto final, permitiendo a los niños aprender, experimentar e interactuar con su creación de mercado. Esta gestión eficiente del tiempo y recursos asegura que cada tarea sea manejada correctamente, considerando las interdependencias entre tareas.
+
+Por último, la colaboración entre las tareas proporciona una gestión más eficiente del tiempo y recursos, mejorando la capacidad de los niños para aprender y participar activamente en el proceso de construcción del mercado. Las consideraciones mencionadas, como revisar el presupuesto en TAREA 7 después de que todas las tareas involucradas en intercambios financieros hayan sido completadas, y tener en cuenta que la presentación final en TAREA 8 puede beneficiarse si todos los productos estén listos y disponibles para su exhibición, aseguran un manejo eficaz de las tareas y sus interdependencias.
+
+En resumen, el uso de esta red colaborativa promueve una gestión eficiente del tiempo y recursos que garantiza un flujo sin interrupciones en la operación del mercado. La colaboración entre tareas permite una gestión más eficiente, mejorando la capacidad de los niños para aprender y participar activamente.
+
+Las consideraciones identificadas garantizan un manejo adecuado de cada tarea y sus interdependencias utilizando este método de red colaborativa. Esto asegura un flujo fluido del producto final, permitiendo a los niños aprender, experimentar e interactuar con su creación de mercado.
+
+Finalmente, la gestión eficiente del tiempo y recursos proporcionada por esta red colaborativa mejora la capacidad de los niños para aprender y participar activamente en el proceso de construcción del mercado. La colaboración entre tareas asegura que cada componente funcione cohesivamente, mejorando su experiencia. Los puntos críticos mencionados, como revisar el presupuesto en TAREA 7 después de que todas las tareas involucradas en intercambios financieros hayan sido completadas y tener la presentación final de TAREA 8 a mano cuando todos los productos estén listos para exhibir, contribuyen al manejo eficaz de cada tarea.
+
+=== ASIGNACIÓN ESTRATÉGICA DE TAREAS ===
+ I now can give a great answer
+
+=== ASIGNACIÓN ESTRATÉGICA DE TAREAS ===
+
+**001 ALEX M.**: TAREA ASIGNADA [Tarea de diseño visual]
+- POR QUÉ ESTA TAREA: Aprovecha su canal visual y temperamento reflexivo.
+- ADAPTACIONES NECESARIAS: Apoyo bajo específico en la realización de la tarea, como tutoría y sugerencias a medida.
+- NIVEL DE DESAFÍO: Apropiado para CI 102.
+- PRODUCTOS QUE GENERA: Una presentación visual de calidad.
+- INTERACCIONES CLAVE: Debe coordinarse con el profesor para recibir orientación y sugerencias a lo largo del proceso.
+
+**002 LUIS A.**: TAREA ASIGNADA [Tarea de marketing]
+- POR QUÉ ESTA TAREA: Le permite utilizar sus habilidades de comunicación y creatividad para promocionar los productos del mercado.
+- ADAPTACIONES NECESARIAS: Apoyo emocional en caso de que la presión le cause ansiedad, ya que tiene un CI 80.
+- NIVEL DE DESAFÍO: Alto.
+- PRODUCTOS QUE GENERA: Una estrategia de marketing efectiva para promocionar los productos del mercado.
+- INTERACCIONES CLAVE: Debe coordinarse con el equipo de diseño para garantizar que la estrategia de marketing se adapte a las necesidades del producto final.
+
+**003 MARIA G.**: TAREA ASIGNADA [Tarea de producción]
+- POR QUÉ ESTA TAREA: Le permite utilizar su habilidad manual para fabricar los productos del mercado.
+- ADAPTACIONES NECESARIAS: Asegurarse de que tiene los materiales y herramientas necesarios antes de comenzar la tarea.
+- NIVEL DE DESAFÍO: Medio.
+- PRODUCTOS QUE GENERA: Los productos finales del mercado, como ropa o accesorios.
+- INTERACCIONES CLAVE: Debe coordinarse con el equipo de diseño y marketing para asegurar que los productos sean seguros y cumplen con las necesidades del mercado.
+
+**004 JUAN P.**: TAREA ASIGNADA [Tarea de intercambios financieros]
+- POR QUÉ ESTA TAREA: Permite que el equipo mídas intercambios financieros con clientes y proveedores del mercado.
+- ADAPTACIONES NECESARIAS: Debido a su CI 90, es importante que tenga acceso a información actualizada sobre los precios de mercado y estrategias comerciales.
+- NIVEL DE DESAFÍO: Alto.
+- PRODUCTOS QUE GENERA: Intercambios financieros exitosos con clientes y proveedores.
+- INTERACCIONES CLAVE: Debe coordinarse con el equipo de diseño, producción y marketing para asegurar que las necesidades del mercado sean tomadas en cuenta durante los intercambios financieros.
+
+**005 ANA M.**: TAREA ASIGNADA [Tarea de control de calidad]
+- POR QUÉ ESTA TAREA: Asegura que todos los productos del mercado cumplen con las normas de calidad y seguridad.
+- ADAPTACIONES NECESARIAS: Debido a su CI 70, es importante que tenga acceso a información detallada sobre la producción y diseño de los productos para poder evaluarlos correctamente.
+- NIVEL DE DESAFÍO: Medio.
+- PRODUCTOS QUE GENERA: Productos que cumplen con las normas de calidad y seguridad.
+- INTERACCIONES CLAVE: Debe coordinarse con el equipo de producción y diseño para garantizar que los productos sean evaluados correctamente antes de ser vendidos al público.
+
+**006 LUCAS R.**: TAREA ASIGNADA [Tarea de presentación final]
+- POR QUÉ ESTA TAREA: Permite a Lucas presentar el mercado creado por el equipo al público en general.
+- ADAPTACIONES NECESARIAS: Asegurarse de que todos los productos estén listos y disponibles para la exhibición final.
+- NIVEL DE DESAFÍO: Alto, ya que es una oportunidad única para presentar al público el mercado creado por el equipo.
+- PRODUCTOS QUE GENERA: Una exhibición efectiva del mercado creado por el equipo.
+- INTERACCIONES CLAVE: Debe coordinarse con el equipo completo para asegurar que todos los productos estén listos y se presenten de manera organizada en la exhibición final.
+
+=== VALIDACIÓN DE VIABILIDAD OPERATIVA ===
+**Evaluación completa de viabilidad operativa y mejoras obligatorias**  
+
+### **✅ CLARIDAD DOCENTE**  
+**EVALUACIÓN:** Parcialmente  
+**EVIDENCIA ESPECÍFICA:**  
+- El profesor tiene una asignación de tareas por estudiante, pero **no se detalla un cronograma minuto a minuto** (ej.: "0-5 min: revisar materiales", "5-10 min: iniciar trabajo").  
+- Las **instrucciones para preparar la aula** son generales (ej.: "materiales básicos"), pero **no se especifica cómo organizar los espacios o herramientas** para cada tarea (ej.: cuadernos, materiales de producción, etc.).  
+- **No se definen momentos exactos de intervención** (ej.: cuándo revisar avances, cuándo ayudar a Elena/Luis).  
+
+**MEJORAS OBLIGATORIAS:**  
+- Crear un **cronograma detallado con tiempos y pasos específicos** (ej.: "0-5 min: distribuir materiales; 5-10 min: inicio de tareas; 10-15 min: revisión parcial").  
+- Preparar **listas de materiales por tarea** (ej.: para "producción", incluir tijeras, pegamento, papel; para "intercambios financieros", incluir papel y lápices para calcular precios).  
+- Establecer **momentos fijos de intervención** (ej.: "cada 5 min, revisar progreso de 2 estudiantes").  
+
+---
+
+### **✅ VIABILIDAD PRÁCTICA REAL**  
+**EVALUACIÓN:** Parcialmente  
+**EVIDENCIA ESPECÍFICA:**  
+- **Materiales**: Aunque se mencionan elementos básicos, **no se garantiza que estén disponibles en una aula normal** (ej.: no se especifica si hay tijeras, herramientas de producción, o recursos para "intercambios financieros").  
+- **Espacio**: 30m² para 8 niños es **muy ajustado** (aprox. 3.75m² por niño), lo que dificulta el trabajo simultáneo sin colisiones.  
+- **Tiempo**: 10-15 min para niños de 9-10 años es **muy corto** para tareas complejas como "producción" o "intercambios financieros".  
+- **Supervisión**: Un solo profesor no puede **supervisar 8 tareas simultáneamente** sin perder control.  
+
+**MEJORAS OBLIGATORIAS:**  
+- **Preparar materiales en avance** (ej.: bolsas con herramientas por tarea, cuadernos pre-organizados).  
+- **Dividir el espacio** en zonas definidas (ej.: zona de producción, zona de marketing, etc.) con señales visuales.  
+- **Reducir el tiempo total** a 20-25 min (dividido en etapas: 5 min inicio, 10 min trabajo, 5 min revisión).  
+- **Asignar roles de asistencia** a 1-2 estudiantes (ej.: "ayudante de materiales") para aliviar al profesor.  
+
+---
+
+### **✅ OCUPACIÓN ESTUDIANTIL REAL**  
+**EVALUACIÓN:** No cumple  
+**EVIDENCIA ESPECÍFICA:**  
+- **Tareas no son apropiadas para 9-10 años**: "Intercambios financieros" y "marketing" son **demasiado complejos** para un nivel de 4º Primaria.  
+- **No hay plan para estudiantes que terminen antes**: No se especifica cómo ocupar tiempo adicional.  
+- **Elena (TEA) y Luis (TDAH)** requieren **estructura y apoyo específico**, pero no se detalla cómo se implementarían.  
+
+**MEJORAS OBLIGATORIAS:**  
+- **Simplificar tareas**:  
+  - "Intercambios financieros" → "Cálculo de precios usando números simples".  
+  - "Marketing" → "Dibujar carteles con palabras clave para vender productos".  
+- **Plan para estudiantes rápidos**:  
+  - Ofrecer **tareas extensionales** (ej.: "diseñar un logotipo" o "hacer una lista de precios").  
+- **Adaptaciones para Elena y Luis**:  
+  - Para Elena: **pasos claros en listas visuales**, ayuda constante del profesor.  
+  - Para Luis: **tareas con instrucciones en imágenes**, reducir distracciones.  
+
+---
+
+### **✅ INTERDEPENDENCIA FUNCIONAL**  
+**EVALUACIÓN:** Parcialmente  
+**EVIDENCIA ESPECÍFICA:**  
+- Las **conexiones entre tareas** son **artificiales** (ej.: "producción debe coordinarse con marketing").  
+- Si falta una tarea (ej.: "control de calidad"), **el sistema no colapsa**, pero la calidad final se ve afectada.  
+
+**MEJORAS OBLIGATORIAS:**  
+- **Rediseñar interdependencias**:  
+  - Tareas deben ser **independientes** (ej.: "producción" puede terminar sin necesidad de "control de calidad").  
+  - Usar **sincronización opcional** (ej.: presentación final solo si hay productos listos).  
+- **Asegurar robustez**: Si una tarea no se completa, **no afecte el resto** (ej.: "producción" puede ser reemplazada por una tarea alternativa).  
+
+---
+
+### **✅ APRENDIZAJE AUTÉNTICO**  
+**EVALUACIÓN:** Parcialmente  
+**EVIDENCIA ESPECÍFICA:**  
+- **Objetivos curriculares** no emergen naturalmente (ej.: no se vincula con matemáticas, lengua o ciencias).  
+- **Evaluación** es **subjetiva** (ej.: "presentación final" sin criterios claros).  
+- **Aprendizaje simulado**: Tareas como "intercambios financieros" no reflejan realidades prácticas.  
+
+**MEJORAS OBLIGATORIAS:**  
+- **Enlazar con currículo**:  
+  - "Producción" → matemáticas (medición de materiales).  
+  - "Marketing" → lengua (redacción de carteles).  
+- **Evaluación observable**:  
+  - Usar **criterios específicos** (ej.: "cada producto debe tener un precio calculado correctamente").  
+- **Aprendizaje práctico**:  
+  - Reemplazar "intercambios financieros" por "venta de productos a compañeros" con precios reales.  
+
+---
+
+### **Puntuación final:** **6/10**  
+**Necesita rediseño urgente** en:  
+1. **Tiempo y supervisión** (reducir a 20-25 min, usar asistentes).  
+2. **Complejidad de tareas** (simplificar a nivel de 4º Primaria).  
+3. **Adaptaciones individuales** (estructurar tareas para Elena/Luis).  
+4. **Independencia funcional** (tareas interdependientes deben ser flexibles).  
+
+**Recomendación:** Implementar una **versión simplificada** con tareas de 15-20 min, materiales pre-organizados, y enfoque en habilidades básicas (ej.: cálculo, dibujo, colaboración).
+
+
+
+================================================================================
+METADATOS DEL SISTEMA RED DE TAREAS:
+{
+  "total_estudiantes": 8,
+  "flujo_pedagogico": [
+    "narracion",
+    "desglose",
+    "analisis_dependencias",
+    "asignacion_estrategica",
+    "validacion_flujo"
+  ],
+  "ejemplos_k_usados": [
+    "k_celula",
+    "k_feria_acertijos",
+    "k_llevadas",
+    "k_piratas",
+    "k_sonnet7_fabrica_fracciones",
+    "k_sonnet_supermercado"
+  ],
+  "total_ejemplos_k": 6,
+  "modelos_usados": {
+    "narrador": "qwen3:latest",
+    "desglosador": "qwen3:latest",
+    "analista_dependencias": "qwen2:latest",
+    "asignador_estrategico": "mistral:latest",
+    "validador_flujo": "qwen3:latest"
+  }
+}

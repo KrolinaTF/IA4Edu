@@ -1,0 +1,315 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA OPTIMIZADO CrewAI + Ollama
+================================================================================
+
+ID: flujo_pedagogico_ciencias_20250731_004348
+Título: Actividad Colaborativa - ciencias
+Materia: ciencias
+Tema: celula
+Tipo: colaborativa_flujo_pedagogico
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-07-31T00:43:48.357141
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+=== DISEÑO DE AMBIENTE DE APRENDIZAJE ===
+ACTIVIDAD: La Tienda Mágica de las Células
+OBJETIVO_PRINCIPAL: Los estudiantes aprenderán y entenderán los diferentes componentes y funciones de una célula a través de la creación e interacción en un ambiente colaborativo y dinámico.
+DURACIÓN: 1.5 horas
+
+NARRATIVA:
+La Tienda Mágica de las Células es un simulador donde cada estudiante se transformará en un experto en células, con una especialidad única que complementa a la del resto de los miembros del equipo. Se les dará una breve explicación y demostración por parte de su profesor o ayudante (la persona encargada del laboratorio) sobre las características y funciones generales de una célula.
+
+Cada estudiante se encargará de su propia especialidad, representando distintas partes de la célula como el nucleo, citoplasma, ribosomas, mitocôndrias, etc. Se les proporcionarán guías interactivas en forma de folletos y videos cortos para aprender sus tareas y roles.
+
+Las diferentes áreas del supermercado estarán representando distintas partes de la célula. Los estudiantes serán desafíados a recorrer el "supermercado" coleccionando los productos correspondientes, que son minúsculas figuritas o tarjetas con características y funciones de las células.
+
+ROLES_NECESARIOS:
+1. Cajeros de Componentes (Alex M., Luis T., Emma K., Hugo P.) - Representarán diferentes componentes celulares y serán los encargados de informar al equipo sobre sus funciones e interacciones.
+2. Cliente Ejemplo (María L., Ana V., Sara M., Elena R.) - Estos estudiantes tendrán un papel de cliente que deberá identificar y recoger correctamente las partes del cuerpo celular correspondientes a su deseo, demostrando así la funcionalidad de cada parte en el contexto de una célula.
+3. Supervisor (Profesor o ayudante) - Guía a los niños en su aprendizaje y supervisa que los roles estén cumpliéndose correctamente.
+
+La actividad debe permitir que todos trabajen simultáneamente con roles complementarios, promoviendo la interacción entre ellos y un aprendizaje colaborativo. La Tienda Mágica de las Células se convertirá en un entorno donde cada miembro del equipo puede participar activamente según sus estilos preferidos de aprendizaje: visual, auditivo y kinestésico.
+
+Durante la actividad, los estudiantes trabajarán para entender cómo las diferentes partes de una célula trabajan juntas para mantener el funcionamiento adecuado del organismo. Los roles serán rotatorios cada cierto tiempo para mantener a todos activos y participando. 
+
+Este enfoque interdisciplinario y dinámico permitirá un mejor entendimiento y retención de la información sobre células, adaptándose a las diferentes necesidades y estilos de aprendizaje de los estudiantes del 4º grado de Primaria mencionados anteriormente.
+
+Esta actividad combina elementos de simulación y juego, facilitando una enseñanza lúdica que favorece el aprendizaje efectivo en un ambiente inclusivo para todos los miembros del grupo.
+
+=== DISEÑO DE ACTIVIDAD ESTRUCTURADA ===
+**=== CONTEXTO PEDAGÓGICO ===**  
+- **Competencias curriculares específicas**:  
+  - Comprensión de las estructuras y funciones de las células (ciencias naturales).  
+  - Desarrollo de habilidades colaborativas y de resolución de problemas.  
+  - Interpretación de información visual y textual (lectura de guías y videos).  
+  - Integración de conocimientos científicos con el lenguaje cotidiano.  
+- **Nivel de complejidad matemática/lingüística**:  
+  - Matemática: Identificación de patrones y relaciones entre componentes celulares (ej. interacción entre mitocondrias y ribosomas).  
+  - Lingüística: Uso de vocabulario técnico básico (núcleo, membrana plasmática, etc.) y expresión oral para explicar roles.  
+- **Materiales necesarios exactos**:  
+  - Figuritas o tarjetas con ilustraciones de componentes celulares (núcleo, mitocondrias, ribosomas, etc.).  
+  - Guías interactivas en folletos con descripciones de roles.  
+  - Videos cortos explicativos de funciones celulares.  
+  - Carteles con el nombre de cada zona de la "tienda" (ej. "Zona del Núcleo", "Zona de las Mitocondrias").  
+  - Monedas de plastilina o fichas simbólicas para representar "dinero" (para el rol de Cajero).  
+  - Checklist para los Clientes Ejemplo.  
+  - Tiza, pizarra o tablero para registrar observaciones del Supervisor.  
+
+**=== ESTRUCTURA DE ROLES ===**  
+1. **Cajeros de Componentes** (Alex M., Luis T., Emma K., Hugo P.):  
+   - **Función exacta**: Representar componentes celulares, responder preguntas y facilitar productos.  
+   - **Responsabilidades específicas**: Mostrar figuritas, explicar funciones, controlar el flujo de interacciones.  
+   - **Competencias que desarrolla**: Comunicación oral, conocimiento científico, resolución de conflictos.  
+   - **Interacciones con otros roles**: Colaborar con Clientes Ejemplo, reportar errores al Supervisor.  
+   - **Preparación que necesita**: Revisión de guías, memorización de funciones, práctica de explicaciones.  
+   - **Entrega final/reporte**: Registro de interacciones en un cuaderno del Supervisor.  
+
+2. **Cliente Ejemplo** (María L., Ana V., Sara M., Elena R.):  
+   - **Función exacta**: Recoger productos según un deseo preestablecido (ej. "Quiero una célula con energía").  
+   - **Responsabilidades específicas**: Identificar componentes necesarios, negociar con Cajeros, presentar su "compra".  
+   - **Competencias que desarrolla**: Pensamiento crítico, uso de lenguaje matemático para describir relaciones.  
+   - **Interacciones con otros roles**: Consultar Cajeros, validar respuestas con el Supervisor.  
+   - **Preparación que necesita**: Lectura del checklist, planificación de la "compra".  
+   - **Entrega final/reporte**: Presentación de su selección y explicación de su función.  
+
+3. **Supervisor** (Profesor o ayudante):  
+   - **Función exacta**: Guiar el proceso, verificar comprensión y resolver dudas.  
+   - **Responsabilidades específicas**: Monitorear roles, intervenir en errores, facilitar recursos.  
+   - **Competencias que desarrolla**: Evaluación formativa, gestión de dinámicas grupales.  
+   - **Interacciones con otros roles**: Corregir malentendidos, motivar participación.  
+   - **Preparación que necesita**: Diseño de guías, listas de verificación, plan de actividades.  
+   - **Entrega final/reporte**: Registro de observaciones y retroalimentación para el grupo.  
+
+**=== FUNCIONAMIENTO OPERATIVO ===**  
+- **Preparación inicial (10-15 min)**:  
+  - Organizar el espacio en zonas con carteles de componentes celulares.  
+  - Distribuir materiales a cada rol: Cajeros reciben figuritas y guías; Clientes reciben checklist; Supervisor tiene tiza y cuaderno.  
+  - Explicar reglas del juego: "Cada cliente debe recoger 3 productos, los cajeros no pueden dar más de lo solicitado".  
+- **Desarrollo principal (1 hora)**:  
+  - Los Clientes Ejemplo eligen un deseo (ej. "Célula con movimiento") y buscan componentes en las zonas.  
+  - Cajeros explican funciones y entregan figuritas, pidiendo "dinero" simbólico.  
+  - El Supervisor observa, interviene si hay errores y anota avances.  
+  - Cambios de rol cada 20 minutos para garantizar participación equitativa.  
+- **Cierre y verificación (15 min)**:  
+  - Cada Cliente Ejemplo presenta su selección y explica su función.  
+  - Cajeros resumen lo aprendido en un "paseo por la tienda".  
+  - Supervisor evalúa participación y corrige conceptos erróneos.  
+- **Criterio de finalización**: Todos los roles completaron sus tareas, se presentó al menos un ejemplo de interacción entre componentes, y se registraron observaciones del Supervisor.  
+- **Control de calidad**: Verificación de que cada rol cumplió sus responsabilidades y que los materiales se devolvieron al espacio.  
+
+**=== MATERIALES ESPECÍFICOS ===**  
+- **Lista exhaustiva de materiales**:  
+  - 4 figuritas por componente celular (núcleo, mitocondrias, ribosomas, cloroplastos, citoplasma, membrana plasmática).  
+  - 4 guías interactivas por estudiante (con descripciones y dibujos).  
+  - 4 videos cortos (1 minuto) sobre cada componente.  
+  - 4 carteles con nombres de zonas.  
+  - 20 monedas de plastilina (para "dinero").  
+  - 4 checklist para Clientes Ejemplo (con 3 deseo predefinidos).  
+  - 1 cuaderno de registro para Supervisor.  
+- **Organización del espacio**:  
+  - Zonas con carteles en 4 esquinas de la sala.  
+  - Mesa central con materiales comunes (videos, guías, tiza).  
+- **Recursos por rol**:  
+  - **Cajeros**: Figuritas, guía, cartón con el nombre del componente.  
+  - **Clientes**: Checklist, lápiz, espacio para presentar resultados.  
+  - **Supervisor**: Cuaderno, lápiz, lista de verificación.  
+
+**=== DETALLES ADICIONALES ===**  
+- **Rotación de roles**: Cada 20 minutos, los estudiantes intercambian roles para evitar monotonía.  
+- **Inclusión**: Los Clientes Ejemplo pueden elegir desafíos según su estilo de aprendizaje (ej. un Cliente visual puede dibujar su selección).  
+- **Extensión**: Si hay tiempo, se puede incluir una "casa de la célula" con actividades adicionales (ej. dibujo de la célula completa).
+
+=== DESGLOSE EN TAREAS ESPECÍFICAS ===
+**SISTEMA DE CONTROL MATEMÁTICO Y PEDAGÓGICO COMPLETO**  
+
+---
+
+### **1. CÁLCULOS EXACTOS**  
+**A. Presupuestos y Cambios**  
+- **Presupuesto de materiales**:  
+  - Total de figuritas por componente celular: 4 por cada uno (núcleo, mitocondrias, ribosomas, cloroplastos, citoplasma, membrana plasmática) → 24 figuritas en total.  
+  - Monedas de plastilina: 20 unidades para representar "dinero" (10 para Cajeros, 10 para Clientes).  
+  - Guías interactivas: 4 por estudiante (1 por Cajero, 1 por Cliente, 2 para Supervisor).  
+  - Videos cortos: 4 en total (1 por componente celular).  
+  - Carteles: 4 para zonas de la tienda (1 por componente).  
+  - Checklist: 4 por Cliente Ejemplo (con 3 deseos predefinidos: "célula con energía", "célula con movimiento", "célula con síntesis").  
+- **Cambios y totales**:  
+  - Cajeros reciben 5 monedas de plastilina al inicio. Cada transacción requiere 1 moneda por componente adquirido (máximo 3 componentes por Cliente).  
+  - El Supervisor registra el flujo de monedas en un cuaderno: **Inventario de Dinero = 20 monedas inicial → 20 - (monedas usadas) = monedas restantes**.  
+
+**B. Ejercicios Graduados por Dificultad**  
+- **Nivel 1 (Cajeros)**: Explicar funciones básicas (ej. "El núcleo almacena información").  
+- **Nivel 2 (Clientes)**: Identificar 2 componentes para un deseo simple (ej. "Célula con energía" → mitocondrias y ribosomas).  
+- **Nivel 3 (Supervisor)**: Verificar equivalencias entre componentes (ej. "¿Cuántas mitocondrias son necesarias para generar energía?").  
+
+**C. Verificación Final Matemática**  
+- **Cajeros**: Cada uno debe entregar 3 figuritas por Cliente (máximo 3 transacciones por Cliente). Total de figuritas entregadas = 4 Clientes × 3 = 12.  
+- **Clientes**: Cada uno debe seleccionar 3 componentes. Total de componentes seleccionados = 4 × 3 = 12.  
+- **Supervisor**: Verificar que el número de figuritas entregadas coincida con el de seleccionadas (12 = 12) y que el inventario de monedas se actualice correctamente.  
+
+---
+
+### **2. DIFERENCIACIÓN CONTROLADA**  
+**A. Adaptación Automática por Niveles**  
+- **Nivel 1 (Cajeros)**: Solo responder preguntas simples (ej. "¿Qué hace el núcleo?").  
+- **Nivel 2 (Clientes)**: Usar vocabulario técnico básico (ej. "Explica cómo las mitocondrias producen energía").  
+- **Nivel 3 (Supervisor)**: Introducir desafíos complejos (ej. "¿Qué pasa si falta la membrana plasmática?").  
+
+**B. Complejidad Graduada por Capacidades**  
+- **Cajeros**:  
+  - Estudiantes con dificultad en comunicación: Usar guías interactivas con dibujos.  
+  - Estudiantes avanzados: Explicar interacciones entre componentes (ej. "¿Cómo se relacionan las mitocondrias con las ribosomas?").  
+- **Clientes**:  
+  - Estudiantes visuales: Dibujar su selección de componentes.  
+  - Estudiantes auditivos: Escuchar videos explicativos.  
+  - Estudiantes kinestésicos: Manipular figuritas para construir una célula.  
+
+**C. Materiales de Apoyo Específicos**  
+- **Visual**: Carteles con nombres de zonas, videos cortos.  
+- **Auditivo**: Guías interactivas con audio explicativo.  
+- **Kinestésico**: Figuritas, plastilina, tiza para dibujar.  
+
+**D. Recursos de Autorregulación**  
+- **Cajeros**: Tarjetas con frases de enfoque (ej. "Explica con palabras simples").  
+- **Clientes**: Checklist con pasos a seguir (ej. "1. Elige un deseo. 2. Busca componentes. 3. Presenta tu selección").  
+- **Supervisor**: Listas de verificación para observar participación y comprensión.  
+
+---
+
+### **3. GESTIÓN DOCENTE**  
+**A. Rol Específico del Profesor**  
+- **Supervisor**:  
+  - Monitorear transacciones de monedas y figuritas.  
+  - Intervenir en discusiones: "¿Por qué las mitocondrias son importantes para la energía?".  
+  - Documentar observaciones en un cuaderno (ej. "Cliente 2 necesita ayuda para identificar ribosomas").  
+
+**B. Momentos de Intervención Individual**  
+- **Cajeros**:  
+  - Estudiantes con dificultad en matemáticas: Usar monedas para contar transacciones.  
+  - Estudiantes con dificultad en comunicación: Usar guías interactivas.  
+- **Clientes**:  
+  - Estudiantes con dificultad en lectura: Usar videos como apoyo.  
+  - Estudiantes con dificultad en escritura: Dibujar su selección.  
+
+**C. Soporte para Tareas Específicas**  
+- **Cajeros**:  
+  - Guías con preguntas de opción múltiple (ej. "¿Qué hace el núcleo? A) Almacena información. B) Genera energía").  
+- **Clientes**:  
+  - Tarjetas con imágenes de componentes para asociar con nombres.  
+- **Supervisor**:  
+  - Plantilla para registrar avances de cada estudiante (ej. "Cliente 1: Identificó 2 componentes").  
+
+---
+
+### **4. BANCO DE RECURSOS**  
+**A. Zona de Autoelección**  
+- **Estudiantes visuales**: Carteles con imágenes de componentes, videos.  
+- **Estudiantes auditivos**: Guías interactivas con audio, podcasts.  
+- **Estudiantes kinestésicos**: Figuritas, plastilina, bloques para construir células.  
+
+**B. Estrategias por Estilo de Aprendizaje**  
+- **Visual**: Dibujar la célula completa.  
+- **Auditivo**: Escuchar explicaciones sobre funciones de componentes.  
+- **Kinestésico**: Manipular figuritas para crear una célula.  
+
+**C. Materiales Adicionales**  
+- **Extensión**: "Casa de la célula" con actividades (ej. dibujo de la célula completa, juego de roles).  
+- **Inclusión**: Permitir que los Clientes elijan su desafío según su estilo (ej. un Cliente visual puede dibujar su selección).  
+
+---
+
+### **5. Flujo de Ejecución**  
+**A. Preparación**  
+- Distribuir materiales: 4 figuritas por componente, 5 monedas para Cajeros, 4 guías, 4 videos, 4 carteles, 4 checklists.  
+- Explicar reglas: "Cada Cliente debe elegir 3 componentes y pagar 1 moneda por cada uno".  
+
+**B. Ejecución**  
+- **Tiempo 1 (0-10 min)**: Cajeros explican funciones.  
+- **Tiempo 2 (10-20 min)**: Clientes eligen componentes.  
+- **Tiempo 3 (20-30 min)**: Supervisión y verificación.  
+
+**C. Cierre**  
+- **Presentaciones**: Cada Cliente explica su selección (ej. "El núcleo almacena información, las mitocondrias generan energía").  
+- **Verificación**: Supervisor confirma que 12 figuritas fueron entregadas y 12 seleccionadas.  
+- **Reflexión**: "¿Qué componentes son más importantes para la célula?"  
+
+**D. Evaluación Final**  
+- **Cajeros**: 100% de transacciones correctas (monedas y figuritas).  
+- **Clientes**: 100% de selección de 3 componentes.  
+- **Supervisor**: 100% de observaciones registradas.  
+
+---  
+**Nota**: El sistema garantiza precisión matemática y diferenciación pedagógica, permitiendo adaptación a necesidades individuales y fomentando la participación activa en todas las etapas.
+
+=== ASIGNACIÓN PERSONALIZADA DE ROLES ===
+**001 ALEX M.**: Cajero Tienda 2
+- Función específica: Cobrar productos, dar cambio, atender clientes de souvenirs
+- Adaptaciones: Guía interactiva con audio explicativo y cascos disponibles para proteger sus oídos.
+- Complejidad asignada: Precios enteros simples (ejemplo: 16€ para camiseta, 7€ para llavero, etc.), operaciones básicas (suma de monedas).
+- Interacciones: Clientes individuales con necesidades visuales, supervisor para consultas y verificar ventas.
+- Ejemplo concreto: "Vendió un par de llaveros a cliente 3 y le dio cambio de €7"
+
+**002 MARÍA L.**: Cliente Tienda 2
+- Función específica: Seleccionar componentes para la célula
+- Adaptaciones: Dibujos de los componentes celulares para selección visual y guías interactivas con audio explicativo.
+- Complejidad asignada: Identificar 2 componentes necesarios para un deseo simple (ejemplo: "célula con energía" → mitocondrias y ribosomas).
+- Interacciones: Cajeros individuales, supervisor para consultas.
+- Ejemplo concreto: "Solicitó a cajero 1 mitocondrias y ribosomas."
+
+**003 ELENA R.**: Cajero Tienda 2
+- Función específica: Cobrar productos, dar cambio, atender clientes de souvenirs
+- Adaptaciones: Guía interactiva con audio explicativo, pausas permitidas y protocolo visual de interacción.
+- Complejidad asignada: Precios enteros simples (ejemplo: 16€ para camiseta, 7€ para llavero, etc.), operaciones básicas (suma de monedas).
+- Interacciones: Clientes individuales con necesidades auditivas y visuales, supervisor para consultas.
+- Ejemplo concreto: "Vendió un par de gorras a cliente 5 y le dio cambio de €13"
+
+**004 LUIS T.**: Cajero Tienda 2
+- Función específica: Cobrar productos, dar cambio, atender clientes de souvenirs
+- Adaptaciones: Guía interactiva con audio explicativo, monedas de plastilina para contar transacciones.
+- Complejidad asignada: Precios enteros simples (ejemplo: 16€ para camiseta, 7€ para llavero, etc.), operaciones básicas (suma de monedas).
+- Interacciones: Clientes individuales con necesidades impulsivas, supervisor para consultas.
+- Ejemplo concreto: "Vendió una taza a cliente 6 y le dio cambio de €8"
+
+**005 ANA V.**: Cliente Tienda 2
+- Función específica: Seleccionar componentes para la célula
+- Adaptaciones: Dibujos de los componentes celulares para selección visual, guías interactivas con audio explicativo.
+- Complejidad asignada: Identificar 3 componentes necesarios para un deseo complejo (ejemplo: "célula completa" → todos los componentes).
+- Interacciones: Cajeros individuales, supervisor para consultas.
+- Ejemplo concreto: "Solicitó a cajero 4 golgi, lisosomas y mitocondrias."
+
+**006 SARA G.**: Cliente Tienda 2
+- Función específica: Seleccionar componentes para la célula
+- Adaptaciones: Dibujos de los componentes celulares para selección visual, guías interactivas con audio explicativo.
+- Complejidad asignada: Identificar 2 componentes necesarios para un deseo simple (ejemplo: "célula con energía" → mitocondrias y ribosomas).
+- Interacciones: Cajeros individuales, supervisor para consultas.
+- Ejemplo concreto: "Solicitó a cajero 1 mitocondrias y lisosomas."
+
+**007 JUAN P.**: Cliente Tienda 2
+- Función específica: Seleccionar componentes para la célula
+- Adaptaciones: Dibujos de los componentes celulares para selección visual, guías interactivas con audio explicativo.
+- Complejidad asignada: Identificar 2 componentes necesarios para un deseo simple (ejemplo: "célula con energía" → mitocondrias y ribosomas).
+- Interacciones: Cajeros individuales, supervisor para consultas.
+- Ejemplo concreto: "Solicitó a cajero 2 mitocondrias y golgi."
+
+
+
+================================================================================
+METADATOS DEL SISTEMA OPTIMIZADO:
+{
+  "total_estudiantes": 8,
+  "flujo_pedagogico": [
+    "ambiente",
+    "diseno",
+    "desglose",
+    "asignacion"
+  ],
+  "modelos_usados": {
+    "ambiente": "qwen2:latest",
+    "disenador": "qwen3:latest",
+    "desglosador": "qwen3:latest",
+    "asignador": "mistral:latest"
+  }
+}
