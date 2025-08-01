@@ -1,0 +1,23 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA FEW-SHOT CrewAI + Ollama
+================================================================================
+
+ID: error_fewshot_ciencias_20250801_194936
+Título: Actividad Error - ciencias
+Materia: ciencias
+Tema: cuerpo humano
+Tipo: error_fewshot
+Estudiantes objetivo: 
+Timestamp: 2025-08-01T19:49:36.815475
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+Error generando actividad few-shot: name 'crew' is not defined
+
+================================================================================
+METADATOS DEL SISTEMA FEW-SHOT:
+{
+  "error": "name 'crew' is not defined"
+}

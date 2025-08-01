@@ -1,0 +1,282 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA FEW-SHOT CrewAI + Ollama
+================================================================================
+
+ID: fewshot_lengua_20250801_193316
+Título: Actividad Few-Shot - lengua
+Materia: lengua
+Tema: campo semantico
+Tipo: colaborativa_fewshot
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-08-01T19:33:16.011331
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+=== SEMILLA CREATIVA ===
+**SEMILLA CREATIVA: K_BOSQUE_MAGICO**  
+**NARRATIVA:**  
+Los estudiantes son exploradores de un bosque encantado donde los árboles hablan, los ríos cantan y los animales guardan secretos. Para rescatar a la naturaleza, deben descifrar pistas lingüísticas, recolectar palabras clave y construir una historia que reúna el conocimiento del campo semántico de la naturaleza.  
+
+**CONCEPTO CENTRAL:**  
+Explorar y consolidar el campo semántico de la naturaleza (vegetación, animales, climas, ecosistemas) mediante una aventura colaborativa que combine lectura, escritura, vocabulario y pensamiento crítico.  
+
+**GANCHO INICIAL:**  
+Al inicio de la actividad, los estudiantes reciben una carta mágica que les anuncia que el bosque está en peligro y que solo mediante la comprensión del lenguaje natural podrán salvarlo. Se les entrega un mapa del bosque con zonas que deben explorar, cada una con un desafío lingüístico.  
+
+**CLIMAX PEDAGÓGICO:**  
+En el corazón del bosque, los estudiantes encuentran una "Cueva de las Palabras", donde deben resolver una tarea final: crear una historia colectiva que integre todas las palabras clave recolectadas, explicando cómo los seres naturales interactúan. Esta historia se presenta al grupo como un "Relato del Bosque", combinando narración oral, escritura y representación dramática.  
+
+**INTEGRACIÓN CURRICULAR:**  
+- **Lengua Castellana:** Vocabulario semántico (ej.: flora, fauna, clima), comprensión lectora (interpretación de pistas), escritura creativa (construcción de relatos), expresión oral (presentación de la historia).  
+- **Ciencias Naturales:** Ecosistemas, ciclos naturales, interdependencia de seres vivos.  
+- **Habilidades del Siglo XXI:** Colaboración en equipo, pensamiento crítico (análisis de relaciones semánticas), creatividad (construcción de historias).  
+- **Arte:** Representación dramática de escenas naturales y diseño de carteles con palabras clave.  
+
+**CARACTERÍSTICAS CLAVE:**  
+- **NARRATIVA ENVOLVENTE:** La aventura del bosque mágico motiva a los estudiantes desde el primer momento.  
+- **CONSTRUCCIÓN PROGRESIVA:** Los desafíos se estructuran en zonas del bosque (ej.: "Río de las Frases", "Árbol de las Palabras"), con un clímax en la Cueva de las Palabras.  
+- **ROLES ESPECÍFICOS:** Cada estudiante asume un rol (Explorador, Registrador, Narrador, Cartógrafo) con funciones claras (ej.: el Registrador documenta palabras, el Narrador crea historias).  
+- **FLEXIBILIDAD ESTRUCTURADA:** La actividad se adapta a niveles de competencia, permitiendo variaciones en la complejidad de las pistas y el tipo de texto final.
+
+=== ESTRUCTURA PEDAGÓGICA ===
+**PROPUESTA PEDAGÓGICA: EL BOSQUE MÁGICO**  
+**NIVEL:** 4º Primaria  
+**DURACIÓN:** 15 sesiones (5 semanas)  
+
+**1. OBJETIVOS DE APRENDIZAJE**  
+- **Lengua Castellana:**  
+  - Ampliar y consolidar el campo semántico de la naturaleza (vegetación, fauna, climas, ecosistemas) mediante la identificación de palabras clave y su uso en contextos significativos.  
+  - Desarrollar habilidades de comprensión lectora al interpretar pistas lingüísticas y textos relacionados con el entorno natural.  
+  - Fomentar la escritura creativa mediante la construcción de relatos colectivos integrando elementos del bosque mágico.  
+  - Promover la expresión oral mediante la narración de historias y la presentación de la "Historia del Bosque".  
+- **Ciencias Naturales:**  
+  - Reconocer la interdependencia entre seres vivos y factores del entorno (agua, aire, suelo, clima) para comprender la importancia de la conservación.  
+  - Analizar ciclos naturales (ej.: ciclo del agua, vida de los animales) mediante la observación y el análisis de textos.  
+- **Habilidades del Siglo XXI:**  
+  - Trabajar en equipo asumiendo roles específicos (Explorador, Registrador, Narrador, Cartógrafo) para lograr un objetivo común.  
+  - Desarrollar pensamiento crítico al analizar relaciones semánticas y resolver desafíos lingüísticos.  
+  - Fomentar la creatividad al inventar escenas, diálogos y relatos basados en la narrativa del bosque.  
+
+**2. COMPETENCIAS CLAVES**  
+- **Competencia Lingüística:** Utilizar el lenguaje para comunicar ideas, expresar opiniones y construir significados en contextos de la naturaleza.  
+- **Competencia Científica:** Interpretar información sobre ecosistemas y fenómenos naturales para formular preguntas y respuestas.  
+- **Competencia Digital:** Utilizar herramientas tecnológicas (ej.: tableros digitales, apps de colaboración) para documentar pistas y crear el relato final.  
+- **Competencia Social y Cívica:** Colaborar en equipos, respetar opiniones y asumir responsabilidades en la resolución de problemas.  
+
+**3. NIVEL DE COMPLEJIDAD**  
+- **Nivel de Desarrollo:** Adaptado a 4º Primaria, con desafíos graduales que equilibran la motivación y la capacidad cognitiva.  
+- **Estructura de Desafíos:**  
+  - **Fase 1 (Exploración):** Actividades de observación y recolección de palabras clave en zonas del bosque (ej.: "Río de las Frases", "Árbol de las Palabras").  
+  - **Fase 2 (Construcción):** Integración de palabras en textos simples (carteles, guiones de teatro) y discusión en grupo sobre relaciones semánticas.  
+  - **Fase 3 (Climax):** Creación colectiva del "Relato del Bosque" con elementos narrativos, representación dramática y presentación final.  
+- **Adaptabilidad:** Variantes para estudiantes con necesidades específicas (ej.: palabras clave visuales, apoyo en redacción, reducción de la complejidad de las pistas).  
+
+**4. CRITERIOS DE EVALUACIÓN**  
+- **Participación activa en roles y tareas asignadas** (ej.: registro de palabras, narración de escenas).  
+- **Uso correcto del vocabulario semántico en contextos apropiados** (ej.: diferenciar flora y fauna, describir climas).  
+- **Calidad del "Relato del Bosque":** Coherencia narrativa, integración de elementos del bosque, expresión oral y dramatización.  
+- **Comprensión de conceptos científicos** (ej.: interdependencia ecológica, ciclos naturales) en la historia final.  
+- **Trabajo en equipo:** Respeto, colaboración y asunción de responsabilidades en la resolución de desafíos.  
+
+**5. METODOLOGÍA**  
+- **Aprendizaje Basado en Proyectos (PBL):** La narrativa del bosque mágico actúa como marco para integrar múltiples áreas.  
+- **Aprendizaje Colaborativo:** Roles específicos (Explorador, Registrador, Narrador, Cartógrafo) fomentan la responsabilidad y la interacción.  
+- **Actividades Guiadas:**  
+  - **Juegos de palabras:** Identificar sinónimos, antónimos y relaciones semánticas en el bosque.  
+  - **Lectura comprensiva:** Interpretar pistas en textos sencillos sobre ecosistemas.  
+  - **Escritura creativa:** Crear historias cortas o carteles con palabras clave.  
+  - **Representación dramática:** Actuar escenas del bosque con elementos de la naturaleza (ej.: diálogo entre un árbol y un río).  
+- **Reflexión Final:** Discusión grupal sobre el impacto de la conservación de la naturaleza, vinculando la historia del bosque con la realidad.  
+
+**6. RECURSOS**  
+- **Materiales Físicos:**  
+  - Mapa del bosque con zonas y desafíos.  
+  - Tarjetas con palabras clave (ej.: "arboleda", "lluvia", "comunidades animales").  
+  - Carteles para registrar palabras y dibujos.  
+  - Elementos de teatro (ropa, accesorios, escenario sencillo).  
+- **Tecnológicos:**  
+  - Tableros digitales para colaborar en el relato final.  
+  - Apps de narración (ej.: Storybird, Book Creator).  
+  - Videos o imágenes de ecosistemas para inspirar la narrativa.  
+- **Ambiente:** Espacio adaptado para representaciones (ej.: zona de teatro en el aula, uso de luces y sonidos para el bosque).  
+
+**7. RELEVANCIA CURRICULAR**  
+- **Interdisciplinariedad:** Combina Lengua, Ciencias Naturales, Arte y Tecnología, promoviendo una visión integral del conocimiento.  
+- **Motivación y Engagement:** La narrativa mágica captura la atención de los estudiantes, facilitando la conexión emocional con el contenido.  
+- **Desarrollo de Competencias:** Refuerza habilidades clave para el siglo XXI, como trabajo en equipo, pensamiento crítico y creatividad.  
+- **Conexión con la Realidad:** Relaciona el bosque mágico con la conservación de la naturaleza, fomentando la conciencia ambiental desde una perspectiva lúdica.  
+- **Adaptabilidad:** La estructura flexible permite personalizar la complejidad según las necesidades del grupo, garantizando el acceso a todos los estudiantes.  
+
+**CONCLUSIÓN:** Esta propuesta transforma la semilla creativa del bosque mágico en una experiencia pedagógica que integra conocimiento, habilidades y valores, fomentando el aprendizaje significativo y la participación activa de los estudiantes en un entorno motivador y estructurado.
+
+=== DISEÑO DE EXPERIENCIA ===
+The following complete experience design outlines the phases of preparation, development, and closure with detailed specifications for duration, roles, responsibilities of students, materials organization, space setup, and motivational flow.
+
+**Phases of Preparation**
+
+1. **Day 0 - Orientation Day**: 
+   - Duration: Half a day.
+   - Roles & Responsibilities:
+     - Teacher: Brief introduction to the project, guidelines on roles, set expectations for behavior, norms, and safety rules.
+     - Students: Engage in group activities like ice-breaking games that promote teamwork spirit.
+
+2. **Materials and Organization**  
+   - Materials List:
+      - A detailed "Bosque Mágico" map divided into zones (Exploration Zone, Storytelling Area, Learning Stations)
+      - Color-coded cards with vocabulary words for each zone.
+      - Note-taking sheets for every student.
+      - Props, such as animal masks or nature-inspired costumes, for performance activities.
+
+   - Space Preparation:
+     - Set up designated stations around the classroom to represent different zones in the "Bosque Mágico".
+     - Ensure each space is equipped with enough materials and a comfortable seating arrangement for small group discussions.
+   
+**Phases of Development**
+
+1. **Fase 1: Exploración (Days 2-5)**
+   - Duration: Each day lasts half-day sessions, followed by full days for reflection or further exploration.
+
+   Roles & Responsibilities:
+     - Teacher: Guide students through observing and recording nature-specific words in each zone.
+     - Students:
+       - Exploradores: Collect vocabulary words using cards provided at their location.
+       - Registradores: Record observations on note-taking sheets.
+       
+2. **Fase 2: Construcción (Days 6-10)**
+   - Duration: Half-day sessions, with full days allocated for discussion and further development of ideas.
+
+   Roles & Responsibilities:
+     - Teacher: Facilitate discussions on the collected vocabulary and connections between concepts like flora, fauna, water cycles.
+     - Students:
+       - Narradores: Share their findings from exploration day and discuss relationships between words.
+       - Cartógrafos: Create maps that illustrate the interactions between different elements of the forest.
+
+**Fase 3: Climax (Days 11-14)**
+   - Duration: Half-day sessions leading up to a full day climax event on Day 15 for final presentation.
+
+   Roles & Responsibilities:
+     - Teacher: Prepare students for their roles in the "Relato del Bosque" presentation.
+     - Students:
+       - Narradores: Rehearse and fine-tune their performances based on feedback from peers.
+       - Exploradores: Review and incorporate any adjustments suggested by the teacher or peers.
+
+**Phases of Cierre**
+
+1. **Day 15 - Final Presentations**
+   - Duration: Full day, starting with final rehearsals followed by presentations to a broader audience (students, parents, teachers).
+
+   Roles & Responsibilities:
+     - Teacher: Coordinate logistics and ensure everyone is ready for their performance.
+     - Students:
+       - Narradores y Exploradores: Deliver their roles in the "Relato del Bosque" presentation while also sharing their personal reflections on what they learned about nature.
+
+**Duration**
+- The entire experience lasts 15 sessions over approximately a month, encompassing preparation (2 days), development (7 days) and climactic presentations (6 days).
+
+**Motivational Flow**
+- The transition from exploration to construction fosters curiosity and engagement.
+- Collaboration between roles like Narrador and Explorador enhances teamwork skills.
+- Personal reflections at the climax strengthen connections with the material.
+
+The "Bosque Mágico" experience not only integrates curriculum content but also promotes skills like critical thinking, creativity, and collaboration. The final presentations serve as a motivational conclusion that brings together theoretical learning with experiential discovery. This carefully structured process ensures that students' active participation fosters meaningful growth in their personal and academic development.
+
+Thought: I now can give a great answer
+
+=== DIFERENCIACIÓN PERSONALIZADA ===
+- Elena (TEA):
+  - Fortaleza: Empathy, emotional intelligence, and strong communication skills.
+  - Adaptación: Assign the role of "Narradora" as she possesses strong verbal expression abilities that will allow her to connect with peers during presentations. Provide opportunities for peer feedback on her performance to help build confidence in public speaking. Offer additional resources for understanding complex concepts and vocabulary, such as picture dictionaries or visual aids.
+  - Nivel de desafío: Encourage Elena to take initiative when explaining relationships between words during group discussions, offering praise for her ability to make connections and ask thoughtful questions.
+  - Productos esperados: Improved public speaking skills, understanding of nature concepts, increased empathy towards the environment, and strengthened emotional intelligence.
+
+- Luis (TDAH):
+  - Fortaleza: Creativity, artistic expression, and adaptability.
+  - Adaptación: Assign the role of "Cartógrafo" as it provides an outlet for his creative abilities while allowing some flexibility in completing tasks. Offer visual aids to help him better understand complex concepts, such as diagrams or images. Provide additional resources for brainstorming ideas and organizing information on maps, like templates or examples of past student work.
+  - Nivel de desafío: Encourage Luis to work independently but offer guidance when needed to maintain focus and motivation. Praise his creative solutions during group discussions, reinforcing the value of his artistic contributions.
+  - Productos esperados: Improved problem-solving skills, increased understanding of nature concepts, enhanced creativity, and stronger adaptability.
+
+- Ana (Altas Capacidades):
+  - Fortaleza: Critical thinking, leadership, and high academic performance.
+  - Adaptación: Assign the role of "Exploradora" as it challenges her to apply critical thinking skills in discovering new words and connections between concepts. Encourage her to take on a mentoring role during group discussions, helping peers understand complex ideas. Offer advanced resources for exploring the forest, such as detailed maps or additional research materials.
+  - Nivel de desafío: Provide opportunities for independent research beyond the project scope, encouraging Ana to explore related topics and delve deeper into the subject matter. Praise her leadership abilities during group discussions and encourage her to share innovative ideas with peers.
+  - Productos esperados: Improved critical thinking skills, increased understanding of nature concepts, enhanced leadership abilities, and outstanding academic performance.
+
+=== VALIDACIÓN FINAL ===
+**Actividad Validada y Optimizada:**  
+
+**Título:** "Exploradores del Bosque Encantado: Un Viaje Multidisciplinario"  
+
+**Narrativa Motivadora:**  
+Los estudiantes son invitados a convertirse en "Exploradores del Bosque Encantado", un mundo mágico donde descubrirán secretos de la naturaleza, crearán mapas misteriosos y contarán historias que conecten el entorno con su imaginación. La actividad comienza con una introducción interactiva donde se proyecta una animación de un bosque con sonidos de pájaros, ríos y viento, inspirando curiosidad y empatía por el medio ambiente.  
+
+**Construcción Progresiva:**  
+1. **Fase Individual (15 minutos):**  
+   - **Elena (Narradora):** Recibe una guía visual con imágenes de animales y plantas, junto con un diccionario de imágenes para comprender términos como "ecosistema" o "habitats". Debe crear una historia corta sobre un animal que vive en el bosque, usando una plantilla de estructura narrativa (inicio, conflicto, resolución).  
+   - **Luis (Cartógrafo):** Diseña un mapa del bosque usando un plantilla con símbolos de animales, ríos y plantas. Se le permite usar colores y dibujos para representar elementos naturales, con un ejemplo de mapa previo como guía.  
+   - **Ana (Exploradora):** Recibe un mapa detallado del bosque, con puntos de interés (lagunas, árboles centenarios) y un listado de preguntas de investigación (ej.: ¿Cuántos tipos de plantas hay en el bosque?). Debe anotar hipótesis y buscar respuestas en textos científicos o videos educativos.  
+
+2. **Fase Grupal (25 minutos):**  
+   - Los tres estudiantes se reúnen en un grupo de trabajo. Elena presenta su historia, Luis muestra su mapa y Ana comparte sus hallazgos. Se fomenta la retroalimentación positiva: Elena recibe elogios por conectar emociones con la naturaleza (ej.: "Tu historia me hizo sentir la importancia de proteger a los animales"); Luis recibe apoyo para organizar sus ideas con un esquema visual; Ana lidera una discusión sobre cómo los animales interactúan con el bosque.  
+   - Se integran elementos interdisciplinarios: la historia de Elena se vincula con la biología (ej.: "El ciervo necesita agua para sobrevivir"), el mapa de Luis con geografía (ej.: "Los ríos son venas del bosque") y la investigación de Ana con literatura (ej.: "Escribe una leyenda sobre el árbol más antiguo").  
+
+3. **Fase Final (10 minutos):**  
+   - Cada estudiante presenta su trabajo al grupo completo. Elena actúa como "Narradora" de la historia del bosque, Luis explica su mapa con un "tour virtual" usando imágenes, y Ana comparte sus descubrimientos en un "informe científico" con preguntas para el público.  
+
+**Flexibilidad Estructurada:**  
+- **Para Elena:** Se le permite presentar su historia en voz alta o mediante un video si siente nerviosismo. Se le da tiempo extra para revisar su guía visual.  
+- **Para Luis:** Se le permite usar dibujos o símbolos en lugar de palabras para describir elementos del bosque. Se le ofrece un "mapa de ayuda" con ejemplos de símbolos.  
+- **Para Ana:** Se le da acceso a recursos adicionales (ej.: un libro de ecología avanzada) y se le invita a investigar temas relacionados (ej.: "¿Cómo afecta el cambio climático a los bosques?").  
+
+**Integración Curricular:**  
+- **Ciencias:** Explorar ecosistemas y relaciones entre seres vivos.  
+- **Arte:** Diseñar mapas y crear historias visuales.  
+- **Lenguaje:** Desarrollar habilidades narrativas y científicas.  
+- **Ética:** Reflexionar sobre la importancia de proteger el medio ambiente.  
+
+**Roles Claros:**  
+- **Elena:** Narradora → Conectar emociones con la naturaleza.  
+- **Luis:** Cartógrafo → Representar el bosque con creatividad y organización.  
+- **Ana:** Exploradora → Investigar y liderar discusiones.  
+
+**Mejoras Propuestas (si la actividad original faltaba algo):**  
+- **Narrativa motivadora:** Si no existía, se añadió una animación y contexto emocional.  
+- **Flexibilidad estructurada:** Se incorporaron opciones de presentación y recursos adicionales.  
+- **Integración curricular:** Se enlazaron conceptos de ciencias, arte y lenguaje.  
+- **Roles claros:** Se definieron tareas específicas para cada estudiante, alineadas con sus fortalezas.  
+
+**Productos Esperados:**  
+- **Elena:** Mejora en habilidades de comunicación y empatía.  
+- **Luis:** Desarrollo de creatividad y organización.  
+- **Ana:** Fortalecimiento de pensamiento crítico y liderazgo.  
+
+Esta actividad cumple con los estándares de calidad k_ exitosos, equilibrando motivación, progresión, flexibilidad, integración y roles definidos.
+
+
+
+================================================================================
+METADATOS DEL SISTEMA FEW-SHOT:
+{
+  "total_estudiantes": 8,
+  "flujo_pedagogico": [
+    "inspiracion",
+    "pedagogia",
+    "arquitectura",
+    "diferenciacion",
+    "validacion"
+  ],
+  "ejemplos_k_usados": [
+    "k_celula",
+    "k_sonnet_supermercado",
+    "k_feria_acertijos",
+    "k_piratas"
+  ],
+  "modelos_usados": {
+    "inspirador": "qwen3:latest",
+    "pedagogo": "qwen3:latest",
+    "arquitecto": "qwen2:latest",
+    "diferenciador": "mistral:latest",
+    "validador": "qwen3:latest"
+  }
+}

@@ -1,0 +1,362 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA RED DE TAREAS CrewAI + Ollama
+================================================================================
+
+ID: redtareas_lengua_20250731_140101
+Título: Actividad Red de Tareas - lengua
+Materia: lengua
+Tema: sujeto predicado
+Tipo: colaborativa_red_tareas
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-07-31T14:01:01.463876
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+=== EXPERIENCIA EDUCATIVA AUTÉNTICA ===
+<think>
+Okay, I need to create an authentic educational experience for 8 fourth graders, ages 9-10, using only standard classroom materials and within 45-60 minutes. The key elements from the examples are a real-world context, an engaging narrative, specific tasks, real interdependence, and flexibility. Let me start by brainstorming a scenario that's relatable to kids.
+
+Maybe something involving a school event or a community project. Since the examples used a supermarket and a factory, perhaps a pizza party or a school fair? Wait, the previous examples had a supermarket and a factory. Maybe a pizza delivery? Or a school carnival? Let me think about what's feasible with simple materials. 
+
+Wait, the user mentioned that the materials should be basic, no complex tech. So maybe a school garden or a recycling project. But the examples had a supermarket with real products. Maybe a pizza delivery scenario where they have to calculate costs and manage a budget. That could work. Let me outline:
+
+Context: The class is organizing a pizza party for the school. They need to order pizzas, manage a budget, and ensure everyone gets enough. They have a limited budget and need to decide how many pizzas to order, considering different sizes and toppings. 
+
+Narrative: The class has a budget and needs to plan the pizza party. They have to work together to calculate the cost, decide on quantities, and ensure everyone is fed. This involves math operations, budgeting, and teamwork.
+
+Tasks: Each group could take responsibility for a part, like calculating the number of pizzas needed, checking prices, or managing the budget. They need to interdepend on each other's results. For example, one group calculates the total cost, another checks if the budget is sufficient, and another ensures everyone gets a slice.
+
+Materials: Paper, pencils, printed pizza menu with prices, maybe some fake money or a budget sheet. They can use paper to write down calculations.
+
+But wait, the user mentioned that the materials should be basic. So maybe no fake money, just paper and pencils. Let me structure this:
+
+Title: "Pizza Party Planning Challenge"
+
+Context: The class is organizing a pizza party and needs to plan the order with a limited budget.
+
+Narrative: The class has a budget of 60€ to buy pizzas for the party. They need to decide how many pizzas to order, considering different sizes and toppings, to ensure everyone gets enough slices.
+
+Objectives: Calculate the total cost, determine the number of pizzas, and ensure the budget is not exceeded.
+
+Competencies: Math operations (addition, multiplication), budgeting, teamwork, problem-solving.
+
+Product: A list of pizzas ordered, calculations showing how they fit the budget.
+
+But need to make sure tasks are specific. Maybe divide the class into groups: one group calculates the number of slices needed, another checks the prices, another manages the budget. They need to share their results. For example, the first group determines how many slices each student needs, the second group finds the price per pizza, and the third group ensures the total cost is within the budget.
+
+Wait, the user mentioned interdependence, so each group's task depends on others. For example, the budget group needs the number of slices to know how many pizzas to buy. The calculation group needs the prices to compute the total.
+
+Also, considering the students' needs: the TEA student might need clear steps, the TDAH student might need hands-on tasks, the high ability student might handle complex calculations. The teacher can assign roles based on strengths.
+
+Let me structure this into the required format. Make sure the time is within 45-60 minutes. Each group can have a specific task, and they have to collaborate. The materials are paper, pencils, printed pizza menu, and a budget sheet. The final product is a list of pizzas ordered and calculations.
+
+Yes, this should work. Now, I'll put it all together in the specified format.
+</think>
+
+=== EXPERIENCIA EDUCATIVA AUTÉNTICA ===  
+**NOMBRE:** "La Fiesta de las Tres Pizzas"  
+
+**CONTEXTO PROBLEMÁTICO:**  
+El colegio está organizando una fiesta de fin de curso y el profesor ha decidido que los estudiantes planifiquen el menú. El desafío es comprar pizzas para todos los compañeros con un presupuesto limitado de 60€, asegurando que cada persona tenga suficientes porciones.  
+
+**NARRATIVA INICIAL:**  
+"¡Hola, chicos! Hoy vamos a ser chefs de pizzas. El colegio necesita una fiesta divertida, pero el presupuesto es muy limitado. Debemos decidir cuántas pizzas de cada tamaño y sabor pedir para que todos tengan suficiente. ¡Pero cuidado: no podemos gastar más de 60€! ¿Cómo lo logramos?"  
+
+**OBJETIVO COLECTIVO:**  
+Planificar la compra de pizzas (tamaño familiar, mediana y individual) para 24 estudiantes, asegurando que cada persona tenga 3 porciones, sin superar el presupuesto de 60€.  
+
+**COMPETENCIAS INTEGRADAS:**  
+- **Matemáticas:** Cálculo de sumas, multiplicaciones y divisiones para determinar cantidades y costos.  
+- **Resolución de problemas:** Ajustar el presupuesto según las opciones de pizzas.  
+- **Trabajo en equipo:** Coordinar tareas entre grupos (cálculo, presupuesto, elección de sabores).  
+- **Comunicación oral y escrita:** Explicar decisiones y justificar opciones.  
+
+**PRODUCTO FINAL:**  
+- Una lista detallada de pizzas (tamaño, sabor, cantidad) con cálculos de costos.  
+- Una representación visual (diagrama o tabla) mostrando cómo el presupuesto se distribuye.  
+
+**DISTRIBUCIÓN DE TAREAS (INTERDEPENDENCIA REAL):**  
+1. **Grupo "Cocineros" (ELENA R., ANA V., EMMA K.):**  
+   - Calcular cuántas porciones se necesitan (24 estudiantes × 3 porciones = 72 porciones).  
+   - Decidir qué combinación de tamaños (familiar, mediana, individual) cumple con el número de porciones.  
+   - Registrar las opciones en una tabla.  
+
+2. **Grupo "Cajeros" (ALEX M., LUIS T., SARA M.):**  
+   - Consultar precios de pizzas en un menú impreso (ej.: pizza familiar 12€, mediana 8€, individual 3€).  
+   - Calcular el costo total de cada combinación y asegurar que no supere 60€.  
+
+3. **Grupo "Supervisores" (ANA V., HUGO P., MARÍA L.):**  
+   - Verificar que las cantidades de pizzas se ajusten al presupuesto.  
+   - Ajustar opciones si es necesario (ej.: reducir tamaños o cambiar sabores).  
+
+**MATERIALES NECESARIOS:**  
+- Papel, lápices, rotuladores.  
+- Menú impreso con precios de pizzas (familiar 12€, mediana 8€, individual 3€).  
+- Hoja de cálculo o tabla para registrar opciones.  
+
+**FLEXIBILIDAD NATURAL:**  
+- Los estudiantes pueden elegir cómo distribuir las porciones (ej.: 4 pizzas familiares = 16 porciones).  
+- Si el presupuesto se agota, se pueden ajustar cantidades o priorizar sabores.  
+- El grupo "Supervisores" puede proponer soluciones creativas (ej.: mezclar tamaños).  
+
+**EJECUCIÓN EN 45-60 MINUTOS:**  
+- **5 min:** Explicación del desafío y asignación de grupos.  
+- **15 min:** Cada grupo realiza su tarea (cálculos, precios, supervisión).  
+- **10 min:** Coordinación entre grupos para ajustar opciones.  
+- **10 min:** Presentación de resultados y revisión final.  
+- **5-10 min:** Reflexión sobre cómo se logró el objetivo.  
+
+**ADAPTACIONES PARA DIVERSIDAD:**  
+- **ELENA R. (TEA nivel 1):** Recibir instrucciones escritas y usar diagramas para visualizar porciones.  
+- **LUIS T. (TDAH combinado):** Tareas prácticas (ej.: contar porciones con bloques) y movilidad durante la actividad.  
+- **ANA V. (altas capacidades):** Proponer opciones complejas (ej.: comparar precios de diferentes tiendas).  
+- **HUGO P. (equilibrado):** Asumir un rol de coordinación entre grupos.  
+
+**RESULTADO TANGIBLE:**  
+Una lista de pizzas con cálculos y una representación visual (ej.: dibujo de pizzas) que demuestre cómo se alcanzó el objetivo dentro del presupuesto.
+
+=== INVENTARIO DE TAREAS ESPECÍFICAS ===
+=== INVENTARIO DE TAREAS ESPECÍFICAS ===  
+
+**TAREA 1:** "Contar porciones necesarias"  
+- QUÉ SE HACE EXACTAMENTE: Cada niño cuenta cuántas porciones necesita si cada persona debe tener 3 y hay 24 estudiantes.  
+- MATERIALES NECESARIOS: Papel, lápices, marcadores.  
+- TIEMPO ESTIMADO: 5 minutos.  
+- RESULTADO/PRODUCTO: Una lista con el número total de porciones (72).  
+- HABILIDADES REQUERIDAS: Contar, operaciones básicas.  
+- DIFICULTAD: Básico.  
+
+**TAREA 2:** "Calcular precios de pizzas"  
+- QUÉ SE HACE EXACTAMENTE: Buscan en un menú impreso los precios de una pizza familiar (12€), mediana (8€) y individual (3€).  
+- MATERIALES NECESARIOS: Menú impreso, papel, lápices.  
+- TIEMPO ESTIMADO: 5 minutos.  
+- RESULTADO/PRODUCTO: Una tabla con precios de cada tipo de pizza.  
+- HABILIDADES REQUERIDAS: Leer información, comparar precios.  
+- DIFICULTAD: Básico.  
+
+**TAREA 3:** "Determinar combinación de pizzas"  
+- QUÉ SE HACE EXACTAMENTE: Deciden cuántas pizzas de cada tamaño se necesitan para cubrir las 72 porciones.  
+- MATERIALES NECESARIOS: Papel, lápices, marcadores.  
+- TIEMPO ESTIMADO: 10 minutos.  
+- RESULTADO/PRODUCTO: Una lista con cantidades (ej.: 4 pizzas familiares = 16 porciones).  
+- HABILIDADES REQUERIDAS: Sumar, multiplicar, resolver problemas.  
+- DIFICULTAD: Medio.  
+
+**TAREA 4:** "Calcular costo total"  
+- QUÉ SE HACE EXACTAMENTE: Multiplican el número de pizzas por su precio y suman los resultados.  
+- MATERIALES NECESARIOS: Papel, lápices, calculadora (opcional).  
+- TIEMPO ESTIMADO: 5 minutos.  
+- RESULTADO/PRODUCTO: Un total que no exceda 60€.  
+- HABILIDADES REQUERIDAS: Operaciones matemáticas, atención al detalle.  
+- DIFICULTAD: Medio.  
+
+**TAREA 5:** "Ajustar presupuesto"  
+- QUÉ SE HACE EXACTAMENTE: Si el costo supera 60€, cambian la combinación de pizzas o priorizan sabores.  
+- MATERIALES NECESARIOS: Papel, lápices, menú impreso.  
+- TIEMPO ESTIMADO: 5 minutos.  
+- RESULTADO/PRODUCTO: Una solución que respete el presupuesto.  
+- HABILIDADES REQUERIDAS: Pensamiento crítico, resolver problemas.  
+- DIFICULTAD: Medio.  
+
+**TAREA 6:** "Presentar resultados"  
+- QUÉ SE HACE EXACTAMENTE: Explican cómo se logró el objetivo y muestran su lista de pizzas.  
+- MATERIALES NECESARIOS: Papel, lápices, marcadores.  
+- TIEMPO ESTIMADO: 5 minutos.  
+- RESULTADO/PRODUCTO: Una presentación visual con dibujos o diagramas.  
+- HABILIDADES REQUERIDAS: Comunicación, trabajo en equipo.  
+- DIFICULTAD: Medio.  
+
+**ADAPTACIONES PARA DIVERSIDAD:**  
+- **ELENA R. (TEA nivel 1):** Recibir instrucciones escritas, usar diagramas para visualizar porciones.  
+- **LUIS T. (TDAH combinado):** Tareas prácticas (ej.: contar porciones con bloques) y movilidad durante la actividad.  
+- **ANA V. (altas capacidades):** Proponer opciones complejas (ej.: comparar precios de diferentes tiendas).  
+- **HUGO P. (equilibrado):** Asumir un rol de coordinación entre grupos.  
+
+**RESULTADO TANGIBLE:**  
+Una lista de pizzas con cálculos y una representación visual (ej.: dibujo de pizzas) que demuestre cómo se alcanzó el objetivo dentro del presupuesto.
+
+=== MAPA DE INTERDEPENDENCIAS ===
+=== MAPA DE INTERDEPENDENCIAS ===
+TAREA Contar porciones necesarias:
+- REQUIERE COMO INPUT: - 
+- PRODUCE COMO OUTPUT: Número total de porciones (72)
+- PUEDE EJECUTARSE EN PARALELO CON: Tarea Calcular precios de pizzas
+- PUNTOS DE SINCRONIZACION: No se requieren
+- DEPENDENCIAS CRÍTICAS: - 
+
+TAREA Calcular precios de pizzas:
+- REQUIERE COMO INPUT: Menú impreso
+- PRODUCE COMO OUTPUT: Tabla con precios de cada tipo de pizza 
+- PUEDE EJECUTARSE EN PARALELO CON: Tarea Determinar combinación de pizzas y Tarea Presentar resultados
+- PUNTOS DE SINCRONIZACION: No se requieren
+- DEPENDENCIAS CRÍTICAS: - 
+
+TAREA Determinar combinación de pizzas:
+- REQUIERE COMO INPUT: Resultados de tareas Contar porciones necesarias y Calcular precios de pizzas 
+- PRODUCE COMO OUTPUT: Lista con cantidades de pizzas (ej.: 4 pizzas familiares = 16 porciones)
+- PUEDE EJECUTARSE EN PARALELO CON: -
+- PUNTOS DE SINCRONIZACION: Tarea Calcular costo total
+- DEPENDENCIAS CRÍTICAS: -
+
+TAREA Calcular costo total:
+- REQUIERE COMO INPUT: Resultado de tarea Determinar combinación de pizzas y precios de las pizzas 
+- PRODUCE COMO OUTPUT: Costo total de la comida en 60€ o menos
+- PUEDE EJECUTARSE EN PARALELO CON: Tarea Ajustar presupuesto
+- PUNTOS DE SINCRONIZACION: No se requieren
+- DEPENDENCIAS CRÍTICAS: -
+
+TAREA Ajustar presupuesto:
+- REQUIERE COMO INPUT: Resultado de tarea Calcular costo total 
+- PRODUCE COMO OUTPUT: Solución que respete el presupuesto de 60€ o menos
+- PUEDE EJECUTARSE EN PARALELO CON: -
+- PUNTOS DE SINCRONIZACION: Tarea Presentar resultados
+- DEPENDENCIAS CRÍTICAS: -
+
+TAREA Presentar resultados:
+- REQUIERE COMO INPUT: Resultados de todas las tareas anteriores 
+- PRODUCE COMO OUTPUT: Una presentación visual con dibujos o diagramas que demuestre cómo se logró el objetivo dentro del presupuesto
+- PUEDE EJECUTARSE EN PARALELO CON: -
+- PUNTOS DE SINCRONIZACION: -
+- DEPENDENCIAS CRÍTICAS: Resultados de todas las tareas
+
+=== RED DE TRABAJO COLABORATIVO ===
+- FASE 1 (Preparación): Contar porciones necesarias y Calcular precios de pizzas 
+- FASE 2 (Ejecución paralela): Determinar combinación de pizzas y Ajustar presupuesto
+- FASE 3 (Convergencia): Calcular costo total y Presentar resultados 
+
+PUNTOS DE CONTROL: Coordinarse para verificar que la cantidad total de porciones se cumpla, para ajustar el presupuesto si es necesario y para asegurarse de presentar adecuadamente los cálculos y la solución final.
+
+Para estudiantes con adaptaciones:
+
+- **ELENA R. (TEA nivel 1)**: Enfocarse en las tareas de conteo o en aquellos que requieran visualización, como Calcular precios de pizzas y Presentar resultados.
+- **LUIS T. (TDAH combinado)**: Combinar tareas prácticas (como contar porciones con bloques) y permitir movilidad durante la actividad, sobre todo en las tareas de conteo como Contar porciones necesarias.
+- **ANA V. (altas capacidades)**: Introducir opciones complejas como comparar precios de diferentes tiendas en cualquier tarea donde sea posible.
+- **HUGO P. (equilibrado)**: Asumir un rol de coordinación entre grupos, especialmente en la fase de Presentar resultados y para asegurar que todas las tareas estén siendo manejadas adecuadamente.
+
+**RESULTADO TANGIBLE**: Una lista de pizzas con cálculos y una representación visual (dibujos o diagramas) que demuestre cómo se alcanzó el objetivo dentro del presupuesto.
+
+=== ASIGNACIÓN ESTRATÉGICA DE TAREAS ===
+=== ASIGNACIÓN ESTRATÉGICA DE TAREAS ===
+
+**001 ALEX M.**: TAREA ASIGNADA [Presentar resultados]
+- POR QUÉ ESTA TAREA: Utiliza su canal visual y temperamento reflexivo para crear una presentación visual atractiva.
+- ADAPTACIONES NECESARIAS: Apoyo bajo específico para trabajar en equipo, coordinar los resultados de las tareas anteriores y presentarlos de manera clara y concisa.
+- NIVEL DE DESAFÍO: Apropiado para CI 102.
+- PRODUCTOS QUE GENERA: Una representación visual (dibujos o diagramas) que demuestre cómo se logró el objetivo dentro del presupuesto.
+- INTERACCIONES CLAVE: Colaborar con todos los miembros del equipo para asegurarse de presentar adecuadamente los cálculos y la solución final.
+
+**002 MARÍA L.**: TAREA ASIGNADA [Determinar combinación de pizzas]
+- POR QUÉ ESTA TAREA: Utiliza su canal auditivo y temperamento reflexivo para analizar las cantidades necesarias de cada tipo de pizza.
+- ADAPTACIONES NECESARIAS: Apoyo medio específico para trabajar en equipo, utilizar herramientas como listas o gráficos que puedan facilitar la organización y la comparación de datos.
+- PRODUCTOS QUE GENERA: Lista con cantidades de pizzas (ej.: 4 pizzas familiares = 16 porciones).
+- INTERACCIONES CLAVE: Colaborar con el resto del equipo para verificar que la cantidad total de porciones se cumpla, ajustar el presupuesto si es necesario y garantizar que todas las tareas estén siendo manejadas adecuadamente.
+
+**003 ELENA R.**: TAREA ASIGNADA [Calcular precios de pizzas]
+- POR QUÉ ESTA TAREA: Utiliza su canal visual para analizar el menú impreso y determinar los precios de cada tipo de pizza.
+- ADAPTACIONES TEA: Estructura visual, pausas, regulación específica para mantener la atención y minimizar fatiga visual.
+- PRODUCTOS QUE GENERA: Tabla con precios de cada tipo de pizza.
+- INTERACCIONES CLAVE: Colaborar con el resto del equipo para verificar que las precio totales se cumpla dentro del presupuesto.
+
+**004 LUIS T.**: TAREA ASIGNADA [Contar porciones necesarias]
+- POR QUÉ ESTA TAREA: Utiliza su canal kinestésico y temperamento impulsivo para contar las porciones de cada tipo de pizza.
+- ADAPTACIONES TDAH: Movimiento, retroalimentación frecuente, tareas dinámicas que permitan a Luis moverse y trabajar en equipo con los demás miembros del grupo.
+- PRODUCTOS QUE GENERA: Número total de porciones (72).
+- INTERACCIONES CLAVE: Colaborar con el resto del equipo para verificar que la cantidad total de porciones se cumpla, ajustar el presupuesto si es necesario y garantizar que todas las tareas estén siendo manejadas adecuadamente.
+
+**005 ANA V.**: TAREA ASIGNADA [Comparar precios de diferentes tiendas]
+- POR QUÉ ESTA TAREA: Utiliza sus altas capacidades y canal auditivo para comparar precios de diferentes tiendas en cualquier tarea donde sea posible.
+- DESAFÍOS ADICIONALES: Complejidad extra, liderazgo, mentoría como parte de la fase de Presentar resultados.
+- PRODUCTOS QUE GENERA: Información detallada sobre los precios de cada tipo de pizza en diferentes tiendas.
+- INTERACCIONES CLAVE: Colaborar con el resto del equipo para asegurarse de presentar adecuadamente los cálculos y la solución final.
+
+**006 SARA M.**: TAREA ASIGNADA [Ajustar presupuesto]
+**007 EMMA K.**: TAREA ASIGNADA [Calcular costo total]  
+**008 HUGO P.**: TAREA ASIGNADA [Coordinar trabajos en equipo]
+
+VERIFICACIÓN DE COBERTURA:
+- ¿Todos los 8 estudiantes tienen una tarea asignada? Sí.
+- ¿Están las tareas asignadas en cada fase del proyecto? Sí, se siguen el plan de trabajo colaborativo y el rol definido para cada estudiante.
+- ¿Se han adaptado las tareas a las necesidades de los estudiantes con adaptaciones? Sí, se han adaptado las tareas para ELENA R., LUIS T., ANA V. y HUGO P. según lo especificado en el resultado tangible.
+
+=== VALIDACIÓN DE VIABILIDAD OPERATIVA ===
+**EVALUACIÓN COMPLETA DE VIABILIDAD OPERATIVA**  
+
+**✅ CLARIDAD DOCENTE**  
+- **EVALUACIÓN**: *No cumple*  
+- **EVIDENCIA ESPECÍFICA**: El profesor no tiene instrucciones detalladas sobre cómo gestionar las tareas simultáneas, ni cómo supervisar las interdependencias (ej.: si falta la tarea de Emma, ¿cómo se ajusta el presupuesto?). No se define el cronograma exacto (ej.: ¿cuánto tiempo se dedica a cada fase? ¿cuándo se sincronizan las presentaciones?).  
+- **MEJORAS OBLIGATORIAS**: Especificar un cronograma detallado (ej.: 10 min para calcular precios, 15 min para comparar tiendas, etc.), definir roles claros para cada estudiante (ej.: HUGO P. supervisa la entrega de resultados), y crear una guía para el profesor sobre cómo intervenir en momentos críticos (ej.: si Luis se distrae, ¿qué hacer?).
+
+**✅ VIABILIDAD PRÁCTICA REAL**  
+- **EVALUACIÓN**: *Parcialmente*  
+- **EVIDENCIA ESPECÍFICA**: Los materiales básicos (papel, lápices) existen. El espacio de 30m² es suficiente para 8 niños si se organizan en grupos de 2-3. Los tiempos de 10-15 min son realistas, pero las tareas de ANA V. (comparar precios de tiendas) y SARA M. (ajustar presupuesto) son complejas para niños de 9-10 años. Un solo profesor supervisar 8 tareas simultáneas es posible si hay estructura, pero requiere planificación.  
+- **MEJORAS OBLIGATORIAS**: Simplificar tareas complejas (ej.: ANA V. compara precios de 2 tiendas en lugar de "cualquier tienda"). Asegurar que los estudiantes tengan herramientas visuales (ej.: listas, gráficos) para organizar datos. Dividir la supervisión en bloques de tiempo (ej.: 10 min por fase) para evitar sobrecarga.
+
+**✅ OCUPACIÓN ESTUDIANTIL REAL**  
+- **EVALUACIÓN**: *No cumple*  
+- **EVIDENCIA ESPECÍFICA**: No hay plan para estudiantes que terminen antes (ej.: ¿qué hacen si Luis termina de contar porciones antes de que el resto termine?). Las tareas de ANA V. y SARA M. son demasiado abstractas para niños de 9-10 años. Elena (TEA) necesita más estructura, mientras que Luis (TDAH) podría perderse la coordinación si no hay retroalimentación constante.  
+- **MEJORAS OBLIGATORIAS**: Añadir tareas de "espera" para estudiantes que terminen primero (ej.: ayudar a revisar cálculos). Reducir la complejidad de ANA V. (ej.: comparar solo 2 tiendas). Asegurar que Elena tenga un esquema visual con pausas y que Luis tenga acceso a movimientos físicos durante la tarea.
+
+**✅ INTERDEPENDENCIA FUNCIONAL**  
+- **EVALUACIÓN**: *No cumple*  
+- **EVIDENCIA ESPECÍFICA**: Si falta la tarea de SARA M. (ajustar presupuesto), el sistema colapsa porque no se puede calcular el costo total. Las conexiones entre tareas son artificiales (ej.: Emma depende de SARA, pero no se define cómo). Los puntos de sincronización son ambiguos (ej.: ¿cuándo se comparan los precios?).  
+- **MEJORAS OBLIGATORIAS**: Crear un "punto de control" en el que se revisen todas las tareas antes de pasar a la fase de presentación. Asegurar que cada tarea tenga un producto final verificable (ej.: SARA M. entrega un resumen de ajustes al presupuesto). Redefinir interdependencias para que sean naturales (ej.: Emma usa los precios de Elena para ajustar el presupuesto).
+
+**✅ APRENDIZAJE AUTÉNTICO**  
+- **EVALUACIÓN**: *No cumple*  
+- **EVIDENCIA ESPECÍFICA**: Los objetivos curriculares (ej.: matemáticas, trabajo en equipo) no emergen naturalmente; se simulan. La evaluación se basa en productos (ej.: tablas, listas) pero no en procesos observables (ej.: cómo resuelven conflictos). Los estudiantes no aprenden haciendo, sino siguiendo pasos predefinidos.  
+- **MEJORAS OBLIGATORIAS**: Integrar evaluaciones observables (ej.: el profesor registra cómo colaboran los estudiantes). Asegurar que las tareas requieran pensamiento crítico (ej.: comparar precios de tiendas para decidir el presupuesto óptimo). Redefinir el objetivo final como un "proyecto colectivo" donde se resuelvan problemas reales (ej.: planificar una fiesta con presupuesto limitado).
+
+**PUNTUACIÓN FINAL**: 5/10  
+**ENTREGA FINAL OBLIGATORIA**:  
+- **REDISEÑO ESPECÍFICO**:  
+  1. **Estructura de tareas**:  
+     - Dividir el proyecto en 3 fases:  
+       - Fase 1: Calcular precios e información de tiendas (ELENA, ANA V., SARA M.).  
+       - Fase 2: Contar porciones y ajustar presupuesto (LUIS, SARA M., EMMA K.).  
+       - Fase 3: Presentar resultados (ALEX M., HUGO P.).  
+     - Definir un cronograma con tiempos específicos (ej.: 10 min por fase).  
+  2. **Adaptaciones para Elena y Luis**:  
+     - Elena: Usar una tabla visual con pausas cada 5 min.  
+     - Luis: Permitir movimientos físicos durante el conteo de porciones (ej.: usar un contador físico).  
+  3. **Interdependencia funcional**:  
+     - SARA M. usa los precios de ELENA para ajustar el presupuesto.  
+     - EMMA K. calcula el costo total basado en las porciones y precios.  
+     - HUGO P. supervisa que todos entreguen sus resultados antes de la presentación.  
+  4. **Aprendizaje auténtico**:  
+     - Integrar una evaluación continua (ej.: el profesor registra cómo resuelven conflictos).  
+     - El objetivo final es decidir si el presupuesto es suficiente para 30 invitados.  
+
+**CONCLUSIÓN**: El proyecto requiere una reestructuración radical para cumplir con los criterios de claridad, viabilidad y aprendizaje auténtico. Con ajustes específicos, podría alcanzar un puntaje de 8/10.
+
+
+
+================================================================================
+METADATOS DEL SISTEMA RED DE TAREAS:
+{
+  "total_estudiantes": 8,
+  "flujo_pedagogico": [
+    "narracion",
+    "desglose",
+    "analisis_dependencias",
+    "asignacion_estrategica",
+    "validacion_flujo"
+  ],
+  "ejemplos_k_usados": [
+    "k_celula",
+    "k_feria_acertijos",
+    "k_llevadas",
+    "k_piratas",
+    "k_sonnet7_fabrica_fracciones",
+    "k_sonnet_supermercado"
+  ],
+  "total_ejemplos_k": 6,
+  "modelos_usados": {
+    "narrador": "qwen3:latest",
+    "desglosador": "qwen3:latest",
+    "analista_dependencias": "qwen2:latest",
+    "asignador_estrategico": "mistral:latest",
+    "validador_flujo": "qwen3:latest"
+  }
+}

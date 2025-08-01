@@ -1,0 +1,23 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA FEW-SHOT CrewAI + Ollama
+================================================================================
+
+ID: error_fewshot_mates_20250802_003540
+Título: Actividad Error - mates
+Materia: mates
+Tema: area y volumen
+Tipo: error_fewshot
+Estudiantes objetivo: 
+Timestamp: 2025-08-02T00:35:40.559176
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+Error generando actividad few-shot: litellm.APIConnectionError: OllamaException - litellm.Timeout: Connection timed out after 600.0 seconds.
+
+================================================================================
+METADATOS DEL SISTEMA FEW-SHOT:
+{
+  "error": "litellm.APIConnectionError: OllamaException - litellm.Timeout: Connection timed out after 600.0 seconds."
+}

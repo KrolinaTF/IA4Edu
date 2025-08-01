@@ -1,0 +1,23 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA HAMILTONIANO CUÁNTICO-AGENTES
+================================================================================
+
+ID: error_hamiltoniano_lengua_20250801_183011
+Título: Error Hamiltoniano - lengua
+Materia: lengua
+Tema: campo semántico
+Tipo: error_hamiltoniano
+Estudiantes objetivo: 
+Timestamp: 2025-08-01T18:30:11.337213
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD HAMILTONIANA:
+--------------------------------------------------
+
+Error en generación Hamiltoniana: Unable to allocate 64.0 GiB for an array with shape (4294967296,) and data type complex128
+
+================================================================================
+METADATOS HAMILTONIANOS:
+{
+  "error": "Unable to allocate 64.0 GiB for an array with shape (4294967296,) and data type complex128"
+}

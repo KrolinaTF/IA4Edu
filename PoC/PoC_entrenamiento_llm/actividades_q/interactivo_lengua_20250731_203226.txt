@@ -1,0 +1,185 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA CUÁNTICO-AGENTES
+================================================================================
+
+ID: interactivo_lengua_20250731_203226
+Título: Actividad Interactiva: Mercado de Sinónimos
+Materia: lengua
+Tema: campo semantico
+Tipo: cuantico_interactivo
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-07-31T20:32:26.133893
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD CUÁNTICA:
+--------------------------------------------------
+
+================================================================================
+ACTIVIDAD GENERADA CON HUMAN-IN-THE-LOOP PEDAGÓGICO
+================================================================================
+
+🎯 ACTIVIDAD SELECCIONADA: Mercado de Sinónimos
+📝 DESCRIPCIÓN: Los estudiantes intercambian palabras del mismo campo semántico
+👥 COLABORACIÓN: Mixta - vendedores en puestos, compradores circulando
+⚡ ENERGÍA: MEDIA - Movimiento controlado, ritmo pausado, equilibrio
+🔧 ELEMENTOS: personalizado (4 elementos)
+
+ELEMENTOS OPERATIVOS INCLUIDOS:
+  ✅ 💰 Dinero ficticio para transacciones
+  ✅ 🏷️ Etiquetas de precios y productos
+  ✅ 📋 Listas de compra personalizadas
+  ✅ 🎯 Sistema de puntos/premios
+
+================================================================================
+DISEÑO DEL AMBIENTE DE APRENDIZAJE
+================================================================================
+**CONFIGURACIÓN FÍSICA DEL AULA**  
+- **Espacio organizado**: El aula se divide en 4 puestos de venta (mesas con banderas de colores distintas) y una zona central de circulación. Cada puesto tiene una etiqueta con el nombre del campo semántico (ej. "Animales", "Colores", "Emociones"). Los puestos están alineados en forma de cuadrado, con pasillos laterales para movilidad.  
+- **Materiales**:  
+  - 💰 Dinero ficticio (billetes de 1, 5 y 10 puntos) en cajas transparentes en cada puesto.  
+  - 🏷️ Etiquetas de precios (en cinta adhesiva) con valores aleatorios (1-5 puntos) en cada palabra del campo semántico.  
+  - 📋 Listas de compra personalizadas (una por estudiante) en una caja central con colores visuales (rojo para Elena, azul para Luis).  
+  - 🎯 Sistema de puntos en una pizarra digital con un "tesoro" (un premio tangible, como un sticker o una carta de agradecimiento) como recompensa final.  
+- **Adaptaciones**:  
+  - Elena (TEA) tiene un puesto fijo con horarios de pausas marcados en un reloj visual.  
+  - Luis (TDAH) recibe un "mapa de movimiento" con rutas predefinidas para circular entre puestos.  
+
+**NARRATIVA Y CONTEXTO**  
+- **Historia**: Los estudiantes son "exploradores del Lenguaje" que buscan un "Tesoro de Sinónimos" escondido en el aula. Cada campo semántico es una "isla" con palabras como monedas que deben intercambiar para desbloquear pistas. El premio final es un "Mapa del Tesoro" que representa su comprensión del campo semántico.  
+- **Roles emergentes**:  
+  - *Vendedores*: Cada estudiante en un puesto debe explicar el significado de su palabra y negociar precios.  
+  - *Compradores*: Deben completar su lista de compra (ej. "Compra 3 palabras de 'Emociones'") y regresar al puesto de origen.  
+  - *Mentor*: Ana lidera como "Guía del Tesoro", ayudando a los demás y resolviendo dudas.  
+- **Motivación intrínseca**: La narrativa crea un desafío colectivo, mientras que los puntos y el premio ofrecen recompensas inmediatas.  
+
+**GESTIÓN DEL AMBIENTE**  
+- **Nivel de ruido/movimiento**: Se establece un ritmo pausado con sonidos de "burbujas" (clics suaves) para señalizar pausas. Los puestos tienen barreras visuales (cartulinas con dibujos) para evitar distracciones.  
+- **Estrategias para mantener ocupados**:  
+  - *Rotación de roles*: Cada 15 minutos, los estudiantes cambian de puesto (vendedor-comprador) para evitar aburrimiento.  
+  - *Tareas de seguimiento*: Los compradores reciben un "diario de viaje" para registrar sus intercambios.  
+- **Puntos de regulación**:  
+  - Elena se detiene en su puesto cada 5 minutos para una pausa con un "objeto de calma" (ej. peluche).  
+  - Luis recibe retroalimentación inmediata con un "símbolo de éxito" (estrella) cada vez que completa una transacción.  
+  - El grupo se reúne en círculo cada 20 minutos para revisar progresos y ajustar estrategias.  
+
+**Elementos adicionales**:  
+- Se usan colores y símbolos para facilitar la comprensión (ej. un cuadrado rojo para Elena, un triángulo azul para Luis).  
+- Las listas de compra incluyen palabras con imágenes para apoyar la comprensión semántica.  
+- El "tesoro" se revela al finalizar la actividad, reforzando la coherencia del aprendizaje grupal.
+
+================================================================================
+DESARROLLO COMPLETO DE LA ACTIVIDAD
+================================================================================
+**ACTIVIDAD: MERCADO DE SINÓNIMOS**  
+**NIVEL DE ENERGÍA: MEDIA**  
+
+---
+
+### **ESTRUCTURA TEMPORAL DETALLADA**  
+
+#### **PREPARACIÓN (10-15 min)**  
+- **Profesor**:  
+  1. Divide el aula en 4 puestos de venta (mesas con banderas de colores distintos: rojo, azul, verde, amarillo).  
+  2. Prepara 4 cajas transparentes con dinero ficticio (billetes de 1, 5 y 10 puntos) en cada puesto.  
+  3. Coloca etiquetas de precios (cinta adhesiva) en palabras del campo semántico (ej. "Feliz" = 3 puntos, "Triste" = 2 puntos) en cada puesto.  
+  4. Distribuye listas de compra personalizadas en una caja central (rojo para Elena, azul para Luis, verde para Ana, blanco para otros). Cada lista tiene 5 palabras clave del campo semántico (ej. "Animales", "Colores", "Emociones").  
+  5. Prepara una pizarra digital para el sistema de puntos y un "tesoro" (stickers, carta de agradecimiento).  
+  6. Coloca barreras visuales (cartulinas con dibujos) alrededor de los puestos para minimizar distracciones.  
+
+- **Instrucciones para estudiantes**:  
+  1. Explicar la narrativa: "Sois exploradores del Lenguaje que buscan un Tesoro de Sinónimos. Cada puesto es una isla con palabras como monedas. Intercambiad palabras para desbloquear pistas y encontrar el tesoro."  
+  2. Mostrar el sistema de puntos y el premio final.  
+  3. Recordar que Elena tiene horarios de pausa en su puesto, Luis debe seguir el "mapa de movimiento", y Ana debe liderar como "Guía del Tesoro".  
+
+---
+
+#### **DESARROLLO PRINCIPAL (35 min)**  
+**Fase 1: Configuración de roles (5 min)**  
+- **Vendedores**: Cada estudiante en un puesto debe colocar etiquetas de precios en palabras del campo semántico.  
+- **Compradores**: Reciben listas de compra y deben elegir un puesto de origen (ej. "Emociones" como punto de partida).  
+- **Mentor (Ana)**: Lidera como "Guía del Tesoro", supervisando el flujo y resolviendo dudas.  
+
+**Fase 2: Transacciones (25 min)**  
+- **Compradores**: Circulan entre puestos, negociando precios con vendedores. Deben completar su lista de compra (ej. "Compra 3 palabras de 'Colores'").  
+- **Vendedores**: Explican el significado de sus palabras y ajustan precios si el comprador no entiende.  
+- **Rotación de roles**: Cada 15 minutos, los estudiantes cambian de puesto (vendedor-comprador) para evitar aburrimiento.  
+- **Gestión de Elena**: Se detiene en su puesto cada 5 minutos para una pausa con un "objeto de calma" (peluche).  
+- **Gestión de Luis**: Recibe retroalimentación inmediata con un "símbolo de éxito" (estrella) cada vez que completa una transacción.  
+- **Evaluación en tiempo real**: El profesor observa el uso de estrategias de negociación y la comprensión semántica.  
+
+**Fase 3: Reunión de grupo (5 min)**  
+- Los estudiantes se reúnen en círculo para revisar progresos, ajustar estrategias y compartir descubrimientos.  
+
+---
+
+#### **CIERRE (10 min)**  
+- **Finalización**: El profesor anuncia que el "tesoro" se revela al completar todas las transacciones.  
+- **Evaluación**:  
+  - Verificación de listas de compra completas (cada estudiante debe tener 5 palabras).  
+  - Análisis de interacciones: ¿Usaron negociación? ¿Explicaron significados?  
+- **Productos finales**:  
+  - "Mapa del Tesoro" (diario de viaje) con registros de intercambios.  
+  - Premio final: Sticker o carta de agradecimiento para cada estudiante.  
+
+---
+
+### **ROLES ESPECÍFICOS**  
+- **Vendedores**:  
+  - Responsabilidad: Colocar etiquetas de precios, explicar significados, negociar.  
+  - Rotación: Cambian de puesto cada 15 min.  
+- **Compradores**:  
+  - Responsabilidad: Completar listas de compra, regresar al puesto de origen.  
+- **Mentor (Ana)**:  
+  - Responsabilidad: Supervisar flujo, resolver dudas, liderar como "Guía del Tesoro".  
+- **Supervisor (Profesor)**:  
+  - Responsabilidad: Observar, guiar, ajustar dinámicas.  
+
+---
+
+### **MATERIALES Y RECURSOS**  
+- **Básicos**:  
+  - 4 mesas con banderas (1 por puesto).  
+  - 4 cajas transparentes con dinero ficticio (10 billetes de 1, 5 y 10 puntos por puesto).  
+  - 4 cintas adhesivas con etiquetas de precios (10-15 palabras por puesto).  
+  - 1 caja central con listas de compra (1 por estudiante).  
+- **Específicos**:  
+  - 1 pizarra digital para puntos.  
+  - 1 "tesoro" (stickers, carta).  
+  - Barreras visuales (cartulinas con dibujos).  
+- **Adaptaciones por canal**:  
+  - **Visual**: Colores y símbolos (cuadrado rojo para Elena, triángulo azul para Luis).  
+  - **Auditivo**: Sonidos de "burbujas" (clics suaves) para señalizar pausas.  
+  - **Kinestésico**: "Objetos de calma" para Elena y "mapa de movimiento" para Luis.  
+
+---
+
+### **DIFERENCIACIÓN Y ADAPTACIONES**  
+- **Elena (TEA nivel 1)**:  
+  - Puesto fijo con horarios de pausa en reloj visual.  
+  - Etiquetas de precios con imágenes para apoyo.  
+- **Luis (TDAH combinado)**:  
+  - "Mapa de movimiento" con rutas predefinidas.  
+  - Retroalimentación inmediata con estrellas.  
+- **Ana (altas capacidades)**:  
+  - Desafíos adicionales: "Busca sinónimos de sinónimos" en un campo semántico.  
+- **Otros**:  
+  - Apoyos según canal: Colores para visuales, sonidos para auditivos, materiales táctiles para kinestésicos.  
+
+---
+
+**NOTA FINAL**: La narrativa del "Tesoro de Sinónimos" une motivación intrínseca y recompensas inmediatas, manteniendo la coherencia cuántica del aprendizaje colaborativo. La estructura controlada y las adaptaciones garantizan inclusión y equilibrio.
+
+
+
+================================================================================
+METADATOS CUÁNTICOS:
+{
+  "total_estudiantes": 8,
+  "sistema_cuantico": true,
+  "human_in_the_loop": true,
+  "actividad_seleccionada": "Mercado de Sinónimos",
+  "energia_seleccionada": "media",
+  "elementos_incluidos": 4,
+  "coherencia_calculada": 0.399123964995292,
+  "entrelazamiento_calculado": 0.00021754135377756055
+}

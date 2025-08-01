@@ -1,0 +1,23 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA HAMILTONIANO CUÁNTICO-AGENTES
+================================================================================
+
+ID: error_hamiltoniano_lengua_20250801_171404
+Título: Error Hamiltoniano - lengua
+Materia: lengua
+Tema: matematicas
+Tipo: error_hamiltoniano
+Estudiantes objetivo: 
+Timestamp: 2025-08-01T17:14:04.083988
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD HAMILTONIANA:
+--------------------------------------------------
+
+Error en generación Hamiltoniana: BaseModel.__init__() takes 1 positional argument but 3 were given
+
+================================================================================
+METADATOS HAMILTONIANOS:
+{
+  "error": "BaseModel.__init__() takes 1 positional argument but 3 were given"
+}
