@@ -345,15 +345,16 @@ class SistemaAgentesRedesTareas:
             contexto_ejemplos = self._generar_contexto_ejemplos_k(materia, tema)
             
             #TAREA 0: GENERADOR DE IDEAS - Crear ideas originales
+            tema_parte = f'sobre {tema}' if tema else ''
             tarea_generador_ideas = Task(
-                description=f"""Genera 5-7 ideas completamente originales y creativas para una actividad educativa en {materia} {f'sobre {tema}' if tema else ''}. No te limites a patrones previos como 'supermercados' o 'tiendas' - usa tu imaginación ilimitada para crear conceptos únicos, narrativas frescas, y contextos innovadores. Cada idea debe ser distinta y emocionante para niños de 9-10 años."""
+                description=f"""Genera 5-7 ideas completamente originales y creativas para una actividad educativa en {materia} {tema_parte}. No te limites a patrones previos como 'supermercados' o 'tiendas' - usa tu imaginación ilimitada para crear conceptos únicos, narrativas frescas, y contextos innovadores. Cada idea debe ser distinta y emocionante para niños de 9-10 años."""
                 agent=self.agente_generador_ideas,
                 expected_output="Ideas originales para desarrollar actividades relacionadas con la materia y el tema específico"
             )
 
             # TAREA 1: NARRADOR - Crear experiencia auténtica
             tarea_narracion = Task(
-                description=f"""Estudia los ejemplos de actividades exitosas y crea una experiencia educativa auténtica para {materia} {f'sobre {tema}' if tema else ''}.
+                description=f"""Estudia los ejemplos de actividades exitosas y crea una experiencia educativa auténtica para {materia} {tema_parte}.
 
 {contexto_ejemplos}
 

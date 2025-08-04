@@ -1,0 +1,346 @@
+================================================================================
+ACTIVIDAD GENERADA CON Q-AGENTS V2
+================================================================================
+
+ID: q2_ciencias_20250802_035637
+Título: Actividad Q-Agents v2 - ciencias
+Materia: ciencias
+Tema: tema general
+Tipo: colaborativa_q_agents_v2
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-08-02T03:56:37.016160
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+================================================================================
+ACTIVIDAD GENERADA CON Q-AGENTS V2
+Sistema con Feedback Estructurado y Contexto Rico
+================================================================================
+
+🎯 FEEDBACK APLICADO DEL USUARIO:
+----------------------------------------
+1. AGENTE: DIFERENCIADOR
+   Solicitud: quiero que las adaptaciones no se hagan específicamente como para TEA o TDAH sino que la actividad de los recursos para que estos niños puedan trabajar en equidad con el resto
+   Confianza: 30.6%
+   Intención: Modificar diferenciador - ['keyword:adaptaciones']
+
+
+🎭 SEMILLA CREATIVA E INSPIRACIÓN
+================================
+**Título del Proyecto:** "España en Movimiento: Un Viaje por el Mapa"  
+
+**Objetivo General:** Explorar y construir el mapa político de España mediante una actividad colaborativa y lúdica, fomentando la participación activa, la cooperación y la comprensión geográfica, adaptada a las necesidades de los estudiantes.  
+
+**Materiales para la Primera Sesión (Preparación):**  
+- Cartulinas o folios grandes para crear el mapa (a escala reducida).  
+- Colores, rotuladores, tijeras, pegamento y cinta adhesiva.  
+- Materiales texturales: algodón (para representar montañas), lentejuelas (para ríos), botones (para ciudades), y plastilina (para relieve).  
+- Banderas de cada comunidad autónoma (hechas con telas o papel grueso).  
+- Tarjetas con preguntas sobre capitales, ríos o características geográficas.  
+- Libros de geografía para consulta.  
+- Reloj de aula visible.  
+
+**Actividad de la Primera Sesión:**  
+- **Construcción del Mapa:** Los estudiantes trabajarán en grupos para crear un mapa de España en cartulina, dividiéndolo en regiones. Cada grupo asignará una comunidad autónoma, usando materiales texturales y colores para representar montañas, ríos, ciudades y relieve.  
+- **Juego de Roles:** Algunos estudiantes podrán crear banderas con telas, mientras otros diseñan etiquetas con información clave (ej.: "Madrid - Capital de España").  
+- **Reflexión Grupal:** Al finalizar, se realizará una breve discusión para conectar los elementos del mapa con su ubicación real.  
+
+**Materiales para la Segunda Sesión (Juego en el Patio):**  
+- Mapa grande de España (imprimido o dibujado en el suelo con cinta adhesiva).  
+- Banderas de cada comunidad autónoma, colgadas en puntos estratégicos.  
+- Tarjetas con preguntas o desafíos (ej.: "Encuentra la comunidad con más población" o "Identifica el río que pasa por Cataluña").  
+- Objetos simbólicos (ej.: un "tren" para representar la red ferroviaria, una "bandera" para identificar regiones).  
+
+**Actividad de la Segunda Sesión:**  
+- **"Carrera del Mapa":** Los estudiantes se dividirán en equipos. Cada equipo recibirá una tarjeta con una pregunta o tarea (ej.: "Encuentra la comunidad con la capital en Bilbao"). Deben moverse por el mapa, identificar la región y colocar su bandera en el punto correcto.  
+- **Juego de Roles Dinámico:** El estudiante con TDAH podrá usar los objetos simbólicos para "tocar" el relieve o ríos, mientras el estudiante con TEA puede usar la plastilina para crear formas geográficas en el suelo.  
+- **Concurso de Preguntas:** En cada región, se colocarán preguntas sobre su cultura, economía o características. Los estudiantes tendrán que responder correctamente para "ganar" una bandera o punto.  
+
+**Observación y Apoyo Natural:**  
+- El estudiante con altas capacidades (ANA V.) podrá liderar la creación de las tarjetas de preguntas, mientras el estudiante reflexivo (ELENA R.) se encargará de documentar las características de cada región.  
+- Para el estudiante impulsivo (LUIS T.), se incluirán desafíos físicos (ej.: saltar sobre las "montañas" del mapa) para canalizar su energía.  
+- El estudiante equilibrado (SARA M.) podrá actuar como "juez" en el concurso de preguntas, asegurando la precisión de las respuestas.  
+
+**Resultado Final:**  
+Al finalizar, se realizará una exposición en el patio donde los estudiantes mostrarán su mapa y explicarán las regiones que identificaron. Esto reforzará su aprendizaje y fomentará la orgullo por la geografía española, integrando creatividad, movilidad y colaboración.
+
+
+📚 ESTRUCTURA PEDAGÓGICA
+=======================
+**Título del Proyecto:** *"España en Movimiento: Un Viaje por el Mapa"*  
+
+**Objetivo General:**  
+Fomentar la comprensión geográfica y política de España mediante una actividad colaborativa y lúdica, integrando creatividad, movilidad y aprendizaje significativo. Los estudiantes construirán un mapa físico en grupo, lo explorarán en el patio mediante juegos, y reflexionarán sobre su significado, adaptando la experiencia a las necesidades y estilos de aprendizaje de cada estudiante.  
+
+**Estructura Pedagógica Detallada:**  
+
+**1. Sesión de Preparación: Construcción del Mapa (Duración: 90 minutos)**  
+**Materiales:**  
+- Cartulinas o folios grandes (2m x 1.5m) para el mapa.  
+- Colores, rotuladores, tijeras, pegamento y cinta adhesiva.  
+- Materiales texturales: algodón (montañas), lentejuelas (ríos), botones (ciudades), plastilina (relieve).  
+- Banderas de comunidades autónomas (telas o papel grueso).  
+- Tarjetas con preguntas sobre capitales, ríos, características geográficas.  
+- Libros de geografía y mapas referenciales.  
+- Reloj de aula visible.  
+
+**Actividades:**  
+- **División en Grupos:** Los estudiantes se organizan en equipos de 4-5, asignados aleatoriamente. Cada grupo se encargará de una comunidad autónoma.  
+- **Taller de Creación:**  
+  - **Construcción del Relieve:** Usarán plastilina y algodón para crear montañas y accidentes geográficos.  
+  - **Representación de Ríos y Ciudades:** Colocarán lentejuelas en cursos de agua y botones en ciudades.  
+  - **Banderas y Etiquetas:** Un estudiante diseña la bandera de la comunidad, mientras otro escribe etiquetas con información clave (ej.: "Madrid - Capital de España").  
+- **Reflexión Grupal:**  
+  - Se realizará una discusión breve para conectar elementos del mapa con su ubicación real, usando el libro de geografía como referencia.  
+
+**2. Sesión de Juego en el Patio: "Carrera del Mapa" (Duración: 120 minutos)**  
+**Materiales:**  
+- Mapa grande de España (imprimido o dibujado en el suelo con cinta adhesiva).  
+- Banderas de comunidades autónomas colgadas en puntos estratégicos.  
+- Tarjetas con preguntas (ej.: "¿Qué comunidad tiene la capital en Bilbao?"), desafíos físicos (ej.: "Saltar sobre las montañas"), y símbolos (ej.: "tren" para ferrocarriles).  
+- Objetos simbólicos: plastilina, lentejuelas, botones.  
+
+**Actividades:**  
+- **División en Equipos:** Los estudiantes se forman en equipos de 3-4, asignados por el docente.  
+- **Juego de Roles Dinámico:**  
+  - **Estudiante con TDAH:** Usará objetos simbólicos para "tocar" el relieve o ríos, canalizando su energía.  
+  - **Estudiante con TEA:** Usará plastilina para crear formas geográficas en el suelo, siguiendo instrucciones específicas.  
+  - **Estudiante con altas capacidades (ANA V.):** Liderará la creación de tarjetas de preguntas y desafíos.  
+  - **Estudiante reflexivo (ELENA R.):** Documentará características de cada región en un diario gráfico.  
+- **Concurso de Preguntas:**  
+  - En cada región, se colocarán preguntas sobre cultura, economía o geografía. Los estudiantes deben responder correctamente para "ganar" una bandera o punto.  
+  - **Estudiante equilibrado (SARA M.):** Actuará como "juez" para validar respuestas.  
+- **Desafíos Físicos:**  
+  - Luis T. (impulsivo) realizará saltos sobre las "montañas" del mapa o recorrerá distancias simbólicas.  
+
+**3. Observación y Apoyo Natural:**  
+- **Adaptaciones para Diversidad:**  
+  - **Ana V. (altas capacidades):** Proporcionará tarjetas con preguntas de profundización (ej.: "¿Cómo influye la geografía en la economía de Andalucía?").  
+  - **Elena R. (TEA):** Se le ofrecerá una plantilla con instrucciones visuales para su tarea de documentación.  
+  - **Luis T. (impulsivo):** Se incluirán desafíos físicos y temporizaciones claras para mantener su atención.  
+  - **Sara M. (equilibrado):** Se le asignará un rol de coordinación para fomentar su liderazgo.  
+- **Reflexión Final:**  
+  - Se realizará una discusión grupal sobre lo aprendido, con preguntas abiertas (ej.: "¿Qué te gustó más del mapa? ¿Por qué?").  
+
+**Resultado Final:**  
+- **Exposición en el Patio:** Los estudiantes mostrarán su mapa, explicarán las regiones identificadas y responderán preguntas de los compañeros.  
+- **Refuerzo de Aprendizaje:** Se distribuirán folletos con mapas simplificados de cada comunidad autónoma para consolidar el conocimiento.  
+- **Reflexión de Aprendizaje:** Se creará un mural colectivo donde los estudiantes escribirán frases sobre lo que aprendieron, integrando la geografía, la cultura y la colaboración.  
+
+**Evaluación:**  
+- **Formativa:** Observación continua de participación, uso de materiales y respeto a las normas del juego.  
+- **Sumativa:** Evaluación por el docente de la calidad del mapa, precisión de respuestas en el concurso y creatividad en la exposición.  
+
+**Nota Pedagógica:**  
+La actividad prioriza el aprendizaje activo y la inclusión, integrando movilidad, creatividad y cooperación. Se adapta a las necesidades de cada estudiante, fomentando la autonomía y el orgullo por la geografía española.
+
+
+🏗️ ARQUITECTURA DE LA EXPERIENCIA
+=================================
+**Flujo Temporal y Arquitectura de la Experiencia Educativa "España en Movimiento: Un Viaje por el Mapa"**  
+
+**1. Sesión de Preparación: Construcción del Mapa (90 minutos)**  
+- **Fase 1: Organización y División en Grupos (15 minutos)**  
+  - El docente divide a los estudiantes en equipos de 4-5, asignando aleatoriamente una comunidad autónoma. Se distribuyen materiales y se explica el objetivo: crear un mapa físico con elementos geográficos y culturales.  
+  - *Logística:* Materiales colocados en estaciones de trabajo, reloj visible en el centro.  
+
+- **Fase 2: Taller de Creación del Mapa (45 minutos)**  
+  - **Construcción del Relieve:** Equipos usan plastilina y algodón para modelar montañas, ríos (lentejuelas) y ciudades (botones). Un estudiante diseña la bandera de la comunidad, otro escribe etiquetas con información clave (ej.: "Madrid - Capital de España").  
+  - **Reflexión Grupal:** Discusión breve sobre la ubicación geográfica real, usando libros de geografía como referencia.  
+  - *Logística:* Música instrumental para fomentar la concentración, espacios claros para trabajar con materiales texturales.  
+
+- **Fase 3: Validación y Ajustes (30 minutos)**  
+  - Los docentes observan el proceso, ofreciendo apoyo a estudiantes con necesidades específicas:  
+    - **Ana V. (altas capacidades):** Se le entrega una tarjeta con preguntas de profundización (ej.: "¿Cómo influye la geografía en la economía de Andalucía?").  
+    - **Elena R. (TEA):** Se le proporciona una plantilla con instrucciones visuales para documentar características de la región.  
+    - **Luis T. (impulsivo):** Se le asigna una tarea con temporización clara (ej.: "Crear 5 montañas en 10 minutos").  
+  - *Logística:* Materiales organizados en cajas para facilitar el acceso, reloj visible para controlar el tiempo.  
+
+**2. Sesión de Juego en el Patio: "Carrera del Mapa" (120 minutos)**  
+- **Fase 1: Preparación del Espacio (15 minutos)**  
+  - El mapa se coloca en el patio con cinta adhesiva, marcando regiones y elementos geográficos. Banderas de comunidades autónomas se colgan en puntos estratégicos. Tarjetas de preguntas, desafíos físicos y símbolos se distribuyen en áreas específicas.  
+  - *Logística:* Puntos de acceso para estudiantes con movilidad reducida, sombrillas para protección solar.  
+
+- **Fase 2: Actividad Principal (105 minutos)**  
+  - **División en Equipos:** Los estudiantes se forman en equipos de 3-4, asignados por el docente.  
+  - **Juego de Roles Dinámico (45 minutos):**  
+    - **Estudiante con TDAH (Luis T.):** Usa objetos simbólicos (ej.: plastilina) para "tocar" el relieve o ríos, canalizando su energía.  
+    - **Estudiante con TEA (Elena R.):** Crea formas geográficas en el suelo con plastilina, siguiendo instrucciones visuales.  
+    - **Estudiante con altas capacidades (Ana V.):** Diseña tarjetas de preguntas y desafíos.  
+    - **Estudiante reflexivo (Elena R.):** Documenta características de cada región en un diario gráfico.  
+    - **Estudiante equilibrado (Sara M.):** Actúa como "juez" para validar respuestas.  
+  - **Concurso de Preguntas (30 minutos):** En cada región, se colocan preguntas sobre cultura, economía o geografía. Los estudiantes responden para "ganar" una bandera o punto.  
+  - **Desafíos Físicos (30 minutos):** Luis T. realiza saltos sobre las "montañas" o recorre distancias simbólicas.  
+  - *Logística:* Música instrumental para mantener el ritmo, señalización clara para zonas de juego y descanso.  
+
+**3. Sesión de Reflexión y Exposición Final (90 minutos)**  
+- **Fase 1: Exposición en el Patio (30 minutos)**  
+  - Los estudiantes muestran su mapa, explican las regiones identificadas y responden preguntas de compañeros. Se distribuyen folletos con mapas simplificados.  
+  - *Logística:* Micrófonos para estudiantes con necesidades de comunicación, espacio para grupos de observación.  
+
+- **Fase 2: Creación del Mural Colectivo (45 minutos)**  
+  - Los estudiantes colaboran en un mural con elementos del mapa (ej.: símbolos de ríos, banderas, datos geográficos). Se incluyen espacios para dibujos individuales de cada estudiante.  
+  - *Logística:* Materiales preparados en estaciones, reloj visible para controlar el tiempo.  
+
+- **Fase 3: Evaluación y Cierre (15 minutos)**  
+  - El docente integra evaluaciones formativas (observación durante el proceso) y sumativas (análisis de la exposición y mural). Se resalta el enfoque en aprendizaje activo y inclusión.  
+  - *Logística:* Recolección de materiales, agradecimiento a los estudiantes y reflexión final sobre el valor del trabajo colaborativo.  
+
+**Nota Pedagógica:** La experiencia prioriza la interacción física, la resolución de problemas y la expresión creativa, alineándose con el enfoque colaborativo y multisensorial del ejemplo "Mural de la Célula". La logística garantiza accesibilidad, seguridad y equidad para todos los estudiantes.
+
+
+🎯 DIFERENCIACIÓN PERSONALIZADA
+==============================
+**Personalización de la Experiencia Educativa para Cada Estudiante**  
+
+**1. Sesión de Preparación: Construcción del Mapa (90 minutos)**  
+**- ALEX M. (reflexivo, visual):**  
+  - **Fase 1:** Asignado a un grupo que crea una comunidad autónoma con enfoque en símbolos visuales (ej.: banderas, formas geográficas). Se le entrega una plantilla con imágenes de ríos, montañas y ciudades para referirse durante la creación.  
+  - **Fase 2:** Selecciona el rol de "diseñador de etiquetas" para escribir información clave (ej.: "Andalucía - Costa del Sol"). Usa rotuladores finos y folios para documentar detalles.  
+  - **Fase 3:** Se le entrega una tarjeta con preguntas para reflexionar sobre la relación entre la geografía y la cultura de la región (ej.: "¿Cómo afecta el clima a la agricultura de Extremadura?").  
+
+**- MARÍA L. (reflexivo, auditivo):**  
+  - **Fase 1:** Se le asigna el rol de "revisor" para asegurar que el mapa tenga elementos auditivos (ej.: sonidos de ríos o viento en el material de plastilina).  
+  - **Fase 2:** Se le entrega una playlist instrumental para mantener el enfoque durante la creación. Participa en la discusión grupal sobre la ubicación geográfica, usando un libro de geografía como recurso.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito, usando un reloj para controlar el tiempo de reflexión.  
+
+**- ELENA R. (reflexivo, visual, TEA_nivel_1):**  
+  - **Fase 1:** Se le asigna un grupo con instrucciones visuales claras para crear una comunidad autónoma. Se le entrega una plantilla con pasos visuales (ej.: "1. Formar montañas con plastilina, 2. Colocar ríos con lentejuelas").  
+  - **Fase 2:** Se le asigna el rol de "creadora de formas geográficas" usando plastilina. Se le permite usar una plantilla con dibujos de montañas y ríos para seguir el modelo.  
+  - **Fase 3:** Se le entrega una tarjeta con instrucciones visuales para documentar características de la región (ej.: dibujar un río, escribir "Costa" en la etiqueta).  
+
+**- LUIS T. (impulsivo, kinestésico, TDAH_combinado):**  
+  - **Fase 1:** Se le asigna un grupo con tareas rápidas (ej.: "Crear 5 montañas en 10 minutos"). Se le da una plantilla con instrucciones breves y una señal de reloj para controlar el tiempo.  
+  - **Fase 2:** Se le asigna el rol de "tocador del relieve" usando objetos simbólicos (ej.: plastilina para "tocar" las montañas). Se le permite moverse libremente durante la creación.  
+  - **Fase 3:** Se le da una tarjeta con una pregunta abierta (ej.: "¿Qué hay en la costa de Cataluña?") para estimular su atención.  
+
+**- ANA V. (reflexivo, auditivo, altas_capacidades):**  
+  - **Fase 1:** Se le asigna un grupo para liderar la creación de una comunidad autónoma. Se le entrega una tarjeta con preguntas de profundización (ej.: "¿Cómo influye la geografía en la economía de Andalucía?").  
+  - **Fase 2:** Se le da el rol de "diseñadora de tarjetas de preguntas" para crear desafíos para el juego en el patio. Se le permite usar un reloj para organizar su trabajo.  
+  - **Fase 3:** Se le pide que documente sus observaciones en un diario escrito, usando un libro de geografía como recurso.  
+
+**- SARA M. (equilibrado, auditivo):**  
+  - **Fase 1:** Se le asigna el rol de "revisor" para asegurar que el mapa tenga elementos auditivos (ej.: sonidos de ríos o viento en el material de plastilina).  
+  - **Fase 2:** Participa en la discusión grupal sobre la ubicación geográfica, usando un libro de geografía como recurso.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito, usando un reloj para controlar el tiempo de reflexión.  
+
+**- EMMA K. (reflexivo, visual):**  
+  - **Fase 1:** Se le asigna un grupo que crea una comunidad autónoma con enfoque en símbolos visuales (ej.: banderas, formas geográficas). Se le entrega una plantilla con imágenes de ríos, montañas y ciudades para referirse durante la creación.  
+  - **Fase 2:** Selecciona el rol de "diseñadora de etiquetas" para escribir información clave (ej.: "Andalucía - Costa del Sol"). Usa rotuladores finos y folios para documentar detalles.  
+  - **Fase 3:** Se le entrega una tarjeta con preguntas para reflexionar sobre la relación entre la geografía y la cultura de la región (ej.: "¿Cómo afecta el clima a la agricultura de Extremadura?").  
+
+**- HUGO P. (equilibrado, visual):**  
+  - **Fase 1:** Se le asigna un grupo con tareas rápidas (ej.: "Crear 5 montañas en 10 minutos"). Se le da una plantilla con instrucciones breves y una señal de reloj para controlar el tiempo.  
+  - **Fase 2:** Se le asigna el rol de "diseñador de formas geográficas" usando plastilina. Se le permite usar una plantilla con dibujos de montañas y ríos para seguir el modelo.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito, usando un reloj para controlar el tiempo de reflexión.  
+
+**2. Sesión de Juego en el Patio (90 minutos)**  
+**- ALEX M. (reflexivo, visual):**  
+  - **Fase 1:** Se le asigna el rol de "creador de símbolos visuales" en el mapa, usando dibujos para representar ríos o montañas.  
+  - **Fase 2:** Participa en el juego como "revisor de preguntas" para asegurar que las tarjetas de desafío estén claras.  
+  - **Fase 3:** Se le pide que documente las observaciones del juego en un diario escrito.  
+
+**- MARÍA L. (reflexivo, auditivo):**  
+  - **Fase 1:** Se le asigna el rol de "revisor de sonidos" para asegurar que el mapa tenga elementos auditivos (ej.: sonidos de ríos).  
+  - **Fase 2:** Participa en el juego como "juez de preguntas" usando un libro de geografía como recurso.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- ELENA R. (reflexivo, visual, TEA_nivel_1):**  
+  - **Fase 1:** Se le asigna el rol de "creadora de formas geográficas" usando plastilina.  
+  - **Fase 2:** Participa en el juego como "revisora de preguntas" usando una tarjeta con instrucciones visuales.  
+  - **Fase 3:** Se le pide que documente sus observaciones en un diario escrito.  
+
+**- LUIS T. (impulsivo, kinestésico, TDAH_combinado):**  
+  - **Fase 1:** Se le asigna el rol de "tocador del relieve" usando objetos simbólicos (ej.: plastilina para "tocar" las montañas).  
+  - **Fase 2:** Participa en el juego como "juez de desafíos" usando un reloj para controlar el tiempo.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- ANA V. (reflexivo, auditivo, altas_capacidades):**  
+  - **Fase 1:** Se le asigna el rol de "diseñadora de tarjetas de preguntas" para crear desafíos para el juego.  
+  - **Fase 2:** Participa en el juego como "juez de preguntas" usando un libro de geografía como recurso.  
+  - **Fase 3:** Se le pide que documente sus observaciones en un diario escrito.  
+
+**- SARA M. (equilibrado, auditivo):**  
+  - **Fase 1:** Se le asigna el rol de "revisor de sonidos" para asegurar que el mapa tenga elementos auditivos (ej.: sonidos de ríos).  
+  - **Fase 2:** Participa en el juego como "juez de preguntas" usando un libro de geografía como recurso.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- EMMA K. (reflexivo, visual):**  
+  - **Fase 1:** Se le asigna el rol de "creador de símbolos visuales" en el mapa, usando dibujos para representar ríos o montañas.  
+  - **Fase 2:** Participa en el juego como "revisor de preguntas" para asegurar que las tarjetas de desafío estén claras.  
+  - **Fase 3:** Se le pide que documente las observaciones del juego en un diario escrito.  
+
+**- HUGO P. (equilibrado, visual):**  
+  - **Fase 1:** Se le asigna el rol de "diseñador de formas geográficas" usando plastilina.  
+  - **Fase 2:** Participa en el juego como "juez de desafíos" usando un reloj para controlar el tiempo.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**3. Sesión de Reflexión y Exhibición (60 minutos)**  
+**- ALEX M. (reflexivo, visual):**  
+  - **Fase 1:** Presenta su trabajo usando dibujos o imágenes para explicar la relación entre la geografía y la cultura de la región.  
+  - **Fase 2:** Participa en la creación del mural como "diseñador de símbolos visuales".  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- MARÍA L. (reflexivo, auditivo):**  
+  - **Fase 1:** Presenta su trabajo usando un libro de geografía para explicar la ubicación geográfica.  
+  - **Fase 2:** Participa en la creación del mural como "revisor de sonidos".  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- ELENA R. (reflexivo, visual, TEA_nivel_1):**  
+  - **Fase 1:** Presenta su trabajo usando una tarjeta con instrucciones visuales para explicar la región.  
+  - **Fase 2:** Participa en la creación del mural usando una plantilla con dibujos de símbolos.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- LUIS T. (impulsivo, kinestésico, TDAH_combinado):**  
+  - **Fase 1:** Presenta su trabajo usando movimientos físicos para representar el relieve de la región.  
+  - **Fase 2:** Participa en la creación del mural como "creador de texturas" usando plastilina.  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- ANA V. (reflexivo, auditivo, altas_capacidades):**  
+  - **Fase 1:** Presenta su trabajo usando un libro de geografía para explicar la ubicación geográfica.  
+  - **Fase 2:** Participa en la creación del mural como "diseñadora de símbolos".  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- SARA M. (equilibrado, auditivo):**  
+  - **Fase 1:** Presenta su trabajo usando un libro de geografía para explicar la ubicación geográfica.  
+  - **Fase 2:** Participa en la creación del mural como "revisor de sonidos".  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- EMMA K. (reflexivo, visual):**  
+  - **Fase 1:** Presenta su trabajo usando dibujos o imágenes para explicar la relación entre la geografía y la cultura de la región.  
+  - **Fase 2:** Participa en la creación del mural como "diseñador de símbolos visuales".  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**- HUGO P. (equilibrado, visual):**  
+  - **Fase 1:** Presenta su trabajo usando dibujos o imágenes para explicar la relación entre la geografía y la cultura de la región.  
+  - **Fase 2:** Participa en la creación del mural como "diseñador de formas geográficas".  
+  - **Fase 3:** Se le pide que registre sus observaciones en un diario escrito.  
+
+**Nota:** Cada estudiante tiene un diario personal para registrar sus observaciones y reflexiones. El material de apoyo incluye libros de geografía, tarjetas de preguntas, plantillas visuales, y herramientas para crear el mural. La actividad se adapta para garantizar que todos los estilos de aprendizaje se sientan valorados y participen activamente.
+
+
+
+================================================================================
+METADATOS DEL SISTEMA Q-AGENTS V2:
+{
+  "total_estudiantes": 8,
+  "feedback_aplicado": 1,
+  "feedback_detalles": [
+    {
+      "agente": "diferenciador",
+      "prompt": "quiero que las adaptaciones no se hagan específicamente como para TEA o TDAH sino que la actividad de los recursos para que estos niños puedan trabajar en equidad con el resto",
+      "confianza": 0.30588235294117644,
+      "intencion": "Modificar diferenciador - ['keyword:adaptaciones']"
+    }
+  ],
+  "modelo_usado": "qwen3:latest",
+  "ejemplos_k_usados": [
+    "k_celula",
+    "k_sonnet_supermercado",
+    "k_feria_acertijos",
+    "k_piratas"
+  ],
+  "version": "2.0_semantic_feedback"
+}

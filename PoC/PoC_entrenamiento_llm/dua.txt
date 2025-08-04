@@ -1,0 +1,1796 @@
+Origen del Diseño Universal para el Aprendizaje: de
+la arquitectura al currículo 
+
+ 
+2.1. El Diseño Universal en la arquitectura 
+
+El Diseño Universal (DU) no es un concepto original del ámbito educativo,
+sino que surgió en el campo de la arquitectura en la década de 1970 en
+Estados Unidos. Fue Ron Mace, fundador del Centro para el Diseño
+Universal (CUD), quien lo usó por primera vez, definiéndolo como el diseño
+de productos y entornos que cualquier persona pueda utilizar, en la mayor
+medida posible, sin necesidad de una adaptación posterior destinada a un
+público específico (CUD, 1997). El concepto del DU recogía las ideas
+esenciales del movimiento arquitectónico en auge por aquella época en EE.
+UU., cuyo objetivo principal era diseñar y construir edificios y espacios
+públicos pensados desde el principio para atender la variedad de
+necesidades de acceso, comunicación y uso de los potenciales usuarios.
+ 
+ ¿Por qué es necesario el DU para construir edificios?
+
+Hasta entonces, la mayoría de los edificios resultaban inaccesibles a las
+personas con algún tipo de discapacidad. Unas escaleras como única
+forma de acceso a una biblioteca pública, por ejemplo, eran un obstáculo
+insalvable (al menos, de forma autónoma) para un usuario que se
+desplazase en silla de ruedas.
+
+La proliferación de legislación y la conciencia social sobre igualdad y
+discapacidad permitió atajar este problema haciendo adaptaciones de
+edificios ya construidos. Sin embargo, esta solución se aleja mucho de
+ser la más adecuada por tres razones principales (Rose y Meyer, 2002):
+
+ Estas adaptaciones, realizadas a posteriori, resultan costosas
+económicamente. Por ejemplo, poner un ascensor en un edificio ya
+existente es más caro que construir desde el principio el edificio con
+ascensor.
+
+ En ocasiones, no son totalmente adecuadas desde un punto de vista
+funcional, puesto que hay muchos lugares que carecen de un espacio
+físico para construir una rampa. Así, cualquiera podrá acordarse de
+rampas para las sillas de ruedas con tal grado de inclinación que al
+usuario le resultaría imposible subirlas autónomamente o bajarlas sin
+riesgo de caer.
+
+ Son deslucidas desde un punto de vista estético. Hay adaptaciones
+que no encajan con el estilo del edificio. 
+ 
+5 
+ 
+Así surgió el movimiento arquitectónico del DU, que propugna como
+solución tener en cuenta las necesidades de las personas con
+discapacidades en la fase del diseño de los edificios, en lugar de llevar a
+cabo una posterior fase de adaptación.
+
+Este movimiento trata de anticiparse a una potencial necesidad que se
+manifestará antes o después, en lugar de esperar a que esta aparezca.
+De este modo, se diseña a priori el edificio con rampa, con ascensor,
+etc., pensando en que puede haber personas con silla de ruedas que
+usen estos elementos, en vez de añadirlos una vez que el edificio ya
+está construido y se detectan casos de personas a las que ha resultado
+inaccesible. 
+ 
+ ¿Solo se benefician del DU las personas con discapacidad?
+
+El movimiento del DU no solo contribuyó a que se mejoraran las
+condiciones de acceso y uso de los edificios y entornos para las
+personas con discapacidades, ya que la aplicación de sus principios
+reveló un importante hallazgo: los diseños destinados original y
+específicamente para que los usaran personas con algún tipo de
+discapacidad, no solo eran utilizados por estas, sino también por otras
+muchas que también se beneficiaban de las prestaciones de tales
+diseños.
+
+Sigamos con el ejemplo anterior: aunque una rampa se diseñe
+originalmente para permitir el acceso a una persona con silla de ruedas,
+¿quién no la ha usado al empujar el carrito del bebé, el carro de la
+compra, una maleta o una bicicleta? Incluso yendo más allá: ¿quién no
+ha usado una rampa simplemente porque lo prefería o le apetecía?
+ 
+ ¿Qué implicaciones se extraen de este hallazgo respecto a la
+atención a la diversidad? 
+
+Al menos, podemos determinar tres implicaciones:
+
+1. Se pone de manifiesto que no hay dos categorías estancas de
+personas: con discapacidad y sin ella, las que necesitan
+adaptaciones y las que no las precisan. Por el contrario, se entiende
+que la diversidad es inherente a cualquier grupo humano y, por tanto,
+ofrecer diferentes alternativas no solo beneficia a todos, sino que
+también permite a los individuos escoger aquella opción que les
+resulte más adecuada y cómoda.
+
+De este modo, la rampa no es de uso exclusivo de las personas con
+silla de ruedas y el resto debe utilizar las escaleras. Existen diferentes
+vías para acceder a un edificio y cada uno elegirá la que mejor se
+ajuste a sus preferencias y necesidades en cada momento.
+
+2. Se evidencia que la diversidad, en general, y las necesidades (en
+este caso, de acceso y uso), en particular, no tienen por qué ser 
+ 
+6 
+ 
+permanentes. A lo largo de la vida, pueden variar o manifestarse
+puntualmente, por lo que si el diseño (en este caso, del edificio) se ha
+realizado desde un enfoque universal, se garantizan el acceso y el
+uso si tales necesidades se manifiestan.
+
+Así, puede darse el caso de una persona que nunca ha necesitado
+utilizar una rampa que da acceso a una biblioteca, pero si un día se
+fractura un hueso de una pierna y se ve obligada a usar
+temporalmente muletas o silla de ruedas, podrá seguir accediendo a
+esa biblioteca sin esperar a estar recuperada.
+ 
+3. Se desplaza la aplicación del término discapacidad de la persona al
+entorno, entendiendo que si un individuo no tiene posibilidad de
+acceder por sí mismo a un edificio, no es porque esté discapacitado,
+sino que el propio edificio es el que lo está.
+
+De este modo, se puede hablar de entornos «discapacitantes»
+cuando no están diseñados universalmente para dar cabida a todas
+las personas. Si un edificio carece de una rampa o de cualquier otro
+elemento que garantice el acceso autónomo a alguien con silla de
+ruedas, su diseño lo está discapacitando, le está impidiendo acceder
+a él y usarlo.
+ 
+ ¿Qué ocurre con el Diseño Universal en España? 
+
+En España también se han producido importantes avances en materia de
+derechos de acceso y uso de entornos, productos y servicios por parte
+de todas las personas. Esta toma de conciencia ciudadana e institucional
+ha venido acompañada de medidas legislativas para garantizar dichos
+derechos.
+
+Así, las ideas esenciales del DU ya se pueden encontrar en la Ley
+51/2003, de 2 de diciembre, de igualdad de oportunidades, no
+discriminación y accesibilidad universal de las personas con
+discapacidad. En su artículo 2, esta ley define los principios de
+accesibilidad universal y diseño para todos.
+
+Más recientemente, diez años después, el Real Decreto Legislativo
+1/2013, de 29 de noviembre, por el que se aprueba el Texto Refundido
+de la Ley General de derechos de las personas con discapacidad y de su
+inclusión social, introduce por primera vez en la legislación española el
+concepto de Diseño Universal, recogiendo entre los principios de la ley
+(art. 3) la accesibilidad universal y el diseño universal o diseño para
+todos. Los define de la siguiente manera (art. 2): 
+«
+k) Accesibilidad universal: es la condición que deben cumplir los
+entornos, procesos, bienes, productos y servicios, así como los
+objetos, instrumentos, herramientas y dispositivos, para ser
+comprensibles, utilizables y practicables por todas las personas en 
+ 
+7 
+ 
+condiciones de seguridad y comodidad, y de la forma más
+autónoma y natural posible. Presupone la estrategia de «diseño
+universal o diseño para todas las personas», y se entiende sin
+perjuicio de los ajustes razonables que deban adoptarse.
+ 
+l) Diseño universal o diseño para todas las personas: es la
+actividad por la que se conciben o proyectan desde el origen, y
+siempre que ello sea posible, entornos, procesos, bienes,
+productos, servicios, objetos, instrumentos, programas,
+dispositivos o herramientas, de tal forma que puedan ser utilizados
+por todas las personas, en la mayor extensión posible, sin
+necesidad de adaptación ni diseño especializado. El «diseño
+universal o diseño para todas las personas» no excluirá los
+productos de apoyo para grupos particulares de personas con
+discapacidad, cuando lo necesiten. » 
+Los principios del Diseño Universal no solo se han expandido
+geográficamente por gran parte del mundo, sino que su aplicación a los
+productos y servicios ha trascendido los límites de la arquitectura,
+introduciéndose con fuerza en otros ámbitos, entre ellos, la educación.
+
+ 
+2.2. El Diseño Universal en el ámbito educativo: DUA 
+
+El Diseño Universal para el Aprendizaje es un enfoque didáctico que
+pretende aplicar los principios del DU al diseño del currículo de los
+diferentes niveles educativos. Como se ha indicado más arriba, el DUA ha
+sido desarrollado por el Centro de Tecnología Especial Aplicada, CAST.
+
+Este centro nació en 1984 con el fin de desarrollar tecnologías que
+apoyaran el proceso de aprendizaje de alumnos con algún tipo de
+discapacidad, de tal modo que pudiesen acceder al mismo currículo que
+sus compañeros. Ante la imposibilidad o dificultad de algunos estudiantes
+para acceder a los contenidos incluidos en soportes tradicionales (como el
+libro de texto impreso), desde el CAST se focalizaron los esfuerzos en
+diseñar libros electrónicos con determinadas funciones y características
+que los hacían accesibles a dichos alumnos, como la opción de convertir el
+texto en audio.
+
+El DUA tiene su origen en las investigaciones llevadas a cabo por este
+centro en la década de 1990. Sus fundadores, David H. Rose
+(neuropsicólogo del desarrollo) y Anne Meyer (experta en educación,
+psicología clínica y diseño gráfico), junto con los demás componentes del
+equipo de investigación, han diseñado un marco de aplicación del DUA en
+el aula cimentado en un marco teórico que recoge los últimos avances en
+neurociencia aplicada al aprendizaje, investigación educativa, y
+tecnologías y medios digitales.
+ 
+ 
+8 
+ 
+Así nace el enfoque del Diseño Universal para el Aprendizaje, que se
+puede definir como
+:
+
+«[…] un enfoque basado en la investigación para el diseño del
+currículo ―es decir, objetivos educativos, métodos, materiales y
+evaluación― que permite a todas las personas desarrollar
+conocimientos, habilidades y motivación e implicación con el
+aprendizaje».
+
+La interdisciplinariedad de los investigadores del CAST ha permitido
+fundamentar este enfoque, que busca cambiar la naturaleza del propio
+currículo desde varios frentes interconectados. 
+ 
+1
+ ¿Cuál fue el hallazgo del CAST en relación con el alumnado sin
+discapacidad? 
+
+Al igual que ocurriera en el ámbito arquitectónico, los investigadores del
+CAST descubrieron que las tecnologías diseñadas ―destinadas
+originalmente al alumnado con discapacidad― también las usaban los
+estudiantes sin ningún tipo de necesidad aparente, por iniciativa propia.
+Así, por ejemplo, aunque la conversión texto-audio se diseñó para los
+alumnos con algún tipo de discapacidad visual, la podían utilizar también
+los que aún no leían con fluidez, aquellos que aprendían mejor por la vía
+auditiva que por la visual o quienes, simplemente, preferían escuchar el
+texto.
+
+Además, comprobaron que el alumnado con dificultades de aprendizaje
+o con alguna discapacidad obtenía mejores resultados utilizando estos
+medios tecnológicos que los materiales tradicionales impresos. Esto llevó
+a los investigadores a plantearse que quizá las dificultades para
+acceder al aprendizaje se debían, no tanto a las capacidades o
+habilidades del alumnado, sino a la propia naturaleza de los
+materiales didácticos, de los medios y métodos usados en la actividad
+docente, los cuales, debido a su rigidez, no podían satisfacer la
+diversidad del alumnado. 
+                                                 
+1
+ Consultado el 20/6/2014 en la página web del CAST: http://www.cast.org/udl/faq/index.html.  
+ 
+9 
+ 
+ 
+ ¿Qué ocurre cuándo se diseña el currículo sin tener en cuenta a
+todo el alumnado? 
+
+Cuando el currículo se diseña sin pensar en las necesidades potenciales
+de quienes deben acceder a él, al igual que sucede en el ámbito
+arquitectónico, las adaptaciones necesarias a posteriori (como las
+adaptaciones curriculares) resultan poco funcionales y atractivas para el
+alumnado, y costosas para los docentes:
+
+ Poco funcionales, en el sentido de que en ocasiones no sirven para
+alcanzar el objetivo que se pretendía en un principio. A menudo,
+estas adaptaciones se limitan a poner meros parches o a simplificar
+las tareas y los objetivos, en lugar de proporcionar los apoyos
+(andamiaje) que el alumno necesita para acceder al mismo
+aprendizaje que sus compañeros.
+
+ Poco atractivas, ya que a veces el alumno no trabaja en las mismas
+actividades que sus compañeros, lo que puede hacer que se sienta
+desplazado y desmotivado.
+
+ Costosas en relación con el esfuerzo y el tiempo que el profesorado
+debe dedicar a diseñar las adaptaciones: una vez que la planificación
+ya está diseñada, hay que empezar a hacer variantes individuales
+para determinados alumnos (el que no sabe leer, la que no conoce el
+idioma, el que no oye bien, la que tiene unas capacidades
+elevadas…). 
+
+Por ello, desde el CAST se apuesta por diseñar el currículo, desde el
+principio, de forma universal, lo que permite estar a la altura que exige el
+reto de la diversidad en el aula. Como los investigadores de este centro
+afirman:
+
+«El currículo que se crea siguiendo el marco del DUA es diseñado,
+desde el principio, para atender las necesidades de todos los
+estudiantes, haciendo que los cambios posteriores, así como el coste y
+tiempo vinculados a los mismos sean innecesarios. El marco del DUA
+estimula la creación de diseños flexibles desde el principio, que
+presenten opciones personalizables que permitan a todos los
+estudiantes progresar desde donde ellos están y no desde donde
+nosotros imaginamos que están» (CAST, 2011: 3). 
+ 
+10 
+ 
+ 
+ ¿Qué aporta el DUA a la educación inclusiva y a la atención a la
+diversidad en el aula?
+
+Principalmente, el DUA hace dos aportaciones:
+ 
+1. Se rompe la dicotomía entre alumnado con discapacidad y sin
+discapacidad. La diversidad es un concepto que se aplica a todos
+los estudiantes, que tienen diferentes capacidades que se desarrollan
+en mayor o menor grado, por lo que cada cual aprende mejor de una
+forma única y diferente al resto. Por tanto, ofrecer distintas
+alternativas para acceder al aprendizaje no solo beneficia al
+estudiante con discapacidad, sino que también permite que cada
+alumno escoja aquella opción con la que va a aprender mejor.
+
+Por ejemplo, si se organiza un recital de poesía en el aula y la
+maestra o el maestro permite que el alumnado escoja entre leer una
+poesía o recitarla de memoria una vez que la haya escuchado varias
+veces en una grabación, estará asegurándose de que no solo
+participará el alumnado con discapacidad visual, sino también el
+estudiante que no sepa leer o que lea muy despacio. 
+
+2. Encontramos nuevamente que el foco de la discapacidad se
+desplaza del alumno a los materiales y a los medios en particular,
+y al diseño curricular en general (Burgstahler, 2011). El currículo será
+discapacitante en la medida en que no permita que todo el alumnado
+pueda acceder a él.
+
+Imaginemos que se incorpora al aula un alumno que no conoce el
+idioma porque ha llegado a nuestro país recientemente. Si se explica
+un determinado tema relacionado con las ciencias naturales
+únicamente con el libro de texto y mediante la exposición oral del
+maestro o la maestra, se le estará impidiendo acceder al aprendizaje.
+Se le estará discapacitando para aprender. En cambio, si se usan
+otros recursos, como infografías, videos subtitulados, textos digitales
+en los que el alumno pueda acceder a una traducción simultánea…,
+se estará ofreciendo al estudiante el soporte necesario para que
+acceda a la información, sin que el periodo que tarde en aprender el
+idioma de enseñanza sea un tiempo perdido. 
+ 
+ 
+11 
+ 
+ 
+3. Fundamentos neurocientíficos: las redes cerebrales
+implicadas en el aprendizaje y los principios del DUA 
+
+
+Las últimas investigaciones en el terreno de la neurociencia han arrojado
+mucha luz acerca de cómo se comporta el cerebro durante el proceso de
+aprendizaje. Los avances tecnológicos (PET scan, qEEG, fMRI) han hecho
+posible encontrar muchas evidencias que permiten conocer la estructura
+del cerebro y comprender su funcionamiento de forma global y localizada
+durante el aprendizaje (Rose y Meyer, 2000). Así, se ha concluido que
+existe una diversidad cerebral y una diversidad en el aprendizaje.
+ 
+ ¿Cómo es y cómo funciona el cerebro humano?
+
+Los estudios evidencian que el cerebro posee una estructura modular,
+esto es, se compone de diversas regiones o módulos, cada uno de los
+cuales está especializado en tratar distintos aspectos de la realidad. Por
+ejemplo, el color de un objeto se procesa en un módulo, mientras que la
+forma se procesa en otra región diferente. Del mismo modo, en función
+de la tarea que se pretenda realizar, se activarán unos determinados
+módulos u otros, lo que implica que el aprendizaje se distribuye en torno
+a diferentes regiones. Los módulos, además, trabajan en paralelo,
+activándose de forma simultánea para tratar todos los elementos de un
+mismo estímulo.
+
+Las investigaciones no solo explican la forma en la que funciona el
+cerebro, sino que también ponen de manifiesto la diversidad
+neurológica existente entre las personas. Hay diferencias en la
+cantidad de espacio del cerebro que ocupa cada módulo, en función de
+las personas. Asimismo, se encuentran divergencias interpersonales en
+cuanto a los módulos implicados para la resolución de una misma tarea.
+Todas estas diferencias suponen una evidencia neurocientífica de la
+diversidad del alumnado en relación con el aprendizaje. No hay dos
+cerebros totalmente iguales; por tanto, no hay dos alumnos que
+aprendan de la misma manera.
+ 
+ ¿Cómo se concretan la estructura cerebral y la forma de procesar
+en las situaciones de aprendizaje? 
+
+Apoyándose en estos estudios, los investigadores del CAST pudieron
+establecer que, dentro de la compleja red formada por una infinidad de
+conexiones neuronales que comunican las distintas áreas cerebrales,
+existen tres tipos de subredes cerebrales que intervienen de modo
+preponderante en el proceso de aprendizaje y que están especializadas
+en tareas específicas del procesamiento de la información o ejecución
+(Rose, 2006; Rose y Meyer, 2002).
+ 
+ 
+12 
+ 
+El funcionamiento de cada una de estas subredes es distinto en cada
+persona y en cada alumno. Así, hay estudiantes que reconocen y
+procesan mejor la información por la vía auditiva que por la visual y
+viceversa. Otros alumnos, por ejemplo, serán buenos al diseñar
+estrategias, pero no al ejecutarlas o evaluarlas; habrá alumnos que
+aprenderán mejor mediante ensayo-error, practicando, mientras que
+otros asimilarán mejor los contenidos de forma vicaria (a través de
+modelos). Del mismo modo, no todo el alumnado se motivará de igual
+forma y presentará diferencias en el modo de implicarse en su propio
+aprendizaje.
+
+La identificación de estas tres redes cerebrales, junto a la evidencia de la
+variabilidad interpersonal en el funcionamiento de las mismas, sentó las
+bases sobre las que se construyó el marco del DUA. Se definió un
+principio que había que tener en cuenta para cada una de las redes al
+diseñar el currículo (CAST, 2011). Estos principios y sus pautas se
+explican con más detalle en el apartado 5 este texto, correspondiente al
+marco de aplicación del DUA.
+ 
+Especializadas en percibir la información
+y asignarle significados. 
+Redes de
+reconocimiento 
+En la práctica, estas redes permiten
+reconocer letras, números, símbolos,
+palabras, objetos…, además de otros
+patrones más complejos, como el estilo
+literario de un escritor y conceptos
+abstractos, como la libertad. 
+ 
+Especializadas en planificar, ejecutar y
+monitorizar 
+las tareas motrices y 
+Redes
+estratégicas 
+mentales.
+En la práctica, estas redes permiten a las
+personas, desde sacar un libro de una
+mochila hasta diseñar la estructura y la
+escritura de un comentario de texto. 
+ 
+Especializadas en asignar significados
+emocionales a 
+las tareas. Están 
+relacionadas con la motivación y la
+implicación en el propio aprendizaje. 
+Redes
+afectivas 
+En la práctica, estas redes están influidas
+por los intereses de las personas, el
+estado de ánimo o las experiencias
+previas. 
+ 
+Tabla 1. Redes cerebrales y aprendizaje. Elaboración propia basada en Rose y Meyer (2002). 
+ 
+ 
+13 
+ 
+ 
+4. Aportaciones de los recursos digitales para aplicar el
+DUA 
+
+ 
+4.1. Los medios tradicionales de enseñanza 
+
+En la práctica docente, la tendencia más extendida es usar medios
+tradicionales como el libro de texto en papel, el discurso oral del
+docente, y las imágenes y videos, así como utilizar uno solo de estos
+medios para enseñar y evaluar. Los medios tradicionales tienen
+características que hacen que resulten muy útiles para determinadas tareas
+de aprendizaje, pero no tanto para otras. Del mismo modo, debido a la
+diversidad existente entre el alumnado, hay medios muy apropiados para
+algunos estudiantes que no lo son para otros. Cada medio presenta unas
+barreras inherentes que lo hace inaccesible para un sector del alumnado.
+Por ejemplo, un estudiante con dificultades visuales no podrá aprender si
+se le presenta la información a través de un texto escrito en papel o de una
+fotografía.
+
+Por tanto, los docentes que quieran tener en cuenta la variabilidad de
+capacidades y preferencias de su alumnado en el proceso de enseñanzaaprendizaje,
+
+deberán seleccionar los medios teniendo en cuenta, por un
+lado, la adecuación de sus características al tipo de contenido y a la tarea
+de aprendizaje que se va a realizar y, por otro lado, las características
+individuales de los estudiantes, que hacen que se manejen mejor con un
+tipo de medio que con otro.
+ 
+ ¿Qué ventajas e inconvenientes tienen los medios tradicionales de
+enseñanza? 
+
+Los tres medios tradicionales más utilizados por los docentes son el
+discurso oral o habla, el texto escrito y las imágenes (fijas o en video). A
+continuación se exponen sus principales ventajas e inconvenientes:
+
+ 
+ 
+14 
+ 
+
+MEDIO 
+Ventajas 
+Limitaciones 
+Habla 
+- Enorme poder expresivo.
+- Provoca distintos efectos en la
+audiencia al variar la
+entonación, el ritmo y el
+volumen o nivel de la voz.
+- Se apoya en el lenguaje no
+verbal.
+- Permite interactuar con la
+audiencia en base a su
+respuesta. 
+- Transitoriedad: lo oído se
+olvida rápidamente.
+- Exige un elevado esfuerzo
+para mantener la atención
+continuada.  
+Texto 
+escrito 
+- Ofrece un registro permanente.
+- Permite extender el
+conocimiento a audiencias
+lejanas en el espacio y el
+tiempo.
+- Es revisable y mejorable. 
+- Carece de expresividad.
+- Los diversos tipos de texto
+requieren la aplicación de
+distintas estrategias para su
+uso, lo cual es complicado
+para determinados alumnos. 
+Imagen 
+- Inmediatez y totalidad:
+comunica toda la información a
+la vez.
+- Capacidad de conducir
+emociones y sentimientos.
+- No requiere decodificación.
+- Simplifica la información. 
+- En ocasiones, es necesario
+cierto conocimiento y práctica
+para desentrañar las
+convenciones que la rigen.
+- Dificultad para expresar
+contenidos abstractos,
+filosóficos o conceptuales. 
+Tabla 2. Ventajas y limitaciones de los medios de enseñanza tradicionales. Elaboración propia a
+partir del análisis realizado por Rose y Meyer (2002: 44-61). 
+ 
+ ¿Qué consecuencias tiene ceñirse a un solo medio tradicional en el
+aprendizaje del alumnado?
+
+El hecho de que los estudiantes usen cada uno de estos medios,
+requiere la puesta en marcha de distintos módulos de las tres redes del
+cerebro implicadas en el aprendizaje. Teniendo en cuenta la variabilidad
+existente en el funcionamiento de estas redes entre el alumnado, parece
+obvio que optar por un único medio en el proceso de enseñanza
+tendrá como consecuencias:
+
+ Por un lado, que aquellos alumnos cuyas características y
+capacidades no estén en sintonía con las que exige el medio en
+cuestión, quedarán excluidos del proceso de aprendizaje.
+
+ Por otro lado, que, incluso si el alumno puede manejarse
+adecuadamente con el medio, solo pondrá en marcha determinados
+módulos cerebrales, desarrollando una serie de capacidades (las que
+exija el propio medio), en detrimento de otras que sí se desarrollarían
+si se hubiese optado por otro medio. 
+ 
+15 
+ 
+El CAST propone como solución a este problema que el docente
+disponga de diversos medios de enseñanza para que los alumnos 
+escojan aquel que mejor se acomode a sus capacidades y preferencias.
+Sin embargo, tener a mano la misma información en múltiples formatos
+tradicionales supone un sobrecoste material y de esfuerzo para los
+docentes, ya que dichos medios son rígidos. Así, por ejemplo, es
+complicado convertir el texto de un libro en papel en un archivo de audio
+para escucharlo.
+
+En este punto cobra importancia el uso de los medios digitales, los
+cuales, gracias a sus características de flexibilidad y capacidad de
+transformación, pueden facilitar enormemente la tarea de individualizar el
+aprendizaje para atender la diversidad del alumnado en el aula.
+
+ 
+4.2. La oportunidad de los medios digitales para
+individualizar el aprendizaje en el aula 
+
+En sus orígenes, el CAST trabajó en el diseño de libros electrónicos con
+funciones específicas que hiciesen accesibles los contenidos del currículo
+al alumnado con algún tipo de discapacidad o dificultad de aprendizaje. Así
+se constató que los restantes alumnos también usaban estos recursos
+digitales, pues facilitaban el propio proceso de aprendizaje o lo hacían más
+motivador y atractivo.
+
+Esto llevó a los investigadores a pensar que se podría facilitar la tarea de
+atención a la diversidad del alumnado a través de las tecnologías, al tiempo
+que se ofrecían diversas opciones para acceder a la información y al
+aprendizaje, pues se posibilitaba que cada uno escogiese el medio que
+mejor se adecuase a sus características y capacidades personales, y a la
+tarea que se debía realizar.
+
+A pesar de que los medios digitales comparten con los de tipo tradicional el
+hecho de que representan la información en audio, texto o imágenes, se
+diferencian de ellos en que pueden combinarse fácilmente y, lo que es
+más importante, se pueden transformar unos en otros.
+
+Esta flexibilidad inherente a los medios digitales se manifiesta en cuatro
+ventajas frente a los medios tradicionales (Rose y Meyer, 2002):
+
+1. Versatilidad. Las tecnologías pueden almacenar la información y los
+contenidos en múltiples formatos; incluso, es posible combinarlos. Así,
+un único contenido se puede presentar de varias maneras (audio, video,
+texto, imagen), de modo que personas con diferentes discapacidades
+(visual, auditiva) pueden acceder a él, igual que todos los alumnos
+pueden poner en marcha distintos módulos de las tres redes cerebrales.
+Además, la combinación de formatos (incluir subtítulos en un video, por
+ejemplo) enriquece el aprendizaje. 
+ 
+16 
+ 
+
+2. Capacidad de transformación. Los medios digitales pueden almacenar
+la información separando el contenido del formato en que se presenta.
+Esto permite al alumno acceder al contenido utilizando el formato que
+prefiera, e incluso transferir la información de un medio a otro. Se
+pueden distinguir dos tipos de transformaciones:
+
+ Transformaciones dentro de un medio. Son ajustes sobre el modo
+en que se presentan los contenidos (volumen, velocidad de
+reproducción, tamaño del texto, contraste, etc.).
+
+ Transformaciones entre medios. Se transfiere el contenido de un
+medio a otro (por ejemplo, un software que convierte el texto en audio
+y viceversa).
+
+3. Capacidad para marcarlos. Es posible modificar el formato de la
+información (tipo de letra, tamaño, negrita, cursiva, subrayado, marca de
+color…). Frente a los medios tradicionales, en los que las marcas son
+permanentes, en los digitales cabe modificarlas, mostrarlas, esconderlas
+o hacer un tipo de marcado diferente en función de las características
+del alumnado.
+
+4. Capacidad para ponerlos en red. Los contenidos se pueden  relacionar
+con otros contenidos, de manera que es posible pasar de unos a otros
+con rapidez y sencillez, lo cual puede enriquecer mucho el proceso de
+aprendizaje. Es el caso de los hipervínculos o el de los procesadores de
+textos digitales, que incluyen la opción de pinchar en una palabra para
+acceder directamente a su significado o a su traducción (diccionario o
+traductor integrado). 
+El uso de los medios digitales es fundamental para aplicar el DUA en el
+aula debido, como se ha dicho, a su flexibilidad y a las posibilidades que
+ofrecen de individualizar el aprendizaje. Sin embargo, el mero uso de la
+tecnología no garantiza la atención a la diversidad ni las mejoras en el
+aprendizaje del alumnado. Es necesario no caer en la inercia de utilizar los
+medios digitales de forma tradicional, para no desaprovechar el potencial
+con el que cuentan.
+
+Por tanto, como afirman Rose y Meyer (2000), es imprescindible adaptar el
+uso de los medios digitales a las características de los estudiantes, a las
+tareas que deben realizar y a los diferentes tipos de aprendizaje que se
+pretenda desarrollar, de tal forma que se eliminen o se reduzcan en la
+medida de lo posible las barreras presentes en los medios tradicionales que
+tienen un formato único.
+ 
+ 
+17 
+ 
+ 
+5. ¿Cómo aplicar el DUA al currículo y a la práctica
+docente? 
+
+Los resultados de las investigaciones del CAST revelaron dos evidencias
+fundamentales para el diseño del marco de aplicación del enfoque DUA. Por un
+lado, la diversidad que presentan los estudiantes en cuanto a estructura y
+configuración cerebral se traduce en una gran variabilidad respecto a la
+manera que tienen de acceder y procesar la información, al modo en que
+planifican, ejecutan y monitorizan diferentes tareas, y a la forma en que se
+motivan e implican en su propio aprendizaje. Esto es, las diferencias existentes
+entre las redes cerebrales de reconocimiento, estratégicas y afectivas de los 
+alumnos, se manifestan en diversas formas de aprender. Por tanto, el currículo
+debe estar diseñado universalmente, para que contemple la singularidad de
+cada alumno y haga posible el éxito educativo a todos. Por otro lado, la
+flexibilidad inherente a los medios digitales posibilita llevar a la práctica esta
+personalización del currículo. Las nuevas tecnologías son esenciales para la
+aplicación del DUA.
+
+Las evidencias sobre el funcionamiento y la diversidad de las redes cerebrales,
+así como las oportunidades que ofrecen los medios digitales para  personalizar
+el proceso de aprendizaje, se complementan con la identificación de teorías y
+prácticas educativas que han demostrado su éxito para reducir barreras en la
+enseñanza. Así, el DUA hace referencia a la teoría de las inteligencias
+múltiples de Gardner y al constructivismo de Vygotsky, haciendo hincapié en
+la Zona de Desarrollo Próximo (ZDP) y en el concepto de andamiaje (Rose y
+Meyer, 2002).
+
+A partir de esta investigación, el CAST desarrolló el marco de implementación
+del Diseño Universal para el Aprendizaje en el aula. Como se ha señalado ya,
+dicho marco está estructurado en tres principios básicos, cada uno de los
+cuales se desarrolla a través de tres pautas de aplicación y de varias claves o
+puntos de verificación. Cada principio se corresponde con una de las tres
+redes cerebrales implicadas en el aprendizaje que se han explicado
+anteriormente.
+
+ 
+5.1. Principios del DUA 
+
+Los tres principios del DUA sientan las bases del enfoque y en torno a ellos
+se construye el marco práctico para llevarlo a las aulas. Estos principios se
+han convertido en un referente obligado que aparece en la mayoría de la
+bibliografía científica sobre el tema. Como se ha explicado más arriba, se
+corresponden con las tres redes cerebrales implicadas en el aprendizaje
+que se han descrito en el apartado tercero. Son los siguientes (CAST,
+2011: 3-4): 
+ 
+18 
+ 
+
+ Principio I. Proporcionar múltiples formas de representación de
+la información y los contenidos (el qué del aprendizaje), ya que los
+alumnos son distintos en la forma en que perciben y comprenden la
+información.
+
+ Principio II. Proporcionar múltiples formas de expresión del
+aprendizaje (el cómo del aprendizaje), puesto que cada persona tiene
+sus propias habilidades estratégicas y organizativas para expresar lo
+que sabe.
+
+ Principio III. Proporcionar múltiples formas de implicación (el
+porqué del aprendizaje), de forma que todos los alumnos puedan
+sentirse comprometidos y motivados en el proceso de aprendizaje. 
+Los tres principios del DUA indican que es necesario que los docentes
+ofrezcan al alumnado un amplio rango de opciones para acceder al
+aprendizaje. Aquí se plantea un interrogante: ¿cómo podemos llevar a la
+práctica cotidiana del aula estos principios?, ¿cómo los aplicamos al
+currículo para lograr que la enseñanza sea realmente para todos los
+estudiantes de la clase, para que todos participen en los procesos y
+actividades y, finalmente, para que aprendan? 
+
+ 
+5. 2. Aplicación de los principios del DUA en el aula: pautas
+y puntos de verificación
+2
+ 
+
+Las pautas del DUA son un conjunto de estrategias que se pueden utilizar
+en la práctica docente para lograr que los currículos sean accesibles a
+todos los estudiantes y para eliminar las barreras que generan la mayoría
+de ellos. Pueden servir como base para crear opciones diferentes,
+flexibilizar los procesos de enseñanza y maximizar las oportunidades de
+aprendizaje. 
+
+Cada una de las pautas está vinculada con uno de los principios del DUA;
+cada pauta, además de la justificación de su interés en el aprendizaje,
+aporta sugerencias sobre cómo llevar a la práctica el principio
+correspondiente. Muchas de estas pautas y propuestas ya están integradas
+en la práctica de los docentes, pero hay otras que pueden resultar
+novedosas y muy útiles para responder a necesidades e intereses de los 
+                                                 
+2
+ Texto abreviado y adaptado del documento CAST (2011). Universal Design for Learning
+Guidelines version 2.0. Wakefield, MA: Author. Traducción al español version 2.0. (2013).
+Traducción al español: Carmen Alba Pastor, Pilar Sánchez Hípola, José Manuel Sánchez Serrano
+y Ainara Zubillaga del Río. 
+ 
+19 
+ 
+estudiantes, así como para evitar barreras con las que se encuentran
+muchos de ellos a la hora de acceder al currículo.
+
+Las pautas del DUA proporcionan un marco de referencia y una perspectiva
+que permite aplicarlas a cualquier componente del currículo, ya que definen
+los objetivos, seleccionan los contenidos y los materiales didácticos, y
+evalúan los aprendizajes (Alba Pastor, 2012). Cualquier momento y tarea
+puede plantearse con esta perspectiva, para garantizar que todos los
+estudiantes accedan a los procesos de aprendizaje. 
+
+A continuación se detalla cada uno de los principios, las pautas y los puntos
+de verificación correspondientes. Asimismo, se indican directrices prácticas
+que el maestro puede implementar para atender la diversidad de una
+manera efectiva. 
+ 
+20 
+ 
+ 
+ 
+Principio I. Proporcionar múltiples formas de representación 
+
+El primer principio del Diseño Universal para el Aprendizaje parte de la idea de
+que los alumnos son diferentes en la forma en que perciben y
+comprenden la información que se les presenta. Por ejemplo, aquellos que
+tengan una discapacidad sensorial (ceguera o sordera), dificultades de
+aprendizaje (dislexia) o diferencias lingüísticas o culturales, pueden necesitar
+maneras distintas de abordar los contenidos. Otros, simplemente, captarán
+mejor la información con medios visuales o auditivos que con el texto impreso.
+Por ello, no hay un medio de representación óptimo para todos los estudiantes,
+por lo que es fundamental proporcionar múltiples opciones al ofrecer la
+información.
+
+¿Cómo se pone en práctica esto? Para incorporar este principio en los
+procesos de enseñanza hay tres pautas a los que debemos prestar atención:
+ 
+I. Proporcionar múltiples formas de representación
+1. Proporcionar diferentes opciones para percibir la información
+1.1. Opciones que permitan modificar y personalizar la presentación de
+la información
+1.2. Ofrecer alternativas para la información auditiva
+1.3. Ofrecer alternativas para la información visual
+2. Proporcionar múltiples opciones para el lenguaje y los símbolos
+2.1. Definir el vocabulario y los símbolos
+2.2. Clarificar la sintaxis y la estructura
+2.3. Facilitar la decodificación de textos, notaciones matemáticas y
+símbolos
+2.4. Promover la comprensión entre diferentes idiomas
+2.5. Ilustrar las ideas principales a través de múltiples medios
+3. Proporcionar opciones para la comprensión
+3.1. Activar los conocimientos previos
+3.2. Destacar patrones, características fundamentales, ideas principales y
+relaciones entre ellas
+3.3. Guiar el procesamiento de la información, la visualización y la
+manipulación
+3.4. Maximizar la memoria y la transferencia de información  
+ 
+Tabla 3. Síntesis de pautas del DUA y puntos de verificación para la práctica del principio I. 
+ 
+ 
+21 
+ 
+ 
+Pauta 1. Proporcionar diferentes opciones para percibir la información 
+
+Si un alumno no puede percibir la información, no habrá aprendizaje. Para
+evitar que esto sea una barrera, es importante asegurarse de que todos los
+estudiantes pueden percibir la información clave; con este fin se pueden
+buscar formas alternativas que permitan diversificar la presentación de la
+información. Es decir, se trata de proporcionar la misma información a través
+de diferentes modalidades (por ejemplo, visual, auditiva, táctil o audiovisual).
+
+Esta pauta se puede concretar en acciones más específicas para su
+implementación en la práctica: son los puntos de verificación que se describen
+seguidamente.
+ 
+1.1 Opciones que permitan modificar y personalizar la presentación de
+la información 
+ 
+ ¿En qué consiste?
+En ofrecer opciones para que sea posible personalizar la presentación de
+la información mediante formatos que permitan ajustarlas. Por ejemplo,
+que el texto se pueda agrandar o que los sonidos se puedan amplificar. Con
+esta diversidad de maneras de representación no solo se garantiza que la
+información sea accesible para los estudiantes con discapacidades
+perceptivas o sensoriales concretas, sino que también se facilita el acceso y
+la comprensión a muchos otros. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+Cuando se utilizan recursos tecnológicos, es posible:
+ 
+ Cambiar el tamaño del texto, de la letra o el tipo de fuente. 
+ Medir el contraste entre fondo, texto e imagen. 
+ Utilizar el color como medio de información o para resaltar algún
+elemento. 
+ Variar el volumen o la velocidad con la que se presenta la información
+sonora. 
+ 
+1.2 Ofrecer alternativas para la información auditiva 
+ 
+ ¿En qué consiste?
+En utilizar diferentes opciones para presentar cualquier tipo de
+información auditiva. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+Al presentar información sonora, se puede mejorar su acceso a algunos
+estudiantes ―como los que tienen dificultades en la audición o en la
+comprensión auditiva―, si se acompaña con alguna forma de
+representación a través de otro formato, como puede ser: 
+ 
+22 
+ 
+ 
+ Utilizar subtítulos. 
+ Usar diagramas, gráficos… 
+ Facilitar transcripciones escritas de videos o de documentos sonoros
+(letras de canciones, de las intervenciones de los personajes…). 
+ 
+1.3 Ofrecer alternativas para la información visual 
+ 
+ ¿En qué consiste?
+Normalmente se utilizan imágenes, gráficos, animaciones, videos o texto
+para presentar información en el aula. Pero estas representaciones visuales
+no son igualmente accesibles para todos los estudiantes; en especial, no lo
+son para quienes tienen discapacidades visuales, los que todavía no tienen
+suficiente competencia lectora o quienes no están familiarizados con las
+imágenes o los gráficos que se usan. Para superar esta barrera hay que
+proporcionar la información a través de otros formatos alternativos, no
+visuales.
+ 
+ ¿Cómo se puede llevar a la práctica?
+Al presentar la información a través de imágenes, habría que acompañarlas
+o tener esos contenidos disponibles en otros formatos no visuales:
+ 
+ Usar descripciones texto-voz en imágenes, gráficos y videos. 
+ Utilizar objetos físicos y modelos espaciales. 
+ Facilitar claves auditivas para las ideas principales. 
+ Convertir el texto digital (PDF) en audio.
+Dentro de este apartado merece especial atención el texto como un caso
+especial de información visual y elemento clave en los procesos de
+enseñanza. Cualquier texto en formato digital se puede transformar
+fácilmente en sonido o formato audio, bien a través de sistemas de
+lectura por alguna persona o por medios digitales, como los conversores
+de texto a voz. 
+
+¿Cómo se puede llevar a la práctica? 
+ 
+1. Permitir la participación de un compañero o compañera para que lea
+el texto en voz alta. 
+2. Utilizar programas informáticos que hagan posible la conversión de
+texto a voz. 
+ 
+ 
+23 
+ 
+ 
+Pauta 2. Proporcionar múltiples opciones para el lenguaje y los símbolos  
+
+La interacción con los diversos sistemas de representación ―tanto lingüísticos
+como no lingüísticos― varía de unos estudiantes a otros. Por ejemplo, un
+dibujo o una imagen que tiene un significado para unos estudiantes, podría
+tener otro significado totalmente distinto para otros alumnos de contextos
+culturales y familiares diferentes. Y lo mismo sucede al usar símbolos, gráficos
+o un vocabulario determinado. Si solo se utiliza este medio para presentar la
+información, aquellos que no entiendan una palabra o una representación
+gráfica no tendrán acceso a dicha información. Por ello, si se utilizan de
+manera complementaria sistemas de representación alternativos, por
+ejemplo, palabra e imagen, aumentarán la claridad y la mejora de la
+comprensión de todos los estudiantes. 
+
+Para integrar este concepto del DUA en el currículo, se deben tener en cuenta
+tres claves o puntos de verificación:
+ 
+2.1. Definir el vocabulario y los símbolos 
+ 
+ ¿En qué consiste?
+Los elementos semánticos a través de los que se presenta la información
+―palabras, símbolos, números e iconos― no son igualmente accesibles
+para los estudiantes con distintos antecedentes, idiomas y conocimiento
+léxico. Con el objeto de asegurar la accesibilidad para todos, el vocabulario
+clave, las etiquetas, los iconos y los símbolos deberían estar vinculados o
+asociados a una representación alternativa de su significado (por
+ejemplo, un glosario, un gráfico equivalente, un cuadro o mapa). 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Enseñar previamente o clarificar el vocabulario y los símbolos. 
+ Utilizar descripciones de texto de los símbolos gráficos. 
+ Insertar apoyos al vocabulario, a los símbolos y a referencias
+desconocidas dentro del texto. 
+ Destacar el modo en que palabras y símbolos sencillos forman otros
+más complejos. 
+ 
+2.2. Clarificar la sintaxis y la estructura 
+ 
+ ¿En qué consiste?
+En proporcionar representaciones alternativas que aclaren o hagan
+explícitas las relaciones sintácticas o estructurales entre los elementos. Es
+decir, hay que explicar de qué modo los elementos simples se
+combinan para crear nuevos significados, o hacer explícita la sintaxis de
+una frase o la estructura de una representación gráfica. 
+ 
+24 
+ 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Explicar las relaciones entre los elementos (por ejemplo, a través de
+mapas conceptuales). 
+ Establecer conexiones con estructuras previas. 
+ Resaltar las palabras de transición en un texto. 
+ Enlazar ideas.
+ 
+2.3. Facilitar la decodificación de textos, notaciones matemáticas y
+símbolos 
+ 
+ ¿En qué consiste?
+En proporcionar opciones que reduzcan las barreras o dificultades que
+conlleva la decodificación de símbolos que no resulten familiares. 
+  
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Utilizar listas de términos o palabras clave. 
+ Acompañar el texto digital con una voz humana pregrabada. 
+ Proporcionar diferentes formas de representar las notaciones en
+fórmulas, problemas de palabras, gráficos, etc.  
+ 
+2.4. Promover la comprensión entre diferentes idiomas 
+ 
+ ¿En qué consiste?
+En utilizar alternativas lingüísticas, especialmente, en la información
+clave o el vocabulario. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Enlazar palabras clave con sus definiciones y pronunciaciones en varias
+lenguas. 
+ Proporcionar herramientas electrónicas de traducción o enlaces a
+glosarios multilingües. 
+ Usar apoyos visuales no lingüísticos al vocabulario.
+ 
+2.5. Ilustrar las ideas principales a través de múltiples medios 
+ 
+ ¿En qué consiste?
+En proporcionar alternativas al texto. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Presentar los conceptos clave en formas alternativas al texto (imágenes,
+movimiento, tabla, video, fotografía, material físico y/o manipulable, etc.). 
+ 
+25 
+ 
+ Hacer explícitas las relaciones entre los textos y la representación
+alternativa que acompañe a esa información.  
+ 
+ 
+26 
+ 
+ 
+Pauta 3. Proporcionar opciones para la comprensión 
+
+El propósito de la educación no es hacer que la información sea accesible, sino
+enseñar a los estudiantes a transformar en conocimiento la información a
+la que tienen acceso, algo que se logra a través de un proceso activo. Ese
+conocimiento, para que sea útil, tiene que estar disponible para que el
+alumnado lo pueda utilizar en la toma de decisiones o como base para adquirir
+nueva información.
+
+Por ello, hay que proporcionar a los estudiantes las ayudas y los apoyos
+necesarios que les garanticen el acceso a la información y su procesamiento
+de forma significativa.
+ 
+3.1. Activar los conocimientos previos 
+ 
+ ¿En qué consiste?
+En suministrar opciones que faciliten la activación de los conocimientos
+previos o que permitan establecer conexiones con la información previa
+necesaria para que se produzca el nuevo aprendizaje.
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Fijar conceptos previos ya asimilados. 
+ Utilizar organizadores gráficos para visualizar las relaciones entre la
+información o los conceptos. 
+ Enseñar los conceptos previos que son esenciales para el nuevo
+aprendizaje. 
+ Vincular conceptos (mediante analogías, metáforas…). 
+ Hacer conexiones curriculares explícitas, como enseñar estrategias
+lectoras en otras materias. 
+ 
+3.2. Destacar patrones, características fundamentales, ideas principales y
+relaciones entre ellas 
+ 
+ ¿En qué consiste?
+En facilitar indicaciones o claves que ayuden a prestar atención a lo
+importante frente a lo que no lo es, como puede ser identificar lo valioso o
+establecer nexos con conocimientos previos. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Destacar los elementos básicos. 
+ Utilizar esquemas, organizadores gráficos…, para destacar las ideas
+fundamentales y las relaciones entre conceptos o elementos. 
+ Poner ejemplos y contraejemplos. 
+ 
+27 
+ 
+ Identificar y hacer explícitas habilidades previas que se pueden utilizar
+para resolver nuevos problemas.
+ 
+3.3. Guiar el procesamiento de la información, la visualización y la
+manipulación 
+
+ 
+ ¿En qué consiste?
+En proporcionar modelos y apoyos para el empleo de estrategias
+cognitivas y metacognitivas que faciliten el procesamiento de la
+información y su transformación en conocimiento útil. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Utilizar los siguientes elementos:
+
+- 
+Indicaciones explícitas de cada uno de los pasos que componen
+un proceso secuencial.
+- Métodos y estrategias de organización (por ejemplo, tablas).
+- Modelos de cómo enfrentarse o explorar los nuevos aprendizajes.
+- Apoyos graduales para ir usando las estrategias de procesamiento
+de la información.
+- Ejemplos o estrategias variadas para estudiar una lección (textos,
+teatro, arte, películas, etc.).
+ 
+ Agrupar la información en unidades más pequeñas. 
+ Presentar los contenidos de manera progresiva, no todos a la vez. 
+ 
+3.4. Maximizar la memoria y la transferencia de información 
+ 
+ ¿En qué consiste?
+En utilizar apoyos que favorezcan las tareas de memorizar, generalizar y
+transferir aprendizajes a nuevos contextos y situaciones.
+ 
+ ¿Cómo se puede llevar a la práctica? 
+ 
+ Utilizar listas de comprobación, organizadores, notas, recordatorios, etc. 
+ Usar estrategias mnemotécnicas. 
+ Incorporar acciones de revisión de lo aprendido. 
+ Proporcionar plantillas y organizadores que faciliten tomar apuntes. 
+ Establecer apoyos para conectar la información nueva con los
+conocimientos previos.
+ 
+ 
+28 
+ 
+ 
+Principio II. Proporcionar múltiples formas de acción y expresión 
+
+
+Los individuos tienen diferentes maneras de aprender y de expresar lo que
+saben. Hay quien puede aprender o expresarse utilizando texto escrito, pero no
+oral, y viceversa. En ocasiones, es una cuestión de preferencias, pero otras
+veces se trata de barreras derivadas de las situaciones personales: las
+personas que tienen alteraciones significativas del movimiento (parálisis
+cerebral), con dificultades en las habilidades estratégicas y organizativas
+(trastornos de la función ejecutiva) o con problemas derivados de un
+conocimiento limitado del idioma, se enfrentan a las tareas de aprendizaje de
+forma muy diferente. Por ello, no existe un modo único de realizar una tarea o
+de expresar un aprendizaje que sea óptimo para todos los alumnos y alumnas.
+Por eso, en la práctica docente es preciso proporcionar diferentes opciones
+para llevar a cabo las tareas de aprendizaje y la forma de expresar que se
+han alcanzado.
+
+Pero, ¿cómo podemos llevar este principio a la práctica? Para incorporarlo en
+los procesos de enseñanza, el DUA define tres pautas que se desarrollan a
+continuación:
+ 
+II. Proporcionar múltiples formas de acción y expresión
+4. Proporcionar múltiples medios físicos de acción 
+4.1. Proporcionar varios métodos de respuesta
+4.2. Ofrecer diferentes posibilidades para interactuar con los materiales 
+4.3. Integrar el acceso a herramientas y tecnologías de asistencia 
+5. Proporcionar opciones para la expresión y hacer fluida la comunicación
+5.1. Utilizar múltiples formas o medios de comunicación
+5.2. Usar múltiples herramientas para la composición y la construcción
+5.3. 
+Incorporar niveles graduados de apoyo en los procesos de aprendizaje 
+6. Proporcionar opciones para las funciones ejecutivas
+6.1. Guiar el establecimiento de metas adecuadas
+6.2. Apoyar la planificación y el desarrollo de estrategias
+6.3. Facilitar la gestión de información y de recursos
+6.4. Mejorar la capacidad para hacer un seguimiento de los avances 
+ 
+Tabla 4. Síntesis de pautas del DUA y puntos de verificación para la práctica del principio II. 
+ 
+ 
+29 
+ 
+ 
+Pauta 4. Proporcionar múltiples medios físicos de acción  
+
+Un libro de texto o un cuaderno de ejercicios en formato impreso proporcionan
+opciones muy limitadas para interactuar. Por ejemplo, se interactúa pasando
+las páginas con el dedo o escribiendo en los espacios establecidos con este fin.
+
+De manera similar, muchos programas multimedia educativos ofrecen maneras
+limitadas de interacción. Así, podemos usar un joystick, un ratón o un teclado.
+Esto puede suponer barreras para algunos estudiantes (especialmente, para
+quienes cuentan con alguna discapacidad motora, visual o disgrafía). Por ello,
+es importante que los materiales curriculares tengan un diseño compatible con
+las tecnologías de apoyo comunes, mediante las cuales los estudiantes que
+necesiten utilizarlas puedan expresar lo que saben. Por ejemplo, han de
+permitir la interacción con conmutadores activados por voz, teclados
+expandidos y otras tecnologías de apoyo.
+ 
+4.1. Proporcionar varios métodos de respuesta 
+ 
+ ¿En qué consiste?
+En proponer diferentes opciones para responder a las preguntas o
+demostrar lo que se ha aprendido. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Proporcionar alternativas en el ritmo, en los plazos y en la acción que
+hay que realizar para responder a las preguntas o hacer las tareas. 
+ Permitir que se puedan dar respuestas físicas o por selección, como
+alternativas al uso del lápiz, al control del ratón, etc. 
+ 
+4.2. Ofrecer diferentes posibilidades para interactuar con los materiales 
+ 
+ ¿En qué consiste?
+En proporcionar diferentes métodos para moverse a través de la
+información y para interaccionar con el contenido (buscar, responder,
+seleccionar, redactar, etc.). 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Proporcionar opciones para la interacción con los materiales didácticos. 
+ Ofrecer alternativas distintas para interaccionar con los materiales
+(manos, voz, joysticks, teclados, etc.). 
+ 
+30 
+ 
+ 
+4.3. Integrar el acceso a herramientas y tecnologías de asistencia 
+ 
+ ¿En qué consiste?
+En garantizar el uso efectivo de herramientas de apoyo, asegurando que
+ni las tecnologías ni el currículo generan barreras. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Utilizar comandos de teclado para acciones de ratón. 
+ Usar conmutadores y sistemas de barrido (alternativas al ratón). 
+ Proporcionar teclados alternativos / adaptados. 
+ Facilitar plantillas para pantallas táctiles y teclados. 
+ Incorporar un software accesible.
+
+ 
+ 
+31 
+ 
+ 
+Pauta 5. Proporcionar opciones para la expresión y hacer fluida la
+comunicación 
+ 
+5.1. Utilizar múltiples formas o medios de comunicación 
+ 
+ ¿En qué consiste?
+En promover el uso de medios alternativos para expresarse. 
+ 
+ ¿Cómo se puede llevar a la práctica? 
+ 
+ Usar objetos físicos manipulables (bloques, modelos 3D, regletas,
+ábacos, etc.). 
+ Proporcionar aplicaciones de comunicación y herramientas web
+interactivas. 
+ Utilizar diferentes estrategias para la resolución de problemas. 
+ Componer o redactar manejando múltiples medios (texto, voz, dibujos,
+cine, música, movimiento, arte visual, etc.). 
+ 
+5.2. Usar múltiples herramientas para la composición y la construcción 
+ 
+ ¿En qué consiste?
+En proporcionar múltiples herramientas o apoyos para redactar, componer
+o construir objetos (a menos que el objetivo esté dirigido al aprendizaje de
+una herramienta específica). 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Usar correctores ortográficos y gramaticales. 
+ Incorporar software de predicción de palabras. 
+ Utilizar software de reconocimiento / conversor texto-voz. 
+ Proporcionar comienzos o fragmentos de frases. 
+ Facilitar herramientas gráficas. 
+ Usar calculadoras. 
+ Incorporar diseños geométricos, papel pautado, etc. 
+ Utilizar materiales virtuales. 
+ Proporcionar materiales que se puedan manipular. 
+ 
+32 
+ 
+ 
+5.3. Incorporar niveles graduados de apoyo en los procesos de
+aprendizaje 
+ 
+ ¿En qué consiste?
+En proporcionar diferentes opciones y recursos para que los alumnos
+alcancen el máximo nivel de dominio en las diversas competencias. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Utilizar modelos de simulación, que demuestren los mismos resultados a
+través de diferentes enfoques o estrategias. 
+ Usar variedad de mentores: profesor, tutor de apoyo (que usen distintas
+estrategias didácticas) y compañeros. 
+ Permitir apoyos que se pueden retirar gradualmente, según aumenta la
+autonomía (pautas, diccionario...). 
+ Facilitar un feedback o retroalimentación formativa. 
+ Proporcionar ejemplos de soluciones novedosas a problemas reales.
+
+ 
+ 
+33 
+ 
+ 
+Pauta 6. Proporcionar opciones para las funciones ejecutivas 
+
+Las funciones ejecutivas se sitúan en el nivel superior de la capacidad
+humana y son fundamentales para actuar con maestría. Estas capacidades,
+asociadas con la actividad cerebral del córtex prefrontal, permiten a los seres
+humanos superar las reacciones impulsivas o a corto plazo; en su lugar, se
+actúa estableciendo metas u objetivos a largo plazo, un plan para alcanzar
+estas metas, controlar su progreso y modificar aquellas que sean necesarias.
+
+Para los docentes, es muy importante el hecho de que las funciones ejecutivas
+tienen una capacidad muy limitada debido a la memoria operativa. Está
+comprobado que la capacidad ejecutiva se reduce claramente cuando:
+
+1. Se dedica a gestionar habilidades de «bajo nivel» y respuestas no
+automáticas o fluidas. Esto implica que se reduce la capacidad disponible
+para las funciones de «alto nivel».
+
+2. Existen determinados tipos de discapacidad o hay falta de fluidez con las
+estrategias ejecutivas.
+
+El esquema en el que se basa el Diseño Universal para el Aprendizaje trata de
+incrementar la capacidad ejecutiva de dos modos:
+
+1. Dando apoyos a las habilidades de bajo nivel, de manera que requieran un
+menor procesamiento ejecutivo.
+
+2. Apoyando las habilidades y estrategias ejecutivas de alto nivel para que
+sean más eficaces y elaboradas.
+
+Las pautas previas tienen que ver con los apoyos de bajo nivel, mientras que la
+pauta que se trata en este apartado tiene como objetivo proporcionar los
+apoyos precisos para las funciones ejecutivas o de más alto nivel. 
+ 
+34 
+ 
+6.1. Guiar el establecimiento de metas adecuadas 
+ 
+ ¿En qué consiste?
+En incorporar apoyos graduados para aprender a establecer metas
+personales que supongan un reto, pero que, a la vez, sean realistas. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Incorporar apoyos para hacer una estimación previa del esfuerzo, los
+recursos que se van a utilizar y el grado de dificultad. 
+ Usar modelos o ejemplos del proceso y resultados de la definición de
+metas. 
+ Proporcionar pautas y listas de comprobación para definir objetivos. 
+ Hacer visibles los objetivos.
+ 
+6.2. Apoyar la planificación y el desarrollo de estrategias 
+ 
+ ¿En qué consiste?
+En establecer diferentes opciones que fomenten la planificación y el
+desarrollo de estrategias para lograr los objetivos, y en proporcionar apoyos
+graduados para ejecutar con efectividad dichas estrategias. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Realizar avisos del tipo «para y piensa». 
+ Planificar tiempos para «mostrar y explicar su trabajo». 
+ Utilizar listas de comprobación y plantillas de planificación de proyectos. 
+ Proporcionar mentores que modelen el proceso de pensar en voz alta. 
+ Facilitar pautas para dividir metas a largo plazo en objetivos a corto
+plazo alcanzables. 
+ 
+6.3. Facilitar la gestión de información y de recursos 
+ 
+ ¿En qué consiste?
+En proporcionar estructuras internas y organizadores externos para
+mantener la información organizada y en mente, favoreciendo la memoria
+de trabajo. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Utilizar organizadores gráficos. 
+ Aportar plantillas para recoger y organizar la información. 
+ Facilitar avisos o pautas para categorizar y sistematizar la información o
+los procesos. 
+ Usar listas de comprobación. 
+ Posibilitar pautas para tomar notas. 
+ 
+35 
+ 
+ 
+6.4. Mejorar la capacidad para hacer un seguimiento de los avances 
+ 
+ ¿En qué consiste?
+En dar feedback o retroalimentación formativa que permita a los
+estudiantes controlar su propio progreso y utilizar esa información para
+regular su esfuerzo y su práctica. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Realizar preguntas o plantillas para reflexionar sobre el trabajo
+desarrollado. 
+ Usar representaciones de los avances (antes y después con gráficas,
+esquemas, tablas en los que se muestren). 
+ Instar a los estudiantes a identificar qué tipo de feedback esperan o
+necesitan. 
+ Emplear variedad de estrategias de autoevaluación (role playing entre
+iguales, revisión en video). 
+ Utilizar listas o matrices de evaluación. 
+ Proporcionar ejemplos de prácticas. 
+ Facilitar trabajos de estudiantes evaluados que incluyan comentarios.
+
+ 
+ 
+36 
+ 
+Principio III. Proporcionar múltiples formas de implicación 
+
+El componente emocional es un elemento crucial en el aprendizaje que se
+pone en evidencia al ver las diferencias en lo que motiva a los estudiantes o en
+la manera en que se implican para aprender. Vemos que a unos les motiva lo
+novedoso o la espontaneidad, mientras que otros prefieren los procesos
+rutinarios. Hay alumnos que se concentran mejor cuando trabajan solos; en
+otros casos, prefieren trabajar en grupo. Por ello, es importante dar opciones o
+variar las dinámicas, de modo que todos los estudiantes puedan implicarse
+según sus preferencias. 
+
+Pero, ¿cómo podemos llevar este principio a la práctica? Para incorporarlo en
+los procesos de enseñanza hay tres pautas del DUA que se desarrollan a
+continuación:
+ 
+III. Proporcionar múltiples formas de implicación 
+7. Proporcionar opciones para captar el interés
+7.1. Optimizar la elección individual y la autonomía
+7.2. Optimizar la relevancia, el valor y la autenticidad 
+7.3. Minimizar la sensación de inseguridad y las distracciones 
+8. Proporcionar opciones para mantener el esfuerzo y la persistencia 
+8.1. Resaltar la relevancia de las metas y los objetivos
+8.2. Variar los niveles de desafío y apoyo
+8.3. Fomentar la colaboración y la comunidad 
+8.4. Proporcionar una retroalimentación orientada
+9. Proporcionar opciones para la autorregulación
+9.1. Promover expectativas y creencias que optimicen la motivación
+9.2. Facilitar niveles graduados de apoyo para imitar habilidades y
+estrategias
+9.3. Desarrollar la autoevaluación y la reflexión 
+ 
+Tabla 5. Síntesis de pautas del DUA y puntos de verificación para la práctica del principio III. 
+
+
+
+ 
+ 
+37 
+ 
+ 
+Pauta 7. Proporcionar opciones para captar el interés 
+
+ 
+
+La información a la que no se atiende o a la que no se presta atención, la que
+no supone una actividad cognitiva del estudiante es, de hecho, inaccesible y lo
+es tanto en el momento presente como en el futuro, porque la información que
+pudiera ser relevante pasa desapercibida y no se procesa. Por ello, buena
+parte de la actividad docente se dedica a captar la atención y a lograr la
+implicación de los estudiantes. Estos difieren de manera significativa en lo que
+atrae su atención y motiva su interés. Estas preferencias, incluso en un mismo
+alumno, pueden variar a lo largo del tiempo y dependiendo de las
+circunstancias.
+
+Los intereses cambian a medida que los estudiantes evolucionan y adquieren
+nuevos conocimientos y habilidades, según experimentan cambios biológicos y
+se van convirtiendo en adolescentes o personas adultas. Por tanto, es
+importante disponer de vías alternativas para captar el interés y de
+estrategias que respondan a las diferencias intra e interindividuales.
+ 
+7.1. Optimizar la elección individual y la autonomía 
+
+ 
+ 
+ ¿En qué consiste?
+En ofrecer opciones al alumnado para ejercitar la toma de decisiones,
+su satisfacción con los logros alcanzados e incrementar el grado de
+vinculación con su propio aprendizaje. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Proporcionar opciones de:
+
+- 
+Nivel de desafío percibido. 
+- Premios / recompensas.
+- Contenidos utilizados en las prácticas.
+- 
+Herramientas para recoger y producir información. 
+- 
+Color, diseño, gráficos, disposición, etc. 
+- Secuencia y tiempos para completar tareas.
+ 
+ Permitir la participación de alumnos en el diseño de actividades y tareas. 
+ Involucrarlos en el establecimiento de objetivos. 
+ 
+7.2. Optimizar la relevancia, el valor y la autenticidad 
+
+ 
+ 
+ ¿En qué consiste?
+En proporcionar distintas opciones que optimicen lo que es relevante,
+valioso, importante y motivador para cada uno de los alumnos.
+ 
+ ¿Cómo se puede llevar a la práctica? 
+ 
+38 
+ 
+ 
+ Variar actividades y fuentes de información:
+
+- Personalizarlas y contextualizarlas en la vida real.
+- Personalizarlas y contextualizarlas respecto a sus intereses.
+- 
+Culturalmente significativas. 
+- Adecuadas a la edad y la capacidad.
+- Adecuadas a diferentes razas, culturas, etnias y sexos.
+ 
+ Diseñar actividades viables, reales y comunicables. 
+ Promover la elaboración de respuestas personales. 
+ Fomentar la evaluación y la autorreflexión de contenidos y actividades. 
+ Diseñar actividades que fomenten la resolución de problemas y la
+creatividad.
+ 
+
+
+ 
+7.3. Minimizar la sensación de inseguridad y las distracciones 
+ 
+ ¿En qué consiste?
+En crear un clima de apoyo y aceptación en el aula, ofreciendo opciones
+que reduzcan los niveles de incertidumbre, la sensación de inseguridad y
+las distracciones. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+
+Combinando diferentes estrategias y recursos, como estos:
+ 
+ Crear rutinas de clase. 
+ Utilizar calendarios y recordatorios de actividades cotidianas. 
+ Proporcionar avisos o alertas que permitan anticipar las tareas o
+actividades que se van a realizar. 
+ 
+39 
+ 
+ 
+Pauta 8. Proporcionar opciones para mantener el esfuerzo y la persistencia 
+
+Muchos tipos de aprendizaje, en particular los aprendizajes de habilidades y
+estrategias, precisan una atención y un esfuerzo continuados. Cuando los
+estudiantes están motivados, pueden regular su atención y la parte emocional
+para mantener el esfuerzo y la concentración que requiere este aprendizaje.
+Sin embargo, la capacidad para autorregularse difiere considerablemente de
+unos a otros.
+
+Estas diferencias se hacen patentes también en su motivación inicial, en sus
+habilidades para la autorregulación y en su sensibilidad a las interferencias del
+contexto. Un objetivo educativo clave es el desarrollo de las habilidades
+individuales de autorregulación y autodeterminación que permitan garantizar
+a todos oportunidades de aprendizaje.
+ 
+8.1. Resaltar la relevancia de las metas y los objetivos 
+
+ 
+ 
+ ¿En qué consiste?
+En establecer un sistema de recordatorios periódicos o continuos para
+tener presente el objetivo y su importancia, con el fin de conseguir que se
+mantengan el esfuerzo y la concentración, aunque aparezcan elementos
+distractores. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Fomentar que los estudiantes formulen el objetivo de manera explícita o
+que lo replanteen personalizándolo. 
+ Presentar el objetivo de diferentes maneras. 
+ Dividir metas a largo plazo en objetivos a corto plazo. 
+ Usar herramientas de gestión del tiempo. 
+ Utilizar indicaciones y apoyos para visualizar el resultado previsto. 
+ Involucrar a los estudiantes en debates de evaluación y generar
+ejemplos relevantes que sirvan como modelos. 
+ 
+40 
+ 
+ 
+8.2. Variar los niveles de desafío y apoyo 
+
+ 
+ 
+ ¿En qué consiste?
+En establecer exigencias de diversa naturaleza y con niveles variados de
+dificultad para completar con éxito la tarea, así como distintas propuestas
+junto con un repertorio de posibles recursos. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Diferenciar grados de dificultad para completar las tareas. 
+ Variar los niveles de exigencia para considerar que un resultado es
+aceptable. 
+ Enfatizar el proceso, el esfuerzo y la mejora en el logro frente a la
+evaluación externa y la competición. 
+ 
+8.3. Fomentar la colaboración y la comunidad  
+
+ 
+ 
+ ¿En qué consiste?
+En diseñar agrupamientos flexibles que favorezcan la colaboración y el
+trabajo en equipo. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Crear grupos de colaboración con responsabilidades, objetivos y roles
+claros. 
+ Realizar programas de apoyo a buenas conductas. 
+ Proporcionar indicaciones que orienten a los estudiantes sobre cuándo y
+cómo han de pedir ayuda a otros compañeros o profesores. 
+ Fomentar la interacción entre iguales (por ejemplo, mediante la
+tutorización entre compañeros). 
+ Organizar comunidades o grupos de aprendizaje centrados en intereses
+o actividades comunes. 
+ Crear expectativas para el trabajo en grupo (rúbricas, normas, etc.).
+ 
+8.4. Proporcionar una retroalimentación orientada 
+
+ 
+ 
+ ¿En qué consiste?
+En utilizar el feedback para informar sobre el logro de ese aprendizaje,
+competencia o dominio. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ En la evaluación, identificando patrones de errores y respuestas
+incorrectas. 
+ 
+41 
+ 
+ 
+ Utilizando un feedback que sea sustantivo e informativo y que fomente:
+o La perseverancia.
+o El uso de estrategias y apoyos para afrontar un desafío.
+o El énfasis del esfuerzo, la mejora y el logro. 
+ 
+42 
+ 
+ 
+Pauta 9. Proporcionar opciones para la autorregulación 
+
+ 
+
+Si bien es importante cuidar los elementos extrínsecos del aprendizaje para
+contribuir a una buena motivación e implicación (ver pautas 7 y 8), también lo
+es que los estudiantes desarrollen unas habilidades intrínsecas para regular
+sus propias emociones y motivaciones.
+
+La capacidad de autorregularse ―modular de manera estratégica las
+reacciones o los estados emocionales propios para tener eficacia al hacer
+frente e interaccionar con el entorno― es un aspecto fundamental del
+desarrollo humano. Esta habilidad se puede aprender por ensayo y error, o a
+través de la observación de modelos en personas que la utilizan de manera
+adecuada.
+
+Con frecuencia, en las aulas no se contempla de un modo explícito el
+desarrollo de este tipo de habilidad y se deja como parte de un currículo
+implícito que suele resultar inaccesible o invisible para muchos estudiantes.
+Como en cualquier aprendizaje, las diferencias individuales son más comunes
+que la uniformidad. Por ello, es conveniente proporcionar alternativas
+suficientes que ayuden a los estudiantes con experiencias previas y aptitudes
+diferentes a gestionar la forma de implicarse en su propio aprendizaje.
+ 
+9.1. Promover expectativas y creencias que optimicen la motivación 
+ 
+ ¿En qué consiste?
+En proporcionar múltiples opciones para que los estudiantes mantengan
+la motivación, para que sean capaces de establecer sus propios objetivos
+con realismo y puedan fomentar pensamientos positivos sobre la posibilidad
+de lograrlos, manejando la frustración y evitando la ansiedad. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Utilizar pautas, listas y rúbricas de objetivos de autorregulación. 
+ Incrementar el tiempo de concentración en la tarea. 
+ Proporcionar mentores y apoyo para modelar el proceso de
+establecimiento de metas personales adecuadas. 
+ Emplear actividades de autorreflexión e identificación de objetivos
+personales. 
+ 
+43 
+ 
+
+9.2. Facilitar niveles graduados de apoyo para imitar habilidades y
+estrategias
+ 
+ ¿En qué consiste?
+En proporcionar apoyos variados para ayudar a los estudiantes a elegir
+y probar estrategias adaptativas que les sirvan para gestionar, orientar o
+controlar sus respuestas emocionales ante los acontecimientos externos. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Facilitar modelos, apoyos y retroalimentación para:
+
+- Gestionar la frustración.
+- Buscar apoyo emocional externo.
+ 
+ Ejercitar habilidades para hacer frente a situaciones conflictivas. 
+ Usar modelos y situaciones reales sobre habilidades para afrontar
+problemas. 
+ 
+9.3. Desarrollar la autoevaluación y la reflexión 
+
+ 
+ 
+ ¿En qué consiste?
+En proporcionar diferentes modelos y pautas de técnicas de
+autoevaluación que sirvan para controlar las emociones y la capacidad de
+reacción. 
+ 
+ ¿Cómo se puede llevar a la práctica?
+ 
+ Proporcionar modelos y herramientas para recabar información sobre las
+propias conductas. 
+ Favorecer el reconocimiento de los propios progresos de una manera
+comprensible. 
+
+ 
+ 
+44 
+ 
+ 
+Bibliografía 
+
+
+Alba Pastor, C. (2012). Aportaciones del Diseño Universal para el Aprendizaje y de los
+materiales digitales en el logro de una enseñanza accesible, en Navarro, J.,
+Fernández, Mª T., Soto, F. J. y Tortosa F. (coords.) (2012). Respuestas
+flexibles en contextos educativos diversos. Murcia, Consejería de Educación,
+Formación 
+y 
+Empleo. 
+http://diversidad.murciaeduca.es/publicaciones/dea2012/docs/calba.pdf. 
+
+Burgstahler, S. (2011). Universal Design: process, principles and applications. Seattle
+(EE. UU.): DO-IT, University of Washington (recuperado el 25/6/2014 de
+http://www.washington.edu/doit/Brochures/Programs/ud.html).
+
+CAST (Center for Applied Special Technology) (2011). Universal Design for 
+Learning guidelines version 2.0. Wakefield, MA: Author. Traducción al español
+versión 2.0 (2013):  Alba Pastor, C., Sánchez Hípola, P., Sánchez Serrano, J.
+M. y Zubillaga del Río, A. Pautas sobre el Diseño Universal para el Aprendizaje
+(DUA).Texto 
+completo 
+(versión 
+2.0). 
+http://www.udlcenter.org/sites/udlcenter.org/files/UDL_Guidelines_v2.0full_espanol.docx
+(consultado
+el
+24/6/2014).
+
+CUD
+(Center
+for
+Universal
+Design)
+(1997).
+The
+principles
+of
+Universal
+Design,
+version
+
+2.0.
+Raleigh,
+NC:
+North
+Carolina
+State
+University.
+
+EDUCADUA
+(2013)
+Página
+web
+del
+proyecto
+DUALETIC
+dedicada
+al
+Diseño
+Universal
+
+para
+
+el Aprendizaje en español. http://www.educadua.es (consultado el
+16/6/2014).
+Ley 51/2003, de 2 de diciembre, de igualdad de oportunidades, no discriminación y
+accesibilidad universal de las personas con discapacidad. BOE nº 289.
+Real Decreto Legislativo 1/2013, de 29 de noviembre, por el que se aprueba el Texto
+Refundido de la Ley General de derechos de las personas con discapacidad y
+de su inclusión social. BOE nº 289.
+Rose, D.H. (2006). «Universal Design for Learning in postsecondary education:
+reflections and principles and their application». Journal of postsecondary
+education and disability, 19 (2), 135-151.
+Rose, D.H. y Meyer, A. (2002). Teaching every student in the digital age: Universal
+Design for Learning. Alexandria, VA: Association for supervision and curriculum
+development.
+Rose, D.H. y Meyer, A. (2000). The future is in the margins: the role of technology and
+disability 
+in educational reforms (recuperado el 20/6/2014 de 
+http://udlonline.cast.org/resources/images/future_in_margins.pdf). 
+
+
+
+
+ 
+ 

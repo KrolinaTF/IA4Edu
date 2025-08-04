@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """
-Sistema de Agentes CrewAI con Few-Shot Learning
-Sistema mejorado que usa ejemplos de actividades k_ para generar contenido de alta calidad pedagógica
+Sistema de Agentes Q-Agents con Human-in-the-Loop
+Sistema avanzado que usa ejemplos de actividades k_ y feedback del usuario
+para generar contenido pedagógico personalizado de alta calidad
 """
 
 import json
@@ -10,6 +11,7 @@ from datetime import datetime
 from typing import Dict, List, Optional
 from dataclasses import dataclass
 import logging
+import re
 
 os.environ["OLLAMA_BASE_URL"] = "http://192.168.1.10:11434"
 os.environ["OLLAMA_HOST"] = "http://192.168.1.10:11434"
@@ -26,7 +28,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
-logger = logging.getLogger("CREWAI_FEWSHOT")
+logger = logging.getLogger("Q_AGENTS_HITL")
 
 try:
     from crewai import Agent, Task, Crew, Process
@@ -59,7 +61,18 @@ class ActividadEducativa:
     metadatos: Dict
     timestamp: str
 
-class SistemaAgentesFewShot:
+@dataclass
+class PromptAnalysis:
+    materia: Optional[str] = None
+    tema: Optional[str] = None
+    objetivos: List[str] = None
+    metodologia: Optional[str] = None
+    duracion: Optional[str] = None
+    nivel_detalle: Optional[str] = None
+    enfoque_especial: List[str] = None
+    missing_info: List[str] = None
+
+class SistemaAgentesQAgents:
     
     def __init__(self, 
                  ollama_host: str = "192.168.1.10", 
@@ -173,6 +186,174 @@ class SistemaAgentesFewShot:
         
         logger.info(f"✅ Cargados {len(self.ejemplos_k)} ejemplos k_ para few-shot learning")
     
+    def _analizar_prompt_inicial(self, prompt_usuario: str) -> PromptAnalysis:
+        """Analiza el prompt del usuario para extraer información ya proporcionada"""
+        analysis = PromptAnalysis()
+        analysis.missing_info = []
+        
+        prompt_lower = prompt_usuario.lower()
+        
+        # Detectar materia
+        materias = {
+            'matematicas': ['matemáticas', 'mates', 'números', 'cálculo', 'geometría', 'álgebra'],
+            'lengua': ['lengua', 'idioma', 'escritura', 'lectura', 'gramática', 'literatura'],
+            'ciencias': ['ciencias', 'biología', 'física', 'química', 'naturales', 'científico']
+        }
+        
+        for materia, keywords in materias.items():
+            if any(keyword in prompt_lower for keyword in keywords):
+                analysis.materia = materia
+                break
+        
+        # Detectar tema específico
+        tema_patterns = [
+            r'tema[:\s]*([^.,\n]+)',
+            r'sobre[:\s]*([^.,\n]+)',
+            r'acerca de[:\s]*([^.,\n]+)'
+        ]
+        for pattern in tema_patterns:
+            match = re.search(pattern, prompt_lower)
+            if match:
+                analysis.tema = match.group(1).strip()
+                break
+        
+        # Detectar objetivos
+        objetivo_patterns = [
+            r'objetivo[s]?[:\s]*([^.,\n]+)',
+            r'meta[s]?[:\s]*([^.,\n]+)',
+            r'pretende[:\s]*([^.,\n]+)'
+        ]
+        analysis.objetivos = []
+        for pattern in objetivo_patterns:
+            matches = re.findall(pattern, prompt_lower)
+            analysis.objetivos.extend([match.strip() for match in matches])
+        
+        # Detectar metodología
+        metodologias = ['colaborativa', 'individual', 'grupal', 'proyecto', 'gamificación', 'investigación']
+        for metodologia in metodologias:
+            if metodologia in prompt_lower:
+                analysis.metodologia = metodologia
+                break
+        
+        # Detectar duración
+        duracion_patterns = [
+            r'(\d+)\s*sesion[es]*',
+            r'(\d+)\s*hora[s]*',
+            r'(\d+)\s*minuto[s]*'
+        ]
+        for pattern in duracion_patterns:
+            match = re.search(pattern, prompt_lower)
+            if match:
+                analysis.duracion = match.group(0)
+                break
+        
+        # Detectar enfoque especial
+        enfoques = ['inclusivo', 'diferenciado', 'personalizado', 'adaptado', 'tea', 'tdah', 'altas capacidades']
+        analysis.enfoque_especial = []
+        for enfoque in enfoques:
+            if enfoque in prompt_lower:
+                analysis.enfoque_especial.append(enfoque)
+        
+        # Identificar información faltante
+        if not analysis.materia:
+            analysis.missing_info.append('materia')
+        if not analysis.tema:
+            analysis.missing_info.append('tema_especifico')
+        if not analysis.objetivos:
+            analysis.missing_info.append('objetivos')
+        if not analysis.metodologia:
+            analysis.missing_info.append('metodologia_preferida')
+        if not analysis.duracion:
+            analysis.missing_info.append('duracion')
+        
+        return analysis
+    
+    def _solicitar_informacion_faltante(self, analysis: PromptAnalysis) -> Dict[str, str]:
+        """Solicita al usuario la información que falta"""
+        info_adicional = {}
+        
+        print("\n" + "="*60)
+        print("🔍 ANÁLISIS DEL PROMPT INICIAL")
+        print("="*60)
+        
+        if analysis.materia:
+            print(f"✅ Materia detectada: {analysis.materia}")
+        if analysis.tema:
+            print(f"✅ Tema detectado: {analysis.tema}")
+        if analysis.objetivos:
+            print(f"✅ Objetivos detectados: {', '.join(analysis.objetivos)}")
+        if analysis.metodologia:
+            print(f"✅ Metodología detectada: {analysis.metodologia}")
+        if analysis.duracion:
+            print(f"✅ Duración detectada: {analysis.duracion}")
+        if analysis.enfoque_especial:
+            print(f"✅ Enfoque especial: {', '.join(analysis.enfoque_especial)}")
+        
+        if analysis.missing_info:
+            print(f"\n❓ Información adicional necesaria:")
+            
+            for info in analysis.missing_info:
+                if info == 'materia' and not analysis.materia:
+                    while True:
+                        materia = input("📚 ¿Qué materia? (matematicas/lengua/ciencias): ").strip().lower()
+                        if materia in ['matematicas', 'lengua', 'ciencias']:
+                            info_adicional['materia'] = materia
+                            break
+                        print("❌ Por favor, selecciona: matematicas, lengua o ciencias")
+                
+                elif info == 'tema_especifico':
+                    tema = input("📝 ¿Tema específico? (opcional, Enter para omitir): ").strip()
+                    if tema:
+                        info_adicional['tema'] = tema
+                
+                elif info == 'objetivos':
+                    objetivos = input("🎯 ¿Objetivos principales? (separados por comas): ").strip()
+                    if objetivos:
+                        info_adicional['objetivos'] = [obj.strip() for obj in objetivos.split(',')]
+                
+                elif info == 'metodologia_preferida':
+                    metodologia = input("🔧 ¿Metodología preferida? (colaborativa/individual/proyecto/otra): ").strip()
+                    if metodologia:
+                        info_adicional['metodologia'] = metodologia
+                
+                elif info == 'duracion':
+                    duracion = input("⏱️ ¿Duración estimada? (ej: 2 sesiones, 60 minutos): ").strip()
+                    if duracion:
+                        info_adicional['duracion'] = duracion
+        
+        return info_adicional
+    
+    def _solicitar_feedback_intermedio(self, fase: str, contenido_previo: str) -> str:
+        """Solicita feedback del usuario en puntos clave del proceso"""
+        print(f"\n" + "="*60)
+        print(f"🔄 REVISIÓN INTERMEDIA - {fase.upper()}")
+        print("="*60)
+        
+        # Mostrar resumen del contenido previo
+        lineas = contenido_previo.split('\n')[:10]  # Primeras 10 líneas
+        for linea in lineas:
+            if linea.strip():
+                print(f"📄 {linea[:80]}{'...' if len(linea) > 80 else ''}")
+        
+        print(f"\n❓ ¿Cómo te parece esta {fase}?")
+        print("1. ✅ Perfecto, continúa")
+        print("2. 📝 Añadir algunas indicaciones")
+        print("3. 🔄 Necesita cambios importantes")
+        
+        while True:
+            opcion = input("\n👉 Selecciona (1-3): ").strip()
+            
+            if opcion == "1":
+                return ""
+            elif opcion == "2":
+                feedback = input("💭 ¿Qué te gustaría añadir o modificar? ")
+                return f"FEEDBACK DEL USUARIO: {feedback}"
+            elif opcion == "3":
+                feedback = input("🔄 ¿Qué cambios importantes necesita? ")
+                return f"CAMBIOS REQUERIDOS: {feedback}"
+            else:
+                print("❌ Por favor, selecciona 1, 2 o 3")
+    
     def _cargar_perfiles(self, perfiles_path: str) -> List[Dict]:
         try:
             if not os.path.isabs(perfiles_path):
@@ -261,20 +442,49 @@ class SistemaAgentesFewShot:
         
         return ejemplos_texto
     
-    def generar_actividad_colaborativa(self, materia: str, tema: str = None) -> ActividadEducativa:
-        """Genera una actividad colaborativa usando el sistema few-shot"""
+    def generar_actividad_colaborativa(self, prompt_inicial: str = None, materia: str = None, tema: str = None) -> ActividadEducativa:
+        """Genera una actividad colaborativa usando el sistema few-shot con human-in-the-loop"""
         
-        logger.info(f"👥 Generando actividad few-shot para {materia}")
+        # === HUMAN-IN-THE-LOOP: ANÁLISIS INICIAL ===
+        info_adicional = {}
+        if prompt_inicial:
+            print(f"\n📝 PROMPT INICIAL RECIBIDO:")
+            print(f"'{prompt_inicial}'")
+            
+            # Analizar el prompt
+            analysis = self._analizar_prompt_inicial(prompt_inicial)
+            
+            # Solicitar información faltante
+            info_adicional = self._solicitar_informacion_faltante(analysis)
+            
+            # Usar información del análisis y completar con parámetros
+            materia = analysis.materia or info_adicional.get('materia') or materia
+            tema = analysis.tema or info_adicional.get('tema') or tema
+        
+        if not materia:
+            materia = input("📚 ¿Qué materia? (matematicas/lengua/ciencias): ").strip().lower()
+        
+        logger.info(f"👥 Generando actividad q-agents para {materia}")
         
         try:
             ejemplos_relevantes = self._obtener_ejemplos_relevantes(materia, tema)
 
             # -- TAREA 1: INSPIRADOR --
+            contexto_adicional = ""
+            if prompt_inicial:
+                contexto_adicional += f"\n\nPROMPT INICIAL DEL USUARIO:\n{prompt_inicial}\n"
+            if info_adicional:
+                contexto_adicional += f"\nINFORMACIÓN ADICIONAL PROPORCIONADA:\n"
+                for key, value in info_adicional.items():
+                    contexto_adicional += f"- {key}: {value}\n"
+            
             tarea_inspiracion = Task(
                 description=f"""
             Estudia estos EJEMPLOS DE ACTIVIDADES EXITOSAS para {materia} {f'sobre {tema}' if tema else ''}.
             EJEMPLOS EXITOSOS A ESTUDIAR:
             {ejemplos_relevantes}
+            
+            {contexto_adicional}
             Crea una semilla creativa original que:
             - Enfoque la actividad con inclusividad real desde el principio, pensando en todo el aula, no solo ajustando a último momento las adaptaciones.
             - Promueva el pensamiento crítico y abstracto, evitando herramientas tecnológicas o atajos digitales. Favorece herramientas analógicas, debates, comparaciones y analogías para que comprendan desde fundamentos.
@@ -537,13 +747,83 @@ class SistemaAgentesFewShot:
                 verbose=True # Corregido: de 2 a True
             )
             
-            logger.info("🚀 Ejecutando workflow few-shot...")
-            resultado = crew.kickoff()
+            logger.info("🚀 Ejecutando workflow q-agents con human-in-the-loop...")
+            
+            # Ejecutar tareas con feedback intermedio
+            resultados_intermedios = []
+            
+            # Ejecutar Inspirador
+            crew_inspirador = Crew(
+                agents=[self.agente_inspirador],
+                tasks=[tarea_inspiracion],
+                process=Process.sequential,
+                verbose=True
+            )
+            resultado_inspirador = crew_inspirador.kickoff()
+            resultados_intermedios.append(("INSPIRACIÓN", str(resultado_inspirador)))
+            
+            # Solicitar feedback del usuario
+            feedback_inspiracion = self._solicitar_feedback_intermedio("inspiración", str(resultado_inspirador))
+            if feedback_inspiracion:
+                # Actualizar la tarea pedagógica con el feedback
+                tarea_pedagogica.description += f"\n\nFEEDBACK SOBRE LA INSPIRACIÓN:\n{feedback_inspiracion}"
+            
+            # Ejecutar Pedagogo
+            crew_pedagogo = Crew(
+                agents=[self.agente_pedagogo],
+                tasks=[tarea_pedagogica],
+                process=Process.sequential,
+                verbose=True
+            )
+            resultado_pedagogo = crew_pedagogo.kickoff()
+            resultados_intermedios.append(("PEDAGOGÍA", str(resultado_pedagogo)))
+            
+            # Solicitar feedback del usuario
+            feedback_pedagogia = self._solicitar_feedback_intermedio("estructura pedagógica", str(resultado_pedagogo))
+            if feedback_pedagogia:
+                tarea_arquitectura.description += f"\n\nFEEDBACK SOBRE LA PEDAGOGÍA:\n{feedback_pedagogia}"
+            
+            # Ejecutar Arquitecto
+            crew_arquitecto = Crew(
+                agents=[self.agente_arquitecto],
+                tasks=[tarea_arquitectura],
+                process=Process.sequential,
+                verbose=True
+            )
+            resultado_arquitecto = crew_arquitecto.kickoff()
+            resultados_intermedios.append(("ARQUITECTURA", str(resultado_arquitecto)))
+            
+            # Solicitar feedback del usuario
+            feedback_arquitectura = self._solicitar_feedback_intermedio("arquitectura", str(resultado_arquitecto))
+            if feedback_arquitectura:
+                tarea_diferenciacion.description += f"\n\nFEEDBACK SOBRE LA ARQUITECTURA:\n{feedback_arquitectura}"
+            
+            # Ejecutar Diferenciador y Validador sin interrupciones (flujo final)
+            crew_final = Crew(
+                agents=[self.agente_diferenciador, self.agente_validador],
+                tasks=[tarea_diferenciacion, tarea_validacion],
+                process=Process.sequential,
+                verbose=True
+            )
+            resultado_final = crew_final.kickoff()
+            
+            # Combinar todos los resultados
+            class ResultadoCombinado:
+                def __init__(self, resultados):
+                    self.tasks_output = resultados
+            
+            resultado = ResultadoCombinado([
+                resultado_inspirador,
+                resultado_pedagogo, 
+                resultado_arquitecto,
+                resultado_final.tasks_output[0] if hasattr(resultado_final, 'tasks_output') else resultado_final,
+                resultado_final.tasks_output[1] if hasattr(resultado_final, 'tasks_output') and len(resultado_final.tasks_output) > 1 else resultado_final
+            ])
             
             contenido_completo = self._procesar_resultados(resultado)
             
             return ActividadEducativa(
-                id=f"fewshot_{materia.lower()}_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+                id=f"q_{materia.lower()}_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
                 titulo=f"Actividad Few-Shot - {materia}",
                 materia=materia,
                 tema=tema or "tema general",
@@ -569,7 +849,7 @@ class SistemaAgentesFewShot:
         except Exception as e:
             logger.error(f"Error generando actividad few-shot: {e}")
             return ActividadEducativa(
-                id=f"error_fewshot_{materia.lower()}_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
+                id=f"error_q_{materia.lower()}_{datetime.now().strftime('%Y%m%d_%H%M%S')}",
                 titulo=f"Actividad Error - {materia}",
                 materia=materia,
                 tema=tema or "tema general",
@@ -644,7 +924,7 @@ class SistemaAgentesFewShot:
 
 def main():
     print("=" * 70)
-    print("🎓 SISTEMA DE AGENTES CREWAI FEW-SHOT PARA EDUCACIÓN")
+    print("🎓 SISTEMA Q-AGENTS CON HUMAN-IN-THE-LOOP PARA EDUCACIÓN")
     print("=" * 70)
 
     try:
@@ -665,7 +945,7 @@ def main():
         print(f" 🎯 Diferenciador: {DIFERENCIADOR_MODEL}")
         print(f" ✅ Validador: {VALIDADOR_MODEL}")
 
-        sistema = SistemaAgentesFewShot(
+        sistema = SistemaAgentesQAgents(
             ollama_host=OLLAMA_HOST,
             inspirador_model=INSPIRADOR_MODEL,
             pedagogo_model=PEDAGOGO_MODEL,
@@ -675,37 +955,55 @@ def main():
             perfiles_path=PERFILES_PATH
         )
 
-        print("\n✅ Sistema few-shot inicializado correctamente!")
+        print("\n✅ Sistema q-agents inicializado correctamente!")
         print(f"📖 Ejemplos k_ cargados: {len(sistema.ejemplos_k)}")
 
         while True:
             print("\n" + "="*50)
-            print("🎓 GENERACIÓN FEW-SHOT")
-            print("1. 🎯 Generar actividad con few-shot learning")
-            print("2. ❌ Salir")
+            print("🎓 GENERACIÓN Q-AGENTS CON HUMAN-IN-THE-LOOP")
+            print("1. 🎯 Generar con prompt inicial personalizado")
+            print("2. 🔧 Generar paso a paso (modo tradicional)")
+            print("3. ❌ Salir")
 
-            opcion = input("\n👉 Selecciona una opción (1-2): ").strip()
+            opcion = input("\n👉 Selecciona una opción (1-3): ").strip()
             if opcion == "1":
-                materia = input("📚 Materia (matematicas/lengua/ciencias): ").strip()
-                tema = input("📝 Tema específico (opcional): ").strip() or None
+                print("\n📝 Describe tu actividad ideal:")
+                print("Ejemplo: 'Quiero una actividad colaborativa de matemáticas sobre fracciones")
+                print("         que dure 2 sesiones y sea inclusiva para estudiantes con TEA'")
+                prompt_inicial = input("\n✨ Tu prompt: ").strip()
+                
                 start_time = datetime.now()
-                actividad = sistema.generar_actividad_colaborativa(materia, tema)
+                actividad = sistema.generar_actividad_colaborativa(prompt_inicial=prompt_inicial)
                 archivo = sistema.guardar_actividad(actividad)
                 end_time = datetime.now()
                 duration = (end_time - start_time).total_seconds()
-                print(f"\n✅ Actividad few-shot generada en {duration:.1f}s:")
+                print(f"\n✅ Actividad q-agents generada en {duration:.1f}s:")
                 print(f" 📄 ID: {actividad.id}")
                 print(f" 📁 Archivo: {archivo}")
-                print(f" 🎯 Sistema: Few-shot con ejemplos k_")
+                print(f" 🎯 Sistema: Q-agents con human-in-the-loop")
                 print(f" 📖 Ejemplos usados: {len(actividad.metadatos.get('ejemplos_k_usados', []))}")
+            
             elif opcion == "2":
+                materia = input("📚 Materia (matematicas/lengua/ciencias): ").strip()
+                tema = input("📝 Tema específico (opcional): ").strip() or None
+                start_time = datetime.now()
+                actividad = sistema.generar_actividad_colaborativa(materia=materia, tema=tema)
+                archivo = sistema.guardar_actividad(actividad)
+                end_time = datetime.now()
+                duration = (end_time - start_time).total_seconds()
+                print(f"\n✅ Actividad q-agents generada en {duration:.1f}s:")
+                print(f" 📄 ID: {actividad.id}")
+                print(f" 📁 Archivo: {archivo}")
+                print(f" 🎯 Sistema: Q-agents con human-in-the-loop")
+                print(f" 📖 Ejemplos usados: {len(actividad.metadatos.get('ejemplos_k_usados', []))}")
+            elif opcion == "3":
                 print("\n👋 ¡Hasta luego!")
                 break
             else:
-                print("\n❌ Opción no válida. Selecciona 1-2.")
+                print("\n❌ Opción no válida. Selecciona 1-3.")
 
     except Exception as e:
-        print(f"\n❌ Error inicializando sistema few-shot: {e}")
+        print(f"\n❌ Error inicializando sistema q-agents: {e}")
         print("\n💡 Verifica que:")
         print(" 1. Ollama esté ejecutándose")
         print(" 2. Los modelos especificados estén disponibles")

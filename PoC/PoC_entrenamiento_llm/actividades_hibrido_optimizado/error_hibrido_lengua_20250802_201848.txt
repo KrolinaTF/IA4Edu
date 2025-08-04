@@ -1,0 +1,24 @@
+====================================================================================================
+ACTIVIDAD HÍBRIDA OPTIMIZADA
+====================================================================================================
+
+ID: error_hibrido_lengua_20250802_201848
+Título: Error Híbrido - lengua
+Materia: lengua
+Tema: los tiempos verbales
+Tipo: error_hibrido
+Estudiantes objetivo: 
+Timestamp: 2025-08-02T20:18:48.701115
+
+--------------------------------------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------------------------------------
+
+Error generando actividad híbrida: litellm.APIConnectionError: OllamaException - {"error":"model 'qwen3:latest' not found"}
+
+====================================================================================================
+METADATOS DEL SISTEMA HÍBRIDO OPTIMIZADO:
+{
+  "error": "litellm.APIConnectionError: OllamaException - {\"error\":\"model 'qwen3:latest' not found\"}",
+  "version": "hibrido_optimizado_1.0"
+}

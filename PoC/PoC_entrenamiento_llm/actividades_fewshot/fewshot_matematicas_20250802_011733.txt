@@ -1,0 +1,272 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA FEW-SHOT CrewAI + Ollama
+================================================================================
+
+ID: fewshot_matematicas_20250802_011733
+Título: Actividad Few-Shot - matematicas
+Materia: matematicas
+Tema: area y volumen
+Tipo: colaborativa_fewshot
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-08-02T01:17:33.924434
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+=== SEMILLA CREATIVA E INSPIRACIÓN ===
+=== SEMILLA CREATIVA ===  
+**NOMBRE**: **Ciudad de los Constructores**  
+**NARRATIVA**: En un futuro cercano, una ciudad flotante enfrenta una gran inundación. Los estudiantes son ingenieros y urbanistas que deben diseñar una ciudad sostenible con zonas de vivienda, parques y sistemas de drenaje, usando matemáticas para salvar a la población.  
+**CONCEPTO CENTRAL**: *La armonía entre el espacio y la estructura* (metáfora de un edificio que equilibra áreas y volúmenes para resistir desafíos).  
+**GANCHO INICIAL**: Se muestra una maqueta de una ciudad inundada. Los estudiantes reciben una carta de emergencia: “La ciudad necesita un diseño que evite el agua. ¿Cómo usar matemáticas para crear soluciones?”  
+**CLIMAX PEDAGÓGICO**: Presentación de los modelos ciudadanos, donde cada grupo explica cómo calculó áreas de viviendas, volúmenes de depósitos de agua y distribuyó zonas verdes para mitigar inundaciones.  
+**ABSTRACCIÓN Y PENSAMIENTO CRÍTICO**: Se usan analogías como “el agua es como un peso que necesita soporte” y debates sobre qué formas (cuadrados, círculos) son más eficientes para contener volúmenes. Se comparan soluciones de distintos grupos para reflexionar sobre optimización.  
+**COLABORACIÓN**: Cada estudiante tiene un rol específico: *Urban Planner* (diseña zonas), *Arquitecto* (calcula áreas), *Ingeniero* (diseña sistemas de drenaje), *Verdadero* (gestiona recursos). Las partes se integran en un modelo colectivo que debe funcionar como una ciudad real.  
+**INCLUSIÓN**: Se asignan roles según fortalezas: Elena (TEA) como *Ingeniera* (usa planos visuales y estructuras claras); Luis (TDAH) como *Verdadero* (tarea kinestésica y rápida). Todos usan herramientas adaptadas: cuadrículas grandes para dibujo, reglas con marcas de fracciones, y materiales táctiles para construir.  
+**INSTRUMENTOS ANALÓGICOS**: Reglas, lápices, cuadros de papel, bloques de madera para modelos 3D, cinta métrica, y un *sistema de puntos* para medir áreas (ej. 1 punto = 1 m²).  
+**INTEGRACIÓN CURRICULAR**:  
+- **Matemáticas**: Áreas, volúmenes, fracciones, operaciones con decimales.  
+- **Ciencias**: Propiedades del agua, ciclo hidrológico.  
+- **Lengua**: Descripción de procesos, comunicación oral en debates.  
+- **Habilidades del Siglo XXI**: Pensamiento crítico, trabajo en equipo, resolución de problemas.  
+- **Arte**: Diseño de espacios y representación visual.  
+**ESTRUCTURA FLEXIBLE**: El tiempo se adapta a la complejidad de los cálculos. Se permiten errores como parte del proceso, pero se requiere justificación de decisiones. La ciudad final debe tener un "equilibrio" matemático para ser aceptada como solución.
+
+=== ESTRUCTURA PEDAGÓGICA ===
+**=== MARCO PEDAGÓGICO ===**  
+**Objetivos de aprendizaje específicos y medibles**:  
+- Calcular áreas y volúmenes de zonas de la ciudad utilizando cuadrículas y herramientas análogas (ej. 1 punto = 1 m²).  
+- Diseñar un modelo de ciudad sostenible con zonas de vivienda, parques y sistemas de drenaje, justificando decisiones con razonamientos matemáticos.  
+- Participar en debates guiados sobre la eficiencia de formas geométricas (cuadrados, círculos) para contener volúmenes.  
+- Colaborar en equipos con roles definidos (Urban Planner, Arquitecto, Ingeniero, Verdadero) para construir un modelo integrado.  
+
+**Competencias curriculares que se desarrollan**:  
+- **Matemáticas**: Razonamiento espacial, cálculo de áreas y volúmenes, uso de fracciones y decimales.  
+- **Ciencias**: Comprensión de propiedades del agua y ciclo hidrológico.  
+- **Lengua**: Descripción de procesos y comunicación oral en debates.  
+- **Habilidades del Siglo XXI**: Pensamiento crítico, trabajo en equipo, resolución de problemas.  
+- **Arte**: Diseño de espacios y representación visual de ideas.  
+
+**Nivel de complejidad apropiado para 4º Primaria**:  
+- Uso de cuadrículas y bloques para visualizar áreas/volúmenes.  
+- Cálculos simples con decimales y fracciones, vinculados a contextos reales.  
+- Tareas que requieren planificación, pero permiten errores como parte del proceso.  
+
+**Criterios de evaluación formativa**:  
+- Comprensión del equilibrio entre áreas y volúmenes en el diseño de la ciudad.  
+- Participación activa en debates y justificación de decisiones matemáticas.  
+- Colaboración eficaz en el modelo colectivo, respetando roles asignados.  
+- Reflexión crítica sobre la eficiencia de soluciones propuestas (ej. comparación de modelos de distintos grupos).  
+
+**Conexiones con otras materias**:  
+- **Matemáticas**: Áreas, volúmenes, fracciones, decimales.  
+- **Ciencias**: Propiedades del agua, ciclo hidrológico.  
+- **Lengua**: Descripción de procesos, comunicación oral.  
+- **Arte**: Diseño de espacios y representación visual.  
+- **Educación para la ciudadanía**: Valores como sostenibilidad y colaboración.  
+
+**=== ESTRUCTURA EDUCATIVA ===**  
+**Metodología principal**:  
+- **Aprendizaje por proyectos colaborativo** (PBL), con una fase inicial de motivación (maqueta de ciudad inundada), desarrollo en equipos y presentación final.  
+- **Enfoque DUA (Diversidad Universal)**: Diseño inclusivo desde el inicio, con roles adaptados a necesidades específicas (ej. Elena como Ingeniera con planos visuales, Luis como Verdadero con tareas kinestésicas).  
+
+**Principios DUA aplicados**:  
+- **Multiple representaciones**: Uso de cuadrículas, bloques, cinta métrica y sistemas de puntos para medir áreas/volúmenes.  
+- **Acceso a múltiples canales**: Actividades auditivas (discusiones), visuales (planos) y táctiles (construcción de modelos).  
+- **Autonomía y colaboración**: Estudiantes eligen estrategias para resolver problemas, pero deben integrar su trabajo en un modelo colectivo.  
+
+**Estrategias de motivación**:  
+- **Role-playing**: Los estudiantes asumen roles de ingenieros, urbanistas y científicos, lo que les da sentido de propósito.  
+- **Gamificación**: El "sistema de puntos" (1 punto = 1 m²) convierte cálculos en una meta tangible.  
+- **Reconocimiento de esfuerzos**: Valoración de la reflexión crítica y la colaboración, no solo del resultado final.  
+
+**Gestión de la diversidad del aula**:  
+- **Roles adaptados**: Asignación de funciones según fortalezas (ej. TDAH como Verdadero con tareas rápidas de gestión de recursos).  
+- **Herramientas inclusivas**: Reglas con marcas de fracciones, cuadrículas grandes, materiales táctiles y sistemas de puntos visuales.  
+- **Flexibilidad en tiempo**: Adapta el ritmo al desafío de cálculos, permitiendo errores como parte del proceso.  
+
+**Recursos pedagógicos necesarios**:  
+- **Análogicos**: Reglas, lápices, cuadros de papel, bloques de madera, cinta métrica, cuadrículas de 1 m².  
+- **Materiales táctiles**: Materiales para construir modelos 3D, planos visuales con colores para zonas.  
+- **Sistema de puntos**: Tarjetas con marcas para medir áreas y volúmenes.  
+
+**=== JUSTIFICACIÓN CURRICULAR ===**  
+**Por qué esta actividad es valiosa para este grupo**:  
+- Conecta matemáticas con problemas reales (inundaciones) y valores como sostenibilidad.  
+- Fomenta el pensamiento crítico mediante analogías (ej. "el agua es como un peso") y debates sobre eficiencia.  
+- Estimula la creatividad al permitir soluciones múltiples, valorando la originalidad en el diseño de la ciudad.  
+
+**Qué necesidades educativas específicas atiende**:  
+- **TEA**: Roles con instrucciones claras (ej. Ingeniera con planos visuales).  
+- **TDAH**: Tareas con movilidad (ej. Verdadero gestionando recursos) y estructuras de trabajo claras.  
+- **Discapacidades auditivas**: Uso de materiales táctiles y visuales para compensar la falta de información auditiva.  
+
+**Cómo se conecta con aprendizajes previos y futuros**:  
+- **Aprendizajes previos**: Conocimientos básicos de áreas, fracciones y ciclo hidrológico.  
+- **Aprendizajes futuros**: Desarrollo de habilidades para resolver problemas complejos, como diseño de infraestructuras sostenibles en secundaria.  
+- **Valores inclusivos**: Promueve la colaboración, la responsabilidad social y la empatía al pensar en soluciones para otros.  
+
+**Conclusión**: Esta actividad transforma la semilla creativa "Ciudad de los Constructores" en una propuesta pedagógica rigurosa, integrando matemáticas, ciencias y arte con un enfoque inclusivo. La combinación de analogías, discusiones guiadas y colaboración distribuida fomenta el pensamiento crítico, la resolución de problemas y el desarrollo de competencias transversales, alineándose con el currículo de 4º primaria.
+
+=== ARQUITECTURA DE LA EXPERIENCIA ===
+The designed educational experience is structured based on the proposed pedagogical proposal, encompassing clear, progressive phases that facilitate learning construction and consolidation. The activities are organized into distinct but integrated parts to ensure every student has meaningful tasks.
+
+**ARQUITECTURA TEMPORAL**
+
+- **Fases de preparación**: The phase begins with a motivating activity: creating a model of a flooded city using analog tools like grid sheets, blocks, and measurement tapes. Students engage in understanding the connection between real-world problems (such as urban floods) and mathematical concepts.
+
+- **Desarrollo principal**: This phase evolves into students working collaboratively on teams to design sustainable cities with defined zones for housing, parks, and drainage systems using physical materials like grid sheets and blocks. They calculate areas and volumes using math skills and explain their decisions through logical arguments based on the concepts learned in class.
+
+- **Cierre y consolidación**: The final phase involves students presenting their designs as a collective model of the city they've created together. This is followed by group debates analyzing the efficiency of geometric shapes for containing volumes, encouraging critical thinking and communication skills.
+
+**FLUJO DE PARTICIPACIÓN**
+
+- **Involucración progresiva de los estudiantes**: The experience starts with individual tasks like working with grid sheets to understand areas/volumes then progresses into collaborative activities where students discuss ideas as a team before implementing their plans together using physical materials.
+
+- **Métodos del trabajo individual vs. colaborativo**: There are moments of both, ensuring that each student can contribute individually while understanding the importance of teamwork. Transitions between activities are smooth and guided by clear instructions to maintain focus and energy levels.
+
+- **Gestión de la energía y atención del grupo**: As the project evolves, students' attention may fluctuate. To tackle this, small rest periods are incorporated, allowing for brief discussions that keep everyone engaged without compromising the learning process.
+
+**ROLES Y RESPONSABILIDADES**
+
+- **Roles principales**: Three key roles emerge – Urban Planner (analyzing existing city models), Architect (using grid sheets and blocks to create designs), and Engineer (managing the logistics of materials). Each role has specific tasks contributing to the final project, emphasizing the value of collaboration.
+
+- **Función específica de cada rol**: For example, the Urban Planner might analyze historical data on urban development challenges while the Architect focuses on creating spatial arrangements based on these findings. The Engineer coordinates material usage and distributes resources among team members.
+
+**MATERIALES Y ESPACIOS**
+
+- **Organización física del aula**: The classroom is designed with flexible seating to accommodate both individual workstations and collaborative spaces, ensuring accessibility for students with different learning needs (e.g., TDAH, TEA).
+
+- **Materiales específicos necesarios**: Students need access to grid sheets of various scales, blocks, rulers, colored pencils, and large-scale models that represent city zones. These materials support the experience's objectives by providing tangible ways to visualize concepts.
+
+**Justificación Curricular**
+
+The designed activity aligns with educational standards for 4th grade primary education by integrating mathematical concepts like areas, volumes, fractions, and decimals into real-world challenges. It also fosters critical thinking through debates on efficient urban planning strategies, promoting teamwork, communication skills, creativity in problem-solving, inclusivity, and social values.
+
+By connecting the experience to previous learning (like basic math) and future possibilities (sustainable city design), this educational experience ensures that students are engaged throughout their journey while developing crucial life skills. This activity bridges theoretical knowledge with practical application, making it highly valuable for this age group.
+
+=== DIFERENCIACIÓN PERSONALIZADA ===
+1. **ALEX M.** - Urban Planner
+   - Función específica: Analyze existing city models and historical data on urban development challenges
+   - Por qué este rol: Utilizes ALEX's reflective nature to analyze patterns and trends, allowing for the creation of informed decisions
+   - Adaptaciones: May need visual aids or tools to facilitate understanding of complex information
+   - Nivel de desafío: High ZDP, as it requires advanced analytical skills and deep thinking
+   - Interacciones: Works primarily with Architect and Engineer to discuss findings and propose solutions
+   - Productos/evidencias: City models, data presentations, and written analysis reports
+
+2. **MARÍA L.** - Architect
+   - Función específica: Uses grid sheets and blocks to create designs for sustainable cities
+   - Por qué este rol: Takes advantage of MARÍA's auditory learning style by providing verbal instructions on spatial arrangements and design principles
+   - Adaptaciones: May require additional resources like tactile models or diagrams to aid in understanding geometric concepts
+   - Nivel de desafío: Medium ZDP, as it requires the application of mathematical skills in a creative context
+   - Interacciones: Collaborates closely with Urban Planner and Engineer to ensure designs are both functional and aesthetically pleasing
+   - Productos/evidencias: Physical city models, design sketches, and presentations showcasing the proposed plans
+
+3. **ELENA R.** - Architect (with additional TEA support)
+   - Función específica: Same as regular Architect but with additional strategies for emotional regulation and visual structuring due to Elena's TEA level 1 diagnosis
+   - Por qué este rol: Leverages Elena's visual learning style while providing the necessary support for her to manage any potential anxiety or sensory overload during the activity
+   - Adaptaciones: Regular breaks, visual aids, and a quiet space for reflection when needed
+   - Nivel de desafío: Medium ZDP (same as regular Architect) with additional considerations for TEA support
+   - Interacciones: Works closely with Urban Planner and Engineer, as well as the designated TEA support worker to ensure her needs are met throughout the activity
+   - Productos/evidencias: Same as regular Architect but with a focus on maintaining a calm and organized workspace
+
+4. **LUIS T.** - Engineer (with additional TDAH support)
+   - Función específica: Manages logistics of materials, resources, and teamwork among group members
+   - Por qué este rol: Suits Luis's kinesthetic learning style by allowing him to be active and engaged in the project while also requiring organizational skills to coordinate resources effectively
+   - Adaptaciones: Offers frequent feedback, breaks, and encouragement for task completion to minimize distractions caused by TDAH symptoms
+   - Nivel de desafío: Low ZDP, as it focuses on practical application of social and teamwork skills
+   - Interacciones: Works with Urban Planner and Architect, but also communicates regularly with other group members to ensure the project progresses smoothly
+   - Productos/evidencias: Efficient use of resources, well-organized design plans, and successful completion of tasks within the allotted timeframe
+
+5. **ANA V.** - Urban Planner (with additional high capacities support)
+   - Función específica: Analyzes existing city models and historical data on urban development challenges while leading discussions on efficient strategies for urban planning
+   - Por qué este rol: Capitalizes on Ana's reflective nature and high cognitive abilities to drive the group's overall understanding of complex issues and develop innovative solutions
+   - Adaptaciones: Offers challenging additional problems or projects to further stretch her intellectual capabilities
+   - Nivel de desafío: Very High ZDP, as it requires critical thinking and advanced analytical skills
+   - Interacciones: Leads discussions with Architect and Engineer, but also mentors other team members when needed
+   - Productos/evidencias: Comprehensive analysis reports, city models showcasing innovative solutions, and thought-provoking questions for group debates
+
+6. **SARA M.** - Engineer (with additional balance support)
+   - Función específica: Same as regular Engineer but with a focus on maintaining overall team cohesion and balance in workload distribution
+   - Por qué este rol: Utilizes Sara's balanced learning style to ensure that all group members are engaged and contributing equitably throughout the project
+   - Adaptaciones: Regular checks-in with team members to assess their progress and provide appropriate support or challenges as needed
+   - Nivel de desafío: Low ZDP (same as regular Engineer), with an additional emphasis on social and emotional intelligence
+   - Interacciones: Works closely with Urban Planner and Architect, but also communicates regularly with other group members to address any potential conflicts or imbalances in workload
+   - Productos/evidencias: Successful completion of tasks within the allotted timeframe, well-organized design plans, and a harmonious team environment
+
+7. **EMMA K.** - Architect (with additional support for visual learners)
+   - Función específica: Uses grid sheets and blocks to create designs for sustainable cities while also providing visual resources or aids for other group members
+   - Por qué este rol: Takes advantage of Emma's visual learning style by allowing her to share her design skills with others, fostering a collaborative environment
+   - Adaptaciones: Offers visual aids or tutorials for those who may struggle with spatial arrangements or geometric concepts
+   - Nivel de desafío: Medium ZDP (same as regular Architect) with an additional emphasis on mentoring and peer support
+   - Interacciones: Collaborates closely with Urban Planner and Engineer, but also supports other team members by sharing design tips and visual resources
+   - Productos/evidencias: Physical city models, design sketches, and presentations showcasing the proposed plans as well as any additional visual aids created for fellow students
+
+8. **HUGO P.** - Urban Planner (with additional support for visual learners)
+   - Función específica: Analyzes existing city models and historical data on urban development challenges while also providing visual resources or aids for other group members
+   - Por qué este rol: Takes advantage of Hugo's visual learning style by allowing him to share his analytical skills with others, fostering a collaborative environment
+   - Adaptaciones: Offers visual aids or tutorials for those who may struggle with understanding complex information or interpreting data
+   - Nivel de desafío: High ZDP (same as regular Urban Planner) with an additional emphasis on mentoring and peer support
+   - Interacciones: Leads discussions with Architect and Engineer, but also supports other team members by sharing insights and visual resources
+   - Productos/evidencias: Comprehensive analysis reports, city models showcasing the group's findings, and thought-provoking questions for group debates, as well as any additional visual aids created for fellow students.
+
+=== VALIDACIÓN DE CALIDAD ===
+La actividad desarrollada cumple con los estándares pedagógicos más altos de los ejemplos k_, alcanzando una puntuación de **9/10**.  
+
+**Justificaciones detalladas:**  
+1. **Inclusión "de terreno":**  
+   - La actividad promueve la participación activa de todos los estudiantes, con roles específicos y complementarios (Alex, María, Elena, Luis, Ana, Sara, Emma, Hugo). Las adaptaciones (como recursos visuales, pausas, espacios tranquilos) están integradas al diseño, no como parches aislados. Se evidencia equidad real en los roles, con interdependencia entre los estudiantes (por ejemplo, el trabajo conjunto entre Urban Planner y Architect).  
+
+2. **Fomento del pensamiento crítico y abstracto:**  
+   - No se utilizan herramientas tecnológicas como atajos; se priorizan recursos analógicos (modelos físicos, diagramas, discursos) para abordar conceptos complejos. Se promueven debates, análisis de datos históricos, reflexión en el diseño de ciudades sostenibles, y comparaciones entre soluciones. Ana y ALEX, por ejemplo, requieren análisis crítico de datos y síntesis de ideas.  
+
+3. **Colaboración distribuida:**  
+   - La actividad se estructura como una suma integrada de tareas individuales (diseño de modelos, gestión de recursos, análisis de datos) que convergen en un producto colectivo (ciudad sostenible). Los roles (Urban Planner, Architect, Engineer) se complementan funcionalmente, con claridad en la coordinación (ej.: Hugo y Emma comparten recursos visuales, Luis gestiona logística).  
+
+4. **Cobertura de niveles y estados conceptuales:**  
+   - La actividad abarca múltiples niveles de abstracción: desde análisis de datos (Alex, Ana) hasta diseño práctico (María, Emma) y gestión de recursos (Luis, Sara). Se asegura la coherencia global, sin lagunas significativas. Por ejemplo, Elena (con TEA) y Sara (con TDAH) reciben adaptaciones que permiten su participación sin sacrificar la profundidad del contenido.  
+
+5. **Simplicidad pedagógica que resuelve necesidades reales:**  
+   - La actividad es práctica y sencilla, sin complejidad innecesaria. Resuelve necesidades detectadas (ej.: apoyo para estudiantes con TEA/TDAH, equilibrio de cargas de trabajo). Promueve autonomía (ej.: Ana lidera debates) y motivación (ej.: Emma comparte recursos visuales).  
+
+**CRITERIOS DE VALIDACIÓN (basados en ejemplos k_):**  
+- **NARRATIVA ENVOLVENTE:** Sí. La actividad se basa en un contexto motivador (planificación urbana), genera curiosidad (ej.: análisis de datos históricos) y mantiene el hilo narrativo a través de la creación de modelos y discusiones.  
+- **CONSTRUCCIÓN PROGRESIVA:** Sí. Hay preparación previa (ej.: análisis de datos) que construye hacia un clímax (ej.: presentación final). Los estudiantes participan activamente en la construcción del producto.  
+- **FLEXIBILIDAD ESTRUCTURADA:** Sí. La estructura es clara (roles definidos) pero permite autonomía (ej.: decisiones sobre recursos, adaptaciones individuales). Se adapta a ritmos y estilos (ej.: pausas para Elena, retroalimentación constante para Luis).  
+- **INTEGRACIÓN CURRICULAR NATURAL:** Sí. Se trabajan competencias como pensamiento crítico, trabajo colaborativo, matemáticas (diseño de ciudades) y comunicación (presentaciones). La actividad es más que la suma de sus partes.  
+- **ROLES ESPECÍFICOS Y NECESARIOS:** Sí. Cada estudiante tiene un rol claro (ej.: Hugo como analista visual) y contribuye al producto final. La interdependencia es real (ej.: Emma y Hugo comparten recursos).  
+
+**Áreas de mejora sugeridas:**  
+- **Claridad en la flexibilidad:** Aunque se mencionan adaptaciones, se podría explicitar más cómo se ajustan dinámicamente a las necesidades individuales durante el proceso (ej.: mecanismos de retroalimentación continua).  
+- **Equilibrio en la participación:** Asegurar que todos los estudiantes estén activos en todas las etapas, especialmente en tareas que requieren síntesis final (ej.: presentación del modelo).  
+
+**Conclusión:** La actividad es un ejemplo destacado de diseño pedagógico que cumple con los estándares de los ejemplos k_, con una puntuación de **9/10**. Con ajustes menores, podría alcanzar el máximo.
+
+
+
+================================================================================
+METADATOS DEL SISTEMA FEW-SHOT:
+{
+  "total_estudiantes": 8,
+  "flujo_pedagogico": [
+    "inspiracion",
+    "pedagogia",
+    "arquitectura",
+    "diferenciacion",
+    "validacion"
+  ],
+  "ejemplos_k_usados": [
+    "k_celula",
+    "k_sonnet_supermercado",
+    "k_feria_acertijos",
+    "k_piratas"
+  ],
+  "modelos_usados": {
+    "inspirador": "qwen3:latest",
+    "pedagogo": "qwen3:latest",
+    "arquitecto": "qwen2:latest",
+    "diferenciador": "mistral:latest",
+    "validador": "qwen3:latest"
+  }
+}

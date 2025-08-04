@@ -1,0 +1,267 @@
+================================================================================
+ACTIVIDAD GENERADA CON Q-AGENTS V2
+================================================================================
+
+ID: q2_lengua_20250802_043908
+Título: Actividad Q-Agents v2 - lengua
+Materia: lengua
+Tema: los tiempos verbales
+Tipo: colaborativa_q_agents_v2
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-08-02T04:39:08.680812
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+================================================================================
+ACTIVIDAD GENERADA CON Q-AGENTS V2
+Sistema con Feedback Estructurado y Contexto Rico
+================================================================================
+
+🎯 FEEDBACK APLICADO DEL USUARIO:
+----------------------------------------
+1. AGENTE: GENERAL
+   Solicitud: no, pero no quiero que sea tan festiva, quiero algo más artístico-tranquilo
+   Confianza: 50.0%
+   Intención: Modificar general - feedback general
+
+2. AGENTE: GENERAL
+   Solicitud: no quiero misterios, solo exploración y creación
+   Confianza: 50.0%
+   Intención: Modificar general - feedback general
+
+
+🎭 SEMILLA CREATIVA E INSPIRACIÓN
+================================
+**Semilla Creativa: "La Historia del Tesoro de los Tiempos Verbales"**  
+**Objetivo de Aprendizaje:**  
+Los estudiantes colaborarán en la creación de una historia pirata interactiva que integre los tiempos verbales (presente, pasado, futuro, imperfecto, etc.) como herramientas para construir una narrativa colectiva. La actividad se estructura a lo largo de la semana, con un clímax el viernes, fomentando creatividad, trabajo en equipo y la aplicación práctica de los tiempos verbales en contextos significativos.  
+
+**Actividad Semanal:**  
+1. **Lunes: El Mapa del Tesoro (Presente y Pasado)**  
+   - Los estudiantes crean un mapa pirata digital o físico donde cada lugar representa una escena de la historia.  
+   - Usarán el **presente** para describir el mapa (ej.: "Aquí hay un barco") y el **pasado** para narrar eventos anteriores (ej.: "El capitán quemó el barco hace tres días").  
+   - **Adaptación:** Para estudiantes visuales, se dibuja el mapa; para auditivos, se graba una narración; para kinestésicos, se actúa la creación del mapa.  
+
+2. **Martes: El Relato de los Piratas (Imperfecto y Futuro)**  
+   - Los estudiantes escriben diálogos o descripciones de personajes piratas usando el **imperfecto** para acciones simultáneas (ej.: "Los piratas navegaban por el océano") y el **futuro** para planes (ej.: "Mañana atacaremos el puerto").  
+   - **Adaptación:** Los estudiantes con altas capacidades pueden crear una historia compleja; los con TDAH se les asignan tareas cortas y específicas.  
+
+3. **Miércoles: El Desafío del Tesoro (Condicional y Pretérito Pluscuamperfecto)**  
+   - Se plantean acertijos o pistas que requieren usar el **condicional** (ej.: "Si encuentras el cofre, ganarás el tesoro") y el **pretérito pluscuamperfecto** para narrar eventos ordenados (ej.: "Habían robado el tesoro antes de llegar al puerto").  
+   - **Adaptación:** Para estudiantes con TEA, se usan imágenes o íconos para representar acciones; para los equilibrados, se fomenta la resolución en grupo.  
+
+4. **Jueves: El Baile de los Tiempos (Refuerzo y Creatividad)**  
+   - Los estudiantes crean un baile o coreografía donde cada movimiento representa un tiempo verbal (ej.: un paso rápido para el presente, un giro para el pretérito).  
+   - **Adaptación:** Para los kinestésicos, se enfatiza el movimiento; para los auditivos, se añade una banda sonora con rimas que refuercen los tiempos.  
+
+5. **Viernes: El Festival del Tesoro (Presentación Colectiva)**  
+   - Todos presentan la historia pirata integrando todos los tiempos verbales. Se incluyen elementos como:  
+     - Un **"cuento en vivo"** con actores, escenarios y efectos sonoros.  
+     - Una **"exposición de mapas"** con descripciones en distintos tiempos.  
+     - Un **"juego de preguntas"** donde los estudiantes usan el condicional para adivinar pistas.  
+   - **Adaptación:** Los estudiantes con dificultades se integran en roles específicos (ej.: narrador, cartógrafo) que se ajustan a sus habilidades.  
+
+**Resultado Final:**  
+La actividad culmina con una celebración donde los estudiantes disfrutan su creación, reforzando el aprendizaje de los tiempos verbales a través de la colaboración, la expresión creativa y la participación activa, adaptada a cada estilo de aprendizaje y necesidad individual.
+
+
+📚 ESTRUCTURA PEDAGÓGICA
+=======================
+**Estructura Pedagógica Mejorada: "La Historia del Tesoro de los Tiempos Verbales"**  
+**Objetivo de Aprendizaje:**  
+Los estudiantes explorarán los tiempos verbales (presente, pasado, futuro, imperfecto, condicional, pretérito pluscuamperfecto) a través de una narrativa artística colaborativa. La actividad se enmarca en un proceso creativo tranquilo y reflexivo, donde los tiempos verbales se convierten en herramientas para construir una historia visual y simbólica. Se prioriza la expresión artística, la integración de estilos de aprendizaje y la participación individual adaptada.  
+
+**Actividad Semanal:**  
+1. **Lunes: El Mapa de los Tiempos (Presente y Pasado)**  
+   - **Actividad:** Los estudiantes crean un mapa colaborativo en formato físico o digital, donde cada sección representa un momento de la historia. Usan el **presente** para describir el mapa (ej.: "El barco está en el océano") y el **pasado** para narrar eventos anteriores (ej.: "El barco fue destruido hace días").  
+   - **Adaptación:**  
+     - **Visual:** Dibujar el mapa con símbolos y colores.  
+     - **Auditivo:** Grabar una narración con sonidos ambientales.  
+     - **Kinestésico:** Moverse como elementos del mapa (ej.: caminar como el barco).  
+   - **Elemento Artístico:** Incorporar texturas, dibujos simbólicos o colores que representen cada tiempo.  
+
+2. **Martes: El Cuadro de los Piratas (Imperfecto y Futuro)**  
+   - **Actividad:** Los estudiantes crean un cuadro o collage que representa una escena de la historia. Usan el **imperfecto** para describir acciones simultáneas (ej.: "Los piratas navegaban por el océano") y el **futuro** para planificar acciones (ej.: "Atacarán el puerto mañana").  
+   - **Adaptación:**  
+     - **Altas capacidades:** Diseñar una historia compleja con múltiples escenas.  
+     - **TDAH:** Tareas cortas con instrucciones visuales o listas de pasos.  
+   - **Elemento Artístico:** Usar materiales como acuarelas, collage o escultura para representar los tiempos.  
+
+3. **Miércoles: El Jardín de las Pistas (Condicional y Pretérito Pluscuamperfecto)**  
+   - **Actividad:** Se crea un "jardín simbólico" donde cada planta o elemento representa una pista o acción. Usar el **condicional** para proponer posibles escenarios (ej.: "Si el tesoro está aquí, entonces..." y el **pretérito pluscuamperfecto** para narrar eventos ordenados (ej.: "Habían robado el tesoro antes de llegar al puerto").  
+   - **Adaptación:**  
+     - **TEA:** Usar íconos o imágenes para representar acciones.  
+     - **Equilibrado:** Trabajo en grupo con roles específicos (ej.: investigador, artista).  
+   - **Elemento Artístico:** Decorar el jardín con símbolos, textos o esculturas que reflejen los tiempos.  
+
+4. **Jueves: El Silencio de los Tiempos (Refuerzo y Creatividad)**  
+   - **Actividad:** Los estudiantes crean una pieza artística individual (dibujo, escultura, poema) que represente un tiempo verbal específico. Se enfatiza la reflexión y la conexión emocional con el tiempo elegido.  
+   - **Adaptación:**  
+     - **Kinestésico:** Usar materiales táctiles o movimiento controlado.  
+     - **Auditivo:** Componer una canción o rimas que refuercen los tiempos.  
+   - **Elemento Artístico:** Mostrar las piezas en una galería interna con etiquetas explicativas.  
+
+5. **Viernes: El Festival Silencioso (Presentación Colectiva)**  
+   - **Actividad:** Los estudiantes presentan su historia en una "exposición artística" donde se muestra el mapa, el cuadro, el jardín y las piezas individuales. La narrativa se compone mediante una **obra teatral tranquila** con elementos visuales, sonidos suaves y una **obra de teatro de títeres** o **poesía recitada con calma**.  
+   - **Adaptación:**  
+     - **Dificultades:** Roles específicos (ej.: narrador, artista, lector) adaptados a habilidades.  
+     - **Altas capacidades:** Crear una narración con múltiples capas simbólicas.  
+   - **Elemento Artístico:** Decorar el espacio con luces suaves, textos en diferentes tiempos y elementos artísticos que eviten el ruido.  
+
+**Resultado Final:**  
+La actividad culmina con una exposición reflexiva donde los estudiantes expresan los tiempos verbales a través de arte, simbolismo y narrativa. Se fomenta la conexión emocional, la creatividad individual y la colaboración tranquila, adaptada a cada estilo de aprendizaje y necesidad, sin excesos festivos.
+
+
+🏗️ ARQUITECTURA DE LA EXPERIENCIA
+=================================
+**Flujo Temporal y Arquitectura de Experiencia Educativa: "La Historia del Tesoro de los Tiempos Verbales"**  
+**Duración:** Semanal (Lunes a Viernes)  
+**Objetivo:** Crear una narrativa artística colaborativa que explore los tiempos verbales (presente, pasado, futuro, imperfecto, condicional, pretérito pluscuamperfecto) mediante actividades creativas y adaptadas a estilos de aprendizaje, sin misterios ni excesos festivos.  
+
+---  
+**Lunes: El Mapa de los Tiempos (Presente y Pasado)**  
+- **Actividad Principal:** Construcción de un mapa colaborativo físico o digital donde los estudiantes representan momentos de la historia. El presente describe el mapa (ej.: "El barco está en el océano"), y el pasado narra eventos anteriores (ej.: "El barco fue destruido hace días").  
+- **Adaptaciones:**  
+  - **Visual:** Dibujar símbolos y colores para representar tiempos.  
+  - **Auditivo:** Grabar narraciones con sonidos ambientales.  
+  - **Kinestésico:** Moverse como elementos del mapa (ej.: caminar como el barco).  
+- **Elemento Artístico:** Usar texturas, dibujos simbólicos o colores que reflejen cada tiempo.  
+- **Resultado Parcial:** Mapa físico/digital con etiquetas de tiempos verbales.  
+
+---  
+**Martes: El Cuadro de los Piratas (Imperfecto y Futuro)**  
+- **Actividad Principal:** Crear un collage o cuadro que represente una escena de la historia. El imperfecto describe acciones simultáneas (ej.: "Los piratas navegaban por el océano"), y el futuro planifica acciones (ej.: "Atacarán el puerto mañana").  
+- **Adaptaciones:**  
+  - **Altas capacidades:** Diseñar una historia compleja con múltiples escenas.  
+  - **TDAH:** Tareas cortas con instrucciones visuales o listas de pasos.  
+- **Elemento Artístico:** Usar acuarelas, collage o escultura para representar tiempos.  
+- **Resultado Parcial:** Cuadro o collage con elementos simbólicos de tiempos verbales.  
+
+---  
+**Miércoles: El Jardín de las Pistas (Condicional y Pretérito Pluscuamperfecto)**  
+- **Actividad Principal:** Construir un "jardín simbólico" donde cada planta o elemento representa una pista. El condicional propone escenarios (ej.: "Si el tesoro está aquí, entonces...") y el pretérito pluscuamperfecto ordena eventos (ej.: "Habían robado el tesoro antes de llegar al puerto").  
+- **Adaptaciones:**  
+  - **TEA:** Usar íconos o imágenes para representar acciones.  
+  - **Equilibrado:** Trabajo en grupo con roles específicos (ej.: investigador, artista).  
+- **Elemento Artístico:** Decorar el jardín con símbolos, textos o esculturas que reflejen tiempos.  
+- **Resultado Parcial:** Jardín simbólico con etiquetas y elementos artísticos.  
+
+---  
+**Jueves: El Silencio de los Tiempos (Refuerzo y Creatividad)**  
+- **Actividad Principal:** Crear una pieza artística individual (dibujo, escultura, poema) que represente un tiempo verbal específico. Se enfatiza la reflexión y la conexión emocional con el tiempo elegido.  
+- **Adaptaciones:**  
+  - **Kinestésico:** Usar materiales táctiles o movimiento controlado.  
+  - **Auditivo:** Componer canciones o rimas que refuercen tiempos.  
+- **Elemento Artístico:** Mostrar las piezas en una galería interna con etiquetas explicativas.  
+- **Resultado Parcial:** Colección de piezas artísticas individualizadas.  
+
+---  
+**Viernes: El Festival Silencioso (Presentación Colectiva)**  
+- **Actividad Principal:** Exposición artística donde se presenta el mapa, el cuadro, el jardín y las piezas individuales. La narrativa se compone mediante una **obra teatral tranquila** con elementos visuales, sonidos suaves y una **obra de títeres** o **poesía recitada con calma**.  
+- **Adaptaciones:**  
+  - **Dificultades:** Roles específicos (ej.: narrador, artista, lector) adaptados a habilidades.  
+  - **Altas capacidades:** Crear una narración con múltiples capas simbólicas.  
+- **Elemento Artístico:** Decorar el espacio con luces suaves, textos en diferentes tiempos y elementos artísticos que eviten el ruido.  
+- **Resultado Final:** Exposición reflexiva con conexión emocional, creatividad individual y colaboración tranquila.  
+
+**Arquitectura Logística:**  
+- **Espacio:** Zonas diferenciadas para cada actividad (mapa, cuadro, jardín, galería).  
+- **Materiales:** Recursos artísticos variados (papel, pintura, materiales reciclados, sonidos ambientales).  
+- **Tiempo:** Actividades de 45-60 minutos por día, con espacios de reflexión breve entre cada sesión.  
+- **Inclusión:** Adaptaciones específicas para cada estudiante (ej.: Alex (visual), María (auditivo), etc.).  
+
+**Resultado Final:** Una narrativa artística integrada que explora los tiempos verbales a través de creación colaborativa y expresión individual, sin misterios ni excesos.
+
+
+🎯 DIFERENCIACIÓN PERSONALIZADA
+==============================
+**Personalización de la Actividad por Estudiante (Según Perfil y Adaptaciones):**  
+
+**001 ALEX M. (Reflexivo, Visual):**  
+- **Lunes:** En el mapa, usar colores simbólicos (ej.: azul para el presente, gris para el pasado) y dibujar símbolos que representen eventos (ej.: un barco para el presente, un círculo rojo para el pasado).  
+- **Martes:** En el collage de piratas, crear un diseño detallado con acuarelas y añadir texturas que simbolicen el imperfecto (ej.: líneas onduladas para movimiento) y el futuro (ej.: luces brillantes para acciones planeadas).  
+- **Miércoles:** En el jardín, elegir plantas con flores que representen el condicional (ej.: flores que "si se abren, se revela el tesoro") y usar símbolos para el pretérito pluscuamperfecto (ej.: hojas con texto encriptado).  
+- **Jueves:** Crear un cuadro abstracto con colores y formas que reflejen el tiempo elegido (ej.: tiempo presente como una línea continua, tiempo pasado como una espiral).  
+- **Viernes:** Participar en la narración teatral como narrador visual, usando imágenes y colores para ilustrar la historia.  
+
+**002 MARÍA L. (Reflexivo, Auditivo):**  
+- **Lunes:** Grabar narraciones del mapa con sonidos ambientales (ej.: olas para el presente, sonidos de viento para el pasado) y usar un micrófono para grabar.  
+- **Martes:** En el collage, usar sonidos de mar y efectos de sonido para representar el imperfecto (ej.: "los piratas están navegando") y el futuro (ej.: "sonidos de explosiones").  
+- **Miércoles:** En el jardín, crear una narración auditiva con sonidos que simbolicen el condicional (ej.: "si el tesoro está aquí, suena una campana") y el pretérito pluscuamperfecto (ej.: sonidos de violín para eventos pasados).  
+- **Jueves:** Componer una canción o rima que represente un tiempo (ej.: "El presente es el mar, el pasado es la arena").  
+- **Viernes:** Participar en la obra de títeres como narradora, usando tonos de voz y pausas para enfatizar tiempos.  
+
+**003 ELENA R. (Reflexivo, Visual, TEA_nivel_1):**  
+- **Lunes:** Usar íconos claros (ej.: un reloj para el presente, una estrella para el pasado) y dibujar símbolos simples en el mapa.  
+- **Martes:** En el collage, usar imágenes grandes y espaciadas para representar tiempos (ej.: un barco con un reloj para el imperfecto, un barco con una sombra para el futuro).  
+- **Miércoles:** En el jardín, colocar íconos en plantas (ej.: un icono de "atacar" para el condicional, un icono de "había" para el pretérito pluscuamperfecto).  
+- **Jueves:** Crear un cuadro con figuras simples y colores que representen tiempos (ej.: tiempo presente como un círculo, tiempo pasado como un cuadrado).  
+- **Viernes:** Participar en la exposición como observadora, usando tarjetas con imágenes y textos para recordar la narrativa.  
+
+**004 LUIS T. (Impulsivo, Kinestésico, TDAH_combinado):**  
+- **Lunes:** Moverse como elementos del mapa (ej.: caminar como el barco, saltar como una ola) y usar materiales táctiles (ej.: madera para el presente, piedras para el pasado).  
+- **Martes:** En el collage, usar tareas cortas con instrucciones visuales (ej.: pegar un símbolo de "navegación" para el imperfecto, un símbolo de "ataque" para el futuro).  
+- **Miércoles:** En el jardín, moverse como elementos (ej.: saltar como piratas, rodar como una roca) y usar materiales reciclados para representar tiempos.  
+- **Jueves:** Crear una escultura con materiales táctiles (ej.: arena para el presente, piedras para el pasado) y usar movimientos para representar tiempos.  
+- **Viernes:** Participar en la obra teatral como actor físico, usando movimientos rápidos para el futuro y lentos para el pasado.  
+
+**005 ANA V. (Reflexivo, Auditivo, Altas_capacidades):**  
+- **Lunes:** Diseñar un mapa con múltiples capas narrativas (ej.: texto y sonidos) y usar sonidos ambientales complejos para el presente y pasado.  
+- **Martes:** En el collage, crear una historia simbólica con múltiples escenas (ej.: una escena con piratas navegando y otra con un ataque).  
+- **Miércoles:** En el jardín, usar elementos simbólicos complejos (ej.: un árbol con raíces que representen el pretérito pluscuamperfecto).  
+- **Jueves:** Crear una pieza artística con múltiples capas (ej.: un dibujo con texto y sonidos) que represente un tiempo.  
+- **Viernes:** Liderar la narración teatral con una historia simbólica y múltiples capas de significado.  
+
+**006 SARA M. (Equilibrado, Auditivo):**  
+- **Lunes:** Usar sonidos ambientales y grabaciones para el mapa, combinando texto y narración.  
+- **Martes:** En el collage, usar sonidos de mar y efectos de sonido para representar tiempos.  
+- **Miércoles:** En el jardín, crear una narración auditiva con sonidos que simbolicen tiempos.  
+- **Jueves:** Crear una pieza artística con elementos sonoros (ej.: una canción o rima) y una representación visual.  
+- **Viernes:** Participar en la obra teatral como narradora, usando tonos y pausas para enfatizar tiempos.  
+
+**007 EMMA K. (Reflexivo, Visual):**  
+- **Lunes:** En el mapa, usar colores y símbolos para representar tiempos (ej.: líneas para el presente, círculos para el pasado).  
+- **Martes:** En el collage, usar acuarelas y texturas para representar tiempos (ej.: líneas onduladas para el imperfecto).  
+- **Miércoles:** En el jardín, elegir plantas con flores que simbolicen tiempos (ej.: flores que "si se abren, se revela el tesoro").  
+- **Jueves:** Crear un cuadro abstracto con colores y formas que reflejen tiempos.  
+- **Viernes:** Participar en la narración teatral como narradora visual, usando imágenes y colores.  
+
+**008 HUGO (Equilibrado, Visual):**  
+- **Lunes:** En el mapa, usar colores y símbolos para representar tiempos y colaborar en el diseño.  
+- **Martes:** En el collage, usar elementos visuales complejos (ej.: un barco con un reloj para el imperfecto).  
+- **Miércoles:** En el jardín, colaborar en la creación de símbolos visuales para tiempos.  
+- **Jueves:** Crear un cuadro con múltiples capas visuales que representen tiempos.  
+- **Viernes:** Participar en la exposición como ayudante visual, organizando elementos para la narrativa.
+
+
+
+================================================================================
+METADATOS DEL SISTEMA Q-AGENTS V2:
+{
+  "total_estudiantes": 8,
+  "feedback_aplicado": 2,
+  "feedback_detalles": [
+    {
+      "agente": "general",
+      "prompt": "no, pero no quiero que sea tan festiva, quiero algo más artístico-tranquilo",
+      "confianza": 0.5,
+      "intencion": "Modificar general - feedback general"
+    },
+    {
+      "agente": "general",
+      "prompt": "no quiero misterios, solo exploración y creación",
+      "confianza": 0.5,
+      "intencion": "Modificar general - feedback general"
+    }
+  ],
+  "modelo_usado": "qwen3:latest",
+  "ejemplos_k_usados": [
+    "k_celula",
+    "k_sonnet_supermercado",
+    "k_feria_acertijos",
+    "k_piratas"
+  ],
+  "version": "2.0_semantic_feedback"
+}

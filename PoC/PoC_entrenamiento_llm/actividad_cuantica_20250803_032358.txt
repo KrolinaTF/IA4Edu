@@ -1,0 +1,71 @@
+================================================================================
+ACTIVIDAD GENERADA CON OPTIMIZACIÓN CUÁNTICA
+================================================================================
+
+Intención: quiero una actividad de teatro sobre el sistema solar
+Generado: 2025-08-03T03:23:47.661410
+Método: clasico
+Score de inclusión: 0.83
+
+CONFIGURACIÓN OPTIMIZADA:
+----------------------------------------
+Estructura: 0.72
+Colaboración: 0.66
+Flexibilidad: 0.59
+
+ACTIVIDAD:
+----------------------------------------
+
+ACTIVIDAD EDUCATIVA CON INCLUSIÓN INHERENTE
+=========================================
+
+OBJETIVO: quiero una actividad de teatro sobre el sistema solar
+
+CONFIGURACIÓN OPTIMIZADA:
+- Estructura: 0.72
+- Colaboración: 0.66  
+- Flexibilidad: 0.59
+- Inclusión: 0.83
+
+DESARROLLO DE LA ACTIVIDAD:
+
+1. Introducción clara con ejemplos y objetivos
+   - Interacción: parejas
+   - Modalidad: trabajo_escrito
+
+2. Distribución de roles y responsabilidades específicas
+   - Interacción: parejas
+   - Modalidad: trabajo_escrito
+
+3. Desarrollo por etapas con verificaciones
+   - Interacción: parejas
+   - Modalidad: trabajo_escrito
+
+4. Síntesis guiada y presentación organizada
+   - Interacción: parejas
+   - Modalidad: trabajo_escrito
+
+
+
+ROLES DISPONIBLES:
+  • Investigador de información
+  • Organizador de ideas
+  • Creador de contenido visual
+  • Redactor principal
+  • Revisor de calidad
+  • Coordinador de presentación
+
+MODALIDADES INTEGRADAS:
+  • trabajo_escrito
+  • presentacion_oral
+  • infografias
+  • esquemas
+  • mapas_mentales
+  • debates
+  • grabaciones
+  • música
+  • experimentos
+  • maquetas
+  • dramatizaciones
+
+[Esta actividad fue generada en modo fallback - LLM no disponible]

@@ -1,0 +1,38 @@
+{
+  "id": "coherente_simple_matematicas_20250803_162748",
+  "titulo": "Práctica Directa de Fracciones",
+  "materia": "matematicas",
+  "tema": "fracciones",
+  "contenido": "Actividad práctica donde trabajamos fracciones mediante tareas concretas y materiales físicos",
+  "tareas_estudiantes": {
+    "003": "Explorar en equipo objetos relacionados con fracciones",
+    "004": "Medir colaborativamente características de fracciones",
+    "005": "Organizar materiales entre todo el grupo",
+    "001": "Experimentar juntos con diferentes usos",
+    "002": "Discutir y consensuar hallazgos grupales sobre fracciones",
+    "006": "Verificar resultados como equipo completo",
+    "007": "Crear representación visual colaborativa de fracciones",
+    "008": "Documentar proceso grupal conjunto"
+  },
+  "materiales": [
+    "objetos físicos",
+    "papel",
+    "lápices",
+    "objetos relacionados con fracciones"
+  ],
+  "duracion": "30 minutos",
+  "fases": [
+    "Preparación materiales (5 min)",
+    "Trabajo individual con fracciones (20 min)",
+    "Verificación grupal (5 min)"
+  ],
+  "validacion": {
+    "puntuacion": 9,
+    "observaciones": [
+      "Tareas poco específicas. Añade medidas, cantidades concretas."
+    ],
+    "coherencia_k": true,
+    "principios_cumplidos": 4
+  },
+  "timestamp": "2025-08-03T16:27:48.621456"
+}
