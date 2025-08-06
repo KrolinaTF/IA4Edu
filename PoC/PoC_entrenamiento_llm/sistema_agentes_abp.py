@@ -530,15 +530,81 @@ class AgentePerfiladorEstudiantes:
     def _cargar_perfiles_piloto(self) -> List[Estudiante]:
         """Carga perfiles de estudiantes del dataset piloto"""
         perfiles = [
-            Estudiante("001", "ALEX M.", ["pensamiento lógico", "trabajo autónomo"], ["necesita tiempo extra"], 8, ["investigador"], ["instrucciones claras"]),
-            Estudiante("002", "MARÍA L.", ["comunicación oral", "trabajo en equipo"], ["dificultades escritura"], 7, ["presentadora"], ["apoyo escritura"]),
-            Estudiante("003", "ELENA R.", ["creatividad", "arte visual"], ["TEA nivel 1"], 6, ["diseñadora"], ["rutinas claras", "espacio tranquilo"]),
-            Estudiante("004", "PABLO S.", ["liderazgo", "organización"], ["TDAH"], 8, ["coordinador"], ["descansos frecuentes"]),
-            Estudiante("005", "ANA G.", ["matemáticas", "análisis"], ["timidez extrema"], 7, ["analista"], ["trabajo individual inicial"]),
-            Estudiante("006", "LUIS C.", ["tecnología", "innovación"], ["dislexia"], 7, ["técnico"], ["herramientas digitales"]),
-            Estudiante("007", "SARA M.", ["empatía", "mediación"], ["alta sensibilidad"], 6, ["mediadora"], ["ambiente relajado"]),
-            Estudiante("008", "DIEGO P.", ["experimentos", "ciencias"], ["necesidades motrices"], 8, ["científico"], ["adaptación material"])
+            Estudiante(
+                id="001", 
+                nombre="ALEX M.", 
+                fortalezas=["pensamiento lógico", "trabajo autónomo"], 
+                necesidades_apoyo=["necesita tiempo extra"], 
+                disponibilidad=8, 
+                historial_roles=["investigador"], 
+                adaptaciones=["instrucciones claras"]
+            ),
+            Estudiante(
+                id="002", 
+                nombre="MARÍA L.", 
+                fortalezas=["comunicación oral", "trabajo en equipo"], 
+                necesidades_apoyo=["dificultades escritura"], 
+                disponibilidad=7, 
+                historial_roles=["presentadora"], 
+                adaptaciones=["apoyo escritura"]
+            ),
+            Estudiante(
+                id="003", 
+                nombre="ELENA R.", 
+                fortalezas=["creatividad", "arte visual"], 
+                necesidades_apoyo=["TEA nivel 1"], 
+                disponibilidad=6, 
+                historial_roles=["diseñadora"], 
+                adaptaciones=["rutinas claras", "espacio tranquilo"]
+            ),
+            Estudiante(
+                id="004", 
+                nombre="PABLO S.", 
+                fortalezas=["liderazgo", "organización"], 
+                necesidades_apoyo=["TDAH"], 
+                disponibilidad=8, 
+                historial_roles=["coordinador"], 
+                adaptaciones=["descansos frecuentes"]
+            ),
+            Estudiante(
+                id="005", 
+                nombre="ANA G.", 
+                fortalezas=["matemáticas", "análisis"], 
+                necesidades_apoyo=["timidez extrema"], 
+                disponibilidad=7, 
+                historial_roles=["analista"], 
+                adaptaciones=["trabajo individual inicial"]
+            ),
+            Estudiante(
+                id="006", 
+                nombre="LUIS C.", 
+                fortalezas=["tecnología", "innovación"], 
+                necesidades_apoyo=["dislexia"], 
+                disponibilidad=7, 
+                historial_roles=["técnico"], 
+                adaptaciones=["herramientas digitales"]
+            ),
+            Estudiante(
+                id="007", 
+                nombre="SARA M.", 
+                fortalezas=["empatía", "mediación"], 
+                necesidades_apoyo=["alta sensibilidad"], 
+                disponibilidad=6, 
+                historial_roles=["mediadora"], 
+                adaptaciones=["ambiente relajado"]
+            ),
+            Estudiante(
+                id="008", 
+                nombre="DIEGO P.", 
+                fortalezas=["experimentos", "ciencias"], 
+                necesidades_apoyo=["necesidades motrices"], 
+                disponibilidad=8, 
+                historial_roles=["científico"], 
+                adaptaciones=["adaptación material"]
+            )
         ]
+        
+        logger.info(f"👥 Cargados {len(perfiles)} perfiles de estudiantes")
         return perfiles
     
     def analizar_perfiles(self, tareas: List[Tarea]) -> Dict[str, Dict]:
@@ -635,8 +701,11 @@ class AgenteOptimizadorAsignaciones:
     def __init__(self, ollama_integrator: OllamaIntegrator):
         self.ollama = ollama_integrator
     
-    def optimizar_asignaciones(self, tareas: List[Tarea], analisis_estudiantes: Dict) -> List[Dict]:
+    def optimizar_asignaciones(self, tareas: List[Tarea], analisis_estudiantes: Dict, perfilador=None) -> List[Dict]:
         """Realiza el reparto óptimo de tareas"""
+        
+        # Guardar referencia al perfilador para usar en fallback
+        self._perfilador = perfilador
         
         # Preparar información para el prompt
         info_tareas = []
@@ -677,60 +746,162 @@ EQUIPOS COLABORATIVOS:
         return self._parsear_asignaciones(respuesta, tareas)
     
     def _parsear_asignaciones(self, respuesta: str, tareas: List[Tarea]) -> List[Dict]:
-        """Parsea las asignaciones optimizadas"""
+        """Parsea las asignaciones optimizadas desde la respuesta del LLM"""
         asignaciones = []
         
-        # Lógica simplificada de parseo
-        # En una implementación real, se haría un parseo más sofisticado
-        estudiantes_ids = ["001", "002", "003", "004", "005", "006", "007", "008"]
+        try:
+            # Intentar parsear respuesta del LLM
+            asignaciones_parseadas = self._parsear_respuesta_llm(respuesta)
+            if asignaciones_parseadas:
+                logger.info("✅ Asignaciones parseadas desde respuesta LLM")
+                return asignaciones_parseadas
+        except Exception as e:
+            logger.error(f"❌ Error al parsear JSON del LLM: {e}")
+            logger.info("⚠️ Usando lógica de fallback para las asignaciones.")
         
-        for i, estudiante_id in enumerate(estudiantes_ids):
-            # Distribución simple basada en el número de tareas
-            tareas_asignadas = []
-            inicio = (i * len(tareas)) // len(estudiantes_ids)
-            fin = ((i + 1) * len(tareas)) // len(estudiantes_ids)
+        # Fallback: distribución inteligente si no se puede parsear
+        return self._generar_asignaciones_fallback(tareas)
+    
+    def _parsear_respuesta_llm(self, respuesta: str) -> List[Dict]:
+        """Intenta parsear la respuesta estructurada del LLM"""
+        # Buscar bloques de asignaciones en la respuesta
+        asignaciones = []
+        
+        # Patrón para estudiantes
+        estudiante_pattern = r'ESTUDIANTE\s+(\d+):'
+        matches = re.finditer(estudiante_pattern, respuesta, re.IGNORECASE)
+        
+        for match in matches:
+            estudiante_id = f"{match.group(1).zfill(3)}"  # Formato 001, 002, etc.
             
-            for j in range(inicio, min(fin, len(tareas))):
-                if j < len(tareas):
-                    tareas_asignadas.append(tareas[j].id)
+            # Extraer información del bloque del estudiante
+            inicio = match.end()
+            siguiente_match = re.search(estudiante_pattern, respuesta[inicio:], re.IGNORECASE)
+            fin = inicio + siguiente_match.start() if siguiente_match else len(respuesta)
+            
+            bloque_estudiante = respuesta[inicio:fin]
             
             asignacion = {
                 "estudiante_id": estudiante_id,
-                "tareas_asignadas": tareas_asignadas[:3],  # Máximo 3 tareas
-                "rol_principal": self._determinar_rol(estudiante_id),
-                "adaptaciones": self._obtener_adaptaciones(estudiante_id)
+                "tareas_asignadas": self._extraer_tareas_asignadas(bloque_estudiante),
+                "rol_principal": self._extraer_rol(bloque_estudiante, estudiante_id),
+                "adaptaciones": self._extraer_adaptaciones_texto(bloque_estudiante, estudiante_id)
             }
             asignaciones.append(asignacion)
         
+        return asignaciones if asignaciones else None
+    
+    def _extraer_tareas_asignadas(self, texto: str) -> List[str]:
+        """Extrae IDs de tareas del texto"""
+        tareas = re.findall(r'tarea_\d+', texto.lower())
+        return list(set(tareas))  # Eliminar duplicados
+    
+    def _extraer_rol(self, texto: str, estudiante_id: str) -> str:
+        """Extrae rol del texto o asigna basado en perfil"""
+        # Buscar rol explícito
+        rol_match = re.search(r'rol[:\s]*([^\n]+)', texto, re.IGNORECASE)
+        if rol_match:
+            return rol_match.group(1).strip()
+        
+        # Fallback basado en perfil del estudiante
+        return self._determinar_rol_por_perfil(estudiante_id)
+    
+    def _extraer_adaptaciones_texto(self, texto: str, estudiante_id: str) -> List[str]:
+        """Extrae adaptaciones del texto"""
+        adaptaciones_match = re.search(r'adaptaciones?[:\s]*([^\n]+)', texto, re.IGNORECASE)
+        if adaptaciones_match:
+            adaptaciones_texto = adaptaciones_match.group(1)
+            return [a.strip() for a in adaptaciones_texto.split(',')]
+        
+        # Fallback a adaptaciones por perfil
+        return self._obtener_adaptaciones_por_perfil(estudiante_id)
+    
+    def _generar_asignaciones_fallback(self, tareas: List[Tarea]) -> List[Dict]:
+        """Genera asignaciones usando lógica de fallback inteligente"""
+        if not hasattr(self, '_perfiles_estudiantes'):
+            logger.warning("No hay perfiles de estudiantes para asignar tareas. Devolviendo asignaciones vacías")
+            return []
+        
+        asignaciones = []
+        estudiantes_ids = ["001", "002", "003", "004", "005", "006", "007", "008"]
+        
+        # Distribución equitativa con máximo 3 tareas por estudiante
+        tareas_por_estudiante = max(1, len(tareas) // len(estudiantes_ids))
+        tareas_restantes = len(tareas) % len(estudiantes_ids)
+        
+        indice_tarea = 0
+        
+        for i, estudiante_id in enumerate(estudiantes_ids):
+            if indice_tarea >= len(tareas):
+                break
+                
+            # Calcular cuántas tareas asignar
+            num_tareas = tareas_por_estudiante
+            if i < tareas_restantes:
+                num_tareas += 1
+            
+            num_tareas = min(num_tareas, 3)  # Máximo 3 tareas
+            
+            # Asignar tareas
+            tareas_asignadas = []
+            for j in range(num_tareas):
+                if indice_tarea < len(tareas):
+                    tareas_asignadas.append(tareas[indice_tarea].id)
+                    indice_tarea += 1
+            
+            asignacion = {
+                "estudiante_id": estudiante_id,
+                "tareas_asignadas": tareas_asignadas,
+                "rol_principal": self._determinar_rol_por_perfil(estudiante_id),
+                "adaptaciones": self._obtener_adaptaciones_por_perfil(estudiante_id)
+            }
+            asignaciones.append(asignacion)
+        
+        logger.info(f"📋 Generadas {len(asignaciones)} asignaciones de fallback")
         return asignaciones
     
-    def _determinar_rol(self, estudiante_id: str) -> str:
-        """Determina rol principal basado en el ID del estudiante"""
-        roles = {
-            "001": "investigador principal",
-            "002": "comunicadora",
-            "003": "diseñadora visual", 
-            "004": "coordinador de equipo",
-            "005": "analista de datos",
-            "006": "especialista técnico",
-            "007": "facilitadora grupal",
-            "008": "experimentador"
-        }
-        return roles.get(estudiante_id, "colaborador")
+    def _determinar_rol_por_perfil(self, estudiante_id: str) -> str:
+        """Determina rol principal basado en el perfil real del estudiante"""
+        # Buscar el estudiante en los perfiles del perfilador
+        if hasattr(self, '_perfilador') and self._perfilador:
+            for estudiante in self._perfilador.perfiles_base:
+                if estudiante.id == estudiante_id:
+                    # Usar el historial de roles como base
+                    if estudiante.historial_roles:
+                        return estudiante.historial_roles[0]  # Primer rol histórico
+                    
+                    # Determinar rol basado en fortalezas
+                    fortalezas = estudiante.fortalezas
+                    if any("liderazgo" in f.lower() for f in fortalezas):
+                        return "coordinador de equipo"
+                    elif any("comunicación" in f.lower() for f in fortalezas):
+                        return "comunicador/a"
+                    elif any("creatividad" in f.lower() or "arte" in f.lower() for f in fortalezas):
+                        return "diseñador/a creativo"
+                    elif any("matemáticas" in f.lower() or "análisis" in f.lower() for f in fortalezas):
+                        return "analista matemático"
+                    elif any("tecnología" in f.lower() for f in fortalezas):
+                        return "especialista técnico"
+                    elif any("experimentos" in f.lower() or "ciencias" in f.lower() for f in fortalezas):
+                        return "investigador científico"
+                    elif any("empatía" in f.lower() or "mediación" in f.lower() for f in fortalezas):
+                        return "facilitador/a grupal"
+                    else:
+                        return "colaborador/a activo"
+        
+        # Fallback si no se encuentra el perfil
+        return "colaborador/a"
     
-    def _obtener_adaptaciones(self, estudiante_id: str) -> List[str]:
-        """Obtiene adaptaciones específicas por estudiante"""
-        adaptaciones = {
-            "001": ["instrucciones escritas claras", "tiempo adicional"],
-            "002": ["herramientas de apoyo a la escritura"],
-            "003": ["rutinas estructuradas", "espacio tranquilo"],
-            "004": ["descansos cada 20 minutos", "movimiento permitido"],
-            "005": ["presentaciones individuales iniciales"],
-            "006": ["material en formato digital", "fuentes legibles"],
-            "007": ["ambientes de baja estimulación sensorial"],
-            "008": ["materiales adaptados para manipulación"]
-        }
-        return adaptaciones.get(estudiante_id, ["seguimiento personalizado"])
+    def _obtener_adaptaciones_por_perfil(self, estudiante_id: str) -> List[str]:
+        """Obtiene adaptaciones específicas basadas en el perfil real del estudiante"""
+        # Buscar el estudiante en los perfiles del perfilador
+        if hasattr(self, '_perfilador') and self._perfilador:
+            for estudiante in self._perfilador.perfiles_base:
+                if estudiante.id == estudiante_id:
+                    return estudiante.adaptaciones if estudiante.adaptaciones else ["seguimiento personalizado"]
+        
+        # Fallback si no se encuentra el perfil
+        return ["seguimiento personalizado"]
 
 class AgenteGeneradorRecursos:
     """Agente Generador de Recursos (Resource Generator Agent)"""
@@ -934,7 +1105,7 @@ class SistemaAgentesABP:
         
         # PASO 8: Optimizar asignaciones
         print("\n⚖️ Optimizando asignaciones...")
-        asignaciones = self.optimizador.optimizar_asignaciones(tareas, analisis_estudiantes)
+        asignaciones = self.optimizador.optimizar_asignaciones(tareas, analisis_estudiantes, self.perfilador)
         
         # PASO 9: Generar recursos
         print("\n📚 Generando recursos necesarios...")

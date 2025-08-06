@@ -50,7 +50,6 @@ class Estudiante:
     fortalezas: List[str]
     necesidades_apoyo: List[str]
     disponibilidad: int
-    historial_roles: List[str]
     adaptaciones: List[str] = None
 
 @dataclass  
@@ -209,7 +208,9 @@ class AgenteCoordinador:
             analisis_json_str = self.ollama.generar_respuesta(prompt_analisis, max_tokens=200)
             # El LLM a veces devuelve el JSON dentro de bloques de código, así que los eliminamos
             analisis_json_str = analisis_json_str.replace("```json", "").replace("```", "").strip()
+
             analisis = json.loads(analisis_json_str)
+
         except (json.JSONDecodeError, AttributeError, KeyError) as e:
             logger.warning(f"❌ Fallo al analizar el prompt. Usando valores por defecto. Error: {e}")
             analisis = {
@@ -623,14 +624,14 @@ class AgentePerfiladorEstudiantes:
     def _cargar_perfiles_piloto(self) -> List[Estudiante]:
         """Carga perfiles de estudiantes del dataset piloto"""
         perfiles = [
-            Estudiante("001", "ALEX M.", ["pensamiento lógico", "trabajo autónomo"], ["necesita tiempo extra"], 8, ["investigador"], ["instrucciones claras"]),
-            Estudiante("002", "MARÍA L.", ["comunicación oral", "trabajo en equipo"], ["dificultades escritura"], 7, ["presentadora"], ["apoyo escritura"]),
-            Estudiante("003", "ELENA R.", ["creatividad", "arte visual"], ["TEA nivel 1"], 6, ["diseñadora"], ["rutinas claras", "espacio tranquilo"]),
-            Estudiante("004", "PABLO S.", ["liderazgo", "organización"], ["TDAH"], 8, ["coordinador"], ["descansos frecuentes"]),
-            Estudiante("005", "ANA G.", ["matemáticas", "análisis"], ["timidez extrema"], 7, ["analista"], ["trabajo individual inicial"]),
-            Estudiante("006", "LUIS C.", ["tecnología", "innovación"], ["dislexia"], 7, ["técnico"], ["herramientas digitales"]),
-            Estudiante("007", "SARA M.", ["empatía", "mediación"], ["alta sensibilidad"], 6, ["mediadora"], ["ambiente relajado"]),
-            Estudiante("008", "DIEGO P.", ["experimentos", "ciencias"], ["necesidades motrices"], 8, ["científico"], ["adaptación material"])
+            Estudiante("001", "ALEX M.", ["pensamiento lógico", "trabajo autónomo"], ["necesita tiempo extra"], 8, ["instrucciones claras"]),
+            Estudiante("002", "MARÍA L.", ["comunicación oral", "trabajo en equipo"], ["dificultades escritura"], 7, ["apoyo escritura"]),
+            Estudiante("003", "ELENA R.", ["creatividad", "arte visual"], ["TEA nivel 1"], 6, ["rutinas claras", "espacio tranquilo"]),
+            Estudiante("004", "PABLO S.", ["liderazgo", "organización"], ["TDAH"], 8, ["descansos frecuentes"]),
+            Estudiante("005", "ANA G.", ["matemáticas", "análisis"], ["timidez extrema"], 7, ["trabajo individual inicial"]),
+            Estudiante("006", "LUIS C.", ["tecnología", "innovación"], ["dislexia"], 7, ["herramientas digitales"]),
+            Estudiante("007", "SARA M.", ["empatía", "mediación"], ["alta sensibilidad"], 6, ["ambiente relajado"]),
+            Estudiante("008", "DIEGO P.", ["experimentos", "ciencias"], ["necesidades motrices"], 8, ["adaptación material"])
         ]
         return perfiles
     
@@ -668,7 +669,6 @@ ESTUDIANTE [ID]:
 Tareas_compatibles: [lista de IDs de tareas]
 Tareas_desarrollo: [tareas para crecer]
 Adaptaciones: [adaptaciones específicas]
-Rol_sugerido: [rol en el proyecto]
 
 [Repetir para todos los estudiantes...]
 """
