@@ -1,0 +1,165 @@
+{
+  "proyecto": {
+    "titulo": "La Fábrica de Mapas: Innovación y Solución",
+    "descripcion": "En un entorno fabril, estudiantes deben diseñar y construir mapas interactivos del espacio de trabajo utilizando materiales concretos. Deben resolver problemas y encontrar soluciones innovadoras para mejorar la eficiencia en su proyecto.\nNivel educativo",
+    "duracion": "2-3 sesiones",
+    "competencias_objetivo": [
+      "Competencia matemática",
+      "trabajo colaborativo"
+    ]
+  },
+  "fases": [
+    {
+      "nombre": "Fase 1: Investigación y Planificación",
+      "duracion": "3-4 días",
+      "tareas": []
+    },
+    {
+      "nombre": "Fase 2: Desarrollo y Creación",
+      "duracion": "5-6 días",
+      "tareas": [
+        "tarea_01",
+        "tarea_02",
+        "tarea_03",
+        "tarea_04",
+        "tarea_05",
+        "tarea_06",
+        "tarea_07"
+      ]
+    },
+    {
+      "nombre": "Fase 3: Presentación y Evaluación",
+      "duracion": "2-3 días",
+      "tareas": [
+        "tarea_08",
+        "tarea_09"
+      ]
+    }
+  ],
+  "asignaciones": [
+    {
+      "estudiante_id": "001",
+      "tareas_asignadas": [
+        "tarea_01"
+      ],
+      "rol_principal": "investigador principal",
+      "adaptaciones": [
+        "instrucciones escritas claras",
+        "tiempo adicional"
+      ]
+    },
+    {
+      "estudiante_id": "002",
+      "tareas_asignadas": [
+        "tarea_02"
+      ],
+      "rol_principal": "comunicadora",
+      "adaptaciones": [
+        "herramientas de apoyo a la escritura"
+      ]
+    },
+    {
+      "estudiante_id": "003",
+      "tareas_asignadas": [
+        "tarea_03"
+      ],
+      "rol_principal": "diseñadora visual",
+      "adaptaciones": [
+        "rutinas estructuradas",
+        "espacio tranquilo"
+      ]
+    },
+    {
+      "estudiante_id": "004",
+      "tareas_asignadas": [
+        "tarea_04"
+      ],
+      "rol_principal": "coordinador de equipo",
+      "adaptaciones": [
+        "descansos cada 20 minutos",
+        "movimiento permitido"
+      ]
+    },
+    {
+      "estudiante_id": "005",
+      "tareas_asignadas": [
+        "tarea_05"
+      ],
+      "rol_principal": "analista de datos",
+      "adaptaciones": [
+        "presentaciones individuales iniciales"
+      ]
+    },
+    {
+      "estudiante_id": "006",
+      "tareas_asignadas": [
+        "tarea_06"
+      ],
+      "rol_principal": "especialista técnico",
+      "adaptaciones": [
+        "material en formato digital",
+        "fuentes legibles"
+      ]
+    },
+    {
+      "estudiante_id": "007",
+      "tareas_asignadas": [
+        "tarea_07"
+      ],
+      "rol_principal": "facilitadora grupal",
+      "adaptaciones": [
+        "ambientes de baja estimulación sensorial"
+      ]
+    },
+    {
+      "estudiante_id": "008",
+      "tareas_asignadas": [
+        "tarea_08",
+        "tarea_09"
+      ],
+      "rol_principal": "experimentador",
+      "adaptaciones": [
+        "materiales adaptados para manipulación"
+      ]
+    }
+  ],
+  "recursos": {
+    "materiales_fisicos": [],
+    "herramientas_digitales": [],
+    "recursos_didacticos": [],
+    "espacios_necesarios": [],
+    "presupuesto_estimado": "**",
+    "adaptaciones_dua": []
+  },
+  "evaluacion": {
+    "criterios": [
+      "Calidad del trabajo",
+      "Colaboración",
+      "Creatividad",
+      "Competencias específicas"
+    ],
+    "instrumentos": [
+      "Rúbrica",
+      "Autoevaluación",
+      "Evaluación por pares",
+      "Portfolio digital"
+    ]
+  },
+  "metadatos": {
+    "timestamp": "2025-08-04T23:55:20.793743",
+    "sistema": "AgentesABP_v1.0",
+    "historial_prompts": [
+      {
+        "tipo": "prompt_inicial",
+        "contenido": "quisiera hacer un una actividad para crear un mapa de españa con una manualidad entrentenida y convertirlo en material no fungible para usar en el patio, creame también un juego con el que usar este material",
+        "timestamp": "2025-08-04T23:52:42.857617"
+      },
+      {
+        "tipo": "info_adicional",
+        "contenido": "no quiero que resuelvan problemas, quiero que hagan una tarea de manualidades mientras cada uno hace una parte de españa, quizás que busquen algun dato curioso de la parte que les toque y que me digas como organizar el reparto de tareas  y com odiseñar un juego para usarlo",
+        "timestamp": "2025-08-04T23:54:40.213108"
+      }
+    ],
+    "validado": true
+  }
+}

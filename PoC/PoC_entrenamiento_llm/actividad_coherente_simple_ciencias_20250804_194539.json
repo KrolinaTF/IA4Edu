@@ -1,0 +1,39 @@
+{
+  "id": "coherente_simple_ciencias_20250804_194539",
+  "titulo": "Práctica Directa de Electricidad",
+  "materia": "ciencias",
+  "tema": "electricidad",
+  "contenido": "Actividad práctica donde trabajamos electricidad mediante tareas concretas y materiales físicos",
+  "tareas_estudiantes": {
+    "003": "Examinar objetos relacionados con electricidad",
+    "004": "Medir y registrar rápidamente características de electricidad",
+    "005": "Organizar materiales por categorías",
+    "001": "Experimentar con diferentes usos",
+    "002": "Explicar hallazgos al grupo",
+    "006": "Verificar resultados entre todos",
+    "007": "Crear representación visual",
+    "008": "Documentar proceso completo"
+  },
+  "materiales": [
+    "objetos físicos",
+    "papel",
+    "lápices",
+    "objetos relacionados con electricidad"
+  ],
+  "duracion": "30 minutos",
+  "fases": [
+    "Preparación materiales (5 min)",
+    "Trabajo individual con electricidad (20 min)",
+    "Verificación grupal (5 min)"
+  ],
+  "validacion": {
+    "puntuacion": 6,
+    "observaciones": [
+      "Falta interdependencia real entre estudiantes.",
+      "Tareas poco específicas. Añade medidas, cantidades concretas."
+    ],
+    "coherencia_k": false,
+    "principios_cumplidos": 3
+  },
+  "timestamp": "2025-08-04T19:45:39.079214"
+}

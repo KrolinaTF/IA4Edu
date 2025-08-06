@@ -1,0 +1,84 @@
+================================================================================
+ACTIVIDAD COLABORATIVA: Lengua - tiempos verbales
+AULA: AULA_A_4PRIM (8 estudiantes)
+================================================================================
+
+DIVERSIDAD DEL AULA CONSIDERADA:
+- Diagnósticos: {'ninguno': 5, 'TEA_nivel_1': 1, 'TDAH_combinado': 1, 'altas_capacidades': 1}
+- Canales de aprendizaje: {'visual': 4, 'auditivo': 3, 'kinestésico': 1}
+- Niveles de apoyo: {'bajo': 3, 'medio': 3, 'alto': 2}
+- Temperamentos: {'reflexivo': 5, 'impulsivo': 1, 'equilibrado': 2}
+
+ACTIVIDAD COLABORATIVA:
+--------------------------------------------------
+**Actividad colaborativa: "El Tiempo Verbal en la Historia"**
+
+**OBJETIVO COLABORATIVO**
+
+Los estudiantes trabajarán en equipo para crear una historia colectiva que muestre la evolución de los tiempos verbales a lo largo del tiempo, desde la antigüedad hasta la actualidad.
+
+**DESCRIPCIÓN DE LA ACTIVIDAD GRUPAL**
+
+Los estudiantes se dividirán en cinco grupos, cada uno con un rol específico:
+
+1. **Investigadores** (Alex M., María L., Emma K. y Hugo P.): Investigarán y recopilarán información sobre la historia de los tiempos verbales en diferentes épocas y culturas.
+2. **Ilustradores** (Elena R. y Ana V.): Crearán ilustraciones y gráficos para acompañar la historia colectiva y hacerla más atractiva.
+3. **Narradores** (Luis T. y Sara M.): Escribe la historia colectiva, utilizando los conocimientos recopilados por los investigadores y las ilustraciones creadas por los ilustradores.
+4. **Editores** (todos los estudiantes): Evaluarán y revisarán la historia colectiva para asegurarse de que esté bien escrita, sea coherente y tenga un buen flujo.
+
+**ROLES ESPECÍFICOS PARA CADA ESTUDIANTE**
+
+- Alex M. (001): Investigador, canal visual, apoyo bajo, temperamento reflexivo
+ - Investigar y recopilar información sobre la historia de los tiempos verbales en diferentes épocas y culturas.
+- María L. (002): Investigadora, canal auditivo, apoyo medio, temperamento reflexivo
+ - Investigar y recopilar información sobre la historia de los tiempos verbales en diferentes épocas y culturas.
+- Elena R. (003): Ilustradora, canal visual, apoyo alto, temperamento reflexivo
+ - Crear ilustraciones y gráficos para acompañar la historia colectiva.
+- Luis T. (004): Narrador, canal kinestésico, apoyo alto, temperamento impulsivo
+ - Escribir la historia colectiva, utilizando los conocimientos recopilados por los investigadores y las ilustraciones creadas por los ilustradores.
+- Ana V. (005): Ilustradora, canal auditivo, apoyo bajo, temperamento reflexivo
+ - Crear ilustraciones y gráficos para acompañar la historia colectiva.
+- Sara M. (006): Narrador, canal auditivo, apoyo medio, temperamento equilibrado
+ - Escribir la historia colectiva, utilizando los conocimientos recopilados por los investigadores y las ilustraciones creadas por los ilustradores.
+- Emma K. (007): Investigadora, canal visual, apoyo medio, temperamento reflexivo
+ - Investigar y recopilar información sobre la historia de los tiempos verbales en diferentes épocas y culturas.
+- Hugo P. (008): Investigador, canal visual, apoyo bajo, temperamento equilibrado
+ - Investigar y recopilar información sobre la historia de los tiempos verbales en diferentes épocas y culturas.
+
+**MATERIALES NECESARIOS**
+
+- Computadoras o tabletas con acceso a Internet
+- Software de edición de imágenes (por ejemplo, Adobe Photoshop)
+- Papel y lápices
+- Marcadores y lápices
+- Impresoras (opcional)
+
+**DESARROLLO PASO A PASO**
+
+1. **Introducción** (5 minutos): Presentar el objetivo de la actividad y explicar los roles específicos para cada estudiante.
+2. **Investigación** (20 minutos): Los investigadores comenzarán a investigar y recopilar información sobre la historia de los tiempos verbales en diferentes épocas y culturas.
+3. **Ilustración** (20 minutos): Los ilustradores crearán ilustraciones y gráficos para acompañar la historia colectiva.
+4. **Escritura** (30 minutos): Los narradores escribirán la historia colectiva, utilizando los conocimientos recopilados por los investigadores y las ilustraciones creadas por los ilustradores.
+5. **Edición** (20 minutos): Todos los estudiantes evaluarán y revisarán la historia colectiva para asegurarse de que esté bien escrita, sea coherente y tenga un buen flujo.
+
+**ADAPTACIONES ESPECÍFICAS POR DIAGNÓSTICO**
+
+- **TEA_nivel_1 (Elena R.):** Se le proporcionará asistencia adicional para la investigación y la ilustración, y se le permitirá trabajar en un área más tranquila de la clase.
+- **TDAH_combinado (Luis T.):** Se le proporcionará un cronómetro para ayudarlo a mantener el ritmo de trabajo, y se le permitirá realizar movimientos físicos para ayudarlo a enfocarse.
+- **Altas capacidades (Ana V.):** Se le proporcionará un tema más avanzado para la investigación y la ilustración, y se le permitirá trabajar en un nivel más complejo de la historia colectiva.
+
+**EVALUACIÓN COLABORATIVA**
+
+- Los estudiantes evaluarán y revisarán la historia colectiva para asegurarse de que esté bien escrita, sea coherente y tenga un buen flujo.
+- La evaluación se realizará por grupo, y cada estudiante contribuirá a la evaluación.
+
+**TIEMPO ESTIMADO**
+
+- 1 hora y 45 minutos.
+
+**Nota:** La duración de la actividad puede variar dependiendo de la velocidad de trabajo de los estudiantes y la complejidad de la tarea.
+
+================================================================================
+INFORMACIÓN TÉCNICA:
+Generado: 2025-08-04T18:10:56.781155
+Modelo: llama-3.1-8b-instant
