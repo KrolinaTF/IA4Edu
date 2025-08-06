@@ -9,7 +9,7 @@ import os
 import re
 from datetime import datetime
 from typing import Dict, List, Any, Optional
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, is_dataclass
 import logging
 
 # Configurar logging
@@ -22,13 +22,38 @@ def serialize(obj):
     raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
 
 def parse_json_seguro(texto: str) -> Optional[dict]:
+    """Parseo robusto de JSON con múltiples estrategias de limpieza"""
     try:
+        # Estrategia 1: Limpieza básica
         texto_limpio = texto.replace("```json", "").replace("```", "").strip()
+        if texto_limpio.startswith("A continuación") or texto_limpio.startswith("Aquí"):
+            # El LLM respondió en texto plano, extraer JSON si existe
+            import re
+            json_match = re.search(r'\{.*\}', texto_limpio, re.DOTALL)
+            if json_match:
+                texto_limpio = json_match.group()
+            else:
+                logger.warning("No se encontró JSON en la respuesta de texto plano")
+                return None
+                
         if not texto_limpio:
             raise ValueError("Respuesta vacía")
+            
+        # Estrategia 2: Buscar el primer { hasta el último }
+        start_idx = texto_limpio.find('{')
+        end_idx = texto_limpio.rfind('}')
+        
+        if start_idx != -1 and end_idx != -1 and start_idx < end_idx:
+            texto_limpio = texto_limpio[start_idx:end_idx+1]
+            
         return json.loads(texto_limpio)
+        
     except json.JSONDecodeError as e:
         logger.error(f"❌ Error al parsear JSON del LLM: {e}")
+        logger.error(f"🔍 Texto recibido (primeros 200 chars): {texto[:200]}...")
+        return None
+    except Exception as e:
+        logger.error(f"❌ Error inesperado en parseo JSON: {e}")
         return None
     
 # ===== ESTRUCTURAS DE DATOS =====
@@ -50,7 +75,8 @@ class Estudiante:
     fortalezas: List[str]
     necesidades_apoyo: List[str]
     disponibilidad: int
-    adaptaciones: List[str] = None
+    historial_roles: List[str]
+    adaptaciones: List[str]
 
 @dataclass  
 class Tarea:
@@ -75,6 +101,286 @@ class ProyectoABP:
     recursos: Dict
     evaluacion: Dict
     metadatos: Dict
+
+# ===== CONTEXTO ACUMULATIVO =====
+
+@dataclass
+class IteracionPrompt:
+    """Registro de una iteración de prompt"""
+    numero: int
+    prompt: str
+    accion: str  # "INICIAR", "AMPLIAR", "REFINAR", "REEMPLAZAR"
+    campos_modificados: List[str]
+    timestamp: str
+
+class ContextoActividad:
+    """Gestiona el contexto acumulativo de la actividad"""
+    
+    def __init__(self):
+        self.contexto = {
+            "metadata_sesion": {
+                "session_id": self._generar_session_id(),
+                "timestamp_inicio": datetime.now().isoformat(),
+                "prompts_realizados": 0,
+                "estado_actual": "INICIO"
+            },
+            
+            "contexto_actividad": {
+                # INFORMACIÓN BÁSICA
+                "tema_principal": None,
+                "nivel_educativo": "4º Primaria",
+                "duracion_estimada": None,
+                
+                # ESPECIFICACIONES PEDAGÓGICAS  
+                "enfoque_metodologico": None,
+                "competencias_objetivo": [],
+                "materias_involucradas": [],
+                
+                # ESTRUCTURA DE LA ACTIVIDAD
+                "estructura_actividad": {
+                    "tipo_organizacion": None,
+                    "fases_actividad": [],
+                    "tareas_preliminares": [],
+                    "roles_estudiantes": [],
+                    "materiales_necesarios": []
+                },
+                
+                # RESTRICCIONES Y PREFERENCIAS
+                "restricciones": [],
+                "preferencias_profesor": [],
+                "ideas_rechazadas": [],
+                
+                # ADAPTACIONES
+                "adaptaciones_necesarias": {
+                    "TEA": False,
+                    "TDAH": False, 
+                    "altas_capacidades": False,
+                    "especificas": []
+                }
+            },
+            
+            "historial_iteraciones": []
+        }
+        
+        logger.info(f"🔄 Contexto acumulativo inicializado - Session: {self.contexto['metadata_sesion']['session_id']}")
+    
+    def _generar_session_id(self) -> str:
+        """Genera un ID único para la sesión"""
+        return f"abp_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+    
+    def analizar_continuidad_contexto(self, prompt_nuevo: str) -> str:
+        """Analiza si el prompt continúa el tema o cambia completamente"""
+        
+        tema_actual = self.contexto["contexto_actividad"]["tema_principal"]
+        enfoque_actual = self.contexto["contexto_actividad"]["enfoque_metodologico"]
+        
+        # Si no hay contexto previo, es el inicio
+        if not tema_actual:
+            return "INICIAR"
+        
+        prompt_lower = prompt_nuevo.lower()
+        
+        # Indicadores de cambio total de tema
+        indicadores_cambio = [
+            "quiero otra cosa", "cambiemos de tema", "mejor hagamos", 
+            "prefiero algo diferente", "no, quiero", "mejor otra actividad"
+        ]
+        
+        for indicador in indicadores_cambio:
+            if indicador in prompt_lower:
+                return "REEMPLAZAR"
+        
+        # Indicadores de refinamiento/ampliación
+        indicadores_refinamiento = [
+            "más", "también", "además", "pero que", "y que sea", 
+            "añadir", "incluir", "que tenga", "con", "sin embargo"
+        ]
+        
+        # Calcular similitud básica con tema actual
+        palabras_tema = tema_actual.lower().split() if tema_actual else []
+        palabras_prompt = prompt_lower.split()
+        
+        coincidencias = len(set(palabras_tema) & set(palabras_prompt))
+        similitud = coincidencias / len(palabras_tema) if palabras_tema else 0
+        
+        # Lógica de decisión
+        if any(indicador in prompt_lower for indicador in indicadores_refinamiento):
+            return "AMPLIAR"
+        elif similitud > 0.3:
+            return "REFINAR"  
+        else:
+            return "REEMPLAZAR"
+    
+    def extraer_informacion_prompt(self, prompt: str) -> Dict:
+        """Extrae información estructurada del prompt"""
+        info = {
+            "tema_principal": None,
+            "enfoque_metodologico": None,
+            "competencias": [],
+            "restricciones": [],
+            "preferencias": [],
+            "nivel": None,
+            "duracion": None
+        }
+        
+        prompt_lower = prompt.lower()
+        
+        # Extraer tema principal
+        temas_educativos = {
+            "matemáticas": ["matemáticas", "mates", "números", "cálculo", "operaciones", "fracciones", "geometría"],
+            "lengua": ["lengua", "lectura", "escritura", "texto", "redacción", "ortografía"],
+            "ciencias": ["ciencias", "experimentos", "laboratorio", "naturaleza", "física", "química"],
+            "geografía": ["geografía", "mapa", "comunidades", "países", "ciudades", "regiones", "españa"],
+            "historia": ["historia", "época", "siglos", "acontecimientos", "pasado"],
+            "educación física": ["deporte", "ejercicio", "actividad física", "juego", "competición"],
+            "arte": ["arte", "pintura", "dibujo", "creatividad", "manualidades", "decoración"]
+        }
+        
+        for tema, palabras_clave in temas_educativos.items():
+            if any(palabra in prompt_lower for palabra in palabras_clave):
+                info["tema_principal"] = tema
+                break
+        
+        # Extraer enfoque metodológico
+        enfoques = {
+            "colaborativo": ["colaborativo", "en grupos", "entre todos", "juntos", "equipo"],
+            "manipulativo": ["manipulativo", "material", "objetos", "tocar", "construir"],
+            "juego": ["juego", "lúdico", "divertido", "entretenido", "gamificación"],
+            "competitivo": ["competición", "ganar", "desafío", "reto", "concurso"],
+            "creativo": ["creativo", "crear", "inventar", "imaginar", "original"]
+        }
+        
+        for enfoque, palabras_clave in enfoques.items():
+            if any(palabra in prompt_lower for palabra in palabras_clave):
+                info["enfoque_metodologico"] = enfoque
+                break
+        
+        # Extraer restricciones
+        if any(palabra in prompt_lower for palabra in ["no quiero", "sin", "evitar", "no me gusta"]):
+            palabras_restriccion = re.findall(r'(?:no quiero|sin|evitar|no me gusta)\s+([^,.\n]+)', prompt_lower)
+            info["restricciones"].extend([r.strip() for r in palabras_restriccion])
+        
+        # Extraer preferencias
+        if any(palabra in prompt_lower for palabra in ["quiero", "con", "que tenga", "incluir"]):
+            palabras_preferencia = re.findall(r'(?:quiero|con|que tenga|incluir)\s+([^,.\n]+)', prompt_lower)
+            info["preferencias"].extend([p.strip() for p in palabras_preferencia])
+        
+        return info
+    
+    def actualizar_contexto(self, prompt: str, accion: str) -> List[str]:
+        """Actualiza el contexto según el prompt y acción determinada"""
+        
+        campos_modificados = []
+        info_extraida = self.extraer_informacion_prompt(prompt)
+        
+        contexto_act = self.contexto["contexto_actividad"]
+        
+        if accion == "REEMPLAZAR":
+            # Limpiar contexto y empezar de nuevo
+            contexto_act["tema_principal"] = info_extraida["tema_principal"]
+            contexto_act["enfoque_metodologico"] = info_extraida["enfoque_metodologico"] 
+            contexto_act["competencias_objetivo"] = []
+            contexto_act["restricciones"] = info_extraida["restricciones"]
+            contexto_act["preferencias_profesor"] = info_extraida["preferencias"]
+            contexto_act["ideas_rechazadas"] = []
+            
+            campos_modificados = ["tema_principal", "enfoque_metodologico", "restricciones", "preferencias_profesor"]
+            
+        elif accion in ["AMPLIAR", "REFINAR"]:
+            # Actualizar/añadir información sin borrar
+            if info_extraida["tema_principal"] and not contexto_act["tema_principal"]:
+                contexto_act["tema_principal"] = info_extraida["tema_principal"]
+                campos_modificados.append("tema_principal")
+                
+            if info_extraida["enfoque_metodologico"]:
+                if contexto_act["enfoque_metodologico"] != info_extraida["enfoque_metodologico"]:
+                    contexto_act["enfoque_metodologico"] = info_extraida["enfoque_metodologico"]
+                    campos_modificados.append("enfoque_metodologico")
+            
+            # Añadir restricciones y preferencias sin duplicar
+            for restriccion in info_extraida["restricciones"]:
+                if restriccion not in contexto_act["restricciones"]:
+                    contexto_act["restricciones"].append(restriccion)
+                    if "restricciones" not in campos_modificados:
+                        campos_modificados.append("restricciones")
+            
+            for preferencia in info_extraida["preferencias"]:
+                if preferencia not in contexto_act["preferencias_profesor"]:
+                    contexto_act["preferencias_profesor"].append(preferencia)
+                    if "preferencias_profesor" not in campos_modificados:
+                        campos_modificados.append("preferencias_profesor")
+        
+        elif accion == "INICIAR":
+            # Primer prompt, establecer información base
+            contexto_act["tema_principal"] = info_extraida["tema_principal"]
+            contexto_act["enfoque_metodologico"] = info_extraida["enfoque_metodologico"]
+            contexto_act["restricciones"] = info_extraida["restricciones"] 
+            contexto_act["preferencias_profesor"] = info_extraida["preferencias"]
+            
+            campos_modificados = ["tema_principal", "enfoque_metodologico", "restricciones", "preferencias_profesor"]
+        
+        # Registrar iteración
+        self.contexto["metadata_sesion"]["prompts_realizados"] += 1
+        
+        iteracion = IteracionPrompt(
+            numero=self.contexto["metadata_sesion"]["prompts_realizados"],
+            prompt=prompt,
+            accion=accion,
+            campos_modificados=campos_modificados,
+            timestamp=datetime.now().isoformat()
+        )
+        
+        self.contexto["historial_iteraciones"].append(asdict(iteracion))
+        
+        logger.info(f"🔄 Contexto actualizado - Acción: {accion} - Campos: {', '.join(campos_modificados)}")
+        
+        return campos_modificados
+    
+    def registrar_idea_rechazada(self, idea: Dict, razon: str = "No especificada"):
+        """Registra una idea rechazada por el profesor"""
+        idea_rechazada = {
+            "titulo": idea.get("titulo", "Sin título"),
+            "descripcion": idea.get("descripcion", "")[:100] + "...",
+            "razon": razon,
+            "timestamp": datetime.now().isoformat()
+        }
+        
+        self.contexto["contexto_actividad"]["ideas_rechazadas"].append(idea_rechazada)
+        logger.info(f"❌ Registrada idea rechazada: {idea_rechazada['titulo']}")
+    
+    def obtener_contexto_completo(self) -> str:
+        """Genera descripción textual completa del contexto para usar en prompts"""
+        ctx = self.contexto["contexto_actividad"]
+        
+        descripcion = f"CONTEXTO ACUMULATIVO DE LA ACTIVIDAD:\n"
+        
+        if ctx["tema_principal"]:
+            descripcion += f"- Tema principal: {ctx['tema_principal']}\n"
+            
+        if ctx["enfoque_metodologico"]:
+            descripcion += f"- Enfoque metodológico: {ctx['enfoque_metodologico']}\n"
+            
+        descripcion += f"- Nivel educativo: {ctx['nivel_educativo']}\n"
+        
+        if ctx["competencias_objetivo"]:
+            descripcion += f"- Competencias objetivo: {', '.join(ctx['competencias_objetivo'])}\n"
+            
+        if ctx["preferencias_profesor"]:
+            descripcion += f"- Preferencias del profesor: {', '.join(ctx['preferencias_profesor'])}\n"
+            
+        if ctx["restricciones"]:
+            descripcion += f"- Restricciones: {', '.join(ctx['restricciones'])}\n"
+            
+        if ctx["ideas_rechazadas"]:
+            descripcion += f"- Ideas rechazadas anteriormente: "
+            titulos_rechazados = [idea["titulo"] for idea in ctx["ideas_rechazadas"]]
+            descripcion += f"{', '.join(titulos_rechazados)}\n"
+        
+        return descripcion
+    
+    def obtener_json_contexto(self) -> Dict:
+        """Devuelve el JSON completo del contexto"""
+        return self.contexto.copy()
 
 # ===== INTEGRACIÓN OLLAMA =====
 # (Mantiene el mismo integrador de Ollama, no necesita cambios)
@@ -120,25 +426,24 @@ class OllamaIntegrator:
 # ===== AGENTES ESPECIALIZADOS (Refactorizados) =====
 
 class AgenteCoordinador:
-    """Agente Coordinador Principal (Master Agent) - REFRACTORIZADO DINÁMICO"""
+    """Agente Coordinador Principal (Master Agent) - CON CONTEXTO ACUMULATIVO"""
     
-
     def __init__(self, ollama_integrator: OllamaIntegrator):
         self.ollama = ollama_integrator
-        self.historial_prompts = []
-        self.ejemplos_k = self._cargar_ejemplos_k() # Aún podemos usar esto para inspirar, no para copiar
+        self.contexto_actividad = ContextoActividad()
+        self.historial_prompts = []  # Mantener por compatibilidad
+        self.ejemplos_k = self._cargar_ejemplos_k()
     
     def _cargar_ejemplos_k(self) -> Dict[str, str]:
         """Carga ejemplos k_ para few-shot learning"""
         ejemplos = {}
-        # Rutas relativas desde poc/poc_entrenamiento_llm (donde se ejecuta)
-        base_path = "actividades_generadas/"
+        # Rutas correctas para los archivos k_
         archivos_k = [
-            f"{base_path}k_feria_acertijos.txt",
-            f"{base_path}k_sonnet_supermercado.txt", 
-            f"{base_path}k_celula.txt",
-            f"{base_path}k_piratas.txt",
-            f"{base_path}k_sonnet7_fabrica_fracciones.txt"
+            "actividades_generadas/k_feria_acertijos.txt",
+            "actividades_generadas/k_sonnet_supermercado.txt", 
+            "actividades_generadas/k_celula.txt",
+            "actividades_generadas/k_piratas.txt",
+            "actividades_generadas/k_sonnet7_fabrica_fracciones.txt"
         ]
         
         for archivo in archivos_k:
@@ -146,7 +451,7 @@ class AgenteCoordinador:
                 with open(archivo, 'r', encoding='utf-8') as f:
                     contenido = f.read()
                     nombre_ejemplo = archivo.split('/')[-1].replace('.txt', '').replace('k_', '')
-                    ejemplos[nombre_ejemplo] = contenido[:800]  # Primeros 800 caracteres
+                    ejemplos[nombre_ejemplo] = contenido  # Contenido completo del ejemplo
                     logger.info(f"✅ Cargado ejemplo k_: {nombre_ejemplo}")
             except FileNotFoundError:
                 logger.warning(f"❌ No se encontró el archivo: {archivo}")
@@ -181,151 +486,133 @@ class AgenteCoordinador:
             "duracion": duracion
         }
     
-    def _crear_prompt_dinamico(self, prompt_profesor: str) -> str:
-        """
-        Crea un prompt dinámico y a medida basado en el análisis del prompt del profesor.
-        """
-        
-        # --- FASE 1: ANÁLISIS DEL PROMPT DEL PROFESOR ---
-        prompt_analisis = f"""
-        Eres un experto en el análisis de prompts educativos.
-        Extrae la siguiente información del prompt del profesor, sin añadir texto adicional.
-
-        PROMPT DEL PROFESOR: "{prompt_profesor}"
-
-        Formato de salida (solo JSON):
-        {{
-        "tema": "[tema principal extraído, ej. 'obra artística']",
-        "restricciones": ["[lista de restricciones, ej. 'sin narrativa']"],
-        "formato_arte": "[formato de la obra de arte, ej. 'indefinido', 'pintura', 'escultura']",
-        "objetivo": "[objetivo educativo, ej. 'aprender los tiempos verbales']",
-        "duracion": "[duración solicitada, ej. 'una semana']"
-        }}
-        """
-        
-        # Simulación de llamada al LLM para el análisis
-        try:
-            analisis_json_str = self.ollama.generar_respuesta(prompt_analisis, max_tokens=200)
-            # El LLM a veces devuelve el JSON dentro de bloques de código, así que los eliminamos
-            analisis_json_str = analisis_json_str.replace("```json", "").replace("```", "").strip()
-
-            analisis = json.loads(analisis_json_str)
-
-        except (json.JSONDecodeError, AttributeError, KeyError) as e:
-            logger.warning(f"❌ Fallo al analizar el prompt. Usando valores por defecto. Error: {e}")
-            analisis = {
-                "tema": "actividad artística",
-                "restricciones": ["sin narrativa"],
-                "formato_arte": "indefinido",
-                "objetivo": "tiempos verbales",
-                "duracion": "una semana"
-            }
-        analisis = self._crear_fallback_analisis(prompt_profesor)
-
-        # --- FASE 2: CONSTRUCCIÓN DINÁMICA DEL PROMPT DE GENERACIÓN ---
-        # Ahora construimos un nuevo prompt con el análisis, enfocándonos en la creatividad
-        
-        tema = analisis.get("tema", "una actividad creativa")
-        restricciones = " ".join(analisis.get("restricciones", ["sin restricciones específicas"]))
-        formato_arte = analisis.get("formato_arte", "cualquier tipo de arte")
-        objetivo = analisis.get("objetivo", "un objetivo educativo")
-        duracion = analisis.get("duracion", "una semana")
-        
-        prompt_generacion = f"""
-        Eres un experto en diseño de actividades educativas innovadoras.
-        Genera 3 ideas de proyectos de ABP para 4º de Primaria que cumplan con las siguientes condiciones:
-        
-        1. **Tema y Formato:** La actividad debe ser {tema}, enfocada en {formato_arte}.
-        2. **Objetivo:** El propósito principal es trabajar {objetivo}.
-        3. **Restricciones:** La actividad debe cumplir con la siguiente condición: {restricciones}.
-        4. **Duración:** La actividad debe poder completarse en {duracion}.
-        5. **Flexibilidad de Tareas:** Desglosa la actividad en 3-5 tareas que puedan realizarse de manera simultánea, individualmente o en pequeños grupos, y que no dependan de una secuencia rígida.
-        
-        FORMATO DE SALIDA:
-        IDEA 1:
-        Título: [título creativo y no narrativo]
-        Descripción: [descripción que explica el concepto, el objetivo y la duración]
-        Nivel: 4º Primaria
-        Objetivo de aprendizaje: [lista de objetivos claros]
-        Tareas principales: [lista de 3-5 tareas simultáneas]
-        Duración: [tiempo realista]
-
-        IDEA 2:
-        [mismo formato...]
-
-        IDEA 3:
-        [mismo formato...]
-        """
-        return prompt_generacion
-        
     def generar_ideas_actividades(self, prompt_profesor: str) -> List[Dict]:
-        """Genera 3 ideas de actividades basadas en el prompt del profesor"""
+        """Genera 3 ideas de actividades usando contexto acumulativo"""
+        
+        # Analizar continuidad del contexto
+        accion = self.contexto_actividad.analizar_continuidad_contexto(prompt_profesor)
+        
+        # Actualizar contexto acumulativo
+        campos_modificados = self.contexto_actividad.actualizar_contexto(prompt_profesor, accion)
+        
+        # Mantener historial para compatibilidad
         self.historial_prompts.append({
-            "tipo": "prompt_inicial",
+            "tipo": "prompt_ideas",
             "contenido": prompt_profesor,
+            "accion_contexto": accion,
+            "campos_modificados": campos_modificados,
             "timestamp": datetime.now().isoformat()
         })
         
-        # Usar el prompt dinámico
-        prompt_ideas = self._crear_prompt_dinamico(prompt_profesor)
+        # Generar ideas usando contexto completo
+        prompt_completo = self._crear_prompt_con_contexto()
         
-        respuesta = self.ollama.generar_respuesta(prompt_ideas, max_tokens=600)
+        respuesta = self.ollama.generar_respuesta(prompt_completo, max_tokens=600)
         return self._parsear_ideas(respuesta)
     
-    def _seleccionar_ejemplo_relevante(self, prompt_profesor: str) -> str:
-        """Selecciona el ejemplo k_ más relevante según el prompt"""
-        prompt_lower = prompt_profesor.lower()
+    def _crear_prompt_con_contexto(self) -> str:
+        """Crea prompt usando el contexto acumulativo completo"""
         
-        # Mapeo de palabras clave a ejemplos
+        # Obtener contexto actual
+        contexto_completo = self.contexto_actividad.obtener_contexto_completo()
+        
+        # Seleccionar ejemplo k_ relevante (puede estar vacío)
+        tema_principal = self.contexto_actividad.contexto["contexto_actividad"]["tema_principal"]
+        ejemplo_seleccionado = self._seleccionar_ejemplo_relevante(tema_principal or "")
+        
+        # Construir prompt dinámicamente
+        if ejemplo_seleccionado:
+            seccion_ejemplo = f"""
+=== EJEMPLO DE ACTIVIDAD EXITOSA ===
+{ejemplo_seleccionado}
+
+=== PATRONES A SEGUIR ===
+• NARRATIVA INMERSIVA: Contextualizar con historias atractivas
+• OBJETIVOS CLAROS: Competencias específicas del tema + habilidades transversales
+• ROL DOCENTE: Observación activa, guía discreta, gestión emocional
+• ADAPTACIONES: Específicas para TEA, TDAH, altas capacidades
+• MATERIALES CONCRETOS: Manipulativos, reales, accesibles"""
+        else:
+            seccion_ejemplo = f"""
+=== PRINCIPIOS PEDAGÓGICOS ===
+• CENTRADO EN EL ESTUDIANTE: Actividades que partan de sus intereses y necesidades
+• APRENDIZAJE SIGNIFICATIVO: Conectar con experiencias reales y contextos auténticos
+• INCLUSIÓN: Adaptaciones para TEA (Elena), TDAH (Luis), altas capacidades (Ana)
+• COLABORACIÓN: Fomentar trabajo en equipo y comunicación
+• CREATIVIDAD: Permitir múltiples formas de expresión y solución"""
+
+        prompt_fewshot = f"""
+Eres un experto en diseño de actividades educativas para 4º de Primaria. 
+
+{contexto_completo}
+{seccion_ejemplo}
+
+=== INSTRUCCIONES ===
+Basándote ÚNICAMENTE en el CONTEXTO ACUMULATIVO proporcionado, genera exactamente 3 ideas de actividades educativas diferentes que:
+
+1. Sean coherentes con el tema y enfoque ya establecido
+2. Eviten repetir las ideas rechazadas anteriormente
+3. Incorporen las preferencias del profesor
+4. Respeten las restricciones mencionadas
+5. NO agregues elementos que no estén en el contexto del profesor
+
+FORMATO EXACTO:
+IDEA 1:
+Título: [título contextualizado]
+Descripción: [descripción que respete exactamente el contexto proporcionado]
+Nivel: 4º Primaria
+Competencias: [competencias relevantes al tema específico]
+Duración: [tiempo realista según contexto]
+
+IDEA 2:
+[mismo formato...]
+
+IDEA 3:
+[mismo formato...]
+"""
+        return prompt_fewshot
+    
+    def _seleccionar_ejemplo_relevante(self, tema: str) -> str:
+        """Selecciona el ejemplo k_ más relevante según el tema del contexto JSON"""
+        if not tema:
+            return ""  # Sin tema, sin ejemplo específico
+            
+        tema_lower = tema.lower()
+        
+        # Mapeo dinámico basado en el contexto real
         mapeo_ejemplos = {
             'supermercado': 'sonnet_supermercado',
-            'dinero': 'sonnet_supermercado',
-            'comprar': 'sonnet_supermercado',
+            'dinero': 'sonnet_supermercado', 
+            'comercio': 'sonnet_supermercado',
             'fracciones': 'sonnet7_fabrica_fracciones',
-            'fraccion': 'sonnet7_fabrica_fracciones',
-            'juego': 'feria_acertijos',
-            'juegos': 'feria_acertijos',
-            'manipulativ': 'feria_acertijos',
-            'resolver': 'feria_acertijos',
-            'celula': 'celula',
+            'fábrica': 'sonnet7_fabrica_fracciones',
             'ciencias': 'celula',
+            'células': 'celula',
+            'biología': 'celula',
             'piratas': 'piratas',
-            'tesoro': 'piratas'
+            'tesoro': 'piratas',
+            'aventura': 'piratas'
         }
         
-        # Buscar coincidencias
+        # Buscar coincidencias exactas
         for palabra_clave, ejemplo in mapeo_ejemplos.items():
-            if palabra_clave in prompt_lower and ejemplo in self.ejemplos_k:
+            if palabra_clave in tema_lower and ejemplo in self.ejemplos_k:
                 return self.ejemplos_k[ejemplo]
         
-        # Fallback al primer ejemplo disponible
-        if self.ejemplos_k:
-            return list(self.ejemplos_k.values())[0]
-        
-        # Fallback si no hay ejemplos cargados
+        # Si no hay coincidencias, devolver vacío para que el LLM sea más creativo
+        return ""
+    
+    def _get_ejemplo_fallback(self) -> str:
+        """Ejemplo de fallback cuando no hay ejemplos k_ disponibles"""
         return """
-EJEMPLO FALLBACK:
-ACTIVIDAD: Feria Matemática de Resolución de Problemas
+EJEMPLO ACTIVIDAD ABP:
+ACTIVIDAD: Feria Matemática Colaborativa
 OBJETIVOS: Desarrollar competencias matemáticas mediante resolución colaborativa de problemas
 DESCRIPCIÓN: Los estudiantes participan en estaciones rotativas resolviendo desafíos matemáticos
 ROL PROFESOR: Observación activa y guía discreta
 ADAPTACIONES: Apoyo visual para TEA, movimiento para TDAH, retos adicionales para altas capacidades
-MATERIALES: Fichas de problemas, material manipulativo, cronómetros
+MATERIALES: Material manipulativo, fichas de problemas, cronómetros
 """
-    
-    def generar_ideas_actividades(self, prompt_profesor: str) -> List[Dict]:
-        """Genera 3 ideas de actividades basadas en el prompt del profesor"""
-        self.historial_prompts.append({
-            "tipo": "prompt_inicial",
-            "contenido": prompt_profesor,
-            "timestamp": datetime.now().isoformat()
-        })
-        
-        # Usar el prompt dinámico
-        prompt_ideas = self._crear_prompt_dinamico(prompt_profesor)
-        
-        respuesta = self.ollama.generar_respuesta(prompt_ideas, max_tokens=600)
-        return self._parsear_ideas(respuesta)
     
     def _parsear_ideas(self, respuesta: str) -> List[Dict]:
         """Parsea la respuesta para extraer las 3 ideas con múltiples patrones"""
@@ -371,7 +658,153 @@ MATERIALES: Fichas de problemas, material manipulativo, cronómetros
                 "duracion": "2-3 sesiones"
             })
         
-        return ideas[:3]  # Asegurar máximo 3 ideas
+        return ideas  # Devolver todas las ideas generadas
+    
+    def _extraer_titulo_inteligente(self, texto: str) -> str:
+        """Extrae título usando múltiples patrones"""
+        patrones = [
+            r'Título:\s*([^\n]+)',
+            r'\*\*([^*]+)\*\*',
+            r'"([^"]+)"',
+            r'\d+[.:)]\s*([^\n]+)',
+            r'^([^\n.!?]+)[.!?]?'
+        ]
+        
+        for patron in patrones:
+            match = re.search(patron, texto, re.IGNORECASE | re.MULTILINE)
+            if match:
+                titulo = match.group(1).strip()
+                titulo = re.sub(r'^[\d\s.*:-]+', '', titulo).strip()
+                if len(titulo) > 5:
+                    return titulo
+        
+        return "Actividad Educativa"
+    
+    def _extraer_descripcion_inteligente(self, texto: str) -> str:
+        """Extrae descripción usando múltiples patrones"""
+        desc_match = re.search(r'Descripción:\s*([^\n]+(?:\n[^\n:]+)*)', texto, re.IGNORECASE)
+        if desc_match:
+            return desc_match.group(1).strip()
+        
+        lines = texto.split('\n')
+        for line in lines:
+            line = line.strip()
+            if len(line) > 50 and ':' not in line and not line.startswith(('Nivel', 'Duración', 'Competencias')):
+                return line
+        
+        return "Actividad práctica para desarrollar competencias matemáticas"
+    
+    def _extraer_nivel_inteligente(self, texto: str) -> str:
+        """Extrae nivel educativo usando múltiples patrones"""
+        nivel_match = re.search(r'Nivel:\s*([^\n]+)', texto, re.IGNORECASE)
+        if nivel_match:
+            return nivel_match.group(1).strip()
+        
+        keywords = {
+            'primaria': '4º Primaria',
+            'cuarto': '4º Primaria', 
+            'secundaria': 'Secundaria',
+            'infantil': 'Educación Infantil'
+        }
+        
+        texto_lower = texto.lower()
+        for keyword, nivel in keywords.items():
+            if keyword in texto_lower:
+                return nivel
+        
+        return "4º Primaria"
+    
+    def _extraer_competencias_inteligente(self, texto: str) -> str:
+        """Extrae competencias usando múltiples patrones"""
+        comp_match = re.search(r'Competencias:\s*([^\n]+)', texto, re.IGNORECASE)
+        if comp_match:
+            return comp_match.group(1).strip()
+        
+        competencias_encontradas = []
+        keywords = {
+            'matemáticas': 'Competencia matemática',
+            'fracciones': 'Competencia matemática',
+            'sumas': 'Competencia matemática',
+            'decimales': 'Competencia matemática',
+            'comunicación': 'Competencia lingüística',
+            'trabajo en equipo': 'Competencia social',
+            'creatividad': 'Competencia artística',
+            'tecnología': 'Competencia digital'
+        }
+        
+        texto_lower = texto.lower()
+        for keyword, competencia in keywords.items():
+            if keyword in texto_lower and competencia not in competencias_encontradas:
+                competencias_encontradas.append(competencia)
+        
+        return ', '.join(competencias_encontradas) if competencias_encontradas else "Competencia matemática, trabajo colaborativo"
+    
+    def _extraer_duracion_inteligente(self, texto: str) -> str:
+        """Extrae duración usando múltiples patrones"""
+        dur_match = re.search(r'Duración:\s*([^\n]+)', texto, re.IGNORECASE)
+        if dur_match:
+            return dur_match.group(1).strip()
+        
+        tiempo_patterns = [
+            r'(\d+)\s*sesiones?',
+            r'(\d+)\s*horas?',
+            r'(\d+)\s*días?',
+            r'(\d+)\s*semanas?'
+        ]
+        
+        for pattern in tiempo_patterns:
+            match = re.search(pattern, texto, re.IGNORECASE)
+            if match:
+                return match.group(0)
+        
+        return "2-3 sesiones"
+    
+    
+    def _parsear_ideas(self, respuesta: str) -> List[Dict]:
+        """Parsea la respuesta para extraer las 3 ideas con múltiples patrones"""
+        ideas = []
+        
+        # Intentar múltiples patrones de división
+        patrones_division = ["IDEA ", "**IDEA ", "# IDEA ", "\n\n"]
+        partes = None
+        
+        for patron in patrones_division:
+            temp_partes = respuesta.split(patron)
+            if len(temp_partes) > 1:
+                partes = temp_partes
+                break
+        
+        if not partes:
+            # Si no hay divisiones claras, tratar toda la respuesta como una idea
+            partes = ["", respuesta]
+        
+        # Procesar cada parte encontrada
+        for i, parte in enumerate(partes[1:]):  # Saltar primera parte vacía
+            if not parte.strip() or i >= 3:  # Máximo 3 ideas
+                continue
+                
+            idea = {
+                "id": f"idea_{i+1}",
+                "titulo": self._extraer_titulo_inteligente(parte),
+                "descripcion": self._extraer_descripcion_inteligente(parte),
+                "nivel": self._extraer_nivel_inteligente(parte),
+                "competencias": self._extraer_competencias_inteligente(parte),
+                "duracion": self._extraer_duracion_inteligente(parte)
+            }
+            ideas.append(idea)
+        
+        # Si no se encontraron ideas estructuradas, crear una única idea general
+        if not ideas:
+            ideas.append({
+                "id": "idea_1",
+                "titulo": self._extraer_titulo_inteligente(respuesta),
+                "descripcion": respuesta[:200] + "..." if len(respuesta) > 200 else respuesta,
+                "nivel": "4º Primaria",
+                "competencias": "Matemáticas, trabajo en equipo",
+                "duracion": "2-3 sesiones"
+            })
+        
+        return ideas  # Devolver todas las ideas generadas
     
     def _extraer_campo(self, texto: str, campo: str) -> str:
         """Extrae un campo específico del texto"""
@@ -539,12 +972,12 @@ INFORMACIÓN ADICIONAL: {proyecto_base.get('info_adicional', 'No disponible')}
 • ADAPTACIONES DUA: Considerar TEA, TDAH, altas capacidades. Expras en qué se traduce la adaptación en esta actividad concreta
 • EVALUACIÓN FORMATIVA: Observación y registro continuo
 
-=== ESTRUCTURA RECOMENDADA === adaptar a la especificación del profesor
-1. PREPARACIÓN (1-2 tareas): Contextualización y organización
-2. DESARROLLO (3-5 tareas): Núcleo de la actividad con rotaciones
-3. REFLEXIÓN (1-2 tareas): Metacognición y cierre
+=== ESTRUCTURA RECOMENDADA === adaptar completamente a la especificación del profesor
+1. PREPARACIÓN: Contextualización y organización (tantas tareas como requiera la actividad)
+2. DESARROLLO: Núcleo de la actividad (tantas tareas como requiera la complejidad del proyecto)
+3. REFLEXIÓN: Metacognición y cierre (según necesidades de evaluación)
 
-Identifica entre 6-8 subtareas específicas siguiendo esta estructura. Para cada subtarea proporciona:
+Identifica las subtareas necesarias para completar el proyecto (sin límite fijo, según la complejidad de la actividad). Para cada subtarea proporciona:
 - Descripción clara y específica (con contexto narrativo si se solicita)
 - Competencias requeridas (matemáticas, lengua, ciencias, creativas, digitales)
 - Complejidad del 1 al 5 (1=muy fácil, 5=muy difícil)
@@ -615,25 +1048,188 @@ Adaptaciones: [adaptaciones específicas para diversidad]
             return default
 
 class AgentePerfiladorEstudiantes:
-    """Agente Perfilador de Estudiantes (Student Profiler Agent)"""
+    """Agente Perfilador de Estudiantes - AULA_A_4PRIM"""
     
     def __init__(self, ollama_integrator: OllamaIntegrator):
         self.ollama = ollama_integrator
-        self.perfiles_base = self._cargar_perfiles_piloto()
+        self.perfiles_base = self._cargar_perfiles_reales()
+        logger.info(f"👥 Perfilador inicializado con {len(self.perfiles_base)} estudiantes del AULA_A_4PRIM")
     
-    def _cargar_perfiles_piloto(self) -> List[Estudiante]:
-        """Carga perfiles de estudiantes del dataset piloto"""
-        perfiles = [
-            Estudiante("001", "ALEX M.", ["pensamiento lógico", "trabajo autónomo"], ["necesita tiempo extra"], 8, ["instrucciones claras"]),
-            Estudiante("002", "MARÍA L.", ["comunicación oral", "trabajo en equipo"], ["dificultades escritura"], 7, ["apoyo escritura"]),
-            Estudiante("003", "ELENA R.", ["creatividad", "arte visual"], ["TEA nivel 1"], 6, ["rutinas claras", "espacio tranquilo"]),
-            Estudiante("004", "PABLO S.", ["liderazgo", "organización"], ["TDAH"], 8, ["descansos frecuentes"]),
-            Estudiante("005", "ANA G.", ["matemáticas", "análisis"], ["timidez extrema"], 7, ["trabajo individual inicial"]),
-            Estudiante("006", "LUIS C.", ["tecnología", "innovación"], ["dislexia"], 7, ["herramientas digitales"]),
-            Estudiante("007", "SARA M.", ["empatía", "mediación"], ["alta sensibilidad"], 6, ["ambiente relajado"]),
-            Estudiante("008", "DIEGO P.", ["experimentos", "ciencias"], ["necesidades motrices"], 8, ["adaptación material"])
-        ]
-        return perfiles
+    def _cargar_perfiles_reales(self) -> List[Estudiante]:
+        """Carga los perfiles reales específicos del AULA_A_4PRIM desde el archivo JSON"""
+        try:
+            with open("perfiles_4_primaria.json", "r", encoding="utf-8") as f:
+                data = json.load(f)
+            
+            estudiantes = []
+            for perfil in data["estudiantes"]:
+                # Extraer información rica del JSON
+                fortalezas = self._extraer_fortalezas(perfil)
+                necesidades_apoyo = self._extraer_necesidades_apoyo(perfil)
+                adaptaciones = perfil.get("necesidades_especiales", [])
+                historial_roles = self._generar_historial_roles(perfil)
+                
+                estudiante = Estudiante(
+                    id=perfil["id"],
+                    nombre=perfil["nombre"],
+                    fortalezas=fortalezas,
+                    necesidades_apoyo=necesidades_apoyo,
+                    disponibilidad=self._calcular_disponibilidad(perfil),
+                    historial_roles=historial_roles,
+                    adaptaciones=adaptaciones
+                )
+                estudiantes.append(estudiante)
+            
+            # Log detallado de estudiantes cargados
+            logger.info(f"✅ AULA_A_4PRIM: Cargados {len(estudiantes)} perfiles reales:")
+            for est in estudiantes:
+                # Buscar el perfil original para obtener el diagnóstico
+                perfil_original = next((p for p in data["estudiantes"] if p["id"] == est.id), {})
+                diagnostico = self._obtener_diagnostico_legible(perfil_original.get("diagnostico_formal", "ninguno"))
+                logger.info(f"   • {est.nombre} (ID: {est.id}) - {diagnostico}")
+            
+            return estudiantes
+            
+        except FileNotFoundError:
+            logger.error("❌ CRÍTICO: No se encontró perfiles_4_primaria.json")
+            logger.error("   El sistema requiere los perfiles reales de estudiantes")
+            raise FileNotFoundError("Archivo perfiles_4_primaria.json requerido para el funcionamiento")
+        except Exception as e:
+            logger.error(f"❌ Error cargando perfiles reales: {e}")
+            raise
+    
+    def _extraer_fortalezas(self, perfil: dict) -> List[str]:
+        """Extrae fortalezas basándose en competencias conseguidas y intereses"""
+        fortalezas = []
+        
+        # Basado en competencias conseguidas/superadas
+        if perfil["matematicas"].get("numeros_10000") in ["CONSEGUIDO", "SUPERADO"]:
+            fortalezas.append("matemáticas_números")
+        if perfil["matematicas"].get("operaciones_complejas") in ["CONSEGUIDO", "SUPERADO"]:
+            fortalezas.append("operaciones_matemáticas")
+        if perfil["lengua"].get("tiempos_verbales") in ["CONSEGUIDO", "SUPERADO"]:
+            fortalezas.append("gramática")
+        if perfil["lengua"].get("textos_informativos") in ["CONSEGUIDO", "SUPERADO"]:
+            fortalezas.append("comunicación_escrita")
+        if perfil["ciencias"].get("metodo_cientifico") in ["CONSEGUIDO", "SUPERADO"]:
+            fortalezas.append("investigación")
+        
+        # Basado en intereses
+        for interes in perfil["intereses"]:
+            if interes == "ciencias":
+                fortalezas.append("curiosidad_científica")
+            elif interes == "experimentos":
+                fortalezas.append("experimentación")
+            elif interes == "trabajo_en_grupo":
+                fortalezas.append("colaboración")
+            elif interes == "lectura":
+                fortalezas.append("comprensión_lectora")
+        
+        # Basado en características específicas
+        if perfil["temperamento"] == "reflexivo":
+            fortalezas.append("pensamiento_analítico")
+        if perfil["tolerancia_frustracion"] == "alta":
+            fortalezas.append("perseverancia")
+            
+        return fortalezas  # Devolver todas las fortalezas identificadas
+    
+    def _extraer_necesidades_apoyo(self, perfil: dict) -> List[str]:
+        """Extrae necesidades de apoyo basándose en el perfil completo"""
+        necesidades = []
+        
+        # Basado en nivel de apoyo
+        if perfil["nivel_apoyo"] == "alto":
+            necesidades.append("supervisión_continua")
+        elif perfil["nivel_apoyo"] == "medio":
+            necesidades.append("check_ins_regulares")
+        
+        # Basado en tolerancia a la frustración
+        if perfil["tolerancia_frustracion"] == "baja":
+            necesidades.append("apoyo_emocional")
+            necesidades.append("tareas_graduadas")
+        
+        # Basado en canal preferido
+        if perfil["canal_preferido"] == "visual":
+            necesidades.append("apoyos_visuales")
+        elif perfil["canal_preferido"] == "auditivo":
+            necesidades.append("explicaciones_verbales")
+        elif perfil["canal_preferido"] == "kinestésico":
+            necesidades.append("actividades_manipulativas")
+        
+        # Basado en diagnóstico formal
+        diagnostico = perfil.get("diagnostico_formal", "ninguno")
+        if "TEA" in diagnostico:
+            necesidades.extend(["rutinas_estructuradas", "ambiente_predecible"])
+        elif "TDAH" in diagnostico:
+            necesidades.extend(["instrucciones_claras", "descansos_frecuentes"])
+        elif "altas_capacidades" in diagnostico:
+            necesidades.extend(["retos_adicionales", "proyectos_autonomos"])
+        
+        return necesidades
+    
+    def _calcular_disponibilidad(self, perfil: dict) -> int:
+        """Calcula disponibilidad basada en múltiples factores"""
+        disponibilidad = 85  # Base
+        
+        # Ajustar por nivel de apoyo
+        if perfil["nivel_apoyo"] == "bajo":
+            disponibilidad += 10
+        elif perfil["nivel_apoyo"] == "alto":
+            disponibilidad -= 15
+        
+        # Ajustar por tolerancia a frustración
+        if perfil["tolerancia_frustracion"] == "alta":
+            disponibilidad += 5
+        elif perfil["tolerancia_frustracion"] == "baja":
+            disponibilidad -= 10
+        
+        # Ajustar por temperamento
+        if perfil["temperamento"] == "impulsivo":
+            disponibilidad -= 5
+        
+        return max(60, min(100, disponibilidad))  # Entre 60-100
+    
+    def _generar_historial_roles(self, perfil: dict) -> List[str]:
+        """Genera historial de roles basado en fortalezas y estilo de aprendizaje"""
+        roles = []
+        
+        # Roles basados en estilo de aprendizaje
+        if "visual" in perfil["estilo_aprendizaje"]:
+            roles.append("diseñador_visual")
+        if "auditivo" in perfil["estilo_aprendizaje"]:
+            roles.append("comunicador")
+        if "kinestésico" in perfil["estilo_aprendizaje"]:
+            roles.append("experimentador")
+        
+        # Roles basados en intereses
+        if "ciencias" in perfil["intereses"]:
+            roles.append("investigador_científico")
+        if "experimentos" in perfil["intereses"]:
+            roles.append("experimentador")
+        if "trabajo_colaborativo" in perfil["intereses"]:
+            roles.append("facilitador_grupal")
+        if "lectura" in perfil["intereses"]:
+            roles.append("analista_información")
+        
+        # Roles específicos por diagnóstico
+        diagnostico = perfil.get("diagnostico_formal", "ninguno")
+        if "altas_capacidades" in diagnostico:
+            roles.append("mentor_académico")
+        
+        return roles  # Devolver todos los roles identificados
+    
+    def _obtener_diagnostico_legible(self, diagnostico_formal: str) -> str:
+        """Convierte el diagnóstico formal en texto legible"""
+        if diagnostico_formal == "TEA_nivel_1":
+            return "TEA nivel 1"
+        elif diagnostico_formal == "TDAH_combinado":
+            return "TDAH combinado"
+        elif diagnostico_formal == "altas_capacidades":
+            return "Altas capacidades"
+        elif diagnostico_formal == "ninguno":
+            return "Desarrollo típico"
+        else:
+            return diagnostico_formal
     
     def analizar_perfiles(self, tareas: List[Tarea]) -> Dict[str, Dict]:
         """Analiza perfiles de estudiantes en relación a las tareas"""
@@ -725,62 +1321,115 @@ Adaptaciones: [adaptaciones específicas]
 class AgenteOptimizadorAsignaciones:
     """Agente Optimizador de Asignaciones (Assignment Optimizer Agent)"""
     
-    def __init__(self, ollama_integrator: OllamaIntegrator, perfiles_estudiantes: List[Estudiante]):
+    def __init__(self, ollama_integrator: OllamaIntegrator):
         self.ollama = ollama_integrator
-        self.perfiles = {e.id: e for e in perfiles_estudiantes}
+        self.perfiles = {}  # Se actualizará cuando reciba los perfiles
 
-    def optimizar_asignaciones(self, tareas: List[Tarea], analisis_estudiantes: Dict) -> Dict:
+    def optimizar_asignaciones(self, tareas: List[Tarea], analisis_estudiantes: Dict, perfilador=None) -> Dict:
         """Optimiza las asignaciones de tareas basándose en el análisis de perfiles."""
+        
+        # Actualizar perfiles si se proporciona perfilador
+        if perfilador and hasattr(perfilador, 'perfiles_base'):
+            self.perfiles = {e.id: e for e in perfilador.perfiles_base}
+            logger.info(f"📋 Perfiles actualizados: {len(self.perfiles)} estudiantes")
         
         # Convertir la lista de objetos Tarea a una lista de diccionarios para que sea serializable
         tareas_dict_list = [asdict(tarea) for tarea in tareas] 
         
-        # Prepara el prompt para el LLM
+        # Prepara el prompt para el LLM con instrucciones más claras
         prompt_optimizacion = f"""
-        Eres un experto en asignación de tareas educativas. Tu misión es tomar la lista de tareas y los perfiles de los estudiantes para crear una asignación optimizada. El objetivo es equilibrar la carga de trabajo y asignar tareas en función de los perfiles para maximizar el aprendizaje y la colaboración.
-        
-        Tareas: {json.dumps(tareas_dict_list, indent=2, ensure_ascii=False)}
-        
-        Perfiles de estudiantes: {json.dumps(analisis_estudiantes, indent=2, ensure_ascii=False)}
-        
-        Considera los perfiles y el tiempo estimado de cada tarea. No asignes a un mismo estudiante más de 3 tareas en total.
-        
-        Formato de salida (solo JSON):
-        {{
-        "asignaciones": {{
-            "estudiante_001": ["id_tarea_1", "id_tarea_2"],
-            "estudiante_002": ["id_tarea_3"],
-            ...
-        }}
-        }}
-        """
+Eres un experto en asignación de tareas educativas del AULA_A_4PRIM.
+
+TAREAS DISPONIBLES:
+{json.dumps(tareas_dict_list, indent=2, ensure_ascii=False)}
+
+ANÁLISIS DE ESTUDIANTES:
+{json.dumps(analisis_estudiantes, indent=2, ensure_ascii=False)}
+
+INSTRUCCIONES:
+- Equilibra la carga de trabajo según disponibilidad y capacidades
+- Asigna según fortalezas y necesidades específicas de cada estudiante
+- Elena (003): TEA - rutinas estructuradas, tareas predecibles
+- Luis (004): TDAH - tareas dinámicas, permite movimiento
+- Ana (005): Altas capacidades - puede liderar y tomar más responsabilidad
+- Considera tiempo estimado y complejidad de cada tarea
+- Permite flexibilidad en número de tareas según el estudiante
+
+RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
+{{
+  "asignaciones": {{
+    "estudiante_001": ["tarea_01", "tarea_02"],
+    "estudiante_002": ["tarea_03"],
+    "estudiante_003": ["tarea_04"],
+    "estudiante_004": ["tarea_05"],
+    "estudiante_005": ["tarea_06"],
+    "estudiante_006": ["tarea_07"],
+    "estudiante_007": ["tarea_08"],
+    "estudiante_008": ["tarea_09"]
+  }}
+}}"""
         
         try:
-            # Llamada al LLM y limpieza de la respuesta
+            # Llamada al LLM y parseo robusto
             respuesta_llm = self.ollama.generar_respuesta(prompt_optimizacion, max_tokens=500)
-            respuesta_llm = respuesta_llm.replace("```json", "").replace("```", "").strip()
-            asignaciones = json.loads(respuesta_llm)
-            logger.info(f"✅ Asignaciones parseadas correctamente.")
-            return asignaciones.get('asignaciones', {})
+            asignaciones_dict = parse_json_seguro(respuesta_llm)
+            
+            if asignaciones_dict:
+                logger.info(f"✅ Asignaciones parseadas correctamente.")
+                return asignaciones_dict.get('asignaciones', {})
+            else:
+                raise ValueError("No se pudo parsear JSON de asignaciones")
         
-        except (json.JSONDecodeError, AttributeError) as e:
-            logger.error(f"❌ Error al parsear JSON del LLM: {e}")
+        except Exception as e:
+            logger.error(f"❌ Error al parsear asignaciones del LLM: {e}")
             logger.info("⚠️ Usando lógica de fallback para las asignaciones.")
             # Lógica de fallback simple: distribuir tareas de manera equitativa
             asignaciones_fallback = {}
             
-            # Asegurar que haya estudiantes antes de realizar la operación de módulo
-            num_estudiantes = len(analisis_estudiantes)
+            # Usar perfiles reales para asignación de fallback
+            if not self.perfiles:
+                logger.warning("No hay perfiles de estudiantes cargados. Devolviendo asignaciones vacías.")
+                return {}
+            
+            estudiantes_ids = list(self.perfiles.keys())
+            num_estudiantes = len(estudiantes_ids)
+            
             if num_estudiantes == 0:
-                logger.warning("No hay perfiles de estudiantes para asignar tareas. Devolviendo asignaciones vacías.")
-                return {} # Devolver un diccionario vacío si no hay estudiantes
+                logger.warning("No hay estudiantes disponibles para asignación.")
+                return {}
             
-            # Lógica de asignación equitativa
-            for i, tarea in enumerate(tareas):
-                estudiante_id_base = list(analisis_estudiantes.keys())[i % num_estudiantes]
-                asignaciones_fallback.setdefault(estudiante_id_base, []).append(tarea.id)
+            # Distribución equitativa mejorada
+            tareas_por_estudiante = len(tareas) // num_estudiantes
+            tareas_extra = len(tareas) % num_estudiantes
             
+            indice_tarea = 0
             
+            for i, estudiante_id in enumerate(estudiantes_ids):
+                # Calcular número de tareas para este estudiante
+                num_tareas_estudiante = tareas_por_estudiante
+                if i < tareas_extra:
+                    num_tareas_estudiante += 1
+                
+                # Sin límite artificial - distribuir según capacidad y disponibilidad
+                # Ajustar por disponibilidad del estudiante (si está disponible)
+                if estudiante_id in self.perfiles:
+                    disponibilidad = self.perfiles[estudiante_id].disponibilidad
+                    # Estudiantes con mayor disponibilidad pueden tomar más tareas
+                    if disponibilidad > 85:
+                        num_tareas_estudiante = min(num_tareas_estudiante + 1, len(tareas))
+                    elif disponibilidad < 70:
+                        num_tareas_estudiante = max(1, num_tareas_estudiante - 1)
+                
+                # Asignar tareas
+                tareas_estudiante = []
+                for _ in range(num_tareas_estudiante):
+                    if indice_tarea < len(tareas):
+                        tareas_estudiante.append(tareas[indice_tarea].id)
+                        indice_tarea += 1
+                
+                asignaciones_fallback[f"estudiante_{estudiante_id}"] = tareas_estudiante
+            
+            logger.info(f"✅ Asignaciones fallback creadas para {len(asignaciones_fallback)} estudiantes usando perfiles reales.")
             return asignaciones_fallback
         
 
@@ -837,48 +1486,75 @@ class AgenteGeneradorRecursos:
         para el proyecto, en formato JSON.
         """
         
-        # Preparamos el prompt para solicitar los recursos de manera estructurada.
+        # Prompt mejorado para recursos con contexto específico
         prompt_recursos = f"""
-        Eres un experto en educación y recursos didácticos. Genera una lista completa de recursos para el siguiente proyecto de ABP, en formato JSON. Incluye materiales físicos, recursos analógicos y herramientas digitales.
-        
-        Proyecto: {json.dumps(proyecto_base, indent=2, ensure_ascii=False)}
-        Tareas: {json.dumps([asdict(t) for t in tareas], indent=2, ensure_ascii=False)}
-        
-        Formato de salida (solo JSON):
-        {{
-          "recursos_materiales": [
-            "Material 1: descripción",
-            "Material 2: descripción",
-            ...
-          ],
-          "recursos_analogicos": [
-            "Recurso analógico 1: descripción",
-            "Recurso analógico 2: descripción",
-            ...
-          ],
-          "recursos_digitales": [
-            "Herramienta digital 1: descripción",
-            "Herramienta digital 2: descripción",
-            ...
-          ]
-        }}
-        """
+Eres un experto en recursos educativos para 4º de Primaria.
+
+PROYECTO: {proyecto_base.get('titulo', 'Actividad educativa')}
+DESCRIPCIÓN: {proyecto_base.get('descripcion', 'No disponible')}
+
+TAREAS DEL PROYECTO:
+{json.dumps([asdict(t) for t in tareas], indent=2, ensure_ascii=False)}
+
+ESTUDIANTES ESPECIALES A CONSIDERAR:
+- Elena (TEA): Necesita materiales estructurados y predecibles
+- Luis (TDAH): Materiales que permitan movimiento y manipulación
+- Ana (Altas capacidades): Recursos adicionales para profundizar
+
+RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
+{{
+  "recursos_materiales": [
+    "Recurso físico 1",
+    "Recurso físico 2",
+    "Recurso físico 3"
+  ],
+  "recursos_analogicos": [
+    "Herramienta manipulativa 1",
+    "Herramienta manipulativa 2"
+  ],
+  "recursos_digitales": [
+    "Recurso digital 1",
+    "Recurso digital 2"
+  ]
+}}"""
         
         try:
-            # Enviamos la solicitud al LLM y limpiamos la respuesta de cualquier texto extra.
+            # Llamada al LLM y parseo robusto
             respuesta_llm = self.ollama.generar_respuesta(prompt_recursos, max_tokens=500)
-            respuesta_llm = respuesta_llm.replace("```json", "").replace("```", "").strip()
-            recursos = json.loads(respuesta_llm)
-            logger.info(f"✅ Recursos parseados correctamente.")
-            return recursos
-        except (json.JSONDecodeError, AttributeError) as e:
-            logger.error(f"❌ Error al parsear JSON de recursos: {e}")
+            recursos_dict = parse_json_seguro(respuesta_llm)
+            
+            if recursos_dict:
+                logger.info(f"✅ Recursos parseados correctamente.")
+                return recursos_dict
+            else:
+                raise ValueError("No se pudo parsear JSON de recursos")
+                
+        except Exception as e:
+            logger.error(f"❌ Error al parsear recursos del LLM: {e}")
             logger.info("⚠️ Usando lógica de fallback para los recursos.")
-            # Lógica de fallback para evitar errores si el LLM falla
+            # Lógica de fallback expandida (materiales base + contextuales)
             return {
-                "recursos_materiales": ["Papel", "Lápices", "Marcadores", "Pintura"],
-                "recursos_analogicos": ["Regletas de Cuisenaire", "Bloques lógicos"],
-                "recursos_digitales": ["Editor de texto", "Buscador de imágenes"]
+                "recursos_materiales": [
+                    # Materiales educativos básicos
+                    "Papel", "Lápices", "Marcadores", "Pintura", "Tijeras", "Pegamento",
+                    "Cartulinas", "Rotuladores", "Reglas", "Gomas de borrar",
+                    # Materiales específicos del contexto (si aplica)
+                    "Guías de viaje", "Mapas físicos", "Atlas", "Material manipulativo"
+                ],
+                "recursos_analogicos": [
+                    # Recursos manipulativos básicos
+                    "Regletas de Cuisenaire", "Bloques lógicos", "Material de construcción",
+                    "Juegos de mesa educativos", "Puzzles", "Dados",
+                    # Recursos específicos del contexto (si aplica)
+                    "Brújula", "Herramientas de medición", "Material de orientación"
+                ],
+                "recursos_digitales": [
+                    # Herramientas digitales básicas
+                    "Editor de texto", "Buscador de imágenes", "Calculadora", 
+                    "Herramientas de presentación", "Apps educativas",
+                    # Recursos específicos del contexto (si aplica)
+                    "Recursos web temáticos", "Mapas digitales"
+                ]
             }
         
     def _parsear_recursos(self, respuesta: str) -> Dict[str, List[str]]:
@@ -943,8 +1619,8 @@ class SistemaAgentesABP:
         self.analizador_tareas = AgenteAnalizadorTareas(self.ollama)
         self.perfilador = AgentePerfiladorEstudiantes(self.ollama)
         
-        # El optimizador ahora necesita los perfiles para su lógica interna
-        self.optimizador = AgenteOptimizadorAsignaciones(self.ollama, self.perfilador.perfiles_base)
+        # El optimizador recibe referencia al perfilador
+        self.optimizador = AgenteOptimizadorAsignaciones(self.ollama)
         self.generador_recursos = AgenteGeneradorRecursos(self.ollama)
         
         self.proyecto_actual = None
@@ -979,16 +1655,69 @@ class SistemaAgentesABP:
             try:
                 print(f"\n🎯 Opciones disponibles:")
                 print(f"   1-{len(ideas)}: Seleccionar una de las ideas y continuar")
+                print(f"   M: Me gusta alguna idea pero quiero matizarla/perfilarla")
                 print(f"   0: Generar nuevas ideas con un prompt diferente")
                 
                 # La opción -1 solo se muestra si ya hay una actividad seleccionada
                 if actividad_seleccionada:
                     print(f"   -1: Añadir más detalles a la idea '{actividad_seleccionada.get('titulo', 'Sin título')}'")
                 
-                seleccion = int(input(f"\n🎯 Su elección: "))
+                seleccion_input = input(f"\n🎯 Su elección: ").strip().upper()
                 
-                if seleccion == 0:
-                    # Lógica para generar nuevas ideas
+                # Convertir a número si es posible, o mantener como string para M
+                try:
+                    seleccion = int(seleccion_input)
+                except ValueError:
+                    seleccion = seleccion_input
+                
+                if seleccion == "M":
+                    # Opción para matizar/perfilar ideas existentes
+                    print("\n🔧 MATIZAR/PERFILAR IDEAS")
+                    print("¿Cuál de las ideas te parece más interesante para perfilar?")
+                    
+                    try:
+                        idea_a_perfilar = int(input(f"Selecciona el número (1-{len(ideas)}): "))
+                        if 1 <= idea_a_perfilar <= len(ideas):
+                            idea_seleccionada = ideas[idea_a_perfilar - 1]
+                            print(f"\n✏️ Has seleccionado: {idea_seleccionada.get('titulo', 'Sin título')}")
+                            
+                            # Solicitar matizaciones específicas
+                            matizaciones = input("\n📝 ¿Qué aspectos te gustaría matizar/cambiar de esta idea?: ")
+                            
+                            # Registrar las otras ideas como rechazadas (pero no la seleccionada)
+                            for i, idea in enumerate(ideas):
+                                if i != (idea_a_perfilar - 1):
+                                    self.coordinador.contexto_actividad.registrar_idea_rechazada(idea, "Usuario prefirió otra opción para matizar")
+                            
+                            # Crear prompt para matizar la idea seleccionada
+                            prompt_matizacion = f"Toma esta idea: '{idea_seleccionada.get('titulo', '')}' - {idea_seleccionada.get('descripcion', '')} y aplica estos cambios/matizaciones: {matizaciones}"
+                            
+                            print("\n🧠 Generando versiones matizadas...")
+                            ideas = self.coordinador.generar_ideas_actividades(prompt_matizacion)
+                            
+                            print("\n💡 IDEAS MATIZADAS GENERADAS:")
+                            for i, idea in enumerate(ideas, 1):
+                                print(f"\n{i}. {idea.get('titulo', 'Sin título')}")
+                                print(f"   Descripción: {idea.get('descripcion', 'No disponible')}")
+                                print(f"   Nivel: {idea.get('nivel', 'No especificado')}")
+                                print(f"   Duración: {idea.get('duracion', 'No especificada')}")
+                            
+                            # Reiniciar selección con nuevas ideas matizadas
+                            actividad_seleccionada = None
+                            continue
+                        else:
+                            print(f"❌ Selección inválida. Elige entre 1 y {len(ideas)}")
+                            continue
+                    except ValueError:
+                        print("❌ Ingrese un número válido")
+                        continue
+                
+                elif seleccion == 0:
+                    # Registrar ideas actuales como rechazadas
+                    for idea in ideas:
+                        self.coordinador.contexto_actividad.registrar_idea_rechazada(idea, "Usuario solicitó nuevas ideas")
+                    
+                    # Lógica para generar nuevas ideas usando contexto acumulativo
                     nuevo_prompt = input("\n📝 Ingrese un nuevo prompt para generar diferentes ideas: ")
                     print("\n🧠 Generando nuevas ideas...")
                     ideas = self.coordinador.generar_ideas_actividades(nuevo_prompt)
@@ -1041,12 +1770,15 @@ class SistemaAgentesABP:
                     break
                     
                 else:
-                    print(f"❌ Selección inválida. Por favor, elija un número entre 1 y {len(ideas)}, 0 para nuevas ideas.")
+                    print(f"❌ Selección inválida. Opciones disponibles:")
+                    print(f"   • Números 1-{len(ideas)}: Seleccionar idea")
+                    print(f"   • M: Matizar/perfilar una idea")
+                    print(f"   • 0: Generar nuevas ideas")
                     if actividad_seleccionada:
-                         print(f"   Si desea añadir más detalles, puede usar la opción -1.")
+                        print(f"   • -1: Añadir detalles")
                     
             except ValueError:
-                print("❌ Ingrese un número válido")
+                print("❌ Entrada inválida. Use números (1-{}, 0) o 'M' para matizar".format(len(ideas)))
         
         # PASO 4: Información adicional (opcional)
         info_adicional = input("\n📋 ¿Información adicional específica? (Enter para continuar): ")
@@ -1065,7 +1797,7 @@ class SistemaAgentesABP:
         
         # PASO 8: Optimizando asignaciones
         print("\n⚖️ Optimizando asignaciones...")
-        asignaciones = self.optimizador.optimizar_asignaciones(tareas, analisis_estudiantes)
+        asignaciones = self.optimizador.optimizar_asignaciones(tareas, analisis_estudiantes, self.perfilador)
         
         # PASO 9: Generar recursos
         print("\n📚 Generando recursos necesarios...")
@@ -1106,8 +1838,9 @@ class SistemaAgentesABP:
             },
             "metadatos": {
                 "timestamp": datetime.now().isoformat(),
-                "sistema": "AgentesABP_v1.0",
+                "sistema": "AgentesABP_v2.0_ContextoAcumulativo",
                 "historial_prompts": self.coordinador.historial_prompts,
+                "contexto_acumulativo": self.coordinador.contexto_actividad.obtener_json_contexto(),
                 "validado": self.validado
             }
         }
@@ -1122,19 +1855,19 @@ class SistemaAgentesABP:
                 "nombre": "Fase 1: Investigación y Planificación",
                 "duracion": "3-4 días",
                 # Corrección: Acceder a t.id
-                "tareas": [t.id for t in tareas if "investigar" in t.descripcion.lower() or "planificar" in t.descripcion.lower()][:3]
+                "tareas": [t.id for t in tareas if "investigar" in t.descripcion.lower() or "planificar" in t.descripcion.lower()]
             },
             {
                 "nombre": "Fase 2: Desarrollo y Creación",
                 "duracion": "5-6 días", 
                 # Corrección: Acceder a t.tipo
-                "tareas": [t.id for t in tareas if t.tipo in ["colaborativa", "creativa"]][:4]
+                "tareas": [t.id for t in tareas if t.tipo in ["colaborativa", "creativa"]]
             },
             {
                 "nombre": "Fase 3: Presentación y Evaluación",
                 "duracion": "2-3 días",
                 # Corrección: Acceder a t.id
-                "tareas": [t.id for t in tareas if "presentar" in t.descripcion.lower() or "evaluar" in t.descripcion.lower()][:2]
+                "tareas": [t.id for t in tareas if "presentar" in t.descripcion.lower() or "evaluar" in t.descripcion.lower()]
             }
         ]
         
@@ -1196,7 +1929,10 @@ class SistemaAgentesABP:
         print(f"\n📋 RESUMEN DEL PROYECTO:")
         print(f"   Título: {proyecto['proyecto']['titulo']}")
         print(f"   Duración: {proyecto['proyecto']['duracion']}")
-        print(f"   Competencias: {', '.join(proyecto['proyecto']['competencias_objetivo'][:3])}...")
+        competencias_texto = ', '.join(proyecto['proyecto']['competencias_objetivo'])
+        if len(competencias_texto) > 100:
+            competencias_texto = competencias_texto[:100] + "..."
+        print(f"   Competencias: {competencias_texto}")
         print(f"   Número de fases: {len(proyecto['fases'])}")
         print(f"   Estudiantes asignados: {len(proyecto['asignaciones'])}")
         print(f"   Recursos materiales: {len(proyecto['recursos'].get('materiales_fisicos', []))}")

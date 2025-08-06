@@ -1,0 +1,178 @@
+{
+  "proyecto": {
+    "titulo": "Cronograma Creativo",
+    "descripcion": "Actividad práctica para desarrollar competencias matemáticas",
+    "duracion": "2-3 sesiones",
+    "competencias_objetivo": [
+      "Competencia matemática",
+      "trabajo colaborativo"
+    ],
+    "recursos_materiales": 0
+  },
+  "fases": [
+    {
+      "nombre": "Fase 1: Investigación y Planificación",
+      "duracion": "3-4 días",
+      "tareas": []
+    },
+    {
+      "nombre": "Fase 2: Desarrollo y Creación",
+      "duracion": "5-6 días",
+      "tareas": [
+        "tarea_01",
+        "tarea_02",
+        "tarea_03",
+        "tarea_04",
+        "tarea_05",
+        "tarea_06",
+        "tarea_07",
+        "tarea_08",
+        "tarea_09",
+        "tarea_10",
+        "tarea_11",
+        "tarea_12",
+        "tarea_13",
+        "tarea_14",
+        "tarea_15"
+      ]
+    },
+    {
+      "nombre": "Fase 3: Presentación y Evaluación",
+      "duracion": "2-3 días",
+      "tareas": []
+    }
+  ],
+  "asignaciones": {
+    "estudiante_001": [
+      "tarea_01",
+      "tarea_02"
+    ],
+    "estudiante_002": [
+      "tarea_11"
+    ],
+    "estudiante_003": [
+      "tarea_04"
+    ],
+    "estudiante_004": [
+      "tarea_08"
+    ],
+    "estudiante_005": [
+      "tarea_07"
+    ],
+    "estudiante_006": [
+      "tarea_02",
+      "tarea_03"
+    ],
+    "estudiante_007": [
+      "tarea_04",
+      "tarea_11"
+    ],
+    "estudiante_008": [
+      "tarea_01"
+    ]
+  },
+  "recursos": {
+    "estudiantes_especiales": {
+      "Elena": [
+        "Recurso físico 1",
+        "Recurso físico 2"
+      ],
+      "Luis": [
+        "Herramienta manipulativa 1",
+        "Herramienta manipulativa 2"
+      ],
+      "Ana": [
+        "Recurso digital 1",
+        "Recurso digital 2"
+      ]
+    }
+  },
+  "evaluacion": {
+    "criterios": [
+      "Calidad del trabajo",
+      "Colaboración",
+      "Creatividad",
+      "Competencias específicas"
+    ],
+    "instrumentos": [
+      "Rúbrica",
+      "Autoevaluación",
+      "Evaluación por pares",
+      "Portfolio digital"
+    ]
+  },
+  "metadatos": {
+    "timestamp": "2025-08-06T14:48:21.469261",
+    "sistema": "AgentesABP_v2.0_ContextoAcumulativo",
+    "historial_prompts": [
+      {
+        "tipo": "prompt_ideas",
+        "contenido": "quiero una actividad artística sobre los tiempos verbales para hacer diferentes tallercitos durante la semana y compilar el viernes un gran mural",
+        "accion_contexto": "INICIAR",
+        "campos_modificados": [
+          "tema_principal",
+          "enfoque_metodologico",
+          "restricciones",
+          "preferencias_profesor"
+        ],
+        "timestamp": "2025-08-06T14:46:45.694000"
+      },
+      {
+        "tipo": "detalles_actividad_seleccionada",
+        "actividad_id": "idea_1",
+        "actividad_titulo": "Cronograma Creativo",
+        "detalles_adicionales": "no quiero un cronograma, lo que quiero es un mural artístico",
+        "timestamp": "2025-08-06T14:47:51.316040"
+      }
+    ],
+    "contexto_acumulativo": {
+      "metadata_sesion": {
+        "session_id": "abp_20250806_144557",
+        "timestamp_inicio": "2025-08-06T14:45:57.981103",
+        "prompts_realizados": 1,
+        "estado_actual": "INICIO"
+      },
+      "contexto_actividad": {
+        "tema_principal": null,
+        "nivel_educativo": "4º Primaria",
+        "duracion_estimada": null,
+        "enfoque_metodologico": null,
+        "competencias_objetivo": [],
+        "materias_involucradas": [],
+        "estructura_actividad": {
+          "tipo_organizacion": null,
+          "fases_actividad": [],
+          "tareas_preliminares": [],
+          "roles_estudiantes": [],
+          "materiales_necesarios": []
+        },
+        "restricciones": [],
+        "preferencias_profesor": [
+          "una actividad artística sobre los tiempos verbales para hacer diferentes tallercitos durante la semana y compilar el viernes un gran mural"
+        ],
+        "ideas_rechazadas": [],
+        "adaptaciones_necesarias": {
+          "TEA": false,
+          "TDAH": false,
+          "altas_capacidades": false,
+          "especificas": []
+        }
+      },
+      "historial_iteraciones": [
+        {
+          "numero": 1,
+          "prompt": "quiero una actividad artística sobre los tiempos verbales para hacer diferentes tallercitos durante la semana y compilar el viernes un gran mural",
+          "accion": "INICIAR",
+          "campos_modificados": [
+            "tema_principal",
+            "enfoque_metodologico",
+            "restricciones",
+            "preferencias_profesor"
+          ],
+          "timestamp": "2025-08-06T14:46:45.694000"
+        }
+      ]
+    },
+    "validado": true
+  }
+}
