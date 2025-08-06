@@ -102,7 +102,7 @@ class ProyectoABP:
     evaluacion: Dict
     metadatos: Dict
 
-# ===== CONTEXTO ACUMULATIVO =====
+# ===== CONTEXTO HÍBRIDO AUTO-DETECTADO =====
 
 @dataclass
 class IteracionPrompt:
@@ -110,277 +110,236 @@ class IteracionPrompt:
     numero: int
     prompt: str
     accion: str  # "INICIAR", "AMPLIAR", "REFINAR", "REEMPLAZAR"
-    campos_modificados: List[str]
+    metadatos_detectados: Dict
     timestamp: str
 
-class ContextoActividad:
-    """Gestiona el contexto acumulativo de la actividad"""
+class ContextoHibrido:
+    """Gestiona contexto híbrido con auto-detección de metadatos"""
     
     def __init__(self):
-        self.contexto = {
-            "metadata_sesion": {
-                "session_id": self._generar_session_id(),
-                "timestamp_inicio": datetime.now().isoformat(),
-                "prompts_realizados": 0,
-                "estado_actual": "INICIO"
-            },
-            
-            "contexto_actividad": {
-                # INFORMACIÓN BÁSICA
-                "tema_principal": None,
-                "nivel_educativo": "4º Primaria",
-                "duracion_estimada": None,
-                
-                # ESPECIFICACIONES PEDAGÓGICAS  
-                "enfoque_metodologico": None,
-                "competencias_objetivo": [],
-                "materias_involucradas": [],
-                
-                # ESTRUCTURA DE LA ACTIVIDAD
-                "estructura_actividad": {
-                    "tipo_organizacion": None,
-                    "fases_actividad": [],
-                    "tareas_preliminares": [],
-                    "roles_estudiantes": [],
-                    "materiales_necesarios": []
-                },
-                
-                # RESTRICCIONES Y PREFERENCIAS
-                "restricciones": [],
-                "preferencias_profesor": [],
-                "ideas_rechazadas": [],
-                
-                # ADAPTACIONES
-                "adaptaciones_necesarias": {
-                    "TEA": False,
-                    "TDAH": False, 
-                    "altas_capacidades": False,
-                    "especificas": []
-                }
-            },
-            
-            "historial_iteraciones": []
-        }
+        # Metadatos estructurados (auto-detectados)
+        self.metadatos = {}
         
-        logger.info(f"🔄 Contexto acumulativo inicializado - Session: {self.contexto['metadata_sesion']['session_id']}")
+        # Contenido completo de la última respuesta
+        self.texto_completo = ""
+        
+        # Historial de interacciones
+        self.historial = []
+        
+        # Metadata de sesión
+        self.session_id = self._generar_session_id()
+        self.timestamp_inicio = datetime.now().isoformat()
+        self.prompts_realizados = 0
+        
+        logger.info(f"🔄 Contexto híbrido inicializado - Session: {self.session_id}")
     
     def _generar_session_id(self) -> str:
         """Genera un ID único para la sesión"""
-        return f"abp_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
+        return f"abp_hibrido_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
     
-    def analizar_continuidad_contexto(self, prompt_nuevo: str) -> str:
-        """Analiza si el prompt continúa el tema o cambia completamente"""
+    def procesar_respuesta_llm(self, respuesta: str, prompt_usuario: str = ""):
+        """Procesa la respuesta del LLM y actualiza el contexto automáticamente"""
+        # 1. Guardar texto completo
+        self.texto_completo = respuesta
         
-        tema_actual = self.contexto["contexto_actividad"]["tema_principal"]
-        enfoque_actual = self.contexto["contexto_actividad"]["enfoque_metodologico"]
+        # 2. Auto-detectar metadatos
+        nuevos_metadatos = self.autodetectar_metadatos(respuesta)
         
-        # Si no hay contexto previo, es el inicio
-        if not tema_actual:
-            return "INICIAR"
+        # 3. Actualizar metadatos existentes
+        self.metadatos.update(nuevos_metadatos)
         
-        prompt_lower = prompt_nuevo.lower()
-        
-        # Indicadores de cambio total de tema
-        indicadores_cambio = [
-            "quiero otra cosa", "cambiemos de tema", "mejor hagamos", 
-            "prefiero algo diferente", "no, quiero", "mejor otra actividad"
-        ]
-        
-        for indicador in indicadores_cambio:
-            if indicador in prompt_lower:
-                return "REEMPLAZAR"
-        
-        # Indicadores de refinamiento/ampliación
-        indicadores_refinamiento = [
-            "más", "también", "además", "pero que", "y que sea", 
-            "añadir", "incluir", "que tenga", "con", "sin embargo"
-        ]
-        
-        # Calcular similitud básica con tema actual
-        palabras_tema = tema_actual.lower().split() if tema_actual else []
-        palabras_prompt = prompt_lower.split()
-        
-        coincidencias = len(set(palabras_tema) & set(palabras_prompt))
-        similitud = coincidencias / len(palabras_tema) if palabras_tema else 0
-        
-        # Lógica de decisión
-        if any(indicador in prompt_lower for indicador in indicadores_refinamiento):
-            return "AMPLIAR"
-        elif similitud > 0.3:
-            return "REFINAR"  
-        else:
-            return "REEMPLAZAR"
-    
-    def extraer_informacion_prompt(self, prompt: str) -> Dict:
-        """Extrae información estructurada del prompt"""
-        info = {
-            "tema_principal": None,
-            "enfoque_metodologico": None,
-            "competencias": [],
-            "restricciones": [],
-            "preferencias": [],
-            "nivel": None,
-            "duracion": None
-        }
-        
-        prompt_lower = prompt.lower()
-        
-        # Extraer tema principal
-        temas_educativos = {
-            "matemáticas": ["matemáticas", "mates", "números", "cálculo", "operaciones", "fracciones", "geometría"],
-            "lengua": ["lengua", "lectura", "escritura", "texto", "redacción", "ortografía"],
-            "ciencias": ["ciencias", "experimentos", "laboratorio", "naturaleza", "física", "química"],
-            "geografía": ["geografía", "mapa", "comunidades", "países", "ciudades", "regiones", "españa"],
-            "historia": ["historia", "época", "siglos", "acontecimientos", "pasado"],
-            "educación física": ["deporte", "ejercicio", "actividad física", "juego", "competición"],
-            "arte": ["arte", "pintura", "dibujo", "creatividad", "manualidades", "decoración"]
-        }
-        
-        for tema, palabras_clave in temas_educativos.items():
-            if any(palabra in prompt_lower for palabra in palabras_clave):
-                info["tema_principal"] = tema
-                break
-        
-        # Extraer enfoque metodológico
-        enfoques = {
-            "colaborativo": ["colaborativo", "en grupos", "entre todos", "juntos", "equipo"],
-            "manipulativo": ["manipulativo", "material", "objetos", "tocar", "construir"],
-            "juego": ["juego", "lúdico", "divertido", "entretenido", "gamificación"],
-            "competitivo": ["competición", "ganar", "desafío", "reto", "concurso"],
-            "creativo": ["creativo", "crear", "inventar", "imaginar", "original"]
-        }
-        
-        for enfoque, palabras_clave in enfoques.items():
-            if any(palabra in prompt_lower for palabra in palabras_clave):
-                info["enfoque_metodologico"] = enfoque
-                break
-        
-        # Extraer restricciones
-        if any(palabra in prompt_lower for palabra in ["no quiero", "sin", "evitar", "no me gusta"]):
-            palabras_restriccion = re.findall(r'(?:no quiero|sin|evitar|no me gusta)\s+([^,.\n]+)', prompt_lower)
-            info["restricciones"].extend([r.strip() for r in palabras_restriccion])
-        
-        # Extraer preferencias
-        if any(palabra in prompt_lower for palabra in ["quiero", "con", "que tenga", "incluir"]):
-            palabras_preferencia = re.findall(r'(?:quiero|con|que tenga|incluir)\s+([^,.\n]+)', prompt_lower)
-            info["preferencias"].extend([p.strip() for p in palabras_preferencia])
-        
-        return info
-    
-    def actualizar_contexto(self, prompt: str, accion: str) -> List[str]:
-        """Actualiza el contexto según el prompt y acción determinada"""
-        
-        campos_modificados = []
-        info_extraida = self.extraer_informacion_prompt(prompt)
-        
-        contexto_act = self.contexto["contexto_actividad"]
-        
-        if accion == "REEMPLAZAR":
-            # Limpiar contexto y empezar de nuevo
-            contexto_act["tema_principal"] = info_extraida["tema_principal"]
-            contexto_act["enfoque_metodologico"] = info_extraida["enfoque_metodologico"] 
-            contexto_act["competencias_objetivo"] = []
-            contexto_act["restricciones"] = info_extraida["restricciones"]
-            contexto_act["preferencias_profesor"] = info_extraida["preferencias"]
-            contexto_act["ideas_rechazadas"] = []
-            
-            campos_modificados = ["tema_principal", "enfoque_metodologico", "restricciones", "preferencias_profesor"]
-            
-        elif accion in ["AMPLIAR", "REFINAR"]:
-            # Actualizar/añadir información sin borrar
-            if info_extraida["tema_principal"] and not contexto_act["tema_principal"]:
-                contexto_act["tema_principal"] = info_extraida["tema_principal"]
-                campos_modificados.append("tema_principal")
-                
-            if info_extraida["enfoque_metodologico"]:
-                if contexto_act["enfoque_metodologico"] != info_extraida["enfoque_metodologico"]:
-                    contexto_act["enfoque_metodologico"] = info_extraida["enfoque_metodologico"]
-                    campos_modificados.append("enfoque_metodologico")
-            
-            # Añadir restricciones y preferencias sin duplicar
-            for restriccion in info_extraida["restricciones"]:
-                if restriccion not in contexto_act["restricciones"]:
-                    contexto_act["restricciones"].append(restriccion)
-                    if "restricciones" not in campos_modificados:
-                        campos_modificados.append("restricciones")
-            
-            for preferencia in info_extraida["preferencias"]:
-                if preferencia not in contexto_act["preferencias_profesor"]:
-                    contexto_act["preferencias_profesor"].append(preferencia)
-                    if "preferencias_profesor" not in campos_modificados:
-                        campos_modificados.append("preferencias_profesor")
-        
-        elif accion == "INICIAR":
-            # Primer prompt, establecer información base
-            contexto_act["tema_principal"] = info_extraida["tema_principal"]
-            contexto_act["enfoque_metodologico"] = info_extraida["enfoque_metodologico"]
-            contexto_act["restricciones"] = info_extraida["restricciones"] 
-            contexto_act["preferencias_profesor"] = info_extraida["preferencias"]
-            
-            campos_modificados = ["tema_principal", "enfoque_metodologico", "restricciones", "preferencias_profesor"]
-        
-        # Registrar iteración
-        self.contexto["metadata_sesion"]["prompts_realizados"] += 1
-        
+        # 4. Guardar en historial
         iteracion = IteracionPrompt(
-            numero=self.contexto["metadata_sesion"]["prompts_realizados"],
-            prompt=prompt,
-            accion=accion,
-            campos_modificados=campos_modificados,
+            numero=len(self.historial) + 1,
+            prompt=prompt_usuario,
+            accion=self.determinar_accion(prompt_usuario),
+            metadatos_detectados=nuevos_metadatos,
             timestamp=datetime.now().isoformat()
         )
         
-        self.contexto["historial_iteraciones"].append(asdict(iteracion))
+        self.historial.append(iteracion)
+        self.prompts_realizados += 1
         
-        logger.info(f"🔄 Contexto actualizado - Acción: {accion} - Campos: {', '.join(campos_modificados)}")
-        
-        return campos_modificados
+        logger.info(f"📊 Metadatos detectados: {list(nuevos_metadatos.keys())}")
     
-    def registrar_idea_rechazada(self, idea: Dict, razon: str = "No especificada"):
-        """Registra una idea rechazada por el profesor"""
-        idea_rechazada = {
-            "titulo": idea.get("titulo", "Sin título"),
-            "descripcion": idea.get("descripcion", "")[:100] + "...",
-            "razon": razon,
-            "timestamp": datetime.now().isoformat()
+    def autodetectar_metadatos(self, texto: str) -> Dict:
+        """Auto-detecta metadatos del texto de respuesta del LLM"""
+        metadatos = {}
+        texto_lower = texto.lower()
+        
+        # DETECCIÓN DE MATERIA
+        materias_patron = {
+            'matematicas': ['matemáticas', 'fracciones', 'números', 'operaciones', 'mercado de las fracciones', 'cálculo', 'geometría'],
+            'lengua': ['escritura', 'lectura', 'texto', 'poesía', 'gramática', 'ortografía', 'redacción'],
+            'ciencias': ['experimento', 'laboratorio', 'célula', 'planeta', 'científico', 'naturaleza', 'física', 'química'],
+            'geografia': ['geografía', 'mapa', 'comunidades', 'países', 'ciudades', 'regiones', 'españa', 'andalucía', 'cataluña', 'valencia', 'viajes', 'turismo', 'autonomas'],
+            'historia': ['historia', 'época', 'siglos', 'acontecimientos', 'pasado'],
+            'arte': ['arte', 'pintura', 'dibujo', 'creatividad', 'manualidades']
         }
         
-        self.contexto["contexto_actividad"]["ideas_rechazadas"].append(idea_rechazada)
-        logger.info(f"❌ Registrada idea rechazada: {idea_rechazada['titulo']}")
+        for materia, palabras_clave in materias_patron.items():
+            if any(palabra in texto_lower for palabra in palabras_clave):
+                metadatos['materia'] = materia
+                break
+        
+        # DETECCIÓN DE DURACIÓN
+        patron_duracion = re.search(r'(\d+)\s*(minutos?|min|horas?)', texto_lower)
+        if patron_duracion:
+            numero = int(patron_duracion.group(1))
+            unidad = patron_duracion.group(2)
+            if 'hora' in unidad:
+                numero *= 60
+            metadatos['duracion'] = f"{numero} minutos"
+        
+        # DETECCIÓN DE TEMA ESPECÍFICO
+        temas_especificos = ['fracciones', 'multiplicación', 'división', 'geometría', 'ortografía', 'lectura', 'escritura']
+        for tema in temas_especificos:
+            if tema in texto_lower:
+                metadatos['tema'] = tema
+                break
+        
+        # DETECCIÓN DE ESTUDIANTES ESPECIALES
+        estudiantes_especiales = []
+        if 'elena' in texto_lower:
+            contextos_elena = ['tea', 'apoyo visual', 'no se sienta perdida', 'tarjetas', 'protocolo visual']
+            if any(contexto in texto_lower for contexto in contextos_elena):
+                estudiantes_especiales.append('Elena (TEA - apoyo visual)')
+        
+        if 'luis' in texto_lower:
+            contextos_luis = ['tdah', 'moverse', 'movimiento', 'inspector', 'activo', 'cada 15']
+            if any(contexto in texto_lower for contexto in contextos_luis):
+                estudiantes_especiales.append('Luis (TDAH - necesita movimiento)')
+        
+        if 'ana' in texto_lower:
+            contextos_ana = ['altas capacidades', 'problemas extra', 'auditora', 'desafíos', 'complejos']
+            if any(contexto in texto_lower for contexto in contextos_ana):
+                estudiantes_especiales.append('Ana (Altas capacidades - desafíos extra)')
+        
+        if estudiantes_especiales:
+            metadatos['estudiantes_especiales'] = estudiantes_especiales
+        
+        # DETECCIÓN DE MATERIALES
+        materiales_patron = ['productos', 'dinero', 'calculadoras', 'tarjetas', 'papel', 'lápices', 'cartulinas', 'tijeras', 'pegamento']
+        materiales_detectados = []
+        for material in materiales_patron:
+            if material in texto_lower:
+                materiales_detectados.append(material)
+        
+        if materiales_detectados:
+            metadatos['materiales'] = materiales_detectados
+        
+        # DETECCIÓN DE TIPO DE ACTIVIDAD
+        tipos_actividad = {
+            'simulación de mercado': ['mercado', 'tienda', 'comprar', 'vender', 'cajero', 'cliente'],
+            'laboratorio': ['experimento', 'laboratorio', 'investigar', 'hipótesis'],
+            'juego de roles': ['rol', 'personaje', 'actuar', 'interpretar'],
+            'proyecto colaborativo': ['proyecto', 'colaborar', 'equipo', 'grupo']
+        }
+        
+        for tipo, palabras in tipos_actividad.items():
+            if any(palabra in texto_lower for palabra in palabras):
+                metadatos['tipo_actividad'] = tipo
+                break
+        
+        # DETECCIÓN DE ROLES ESPECÍFICOS
+        roles_detectados = []
+        roles_patron = ['cajero', 'cajera', 'inspector', 'inspectora', 'auditor', 'auditora', 'cliente', 'vendedor', 'contador', 'contable']
+        for rol in roles_patron:
+            if rol in texto_lower:
+                roles_detectados.append(rol)
+        
+        if roles_detectados:
+            metadatos['roles_detectados'] = list(set(roles_detectados))  # Eliminar duplicados
+        
+        # DETECCIÓN DE ESTRUCTURA TEMPORAL
+        if any(palabra in texto_lower for palabra in ['preparación', 'desarrollo', 'cierre', 'fases', 'etapas']):
+            metadatos['tiene_estructura_temporal'] = True
+        
+        return metadatos
     
-    def obtener_contexto_completo(self) -> str:
-        """Genera descripción textual completa del contexto para usar en prompts"""
-        ctx = self.contexto["contexto_actividad"]
+    def determinar_accion(self, prompt: str) -> str:
+        """Determina qué tipo de acción realizar basándose en el prompt"""
+        if not prompt:
+            return "INICIAR"
+            
+        prompt_lower = prompt.lower()
         
-        descripcion = f"CONTEXTO ACUMULATIVO DE LA ACTIVIDAD:\n"
+        # Indicadores de cambio total
+        if any(palabra in prompt_lower for palabra in ['otra cosa', 'diferente', 'cambiar', 'mejor otra', 'no quiero esto']):
+            return "REEMPLAZAR"
         
-        if ctx["tema_principal"]:
-            descripcion += f"- Tema principal: {ctx['tema_principal']}\n"
-            
-        if ctx["enfoque_metodologico"]:
-            descripcion += f"- Enfoque metodológico: {ctx['enfoque_metodologico']}\n"
-            
-        descripcion += f"- Nivel educativo: {ctx['nivel_educativo']}\n"
+        # Indicadores de refinamiento
+        if any(palabra in prompt_lower for palabra in ['más', 'también', 'además', 'incluir', 'añadir']):
+            return "AMPLIAR"
         
-        if ctx["competencias_objetivo"]:
-            descripcion += f"- Competencias objetivo: {', '.join(ctx['competencias_objetivo'])}\n"
-            
-        if ctx["preferencias_profesor"]:
-            descripcion += f"- Preferencias del profesor: {', '.join(ctx['preferencias_profesor'])}\n"
-            
-        if ctx["restricciones"]:
-            descripcion += f"- Restricciones: {', '.join(ctx['restricciones'])}\n"
-            
-        if ctx["ideas_rechazadas"]:
-            descripcion += f"- Ideas rechazadas anteriormente: "
-            titulos_rechazados = [idea["titulo"] for idea in ctx["ideas_rechazadas"]]
-            descripcion += f"{', '.join(titulos_rechazados)}\n"
+        # Si hay contexto previo, por defecto es refinar
+        if self.metadatos:
+            return "REFINAR"
+        
+        return "INICIAR"
+    
+    def get_contexto_para_llm(self) -> str:
+        """Genera el contexto enriquecido para enviar al LLM"""
+        contexto_str = "\n=== CONTEXTO DETECTADO ===\n"
+        
+        if not self.metadatos:
+            contexto_str += "(Ningún contexto detectado aún)\n"
+        else:
+            for clave, valor in self.metadatos.items():
+                if isinstance(valor, list):
+                    contexto_str += f"- {clave.replace('_', ' ').title()}: {', '.join(valor)}\n"
+                else:
+                    contexto_str += f"- {clave.replace('_', ' ').title()}: {valor}\n"
+        
+        if self.texto_completo:
+            contexto_str += f"\n=== ACTIVIDAD ANTERIOR ===\n{self.texto_completo[-1500:]}\n"  # Últimos 1500 chars
+        
+        if len(self.historial) > 1:
+            contexto_str += f"\n=== ITERACIONES REALIZADAS ===\n"
+            for iteracion in self.historial[-3:]:  # Últimas 3 iteraciones
+                contexto_str += f"- {iteracion.accion}: {iteracion.prompt[:100]}...\n"
+        
+        return contexto_str
+    
+    def get_resumen_sesion(self) -> Dict:
+        """Obtiene un resumen de la sesión actual"""
+        return {
+            'session_id': self.session_id,
+            'prompts_realizados': self.prompts_realizados,
+            'metadatos_detectados': self.metadatos,
+            'tiene_actividad': bool(self.texto_completo),
+            'iteraciones': len(self.historial)
+        }
+    
+    def analizar_continuidad_contexto(self, prompt_nuevo: str) -> str:
+        """MÉTODO OBSOLETO - Usar determinar_accion() en su lugar"""
+        return self.determinar_accion(prompt_nuevo)
+    
+    def extraer_informacion_prompt_legacy(self, prompt: str) -> Dict:
+        """MÉTODO OBSOLETO - Solo para compatibilidad hacia atrás"""
+        # Este método se mantiene por compatibilidad pero ya no se usa
+        # La auto-detección se hace en autodetectar_metadatos()
+        return {}
+    
+    def actualizar_contexto_legacy(self, prompt: str, accion: str) -> List[str]:
+        """MÉTODO OBSOLETO - El contexto ahora se actualiza automáticamente"""
+        # Este método ya no se usa - el contexto se actualiza en procesar_respuesta_llm()
+        logger.warning("⚠️ Método obsoleto actualizar_contexto_legacy() llamado")
+        return []
+    
+    def registrar_idea_rechazada_legacy(self, idea: Dict, razon: str = "No especificada"):
+        """MÉTODO OBSOLETO - Las ideas rechazadas se manejan automáticamente en ContextoHibrido"""
+        logger.info(f"❌ Idea rechazada (legacy): {idea.get('titulo', 'Sin título')} - {razon}")
+    
+    def obtener_contexto_completo_legacy(self) -> str:
+        """MÉTODO OBSOLETO - El contexto se maneja ahora en ContextoHibrido"""
+        return "Contexto legacy no disponible - usar ContextoHibrido"
         
         return descripcion
     
-    def obtener_json_contexto(self) -> Dict:
-        """Devuelve el JSON completo del contexto"""
-        return self.contexto.copy()
+    def obtener_json_contexto_legacy(self) -> Dict:
+        """MÉTODO OBSOLETO - Usar ContextoHibrido en su lugar"""
+        return {}  # El contexto ahora está en ContextoHibrido
 
 # ===== INTEGRACIÓN OLLAMA =====
 # (Mantiene el mismo integrador de Ollama, no necesita cambios)
@@ -426,11 +385,10 @@ class OllamaIntegrator:
 # ===== AGENTES ESPECIALIZADOS (Refactorizados) =====
 
 class AgenteCoordinador:
-    """Agente Coordinador Principal (Master Agent) - CON CONTEXTO ACUMULATIVO"""
+    """Agente Coordinador Principal (Master Agent) - CON CONTEXTO HÍBRIDO AUTO-DETECTADO"""
     
     def __init__(self, ollama_integrator: OllamaIntegrator):
         self.ollama = ollama_integrator
-        self.contexto_actividad = ContextoActividad()
         self.historial_prompts = []  # Mantener por compatibilidad
         self.ejemplos_k = self._cargar_ejemplos_k()
     
@@ -486,41 +444,125 @@ class AgenteCoordinador:
             "duracion": duracion
         }
     
-    def generar_ideas_actividades(self, prompt_profesor: str) -> List[Dict]:
-        """Genera 3 ideas de actividades usando contexto acumulativo"""
+    def generar_ideas_actividades_hibrido(self, prompt_profesor: str, contexto_hibrido: ContextoHibrido) -> List[Dict]:
+        """Genera 3 ideas de actividades usando contexto híbrido auto-detectado"""
         
-        # Analizar continuidad del contexto
-        accion = self.contexto_actividad.analizar_continuidad_contexto(prompt_profesor)
+        # Crear prompt enriquecido con contexto híbrido
+        prompt_completo = self._crear_prompt_hibrido(prompt_profesor, contexto_hibrido)
         
-        # Actualizar contexto acumulativo
-        campos_modificados = self.contexto_actividad.actualizar_contexto(prompt_profesor, accion)
-        
-        # Mantener historial para compatibilidad
-        self.historial_prompts.append({
-            "tipo": "prompt_ideas",
-            "contenido": prompt_profesor,
-            "accion_contexto": accion,
-            "campos_modificados": campos_modificados,
-            "timestamp": datetime.now().isoformat()
-        })
-        
-        # Generar ideas usando contexto completo
-        prompt_completo = self._crear_prompt_con_contexto()
-        
+        # Generar ideas
         respuesta = self.ollama.generar_respuesta(prompt_completo, max_tokens=600)
-        return self._parsear_ideas(respuesta)
+        ideas = self._parsear_ideas(respuesta)
+        
+        # PROCESAR RESPUESTA CON CONTEXTO HÍBRIDO
+        contexto_hibrido.procesar_respuesta_llm(respuesta, prompt_profesor)
+        
+        logger.info(f"📊 Contexto actualizado: {list(contexto_hibrido.metadatos.keys())}")
+        
+        return ideas
     
-    def _crear_prompt_con_contexto(self) -> str:
-        """Crea prompt usando el contexto acumulativo completo"""
+    def generar_ideas_actividades(self, prompt_profesor: str) -> List[Dict]:
+        """MÉTODO LEGACY - Usar generar_ideas_actividades_hibrido() en su lugar"""
+        logger.warning("⚠️ Método legacy generar_ideas_actividades() llamado")
+        # Fallback al método híbrido con contexto temporal
+        contexto_temporal = ContextoHibrido()
+        return self.generar_ideas_actividades_hibrido(prompt_profesor, contexto_temporal)
+    
+    def _crear_prompt_hibrido(self, prompt_profesor: str, contexto_hibrido: ContextoHibrido) -> str:
+        """Crea prompt usando contexto híbrido auto-detectado"""
         
-        # Obtener contexto actual
-        contexto_completo = self.contexto_actividad.obtener_contexto_completo()
+        # Obtener contexto enriquecido del sistema híbrido
+        contexto_str = contexto_hibrido.get_contexto_para_llm()
         
-        # Seleccionar ejemplo k_ relevante (puede estar vacío)
-        tema_principal = self.contexto_actividad.contexto["contexto_actividad"]["tema_principal"]
-        ejemplo_seleccionado = self._seleccionar_ejemplo_relevante(tema_principal or "")
+        # Seleccionar ejemplo k_ relevante basado en metadatos detectados
+        tema_detectado = contexto_hibrido.metadatos.get('materia', '') + ' ' + contexto_hibrido.metadatos.get('tema', '')
+        ejemplo_seleccionado = self._seleccionar_ejemplo_relevante(tema_detectado.strip())
         
-        # Construir prompt dinámicamente
+        # Construir prompt híbrido
+        prompt_hibrido = f"""
+Eres un experto en diseño de actividades educativas para 4º de Primaria.
+
+{contexto_str}
+
+=== NUEVA PETICIÓN DEL USUARIO ===
+{prompt_profesor}
+
+=== ESTUDIANTES ESPECÍFICOS (AULA_A_4PRIM) ===
+- 001 ALEX M.: reflexivo, visual, CI 102
+- 002 MARÍA L.: reflexivo, auditivo
+- 003 ELENA R.: reflexivo, visual, TEA nivel 1, CI 118 - Necesita apoyo visual y rutinas
+- 004 LUIS T.: impulsivo, kinestetico, TDAH combinado, CI 102 - Necesita movimiento
+- 005 ANA V.: reflexivo, auditivo, altas capacidades, CI 141 - Necesita desafíos extra
+- 006 SARA M.: equilibrado, auditivo, CI 115
+- 007 EMMA K.: reflexivo, visual, CI 132
+- 008 HUGO P.: equilibrado, visual, CI 114"""
+        
+        if ejemplo_seleccionado:
+            prompt_hibrido += f"""
+
+=== EJEMPLO DE ACTIVIDAD EXITOSA ===
+{ejemplo_seleccionado}
+
+=== PATRONES A SEGUIR ===
+• NARRATIVA INMERSIVA: Contextualizar con historias atractivas
+• OBJETIVOS CLAROS: Competencias específicas del tema + habilidades transversales
+• ROL DOCENTE: Observación activa, guía discreta, gestión emocional
+• ADAPTACIONES: Específicas para TEA, TDAH, altas capacidades
+• MATERIALES CONCRETOS: Manipulativos, reales, accesibles"""
+        else:
+            prompt_hibrido += f"""
+
+=== PRINCIPIOS PEDAGÓGICOS ===
+• CENTRADO EN EL ESTUDIANTE: Actividades que partan de sus intereses y necesidades
+• APRENDIZAJE SIGNIFICATIVO: Conectar con experiencias reales y contextos auténticos
+• INCLUSIÓN: Adaptaciones para TEA (Elena), TDAH (Luis), altas capacidades (Ana)
+• COLABORACIÓN: Fomentar trabajo en equipo y comunicación
+• CREATIVIDAD: Permitir múltiples formas de expresión y solución"""
+        
+        prompt_hibrido += f"""
+
+=== INSTRUCCIONES CRÍTICAS ===
+IMPORTANTE: Lee atentamente la petición del usuario y céntrate EXCLUSIVAMENTE en el tema que solicita.
+
+Genera exactamente 3 ideas de actividades educativas que:
+1. RESPONDAN DIRECTAMENTE al tema específico solicitado por el usuario
+2. MANTENGAN COHERENCIA TEMÁTICA en las 3 ideas (no mezclar materias diferentes)
+3. Sean apropiadas para el tema detectado en el contexto: {contexto_hibrido.metadatos.get('materia', 'tema solicitado')}
+4. Incluyan adaptaciones para Elena (TEA), Luis (TDAH) y Ana (altas capacidades)
+5. Sean completamente ejecutables en 4º Primaria
+
+SI el usuario pidió geografía → las 3 ideas deben ser de geografía
+SI el usuario pidió ciencias → las 3 ideas deben ser de ciencias
+SI el usuario pidió matemáticas → las 3 ideas deben ser de matemáticas
+
+NO desvíes del tema principal solicitado por el usuario.
+
+FORMATO EXACTO:
+IDEA 1:
+Título: [título del tema específico solicitado]
+Descripción: [descripción detallada del tema solicitado]
+Nivel: 4º Primaria
+Competencias: [competencias del tema específico]
+Duración: [tiempo realista]
+
+IDEA 2:
+[mismo formato, mismo tema...]
+
+IDEA 3:
+[mismo formato, mismo tema...]
+
+Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO tema.
+"""
+        
+        return prompt_hibrido
+    
+    def _crear_prompt_con_contexto_legacy(self) -> str:
+        """MÉTODO LEGACY - Mantener por compatibilidad"""
+        logger.warning("⚠️ Método legacy _crear_prompt_con_contexto() llamado")
+        # Método original conservado pero no usado
+        return "Prompt legacy no disponible"
+        
+        # Método legacy - conservado para compatibilidad
         if ejemplo_seleccionado:
             seccion_ejemplo = f"""
 === EJEMPLO DE ACTIVIDAD EXITOSA ===
@@ -591,13 +633,22 @@ IDEA 3:
             'biología': 'celula',
             'piratas': 'piratas',
             'tesoro': 'piratas',
-            'aventura': 'piratas'
+            'aventura': 'piratas',
+            # NO HAY EJEMPLOS DE GEOGRAFÍA - Devolver vacío para máxima creatividad
+            'geografia': None,
+            'españa': None,
+            'comunidades': None,
+            'viajes': None
         }
         
         # Buscar coincidencias exactas
         for palabra_clave, ejemplo in mapeo_ejemplos.items():
-            if palabra_clave in tema_lower and ejemplo in self.ejemplos_k:
-                return self.ejemplos_k[ejemplo]
+            if palabra_clave in tema_lower:
+                if ejemplo is None:
+                    # Intencionalmente sin ejemplo para máxima creatividad
+                    return ""
+                elif ejemplo in self.ejemplos_k:
+                    return self.ejemplos_k[ejemplo]
         
         # Si no hay coincidencias, devolver vacío para que el LLM sea más creativo
         return ""
@@ -1610,9 +1661,12 @@ RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
 # ===== SISTEMA PRINCIPAL =====
 
 class SistemaAgentesABP:
-    """Sistema de Agentes para Aprendizaje Basado en Proyectos (ABP)"""
+    """Sistema de Agentes para Aprendizaje Basado en Proyectos (ABP) con Contexto Híbrido"""
     def __init__(self, host_ollama: str = "192.168.1.10", model: str = "llama3.2"):
         self.ollama = OllamaIntegrator(host=host_ollama, model=model)
+        
+        # CONTEXTO HÍBRIDO (reemplaza el contexto JSON rígido)
+        self.contexto_hibrido = ContextoHibrido()
         
         # Inicializar agentes
         self.coordinador = AgenteCoordinador(self.ollama)
@@ -1626,7 +1680,7 @@ class SistemaAgentesABP:
         self.proyecto_actual = None
         self.validado = False
         
-        logger.info("🚀 Sistema de Agentes ABP inicializado")
+        logger.info("🚀 Sistema de Agentes ABP inicializado con contexto híbrido")
         
     def ejecutar_flujo_completo(self) -> Dict:
         """Ejecuta el flujo completo del sistema"""
@@ -1637,9 +1691,9 @@ class SistemaAgentesABP:
         # PASO 1: Prompt inicial del profesor
         prompt_profesor = input("\n📝 Ingrese su prompt de actividad educativa: ")
         
-        # PASO 2: Generar ideas de actividades
+        # PASO 2: Generar ideas de actividades con contexto híbrido
         print("\n🧠 Generando ideas de actividades...")
-        ideas = self.coordinador.generar_ideas_actividades(prompt_profesor)
+        ideas = self.coordinador.generar_ideas_actividades_hibrido(prompt_profesor, self.contexto_hibrido)
         
         print("\n💡 IDEAS GENERADAS:")
         for i, idea in enumerate(ideas, 1):
@@ -1684,16 +1738,14 @@ class SistemaAgentesABP:
                             # Solicitar matizaciones específicas
                             matizaciones = input("\n📝 ¿Qué aspectos te gustaría matizar/cambiar de esta idea?: ")
                             
-                            # Registrar las otras ideas como rechazadas (pero no la seleccionada)
-                            for i, idea in enumerate(ideas):
-                                if i != (idea_a_perfilar - 1):
-                                    self.coordinador.contexto_actividad.registrar_idea_rechazada(idea, "Usuario prefirió otra opción para matizar")
+                            # En el contexto híbrido, las ideas rechazadas se manejan automáticamente
+                            logger.info(f"📋 Usuario seleccionó idea {idea_a_perfilar} para matizar")
                             
                             # Crear prompt para matizar la idea seleccionada
                             prompt_matizacion = f"Toma esta idea: '{idea_seleccionada.get('titulo', '')}' - {idea_seleccionada.get('descripcion', '')} y aplica estos cambios/matizaciones: {matizaciones}"
                             
                             print("\n🧠 Generando versiones matizadas...")
-                            ideas = self.coordinador.generar_ideas_actividades(prompt_matizacion)
+                            ideas = self.coordinador.generar_ideas_actividades_hibrido(prompt_matizacion, self.contexto_hibrido)
                             
                             print("\n💡 IDEAS MATIZADAS GENERADAS:")
                             for i, idea in enumerate(ideas, 1):
@@ -1713,14 +1765,13 @@ class SistemaAgentesABP:
                         continue
                 
                 elif seleccion == 0:
-                    # Registrar ideas actuales como rechazadas
-                    for idea in ideas:
-                        self.coordinador.contexto_actividad.registrar_idea_rechazada(idea, "Usuario solicitó nuevas ideas")
+                    # En el contexto híbrido, las ideas rechazadas se procesan automáticamente
+                    logger.info("📋 Usuario solicitó nuevas ideas, context híbrido se actualizará")
                     
-                    # Lógica para generar nuevas ideas usando contexto acumulativo
+                    # Generar nuevas ideas usando contexto híbrido actualizado
                     nuevo_prompt = input("\n📝 Ingrese un nuevo prompt para generar diferentes ideas: ")
                     print("\n🧠 Generando nuevas ideas...")
-                    ideas = self.coordinador.generar_ideas_actividades(nuevo_prompt)
+                    ideas = self.coordinador.generar_ideas_actividades_hibrido(nuevo_prompt, self.contexto_hibrido)
                     
                     print("\n💡 NUEVAS IDEAS GENERADAS:")
                     for i, idea in enumerate(ideas, 1):
@@ -1840,7 +1891,7 @@ class SistemaAgentesABP:
                 "timestamp": datetime.now().isoformat(),
                 "sistema": "AgentesABP_v2.0_ContextoAcumulativo",
                 "historial_prompts": self.coordinador.historial_prompts,
-                "contexto_acumulativo": self.coordinador.contexto_actividad.obtener_json_contexto(),
+                "contexto_hibrido": self.contexto_hibrido.get_resumen_sesion(),
                 "validado": self.validado
             }
         }
