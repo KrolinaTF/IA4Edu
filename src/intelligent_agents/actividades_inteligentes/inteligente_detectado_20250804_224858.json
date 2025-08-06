@@ -1,0 +1,45 @@
+{
+  "id": "inteligente_detectado_20250804_224858",
+  "titulo": "Actividad Inteligente - Detectado",
+  "materia": "detectado",
+  "tema": "detectado",
+  "clima": "inteligente",
+  "modalidad_trabajo": "mixta_inteligente",
+  "contenido_completo": "**TÍTULO ACTUALIZADO:** \"Decision Makers' Delight: Fractions and Decimals in Daily Situations\" - Enfoque en la práctica y la colaboración natural.\n\n**ORGANIZACIÓN TEMPORAL:**\n- Preparación: 10 minutos - Organización de estaciones\n- Trabajo paralelo: 80 minutos - Estaciones operando simultáneamente  \n- Integración: 20 minutos - Unir resultados de todas las estaciones\n- Presentación: 15 minutos - Resultado final conjunto\n\n**ESTACIONES DE TRABAJO PARALELO:**\n\n🔨 ESTACIÓN 1: \"Problemas Diarios\" - En esta sección, los estudiantes recibirán problemas específicos que deben resolver, relacionados con situaciones reales en las que se utilizan fracciones o decimales. Por ejemplo, calcular la proporción de alimentos desperdiciados en una granja o entender el costo de una compra en un supermercado cuando los precios están indicados en centavos.\n\n🎨 ESTACIÓN 2: \"Solución y Colaboración\" - Los estudiantes se enfrentarán a diferentes segmentos de problemas matemáticos, cada uno asignado a un estudiante. A través de la colaboración entre los participantes, se asegurará que cada parte del problema sea resuelta correctamente. Por ejemplo, una persona podría manejar el cálculo de fracciones y otra el de decimales.\n\n📊 ESTACIÓN 3: \"Análisis y Resolución\" - Los estudiantes utilizarán herramientas como calculadoras o aplicaciones de software para resolver problemas matemáticos. Este es un momento en que los estudiantes deben explicar sus soluciones a su grupo, promoviendo la interacción y el aprendizaje mutuo. Se asegurará que cada estudiante tenga oportunidad de liderar una sesión para garantizar un aprendizaje equitativo.\n\n[🔄 ESTACIÓN 4: \"Proyecto Creativo\" - Los estudiantes se desempeñarán en esta etapa creando proyectos creativos que expliquen cómo han aplicado los conceptos de fracciones y decimales en la solución de problemas reales. Pueden ser diapositivas, videos o presentaciones en pantalla que resuman las lecciones aprendidas a través del trabajo colaborativo.]\n\n**COORDINACIÓN ENTRE ESTACIONES:**\n- Punto de sincronización 1: Al finalizar cada sesión, los estudiantes de \"Problemas Diarios\" podrán discutir con los de \"Solución y Colaboración\" cómo las soluciones matemáticas se aplican en situaciones reales, y viceversa.\n- Punto de sincronización 2: Todos los grupos deben pasar por una revisión rápida en la \"Análisis y Resolución\" estación antes de realizar nuevas tareas. Los líderes del grupo pueden usar este tiempo para discutir las soluciones propuestas durante las sesiones anteriores.\n\n**PRODUCTO FINAL INTEGRADO:** \n\nLos productos finalizados se unirán a través de una presentación colectiva donde cada estudiante o equipo comparta cómo han aplicado los conceptos de fracciones y decimales en sus respectivas tareas. También pueden crear diapositivas, videos o incluso presentaciones en pantalla que resumen las lecciones aprendidas y muestran cómo se unieron a través del trabajo colaborativo.\n\n**SISTEMA DE ROTACIONES (si aplica):**\nEl sistema de rotaciones no es forzado en esta estructura ya que el enfoque principal es la colaboración. Sin embargo, si se desea incorporar una variante para mantener la atención y la motivación, podríamos considerar un cambio cada 15-20 minutos entre las estaciones, asegurándonos de que la transición sea fluida y permitiendo suficiente tiempo para completar tareas.\n\n**NOTA:** El enfoque aquí es garantizar que los estudiantes estén involucrados directamente en el proceso de resolución de problemas y comprendan cómo las fracciones y decimales se aplican en situaciones prácticas. Esto se logra a través del uso de problemas específicos, la colaboración en grupos para resolver diferentes segmentos del problema y la explicación de las soluciones mutuamente.",
+  "tareas_estudiantes": {
+    "001": "Participar en la actividad según sus capacidades",
+    "002": "Participar en la actividad según sus capacidades",
+    "003": "Participar en la actividad según sus capacidades",
+    "004": "Participar en la actividad según sus capacidades",
+    "005": "Participar en la actividad según sus capacidades",
+    "006": "Participar en la actividad según sus capacidades",
+    "007": "Participar en la actividad según sus capacidades",
+    "008": "Participar en la actividad según sus capacidades"
+  },
+  "materiales": [
+    "Materiales según actividad generada",
+    "Recursos de consulta"
+  ],
+  "duracion": "45-60 minutos",
+  "fases": [
+    "Contexto",
+    "Opciones",
+    "Estructura",
+    "Implementación"
+  ],
+  "metadatos": {
+    "sistema_usado": "agentes_inteligente",
+    "paralelismo_optimizado": "detectado_automaticamente",
+    "human_in_the_loop": true,
+    "ejemplo_k_usado": "ninguno",
+    "agentes_participantes": [
+      "detector",
+      "clima",
+      "estructurador",
+      "tareas",
+      "repartidor",
+      "paralelismo"
+    ]
+  },
+  "timestamp": "2025-08-04T22:48:58.069996"
+}

@@ -1,0 +1,103 @@
+================================================================================
+ACTIVIDAD GENERADA CON SISTEMA CUÁNTICO SIMPLE
+================================================================================
+
+ID: cuantico_simple_matematicas_20250804_185127
+Título: Actividad Cuántica Simple - matematicas
+Materia: matematicas
+Tema: area y volumen
+Tipo: cuantico_simple
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-08-04T18:51:27.472031
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+================================================================================
+ACTIVIDAD OPTIMIZADA CUÁNTICAMENTE
+================================================================================
+
+🔬 VALIDACIÓN CUÁNTICA FINAL:
+- Validez: 75.0%
+- Puntuación: 75.0/100
+- Estado: ⚠️ Mejorable
+
+DETALLES DE VALIDACIÓN:
+✅ Coherencia narrativa detectada
+⚠️ Faltan roles específicos claros
+✅ Adaptaciones para diversidad incluidas
+✅ Estructura temporal definida
+
+================================================================================
+ACTIVIDAD EDUCATIVA COMPLETA
+================================================================================
+
+**Título**: "Mercado de Construcciones: Calculando Formas para la Ciudad del Futuro"  
+**Objetivo**: Los estudiantes aprenderán a calcular el área y el volumen de figuras geométricas mediante una actividad práctica, aplicando conceptos matemáticos en un contexto de diseño urbano.  
+**Duración**: 60 minutos  
+**Narrativa**: "Somos arquitectos de una ciudad futurista que necesita construir edificios sostenibles. Cada grupo será un equipo de ingenieros que diseña una estructura (como un edificio, una piscina o un parque) y calcula su área y volumen para asegurar que se ajuste al presupuesto y al espacio disponible."  
+
+=== DESARROLLO PASO A PASO ===  
+**Preparación (10 min)**:  
+- Organizar el aula en grupos de 2-3 estudiantes (total 4 grupos).  
+- Distribuir materiales: 4 cajas de cartón grandes (para estructuras), 4 reglas, 4 cinta métrica, 4 lápices, 4 calculadoras, 4 hojas de cálculo (con fórmulas de área y volumen), 4 marcadores.  
+- Explicar la narrativa y asignar roles.  
+
+**Desarrollo Principal (35 min)**:  
+1. **Fase 1: Diseño (10 min)**: Cada grupo elige una estructura (ej: edificio, piscina, torre, parque) y dibuja su forma en papel.  
+2. **Fase 2: Construcción (10 min)**: Usan cajas de cartón para crear la estructura propuesta, midiendo sus dimensiones.  
+3. **Fase 3: Cálculo (15 min)**: Usan las fórmulas para calcular área y volumen. Registran resultados en hojas de cálculo.  
+
+**Cierre (10 min)**:  
+- Cada grupo presenta su estructura, explica cómo calculó el área y volumen, y justifica su diseño.  
+- Discusión grupal: ¿Qué forma requiere más material? ¿Cómo afecta el volumen al espacio?  
+
+=== ROLES ESPECÍFICOS ===  
+- **ELENA R.**: **Diseñadora Visual** - Dibuja la estructura y asegura que se ajuste a las medidas. *Adaptaciones*: Usar plantillas con imágenes de formas geométricas, recibir instrucciones en pasos escritos y un checklist con dibujos.  
+- **LUIS T.**: **Constructor Kinestésico** - Construye la estructura con cajas, midiendo y ajustando las dimensiones. *Adaptaciones*: Tener un cronómetro para pausas cortas, usar una cinta métrica con marcas visuales y seguir una lista de tareas con iconos.  
+- **ANA V.**: **Experta en Cálculos** - Realiza los cálculos matemáticos y verifica los resultados. *Desafíos*: Diseñar una estructura con forma irregular (ej: pirámide truncada) y explicar cómo aplicó las fórmulas.  
+- **ALEX M.**: **Revisor de Datos** - Compara las medidas físicas con las registradas en la hoja de cálculo.  
+- **MARÍA L.**: **Experta en Explicaciones** - Presenta al grupo el cálculo del área y volumen, usando ejemplos auditivos (ej: "El área es como la superficie que cubre la base").  
+- **SARA M.**: **Coordinadora de Equipo** - Asigna tareas a cada miembro y asegura que todos participen.  
+- **EMMA K.**: **Diseñadora Creativa** - Propone ideas innovadoras para las estructuras (ej: una torre con forma de prisma).  
+- **HUGO P.**: **Técnico de Medición** - Mide las dimensiones de la estructura con la cinta métrica y registra los datos.  
+
+=== MATERIALES NECESARIOS ===  
+- 4 cajas de cartón grandes (1 metro cuadrado cada una)  
+- 4 reglas (30 cm)  
+- 4 cintas métricas (2 metros)  
+- 4 lápices y 4 hojas de cálculo  
+- 4 calculadoras  
+- 4 marcadores  
+- 4 plantillas con figuras geométricas (para Elena)  
+- 4 listas de tareas con iconos (para Luis)  
+- 4 hojas de cálculo con fórmulas de área y volumen.  
+
+=== ADAPTACIONES ESPECIALES ===  
+- **Elena (TEA)**: Se le entrega una plantilla con imágenes de formas y un checklist visual. Se le permite usar un reloj para seguir el tiempo.  
+- **Luis (TDAH)**: Se le da un cronómetro para pausas de 2 minutos, una cinta métrica con marcas visuales y una lista de tareas con iconos.  
+- **Ana (Altas capacidades)**: Se le asigna un desafío adicional: diseñar una estructura con forma irregular y explicar cómo aplicó las fórmulas.
+
+================================================================================
+METADATOS CUÁNTICOS
+================================================================================
+- Sistema: Cuántico Simple
+- Validaciones realizadas: 2
+- Optimización aplicada: No necesaria
+- Validez final: 75.0%
+
+
+================================================================================
+METADATOS CUÁNTICOS:
+{
+  "total_estudiantes": 8,
+  "sistema_cuantico": "simple",
+  "validez_final": 0.75,
+  "puntuacion_final": 75.0,
+  "optimizacion_aplicada": false,
+  "modelos_usados": {
+    "generador": "qwen3:latest",
+    "optimizador": "qwen3:latest"
+  }
+}

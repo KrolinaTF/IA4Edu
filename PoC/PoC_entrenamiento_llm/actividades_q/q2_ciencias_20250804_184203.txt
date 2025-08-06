@@ -1,0 +1,217 @@
+================================================================================
+ACTIVIDAD GENERADA CON Q-AGENTS V2
+================================================================================
+
+ID: q2_ciencias_20250804_184203
+Título: Actividad Q-Agents v2 - ciencias
+Materia: ciencias
+Tema: un sistema electrico pero con un diseño de manualidades
+Tipo: colaborativa_q_agents_v2
+Estudiantes objetivo: 001, 002, 003, 004, 005, 006, 007, 008
+Timestamp: 2025-08-04T18:42:03.077255
+
+--------------------------------------------------
+CONTENIDO DE LA ACTIVIDAD:
+--------------------------------------------------
+
+================================================================================
+ACTIVIDAD GENERADA CON Q-AGENTS V2
+Sistema con Feedback Estructurado y Contexto Rico
+================================================================================
+
+
+🎭 SEMILLA CREATIVA E INSPIRACIÓN
+================================
+**Título del Proyecto:** "Redes de Luz: Un Sistema Eléctrico en Arte Colaborativo"  
+
+**Objetivo General:** Crear una instalación artística colaborativa que represente un sistema eléctrico, integrando conocimientos científicos con creatividad manual, fomentando la cooperación entre estudiantes de distintas habilidades y la expresión artística como herramienta de aprendizaje.  
+
+**Materiales:**  
+- Cartulinas grandes (2x1.5m) o tableros de madera para estructura.  
+- Cables de colores (como hilos o cintas de textura), baterías de juguete (representadas como esferas de colores), resistencias (como formas geométricas de madera o cartón).  
+- Pinturas, rotuladores, pegatinas de circuitos (simbólicos), lentejuelas para representar luces.  
+- Materiales texturizados: papel de periódico para cables, algodón para aislantes, botellas de plástico recicladas para transformadores.  
+- Herramientas: tijeras, cinta adhesiva, marcadores para etiquetas, libros de electricidad para referencias.  
+- Elementos luminosos: LEDs pequeños o esferas de colores brillantes para simular corriente.  
+
+**Estructura de Grupos:**  
+- **Grupo 1 (Reflexivo + Kinestésico):** Diseñar la estructura principal del sistema (generadores, fuentes de energía) con materiales texturizados.  
+- **Grupo 2 (Visual + Auditivo):** Crear símbolos y etiquetas para componentes (transformadores, circuitos) usando colores y sonidos (ej.: tocar cables para representar corriente).  
+- **Grupo 3 (Equilibrado + Altas Capacidades):** Integrar la parte artística final (conexiones, luces) y coordinar la unión de todos los elementos.  
+- **Grupo 4 (Impulsivo + Visual):** Decorar detalles con lentejuelas, dibujar conexiones y asegurar la estabilidad de la instalación.  
+
+**Observación y Apoyo Natural:**  
+- Animar a estudiantes con necesidades específicas a contribuir en su área de fortalezas (ej.: el estudiante con TEA puede delinear componentes con precisión, mientras que el con TDAH puede encargarse de la parte dinámica de la instalación).  
+- Usar un reloj de aula para regular tiempos y garantizar participación igualitaria.  
+- Incluir espacios para que los estudiantes expliquen su parte del sistema, vinculando el arte con la ciencia (ej.: "este cable representa la energía que viaja como un río").  
+
+**Resultado Final:**  
+Una instalación artística que simula un sistema eléctrico, con partes interactivas (ej.: luces que se encienden al unir componentes) y una guía explicativa colaborativa, donde cada grupo contribuyó con su enfoque único. La actividad culmina con una exposición en la escuela, donde los estudiantes presentan su obra y explican su funcionamiento, integrando conocimientos científicos y creatividad.
+
+
+📚 ESTRUCTURA PEDAGÓGICA
+=======================
+**Título del Proyecto:** "Redes de Luz: Un Sistema Eléctrico en Arte Colaborativo"  
+
+**Objetivo General:** Diseñar una instalación artística colaborativa que represente un sistema eléctrico, integrando conocimientos científicos y creatividad manual, fomentando la cooperación entre estudiantes de distintas habilidades y la expresión artística como herramienta de aprendizaje.  
+
+**Objetivos Específicos:**  
+1. Identificar y representar componentes eléctricos (generadores, conductores, resistencias, fuentes de energía) mediante materiales simbólicos.  
+2. Desarrollar habilidades de trabajo en equipo, comunicación y resolución de problemas.  
+3. Explorar la relación entre el arte y la ciencia, vinculando conceptos teóricos con la representación táctil y visual.  
+4. Fomentar la inclusión y la participación activa de todos los estudiantes, respetando sus estilos de aprendizaje y necesidades.  
+
+**Materiales:**  
+- **Estructura:** Cartulinas grandes (2x1.5m) o tableros de madera, botellas de plástico recicladas para transformadores.  
+- **Componentes:** Cables de colores (hilos, cintas texturizadas), baterías representadas como esferas de colores, resistencias (formas geométricas de cartón o madera).  
+- **Elementos artísticos:** Pinturas, rotuladores, pegatinas de circuitos simbólicos, lentejuelas para luces, papel de periódico (para cables), algodón (aislantes), lana/fideos (para texturas).  
+- **Herramientas:** Tijeras, cinta adhesiva, marcadores para etiquetas, libros de electricidad para referencias.  
+- **Elementos luminosos:** LEDs pequeños o esferas de colores brillantes para simular corriente.  
+
+**Estructura de Grupos (Equilibrados por Estilos y Necesidades):**  
+1. **Grupo 1 (Reflexivo + Kinestésico):**  
+   - **Tarea:** Diseñar la estructura física del sistema eléctrico (generadores, fuentes de energía) con materiales texturizados.  
+   - **Actividad:** Crear esquemas simbólicos de circuitos en cartón, integrar botellas de plástico como transformadores y asegurar la estabilidad de la instalación.  
+   - **Apoyo:** El estudiante con TDAH (Luis T.) se encargará de la parte dinámica (montaje de componentes), mientras que el con TEA (Elena R.) delinearán componentes con precisión.  
+
+2. **Grupo 2 (Visual + Auditivo):**  
+   - **Tarea:** Crear símbolos y etiquetas para componentes (transformadores, resistencias) usando colores y sonidos.  
+   - **Actividad:** Diseñar etiquetas con rotuladores y pegatinas, asociar sonidos a componentes (ej.: tocar cables para representar corriente) y crear una guía sonora explicativa.  
+   - **Apoyo:** El estudiante con altas capacidades (Ana V.) coordinará la integración de la guía sonora y visual.  
+
+3. **Grupo 3 (Equilibrado + Altas Capacidades):**  
+   - **Tarea:** Integrar la parte artística final (conexiones, luces) y coordinar la unión de todos los elementos.  
+   - **Actividad:** Decorar conexiones con lentejuelas, asegurar la conexión de LEDs simbólicos y presentar una explicación de cómo el sistema funciona.  
+   - **Apoyo:** El estudiante con TDAH (Luis T.) será responsable de la dinámica de presentación, mientras que el equilibrado (Sara M.) supervisará la coherencia del diseño.  
+
+4. **Grupo 4 (Impulsivo + Visual):**  
+   - **Tarea:** Decorar detalles con lentejuelas, dibujar conexiones y asegurar la estabilidad.  
+   - **Actividad:** Añadir elementos luminosos, crear estrellas o formas geométricas con lentejuelas y asegurar la unión de componentes.  
+   - **Apoyo:** El estudiante impulsivo (Hugo P.) se encargará de la parte creativa y dinámica, mientras que el visual (Emma K.) revisará la precisión de los detalles.  
+
+**Observación y Apoyo Natural:**  
+- **Inclusión:** Animar a los estudiantes con necesidades específicas a contribuir en su área de fortalezas (ej.: el estudiante con TEA (Elena R.) delinearán componentes con precisión, mientras que el con TDAH (Luis T.) se encargará de la parte dinámica).  
+- **Tiempo:** Usar un reloj de aula visible para regular tiempos y garantizar participación igualitaria.  
+- **Reflexión:** Incluir espacios para que los estudiantes expliquen su parte del sistema, vinculando el arte con la ciencia (ej.: "este cable representa la energía que viaja como un río").  
+- **Aprendizaje Activo:** Fomentar la retroalimentación entre grupos y la autorreflexión sobre el proceso de creación.  
+
+**Resultado Final:**  
+Una instalación artística interactiva que simula un sistema eléctrico, con partes dinámicas (ej.: luces que se encienden al unir componentes) y una guía explicativa colaborativa. La actividad culmina con una exposición en la escuela, donde los estudiantes presentan su obra, explican su funcionamiento y reflexionan sobre cómo la creatividad y la ciencia se entrelazan en el diseño. La instalación incluye etiquetas sonoras, elementos texturizados y una representación simbólica de circuitos, permitiendo que cada grupo contribuya con su enfoque único.
+
+
+🏗️ ARQUITECTURA DE LA EXPERIENCIA
+=================================
+**Flujo Temporal y Arquitectura de la Experiencia Educativa: "Redes de Luz"**  
+
+**1. Fase de Inicio (15 minutos):**  
+- **Actividad:** Presentación de contexto y propósito. El docente introduce el concepto de sistemas eléctricos como "redes de luz" mediante una analogía artística (ej.: "una red de luz es como un río que fluye de un punto a otro, pero con colores y formas"). Se muestra un video corto o imágenes de circuitos artísticos para inspirar.  
+- **Materiales:** Proyector, imágenes de circuitos, reloj de aula visible.  
+- **Inclusión:** Se resalta la importancia de la colaboración, usando el reloj para garantizar participación igualitaria.  
+
+**2. Fase de Formación de Grupos y Asignación de Tareas (10 minutos):**  
+- **Actividad:** Los estudiantes se organizan en grupos de 4-5 según su estilo de aprendizaje y necesidades (según la estructura pedagógica anterior). Cada grupo recibe una hoja con su tarea específica y materiales asignados.  
+- **Materiales:** Cartel con roles y materiales por grupo, libros de electricidad para referencias.  
+- **Inclusión:** El docente observa naturalmente las fortalezas de cada estudiante para reforzar su participación (ej.: Elena R. delinea componentes, Luis T. monta estructuras dinámicas).  
+
+**3. Fase de Creación Individual (45 minutos):**  
+- **Actividad:** Cada grupo trabaja en su tarea:  
+  - **Grupo 1 (Reflexivo + Kinestésico):** Diseña la estructura física (generadores, transformadores) con cartón, botellas y materiales texturizados.  
+  - **Grupo 2 (Visual + Auditivo):** Crea símbolos y etiquetas con colores y sonidos (ej.: tocar cables para simular corriente).  
+  - **Grupo 3 (Equilibrado + Altas Capacidades):** Integra la parte artística (luces, conexiones) y coordina la unión.  
+  - **Grupo 4 (Impulsivo + Visual):** Decora detalles con lentejuelas y asegura estabilidad.  
+- **Materiales:** Cartón, hilos, LEDs, lentejuelas, pegamento, tijeras, cinta adhesiva.  
+- **Inclusión:** Se usan tiempos rotativos (ej.: 10 minutos por grupo) para evitar sobrecarga.  
+
+**4. Fase de Integración (20 minutos):**  
+- **Actividad:** Los grupos unen sus partes en la instalación central. Se verifica la coherencia del sistema eléctrico simbólico (ej.: "¿Los cables están conectados como un río?"). Se añaden elementos luminosos y se prueba la interactividad (ej.: encender LEDs al unir componentes).  
+- **Materiales:** LEDs, conexiones eléctricas simbólicas, guía sonora.  
+- **Inclusión:** El docente facilita apoyo técnico y emocional, asegurando que todos contribuyan.  
+
+**5. Fase de Presentación y Reflexión (20 minutos):**  
+- **Actividad:** Cada grupo explica su parte del sistema, vinculando arte y ciencia (ej.: "este cable representa la energía que viaja como un río"). Se muestra la instalación completa y se realiza una reflexión colectiva: "¿Cómo la creatividad ayuda a entender la electricidad?"  
+- **Materiales:** Guía sonora, imágenes de circuitos, reloj para controlar tiempo.  
+- **Inclusión:** Se permiten formas de expresión variadas (oral, visual, sonora).  
+
+**6. Fase de Cierre (10 minutos):**  
+- **Actividad:** Se expone la instalación en la escuela. Los estudiantes reciben una etiqueta simbólica de "artista del sistema eléctrico" y se les pide que compartan una frase sobre su experiencia.  
+- **Materiales:** Etiquetas, papel para reflexiones, reloj para finalizar.  
+- **Inclusión:** Se celebra el esfuerzo colectivo, destacando la participación de cada estudiante.  
+
+**Arquitectura Logística:**  
+- **Espacio:** Área central con tableros de madera o cartulinas para la instalación, zonas de trabajo individuales y un espacio para la exposición final.  
+- **Materiales:** Distribuidos en cajas etiquetadas por grupo, con herramientas y materiales necesarios.  
+- **Recursos:** Proyector para la introducción, reloj visible, libros de referencia, y una bandeja con elementos luminosos.  
+
+**Evaluación Inmersiva:**  
+- **Formato:** Retroalimentación grupal (ej.: "¿Qué parte del sistema funciona como un circuito?"), autorreflexión individual (ej.: "¿Qué aprendí al colaborar?"), y observación del docente durante el proceso.  
+
+**Resultado Final:** Una instalación interactiva que simula un sistema eléctrico, integrando arte, ciencia y colaboración, con elementos luminosos, etiquetas sonoras y una guía explicativa colaborativa.
+
+
+🎯 DIFERENCIACIÓN PERSONALIZADA
+==============================
+**Personalización de la Experiencia Educativa "Redes de Luz" por Estudiante**  
+
+1. **ALEX M. (Reflexivo, Visual):**  
+   - **Tarea:** Diseñar un esquema visual detallado de la estructura eléctrica (generadores, transformadores) en un tablero de cartón, usando colores y formas simbólicas. Incorporar etiquetas con texturas (ej.: lentejuelas para representar energía).  
+   - **Inclusión:** Usar un reloj personalizado para gestionar su ritmo de trabajo. El docente le ofrece rotuladores finos y plantillas para facilitar la precisión visual.  
+   - **Reflexión:** "¿Cómo se ve la energía en tu dibujo? ¿Qué colores representan la conexión?"  
+
+2. **MARÍA L. (Reflexivo, Auditivo):**  
+   - **Tarea:** Crear una guía sonora con sonidos asociados a componentes eléctricos (ej.: "clic" para interruptores, "zumbido" para transformadores). Añadir etiquetas con descripciones auditivas (ej.: "este sonido es como un río de electricidad").  
+   - **Inclusión:** El docente le ayuda a sincronizar los sonidos con visualizaciones (ej.: dibujar un cable al sonar un "clic"). Se le permite grabar su voz para explicar los sonidos.  
+   - **Reflexión:** "¿Qué sonido te recordó más la energía? ¿Cómo lo asocias con la imagen?"  
+
+3. **ELENA R. (Reflexivo, Visual, TEA_nivel_1):**  
+   - **Tarea:** Colaborar en un mural de la "red de luz" usando elementos pre-diseñados (ej.: formas de cables y baterías en cartulinas). Añadir detalles con pegamento y lentejuelas en zonas específicas (ej.: "pinta las luces en el borde del cable").  
+   - **Inclusión:** El docente le brinda instrucciones en imágenes y le permite trabajar en bloques de 10 minutos con pausas. Se le asigna una caja con materiales pre-organizados.  
+   - **Reflexión:** "¿Qué parte del mural te gustó más? ¿Qué color representa la energía?"  
+
+4. **LUIS T. (Impulsivo, Kinestésico, TDAH_combinado):**  
+   - **Tarea:** Construir estructuras dinámicas con botellas y hilos para simular circuitos. Añadir elementos móviles (ej.: un "pequeño tren" que recorra los cables).  
+   - **Inclusión:** El docente le ofrece tareas con instrucciones cortas (ej.: "haz un cable que vaya de aquí a allá") y le permite moverse entre grupos para completar partes. Se le asigna un "rol de constructor" con herramientas visuales.  
+   - **Reflexión:** "¿Cómo se mueve la energía en tu circuito? ¿Qué hiciste para que funcione?"  
+
+5. **ANA V. (Reflexivo, Auditivo, Altas Capacidades):**  
+   - **Tarea:** Integrar la parte artística (luces, conexiones) y coordinar la unión de los grupos. Diseñar una guía sonora final que combine sonidos y descripciones de la instalación.  
+   - **Inclusión:** El docente le ofrece libertad para proponer ideas, pero con límites claros (ej.: "debes incluir 3 sonidos y 3 descripciones"). Se le permite usar un reloj para gestionar su tiempo.  
+   - **Reflexión:** "¿Cómo la creatividad te ayudó a entender la electricidad? ¿Qué idea propusiste que funcionó mejor?"  
+
+6. **SARA M. (Equilibrado, Auditivo):**  
+   - **Tarea:** Documentar el proceso con una grabación audiovisual (ej.: "habla sobre cada parte del sistema" o "describe cómo se conectan los componentes"). Añadir etiquetas sonoras a la instalación.  
+   - **Inclusión:** El docente le ofrece una guía de preguntas para la grabación y le permite usar un micrófono portable. Se le asigna un rol de "documentador" con acceso a materiales de referencia.  
+   - **Reflexión:** "¿Qué aprendiste al escuchar las descripciones de los demás? ¿Cómo se relaciona con el sistema eléctrico?"  
+
+7. **EMMA K. (Reflexivo, Visual):**  
+   - **Tarea:** Diseñar una etiqueta simbólica para cada componente (ej.: un símbolo de "energía" con colores y formas). Añadir detalles con texturas (ej.: lana para representar calor).  
+   - **Inclusión:** El docente le permite usar plantillas pre-diseñadas y le ofrece tiempo adicional para completar detalles. Se le asigna una caja con materiales texturizados.  
+   - **Reflexión:** "¿Qué símbolo representa mejor la energía? ¿Cómo lo relacionas con lo que vimos en el video?"  
+
+8. **HUGO P. (Equilibrado, Visual):**  
+   - **Tarea:** Decorar la instalación con lentejuelas y elementos luminosos, asegurando la estabilidad de las conexiones. Diseñar un "mapa visual" de la red de luz en una cartulina.  
+   - **Inclusión:** El docente le ofrece una guía con esquemas para seguir y le permite trabajar en colaboración con otros grupos. Se le asigna un rol de "diseñador" con acceso a herramientas creativas.  
+   - **Reflexión:** "¿Cómo la decoración mejora la comprensión de la red de luz? ¿Qué elementos destacaste?"  
+
+**Evaluación Inclusiva:**  
+- Cada estudiante recibe una retroalimentación personalizada (ej.: "tu sonido representa bien la energía" para MARÍA L.).  
+- Se usan formatos variados: escritos, audiovisuales, visuales, y sonoros.  
+- Los materiales están distribuidos por grupo, con acceso a herramientas adaptadas (ej.: plantillas, relojes, guías).  
+- La exposición final incluye una "guía colaborativa" con aportes de todos, respetando el estilo de cada estudiante.
+
+
+
+================================================================================
+METADATOS DEL SISTEMA Q-AGENTS V2:
+{
+  "total_estudiantes": 8,
+  "feedback_aplicado": 0,
+  "feedback_detalles": [],
+  "modelo_usado": "qwen3:latest",
+  "ejemplos_k_usados": [
+    "k_celula",
+    "k_sonnet_supermercado",
+    "k_feria_acertijos",
+    "k_piratas"
+  ],
+  "version": "2.0_semantic_feedback"
+}
