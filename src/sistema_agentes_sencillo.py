@@ -438,11 +438,11 @@ class AgenteCoordinador:
         ejemplos = {}
         # Rutas correctas para los archivos k_
         archivos_k = [
-            "../PoC/PoC_entrenamiento_llm/actividades_generadas/k_feria_acertijos.txt",
-            "../PoC/PoC_entrenamiento_llm/actividades_generadas/k_sonnet_supermercado.txt", 
-            "../PoC/PoC_entrenamiento_llm/actividades_generadas/k_celula.txt",
-            "../PoC/PoC_entrenamiento_llm/actividades_generadas/k_piratas.txt",
-            "../PoC/PoC_entrenamiento_llm/actividades_generadas/k_sonnet7_fabrica_fracciones.txt"
+            "../data/actividades/k_feria_acertijos.txt",
+            "../data/actividades/k_sonnet_supermercado.txt", 
+            "../data/actividades/k_celula.txt",
+            "../data/actividades/k_piratas.txt",
+            "../data/actividades/k_sonnet7_fabrica_fracciones.txt"
         ]
         
         for archivo in archivos_k:
@@ -1150,7 +1150,7 @@ class AgentePerfiladorEstudiantes:
     def _cargar_perfiles_reales(self) -> List[Estudiante]:
         """Carga los perfiles reales específicos del AULA_A_4PRIM desde el archivo JSON"""
         try:
-            with open("../PoC/PoC_entrenamiento_llm/perfiles_4_primaria.json", "r", encoding="utf-8") as f:
+            with open("perfiles_4_primaria.json", "r", encoding="utf-8") as f:
                 data = json.load(f)
             
             estudiantes = []
@@ -2046,9 +2046,13 @@ class SistemaAgentesABP:
     def _guardar_proyecto(self, proyecto: Dict):
         """Guarda el proyecto en un archivo JSON"""
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        nombre_archivo = f"proyecto_abp_{timestamp}.json"
+        nombre_archivo = f"../../temp/sencillo_abp_{timestamp}.json"
         
         try:
+            # Crear directorio temp si no existe
+            temp_dir = os.path.dirname(nombre_archivo)
+            os.makedirs(temp_dir, exist_ok=True)
+            
             with open(nombre_archivo, 'w', encoding='utf-8') as f:
                 json.dump(proyecto, f, indent=2, ensure_ascii=False)
             
