@@ -17,13 +17,8 @@ from enum import Enum
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger("SistemaAgentesInteligente")
 
-# Intentar importar OllamaAPIEducationGenerator
-try:
-    from ollama_api_integrator import OllamaAPIEducationGenerator
-    logger.info("✅ Ollama integrator disponible")
-except ImportError:
-    logger.warning("❌ OllamaAPIEducationGenerator no disponible")
-    OllamaAPIEducationGenerator = None
+# Importaciones para conexión directa a Ollama
+import requests
 
 class EstadoActividad(Enum):
     """Estados posibles de una actividad"""
@@ -63,93 +58,83 @@ class BaseAgent:
     _ollama_config = {
         'host': '192.168.1.10',
         'port': 11434,
-        'default_model': 'llama3.2'
+        'default_model': 'llama3.2:latest'
     }
     
     def __init__(self, name: str, llm_required: bool = True, model_override: str = None):
         self.name = name
         self.llm_required = llm_required
         self.model = model_override or self._ollama_config['default_model']
-        self.ollama_instance = None  # Instancia individual por agente
+        self.ollama_url = f"http://{self._ollama_config['host']}:{self._ollama_config['port']}"
         
-        # Inicializar conexión Ollama individual si es necesario
+        # Verificar conexión si es necesario
         if self.llm_required:
-            logger.info(f"🔧 [{self.name}] Inicializando conexión individual con modelo: {self.model}")
-            self._init_individual_ollama()
+            logger.info(f"🔧 [{self.name}] Verificando conexión con modelo: {self.model}")
+            self._verificar_conexion()
         
-    def _init_individual_ollama(self):
-        """Inicializa conexión individual de Ollama para este agente"""
-        if OllamaAPIEducationGenerator is None:
-            logger.error(f"❌ [{self.name}] OllamaAPIEducationGenerator no disponible")
-            return
-            
+    def _verificar_conexion(self):
+        """Verifica que Ollama esté disponible"""
         try:
-            logger.info(f"🔗 [{self.name}] Conectando a Ollama: {self._ollama_config['host']}:{self._ollama_config['port']} con modelo {self.model}")
-            
-            self.ollama_instance = OllamaAPIEducationGenerator(
-                host=self._ollama_config['host'],
-                port=self._ollama_config['port'],
-                model_name=self.model
-            )
-            
-            # Verificar que la conexión funciona con una prueba simple
-            test_response = self.ollama_instance.generar_texto("Test", max_tokens=5)
-            if test_response and len(test_response.strip()) > 0:
-                logger.info(f"✅ [{self.name}] Conectado exitosamente con modelo {self.model}")
+            response = requests.get(f"{self.ollama_url}/api/tags", timeout=5)
+            if response.status_code == 200:
+                logger.info(f"✅ [{self.name}] Conexión exitosa a Ollama con modelo {self.model}")
             else:
-                logger.warning(f"⚠️ [{self.name}] Conectado pero test falló")
-                
+                logger.warning(f"⚠️ [{self.name}] Ollama responde pero con código {response.status_code}")
         except Exception as e:
-            logger.error(f"❌ [{self.name}] Error conectando: {e}")
-            self.ollama_instance = None
+            logger.error(f"❌ [{self.name}] Error conectando a Ollama: {e}")
     
     def verificar_conexion_individual(self):
-        """Verifica el estado de la conexión individual"""
-        if self.ollama_instance is None:
-            logger.error(f"❌ [{self.name}] No hay instancia individual")
-            return False
-            
+        """Verifica el estado de la conexión"""
         try:
-            test_response = self.ollama_instance.generar_texto("Hola", max_tokens=10)
-            if test_response and len(test_response.strip()) > 0:
-                logger.info(f"✅ [{self.name}] Conexión individual verificada")
+            response = requests.get(f"{self.ollama_url}/api/tags", timeout=5)
+            if response.status_code == 200:
+                logger.info(f"✅ [{self.name}] Conexión verificada")
                 return True
             else:
-                logger.warning(f"⚠️ [{self.name}] Responde pero contenido vacío")
+                logger.warning(f"⚠️ [{self.name}] Ollama responde con código {response.status_code}")
                 return False
         except Exception as e:
             logger.error(f"❌ [{self.name}] Error verificando conexión: {e}")
             return False
     
     def generar_con_llm(self, prompt: str, max_tokens: int = 800) -> str:
-        """Genera respuesta usando Ollama con instancia individual"""
+        """Genera respuesta usando Ollama con conexión directa"""
         
-        # Debug detallado del estado
-        logger.info(f"[{self.name}] 🔍 Estado instancia individual: {self.ollama_instance is not None}")
-        logger.info(f"[{self.name}] 🤖 Modelo asignado: {self.model}")
+        logger.info(f"[{self.name}] 📤 Enviando prompt a {self.model} (longitud: {len(prompt)} chars)")
         
-        if self.ollama_instance:
-            logger.info(f"[{self.name}] 📤 Enviando prompt a {self.model} (longitud: {len(prompt)} chars)")
-            try:
-                respuesta = self.ollama_instance.generar_texto(
-                    prompt, 
-                    max_tokens=max_tokens, 
-                    temperature=0.7
-                )
+        try:
+            payload = {
+                "model": self.model,
+                "prompt": prompt,
+                "stream": False,
+                "options": {
+                    "num_predict": max_tokens,
+                    "temperature": 0.7
+                }
+            }
+            
+            response = requests.post(
+                f"{self.ollama_url}/api/generate",
+                json=payload,
+                timeout=60
+            )
+            
+            if response.status_code == 200:
+                data = response.json()
+                respuesta = data.get('response', '').strip()
                 
-                if respuesta and len(respuesta.strip()) > 0:
+                if respuesta:
                     logger.info(f"[{self.name}] ✅ Respuesta de {self.model} recibida (longitud: {len(respuesta)} chars)")
                     return respuesta
                 else:
                     logger.warning(f"[{self.name}] ⚠️ Respuesta vacía de {self.model}")
                     return self._respuesta_simulada()
-                    
-            except Exception as e:
-                logger.error(f"[{self.name}] ❌ Error con {self.model}: {e}")
-                logger.warning(f"[{self.name}] Usando respuesta simulada")
+            else:
+                logger.error(f"[{self.name}] ❌ Error HTTP {response.status_code}: {response.text}")
                 return self._respuesta_simulada()
-        else:
-            logger.warning(f"[{self.name}] ❌ Instancia individual {self.model} es None, usando respuesta simulada")
+                
+        except Exception as e:
+            logger.error(f"[{self.name}] ❌ Error conectando con {self.model}: {e}")
             return self._respuesta_simulada()
     
     def _respuesta_simulada(self) -> str:
@@ -248,10 +233,12 @@ IDEA 3: Mercado de Problemas
 """
 
 class AdaptadorDUAAgent(BaseAgent):
-    """Agente que aplica principios DUA a la actividad seleccionada"""
+    """Agente que aplica principios DUA a la actividad seleccionada. 
+    Eres un traductor de los principio DUA a la actividad específica que se está desarrollando, 
+    tienes que responder a la pregunta ¿en qué se materializa esta adaptación en esta actividad en concreto?"""
     
     def __init__(self):
-        super().__init__("AdaptadorDUA", llm_required=True, model_override="gemma2:latest")
+        super().__init__("AdaptadorDUA", llm_required=True, model_override="gemma3:latest")
     
     def procesar(self, state: ActividadState) -> ActividadState:
         """Aplica adaptaciones DUA a la actividad"""
@@ -905,7 +892,11 @@ class SistemaMultiAgenteCompleto:
         """Guarda la actividad generada en un archivo JSON"""
         if not archivo:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            archivo = f"actividad_inteligente_{timestamp}.json"
+            archivo = f"../temp/diversificado_inteligente_{timestamp}.json"
+        else:
+            # Asegurar que el archivo se guarde en ../temp/
+            if not archivo.startswith('../temp/'):
+                archivo = f"../temp/{archivo}"
         
         # Convertir a diccionario serializable
         data = {
@@ -924,6 +915,10 @@ class SistemaMultiAgenteCompleto:
         }
         
         try:
+            # Crear directorio temp si no existe
+            temp_dir = os.path.dirname(archivo)
+            os.makedirs(temp_dir, exist_ok=True)
+            
             with open(archivo, 'w', encoding='utf-8') as f:
                 json.dump(data, f, indent=2, ensure_ascii=False)
             
@@ -935,34 +930,193 @@ class SistemaMultiAgenteCompleto:
 
 # ===== FUNCIÓN PRINCIPAL =====
 
+def solicitar_datos_usuario():
+    """Solicita los datos de entrada al usuario de forma interactiva"""
+    print("🎯 Sistema Multi-Agente Inteligente para Actividades Educativas")
+    print("=" * 60)
+    print("📝 Por favor, proporciona los siguientes datos:\n")
+    
+    # 1. Materia
+    print("📚 MATERIA:")
+    print("1. Matemáticas")
+    print("2. Lengua")  
+    print("3. Ciencias")
+    print("4. Otra (especificar)")
+    
+    while True:
+        try:
+            opcion_materia = input("\nSelecciona la materia (1-4): ").strip()
+            if opcion_materia == "1":
+                materia = "Matemáticas"
+                break
+            elif opcion_materia == "2":
+                materia = "Lengua"
+                break
+            elif opcion_materia == "3":
+                materia = "Ciencias"
+                break
+            elif opcion_materia == "4":
+                materia = input("Especifica la materia: ").strip()
+                if materia:
+                    break
+                print("❌ Por favor, especifica una materia válida")
+            else:
+                print("❌ Opción inválida. Por favor selecciona 1, 2, 3 o 4")
+        except KeyboardInterrupt:
+            print("\n⚠️ Proceso cancelado por el usuario")
+            return None
+    
+    # 2. Tema específico
+    print(f"\n🎯 TEMA ESPECÍFICO para {materia}:")
+    
+    # Sugerencias según la materia
+    if materia.lower() in ["matemáticas", "matematicas"]:
+        print("💡 Ejemplos: fracciones, multiplicación, geometría, medidas...")
+    elif materia.lower() == "lengua":
+        print("💡 Ejemplos: tiempos verbales, comprensión lectora, ortografía...")
+    elif materia.lower() == "ciencias":
+        print("💡 Ejemplos: sistema solar, estados de la materia, animales...")
+    else:
+        print("💡 Especifica el tema que quieres trabajar...")
+    
+    tema = input(f"Tema específico: ").strip()
+    if not tema:
+        print("❌ El tema no puede estar vacío")
+        tema = input("Por favor, especifica un tema: ").strip()
+    
+    # 3. Duración
+    print(f"\n⏰ DURACIÓN:")
+    print("1. 30 minutos")
+    print("2. 45 minutos") 
+    print("3. 60 minutos")
+    print("4. 90 minutos")
+    print("5. Otra duración (especificar)")
+    
+    while True:
+        try:
+            opcion_duracion = input("\nSelecciona la duración (1-5): ").strip()
+            if opcion_duracion == "1":
+                duracion = 30
+                break
+            elif opcion_duracion == "2":
+                duracion = 45
+                break
+            elif opcion_duracion == "3":
+                duracion = 60
+                break
+            elif opcion_duracion == "4":
+                duracion = 90
+                break
+            elif opcion_duracion == "5":
+                duracion_input = input("Duración en minutos: ").strip()
+                try:
+                    duracion = int(duracion_input)
+                    if duracion > 0:
+                        break
+                    else:
+                        print("❌ La duración debe ser mayor a 0 minutos")
+                except ValueError:
+                    print("❌ Por favor ingresa un número válido")
+            else:
+                print("❌ Opción inválida. Por favor selecciona 1-5")
+        except KeyboardInterrupt:
+            print("\n⚠️ Proceso cancelado por el usuario")
+            return None
+    
+    # 4. Lugar
+    print(f"\n🏢 LUGAR DE DESARROLLO:")
+    print("1. Aula")
+    print("2. Patio")
+    print("3. Ambos (aula y patio)")
+    print("4. Otro lugar (especificar)")
+    
+    while True:
+        try:
+            opcion_lugar = input("\nSelecciona el lugar (1-4): ").strip()
+            if opcion_lugar == "1":
+                lugar = "aula"
+                break
+            elif opcion_lugar == "2":
+                lugar = "patio"
+                break
+            elif opcion_lugar == "3":
+                lugar = "aula y patio"
+                break
+            elif opcion_lugar == "4":
+                lugar = input("Especifica el lugar: ").strip()
+                if lugar:
+                    break
+                print("❌ Por favor, especifica un lugar válido")
+            else:
+                print("❌ Opción inválida. Por favor selecciona 1-4")
+        except KeyboardInterrupt:
+            print("\n⚠️ Proceso cancelado por el usuario")
+            return None
+    
+    # Confirmación
+    print(f"\n✅ RESUMEN DE TU SOLICITUD:")
+    print("=" * 40)
+    print(f"📚 Materia: {materia}")
+    print(f"🎯 Tema: {tema}")
+    print(f"⏰ Duración: {duracion} minutos")
+    print(f"🏢 Lugar: {lugar}")
+    print("=" * 40)
+    
+    confirmar = input("\n¿Confirmas estos datos? (s/n): ").lower().strip()
+    if confirmar not in ['s', 'si', 'sí', 'y', 'yes']:
+        print("❌ Proceso cancelado. Ejecuta de nuevo para reintentar.")
+        return None
+    
+    return {
+        "materia": materia,
+        "tema": tema,
+        "duracion": duracion,
+        "lugar": lugar
+    }
+
 def main():
     """Función principal del sistema"""
-    print("🎯 Sistema Multi-Agente Inteligente")
-    print("=" * 50)
-    
     try:
+        # Solicitar datos al usuario
+        datos = solicitar_datos_usuario()
+        if datos is None:
+            return
+        
+        print(f"\n🚀 Iniciando generación de actividad...")
+        print("⏳ Esto puede tomar algunos minutos...")
+        
         # Crear sistema
         sistema = SistemaMultiAgenteCompleto()
         
-        # Generar actividad de prueba
+        # Crear tema combinado
+        tema_completo = f"{datos['tema']} ({datos['materia']})"
+        
+        # Generar actividad con los datos del usuario
         resultado = sistema.generar_actividad(
-            tema="Fracciones equivalentes",
+            tema=tema_completo,
             restricciones={
-                "duracion_max": 45,
-                "materiales": "básicos"
+                "materia": datos["materia"],
+                "duracion_max": datos["duracion"],
+                "lugar": datos["lugar"],
+                "nivel": "4º Primaria"
             }
         )
         
         # Guardar resultado
-        sistema.guardar_actividad(resultado)
+        archivo = f"../temp/diversificado_{datos['materia'].lower()}_{datos['tema'].replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        sistema.guardar_actividad(resultado, archivo)
         
-        print("\n🎉 Proceso completado exitosamente")
+        print(f"\n🎉 ¡Actividad de {datos['materia']} sobre '{datos['tema']}' creada exitosamente!")
+        print(f"📋 Duración: {datos['duracion']} minutos")
+        print(f"🏢 Lugar: {datos['lugar']}")
+        print(f"💾 Guardada en: {archivo}")
         
     except KeyboardInterrupt:
         print("\n⚠️ Proceso interrumpido por el usuario")
     except Exception as e:
         logger.error(f"❌ Error en el sistema principal: {e}")
         print(f"❌ Error en el sistema: {e}")
+        print("🔧 Por favor, reporta este error para que podamos solucionarlo")
 
 if __name__ == "__main__":
     main()
