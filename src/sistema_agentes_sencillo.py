@@ -423,6 +423,158 @@ class OllamaIntegrator:
         }
         """
 
+# ===== ESTADO GLOBAL Y COORDINACIÓN MEJORADA =====
+
+class EstadoGlobalProyecto:
+    """Estado centralizado del proyecto en desarrollo"""
+    
+    def __init__(self):
+        self.metadatos = {}
+        self.perfiles_estudiantes = []
+        self.recursos_disponibles = []
+        self.restricciones = {}
+        self.historial_decisiones = []
+        self.version = 1
+        self.timestamp_inicio = datetime.now().isoformat()
+        self.estado_actual = "iniciado"
+        self.errores = []
+        self.validaciones = {}
+        
+    def actualizar_estado(self, nuevo_estado: str, agente: str = None):
+        """Actualiza el estado del proyecto"""
+        self.estado_actual = nuevo_estado
+        self.historial_decisiones.append({
+            'timestamp': datetime.now().isoformat(),
+            'agente': agente,
+            'estado': nuevo_estado
+        })
+        logger.info(f"🔄 Estado actualizado: {nuevo_estado} por {agente}")
+        
+    def registrar_decision(self, agente: str, decision: str, datos: dict = None):
+        """Registra una decisión tomada por un agente"""
+        self.historial_decisiones.append({
+            'timestamp': datetime.now().isoformat(),
+            'agente': agente,
+            'decision': decision,
+            'datos': datos or {}
+        })
+        
+    def validar_coherencia(self) -> dict:
+        """Valida la coherencia global del proyecto"""
+        coherencia = {
+            'valido': True,
+            'problemas': [],
+            'sugerencias': []
+        }
+        
+        # Validar que hay contenido mínimo
+        if not self.metadatos.get('titulo'):
+            coherencia['valido'] = False
+            coherencia['problemas'].append("Falta título del proyecto")
+            
+        if not self.perfiles_estudiantes:
+            coherencia['sugerencias'].append("Recomendado cargar perfiles de estudiantes")
+            
+        # Validar coherencia temporal
+        duracion_total = self.metadatos.get('duracion', 0)
+        if isinstance(duracion_total, str):
+            # Extraer número de duración si es string
+            import re
+            duracion_match = re.search(r'(\d+)', str(duracion_total))
+            duracion_total = int(duracion_match.group(1)) if duracion_match else 0
+            
+        if duracion_total > 120:
+            coherencia['sugerencias'].append("Duración muy larga, considerar dividir en sesiones")
+            
+        return coherencia
+
+class ComunicadorAgentes:
+    """Sistema de comunicación centralizada entre agentes"""
+    
+    def __init__(self):
+        self.mensajes = []
+        self.agentes_registrados = {}
+        
+    def registrar_agente(self, nombre: str, agente):
+        """Registra un agente en el sistema de comunicación"""
+        self.agentes_registrados[nombre] = agente
+        logger.info(f"🔗 Agente registrado: {nombre}")
+        
+    def enviar_mensaje(self, remitente: str, destinatario: str, metodo: str, datos: dict) -> dict:
+        """Envía un mensaje de un agente a otro con trazabilidad"""
+        if destinatario not in self.agentes_registrados:
+            raise Exception(f"Agente destinatario no encontrado: {destinatario}")
+            
+        mensaje = {
+            'id': len(self.mensajes) + 1,
+            'timestamp': datetime.now().isoformat(),
+            'remitente': remitente,
+            'destinatario': destinatario,
+            'metodo': metodo,
+            'datos': datos,
+            'estado': 'enviado'
+        }
+        
+        self.mensajes.append(mensaje)
+        logger.info(f"📨 Mensaje {mensaje['id']}: {remitente} → {destinatario}.{metodo}")
+        
+        try:
+            # Ejecutar método en el agente destinatario
+            agente = self.agentes_registrados[destinatario]
+            metodo_func = getattr(agente, metodo, None)
+            
+            if not metodo_func:
+                raise Exception(f"Método no encontrado: {metodo} en {destinatario}")
+                
+            # Determinar argumentos según el agente
+            if destinatario == 'analizador_tareas' and metodo == 'descomponer_actividad':
+                resultado = metodo_func(datos.get('proyecto_base', {}))
+            elif destinatario == 'perfilador_estudiantes' and metodo == 'analizar_perfiles':
+                resultado = metodo_func(datos.get('tareas', {}))
+            elif destinatario == 'optimizador_asignaciones' and metodo == 'optimizar_asignaciones':
+                resultado = metodo_func(
+                    datos.get('tareas', {}),
+                    datos.get('analisis_estudiantes', {}),
+                    self.agentes_registrados.get('perfilador_estudiantes')
+                )
+            elif destinatario == 'generador_recursos' and metodo == 'generar_recursos':
+                # Extraer tareas y asignaciones de todos_los_resultados
+                todos_resultados = datos.get('todos_los_resultados', {})
+                tareas_resultado = todos_resultados.get('analizador_tareas', {})
+                asignaciones_resultado = todos_resultados.get('optimizador_asignaciones', {})
+                
+                # Extraer la lista de tareas si existe
+                tareas = tareas_resultado.get('tareas', []) if isinstance(tareas_resultado, dict) else []
+                asignaciones = asignaciones_resultado if isinstance(asignaciones_resultado, dict) else {}
+                
+                resultado = metodo_func(
+                    datos.get('proyecto_base', {}),
+                    tareas,
+                    asignaciones
+                )
+            else:
+                # Método genérico
+                resultado = metodo_func(**datos)
+                
+            mensaje['estado'] = 'completado'
+            mensaje['resultado'] = resultado
+            
+            logger.info(f"✅ Mensaje {mensaje['id']} completado exitosamente")
+            return resultado
+            
+        except Exception as e:
+            mensaje['estado'] = 'error'
+            mensaje['error'] = str(e)
+            logger.error(f"❌ Mensaje {mensaje['id']} falló: {e}")
+            raise e
+            
+    def obtener_historial(self, filtro_agente: str = None) -> list:
+        """Obtiene el historial de comunicación"""
+        if filtro_agente:
+            return [m for m in self.mensajes 
+                   if m['remitente'] == filtro_agente or m['destinatario'] == filtro_agente]
+        return self.mensajes
+
 # ===== AGENTES ESPECIALIZADOS (Refactorizados) =====
 
 class AgenteCoordinador:
@@ -432,6 +584,23 @@ class AgenteCoordinador:
         self.ollama = ollama_integrator
         self.historial_prompts = []  # Mantener por compatibilidad
         self.ejemplos_k = self._cargar_ejemplos_k()
+        
+        # Nuevos componentes de coordinación
+        self.estado_global = EstadoGlobalProyecto()
+        self.comunicador = ComunicadorAgentes()
+        
+        # Referencias a agentes especializados
+        self.agentes_especializados = {}
+        
+        # Configuración de flujo
+        self.flujo_config = {
+            'max_iteraciones': 3,
+            'validacion_automatica': True,
+            'reintentos_por_agente': 2,
+            'timeout_por_agente': 60
+        }
+        
+        logger.info("🚀 AgenteCoordinador con capacidades mejoradas inicializado")
     
     def _cargar_ejemplos_k(self) -> Dict[str, str]:
         """Carga ejemplos k_ para few-shot learning"""
@@ -1015,8 +1184,208 @@ MATERIALES: Material manipulativo, fichas de problemas, cronómetros
         
         return "2-3 sesiones"  # Por defecto
     
+    def inicializar_sistema_completo(self, sistema_agentes):
+        """Inicializa y registra todos los agentes especializados"""
+        logger.info("🔧 Inicializando sistema completo de agentes")
+        
+        # Registrar agentes en el comunicador
+        agentes_a_registrar = {
+            'analizador_tareas': sistema_agentes.analizador_tareas,
+            'perfilador_estudiantes': sistema_agentes.perfilador,
+            'optimizador_asignaciones': sistema_agentes.optimizador,
+            'generador_recursos': sistema_agentes.generador_recursos
+        }
+        
+        for nombre, agente in agentes_a_registrar.items():
+            if agente:  # Verificar que el agente existe
+                self.comunicador.registrar_agente(nombre, agente)
+                self.agentes_especializados[nombre] = agente
+            
+        logger.info(f"✅ Sistema inicializado con {len(self.agentes_especializados)} agentes especializados")
+        
+    def recoger_informacion_inicial(self, prompt_profesor: str, perfiles_estudiantes: list = None, 
+                                  recursos_disponibles: list = None, restricciones: dict = None) -> dict:
+        """Recoge y estructura toda la información inicial del proyecto"""
+        logger.info("📋 Recogiendo información inicial del proyecto")
+        
+        # Actualizar estado global con información inicial
+        self.estado_global.metadatos['prompt_original'] = prompt_profesor
+        if perfiles_estudiantes:
+            self.estado_global.perfiles_estudiantes = perfiles_estudiantes
+        if recursos_disponibles:
+            self.estado_global.recursos_disponibles = recursos_disponibles
+        if restricciones:
+            self.estado_global.restricciones = restricciones
+            
+        self.estado_global.actualizar_estado("informacion_recopilada", "AgenteCoordinador")
+        
+        # Generar ideas base usando el método existente
+        contexto_temporal = ContextoHibrido()
+        ideas = self.generar_ideas_actividades_hibrido(prompt_profesor, contexto_temporal)
+        
+        return {
+            'ideas_generadas': ideas,
+            'estado': self.estado_global,
+            'timestamp': datetime.now().isoformat()
+        }
+        
+    def ejecutar_flujo_orquestado(self, idea_seleccionada: dict, informacion_adicional: str = "") -> dict:
+        """Ejecuta el flujo completo orquestado con validaciones y manejo de errores"""
+        logger.info("🚀 Iniciando flujo orquestado mejorado")
+        
+        # Actualizar estado global con idea seleccionada
+        self.estado_global.metadatos.update(idea_seleccionada)
+        self.estado_global.metadatos['informacion_adicional'] = informacion_adicional
+        self.estado_global.actualizar_estado("ejecutando_flujo", "AgenteCoordinador")
+        
+        # Definir flujo de ejecución
+        flujo = [
+            {
+                'agente': 'analizador_tareas',
+                'metodo': 'descomponer_actividad',
+                'prioridad': 1,
+                'descripcion': 'Descomponer actividad en tareas específicas'
+            },
+            {
+                'agente': 'perfilador_estudiantes',
+                'metodo': 'analizar_perfiles',
+                'prioridad': 2,
+                'descripcion': 'Analizar perfiles de estudiantes'
+            },
+            {
+                'agente': 'optimizador_asignaciones',
+                'metodo': 'optimizar_asignaciones',
+                'prioridad': 3,
+                'descripcion': 'Optimizar asignaciones estudiante-tarea'
+            },
+            {
+                'agente': 'generador_recursos',
+                'metodo': 'generar_recursos',
+                'prioridad': 4,
+                'descripcion': 'Generar recursos educativos'
+            }
+        ]
+        
+        # Ejecutar cada paso del flujo
+        resultados = {}
+        proyecto_base = self.coordinar_proceso(idea_seleccionada, informacion_adicional)
+        
+        for i, paso in enumerate(flujo):
+            try:
+                logger.info(f"⚙️ Paso {i+1}/{len(flujo)}: {paso['descripcion']}")
+                
+                # Ejecutar agente usando el comunicador si está disponible
+                if paso['agente'] in self.agentes_especializados:
+                    datos = self._preparar_datos_para_agente(paso['agente'], proyecto_base, resultados)
+                    resultado = self.comunicador.enviar_mensaje(
+                        remitente="AgenteCoordinador",
+                        destinatario=paso['agente'],
+                        metodo=paso['metodo'],
+                        datos=datos
+                    )
+                    resultados[paso['agente']] = resultado
+                    
+                    # Validación intermedia
+                    coherencia = self.estado_global.validar_coherencia()
+                    if coherencia['sugerencias']:
+                        logger.info(f"💡 Sugerencias: {coherencia['sugerencias']}")
+                        
+                    logger.info(f"✅ Paso {i+1} completado exitosamente")
+                else:
+                    logger.warning(f"⚠️ Agente {paso['agente']} no disponible, saltando paso")
+                    
+            except Exception as e:
+                logger.error(f"❌ Error en paso {i+1} ({paso['agente']}): {e}")
+                self.estado_global.errores.append({
+                    'paso': i+1,
+                    'agente': paso['agente'],
+                    'error': str(e),
+                    'timestamp': datetime.now().isoformat()
+                })
+                
+                # Continuar con el siguiente paso en caso de error
+                continue
+                
+        # Consolidación final
+        return self._consolidar_resultados_mejorado(proyecto_base, resultados)
+        
+    def _preparar_datos_para_agente(self, agente_nombre: str, proyecto_base: dict, resultados: dict) -> dict:
+        """Prepara los datos necesarios para cada agente"""
+        datos_base = {
+            'contexto_global': self.estado_global.metadatos,
+            'timestamp': datetime.now().isoformat()
+        }
+        
+        if agente_nombre == 'analizador_tareas':
+            datos_base['proyecto_base'] = proyecto_base
+        elif agente_nombre == 'perfilador_estudiantes':
+            datos_base['tareas'] = resultados.get('analizador_tareas', {})
+        elif agente_nombre == 'optimizador_asignaciones':
+            datos_base.update({
+                'tareas': resultados.get('analizador_tareas', {}),
+                'analisis_estudiantes': resultados.get('perfilador_estudiantes', {})
+            })
+        elif agente_nombre == 'generador_recursos':
+            datos_base.update({
+                'proyecto_base': proyecto_base,
+                'todos_los_resultados': resultados
+            })
+            
+        return datos_base
+        
+    def _consolidar_resultados_mejorado(self, proyecto_base: dict, resultados: dict) -> dict:
+        """Consolida todos los resultados en un proyecto coherente mejorado"""
+        logger.info("🔄 Consolidando resultados finales con validación avanzada")
+        
+        self.estado_global.actualizar_estado("consolidando", "AgenteCoordinador")
+        
+        # Validación final de coherencia
+        coherencia_final = self.estado_global.validar_coherencia()
+        
+        # Estadísticas del proceso
+        estadisticas = {
+            'total_agentes_ejecutados': len(resultados),
+            'total_mensajes': len(self.comunicador.mensajes),
+            'errores_encontrados': len(self.estado_global.errores),
+            'tiempo_total': datetime.now().isoformat()
+        }
+        
+        proyecto_final = {
+            'proyecto_base': proyecto_base,
+            'resultados_agentes': {
+                'tareas': resultados.get('analizador_tareas', {}),
+                'perfiles': resultados.get('perfilador_estudiantes', {}),
+                'asignaciones': resultados.get('optimizador_asignaciones', {}),
+                'recursos': resultados.get('generador_recursos', {})
+            },
+            'estado_global': {
+                'metadatos': self.estado_global.metadatos,
+                'estado_final': self.estado_global.estado_actual,
+                'historial_decisiones': self.estado_global.historial_decisiones,
+                'errores': self.estado_global.errores
+            },
+            'validacion': {
+                'coherencia_final': coherencia_final,
+                'estadisticas': estadisticas
+            },
+            'comunicacion': {
+                'historial_mensajes': self.comunicador.obtener_historial(),
+                'total_comunicaciones': len(self.comunicador.mensajes)
+            },
+            'timestamp_finalizacion': datetime.now().isoformat()
+        }
+        
+        self.estado_global.actualizar_estado("completado", "AgenteCoordinador")
+        
+        # Log de resumen final
+        logger.info(f"✅ Proyecto completado: {estadisticas['total_agentes_ejecutados']} agentes, {estadisticas['total_mensajes']} mensajes")
+        if isinstance(coherencia_final, dict) and coherencia_final.get('sugerencias'):
+            logger.info(f"💡 Sugerencias finales: {coherencia_final['sugerencias']}")
+        
+        return proyecto_final
+        
     def coordinar_proceso(self, actividad_seleccionada: Dict, info_adicional: str = "") -> Dict:
-        """Coordina todo el proceso de creación del proyecto ABP"""
+        """Coordina todo el proceso de creación del proyecto ABP (Método original mantenido por compatibilidad)"""
         if info_adicional:
             self.historial_prompts.append({
                 "tipo": "info_adicional",
@@ -1031,10 +1400,15 @@ MATERIALES: Material manipulativo, fichas de problemas, cronómetros
             "titulo": actividad_seleccionada.get("titulo", "Proyecto ABP"),
             "descripcion": actividad_seleccionada.get("descripcion", ""),
             "nivel": actividad_seleccionada.get("nivel", "4º Primaria"),
-            "competencias_base": actividad_seleccionada.get("competencias", "").split(", "),
+            "competencias_base": actividad_seleccionada.get("competencias", "").split(", ") if actividad_seleccionada.get("competencias") else [],
             "duracion_base": actividad_seleccionada.get("duracion", "2 semanas"),
             "info_adicional": info_adicional
         }
+        
+        # Registrar en estado global si está disponible
+        if hasattr(self, 'estado_global') and self.estado_global:
+            self.estado_global.metadatos.update(proyecto_base)
+            self.estado_global.actualizar_estado("estructura_base_creada", "AgenteCoordinador")
         
         return proyecto_base
 
@@ -1709,19 +2083,22 @@ class SistemaAgentesABP:
         # CONTEXTO HÍBRIDO (reemplaza el contexto JSON rígido)
         self.contexto_hibrido = ContextoHibrido()
         
-        # Inicializar agentes
+        # Inicializar coordinador primero
         self.coordinador = AgenteCoordinador(self.ollama)
+        
+        # Inicializar agentes especializados
         self.analizador_tareas = AgenteAnalizadorTareas(self.ollama)
         self.perfilador = AgentePerfiladorEstudiantes(self.ollama)
-        
-        # El optimizador recibe referencia al perfilador
         self.optimizador = AgenteOptimizadorAsignaciones(self.ollama)
         self.generador_recursos = AgenteGeneradorRecursos(self.ollama)
+        
+        # Registrar agentes en el coordinador DESPUÉS de crearlos
+        self.coordinador.inicializar_sistema_completo(self)
         
         self.proyecto_actual = None
         self.validado = False
         
-        logger.info("🚀 Sistema de Agentes ABP inicializado con contexto híbrido")
+        logger.info("🚀 Sistema de Agentes ABP inicializado con coordinador mejorado")
         
     def ejecutar_flujo_completo(self) -> Dict:
         """Ejecuta el flujo completo del sistema"""
@@ -1732,9 +2109,16 @@ class SistemaAgentesABP:
         # PASO 1: Prompt inicial del profesor
         prompt_profesor = input("\n📝 Ingrese su prompt de actividad educativa: ")
         
-        # PASO 2: Generar ideas de actividades con contexto híbrido
-        print("\n🧠 Generando ideas de actividades...")
-        ideas = self.coordinador.generar_ideas_actividades_hibrido(prompt_profesor, self.contexto_hibrido)
+        # PASO 2: Recolección de información inicial con coordinador mejorado
+        print("\n📋 Recopilando información inicial...")
+        perfiles_estudiantes = self.perfilador._cargar_perfiles_reales()
+        
+        info_inicial = self.coordinador.recoger_informacion_inicial(
+            prompt_profesor=prompt_profesor,
+            perfiles_estudiantes=perfiles_estudiantes
+        )
+        
+        ideas = info_inicial['ideas_generadas']
         
         print("\n💡 IDEAS GENERADAS:")
         for i, idea in enumerate(ideas, 1):
@@ -1875,34 +2259,99 @@ class SistemaAgentesABP:
         # PASO 4: Información adicional (opcional)
         info_adicional = input("\n📋 ¿Información adicional específica? (Enter para continuar): ")
         
-        # PASO 5: Coordinar proceso
-        print("\n🎯 Coordinando proyecto...")
-        proyecto_base = self.coordinador.coordinar_proceso(actividad_seleccionada, info_adicional)
+        # PASO 5: Ejecutar flujo orquestado completo
+        print(f"\n🚀 Ejecutando flujo orquestado para: {actividad_seleccionada.get('titulo', 'Sin título')}...")
+        proyecto_final = self.coordinador.ejecutar_flujo_orquestado(actividad_seleccionada, info_adicional)
         
-        # PASO 6: Analizar tareas
-        print("\n🔍 Analizando y descomponiendo tareas...")
-        tareas = self.analizador_tareas.descomponer_actividad(proyecto_base)
+        # Mostrar resumen del proceso
+        self._mostrar_resumen_proceso(proyecto_final)
         
-        # PASO 7: Perfilar estudiantes
-        print("\n👥 Analizando perfiles de estudiantes...")
-        analisis_estudiantes = self.perfilador.analizar_perfiles(tareas)
-        
-        # PASO 8: Optimizando asignaciones
-        print("\n⚖️ Optimizando asignaciones...")
-        asignaciones = self.optimizador.optimizar_asignaciones(tareas, analisis_estudiantes, self.perfilador)
-        
-        # PASO 9: Generar recursos
-        print("\n📚 Generando recursos necesarios...")
-        recursos = self.generador_recursos.generar_recursos(proyecto_base, tareas, asignaciones)
-        
-        # PASO 10: Crear proyecto final
-        proyecto_final = self._crear_proyecto_final(proyecto_base, tareas, asignaciones, recursos)
-        
-        # PASO 11: Validación
-        self._ejecutar_validacion(proyecto_final)
+        # Validación mejorada
+        self._ejecutar_validacion_mejorada(proyecto_final)
         
         return proyecto_final
     
+    def _mostrar_resumen_proceso(self, proyecto_final: dict):
+        """Muestra un resumen detallado del proceso ejecutado"""
+        validacion = proyecto_final.get('validacion', {})
+        if not isinstance(validacion, dict):
+            validacion = {}
+            
+        estadisticas = validacion.get('estadisticas', {})
+        if not isinstance(estadisticas, dict):
+            estadisticas = {}
+            
+        print(f"\n📏 RESUMEN DEL PROCESO:")
+        print(f"   • Agentes ejecutados: {estadisticas.get('total_agentes_ejecutados', 'N/A')}")
+        print(f"   • Mensajes intercambiados: {estadisticas.get('total_mensajes', 'N/A')}")
+        print(f"   • Errores encontrados: {estadisticas.get('errores_encontrados', 'N/A')}")
+        
+        coherencia = validacion.get('coherencia_final', {})
+        if not isinstance(coherencia, dict):
+            coherencia = {}
+            
+        if coherencia.get('sugerencias'):
+            print(f"\n💡 SUGERENCIAS:")
+            for sugerencia in coherencia['sugerencias']:
+                print(f"   • {sugerencia}")
+        
+        if coherencia.get('problemas'):
+            print(f"\n⚠️ PROBLEMAS DETECTADOS:")
+            for problema in coherencia['problemas']:
+                print(f"   • {problema}")
+                
+    def _ejecutar_validacion_mejorada(self, proyecto_final: dict):
+        """Ejecuta validación mejorada con información detallada"""
+        print("\n🔍 VALIDACIÓN FINAL:")
+        
+        proyecto_base = proyecto_final.get('proyecto_base', {})
+        if not isinstance(proyecto_base, dict):
+            proyecto_base = {}
+            
+        resultados = proyecto_final.get('resultados_agentes', {})
+        if not isinstance(resultados, dict):
+            resultados = {}
+        
+        print(f"Título: {proyecto_base.get('titulo', 'N/A')}")
+        print(f"Descripción: {proyecto_base.get('descripcion', 'N/A')}")
+        
+        # Acceso seguro a resultados anidados
+        tareas_info = resultados.get('tareas', {})
+        tareas_list = tareas_info.get('tareas', []) if isinstance(tareas_info, dict) else []
+        print(f"Tareas generadas: {len(tareas_list)}")
+        
+        perfiles_info = resultados.get('perfiles', {})
+        perfiles_list = perfiles_info.get('perfiles', []) if isinstance(perfiles_info, dict) else []
+        print(f"Estudiantes analizados: {len(perfiles_list)}")
+        
+        asignaciones_info = resultados.get('asignaciones', {})
+        asignaciones_list = asignaciones_info.get('asignaciones', []) if isinstance(asignaciones_info, dict) else []
+        print(f"Asignaciones creadas: {len(asignaciones_list)}")
+        
+        recursos_info = resultados.get('recursos', {})
+        recursos_list = recursos_info.get('recursos', []) if isinstance(recursos_info, dict) else []
+        print(f"Recursos generados: {len(recursos_list)}")
+        
+        # Validación manual con información mejorada
+        estado_global = proyecto_final.get('estado_global', {})
+        if not isinstance(estado_global, dict):
+            estado_global = {}
+            
+        estado_final = estado_global.get('estado_final', 'desconocido')
+        
+        if estado_final == "completado":
+            validacion_manual = input("\n✅ ¿Aprueba el proyecto generado? (s/n): ").lower().startswith('s')
+            
+            if validacion_manual:
+                print("✅ Proyecto aprobado y completado exitosamente")
+                self.validado = True
+            else:
+                print("❌ Proyecto rechazado - Puede ejecutar nuevamente para mejoras")
+                self.validado = False
+        else:
+            print(f"⚠️ Proyecto completado con estado: {estado_final}")
+            self.validado = False
+
     def _crear_proyecto_final(self, proyecto_base: Dict, tareas: List[Tarea], 
                             asignaciones: Dict, recursos: Dict) -> Dict:
         """Crea la estructura final del proyecto"""
