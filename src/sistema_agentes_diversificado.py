@@ -892,11 +892,11 @@ class SistemaMultiAgenteCompleto:
         """Guarda la actividad generada en un archivo JSON"""
         if not archivo:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            archivo = f"../temp/diversificado_inteligente_{timestamp}.json"
+            archivo = f"../../temp/diversificado_inteligente_{timestamp}.json"
         else:
-            # Asegurar que el archivo se guarde en ../temp/
-            if not archivo.startswith('../temp/'):
-                archivo = f"../temp/{archivo}"
+            # Asegurar que el archivo se guarde en ../../temp/
+            if not archivo.startswith('../../temp/'):
+                archivo = f"../../temp/{archivo}"
         
         # Convertir a diccionario serializable
         data = {
@@ -1103,7 +1103,7 @@ def main():
         )
         
         # Guardar resultado
-        archivo = f"../temp/diversificado_{datos['materia'].lower()}_{datos['tema'].replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        archivo = f"../../temp/diversificado_{datos['materia'].lower()}_{datos['tema'].replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         sistema.guardar_actividad(resultado, archivo)
         
         print(f"\n🎉 ¡Actividad de {datos['materia']} sobre '{datos['tema']}' creada exitosamente!")
