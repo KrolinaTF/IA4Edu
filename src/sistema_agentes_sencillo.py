@@ -7,6 +7,7 @@ Arquitectura modular con 5 agentes especializados y validación iterativa
 import json
 import os
 import re
+import requests
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, asdict, is_dataclass
@@ -28,7 +29,6 @@ def parse_json_seguro(texto: str) -> Optional[dict]:
         texto_limpio = texto.replace("```json", "").replace("```", "").strip()
         if texto_limpio.startswith("A continuación") or texto_limpio.startswith("Aquí"):
             # El LLM respondió en texto plano, extraer JSON si existe
-            import re
             json_match = re.search(r'\{.*\}', texto_limpio, re.DOTALL)
             if json_match:
                 texto_limpio = json_match.group()
@@ -318,31 +318,10 @@ class ContextoHibrido:
         """MÉTODO OBSOLETO - Usar determinar_accion() en su lugar"""
         return self.determinar_accion(prompt_nuevo)
     
-    def extraer_informacion_prompt_legacy(self, prompt: str) -> Dict:
-        """MÉTODO OBSOLETO - Solo para compatibilidad hacia atrás"""
-        # Este método se mantiene por compatibilidad pero ya no se usa
-        # La auto-detección se hace en autodetectar_metadatos()
-        return {}
     
-    def actualizar_contexto_legacy(self, prompt: str, accion: str) -> List[str]:
-        """MÉTODO OBSOLETO - El contexto ahora se actualiza automáticamente"""
-        # Este método ya no se usa - el contexto se actualiza en procesar_respuesta_llm()
-        logger.warning("⚠️ Método obsoleto actualizar_contexto_legacy() llamado")
-        return []
     
-    def registrar_idea_rechazada_legacy(self, idea: Dict, razon: str = "No especificada"):
-        """MÉTODO OBSOLETO - Las ideas rechazadas se manejan automáticamente en ContextoHibrido"""
-        logger.info(f"❌ Idea rechazada (legacy): {idea.get('titulo', 'Sin título')} - {razon}")
     
-    def obtener_contexto_completo_legacy(self) -> str:
-        """MÉTODO OBSOLETO - El contexto se maneja ahora en ContextoHibrido"""
-        return "Contexto legacy no disponible - usar ContextoHibrido"
-        
-        return descripcion
     
-    def obtener_json_contexto_legacy(self) -> Dict:
-        """MÉTODO OBSOLETO - Usar ContextoHibrido en su lugar"""
-        return {}  # El contexto ahora está en ContextoHibrido
 
 # ===== INTEGRACIÓN OLLAMA =====
 # (Mantiene el mismo integrador de Ollama, no necesita cambios)
@@ -356,7 +335,6 @@ class OllamaIntegrator:
         self.base_url = f"http://{host}:{port}"
         
         # Conectar directamente con Ollama API usando requests
-        import requests
         self.session = requests.Session()
         
         # Probar conexión con Ollama
@@ -479,7 +457,6 @@ class EstadoGlobalProyecto:
         duracion_total = self.metadatos.get('duracion', 0)
         if isinstance(duracion_total, str):
             # Extraer número de duración si es string
-            import re
             duracion_match = re.search(r'(\d+)', str(duracion_total))
             duracion_total = int(duracion_match.group(1)) if duracion_match else 0
             
@@ -605,13 +582,18 @@ class AgenteCoordinador:
     def _cargar_ejemplos_k(self) -> Dict[str, str]:
         """Carga ejemplos k_ para few-shot learning"""
         ejemplos = {}
-        # Rutas correctas para los archivos k_
+        
+        # Obtener directorio base del proyecto
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        base_dir = os.path.dirname(script_dir)  # Subir un nivel desde /src
+        
+        # Rutas absolutas para los archivos k_
         archivos_k = [
-            "../data/actividades/k_feria_acertijos.txt",
-            "../data/actividades/k_sonnet_supermercado.txt", 
-            "../data/actividades/k_celula.txt",
-            "../data/actividades/k_piratas.txt",
-            "../data/actividades/k_sonnet7_fabrica_fracciones.txt"
+            os.path.join(base_dir, "data", "actividades", "k_feria_acertijos.txt"),
+            os.path.join(base_dir, "data", "actividades", "k_sonnet_supermercado.txt"), 
+            os.path.join(base_dir, "data", "actividades", "k_celula.txt"),
+            os.path.join(base_dir, "data", "actividades", "k_piratas.txt"),
+            os.path.join(base_dir, "data", "actividades", "k_sonnet7_fabrica_fracciones.txt")
         ]
         
         for archivo in archivos_k:
@@ -671,12 +653,6 @@ class AgenteCoordinador:
         
         return ideas
     
-    def generar_ideas_actividades(self, prompt_profesor: str) -> List[Dict]:
-        """MÉTODO LEGACY - Usar generar_ideas_actividades_hibrido() en su lugar"""
-        logger.warning("⚠️ Método legacy generar_ideas_actividades() llamado")
-        # Fallback al método híbrido con contexto temporal
-        contexto_temporal = ContextoHibrido()
-        return self.generar_ideas_actividades_hibrido(prompt_profesor, contexto_temporal)
     
     def _crear_prompt_hibrido(self, prompt_profesor: str, contexto_hibrido: ContextoHibrido) -> str:
         """Crea prompt usando contexto híbrido auto-detectado"""
@@ -766,63 +742,6 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         
         return prompt_hibrido
     
-    def _crear_prompt_con_contexto_legacy(self) -> str:
-        """MÉTODO LEGACY - Mantener por compatibilidad"""
-        logger.warning("⚠️ Método legacy _crear_prompt_con_contexto() llamado")
-        # Método original conservado pero no usado
-        return "Prompt legacy no disponible"
-        
-        # Método legacy - conservado para compatibilidad
-        if ejemplo_seleccionado:
-            seccion_ejemplo = f"""
-=== EJEMPLO DE ACTIVIDAD EXITOSA ===
-{ejemplo_seleccionado}
-
-=== PATRONES A SEGUIR ===
-• NARRATIVA INMERSIVA: Contextualizar con historias atractivas
-• OBJETIVOS CLAROS: Competencias específicas del tema + habilidades transversales
-• ROL DOCENTE: Observación activa, guía discreta, gestión emocional
-• ADAPTACIONES: Específicas para TEA, TDAH, altas capacidades
-• MATERIALES CONCRETOS: Manipulativos, reales, accesibles"""
-        else:
-            seccion_ejemplo = f"""
-=== PRINCIPIOS PEDAGÓGICOS ===
-• CENTRADO EN EL ESTUDIANTE: Actividades que partan de sus intereses y necesidades
-• APRENDIZAJE SIGNIFICATIVO: Conectar con experiencias reales y contextos auténticos
-• INCLUSIÓN: Adaptaciones para TEA (Elena), TDAH (Luis), altas capacidades (Ana)
-• COLABORACIÓN: Fomentar trabajo en equipo y comunicación
-• CREATIVIDAD: Permitir múltiples formas de expresión y solución"""
-
-        prompt_fewshot = f"""
-Eres un experto en diseño de actividades educativas para 4º de Primaria. 
-
-{contexto_completo}
-{seccion_ejemplo}
-
-=== INSTRUCCIONES ===
-Basándote ÚNICAMENTE en el CONTEXTO ACUMULATIVO proporcionado, genera exactamente 3 ideas de actividades educativas diferentes que:
-
-1. Sean coherentes con el tema y enfoque ya establecido
-2. Eviten repetir las ideas rechazadas anteriormente
-3. Incorporen las preferencias del profesor
-4. Respeten las restricciones mencionadas
-5. NO agregues elementos que no estén en el contexto del profesor
-
-FORMATO EXACTO:
-IDEA 1:
-Título: [título contextualizado]
-Descripción: [descripción que respete exactamente el contexto proporcionado]
-Nivel: 4º Primaria
-Competencias: [competencias relevantes al tema específico]
-Duración: [tiempo realista según contexto]
-
-IDEA 2:
-[mismo formato...]
-
-IDEA 3:
-[mismo formato...]
-"""
-        return prompt_fewshot
     
     def _seleccionar_ejemplo_relevante(self, tema: str) -> str:
         """Selecciona el ejemplo k_ más relevante según el tema del contexto JSON"""
@@ -1019,170 +938,6 @@ MATERIALES: Material manipulativo, fichas de problemas, cronómetros
                 return match.group(0)
         
         return "2-3 sesiones"
-    
-    
-    def _parsear_ideas(self, respuesta: str) -> List[Dict]:
-        """Parsea la respuesta para extraer las 3 ideas con múltiples patrones"""
-        ideas = []
-        
-        # Intentar múltiples patrones de división
-        patrones_division = ["IDEA ", "**IDEA ", "# IDEA ", "\n\n"]
-        partes = None
-        
-        for patron in patrones_division:
-            temp_partes = respuesta.split(patron)
-            if len(temp_partes) > 1:
-                partes = temp_partes
-                break
-        
-        if not partes:
-            # Si no hay divisiones claras, tratar toda la respuesta como una idea
-            partes = ["", respuesta]
-        
-        # Procesar cada parte encontrada
-        for i, parte in enumerate(partes[1:]):  # Saltar primera parte vacía
-            if not parte.strip() or i >= 3:  # Máximo 3 ideas
-                continue
-                
-            idea = {
-                "id": f"idea_{i+1}",
-                "titulo": self._extraer_titulo_inteligente(parte),
-                "descripcion": self._extraer_descripcion_inteligente(parte),
-                "nivel": self._extraer_nivel_inteligente(parte),
-                "competencias": self._extraer_competencias_inteligente(parte),
-                "duracion": self._extraer_duracion_inteligente(parte)
-            }
-            ideas.append(idea)
-        
-        # Si no se encontraron ideas estructuradas, crear una única idea general
-        if not ideas:
-            ideas.append({
-                "id": "idea_1",
-                "titulo": self._extraer_titulo_inteligente(respuesta),
-                "descripcion": respuesta[:200] + "..." if len(respuesta) > 200 else respuesta,
-                "nivel": "4º Primaria",
-                "competencias": "Matemáticas, trabajo en equipo",
-                "duracion": "2-3 sesiones"
-            })
-        
-        return ideas  # Devolver todas las ideas generadas
-    
-    def _extraer_campo(self, texto: str, campo: str) -> str:
-        """Extrae un campo específico del texto"""
-        lines = texto.split('\n')
-        for line in lines:
-            if campo in line:
-                return line.replace(campo, '').strip()
-        return "No especificado"
-    
-    def _extraer_titulo_inteligente(self, texto: str) -> str:
-        """Extrae título usando múltiples patrones"""
-        # Patrones en orden de prioridad
-        patrones = [
-            r'Título:\s*([^\n]+)',
-            r'\*\*([^*]+)\*\*',
-            r'"([^"]+)"',
-            r'\d+[.:)]\s*([^\n]+)',
-            r'^([^\n.!?]+)[.!?]?'
-        ]
-        
-        for patron in patrones:
-            match = re.search(patron, texto, re.IGNORECASE | re.MULTILINE)
-            if match:
-                titulo = match.group(1).strip()
-                # Limpiar caracteres no deseados
-                titulo = re.sub(r'^[\d\s.*:-]+', '', titulo).strip()
-                if len(titulo) > 5:  # Título mínimo razonable
-                    return titulo
-        
-        return "Actividad Educativa"
-    
-    def _extraer_descripcion_inteligente(self, texto: str) -> str:
-        """Extrae descripción usando múltiples patrones"""
-        # Buscar descripción explícita
-        desc_match = re.search(r'Descripción:\s*([^\n]+(?:\n[^\n:]+)*)', texto, re.IGNORECASE)
-        if desc_match:
-            return desc_match.group(1).strip()
-        
-        # Buscar párrafos descriptivos (líneas largas sin ":")
-        lines = texto.split('\n')
-        for line in lines:
-            line = line.strip()
-            if len(line) > 50 and ':' not in line and not line.startswith(('Nivel', 'Duración', 'Competencias')):
-                return line
-        
-        return "Actividad práctica para desarrollar competencias matemáticas"
-    
-    def _extraer_nivel_inteligente(self, texto: str) -> str:
-        """Extrae nivel educativo usando múltiples patrones"""
-        # Buscar nivel explícito
-        nivel_match = re.search(r'Nivel:\s*([^\n]+)', texto, re.IGNORECASE)
-        if nivel_match:
-            return nivel_match.group(1).strip()
-        
-        # Buscar palabras clave de nivel
-        keywords = {
-            'primaria': '4º Primaria',
-            'cuarto': '4º Primaria', 
-            'secundaria': 'Secundaria',
-            'infantil': 'Educación Infantil'
-        }
-        
-        texto_lower = texto.lower()
-        for keyword, nivel in keywords.items():
-            if keyword in texto_lower:
-                return nivel
-        
-        return "4º Primaria"  # Por defecto
-    
-    def _extraer_competencias_inteligente(self, texto: str) -> str:
-        """Extrae competencias usando múltiples patrones"""
-        # Buscar competencias explícitas
-        comp_match = re.search(r'Competencias:\s*([^\n]+)', texto, re.IGNORECASE)
-        if comp_match:
-            return comp_match.group(1).strip()
-        
-        # Buscar palabras clave de competencias
-        competencias_encontradas = []
-        keywords = {
-            'matemáticas': 'Competencia matemática',
-            'fracciones': 'Competencia matemática',
-            'sumas': 'Competencia matemática',
-            'decimales': 'Competencia matemática',
-            'comunicación': 'Competencia lingüística',
-            'trabajo en equipo': 'Competencia social',
-            'creatividad': 'Competencia artística',
-            'tecnología': 'Competencia digital'
-        }
-        
-        texto_lower = texto.lower()
-        for keyword, competencia in keywords.items():
-            if keyword in texto_lower and competencia not in competencias_encontradas:
-                competencias_encontradas.append(competencia)
-        
-        return ', '.join(competencias_encontradas) if competencias_encontradas else "Competencia matemática, trabajo colaborativo"
-    
-    def _extraer_duracion_inteligente(self, texto: str) -> str:
-        """Extrae duración usando múltiples patrones"""
-        # Buscar duración explícita
-        dur_match = re.search(r'Duración:\s*([^\n]+)', texto, re.IGNORECASE)
-        if dur_match:
-            return dur_match.group(1).strip()
-        
-        # Buscar patrones de tiempo
-        tiempo_patterns = [
-            r'(\d+)\s*sesiones?',
-            r'(\d+)\s*horas?',
-            r'(\d+)\s*días?',
-            r'(\d+)\s*semanas?'
-        ]
-        
-        for pattern in tiempo_patterns:
-            match = re.search(pattern, texto, re.IGNORECASE)
-            if match:
-                return match.group(0)
-        
-        return "2-3 sesiones"  # Por defecto
     
     def inicializar_sistema_completo(self, sistema_agentes):
         """Inicializa y registra todos los agentes especializados"""
@@ -1524,7 +1279,11 @@ class AgentePerfiladorEstudiantes:
     def _cargar_perfiles_reales(self) -> List[Estudiante]:
         """Carga los perfiles reales específicos del AULA_A_4PRIM desde el archivo JSON"""
         try:
-            with open("perfiles_4_primaria.json", "r", encoding="utf-8") as f:
+            # Obtener ruta absoluta al archivo de perfiles
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            perfiles_path = os.path.join(script_dir, "perfiles_4_primaria.json")
+            
+            with open(perfiles_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
             
             estudiantes = []
