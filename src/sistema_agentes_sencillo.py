@@ -8,6 +8,7 @@ import json
 import os
 import re
 import requests
+import inspect
 from datetime import datetime
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, asdict, is_dataclass
@@ -492,23 +493,52 @@ class EstadoGlobalProyecto:
             
         return coherencia
 
+
 class ComunicadorAgentes:
     """Sistema de comunicación centralizada entre agentes"""
     
     def __init__(self):
         self.mensajes = []
         self.agentes_registrados = {}
+        self.interfaces_agentes = {}  # Nuevo: registro de métodos y parámetros
         
     def registrar_agente(self, nombre: str, agente):
-        """Registra un agente en el sistema de comunicación"""
+        """
+        Registra un agente en el sistema de comunicación
+        
+        Args:
+            nombre: Identificador único del agente
+            agente: Instancia del agente
+        """
         self.agentes_registrados[nombre] = agente
-        logger.info(f"🔗 Agente registrado: {nombre}")
+        
+        # Nuevo: registrar métodos públicos del agente (no los que empiezan con _)
+        self.interfaces_agentes[nombre] = {
+            method_name: method 
+            for method_name, method in inspect.getmembers(agente, inspect.ismethod)
+            if not method_name.startswith('_') and method_name != 'process'
+        }
+        
+        logger.info(f"🔗 Agente registrado: {nombre} con {len(self.interfaces_agentes[nombre])} métodos")
         
     def enviar_mensaje(self, remitente: str, destinatario: str, metodo: str, datos: dict) -> dict:
-        """Envía un mensaje de un agente a otro con trazabilidad"""
+        """
+        Envía un mensaje de un agente a otro y ejecuta el método correspondiente
+        
+        Args:
+            remitente: Nombre del agente que envía el mensaje
+            destinatario: Nombre del agente destinatario
+            metodo: Nombre del método a ejecutar
+            datos: Datos para el método
+            
+        Returns:
+            Resultado de la ejecución del método
+        """
+        # Verificar existencia del destinatario
         if destinatario not in self.agentes_registrados:
             raise Exception(f"Agente destinatario no encontrado: {destinatario}")
             
+        # Crear registro del mensaje
         mensaje = {
             'id': len(self.mensajes) + 1,
             'timestamp': datetime.now().isoformat(),
@@ -523,41 +553,20 @@ class ComunicadorAgentes:
         logger.info(f"📨 Mensaje {mensaje['id']}: {remitente} → {destinatario}.{metodo}")
         
         try:
-            # Ejecutar método en el agente destinatario
+            # Obtener el agente y el método
             agente = self.agentes_registrados[destinatario]
-            metodo_func = getattr(agente, metodo, None)
             
-            if not metodo_func:
+            # Verificar si el método existe
+            if metodo not in self.interfaces_agentes[destinatario]:
                 raise Exception(f"Método no encontrado: {metodo} en {destinatario}")
-                
-            # Determinar argumentos según el agente
-            if destinatario == 'analizador_tareas' and metodo == 'descomponer_actividad':
-                resultado = metodo_func(datos.get('proyecto_base', {}))
-            elif destinatario == 'perfilador_estudiantes' and metodo == 'analizar_perfiles':
-                resultado = metodo_func(datos.get('tareas', {}))
-            elif destinatario == 'optimizador_asignaciones' and metodo == 'optimizar_asignaciones':
-                resultado = metodo_func(
-                    datos.get('tareas', {}),
-                    datos.get('analisis_estudiantes', {}),
-                    self.agentes_registrados.get('perfilador_estudiantes')
-                )
-            elif destinatario == 'generador_recursos' and metodo == 'generar_recursos':
-                # Extraer tareas y asignaciones de todos_los_resultados
-                todos_resultados = datos.get('todos_los_resultados', {})
-                tareas_resultado = todos_resultados.get('analizador_tareas', {})
-                asignaciones_resultado = todos_resultados.get('optimizador_asignaciones', {})
-                
-                # Extraer la lista de tareas si existe
-                tareas = tareas_resultado.get('tareas', []) if isinstance(tareas_resultado, dict) else []
-                asignaciones = asignaciones_resultado if isinstance(asignaciones_resultado, dict) else {}
-                
-                resultado = metodo_func(
-                    datos.get('proyecto_base', {}),
-                    tareas,
-                    asignaciones
-                )
+            
+            metodo_func = self.interfaces_agentes[destinatario][metodo]
+            
+            # Ejecutar el método (utilizando process como interfaz estándar)
+            if hasattr(agente, 'process') and metodo == 'process':
+                resultado = agente.process(**datos)
             else:
-                # Método genérico
+                # Método específico del agente
                 resultado = metodo_func(**datos)
                 
             mensaje['estado'] = 'completado'
@@ -757,26 +766,37 @@ class BaseAgent(ABC):
 class AgenteCoordinador:
     """Agente Coordinador Principal (Master Agent) - CON CONTEXTO HÍBRIDO AUTO-DETECTADO"""
     
-    def __init__(self):
-        # Inicializar integrador Ollama propio
-        self.ollama = OllamaIntegrator()
+    def __init__(self, ollama_integrator=None, analizador_tareas=None, perfilador=None, 
+                 optimizador=None, generador_recursos=None):
+        """
+        Inicializa el coordinador con agentes inyectados o valores por defecto
         
-        self.historial_prompts = []  # Mantener por compatibilidad
+        Args:
+            ollama_integrator: Integrador Ollama (opcional)
+            analizador_tareas: Agente analizador de tareas (opcional)
+            perfilador: Agente perfilador de estudiantes (opcional)
+            optimizador: Agente optimizador de asignaciones (opcional)
+            generador_recursos: Agente generador de recursos (opcional)
+        """
+        # Inicializar integrador Ollama
+        self.ollama = ollama_integrator or OllamaIntegrator()
+        
+        self.historial_prompts = []
         self.ejemplos_k = self._cargar_ejemplos_k()
         self.contexto_hibrido = ContextoHibrido()
 
-        # Inicializar agentes especializados
-        self.analizador_tareas = AgenteAnalizadorTareas(self.ollama)
-        self.perfilador = AgentePerfiladorEstudiantes(self.ollama)
-        self.optimizador = AgenteOptimizadorAsignaciones(self.ollama)
-        self.generador_recursos = AgenteGeneradorRecursos(self.ollama)
-
-        # Registro de agentes especializados (FIX: atributo faltante)
-        self.agentes_especializados = {}
-
-        # Nuevos componentes de coordinación
+        # Inicializar componentes de coordinación
         self.estado_global = EstadoGlobalProyecto()
         self.comunicador = ComunicadorAgentes()
+        
+        # Inicializar agentes especializados (con inyección de dependencias)
+        self.analizador_tareas = analizador_tareas or AgenteAnalizadorTareas(self.ollama)
+        self.perfilador = perfilador or AgentePerfiladorEstudiantes(self.ollama)
+        self.optimizador = optimizador or AgenteOptimizadorAsignaciones(self.ollama)
+        self.generador_recursos = generador_recursos or AgenteGeneradorRecursos(self.ollama)
+        
+        # Registro de agentes especializados
+        self.agentes_especializados = {}
         
         # Registrar agentes en el comunicador y diccionario
         agentes_a_registrar = {
@@ -1267,27 +1287,42 @@ MATERIALES: Material manipulativo, fichas de problemas, cronómetros
         return self._consolidar_resultados_mejorado(proyecto_base, resultados)
         
     def _preparar_datos_para_agente(self, agente_nombre: str, proyecto_base: dict, resultados: dict) -> dict:
-        """Prepara los datos necesarios para cada agente"""
+        """
+        Prepara los datos necesarios para cada agente de forma genérica
+        
+        Args:
+            agente_nombre: Nombre del agente
+            proyecto_base: Datos del proyecto base
+            resultados: Resultados de agentes anteriores
+            
+        Returns:
+            Diccionario con datos preparados para el agente
+        """
+        # Datos comunes para todos los agentes
         datos_base = {
             'contexto_global': self.estado_global.metadatos,
             'timestamp': datetime.now().isoformat()
         }
         
-        if agente_nombre == 'analizador_tareas':
-            datos_base['proyecto_base'] = proyecto_base
-        elif agente_nombre == 'perfilador_estudiantes':
-            datos_base['tareas'] = resultados.get('analizador_tareas', {})
-        elif agente_nombre == 'optimizador_asignaciones':
-            datos_base.update({
+        # Mapa simplificado de datos necesarios por agente
+        mapa_datos = {
+            'analizador_tareas': {'proyecto_base': proyecto_base},
+            'perfilador_estudiantes': {'tareas': resultados.get('analizador_tareas', {})},
+            'optimizador_asignaciones': {
                 'tareas': resultados.get('analizador_tareas', {}),
                 'analisis_estudiantes': resultados.get('perfilador_estudiantes', {})
-            })
-        elif agente_nombre == 'generador_recursos':
-            datos_base.update({
+            },
+            'generador_recursos': {
                 'proyecto_base': proyecto_base,
-                'todos_los_resultados': resultados
-            })
-            
+                'tareas': resultados.get('analizador_tareas', {}),
+                'asignaciones': resultados.get('optimizador_asignaciones', {})
+            }
+        }
+        
+        # Añadir datos específicos del agente si existen
+        if agente_nombre in mapa_datos:
+            datos_base.update(mapa_datos[agente_nombre])
+        
         return datos_base
         
     def _consolidar_resultados_mejorado(self, proyecto_base: dict, resultados: dict) -> dict:
@@ -1615,8 +1650,17 @@ class AgenteAnalizadorTareas(BaseAgent):
     def __init__(self, ollama_integrator: OllamaIntegrator):
         super().__init__(ollama_integrator)
     
-    def descomponer_actividad(self, proyecto_base: Dict) -> List[Tarea]:
-        """Descompone la actividad en subtareas específicas"""
+    def descomponer_actividad(self, proyecto_base: Dict, **kwargs) -> List[Tarea]:
+        """
+        Descompone la actividad en subtareas específicas
+        
+        Args:
+            proyecto_base: Diccionario con información del proyecto
+            **kwargs: Parámetros adicionales (no usados actualmente)
+            
+        Returns:
+            Lista de objetos Tarea
+        """
         
         prompt_tareas = f"""
 Analiza este proyecto educativo siguiendo los patrones exitosos de actividades k_ y descomponlo en subtareas específicas:
@@ -1917,7 +1961,7 @@ class AgentePerfiladorEstudiantes(BaseAgent):
         else:
             return diagnostico_formal
     
-    def analizar_perfiles(self, tareas: List[Tarea]) -> Dict[str, Dict]:
+    def analizar_perfiles(self, tareas: List[Tarea], **kwargs) -> Dict[str, Dict]:
         """Analiza perfiles de estudiantes en relación a las tareas"""
         
         # Crear un prompt con información de estudiantes y tareas
@@ -2005,7 +2049,7 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
         super().__init__(ollama_integrator)
         self.perfiles = {}  # Se actualizará cuando reciba los perfiles
 
-    def optimizar_asignaciones(self, tareas: List[Tarea], analisis_estudiantes: Dict, perfilador=None) -> Dict:
+    def optimizar_asignaciones(self, tareas: List[Tarea], analisis_estudiantes: Dict, perfilador=None, **kwargs) -> Dict:
         """Optimiza las asignaciones de tareas basándose en el análisis de perfiles."""
         
         # Actualizar perfiles si se proporciona perfilador
@@ -2169,7 +2213,7 @@ class AgenteGeneradorRecursos(BaseAgent):
     def __init__(self, ollama_integrator: OllamaIntegrator):
         super().__init__(ollama_integrator)
     
-    def generar_recursos(self, proyecto_base: dict, tareas: list, asignaciones: dict) -> dict:
+    def generar_recursos(self, proyecto_base: dict, tareas: list, asignaciones: dict, **kwargs) -> dict:
         """
         Genera una lista de recursos materiales, analógicos y digitales
         para el proyecto, en formato JSON.
@@ -2309,15 +2353,21 @@ RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
 
 class SistemaAgentesABP:
     """Sistema de Agentes para Aprendizaje Basado en Proyectos (ABP) con Contexto Híbrido"""
-    def __init__(self):
-        # Inicializar coordinador (ahora se auto-inicializa)
-        self.coordinador = AgenteCoordinador()
+    def __init__(self, coordinador=None):
+        """
+        Inicializa el sistema, opcionalmente con un coordinador específico
+        
+        Args:
+            coordinador: AgenteCoordinador personalizado (opcional)
+        """
+        # Permitir inyección de un coordinador o crear uno nuevo
+        self.coordinador = coordinador or AgenteCoordinador()
         
         # Estado del sistema
         self.proyecto_actual = None
         self.validado = False
         
-        logger.info("🚀 Sistema de Agentes ABP inicializado con coordinador mejorado")
+        logger.info("🚀 Sistema de Agentes ABP inicializado")
         
     def ejecutar_flujo_completo(self) -> Dict:
         """Ejecuta el flujo completo del sistema - VERSION SIMPLIFICADA"""
@@ -2736,13 +2786,49 @@ class SistemaAgentesABP:
             logger.error(f"❌ Error guardando proyecto: {e}")
             print(f"❌ Error guardando proyecto: {e}")
 
-# ===== FUNCIÓN PRINCIPAL =====
 
+def crear_sistema_agentes(ollama_config=None, usar_agentes_personalizados=False):
+    """
+    Factory para crear el sistema de agentes con configuración personalizada
+    
+    Args:
+        ollama_config: Configuración personalizada para Ollama
+        usar_agentes_personalizados: Si True, permite personalizar agentes
+        
+    Returns:
+        Instancia configurada de SistemaAgentesABP
+    """
+    # Crear integrador Ollama con configuración personalizable
+    ollama_integrator = OllamaIntegrator(**(ollama_config or {}))
+    
+    if not usar_agentes_personalizados:
+        # Crear sistema con configuración estándar
+        return SistemaAgentesABP()
+    else:
+        # Crear agentes individuales para permitir personalización
+        analizador = AgenteAnalizadorTareas(ollama_integrator)
+        perfilador = AgentePerfiladorEstudiantes(ollama_integrator)
+        optimizador = AgenteOptimizadorAsignaciones(ollama_integrator)
+        generador = AgenteGeneradorRecursos(ollama_integrator)
+        
+        # Crear coordinador con agentes personalizados
+        coordinador = AgenteCoordinador(
+            ollama_integrator=ollama_integrator,
+            analizador_tareas=analizador,
+            perfilador=perfilador,
+            optimizador=optimizador,
+            generador_recursos=generador
+        )
+        
+        # Crear sistema con coordinador personalizado
+        return SistemaAgentesABP(coordinador=coordinador)
+    
+# ===== FUNCIÓN PRINCIPAL =====    
 def main():
     """Función principal del sistema"""
     try:
-        # Inicializar sistema (el coordinador maneja la configuración de Ollama)
-        sistema = SistemaAgentesABP()
+        # Inicializar sistema usando la factory
+        sistema = crear_sistema_agentes()
         
         # Ejecutar flujo completo
         proyecto = sistema.ejecutar_flujo_completo()
