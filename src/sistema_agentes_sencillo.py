@@ -27,31 +27,58 @@ def parse_json_seguro(texto: str) -> Optional[dict]:
     try:
         # Estrategia 1: Limpieza básica
         texto_limpio = texto.replace("```json", "").replace("```", "").strip()
-        if texto_limpio.startswith("A continuación") or texto_limpio.startswith("Aquí"):
+        
+        # Estrategia 2: Detectar respuestas en texto plano (incluyendo markdown)
+        if (texto_limpio.startswith("A continuación") or 
+            texto_limpio.startswith("Aquí") or 
+            texto_limpio.startswith("**") or  # Markdown
+            texto_limpio.startswith("#") or   # Headers
+            not texto_limpio.startswith("{")):  # No empieza con JSON
+            
             # El LLM respondió en texto plano, extraer JSON si existe
             json_match = re.search(r'\{.*\}', texto_limpio, re.DOTALL)
             if json_match:
                 texto_limpio = json_match.group()
             else:
-                logger.warning("No se encontró JSON en la respuesta de texto plano")
+                logger.warning(f"❌ LLM respondió en texto plano sin JSON válido")
+                logger.warning(f"🔍 Respuesta: {texto[:200]}...")
                 return None
                 
         if not texto_limpio:
             raise ValueError("Respuesta vacía")
             
-        # Estrategia 2: Buscar el primer { hasta el último }
+        # Estrategia 3: Buscar el primer { hasta el último }
         start_idx = texto_limpio.find('{')
         end_idx = texto_limpio.rfind('}')
         
         if start_idx != -1 and end_idx != -1 and start_idx < end_idx:
             texto_limpio = texto_limpio[start_idx:end_idx+1]
+        else:
+            logger.warning(f"❌ No se encontraron llaves válidas en: {texto_limpio[:100]}...")
+            return None
             
         return json.loads(texto_limpio)
         
     except json.JSONDecodeError as e:
-        logger.error(f"❌ Error al parsear JSON del LLM: {e}")
-        logger.error(f"🔍 Texto recibido (primeros 200 chars): {texto[:200]}...")
-        return None
+        logger.warning(f"⚠️  JSON malformado, intentando reparar: {e}")
+        
+        # Estrategia 4: Intentar reparar JSON común
+        try:
+            # Reparar comillas internas comunes
+            texto_reparado = texto_limpio
+            # Escapar comillas internas en valores
+            texto_reparado = re.sub(r'"([^"]*)"([^"]*)"([^"]*)":', r'"\1\"\2\"\3":', texto_reparado)
+            # Añadir comas faltantes antes de llaves
+            texto_reparado = re.sub(r'"\s*\n\s*{', '",\n    {', texto_reparado)
+            # Añadir comas faltantes entre objetos
+            texto_reparado = re.sub(r'}\s*\n\s*{', '},\n    {', texto_reparado)
+            
+            return json.loads(texto_reparado)
+            
+        except json.JSONDecodeError:
+            logger.error(f"❌ No se pudo reparar el JSON del LLM")
+            logger.error(f"🔍 Texto recibido (primeros 400 chars): {texto[:400]}...")
+            return None
     except Exception as e:
         logger.error(f"❌ Error inesperado en parseo JSON: {e}")
         return None
@@ -554,21 +581,215 @@ class ComunicadorAgentes:
 
 # ===== AGENTES ESPECIALIZADOS (Refactorizados) =====
 
+from abc import ABC, abstractmethod
+
+class BaseAgent(ABC):
+    """
+    Clase base para todos los agentes especializados del sistema ABP
+    
+    Proporciona funcionalidad común y establece la interfaz estándar que
+    todos los agentes deben seguir, eliminando duplicación de código.
+    """
+    
+    def __init__(self, ollama_integrator: OllamaIntegrator):
+        """Inicializa el agente base con integrador LLM"""
+        self.ollama = ollama_integrator
+        self.agent_name = self.__class__.__name__
+        
+        # Logger específico para cada agente
+        self.logger = logging.getLogger(f"SistemaAgentesABP.{self.agent_name}")
+        self.logger.info(f"🤖 {self.agent_name} inicializado")
+    
+    @abstractmethod
+    def process(self, *args, **kwargs) -> Any:
+        """
+        Método principal de procesamiento - debe ser implementado por cada agente
+        
+        Args:
+            *args, **kwargs: Argumentos específicos de cada agente
+            
+        Returns:
+            Any: Resultado del procesamiento específico del agente
+        """
+        pass
+    
+    @abstractmethod 
+    def _parse_response(self, response: str) -> Any:
+        """
+        Parsea respuesta del LLM - implementación específica por agente
+        
+        Args:
+            response: Respuesta cruda del LLM
+            
+        Returns:
+            Any: Datos estructurados específicos del agente
+        """
+        pass
+    
+    # ===== MÉTODOS COMUNES DE EXTRACCIÓN DE TEXTO =====
+    
+    def _extraer_campo(self, texto: str, campo: str, default: str = "No especificado") -> str:
+        """Extrae un campo específico del texto"""
+        if not texto or not campo:
+            return default
+            
+        lines = texto.split('\n')
+        for line in lines:
+            if campo.lower() in line.lower():
+                # Extraer después del campo
+                parts = line.split(':')
+                if len(parts) > 1:
+                    return parts[1].strip()
+                # Alternativa: extraer después del campo sin ':'
+                return line.replace(campo, '').strip()
+        return default
+    
+    def _extraer_lista(self, texto: str, campo: str) -> List[str]:
+        """Extrae una lista separada por comas del texto"""
+        valor = self._extraer_campo(texto, campo, "")
+        if valor and valor != "No especificado":
+            # Limpiar y dividir por comas
+            items = [item.strip().strip('•-*') for item in valor.split(',')]
+            return [item for item in items if item]  # Filtrar vacíos
+        return []
+    
+    def _extraer_numero(self, texto: str, campo: str, default: int = 1) -> int:
+        """Extrae un número del texto"""
+        valor = self._extraer_campo(texto, campo, "")
+        if valor:
+            # Buscar primer número en el valor
+            numeros = re.findall(r'\d+', valor)
+            if numeros:
+                return int(numeros[0])
+        return default
+    
+    def _extraer_duracion(self, texto: str) -> int:
+        """Extrae duración en minutos del texto"""
+        # Buscar patrones como "30 min", "1 hora", "1.5 horas"
+        duracion_match = re.search(r'(\d+(?:\.\d+)?)\s*(min|minuto|hora|sesion|session)', texto.lower())
+        if duracion_match:
+            cantidad = float(duracion_match.group(1))
+            unidad = duracion_match.group(2)
+            
+            if 'hora' in unidad:
+                return int(cantidad * 60)  # Convertir a minutos
+            elif 'min' in unidad:
+                return int(cantidad)
+            elif 'sesion' in unidad:
+                return int(cantidad * 45)  # Asumimos 45 min por sesión
+        
+        return 45  # Default: 45 minutos
+    
+    # ===== MÉTODOS COMUNES DE INTERACCIÓN CON LLM =====
+    
+    def _call_llm_with_fallback(self, prompt: str, max_tokens: int, fallback_data: Any, 
+                               fallback_name: str = "fallback") -> Any:
+        """
+        Llama al LLM con manejo robusto de errores y fallback
+        
+        Args:
+            prompt: Prompt para el LLM
+            max_tokens: Máximo tokens de respuesta
+            fallback_data: Datos a usar si falla el LLM
+            fallback_name: Nombre del fallback para logging
+            
+        Returns:
+            Datos parseados del LLM o fallback
+        """
+        try:
+            self.logger.info(f"🔄 {self.agent_name} llamando al LLM...")
+            response = self.ollama.generar_respuesta(prompt, max_tokens=max_tokens)
+            
+            if not response or not response.strip():
+                raise ValueError("Respuesta vacía del LLM")
+            
+            parsed = self._parse_response(response)
+            if parsed is not None:
+                self.logger.info(f"✅ {self.agent_name} - Respuesta LLM procesada exitosamente")
+                return parsed
+            else:
+                raise ValueError("Falló el parseo de la respuesta LLM")
+                
+        except Exception as e:
+            self.logger.error(f"❌ {self.agent_name} - Error en llamada LLM: {e}")
+            self.logger.info(f"⚠️  {self.agent_name} - Usando {fallback_name}")
+            return fallback_data
+    
+    def _parse_json_response(self, response: str) -> Optional[Dict]:
+        """Parsea respuesta JSON con manejo robusto de errores"""
+        return parse_json_seguro(response)
+    
+    def _crear_prompt_estructurado(self, template: str, **kwargs) -> str:
+        """
+        Crea un prompt estructurado reemplazando placeholders
+        
+        Args:
+            template: Template del prompt con placeholders {variable}
+            **kwargs: Variables para reemplazar en el template
+            
+        Returns:
+            Prompt con variables reemplazadas
+        """
+        try:
+            return template.format(**kwargs)
+        except KeyError as e:
+            self.logger.error(f"❌ {self.agent_name} - Variable faltante en prompt: {e}")
+            return template
+    
+    # ===== MÉTODOS DE UTILIDAD =====
+    
+    def _log_processing_start(self, input_description: str):
+        """Log del inicio del procesamiento"""
+        self.logger.info(f"🚀 {self.agent_name} - Iniciando procesamiento: {input_description}")
+    
+    def _log_processing_end(self, result_description: str):
+        """Log del fin del procesamiento"""  
+        self.logger.info(f"🎯 {self.agent_name} - Procesamiento completado: {result_description}")
+    
+    def _validate_required_params(self, params: Dict[str, Any], required: List[str]) -> bool:
+        """Valida que los parámetros requeridos estén presentes"""
+        missing = [param for param in required if param not in params or params[param] is None]
+        if missing:
+            self.logger.error(f"❌ {self.agent_name} - Parámetros faltantes: {missing}")
+            return False
+        return True
+
 class AgenteCoordinador:
     """Agente Coordinador Principal (Master Agent) - CON CONTEXTO HÍBRIDO AUTO-DETECTADO"""
     
-    def __init__(self, ollama_integrator: OllamaIntegrator):
-        self.ollama = ollama_integrator
+    def __init__(self):
+        # Inicializar integrador Ollama propio
+        self.ollama = OllamaIntegrator()
+        
         self.historial_prompts = []  # Mantener por compatibilidad
         self.ejemplos_k = self._cargar_ejemplos_k()
-        
+        self.contexto_hibrido = ContextoHibrido()
+
+        # Inicializar agentes especializados
+        self.analizador_tareas = AgenteAnalizadorTareas(self.ollama)
+        self.perfilador = AgentePerfiladorEstudiantes(self.ollama)
+        self.optimizador = AgenteOptimizadorAsignaciones(self.ollama)
+        self.generador_recursos = AgenteGeneradorRecursos(self.ollama)
+
+        # Registro de agentes especializados (FIX: atributo faltante)
+        self.agentes_especializados = {}
+
         # Nuevos componentes de coordinación
         self.estado_global = EstadoGlobalProyecto()
         self.comunicador = ComunicadorAgentes()
         
-        # Referencias a agentes especializados
-        self.agentes_especializados = {}
+        # Registrar agentes en el comunicador y diccionario
+        agentes_a_registrar = {
+            'analizador_tareas': self.analizador_tareas,
+            'perfilador_estudiantes': self.perfilador,
+            'optimizador_asignaciones': self.optimizador,
+            'generador_recursos': self.generador_recursos
+        }
         
+        for nombre, agente in agentes_a_registrar.items():
+            self.comunicador.registrar_agente(nombre, agente)
+            self.agentes_especializados[nombre] = agente
+    
         # Configuración de flujo
         self.flujo_config = {
             'max_iteraciones': 3,
@@ -577,7 +798,7 @@ class AgenteCoordinador:
             'timeout_por_agente': 60
         }
         
-        logger.info("🚀 AgenteCoordinador con capacidades mejoradas inicializado")
+        logger.info(f"🚀 AgenteCoordinador inicializado con {len(self.agentes_especializados)} agentes especializados")
     
     def _cargar_ejemplos_k(self) -> Dict[str, str]:
         """Carga ejemplos k_ para few-shot learning"""
@@ -939,25 +1160,6 @@ MATERIALES: Material manipulativo, fichas de problemas, cronómetros
         
         return "2-3 sesiones"
     
-    def inicializar_sistema_completo(self, sistema_agentes):
-        """Inicializa y registra todos los agentes especializados"""
-        logger.info("🔧 Inicializando sistema completo de agentes")
-        
-        # Registrar agentes en el comunicador
-        agentes_a_registrar = {
-            'analizador_tareas': sistema_agentes.analizador_tareas,
-            'perfilador_estudiantes': sistema_agentes.perfilador,
-            'optimizador_asignaciones': sistema_agentes.optimizador,
-            'generador_recursos': sistema_agentes.generador_recursos
-        }
-        
-        for nombre, agente in agentes_a_registrar.items():
-            if agente:  # Verificar que el agente existe
-                self.comunicador.registrar_agente(nombre, agente)
-                self.agentes_especializados[nombre] = agente
-            
-        logger.info(f"✅ Sistema inicializado con {len(self.agentes_especializados)} agentes especializados")
-        
     def recoger_informacion_inicial(self, prompt_profesor: str, perfiles_estudiantes: list = None, 
                                   recursos_disponibles: list = None, restricciones: dict = None) -> dict:
         """Recoge y estructura toda la información inicial del proyecto"""
@@ -1166,12 +1368,252 @@ MATERIALES: Material manipulativo, fichas de problemas, cronómetros
             self.estado_global.actualizar_estado("estructura_base_creada", "AgenteCoordinador")
         
         return proyecto_base
+        
+    def crear_proyecto_final(self, proyecto_base: Dict, tareas: List[Tarea], 
+                            asignaciones: Dict, recursos: Dict) -> Dict:
+        """Crea la estructura final del proyecto"""
+        
+        # Organizar tareas por fases
+        fases = self.organizar_fases_proyecto(tareas)
+        
+        # Crear diccionario completo de tareas con toda la información
+        tareas_detalladas = {}
+        for tarea in tareas:
+            tareas_detalladas[tarea.id] = {
+                "id": tarea.id,
+                "descripcion": tarea.descripcion,
+                "competencias_requeridas": tarea.competencias_requeridas,
+                "complejidad": tarea.complejidad,
+                "tipo": tarea.tipo,
+                "dependencias": tarea.dependencias,
+                "tiempo_estimado": tarea.tiempo_estimado
+            }
+        
+        # Crear estructura final
+        proyecto_final = {
+            "proyecto": {
+                "titulo": proyecto_base["titulo"],
+                "descripcion": proyecto_base["descripcion"],
+                "duracion": proyecto_base["duracion_base"],
+                "competencias_objetivo": proyecto_base["competencias_base"],
+                "recursos_materiales": len(recursos.get('recursos_materiales', [])) if recursos and isinstance(recursos, dict) else 0
+            },
+            "tareas": tareas_detalladas,
+            "fases": fases,
+            "asignaciones": asignaciones,
+            "recursos": recursos,
+            "evaluacion": {
+                "criterios": ["Calidad del trabajo", "Colaboración", "Creatividad", "Competencias específicas"],
+                "instrumentos": ["Rúbrica", "Autoevaluación", "Evaluación por pares", "Portfolio digital"]
+            },
+            "metadatos": {
+                "timestamp": datetime.now().isoformat(),
+                "sistema": "AgentesABP_v2.0_ContextoAcumulativo",
+                "historial_prompts": self.historial_prompts,
+                "contexto_hibrido": self.contexto_hibrido.get_resumen_sesion(),
+                "validado": False
+            }
+        }
+        
+        return proyecto_final
+    
+    def organizar_fases_proyecto(self, tareas: List[Tarea]) -> List[Dict]:
+        """Organiza las tareas en fases del proyecto"""
+        fases = [
+            {
+                "nombre": "Fase 1: Investigación y Planificación",
+                "duracion": "3-4 días",
+                "tareas": [t.id for t in tareas if "investigar" in t.descripcion.lower() or "planificar" in t.descripcion.lower()]
+            },
+            {
+                "nombre": "Fase 2: Desarrollo y Creación",
+                "duracion": "5-6 días", 
+                "tareas": [t.id for t in tareas if t.tipo in ["colaborativa", "creativa"]]
+            },
+            {
+                "nombre": "Fase 3: Presentación y Evaluación",
+                "duracion": "2-3 días",
+                "tareas": [t.id for t in tareas if "presentar" in t.descripcion.lower() or "evaluar" in t.descripcion.lower()]
+            }
+        ]
+        
+        # Asegurar que todas las tareas estén asignadas a alguna fase
+        tareas_asignadas = set()
+        for fase in fases:
+            tareas_asignadas.update(fase["tareas"])
+        
+        # Asignar tareas restantes a la fase de desarrollo
+        for tarea in tareas:
+            if tarea.id not in tareas_asignadas:
+                fases[1]["tareas"].append(tarea.id)
+        
+        return fases
+        
+    def ejecutar_flujo_completo_con_ui(self, prompt_profesor: str) -> Dict:
+        """Ejecuta todo el flujo de coordinación con interacción UI delegada"""
+        logger.info("🎯 Iniciando flujo completo con coordinación centralizada")
+        
+        # Cargar perfiles de estudiantes
+        perfiles_estudiantes = self.perfilador._cargar_perfiles_reales()
+        
+        # Recolectar información inicial y generar ideas
+        info_inicial = self.recoger_informacion_inicial(
+            prompt_profesor=prompt_profesor,
+            perfiles_estudiantes=perfiles_estudiantes
+        )
+        
+        ideas = info_inicial['ideas_generadas']
+        
+        # Manejar interacción y selección (aquí delego a UI pero mantengo lógica de negocio)
+        actividad_seleccionada = self._manejar_seleccion_con_ui(ideas)
+        
+        # Ejecutar flujo orquestado completo
+        proyecto_final = self.ejecutar_flujo_orquestado(actividad_seleccionada)
+        
+        return proyecto_final
+    
+    def _manejar_seleccion_con_ui(self, ideas: List[Dict]) -> Dict:
+        """Maneja la selección de actividad con UI (simplificado por ahora)"""
+        # Por ahora, mantener la lógica existente pero centralizada aquí
+        # TODO: En futura iteración, separar completamente UI de lógica
+        
+        print("\n💡 IDEAS GENERADAS:")
+        for i, idea in enumerate(ideas, 1):
+            print(f"\n{i}. {idea.get('titulo', 'Sin título')}")
+            print(f"   Descripción: {idea.get('descripción', 'No disponible')}")
+            print(f"   Nivel: {idea.get('nivel', 'No especificado')}")
+            print(f"   Duración: {idea.get('duracion', 'No especificada')}")
+        
+        actividad_seleccionada = None
+        
+        while True:
+            try:
+                print(f"\n🎯 Opciones disponibles:")
+                print(f"   1-{len(ideas)}: Seleccionar una de las ideas y continuar")
+                print(f"   M: Me gusta alguna idea pero quiero matizarla/perfilarla")
+                print(f"   0: Generar nuevas ideas con un prompt diferente")
+                
+                if actividad_seleccionada:
+                    print(f"   -1: Añadir más detalles a la idea '{actividad_seleccionada.get('titulo', 'Sin título')}'")
+                
+                seleccion_input = input(f"\n🎯 Su elección: ").strip().upper()
+                
+                # Lógica de selección
+                if seleccion_input.isdigit():
+                    seleccion = int(seleccion_input)
+                    if 1 <= seleccion <= len(ideas):
+                        actividad_seleccionada = ideas[seleccion - 1]
+                        logger.info(f"✅ Actividad seleccionada: {actividad_seleccionada.get('titulo', 'Sin título')}")
+                        break
+                    elif seleccion == 0:
+                        # Generar nuevas ideas
+                        nuevo_prompt = input("\n📝 Ingrese un nuevo prompt: ")
+                        info_inicial = self.recoger_informacion_inicial(prompt_profesor=nuevo_prompt)
+                        ideas = info_inicial['ideas_generadas']
+                        continue
+                    
+                elif seleccion_input == 'M':
+                    # Manejar matización
+                    ideas = self._procesar_matizacion_ui(ideas)
+                    continue
+                    
+                elif seleccion_input == '-1' and actividad_seleccionada:
+                    # Añadir detalles
+                    detalles = input("\n📋 Información adicional: ")
+                    self._registrar_detalles_adicionales(actividad_seleccionada, detalles)
+                    break
+                else:
+                    print("❌ Selección no válida")
+                    
+            except Exception as e:
+                logger.error(f"Error en selección: {e}")
+                print("❌ Error en la selección, intente nuevamente")
+        
+        return actividad_seleccionada
+    
+    def _procesar_matizacion_ui(self, ideas: List[Dict]) -> List[Dict]:
+        """Procesa matización de ideas con UI"""
+        try:
+            idea_idx = int(input(f"¿Qué idea desea matizar? (1-{len(ideas)}): ")) - 1
+            if not (0 <= idea_idx < len(ideas)):
+                print("❌ Número de idea no válido")
+                return ideas
+                
+            matizaciones = input("📝 ¿Cómo desea matizar/perfilar la idea?: ")
+            
+            # Procesar matización usando el contexto híbrido
+            prompt_matizacion = f"""Matiza esta idea educativa con las siguientes especificaciones:
 
-class AgenteAnalizadorTareas:
+IDEA ORIGINAL:
+{ideas[idea_idx]}
+
+MATIZACIONES SOLICITADAS:
+{matizaciones}
+
+Genera 3 nuevas versiones matizadas manteniendo la esencia pero incorporando los cambios solicitados.
+
+INSTRUCCIONES CRÍTICAS:
+1. Responde SOLO con JSON válido, sin explicaciones
+2. NO uses texto antes o después del JSON
+3. Asegúrate de que todas las comas y llaves estén correctas
+4. Duración máxima: 2 horas
+
+FORMATO OBLIGATORIO:
+{{
+  "ideas": [
+    {{
+      "titulo": "Título corto y claro",
+      "descripcion": "Descripción sin comillas internas",
+      "nivel": "4º Primaria",
+      "duracion": "2 horas máximo"
+    }},
+    {{
+      "titulo": "Título corto y claro",
+      "descripcion": "Descripción sin comillas internas",
+      "nivel": "4º Primaria", 
+      "duracion": "2 horas máximo"
+    }},
+    {{
+      "titulo": "Título corto y claro",
+      "descripcion": "Descripción sin comillas internas",
+      "nivel": "4º Primaria",
+      "duracion": "2 horas máximo"
+    }}
+  ]
+}}"""
+
+            respuesta_matizada = self.ollama.generar_respuesta(prompt_matizacion)
+            ideas_matizadas = parse_json_seguro(respuesta_matizada)
+            
+            if ideas_matizadas and 'ideas' in ideas_matizadas:
+                print("\n💡 IDEAS MATIZADAS:")
+                for i, idea in enumerate(ideas_matizadas['ideas'], 1):
+                    print(f"\n{i+len(ideas)}. {idea.get('titulo', 'Sin título')}")
+                    print(f"   Descripción: {idea.get('descripcion', 'No disponible')}")
+                
+                ideas.extend(ideas_matizadas['ideas'])
+            
+        except Exception as e:
+            logger.error(f"Error en matización: {e}")
+            print("❌ Error al procesar matización")
+            
+        return ideas
+    
+    def _registrar_detalles_adicionales(self, actividad: Dict, detalles: str):
+        """Registra detalles adicionales en el historial"""
+        self.historial_prompts.append({
+            "tipo": "detalles_adicionales",
+            "actividad": actividad.get('titulo', 'Sin título'),
+            "contenido": detalles,
+            "timestamp": datetime.now().isoformat()
+        })
+        logger.info("📝 Detalles adicionales registrados")
+
+class AgenteAnalizadorTareas(BaseAgent):
     """Agente Analizador de Tareas (Task Analyzer Agent)"""
     
     def __init__(self, ollama_integrator: OllamaIntegrator):
-        self.ollama = ollama_integrator
+        super().__init__(ollama_integrator)
     
     def descomponer_actividad(self, proyecto_base: Dict) -> List[Tarea]:
         """Descompone la actividad en subtareas específicas"""
@@ -1245,36 +1687,55 @@ Adaptaciones: [adaptaciones específicas para diversidad]
         
         return tareas
     
-    def _extraer_campo(self, texto: str, campo: str) -> str:
-        """Extrae un campo específico del texto"""
-        lines = texto.split('\n')
-        for line in lines:
-            if campo in line:
-                return line.replace(campo, '').strip()
-        return "No especificado"
+    # Métodos heredados de BaseAgent: _extraer_campo, _extraer_lista, _extraer_numero
     
-    def _extraer_lista(self, texto: str, campo: str) -> List[str]:
-        """Extrae una lista de elementos separados por comas"""
-        valor = self._extraer_campo(texto, campo)
-        if valor and valor != "No especificado":
-            return [item.strip() for item in valor.split(",")]
-        return []
+    def process(self, proyecto_base: Dict) -> List[Tarea]:
+        """Implementa el método abstracto process de BaseAgent"""
+        return self.descomponer_actividad(proyecto_base)
     
-    def _extraer_numero(self, texto: str, campo: str, default: int) -> int:
-        """Extrae un número del texto"""
-        valor = self._extraer_campo(texto, campo)
-        try:
-            return int(re.findall(r'\d+', valor)[0])
-        except:
-            return default
+    def _parse_response(self, response: str) -> List[Dict]:
+        """Parsea respuesta del LLM para tareas"""
+        return self._parsear_tareas(response)
+    
+    def _crear_tareas_fallback(self) -> List[Tarea]:
+        """Crea tareas genéricas como fallback"""
+        return [
+            Tarea(
+                id="tarea_01",
+                descripcion="Preparación y contextualización de la actividad",
+                competencias_requeridas=["organizativas"],
+                complejidad=2,
+                tipo="individual",
+                dependencias=[],
+                tiempo_estimado=30
+            ),
+            Tarea(
+                id="tarea_02",
+                descripcion="Desarrollo principal de la actividad",
+                competencias_requeridas=["específicas del proyecto"],
+                complejidad=3,
+                tipo="colaborativa", 
+                dependencias=["tarea_01"],
+                tiempo_estimado=60
+            ),
+            Tarea(
+                id="tarea_03",
+                descripcion="Reflexión y cierre de la actividad",
+                competencias_requeridas=["metacognitivas"],
+                complejidad=2,
+                tipo="individual",
+                dependencias=["tarea_02"],
+                tiempo_estimado=20
+            )
+        ]
 
-class AgentePerfiladorEstudiantes:
+class AgentePerfiladorEstudiantes(BaseAgent):
     """Agente Perfilador de Estudiantes - AULA_A_4PRIM"""
     
     def __init__(self, ollama_integrator: OllamaIntegrator):
-        self.ollama = ollama_integrator
+        super().__init__(ollama_integrator)
         self.perfiles_base = self._cargar_perfiles_reales()
-        logger.info(f"👥 Perfilador inicializado con {len(self.perfiles_base)} estudiantes del AULA_A_4PRIM")
+        self.logger.info(f"👥 Perfilador inicializado con {len(self.perfiles_base)} estudiantes del AULA_A_4PRIM")
     
     def _cargar_perfiles_reales(self) -> List[Estudiante]:
         """Carga los perfiles reales específicos del AULA_A_4PRIM desde el archivo JSON"""
@@ -1306,21 +1767,21 @@ class AgentePerfiladorEstudiantes:
                 estudiantes.append(estudiante)
             
             # Log detallado de estudiantes cargados
-            logger.info(f"✅ AULA_A_4PRIM: Cargados {len(estudiantes)} perfiles reales:")
+            self.logger.info(f"✅ AULA_A_4PRIM: Cargados {len(estudiantes)} perfiles reales:")
             for est in estudiantes:
                 # Buscar el perfil original para obtener el diagnóstico
                 perfil_original = next((p for p in data["estudiantes"] if p["id"] == est.id), {})
                 diagnostico = self._obtener_diagnostico_legible(perfil_original.get("diagnostico_formal", "ninguno"))
-                logger.info(f"   • {est.nombre} (ID: {est.id}) - {diagnostico}")
+                self.logger.info(f"   • {est.nombre} (ID: {est.id}) - {diagnostico}")
             
             return estudiantes
             
         except FileNotFoundError:
-            logger.error("❌ CRÍTICO: No se encontró perfiles_4_primaria.json")
-            logger.error("   El sistema requiere los perfiles reales de estudiantes")
+            self.logger.error("❌ CRÍTICO: No se encontró perfiles_4_primaria.json")
+            self.logger.error("   El sistema requiere los perfiles reales de estudiantes")
             raise FileNotFoundError("Archivo perfiles_4_primaria.json requerido para el funcionamiento")
         except Exception as e:
-            logger.error(f"❌ Error cargando perfiles reales: {e}")
+            self.logger.error(f"❌ Error cargando perfiles reales: {e}")
             raise
     
     def _extraer_fortalezas(self, perfil: dict) -> List[str]:
@@ -1513,41 +1974,35 @@ Adaptaciones: [adaptaciones específicas]
             analisis[estudiante_id] = {
                 "tareas_compatibles": self._extraer_lista_ids(parte, "Tareas_compatibles:"),
                 "tareas_desarrollo": self._extraer_lista_ids(parte, "Tareas_desarrollo:"),
-                "adaptaciones": self._extraer_lista_simple(parte, "Adaptaciones:"),
-                "rol_sugerido": self._extraer_campo_simple(parte, "Rol_sugerido:")
+                "adaptaciones": self._extraer_lista(parte, "Adaptaciones:"),
+                "rol_sugerido": self._extraer_campo(parte, "Rol_sugerido:")
             }
         
         return analisis
     
     def _extraer_lista_ids(self, texto: str, campo: str) -> List[str]:
-        """Extrae lista de IDs de tareas"""
-        valor = self._extraer_campo_simple(texto, campo)
+        """Extrae lista de IDs de tareas usando método heredado"""
+        valor = self._extraer_campo(texto, campo, "")
         if valor and valor != "No especificado":
             # Buscar patrones como tarea_01, tarea_02, etc.
             ids = re.findall(r'tarea_\d+', valor)
             return ids
         return []
     
-    def _extraer_lista_simple(self, texto: str, campo: str) -> List[str]:
-        """Extrae lista simple separada por comas"""
-        valor = self._extraer_campo_simple(texto, campo)
-        if valor and valor != "No especificado":
-            return [item.strip() for item in valor.split(",")]
-        return []
+    # Implementación de métodos abstractos de BaseAgent
+    def process(self, *args, **kwargs) -> Dict:
+        """Implementa el método abstracto process de BaseAgent"""
+        return self.analizar_perfiles(*args, **kwargs)
     
-    def _extraer_campo_simple(self, texto: str, campo: str) -> str:
-        """Extrae un campo específico del texto"""
-        lines = texto.split('\n')
-        for line in lines:
-            if campo in line:
-                return line.replace(campo, '').strip()
-        return "No especificado"
+    def _parse_response(self, response: str) -> Dict:
+        """Parsea respuesta del LLM para análisis de estudiantes"""
+        return self._parsear_analisis_estudiantes(response)
 
-class AgenteOptimizadorAsignaciones:
+class AgenteOptimizadorAsignaciones(BaseAgent):
     """Agente Optimizador de Asignaciones (Assignment Optimizer Agent)"""
     
     def __init__(self, ollama_integrator: OllamaIntegrator):
-        self.ollama = ollama_integrator
+        super().__init__(ollama_integrator)
         self.perfiles = {}  # Se actualizará cuando reciba los perfiles
 
     def optimizar_asignaciones(self, tareas: List[Tarea], analisis_estudiantes: Dict, perfilador=None) -> Dict:
@@ -1556,7 +2011,7 @@ class AgenteOptimizadorAsignaciones:
         # Actualizar perfiles si se proporciona perfilador
         if perfilador and hasattr(perfilador, 'perfiles_base'):
             self.perfiles = {e.id: e for e in perfilador.perfiles_base}
-            logger.info(f"📋 Perfiles actualizados: {len(self.perfiles)} estudiantes")
+            self.logger.info(f"📋 Perfiles actualizados: {len(self.perfiles)} estudiantes")
         
         # Convertir la lista de objetos Tarea a una lista de diccionarios para que sea serializable
         tareas_dict_list = [asdict(tarea) for tarea in tareas] 
@@ -1600,27 +2055,27 @@ RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
             asignaciones_dict = parse_json_seguro(respuesta_llm)
             
             if asignaciones_dict:
-                logger.info(f"✅ Asignaciones parseadas correctamente.")
+                self.logger.info(f"✅ Asignaciones parseadas correctamente.")
                 return asignaciones_dict.get('asignaciones', {})
             else:
                 raise ValueError("No se pudo parsear JSON de asignaciones")
         
         except Exception as e:
-            logger.error(f"❌ Error al parsear asignaciones del LLM: {e}")
-            logger.info("⚠️ Usando lógica de fallback para las asignaciones.")
+            self.logger.error(f"❌ Error al parsear asignaciones del LLM: {e}")
+            self.logger.info("⚠️ Usando lógica de fallback para las asignaciones.")
             # Lógica de fallback simple: distribuir tareas de manera equitativa
             asignaciones_fallback = {}
             
             # Usar perfiles reales para asignación de fallback
             if not self.perfiles:
-                logger.warning("No hay perfiles de estudiantes cargados. Devolviendo asignaciones vacías.")
+                self.logger.warning("No hay perfiles de estudiantes cargados. Devolviendo asignaciones vacías.")
                 return {}
             
             estudiantes_ids = list(self.perfiles.keys())
             num_estudiantes = len(estudiantes_ids)
             
             if num_estudiantes == 0:
-                logger.warning("No hay estudiantes disponibles para asignación.")
+                self.logger.warning("No hay estudiantes disponibles para asignación.")
                 return {}
             
             # Distribución equitativa mejorada
@@ -1654,7 +2109,7 @@ RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
                 
                 asignaciones_fallback[f"estudiante_{estudiante_id}"] = tareas_estudiante
             
-            logger.info(f"✅ Asignaciones fallback creadas para {len(asignaciones_fallback)} estudiantes usando perfiles reales.")
+            self.logger.info(f"✅ Asignaciones fallback creadas para {len(asignaciones_fallback)} estudiantes usando perfiles reales.")
             return asignaciones_fallback
         
 
@@ -1679,8 +2134,8 @@ RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
             return asignaciones_list
 
         except json.JSONDecodeError as e:
-            logger.error(f"❌ Error al parsear JSON del LLM: {e}")
-            logger.info("⚠️ Usando lógica de fallback para el parseo.")
+            self.logger.error(f"❌ Error al parsear JSON del LLM: {e}")
+            self.logger.info("⚠️ Usando lógica de fallback para el parseo.")
             
             # Lógica de fallback (simple distribución como en el script original, pero con más info)
             asignaciones = []
@@ -1697,13 +2152,22 @@ RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
                 })
                 
             return asignaciones
+    
+    # Implementación de métodos abstractos de BaseAgent
+    def process(self, *args, **kwargs) -> Dict:
+        """Implementa el método abstracto process de BaseAgent"""
+        return self.optimizar_asignaciones(*args, **kwargs)
+    
+    def _parse_response(self, response: str) -> Dict:
+        """Parsea respuesta del LLM para asignaciones"""
+        return parse_json_seguro(response)
             
 # AÑADIMOS LA CLASE QUE FALTABA
-class AgenteGeneradorRecursos:
+class AgenteGeneradorRecursos(BaseAgent):
     """Agente Generador de Recursos (Resource Generator Agent)"""
     
     def __init__(self, ollama_integrator: OllamaIntegrator):
-        self.ollama = ollama_integrator
+        super().__init__(ollama_integrator)
     
     def generar_recursos(self, proyecto_base: dict, tareas: list, asignaciones: dict) -> dict:
         """
@@ -1749,14 +2213,14 @@ RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
             recursos_dict = parse_json_seguro(respuesta_llm)
             
             if recursos_dict:
-                logger.info(f"✅ Recursos parseados correctamente.")
+                self.logger.info(f"✅ Recursos parseados correctamente.")
                 return recursos_dict
             else:
                 raise ValueError("No se pudo parsear JSON de recursos")
                 
         except Exception as e:
-            logger.error(f"❌ Error al parsear recursos del LLM: {e}")
-            logger.info("⚠️ Usando lógica de fallback para los recursos.")
+            self.logger.error(f"❌ Error al parsear recursos del LLM: {e}")
+            self.logger.info("⚠️ Usando lógica de fallback para los recursos.")
             # Lógica de fallback expandida (materiales base + contextuales)
             return {
                 "recursos_materiales": [
@@ -1831,51 +2295,52 @@ RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
                     recursos['recursos_digitales'] = [item.strip().strip('"') for item in digitales_match.group(1).split(",") if item.strip()]
 
             return recursos
+    
+    # Implementación de métodos abstractos de BaseAgent
+    def process(self, *args, **kwargs) -> Dict:
+        """Implementa el método abstracto process de BaseAgent"""
+        return self.generar_recursos(*args, **kwargs)
+    
+    def _parse_response(self, response: str) -> Dict:
+        """Parsea respuesta del LLM para recursos"""
+        return parse_json_seguro(response)
 
 # ===== SISTEMA PRINCIPAL =====
 
 class SistemaAgentesABP:
     """Sistema de Agentes para Aprendizaje Basado en Proyectos (ABP) con Contexto Híbrido"""
-    def __init__(self, host_ollama: str = "192.168.1.10", model: str = "llama3.2"):
-        self.ollama = OllamaIntegrator(host=host_ollama, model=model)
+    def __init__(self):
+        # Inicializar coordinador (ahora se auto-inicializa)
+        self.coordinador = AgenteCoordinador()
         
-        # CONTEXTO HÍBRIDO (reemplaza el contexto JSON rígido)
-        self.contexto_hibrido = ContextoHibrido()
-        
-        # Inicializar coordinador primero
-        self.coordinador = AgenteCoordinador(self.ollama)
-        
-        # Inicializar agentes especializados
-        self.analizador_tareas = AgenteAnalizadorTareas(self.ollama)
-        self.perfilador = AgentePerfiladorEstudiantes(self.ollama)
-        self.optimizador = AgenteOptimizadorAsignaciones(self.ollama)
-        self.generador_recursos = AgenteGeneradorRecursos(self.ollama)
-        
-        # Registrar agentes en el coordinador DESPUÉS de crearlos
-        self.coordinador.inicializar_sistema_completo(self)
-        
+        # Estado del sistema
         self.proyecto_actual = None
         self.validado = False
         
         logger.info("🚀 Sistema de Agentes ABP inicializado con coordinador mejorado")
         
     def ejecutar_flujo_completo(self) -> Dict:
-        """Ejecuta el flujo completo del sistema"""
+        """Ejecuta el flujo completo del sistema - VERSION SIMPLIFICADA"""
         
         print("🎓 SISTEMA DE AGENTES PARA ABP - ESTRUCTURA SENCILLA")
         print("=" * 60)
         
-        # PASO 1: Prompt inicial del profesor
+        # UI: Obtener prompt inicial del profesor
         prompt_profesor = input("\n📝 Ingrese su prompt de actividad educativa: ")
         
-        # PASO 2: Recolección de información inicial con coordinador mejorado
-        print("\n📋 Recopilando información inicial...")
-        perfiles_estudiantes = self.perfilador._cargar_perfiles_reales()
+        print("\n📋 Procesando con coordinador centralizado...")
         
-        info_inicial = self.coordinador.recoger_informacion_inicial(
-            prompt_profesor=prompt_profesor,
-            perfiles_estudiantes=perfiles_estudiantes
-        )
+        # COORDINACIÓN: Delegar todo el flujo al coordinador
+        proyecto_final = self.coordinador.ejecutar_flujo_completo_con_ui(prompt_profesor)
+        
+        # Guardar el proyecto actual para persistencia
+        self.proyecto_actual = proyecto_final
+        
+        # UI: Mostrar resultados finales
+        self._mostrar_resumen_proceso(proyecto_final)
+        self._ejecutar_validacion_mejorada(proyecto_final)
+        
+        return proyecto_final
         
         ideas = info_inicial['ideas_generadas']
         
@@ -2276,8 +2741,8 @@ class SistemaAgentesABP:
 def main():
     """Función principal del sistema"""
     try:
-        # Inicializar sistema con servidor Ollama externo
-        sistema = SistemaAgentesABP(host_ollama="192.168.1.10", model="llama3.2")
+        # Inicializar sistema (el coordinador maneja la configuración de Ollama)
+        sistema = SistemaAgentesABP()
         
         # Ejecutar flujo completo
         proyecto = sistema.ejecutar_flujo_completo()

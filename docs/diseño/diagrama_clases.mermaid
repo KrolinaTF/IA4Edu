@@ -1,0 +1,189 @@
+classDiagram
+    class EstadoGlobalProyecto {
+        -metadatos
+        -perfiles_estudiantes
+        -recursos_disponibles
+        -restricciones
+        -historial_decisiones
+        -version
+        -timestamp_inicio
+        -estado_actual
+        -errores
+        -validaciones
+        +actualizar_estado()
+        +registrar_decision()
+        +validar_coherencia()
+    }
+    
+    class ComunicadorAgentes {
+        -mensajes
+        -agentes_registrados
+        +registrar_agente()
+        +enviar_mensaje()
+        +obtener_historial()
+    }
+    
+    class ContextoHibrido {
+        -metadatos
+        -texto_completo
+        -historial
+        -session_id
+        -timestamp_inicio
+        -prompts_realizados
+        +procesar_respuesta_llm()
+        +autodetectar_metadatos()
+        +determinar_accion()
+        +get_contexto_para_llm()
+        +get_resumen_sesion()
+    }
+    
+    class AgenteCoordinador {
+        -ollama
+        -historial_prompts
+        -ejemplos_k
+        -estado_global
+        -comunicador
+        -agentes_especializados
+        -flujo_config
+        +_cargar_ejemplos_k()
+        +generar_ideas_actividades_hibrido()
+        +_crear_prompt_hibrido()
+        +_seleccionar_ejemplo_relevante()
+        +_parsear_ideas()
+        +inicializar_sistema_completo()
+        +recoger_informacion_inicial()
+        +ejecutar_flujo_orquestado()
+        +coordinar_proceso()
+    }
+    
+    class SistemaAgentesABP {
+        -ollama
+        -contexto_hibrido
+        -coordinador
+        -analizador_tareas
+        -perfilador
+        -optimizador
+        -generador_recursos
+        -proyecto_actual
+        -validado
+        +ejecutar_flujo_completo()
+        +_mostrar_resumen_proceso()
+        +_ejecutar_validacion_mejorada()
+        +_crear_proyecto_final()
+        +_organizar_fases()
+    }
+    
+    class OllamaIntegrator {
+        -host
+        -port
+        -model
+        -base_url
+        -session
+        -ollama_disponible
+        +generar_respuesta()
+        +_respuesta_fallback()
+    }
+    
+    class AgenteAnalizadorTareas {
+        -ollama
+        +descomponer_actividad()
+        +_parsear_tareas()
+        +_extraer_campo()
+        +_extraer_lista()
+        +_extraer_numero()
+    }
+    
+    class AgentePerfiladorEstudiantes {
+        -ollama
+        -perfiles_base
+        +_cargar_perfiles_reales()
+        +_extraer_fortalezas()
+        +_extraer_necesidades_apoyo()
+        +analizar_perfiles()
+        +_parsear_analisis()
+    }
+    
+    class AgenteOptimizadorAsignaciones {
+        -ollama
+        -perfiles
+        +optimizar_asignaciones()
+        +_parsear_asignaciones()
+    }
+    
+    class AgenteGeneradorRecursos {
+        -ollama
+        +generar_recursos()
+        +_parsear_recursos()
+    }
+    
+    class Actividad {
+        -descripcion
+        -nivel_educativo
+        -competencias_objetivo
+        -duracion_estimada
+        -tipo_producto
+    }
+    
+    class Estudiante {
+        -id
+        -nombre
+        -fortalezas
+        -necesidades_apoyo
+        -disponibilidad
+        -historial_roles
+        -adaptaciones
+    }
+    
+    class Tarea {
+        -id
+        -descripcion
+        -competencias_requeridas
+        -complejidad
+        -tipo
+        -dependencias
+        -tiempo_estimado
+    }
+    
+    class ProyectoABP {
+        -titulo
+        -descripcion
+        -duracion
+        -competencias_objetivo
+        -fases
+        -asignaciones
+        -recursos
+        -evaluacion
+        -metadatos
+    }
+    
+    class IteracionPrompt {
+        -numero
+        -prompt
+        -accion
+        -metadatos_detectados
+        -timestamp
+    }
+    
+    SistemaAgentesABP --> ContextoHibrido
+    SistemaAgentesABP --> AgenteCoordinador
+    SistemaAgentesABP --> AgenteAnalizadorTareas
+    SistemaAgentesABP --> AgentePerfiladorEstudiantes
+    SistemaAgentesABP --> AgenteOptimizadorAsignaciones
+    SistemaAgentesABP --> AgenteGeneradorRecursos
+    SistemaAgentesABP --> OllamaIntegrator
+    
+    AgenteCoordinador --> EstadoGlobalProyecto
+    AgenteCoordinador --> ComunicadorAgentes
+    AgenteCoordinador --> OllamaIntegrator
+    
+    AgenteAnalizadorTareas --> OllamaIntegrator
+    AgentePerfiladorEstudiantes --> OllamaIntegrator
+    AgenteOptimizadorAsignaciones --> OllamaIntegrator
+    AgenteGeneradorRecursos --> OllamaIntegrator
+    
+    ComunicadorAgentes --> AgenteAnalizadorTareas
+    ComunicadorAgentes --> AgentePerfiladorEstudiantes
+    ComunicadorAgentes --> AgenteOptimizadorAsignaciones
+    ComunicadorAgentes --> AgenteGeneradorRecursos
+    
+    ContextoHibrido --> IteracionPrompt
