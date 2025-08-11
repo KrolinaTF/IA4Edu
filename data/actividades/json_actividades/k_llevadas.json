@@ -1,80 +1,84 @@
 {
-    "id": "ACT006",
-    "titulo": "Sumas con Llevadas: ¿Qué significa 'me llevo 1'?",
-    "objetivo": "Explorar y comprender el concepto de 'llevada' en la suma de manera práctica, materializando el concepto para crear una abstracción sustentada. Fomentar la colaboración, la comunicación y el respeto en la interacción humana a través del trabajo conjunto.",
-    "nivel_educativo": "Primaria",
-    "duracion_minutos": "Aproximadamente 60 minutos.",
-    "recursos": [
-      "Materiales contables (lentejas, garbanzos, cuentas, fichas)",
-      "Bolsas herméticas (para paquetes de 10)",
-      "Cajitas o bolsas grandes (para paquetes de 100)",
-      "Mesas",
-      "Pizarra y cuadernos (para el registro individual)"
-    ],
-    "etapas": [
-      {
-        "nombre": "Preparación de Materiales y Organización",
-        "descripcion": "El profesor presenta la actividad. Se organizan las mesas y se crean paquetes de 10 y de 100 para la actividad de suma.",
-        "tareas": [
-          {
-            "nombre": "Organización de mesas",
-            "descripcion": "Luis y Emma preparan las mesas para la actividad, que se colocarán dos a dos, enfrentadas.",
-            "formato_asignacion": "parejas",
-            "estrategias_adaptacion": {
-              "para_luis_emma": "Se les asigna una tarea de movimiento y organización para ayudar en la preparación del aula."
-            }
-          },
-          {
-            "nombre": "Creación de paquetes",
-            "descripcion": "El resto de la clase crea paquetes de 10 unidades (y de 100 si es posible).",
-            "formato_asignacion": "grupos",
-            "estrategias_adaptacion": {
-              "para_elena": "La tarea de hacer bastantes paquetes de 10 puede ser estimulante."
-            }
+  "id": "ACT006",
+  "titulo": "Sumas con Llevadas: ¿Qué significa 'me llevo 1'?",
+  "objetivo": "Explorar y comprender el concepto de 'llevada' en la suma de manera práctica, materializando el concepto para crear una abstracción sustentada. Fomentar la colaboración, la comunicación y el respeto en la interacción humana a través del trabajo conjunto.",
+  "nivel_educativo": "Primaria",
+  "duracion_minutos": "Aproximadamente 60 minutos.",
+  "recursos": [
+    "Materiales contables (lentejas, garbanzos, cuentas, fichas)",
+    "Bolsas herméticas (para paquetes de 10)",
+    "Cajitas o bolsas grandes (para paquetes de 100)",
+    "Mesas",
+    "Pizarra y cuadernos (para el registro individual)"
+  ],
+  "etapas": [
+    {
+      "nombre": "Preparación de Materiales y Organización",
+      "descripcion": "El profesor presenta la actividad. Se organizan las mesas y se crean paquetes de 10 y de 100 para la actividad de suma.",
+      "tareas": [
+        {
+          "nombre": "Organización de mesas",
+          "descripcion": "Luis y Emma preparan las mesas para la actividad, que se colocarán dos a dos, enfrentadas.",
+          "formato_asignacion": "parejas",
+          "estrategias_adaptacion": {
+            "para_luis_emma": "Se les asigna una tarea de movimiento y organización para ayudar en la preparación del aula."
           }
-        ]
-      },
-      {
-        "nombre": "Sumas Conjuntas",
-        "descripcion": "Los estudiantes se colocan en las mesas en parejas (unidades, decenas, centenas) para realizar sumas, respetando la regla de no tener más de 9 en cada mesa.",
-        "tareas": [
-          {
-            "nombre": "Realizar la suma",
-            "descripcion": "Se dan dos números y cada estudiante recibe su cantidad correspondiente. Al formar un paquete de 10, se lo pasan al compañero y el resultado se deja en el centro de la mesa.",
-            "formato_asignacion": "parejas"
-          },
-          {
-            "nombre": "Trabajo individual y de apoyo",
-            "descripcion": "Mientras, 2 personas que no están en las mesas realizan la suma individualmente. Si terminan antes, pueden ayudar a su compañero.",
-            "formato_asignacion": "individual y parejas",
-            "estrategias_adaptacion": {
-              "para_alumnos_con_mas_capacidad": "Pueden hacer el proceso solos para practicar y desarrollar agilidad."
-            }
-          },
-          {
-            "nombre": "Revisión conjunta",
-            "descripcion": "Finalmente, todos comparan los resultados, que deberían coincidir. La revisión conjunta fomenta el desarrollo de la comunicación y el respeto.",
-            "formato_asignacion": "aula completa"
+        },
+        {
+          "nombre": "Creación de paquetes",
+          "descripcion": "El resto de la clase crea paquetes de 10 unidades (y de 100 si es posible).",
+          "formato_asignacion": "grupos",
+          "estrategias_adaptacion": {
+            "para_elena": "La tarea de hacer bastantes paquetes de 10 puede ser estimulante."
           }
-        ]
-      },
-      {
-        "nombre": "Rotaciones y Variaciones",
-        "descripcion": "Se realizan rotaciones para que todos los alumnos pasen por los diferentes roles de la suma. Se fomenta la exploración de diferentes métodos de trabajo.",
-        "tareas": [
-          {
-            "nombre": "Rotaciones de roles",
-            "descripcion": "Los estudiantes rotan para cambiar de roles (unidades, decenas, centenas) y seguir practicando las sumas con llevadas.",
-            "formato_asignacion": "grupos"
-          },
-          {
-            "nombre": "Exploración de otros métodos",
-            "descripcion": "Se permite la exploración de otras formas de realizar las cuentas (individualmente o en parejas) para adaptarse al ritmo del aula.",
-            "formato_asignacion": "aula completa"
+        }
+      ]
+    },
+    {
+      "nombre": "Sumas Conjuntas",
+      "descripcion": "Los estudiantes se colocan en las mesas en parejas (unidades, decenas, centenas) para realizar sumas, respetando la regla de no tener más de 9 en cada mesa.",
+      "tareas": [
+        {
+          "nombre": "Realizar la suma",
+          "descripcion": "Se dan dos números y cada estudiante recibe su cantidad correspondiente. Al formar un paquete de 10, se lo pasan al compañero y el resultado se deja en el centro de la mesa.",
+          "formato_asignacion": "parejas"
+        },
+        {
+          "nombre": "Trabajo individual y de apoyo",
+          "descripcion": "Mientras, 2 personas que no están en las mesas realizan la suma individualmente. Si terminan antes, pueden ayudar a su compañero.",
+          "formato_asignacion": "individual y parejas",
+          "estrategias_adaptacion": {
+            "para_alumnos_con_mas_capacidad": "Pueden hacer el proceso solos para practicar y desarrollar agilidad."
           }
-        ]
-      }
-    ],
-    "alumnos_objetivo": ["Luis", "Emma", "Elena"],
-    "observaciones": "El material contable puede ser una estrategia cognitiva reutilizable. La actividad está diseñada para fomentar la comunicación y la autogestión de los alumnos. El tiempo es flexible. Se proponen versiones simplificadas (con folios y pegatinas) para estudiantes más jóvenes y versiones más complejas para trabajar con decimales."
-  }
+        },
+        {
+          "nombre": "Revisión conjunta",
+          "descripcion": "Finalmente, todos comparan los resultados, que deberían coincidir. La revisión conjunta fomenta el desarrollo de la comunicación y el respeto.",
+          "formato_asignacion": "aula completa"
+        }
+      ]
+    },
+    {
+      "nombre": "Rotaciones y Variaciones",
+      "descripcion": "Se realizan rotaciones para que todos los alumnos pasen por los diferentes roles de la suma. Se fomenta la exploración de diferentes métodos de trabajo.",
+      "tareas": [
+        {
+          "nombre": "Rotaciones de roles",
+          "descripcion": "Los estudiantes rotan para cambiar de roles (unidades, decenas, centenas) y seguir practicando las sumas con llevadas.",
+          "formato_asignacion": "grupos"
+        },
+        {
+          "nombre": "Exploración de otros métodos",
+          "descripcion": "Se permite la exploración de otras formas de realizar las cuentas (individualmente o en parejas) para adaptarse al ritmo del aula.",
+          "formato_asignacion": "aula completa"
+        }
+      ]
+    }
+  ],
+  "alumnos_objetivo": [
+    "Luis",
+    "Emma",
+    "Elena"
+  ],
+  "observaciones": "El material contable puede ser una estrategia cognitiva reutilizable. La actividad está diseñada para fomentar la comunicación y la autogestión de los alumnos. El tiempo es flexible. Se proponen versiones simplificadas (con folios y pegatinas) para estudiantes más jóvenes y versiones más complejas para trabajar con decimales."
+}

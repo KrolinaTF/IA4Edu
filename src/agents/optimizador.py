@@ -42,8 +42,25 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
             self.perfiles = {e.id: e for e in perfilador.perfiles_base}
             self.logger.info(f"📋 Perfiles actualizados: {len(self.perfiles)} estudiantes")
         
-        # Convertir la lista de objetos Tarea a una lista de diccionarios para que sea serializable
-        tareas_dict_list = [asdict(tarea) for tarea in tareas] 
+        # Convertir tareas a formato serializable, manejando diferentes tipos de entrada
+        if isinstance(tareas, list):
+            # Si es una lista de objetos Tarea
+            tareas_dict_list = []
+            for tarea in tareas:
+                if hasattr(tarea, '__dict__'):  # Es un objeto
+                    if hasattr(tarea, '__dataclass_fields__'):  # Es un dataclass
+                        tareas_dict_list.append(asdict(tarea))
+                    else:  # Es un objeto regular
+                        tareas_dict_list.append(tarea.__dict__)
+                elif isinstance(tarea, dict):  # Ya es un diccionario
+                    tareas_dict_list.append(tarea)
+                else:
+                    tareas_dict_list.append(str(tarea))
+        elif isinstance(tareas, dict):
+            # Si es un diccionario con estructura de resultado del analizador
+            tareas_dict_list = [tareas]  # Encapsular el diccionario completo
+        else:
+            tareas_dict_list = [{"descripcion": str(tareas)}] 
         
         # Prepara el prompt para el LLM con instrucciones claras
         prompt_optimizacion = f"""

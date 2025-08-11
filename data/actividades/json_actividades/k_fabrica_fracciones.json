@@ -1,88 +1,95 @@
 {
-    "id": "ACT009",
-    "titulo": "La Fábrica de Fracciones: Construyendo el 1",
-    "objetivo": "Comprender y visualizar el concepto de fracción y las equivalencias, entendiendo las fracciones como partes de un todo. La actividad busca construir el conocimiento de manera manipulativa y colaborativa, fomentando la paciencia, la comunicación y la gestión emocional del grupo.",
-    "nivel_educativo": "3º de Primaria",
-    "duracion_minutos": "El proyecto se desarrolla en tres sesiones de una hora cada una.",
-    "recursos": [
-      "Cartulinas de colores (representando la unidad, la mitad, los tercios, los cuartos, etc.)",
-      "Tijeras, pegamento, rotuladores y lápices",
-      "Pizarra y tiza/rotuladores",
-      "Plantillas de círculos (para Ana V.)",
-      "Ficha de trabajo para el registro de fracciones",
-      "Cuento o video sobre un pastel para introducir el tema"
-    ],
-    "etapas": [
-      {
-        "nombre": "Día 1: Preparación y Creación de Materiales",
-        "descripcion": "El profesor introduce el tema con una historia y los alumnos, en grupos, preparan los materiales de trabajo (círculos y partes de cartulina).",
-        "tareas": [
-          {
-            "nombre": "Introducción y cuento",
-            "descripcion": "El profesor introduce el tema de las fracciones con un cuento o video, centrado en un pastel que se va a repartir.",
-            "formato_asignacion": "aula completa"
-          },
-          {
-            "nombre": "Creación del 'material de la fábrica'",
-            "descripcion": "Cada grupo de 4-5 alumnos, identificados por cartulinas de colores, recibe una unidad (círculo) y una fracción específica para crear con cartulina.",
-            "formato_asignacion": "grupos",
-            "estrategias_adaptacion": {
-              "para_grupos": "Los grupos están pensados para que haya diversidad de perfiles, con un apoyo claro para cada uno.",
-              "para_ana_v": "Se le asigna una tarea más compleja (como los quintos) y se le proporcionan plantillas de círculos para que pueda centrarse en el concepto de la fracción sin tener que lidiar con la dificultad del dibujo.",
-              "para_luis_t": "Se le asigna un grupo con tareas de corte y movimiento, y donde su creatividad pueda ser canalizada."
-            }
-          },
-          {
-            "nombre": "Montaje de la 'fábrica'",
-            "descripcion": "Cada grupo crea su parte de la fábrica de fracciones y la expone en la clase.",
-            "formato_asignacion": "grupos"
+  "id": "ACT009",
+  "titulo": "La Fábrica de Fracciones: Construyendo el 1",
+  "objetivo": "Comprender y visualizar el concepto de fracción y las equivalencias, entendiendo las fracciones como partes de un todo. La actividad busca construir el conocimiento de manera manipulativa y colaborativa, fomentando la paciencia, la comunicación y la gestión emocional del grupo.",
+  "nivel_educativo": "3º de Primaria",
+  "duracion_minutos": "El proyecto se desarrolla en tres sesiones de una hora cada una.",
+  "recursos": [
+    "Cartulinas de colores (representando la unidad, la mitad, los tercios, los cuartos, etc.)",
+    "Tijeras, pegamento, rotuladores y lápices",
+    "Pizarra y tiza/rotuladores",
+    "Plantillas de círculos (para Ana V.)",
+    "Ficha de trabajo para el registro de fracciones",
+    "Cuento o video sobre un pastel para introducir el tema"
+  ],
+  "etapas": [
+    {
+      "nombre": "Día 1: Preparación y Creación de Materiales",
+      "descripcion": "El profesor introduce el tema con una historia y los alumnos, en grupos, preparan los materiales de trabajo (círculos y partes de cartulina).",
+      "tareas": [
+        {
+          "nombre": "Introducción y cuento",
+          "descripcion": "El profesor introduce el tema de las fracciones con un cuento o video, centrado en un pastel que se va a repartir.",
+          "formato_asignacion": "aula completa"
+        },
+        {
+          "nombre": "Creación del 'material de la fábrica'",
+          "descripcion": "Cada grupo de 4-5 alumnos, identificados por cartulinas de colores, recibe una unidad (círculo) y una fracción específica para crear con cartulina.",
+          "formato_asignacion": "grupos",
+          "estrategias_adaptacion": {
+            "para_grupos": "Los grupos están pensados para que haya diversidad de perfiles, con un apoyo claro para cada uno.",
+            "para_ana_v": "Se le asigna una tarea más compleja (como los quintos) y se le proporcionan plantillas de círculos para que pueda centrarse en el concepto de la fracción sin tener que lidiar con la dificultad del dibujo.",
+            "para_luis_t": "Se le asigna un grupo con tareas de corte y movimiento, y donde su creatividad pueda ser canalizada."
           }
-        ]
-      },
-      {
-        "nombre": "Día 2: Exploración de Equivalencias",
-        "descripcion": "Los alumnos, en parejas, exploran las relaciones entre fracciones y descubren las equivalencias de forma práctica.",
-        "tareas": [
-          {
-            "nombre": "Asignación de roles y pareja",
-            "descripcion": "Los alumnos se emparejan. Uno tiene el rol de 'investigador' (explora con los materiales) y el otro de 'secretario' (rellena una ficha de trabajo).",
-            "formato_asignacion": "parejas",
-            "estrategias_adaptacion": {
-              "para_emma_k": "Se le asigna a Emma, que tiene dificultades, una pareja con Luis, quien tiene una gran habilidad en la visualización, pero no tanta en el registro. Se apoyan mutuamente."
-            }
-          },
-          {
-            "nombre": "Descubrir equivalencias",
-            "descripcion": "Las parejas exploran las relaciones entre los materiales de la fábrica, buscando diferentes formas de construir 'el 1'.",
-            "formato_asignacion": "parejas"
-          },
-          {
-            "nombre": "Registro de fracciones",
-            "descripcion": "El 'secretario' rellena una ficha de trabajo con las fracciones descubiertas y sus equivalencias.",
-            "formato_asignacion": "parejas"
+        },
+        {
+          "nombre": "Montaje de la 'fábrica'",
+          "descripcion": "Cada grupo crea su parte de la fábrica de fracciones y la expone en la clase.",
+          "formato_asignacion": "grupos"
+        }
+      ]
+    },
+    {
+      "nombre": "Día 2: Exploración de Equivalencias",
+      "descripcion": "Los alumnos, en parejas, exploran las relaciones entre fracciones y descubren las equivalencias de forma práctica.",
+      "tareas": [
+        {
+          "nombre": "Asignación de roles y pareja",
+          "descripcion": "Los alumnos se emparejan. Uno tiene el rol de 'investigador' (explora con los materiales) y el otro de 'secretario' (rellena una ficha de trabajo).",
+          "formato_asignacion": "parejas",
+          "estrategias_adaptacion": {
+            "para_emma_k": "Se le asigna a Emma, que tiene dificultades, una pareja con Luis, quien tiene una gran habilidad en la visualización, pero no tanta en el registro. Se apoyan mutuamente."
           }
-        ]
-      },
-      {
-        "nombre": "Día 3: Cierre, Debate y Evaluación",
-        "descripcion": "Los alumnos, en gran grupo, debaten las conclusiones de la exploración y resuelven un pequeño problema que refuerce los conocimientos adquiridos.",
-        "tareas": [
-          {
-            "nombre": "Debate colectivo",
-            "descripcion": "En el gran grupo, los alumnos comparten sus hallazgos, defienden sus conclusiones y resuelven un problema conjunto sobre fracciones.",
-            "formato_asignacion": "aula completa",
-            "estrategias_adaptacion": {
-              "para_todos": "Se fomenta la escucha activa y el debate respetuoso."
-            }
-          },
-          {
-            "nombre": "Evaluación final",
-            "descripcion": "Se puede usar un juego o una actividad de 'prueba y error' en la pizarra para evaluar de forma lúdica si el grupo ha comprendido el concepto de fracción.",
-            "formato_asignacion": "aula completa"
+        },
+        {
+          "nombre": "Descubrir equivalencias",
+          "descripcion": "Las parejas exploran las relaciones entre los materiales de la fábrica, buscando diferentes formas de construir 'el 1'.",
+          "formato_asignacion": "parejas"
+        },
+        {
+          "nombre": "Registro de fracciones",
+          "descripcion": "El 'secretario' rellena una ficha de trabajo con las fracciones descubiertas y sus equivalencias.",
+          "formato_asignacion": "parejas"
+        }
+      ]
+    },
+    {
+      "nombre": "Día 3: Cierre, Debate y Evaluación",
+      "descripcion": "Los alumnos, en gran grupo, debaten las conclusiones de la exploración y resuelven un pequeño problema que refuerce los conocimientos adquiridos.",
+      "tareas": [
+        {
+          "nombre": "Debate colectivo",
+          "descripcion": "En el gran grupo, los alumnos comparten sus hallazgos, defienden sus conclusiones y resuelven un problema conjunto sobre fracciones.",
+          "formato_asignacion": "aula completa",
+          "estrategias_adaptacion": {
+            "para_todos": "Se fomenta la escucha activa y el debate respetuoso."
           }
-        ]
-      }
-    ],
-    "alumnos_objetivo": ["Ana V.", "Luis T.", "Emma K.", "Elena R.", "Alex M.", "Sara M."],
-    "observaciones": "El profesor tiene un rol de guía y observador, fomentando que los alumnos se ayuden entre ellos. La actividad se enfoca en el aprendizaje manipulativo, que ayuda a los alumnos a asentar conceptos abstractos. Los roles y las adaptaciones están diseñados para fomentar la participación de todos, respetando los ritmos individuales. El uso de cartulinas de colores facilita la identificación de los grupos."
-  }
+        },
+        {
+          "nombre": "Evaluación final",
+          "descripcion": "Se puede usar un juego o una actividad de 'prueba y error' en la pizarra para evaluar de forma lúdica si el grupo ha comprendido el concepto de fracción.",
+          "formato_asignacion": "aula completa"
+        }
+      ]
+    }
+  ],
+  "alumnos_objetivo": [
+    "Ana V.",
+    "Luis T.",
+    "Emma K.",
+    "Elena R.",
+    "Alex M.",
+    "Sara M."
+  ],
+  "observaciones": "El profesor tiene un rol de guía y observador, fomentando que los alumnos se ayuden entre ellos. La actividad se enfoca en el aprendizaje manipulativo, que ayuda a los alumnos a asentar conceptos abstractos. Los roles y las adaptaciones están diseñados para fomentar la participación de todos, respetando los ritmos individuales. El uso de cartulinas de colores facilita la identificación de los grupos."
+}

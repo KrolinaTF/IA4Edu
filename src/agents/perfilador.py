@@ -680,3 +680,224 @@ class AgentePerfiladorEstudiantes(BaseAgent):
         datos_entrada.update(kwargs)
         
         return self.process(datos_entrada)
+    
+    def obtener_perfiles_optimizados(self, actividad_contexto: Dict[str, Any] = None) -> Dict[str, Any]:
+        """
+        Método optimizado Fase 2: Retorna perfiles existentes con análisis contextual mínimo
+        
+        Args:
+            actividad_contexto: Contexto de la actividad seleccionada (opcional)
+            
+        Returns:
+            Perfiles optimizados sin procesamiento LLM pesado
+        """
+        self._log_processing_start("obtención optimizada de perfiles")
+        
+        try:
+            # Base: usar perfiles existentes directamente
+            perfiles_base = {
+                'estudiantes': {},
+                'estadisticas': {
+                    'total_estudiantes': len(self.perfiles_base),
+                    'con_diagnostico': 0,
+                    'sin_diagnostico': 0,
+                    'distribución_neurotipos': {},
+                    'fortalezas_grupales': {},
+                    'necesidades_comunes': {}
+                },
+                'recomendaciones_colaboracion': [],
+                'contexto_actividad': actividad_contexto or {},
+                'metadatos': {
+                    'agente': 'AgentePerfiladorEstudiantes',
+                    'metodo': 'optimizado_fase2',
+                    'version': '2.0',
+                    'timestamp': self._get_timestamp(),
+                    'procesamiento_llm': 'minimal'
+                }
+            }
+            
+            # Procesar cada estudiante con análisis contextual mínimo
+            for estudiante in self.perfiles_base:
+                perfil_optimizado = self._generar_perfil_optimizado(estudiante, actividad_contexto)
+                perfiles_base['estudiantes'][estudiante.id] = perfil_optimizado
+                
+                # Actualizar estadísticas
+                if perfil_optimizado['adaptaciones']:
+                    perfiles_base['estadisticas']['con_diagnostico'] += 1
+                    
+                    # Contar neurotipos
+                    for adaptacion in perfil_optimizado['adaptaciones']:
+                        neurotipo = self._detectar_neurotipo(adaptacion)
+                        if neurotipo:
+                            perfiles_base['estadisticas']['distribución_neurotipos'][neurotipo] = \
+                                perfiles_base['estadisticas']['distribución_neurotipos'].get(neurotipo, 0) + 1
+                else:
+                    perfiles_base['estadisticas']['sin_diagnostico'] += 1
+                
+                # Acumular fortalezas grupales
+                for fortaleza in perfil_optimizado['fortalezas']:
+                    perfiles_base['estadisticas']['fortalezas_grupales'][fortaleza] = \
+                        perfiles_base['estadisticas']['fortalezas_grupales'].get(fortaleza, 0) + 1
+                
+                # Acumular necesidades comunes
+                for necesidad in perfil_optimizado['necesidades_apoyo']:
+                    perfiles_base['estadisticas']['necesidades_comunes'][necesidad] = \
+                        perfiles_base['estadisticas']['necesidades_comunes'].get(necesidad, 0) + 1
+            
+            # Generar recomendaciones de colaboración basadas en estadísticas (sin LLM)
+            perfiles_base['recomendaciones_colaboracion'] = self._generar_recomendaciones_colaboracion(
+                perfiles_base['estadisticas']
+            )
+            
+            self._log_processing_end(f"{len(perfiles_base['estudiantes'])} perfiles optimizados")
+            
+            return perfiles_base
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error en perfiles optimizados: {e}")
+            return {
+                'estudiantes': {},
+                'error': str(e),
+                'metadatos': {
+                    'agente': 'AgentePerfiladorEstudiantes',
+                    'metodo': 'optimizado_fase2_error',
+                    'timestamp': self._get_timestamp()
+                }
+            }
+    
+    def _generar_perfil_optimizado(self, estudiante, actividad_contexto: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Genera perfil optimizado con análisis contextual mínimo (sin LLM)
+        
+        Args:
+            estudiante: Objeto Estudiante base
+            actividad_contexto: Contexto de la actividad
+            
+        Returns:
+            Perfil optimizado con recomendaciones contextuales
+        """
+        perfil_base = {
+            'id': estudiante.id,
+            'nombre': estudiante.nombre,
+            'fortalezas': estudiante.fortalezas.copy(),
+            'necesidades_apoyo': estudiante.necesidades_apoyo.copy(),
+            'adaptaciones': estudiante.adaptaciones.copy(),
+            'disponibilidad': estudiante.disponibilidad,
+            'historial_roles': estudiante.historial_roles.copy(),
+            'recomendaciones_contextuales': []
+        }
+        
+        # Análisis contextual rápido (sin LLM)
+        if actividad_contexto:
+            actividad_data = actividad_contexto.get('actividad', {})
+            
+            # Recomendar roles basados en actividad
+            titulo_actividad = actividad_data.get('titulo', '').lower()
+            objetivo_actividad = actividad_data.get('objetivo', '').lower()
+            
+            # Mapeo rápido de fortalezas a roles contextuales
+            if 'matemáticas' in estudiante.fortalezas or 'operaciones_matemáticas' in estudiante.fortalezas:
+                if 'matemática' in titulo_actividad or 'números' in objetivo_actividad:
+                    perfil_base['recomendaciones_contextuales'].append('coordinador_matematico')
+                    
+            if 'comunicación_escrita' in estudiante.fortalezas:
+                if 'grupo' in objetivo_actividad or 'presenta' in objetivo_actividad:
+                    perfil_base['recomendaciones_contextuales'].append('portavoz_grupo')
+                    
+            if 'experimentación' in estudiante.fortalezas:
+                if 'experimento' in objetivo_actividad or 'investiga' in objetivo_actividad:
+                    perfil_base['recomendaciones_contextuales'].append('investigador_principal')
+                    
+            if 'colaboración' in estudiante.fortalezas:
+                perfil_base['recomendaciones_contextuales'].append('facilitador_colaboracion')
+            
+            # Ajustes por necesidades especiales en contexto
+            for adaptacion in estudiante.adaptaciones:
+                if 'TEA' in adaptacion:
+                    perfil_base['recomendaciones_contextuales'].append('rol_estructurado')
+                elif 'TDAH' in adaptacion:
+                    if 'movimiento' in objetivo_actividad or 'manipul' in objetivo_actividad:
+                        perfil_base['recomendaciones_contextuales'].append('rol_dinamico_movimiento')
+                elif 'altas capacidades' in adaptacion.lower():
+                    perfil_base['recomendaciones_contextuales'].append('rol_liderazgo_intelectual')
+        
+        return perfil_base
+    
+    def _detectar_neurotipo(self, adaptacion: str) -> str:
+        """
+        Detecta neurotipo de una adaptación (método rápido sin LLM)
+        
+        Args:
+            adaptacion: String con adaptación
+            
+        Returns:
+            Neurotipo detectado o None
+        """
+        adaptacion_lower = adaptacion.lower()
+        
+        if 'tea' in adaptacion_lower or 'autismo' in adaptacion_lower:
+            return 'TEA'
+        elif 'tdah' in adaptacion_lower or 'hiperactividad' in adaptacion_lower:
+            return 'TDAH'
+        elif 'altas capacidades' in adaptacion_lower or 'superdotacion' in adaptacion_lower:
+            return 'Altas Capacidades'
+        elif 'dislexia' in adaptacion_lower:
+            return 'Dislexia'
+        elif 'discalculia' in adaptacion_lower:
+            return 'Discalculia'
+        
+        return None
+    
+    def _generar_recomendaciones_colaboracion(self, estadisticas: Dict[str, Any]) -> List[str]:
+        """
+        Genera recomendaciones de colaboración basadas en estadísticas (sin LLM)
+        
+        Args:
+            estadisticas: Estadísticas del grupo
+            
+        Returns:
+            Lista de recomendaciones
+        """
+        recomendaciones = []
+        
+        total_estudiantes = estadisticas['total_estudiantes']
+        con_diagnostico = estadisticas['con_diagnostico']
+        neurotipos = estadisticas['distribución_neurotipos']
+        fortalezas = estadisticas['fortalezas_grupales']
+        
+        # Recomendaciones basadas en diversidad
+        if con_diagnostico > 0:
+            porcentaje_diversidad = (con_diagnostico / total_estudiantes) * 100
+            if porcentaje_diversidad > 50:
+                recomendaciones.append("Grupo con alta neurodiversidad: fomentar roles complementarios")
+            elif porcentaje_diversidad > 25:
+                recomendaciones.append("Grupo con diversidad moderada: aprovechar fortalezas únicas")
+        
+        # Recomendaciones por neurotipos específicos
+        if 'TEA' in neurotipos:
+            recomendaciones.append("Presencia TEA: proporcionar estructura clara y rutinas predecibles")
+        if 'TDAH' in neurotipos:
+            recomendaciones.append("Presencia TDAH: incorporar movimiento y tareas fragmentadas")
+        if 'Altas Capacidades' in neurotipos:
+            recomendaciones.append("Altas capacidades: ofrecer desafíos adicionales y rol de mentoría")
+        
+        # Recomendaciones por fortalezas grupales
+        fortalezas_ordenadas = sorted(fortalezas.items(), key=lambda x: x[1], reverse=True)
+        if fortalezas_ordenadas:
+            fortaleza_principal = fortalezas_ordenadas[0][0]
+            if fortaleza_principal == 'matemáticas_números':
+                recomendaciones.append("Fortaleza grupal matemática: asignar roles de cálculo y verificación")
+            elif fortaleza_principal == 'comunicación_escrita':
+                recomendaciones.append("Fortaleza comunicativa: asignar roles de documentación y presentación")
+            elif fortaleza_principal == 'experimentación':
+                recomendaciones.append("Fortaleza experimental: asignar roles de investigación práctica")
+        
+        # Recomendación de tamaño de grupos
+        if total_estudiantes <= 4:
+            recomendaciones.append("Grupo pequeño: trabajo individual con apoyo mutuo")
+        elif total_estudiantes <= 8:
+            recomendaciones.append("Grupo medio: formar 2-3 equipos colaborativos")
+        else:
+            recomendaciones.append("Grupo grande: formar múltiples equipos con rotación de roles")
+        
+        return recomendaciones[:5]  # Máximo 5 recomendaciones
