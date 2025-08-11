@@ -1,0 +1,77 @@
+{
+    "id": "ACT005",
+    "titulo": "Actividad deportiva con geografía",
+    "objetivo": "Crear un mapa completo de España con sus comunidades autónomas y banderas, y luego participar en un juego para fortalecer el reconocimiento territorial y la ubicación geográfica.",
+    "nivel_educativo": "4º de Primaria",
+    "duracion_minutos": "El proyecto se estructura en dos días, uno de preparación y otro de juego.",
+    "recursos": [
+      "Cartulinas de colores (19 para cada comunidad/ciudad autónoma)",
+      "Rotuladores, lápices de colores, tijeras",
+      "Plantillas impresas de contornos (especialmente para ELENA y LUIS)",
+      "Imágenes de referencia de las banderas",
+      "Pegamento, cinta adhesiva y velcro",
+      "Tiza para dibujar el mapa gigante en el patio",
+      "Música para las actividades",
+      "Plan B en caso de mal tiempo"
+    ],
+    "etapas": [
+      {
+        "nombre": "DÍA 1: Preparación de Materiales",
+        "descripcion": "Elaboración de mapas y banderas de cada comunidad autónoma de España.",
+        "tareas": [
+          {
+            "nombre": "Dibujar contornos de comunidades",
+            "descripcion": "Cada alumno dibujará y coloreará 2-3 comunidades autónomas en cartulinas, con tareas adaptadas a sus capacidades. Se entregan plantillas con el contorno marcado a Elena.",
+            "formato_asignacion": "individual",
+            "estrategias_adaptacion": {
+              "para_elena_r": "Comunidades pequeñas y definidas (Asturias y Cantabria). Recibirá plantillas con el contorno ya marcado para colorear.",
+              "para_ana_v": "Se le asignan una comunidad grande y dos pequeñas (Castilla y León, La Rioja y Madrid) debido a sus altas capacidades.",
+              "para_luis_t": "Se le asignan varias piezas pequeñas (Navarra, Islas Canarias, Ceuta y Melilla) que le permiten cambiar de foco."
+            }
+          },
+          {
+            "nombre": "Crear banderas autonómicas",
+            "descripcion": "Cada alumno creará 2-3 banderas autonómicas en tamaño A5, con un reparto de tareas adaptado a sus niveles.",
+            "formato_asignacion": "individual",
+            "estrategias_adaptacion": {
+              "para_elena_r": "Banderas sencillas (Asturias y Cantabria).",
+              "para_ana_v": "Incluye banderas de diferente complejidad (Castilla y León, La Rioja y Ceuta).",
+              "para_luis_t": "Varias banderas sencillas (Navarra, Islas Canarias y Melilla) para mantener su interés."
+            }
+          }
+        ]
+      },
+      {
+        "nombre": "DÍA 2: Juego 'Conoce España'",
+        "descripcion": "Juego en el patio con las comunidades y banderas creadas en la primera fase.",
+        "tareas": [
+          {
+            "nombre": "Construyendo España",
+            "descripcion": "Los alumnos colocan sus comunidades en un mapa gigante de tiza y cada uno presenta brevemente sus comunidades.",
+            "formato_asignacion": "aula completa",
+            "estrategias_adaptacion": {
+              "para_todos": "Se utiliza un mapa gigante en el patio para fomentar el movimiento y el aprendizaje kinestésico."
+            }
+          },
+          {
+            "nombre": "Carrera de banderas",
+            "descripcion": "Se forman 2 equipos para una carrera de relevos donde los alumnos deben colocar banderas en la comunidad correspondiente del mapa.",
+            "formato_asignacion": "grupos",
+            "estrategias_adaptacion": {
+              "para_luis_t": "Se le asignarán roles activos como la recogida de banderas y la distribución."
+            }
+          },
+          {
+            "nombre": "La gran rotación",
+            "descripcion": "Los alumnos rotan por el mapa al ritmo de la música y deben nombrar la comunidad en la que se detienen.",
+            "formato_asignacion": "aula completa",
+            "estrategias_adaptacion": {
+              "para_elena_r": "Se le proporcionará una secuencia visual del juego, se le permitirá conocer con anticipación las rotaciones y se le asignará un compañero de apoyo (Ana V.)."
+            }
+          }
+        ]
+      }
+    ],
+    "alumnos_objetivo": ["Elena R.", "Alex M.", "Ana V.", "María L.", "Emma K.", "Hugo P.", "Sara M.", "Luis T."],
+    "observaciones": "El profesor debe imprimir plantillas de contornos para Elena y Luis. Se deben tener listas las imágenes de referencia de las banderas. El juego del Día 2 se centra en el reconocimiento territorial básico. Para las adaptaciones, se proporcionará una secuencia visual del juego para Elena y se asignarán roles activos a Luis. La carga de trabajo individual es manejable y adaptada a las capacidades de cada alumno."
+  }

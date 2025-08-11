@@ -1,0 +1,73 @@
+{
+    "id": "ACT008",
+    "titulo": "¡Vamos al Supermercado! Aventura de Compras y Sumas",
+    "objetivo": "Aprender a sumar y manejar el dinero de forma práctica, reforzando la lectoescritura, la concentración y el trabajo colaborativo. Se busca que los alumnos se apoyen entre sí, valoren el esfuerzo ajeno y resuelvan problemas reales de la vida cotidiana.",
+    "nivel_educativo": "1º de Primaria",
+    "duracion_minutos": "El proyecto se desarrolla en dos días.",
+    "recursos": [
+      "Materiales de clase para representar alimentos (fotos, objetos reales o dibujos)",
+      "Pizarra o paneles grandes para los precios",
+      "Dinero de juguete (monedas y billetes)",
+      "Cajas de cartón para simular cestas o carros",
+      "Tarjetas con los precios de los productos",
+      "Lista de la compra (una por grupo)"
+    ],
+    "etapas": [
+      {
+        "nombre": "Día 1: Planificación y Creación del Supermercado",
+        "descripcion": "Los alumnos, divididos en grupos, crean las listas de la compra, organizan y valoran los productos para montar el supermercado.",
+        "tareas": [
+          {
+            "nombre": "Creación de listas y roles",
+            "descripcion": "Cada grupo recibe una lista de la compra vacía, con espacios para dibujar y escribir los productos. El grupo con Alex y Sara tiene una lista más completa, mientras que otros grupos se centran en sumas con menos cifras.",
+            "formato_asignacion": "grupos",
+            "estrategias_adaptacion": {
+              "para_alex_sara": "Se les asigna una lista de la compra con mayor complejidad (más productos y precios más altos).",
+              "para_elena": "Se le asigna al 'Grupo de las Maravillas' para ayudarla a gestionar su frustración y fomentar la concentración. Su tarea es encontrar y colocar los productos de su lista."
+            }
+          },
+          {
+            "nombre": "Valorar y exponer productos",
+            "descripcion": "Cada grupo pone precio a sus productos, asegurándose de que la suma no supere el presupuesto inicial de 10 euros.",
+            "formato_asignacion": "grupos"
+          },
+          {
+            "nombre": "Montaje de los puestos",
+            "descripcion": "Los grupos preparan y exponen sus productos en el aula, con carteles de precios para montar los puestos del supermercado.",
+            "formato_asignacion": "grupos"
+          }
+        ]
+      },
+      {
+        "nombre": "Día 2: Compras y Cajas",
+        "descripcion": "Los grupos rotan entre el rol de comprador y cajero para realizar las sumas y manejar el dinero de forma práctica.",
+        "tareas": [
+          {
+            "nombre": "Rotación de roles",
+            "descripcion": "Un grupo actúa como 'vendedor' y el otro como 'comprador'. Se realiza una rotación para que todos los alumnos pasen por ambos roles. Un tutor acompañará a los niños en las 'cajas'.",
+            "formato_asignacion": "grupos",
+            "estrategias_adaptacion": {
+              "para_elena": "Se le da un rol fijo como 'cajera' para que pueda manejar el dinero y calcular sumas, proporcionando un entorno predecible y sin cambios de foco. Su tutor o el docente puede acompañarla en la 'caja' para ofrecer apoyo."
+            }
+          },
+          {
+            "nombre": "Realizar la compra",
+            "descripcion": "Los compradores van por el supermercado con su lista, seleccionando los productos y calculando la suma total de su compra.",
+            "formato_asignacion": "grupos"
+          },
+          {
+            "nombre": "Pagar y devolver",
+            "descripcion": "En la caja, se paga con el dinero de juguete y se comprueba si la suma es correcta y si hay que devolver cambio.",
+            "formato_asignacion": "grupos"
+          },
+          {
+            "nombre": "Validación de la compra",
+            "descripcion": "Una vez hecha la compra, se valida el proceso. Si hay errores, se busca en qué punto se cometieron para corregirlos.",
+            "formato_asignacion": "grupos"
+          }
+        ]
+      }
+    ],
+    "alumnos_objetivo": ["Alex", "Sara", "Elena", "Luis", "Emma", "Hugo", "Ana", "El resto del grupo de las maravillas"],
+    "observaciones": "El profesor y los tutores acompañarán a los alumnos en las 'cajas' para guiar el proceso y prevenir errores. La actividad se diseñó para que el aprendizaje sea colaborativo y para que los alumnos con más habilidades (Alex y Sara) apoyen a los que tienen más dificultades. Se permite que cada alumno trabaje a su ritmo."
+  }

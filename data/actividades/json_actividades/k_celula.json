@@ -1,0 +1,97 @@
+{
+    "id": "ACT003",
+    "titulo": "Nuestra Célula Gigante: ¡Creando Vida Juntos!",
+    [cite_start]"objetivo": "Crear un mural colaborativo de una célula, identificando sus partes y funciones, fomentando la cooperación natural, el apoyo entre compañeros y la participación activa de todos. Se busca que los alumnos se pregunten, se ayuden y compartan ideas entre ellos para construir un conocimiento conjunto[cite: 2, 9].",
+    "nivel_educativo": "Primaria",
+    "duracion_minutos": "La actividad se lleva a cabo a lo largo de varias sesiones.",
+    "recursos": [
+      [cite_start]"Papel continuo grande (2x1.5m o similar) o sábana vieja [cite: 3]",
+      [cite_start]"Lápices, gomas, rotuladores permanentes y pinturas de varios colores [cite: 3]",
+      [cite_start]"Materiales con textura: algodón, lentejuelas/purpurina, lana/fideos, botones/garbanzos, plastilina [cite: 4]",
+      [cite_start]"Pegamento, tijeras, cinta adhesiva [cite: 4]",
+      [cite_start]"Libros de ciencias y cartulinas para etiquetas [cite: 4, 5]",
+      [cite_start]"Reloj de aula visible para todos [cite: 5]"
+    ],
+    "etapas": [
+      {
+        "nombre": "Sesión 1: Viaje al Interior de la Vida",
+        [cite_start]"descripcion": "Conversación interactiva sobre la célula, visita a la biblioteca para buscar información y organización de la actividad[cite: 12, 13, 14].",
+        "tareas": [
+          {
+            "nombre": "Activación de conocimientos",
+            [cite_start]"descripcion": "Conversación sobre 'qué nos hace estar vivos' y presentación de la célula como unidad básica[cite: 12].",
+            "formato_asignacion": "aula completa"
+          },
+          {
+            "nombre": "Búsqueda de información",
+            [cite_start]"descripcion": "Visitar la biblioteca del colegio o usar los libros del aula para buscar información sobre la célula[cite: 13, 16].",
+            "formato_asignacion": "grupos",
+            "estrategias_adaptacion": {
+              [cite_start]"para_todos": "Se les da un rato para que con la bibliografía que tienen disponible revisen en qué consisten sus partes[cite: 23].",
+              [cite_start]"para_alumnos_con_necesidades": "Ana, con altas capacidades, está en un grupo que le aporte más riqueza y complejidad[cite: 46]."
+            }
+          },
+          {
+            "nombre": "Análisis de componentes y función",
+            [cite_start]"descripcion": "Cada grupo evalúa cómo es cada elemento dentro de la célula (forma, tamaño) y toma apuntes de su función[cite: 17].",
+            "formato_asignacion": "grupos"
+          },
+          {
+            "nombre": "Selección de materiales",
+            [cite_start]"descripcion": "Cada equipo elige libremente los materiales con los que van a representar su tema específico[cite: 18, 24].",
+            "formato_asignacion": "grupos"
+          }
+        ]
+      },
+      {
+        "nombre": "Sesión 2: Creación del Mural y Paneles",
+        [cite_start]"descripcion": "Los grupos se reparten las tareas para crear los elementos, agregarlos al mural y hacer los carteles informativos[cite: 29].",
+        "tareas": [
+          {
+            "nombre": "Reparto de grupos y temas",
+            [cite_start]"descripcion": "Formación de grupos con asignaciones específicas para cada parte de la célula[cite: 20, 21, 22].",
+            "formato_asignacion": "grupos",
+            "estrategias_adaptacion": {
+              [cite_start]"equipo_nucleo_adn": "Ana y Sara[cite: 20].",
+              [cite_start]"equipo_ribosomas_lisosomas_reticulo": "Elena y Alex[cite: 21].",
+              [cite_start]"equipo_mitocondrias_centriolo_golgi": "Un grupo de alumnos[cite: 21].",
+              [cite_start]"equipo_membrana_citoplasma": "Un grupo de alumnos[cite: 22].",
+              [cite_start]"para_alumnos_con_necesidades": "Luis (TDAH) puede estar en un grupo que necesite más elementos que crear o trabajo manual[cite: 47]."
+            }
+          },
+          {
+            "nombre": "Cálculo de materiales",
+            [cite_start]"descripcion": "Revisar la viabilidad de los materiales y calcular la cantidad necesaria para representar su parte en el mural[cite: 25, 26].",
+            "formato_asignacion": "grupos"
+          },
+          {
+            "nombre": "Creación de elementos y carteles",
+            [cite_start]"descripcion": "Cada grupo se reparte las tareas para crear los elementos de su parte, incorporarlos al mural y diseñar los carteles informativos con la función de cada elemento[cite: 27, 28, 29].",
+            "formato_asignacion": "grupos",
+            "estrategias_adaptacion": {
+              [cite_start]"para_todos": "Cada grupo tiene libertad para incorporar sus partes y tomar decisiones de tamaño y diseño[cite: 33].",
+              [cite_start]"para_necesidades_especiales": "Si la niña con TEA (Elena) muestra facilidad para delinear, se le animará a ello[cite: 7]. [cite_start]También se le ofrecen apoyos visuales en la pizarra y bibliografía disponible[cite: 43, 44]."
+            }
+          }
+        ]
+      },
+      {
+        "nombre": "Sesión 3: Presentación y Reflexión",
+        [cite_start]"descripcion": "Una vez completo el mural, cada grupo expone su parte, se crea un debate y se reflexiona sobre el proceso[cite: 30, 34].",
+        "tareas": [
+          {
+            "nombre": "Exposición de la parte del mural",
+            [cite_start]"descripcion": "Cada grupo expone su parte y explica qué hace cada elemento en la célula[cite: 34].",
+            "formato_asignacion": "grupos"
+          },
+          {
+            "nombre": "Debate y reflexión conjunta",
+            [cite_start]"descripcion": "Debate sobre las similitudes con los libros de ciencias, las proporciones y la organización del trabajo, permitiendo que los alumnos pregunten sobre lo que no han entendido[cite: 35, 36, 37, 39].",
+            "formato_asignacion": "aula completa"
+          }
+        ]
+      }
+    ],
+    "alumnos_objetivo": ["Ana", "Sara", "Elena", "Alex", "Luis"],
+    [cite_start]"observaciones": "El rol del profesor es ser guía y mantener cierto orden, dejando que los alumnos piensen por sí mismos y guiándolos en el pensamiento crítico[cite: 40, 41]. [cite_start]Se observan los procesos de cada uno y su creatividad[cite: 42]. [cite_start]El tiempo es gestionado con un reloj de aula visible y se anuncian los cambios con anticipación para facilitar las transiciones[cite: 10, 11]. [cite_start]Se proporcionan apoyos visuales y se fomenta la autonomía en la resolución de problemas[cite: 43, 44, 45, 139]."
+  }
