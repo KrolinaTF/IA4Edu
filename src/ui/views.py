@@ -158,13 +158,26 @@ class CLIViews:
         Args:
             proyecto_final: Proyecto final generado
         """
+        # Buscar estadísticas en múltiples ubicaciones posibles
+        estadisticas = {}
+        
+        # Opción 1: En validacion.estadisticas
         validacion = proyecto_final.get('validacion', {})
-        if not isinstance(validacion, dict):
-            validacion = {}
-            
-        estadisticas = validacion.get('estadisticas', {})
-        if not isinstance(estadisticas, dict):
-            estadisticas = {}
+        if isinstance(validacion, dict):
+            estadisticas = validacion.get('estadisticas', {})
+        
+        # Opción 2: Directamente en proyecto_final
+        if not estadisticas:
+            estadisticas = proyecto_final.get('estadisticas', {})
+        
+        # Opción 3: Calcular en tiempo real desde los datos disponibles
+        if not estadisticas:
+            resultados = proyecto_final.get('resultados_agentes', {})
+            estadisticas = {
+                'total_agentes_ejecutados': len([k for k, v in resultados.items() if v]),
+                'total_mensajes': sum(1 for v in resultados.values() if v),
+                'errores_encontrados': 0  # Podríamos detectar errores en los resultados
+            }
             
         print(f"\n📏 RESUMEN DEL PROCESO:")
         print(f"   • Agentes ejecutados: {estadisticas.get('total_agentes_ejecutados', 'N/A')}")
@@ -209,13 +222,129 @@ class CLIViews:
         print(f"Título: {proyecto_base.get('titulo', 'N/A')}")
         print(f"Descripción: {proyecto_base.get('descripcion', 'N/A')}")
         
-        # Acceso seguro a resultados anidados
-        tareas_info = resultados.get('tareas', {})
-        if isinstance(tareas_info, list):
-            tareas_list = tareas_info
-        else:
-            tareas_list = tareas_info.get('tareas', []) if isinstance(tareas_info, dict) else []
+        # ===== INFORMACIÓN DETALLADA DE TAREAS =====
+        tareas_list = []
+        actividad_info = {}
+        
+        # Buscar en la nueva estructura: resultados_agentes -> analizador_tareas
+        if 'analizador_tareas' in resultados:
+            analizador_data = resultados['analizador_tareas']
+            if isinstance(analizador_data, list):
+                tareas_list = analizador_data
+            elif isinstance(analizador_data, dict):
+                # Extraer información de actividad
+                actividad_info = analizador_data.get('actividad', {})
+                
+                # Buscar tareas en diferentes ubicaciones
+                tareas_list = (
+                    analizador_data.get('tareas_extraidas', []) or
+                    analizador_data.get('tareas', []) or
+                    []
+                )
+        
+        # Fallback: buscar en estructura antigua
+        if not tareas_list:
+            tareas_info = resultados.get('tareas', {})
+            if isinstance(tareas_info, list):
+                tareas_list = tareas_info
+            else:
+                tareas_list = tareas_info.get('tareas', []) if isinstance(tareas_info, dict) else []
+        
         print(f"Tareas generadas: {len(tareas_list)}")
+        
+        # ===== MOSTRAR LISTADO DE TAREAS =====
+        if tareas_list and len(tareas_list) > 0:
+            print(f"\n📋 TAREAS ESPECÍFICAS:")
+            print(f"   DEBUG - Tipo tareas_list: {type(tareas_list)}")
+            print(f"   DEBUG - Primer elemento: {tareas_list[0] if tareas_list else 'Vacío'}")
+            
+            for i, tarea in enumerate(tareas_list[:5], 1):  # Mostrar máximo 5
+                print(f"   DEBUG - Tarea {i} tipo: {type(tarea)}")
+                
+                if isinstance(tarea, dict):
+                    # Es un diccionario
+                    tarea_id = tarea.get('id', f'tarea_{i:02d}')
+                    descripcion = tarea.get('descripcion', tarea.get('nombre', 'Sin descripción'))
+                    complejidad = tarea.get('complejidad', 'N/A')
+                elif hasattr(tarea, 'id') and hasattr(tarea, 'descripcion'):
+                    # Es un objeto Tarea (dataclass)
+                    tarea_id = tarea.id
+                    descripcion = tarea.descripcion
+                    complejidad = getattr(tarea, 'complejidad', 'N/A')
+                else:
+                    # Fallback
+                    tarea_id = f'tarea_{i:02d}'
+                    descripcion = str(tarea)[:50]
+                    complejidad = 'N/A'
+                
+                print(f"   {i}. {descripcion} (Complejidad: {complejidad})")
+            
+            if len(tareas_list) > 5:
+                print(f"   ... y {len(tareas_list) - 5} tareas más")
+        
+        # ===== MOSTRAR DETALLE DE LA ACTIVIDAD =====
+        if actividad_info:
+            print(f"\n📚 DETALLE DE LA ACTIVIDAD:")
+            print(f"   • Objetivo: {actividad_info.get('objetivo', 'No especificado')}")
+            print(f"   • Duración: {actividad_info.get('duracion_minutos', 'No especificada')}")
+            print(f"   • Nivel: {actividad_info.get('nivel_educativo', '4º Primaria')}")
+            
+            # Mostrar etapas si existen
+            etapas = actividad_info.get('etapas', [])
+            if etapas:
+                print(f"   • Etapas ({len(etapas)}):")
+                for i, etapa in enumerate(etapas[:3], 1):  # Mostrar máximo 3
+                    if isinstance(etapa, dict):
+                        print(f"     {i}. {etapa.get('nombre', f'Etapa {i}')}")
+        
+        # ===== MOSTRAR ASIGNACIONES DE ESTUDIANTES =====
+        if 'optimizador_asignaciones' in resultados:
+            asignaciones = resultados['optimizador_asignaciones']
+            if isinstance(asignaciones, dict) and asignaciones:
+                print(f"\n👥 ASIGNACIONES POR ESTUDIANTE:")
+                
+                # Crear mapeo de ID de tarea -> descripción
+                tarea_descripciones = {}
+                print(f"   DEBUG - Creando mapeo de {len(tareas_list)} tareas")
+                if isinstance(tareas_list, list):
+                    for tarea in tareas_list:
+                        print(f"   DEBUG - Tipo de tarea: {type(tarea)}")
+                        
+                        if isinstance(tarea, dict):
+                            # Es un diccionario
+                            tarea_id = tarea.get('id', '')
+                            descripcion = tarea.get('descripcion', tarea.get('nombre', tarea_id))
+                        elif hasattr(tarea, 'id') and hasattr(tarea, 'descripcion'):
+                            # Es un objeto Tarea (dataclass)
+                            tarea_id = tarea.id
+                            descripcion = tarea.descripcion
+                        else:
+                            # Intentar convertir a string
+                            tarea_id = f'tarea_unknown_{len(tarea_descripciones)+1}'
+                            descripcion = str(tarea)[:50]
+                        
+                        # Limitar descripción a 40 caracteres para legibilidad
+                        if len(descripcion) > 40:
+                            descripcion = descripcion[:37] + "..."
+                        
+                        tarea_descripciones[tarea_id] = descripcion
+                        print(f"   DEBUG - Mapeado: {tarea_id} -> {descripcion}")
+                
+                print(f"   DEBUG - Mapeo final: {tarea_descripciones}")
+                
+                for estudiante_id, tareas_asignadas in asignaciones.items():
+                    if isinstance(tareas_asignadas, list) and tareas_asignadas:
+                        # Convertir IDs a descripciones
+                        descripciones_tareas = []
+                        for tarea_id in tareas_asignadas[:2]:  # Mostrar máximo 2
+                            descripcion = tarea_descripciones.get(tarea_id, tarea_id)
+                            descripciones_tareas.append(descripcion)
+                        
+                        tareas_texto = ', '.join(descripciones_tareas)
+                        if len(tareas_asignadas) > 2:
+                            tareas_texto += '...'
+                        
+                        print(f"   • Estudiante {estudiante_id}: {len(tareas_asignadas)} tareas ({tareas_texto})")
         
         # Validación manual
         return input("\n✅ ¿Aprueba el proyecto generado? (s/n): ").lower().startswith('s')

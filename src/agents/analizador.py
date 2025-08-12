@@ -4,6 +4,7 @@ Agente Analizador de Tareas (Task Analyzer Agent).
 
 import logging
 import re
+import json
 from typing import Dict, List, Any, Optional
 
 from core.ollama_integrator import OllamaIntegrator
@@ -27,82 +28,277 @@ class AgenteAnalizadorTareas(BaseAgent):
         # Inicializar EmbeddingsManager si no se proporciona
         if embeddings_manager is None:
             import os
-            # Ruta a las actividades JSON
+            # Ruta base a las actividades (JSON + TXT)
             script_dir = os.path.dirname(os.path.abspath(__file__))
             base_dir = os.path.dirname(script_dir)
-            actividades_path = os.path.join(base_dir, "..", "data", "actividades", "json_actividades")
+            actividades_base_path = os.path.join(base_dir, "..", "data", "actividades")
             
-            self.embeddings_manager = EmbeddingsManager(actividades_path, ollama_integrator)
+            self.embeddings_manager = EmbeddingsManager(actividades_base_path, ollama_integrator)
         else:
             self.embeddings_manager = embeddings_manager
     
-    def descomponer_actividad(self, proyecto_base: Dict, **kwargs) -> List[Tarea]:
+    def extraer_tareas_hibrido(self, actividad_data: Dict, prompt_original: str = "") -> List[Tarea]:
         """
-        Descompone la actividad en subtareas específicas
+        NUEVA FUNCIÓN HÍBRIDA: Extrae tareas usando la mejor estrategia disponible
         
         Args:
-            proyecto_base: Diccionario con información del proyecto
-            **kwargs: Parámetros adicionales (no usados actualmente)
+            actividad_data: Datos de la actividad (JSON o dict)
+            prompt_original: Prompt original del usuario (opcional)
             
         Returns:
-            Lista de objetos Tarea
+            Lista de objetos Tarea garantizada
         """
+        self._log_processing_start(f"Extracción híbrida de tareas")
         
-        prompt_tareas = f"""
-Analiza este proyecto educativo siguiendo los patrones exitosos de actividades k_ y descomponlo en subtareas específicas:
+        # ESTRATEGIA 1: Extraer directamente desde JSON (PRIORIDAD MÁXIMA)
+        if self._tiene_estructura_json_valida(actividad_data):
+            self.logger.info("🎯 Estrategia 1: Extracción directa desde JSON")
+            tareas = self._extraer_tareas_desde_json(actividad_data)
+            if tareas:
+                self._log_processing_end(f"✅ Extraídas {len(tareas)} tareas desde JSON")
+                return tareas
+        
+        # ESTRATEGIA 2: Usar plantilla estructurada con LLM
+        self.logger.info("🎯 Estrategia 2: Plantilla estructurada con LLM")
+        tareas = self._generar_tareas_con_plantilla(actividad_data, prompt_original)
+        if tareas:
+            self._log_processing_end(f"✅ Generadas {len(tareas)} tareas con plantilla")
+            return tareas
+        
+        # ESTRATEGIA 3: Prompt minimalista (FALLBACK)
+        self.logger.warning("🎯 Estrategia 3: Prompt minimalista de emergencia")
+        tareas = self._generar_tareas_prompt_simple(actividad_data)
+        if tareas:
+            self._log_processing_end(f"⚠️ Generadas {len(tareas)} tareas con prompt simple")
+            return tareas
+        
+        # ÚLTIMO RECURSO: Tareas hardcodeadas
+        self.logger.error("❌ Todas las estrategias fallaron, usando tareas de emergencia")
+        return self._crear_tareas_fallback()
+    
+    def _tiene_estructura_json_valida(self, actividad: Dict) -> bool:
+        """Verifica si la actividad tiene estructura JSON válida"""
+        return (
+            isinstance(actividad, dict) and 
+            'etapas' in actividad and 
+            isinstance(actividad['etapas'], list) and
+            len(actividad['etapas']) > 0 and
+            any(isinstance(etapa, dict) and 'tareas' in etapa for etapa in actividad['etapas'])
+        )
+    
+    def _extraer_tareas_desde_json(self, actividad: Dict) -> List[Tarea]:
+        """Extrae tareas directamente desde estructura JSON"""
+        tareas = []
+        contador = 1
+        
+        for etapa in actividad.get('etapas', []):
+            if not isinstance(etapa, dict):
+                continue
+                
+            nombre_etapa = etapa.get('nombre', f'Etapa {contador}')
+            
+            for tarea_data in etapa.get('tareas', []):
+                if not isinstance(tarea_data, dict):
+                    continue
+                
+                tarea = Tarea(
+                    id=f"tarea_{contador:02d}",
+                    descripcion=tarea_data.get('descripcion', tarea_data.get('nombre', f'Tarea {contador}')),
+                    competencias_requeridas=self._inferir_competencias_desde_json(tarea_data, actividad),
+                    complejidad=self._inferir_complejidad_desde_json(tarea_data),
+                    tipo=self._normalizar_tipo_desde_json(tarea_data.get('formato_asignacion', 'colaborativa')),
+                    dependencias=[],  # Se calculan después si es necesario
+                    tiempo_estimado=self._calcular_tiempo_desde_json(tarea_data, actividad)
+                )
+                
+                tareas.append(tarea)
+                contador += 1
+                
+                self.logger.debug(f"📝 Extraída tarea JSON: {tarea.descripcion[:50]}...")
+        
+        return tareas
+    
+    def _generar_tareas_con_plantilla(self, actividad: Dict, prompt_original: str) -> List[Tarea]:
+        """Genera tareas usando plantilla JSON estructurada"""
+        
+        plantilla = {
+            "tareas": [
+                {
+                    "id": "tarea_01",
+                    "descripcion": "",
+                    "competencias": [],
+                    "complejidad": 3,
+                    "tipo": "colaborativa",
+                    "tiempo_minutos": 45,
+                    "adaptaciones": {}
+                }
+            ]
+        }
+        
+        titulo = actividad.get('titulo', 'Actividad educativa')
+        objetivo = actividad.get('objetivo', prompt_original)
+        
+        prompt = f"""Completa esta plantilla JSON con 3-5 tareas específicas para la actividad educativa.
 
-PROYECTO: {proyecto_base['titulo']}
-DESCRIPCIÓN: {proyecto_base['descripcion']}
-NIVEL: {proyecto_base['nivel']}
-DURACIÓN: {proyecto_base['duracion_base']}
-INFORMACIÓN ADICIONAL: {proyecto_base.get('info_adicional', 'No disponible')}
+ACTIVIDAD: {titulo}
+OBJETIVO: {objetivo}
 
-=== PATRONES EXITOSOS K_ ===
-• NARRATIVA INMERSIVA: Mantener contexto atractivo en cada tarea (ofrecer opciones con y sin narrativa)
-• ESTRUCTURA PEDAGÓGICA: Preparación → Desarrollo → Reflexión (si el profesor solicita otra estructura, dar prioridad a la suya)
-• ROLES ESPECÍFICOS: Asignar roles concretos según fortalezas (Si la actividad tiene roles, si no, repartir las tareas sin un rol concreto)
-• MATERIAL MANIPULATIVO: Usar objetos reales y tangibles a ser posible, reciclados o accesibles NO tecnológicos. siempre analogicos
-• ADAPTACIONES DUA: Considerar TEA, TDAH, altas capacidades. Expras en qué se traduce la adaptación en esta actividad concreta
-• EVALUACIÓN FORMATIVA: Observación y registro continuo
+PLANTILLA A COMPLETAR:
+{json.dumps(plantilla, indent=2, ensure_ascii=False)}
 
-=== ESTRUCTURA RECOMENDADA === adaptar completamente a la especificación del profesor
-1. PREPARACIÓN: Contextualización y organización (tantas tareas como requiera la actividad)
-2. DESARROLLO: Núcleo de la actividad (tantas tareas como requiera la complejidad del proyecto)
-3. REFLEXIÓN: Metacognición y cierre (según necesidades de evaluación)
+INSTRUCCIONES:
+1. Genera entre 3-5 tareas concretas y realizables
+2. Cada tarea debe tener descripción específica
+3. Competencias: matemáticas, lengua, ciencias, creatividad, social
+4. Complejidad: 1-5 (1=fácil, 5=difícil)
+5. Tipo: individual, colaborativa, creativa
+6. Tiempo en minutos: 15-90
 
-Identifica las subtareas necesarias para completar el proyecto (sin límite fijo, según la complejidad de la actividad). Para cada subtarea proporciona:
-- Descripción clara y específica (con contexto narrativo si se solicita)
-- Competencias requeridas (matemáticas, lengua, ciencias, creativas, digitales)
-- Complejidad del 1 al 5 (1=muy fácil, 5=muy difícil)
-- Tipo: individual, colaborativa, o creativa
-- Tiempo estimado en horas
-- Dependencias (qué tareas deben completarse antes)
-- Adaptaciones sugeridas
-
-Formato:
-TAREA 1:
-Descripción: [descripción específica con contexto narrativo]
-Competencias: [competencias separadas por comas]
-Complejidad: [1-5]
-Tipo: [individual/colaborativa/creativa]
-Tiempo: [horas]
-Dependencias: [ninguna o nombre de tareas previas]
-Adaptaciones: [adaptaciones específicas para diversidad]
-
-[Repetir para todas las tareas siguiendo estructura Preparación-Desarrollo-Reflexión...]
+RESPONDE SOLO CON EL JSON COMPLETADO, SIN EXPLICACIONES.
 """
         
-        self._log_processing_start(f"Descomponiendo actividad: {proyecto_base.get('titulo', 'Sin título')}")
+        respuesta = self.ollama.generar_respuesta(prompt, max_tokens=600)
+        return self._parse_json_tareas(respuesta)
+    
+    def _generar_tareas_prompt_simple(self, actividad: Dict) -> List[Tarea]:
+        """Genera tareas con prompt minimalista"""
         
-        # Llamar al LLM con fallback
-        respuesta = self.ollama.generar_respuesta(prompt_tareas, max_tokens=800)
-        tareas = self._parsear_tareas(respuesta)
+        titulo = actividad.get('titulo', 'Actividad')
+        objetivo = actividad.get('objetivo', 'Realizar actividad educativa')
         
-        if not tareas:
-            self.logger.warning("❌ No se pudieron extraer tareas de la respuesta del LLM, usando fallback")
-            tareas = self._crear_tareas_fallback()
+        prompt = f"""Descompón esta actividad en 4 tareas específicas:
+
+ACTIVIDAD: {titulo}
+OBJETIVO: {objetivo}
+
+Formato obligatorio (usa EXACTAMENTE este formato):
+TAREA 1: [descripción concreta de máximo 100 caracteres]
+TAREA 2: [descripción concreta de máximo 100 caracteres]
+TAREA 3: [descripción concreta de máximo 100 caracteres]
+TAREA 4: [descripción concreta de máximo 100 caracteres]
+
+Solo tareas concretas y realizables. Sin explicaciones adicionales."""
         
-        self._log_processing_end(f"Generadas {len(tareas)} tareas")
+        respuesta = self.ollama.generar_respuesta(prompt, max_tokens=300)
+        return self._parsear_tareas_simple(respuesta)
+    
+    def _inferir_competencias_desde_json(self, tarea_data: Dict, actividad: Dict) -> List[str]:
+        """Infiere competencias desde datos JSON"""
+        competencias = []
+        
+        # Analizar descripción de tarea y actividad
+        texto = f"{tarea_data.get('descripcion', '')} {actividad.get('titulo', '')} {actividad.get('objetivo', '')}".lower()
+        
+        mapeo = {
+            'matemáticas': ['número', 'suma', 'resta', 'fracción', 'cálculo', 'matemática'],
+            'lengua': ['lectura', 'escritura', 'texto', 'comunicación', 'presentar'],
+            'ciencias': ['experimento', 'observar', 'investigar', 'célula', 'ciencia'],
+            'creatividad': ['crear', 'diseñar', 'arte', 'dibujar', 'inventar'],
+            'social': ['grupo', 'equipo', 'colaborar', 'compartir', 'ayudar']
+        }
+        
+        for competencia, palabras in mapeo.items():
+            if any(palabra in texto for palabra in palabras):
+                competencias.append(competencia)
+        
+        return competencias if competencias else ['transversales']
+    
+    def _inferir_complejidad_desde_json(self, tarea_data: Dict) -> int:
+        """Infiere complejidad desde datos JSON"""
+        descripcion = tarea_data.get('descripcion', '').lower()
+        
+        palabras_complejas = ['analizar', 'evaluar', 'crear', 'diseñar', 'investigar', 'planificar']
+        palabras_simples = ['listar', 'copiar', 'leer', 'observar', 'identificar']
+        
+        for palabra in palabras_complejas:
+            if palabra in descripcion:
+                return 4
+        
+        for palabra in palabras_simples:
+            if palabra in descripcion:
+                return 2
+                
+        return 3  # Complejidad media por defecto
+    
+    def _normalizar_tipo_desde_json(self, formato: str) -> str:
+        """Normaliza tipo de tarea desde JSON"""
+        formato_lower = formato.lower()
+        
+        if 'grupo' in formato_lower or 'colabor' in formato_lower:
+            return 'colaborativa'
+        elif 'individual' in formato_lower:
+            return 'individual'
+        else:
+            return 'colaborativa'  # Por defecto
+    
+    def _calcular_tiempo_desde_json(self, tarea_data: Dict, actividad: Dict) -> int:
+        """Calcula tiempo estimado desde datos JSON"""
+        # Intentar extraer duración de la actividad
+        duracion = actividad.get('duracion_minutos', '')
+        
+        if isinstance(duracion, str) and 'sesion' in duracion.lower():
+            return 45  # Una sesión estándar
+        elif isinstance(duracion, str) and any(num in duracion for num in ['2', '3']):
+            return 30  # División entre múltiples sesiones
+        
+        # Por defecto basado en complejidad
+        complejidad = self._inferir_complejidad_desde_json(tarea_data)
+        return min(60, max(15, complejidad * 12))  # 15-60 minutos
+    
+    def _parse_json_tareas(self, respuesta: str) -> List[Tarea]:
+        """Parsea respuesta JSON del LLM"""
+        try:
+            # Limpiar respuesta
+            respuesta_limpia = respuesta.strip()
+            if respuesta_limpia.startswith('```json'):
+                respuesta_limpia = respuesta_limpia[7:-3]
+            elif respuesta_limpia.startswith('```'):
+                respuesta_limpia = respuesta_limpia[3:-3]
+            
+            # Parsear JSON
+            import json
+            datos = json.loads(respuesta_limpia)
+            
+            tareas = []
+            for i, tarea_data in enumerate(datos.get('tareas', [])):
+                tarea = Tarea(
+                    id=tarea_data.get('id', f'tarea_{i+1:02d}'),
+                    descripcion=tarea_data.get('descripcion', f'Tarea {i+1}'),
+                    competencias_requeridas=tarea_data.get('competencias', ['transversales']),
+                    complejidad=tarea_data.get('complejidad', 3),
+                    tipo=tarea_data.get('tipo', 'colaborativa'),
+                    dependencias=[],
+                    tiempo_estimado=tarea_data.get('tiempo_minutos', 45)
+                )
+                tareas.append(tarea)
+            
+            return tareas
+            
+        except Exception as e:
+            self.logger.error(f"❌ Error parseando JSON: {e}")
+            return []
+    
+    def _parsear_tareas_simple(self, respuesta: str) -> List[Tarea]:
+        """Parsea respuesta de prompt simple"""
+        tareas = []
+        lineas = respuesta.split('\n')
+        
+        for i, linea in enumerate(lineas):
+            linea = linea.strip()
+            if linea.startswith('TAREA') and ':' in linea:
+                descripcion = linea.split(':', 1)[1].strip()
+                if descripcion:
+                    tarea = Tarea(
+                        id=f'tarea_{i+1:02d}',
+                        descripcion=descripcion,
+                        competencias_requeridas=['transversales'],
+                        complejidad=3,
+                        tipo='colaborativa',
+                        dependencias=[],
+                        tiempo_estimado=45
+                    )
+                    tareas.append(tarea)
+        
         return tareas
     
     def seleccionar_y_adaptar_actividad(self, prompt: str) -> Dict[str, Any]:
@@ -405,35 +601,6 @@ Responde SOLO con la actividad adaptada, NO explicaciones adicionales.
             'similitud': 0.0
         }
     
-    def _parsear_tareas(self, respuesta: str) -> List[Tarea]:
-        """
-        Parsea la respuesta para crear objetos Tarea
-        
-        Args:
-            respuesta: Respuesta del LLM
-            
-        Returns:
-            Lista de objetos Tarea
-        """
-        tareas = []
-        partes = respuesta.split("TAREA ")
-        
-        for i, parte in enumerate(partes[1:]):  # Saltar el primer elemento vacío
-            if not parte.strip():
-                continue
-                
-            tarea = Tarea(
-                id=f"tarea_{i+1:02d}",
-                descripcion=self._extraer_campo(parte, "Descripción:"),
-                competencias_requeridas=self._extraer_lista(parte, "Competencias:"),
-                complejidad=self._extraer_numero(parte, "Complejidad:", 3),
-                tipo=self._extraer_campo(parte, "Tipo:"),
-                dependencias=self._extraer_lista(parte, "Dependencias:"),
-                tiempo_estimado=self._extraer_numero(parte, "Tiempo:", 2)
-            )
-            tareas.append(tarea)
-        
-        return tareas
     
     def process(self, proyecto_base: Dict) -> List[Tarea]:
         """
@@ -445,19 +612,36 @@ Responde SOLO con la actividad adaptada, NO explicaciones adicionales.
         Returns:
             Lista de objetos Tarea
         """
-        return self.descomponer_actividad(proyecto_base)
+        return self.extraer_tareas_hibrido(proyecto_base, proyecto_base.get('descripcion', ''))
     
     def _parse_response(self, response: str) -> List[Dict]:
         """
-        Parsea respuesta del LLM para tareas
+        Implementa el método abstracto requerido por BaseAgent
         
         Args:
             response: Respuesta del LLM
             
         Returns:
-            Lista de diccionarios con tareas
+            Lista de diccionarios con tareas parseadas
         """
-        return self._parsear_tareas(response)
+        # Para compatibilidad con BaseAgent, convertimos List[Tarea] a List[Dict]
+        tareas_objeto = self._parsear_tareas_simple(response)
+        
+        # Convertir objetos Tarea a diccionarios
+        tareas_dict = []
+        for tarea in tareas_objeto:
+            tarea_dict = {
+                'id': tarea.id,
+                'descripcion': tarea.descripcion,
+                'competencias_requeridas': tarea.competencias_requeridas,
+                'complejidad': tarea.complejidad,
+                'tipo': tarea.tipo,
+                'dependencias': tarea.dependencias,
+                'tiempo_estimado': tarea.tiempo_estimado
+            }
+            tareas_dict.append(tarea_dict)
+        
+        return tareas_dict
     
     def _crear_tareas_fallback(self) -> List[Tarea]:
         """

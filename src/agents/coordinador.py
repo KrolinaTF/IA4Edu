@@ -18,7 +18,6 @@ from core.validador_coherencia import ValidadorCoherencia
 from agents.analizador import AgenteAnalizadorTareas
 from agents.perfilador import AgentePerfiladorEstudiantes
 from agents.optimizador import AgenteOptimizadorAsignaciones
-# from agents.generador import AgenteGeneradorRecursos  # ELIMINADO en Fase 1
 
 from models.proyecto import Tarea
 
@@ -54,7 +53,6 @@ class AgenteCoordinador:
         self.analizador_tareas = analizador_tareas or AgenteAnalizadorTareas(self.ollama)
         self.perfilador = perfilador or AgentePerfiladorEstudiantes(self.ollama)
         self.optimizador = optimizador or AgenteOptimizadorAsignaciones(self.ollama)
-        # self.generador_recursos eliminado en Fase 1 - optimización embeddings
         
         # Registrar agentes en el comunicador y diccionario
         self.agentes_especializados = {}
@@ -62,7 +60,6 @@ class AgenteCoordinador:
             'analizador_tareas': self.analizador_tareas,
             'perfilador_estudiantes': self.perfilador,
             'optimizador_asignaciones': self.optimizador
-            # 'generador_recursos' eliminado en Fase 1
         }
         
         for nombre, agente in agentes_a_registrar.items():
@@ -596,7 +593,6 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
                 'prioridad': 3,
                 'descripcion': 'Optimizar asignaciones estudiante-tarea'
             }
-            # 'generador_recursos' eliminado - recursos incluidos en actividades JSON
         ]
         
         # Ejecutar cada paso del flujo
@@ -615,6 +611,17 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
                     if paso['agente'] == 'analizador_tareas' and paso['metodo'] == 'seleccionar_y_adaptar_actividad':
                         prompt = datos.get('prompt', proyecto_base.get('descripcion', ''))
                         resultado = self.analizador_tareas.seleccionar_y_adaptar_actividad(prompt)
+                        
+                        # NUEVO: Extraer tareas usando método híbrido
+                        if resultado and 'actividad' in resultado:
+                            actividad_seleccionada = resultado['actividad']
+                            tareas_extraidas = self.analizador_tareas.extraer_tareas_hibrido(
+                                actividad_seleccionada, 
+                                prompt
+                            )
+                            # Añadir tareas al resultado
+                            resultado['tareas_extraidas'] = tareas_extraidas
+                            logger.info(f"✅ Extraídas {len(tareas_extraidas)} tareas con método híbrido")
                     else:
                         # Llamada estándar vía comunicador
                         resultado = self.comunicador.enviar_mensaje(
@@ -649,46 +656,192 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         # Consolidación final
         return self._consolidar_resultados_mejorado(proyecto_base, resultados)
     
-    def _preparar_datos_para_agente(self, agente_nombre: str, proyecto_base: dict, resultados: dict) -> dict:
+    def _preparar_datos_para_agente(self, agente_nombre, proyecto_base, resultados):
+        """Método corregido en coordinador.py"""
+        
+        if agente_nombre == 'optimizador_asignaciones':
+            # Usar tareas extraídas del nuevo método híbrido
+            tareas_data = resultados.get('analizador_tareas', {})
+            
+            # PRIORIDAD 1: Usar tareas ya extraídas con método híbrido
+            if isinstance(tareas_data, dict) and 'tareas_extraidas' in tareas_data:
+                tareas_extraidas = tareas_data['tareas_extraidas']
+                logger.info(f"🎯 Usando {len(tareas_extraidas)} tareas del método híbrido")
+                
+            # PRIORIDAD 2: Extraer desde actividad si no hay tareas híbridas
+            elif isinstance(tareas_data, dict) and 'actividad' in tareas_data:
+                logger.warning("⚠️ Extrayendo tareas con método legacy")
+                actividad = tareas_data['actividad']
+                tareas_extraidas = self._extraer_tareas_de_actividad(actividad)
+                
+            # FALLBACK: Lista vacía
+            else:
+                logger.error("❌ No se encontraron tareas, usando fallback vacío")
+                tareas_extraidas = []
+                
+            return {
+                'tareas_input': tareas_extraidas,  # Nombre correcto del parámetro
+                'analisis_estudiantes': resultados.get('perfilador_estudiantes', {}),
+                'perfilador': self.perfilador  # Referencia al perfilador
+            }
+        
+        return {'proyecto_base': proyecto_base, 'resultados_previos': resultados}
+    
+    def _extraer_tareas_de_actividad(self, actividad: Dict) -> List[Dict]:
         """
-        Prepara los datos necesarios para cada agente de forma genérica
+        Extrae tareas de una estructura de actividad JSON
         
         Args:
-            agente_nombre: Nombre del agente
-            proyecto_base: Datos del proyecto base
-            resultados: Resultados de agentes anteriores
+            actividad: Diccionario con estructura de actividad
             
         Returns:
-            Diccionario con datos preparados para el agente
+            Lista de tareas normalizadas
         """
-        # Datos comunes para todos los agentes
-        datos_base = {
-            'contexto_global': self.contexto_hibrido.metadatos,
-            'timestamp': datetime.now().isoformat()
+        if not isinstance(actividad, dict):
+            logger.error(f"❌ Actividad no es un diccionario: {type(actividad)}")
+            return []
+        
+        tareas_extraidas = []
+        contador_tareas = 1
+        
+        etapas = actividad.get('etapas', [])
+        
+        if not etapas:
+            logger.warning("⚠️ No se encontraron etapas en la actividad")
+            # Crear una tarea básica desde la actividad completa
+            return [{
+                'id': 'tarea_01',
+                'nombre': actividad.get('titulo', 'Actividad'),
+                'descripcion': actividad.get('objetivo', 'Realizar la actividad propuesta'),
+                'etapa': 'Principal',
+                'formato_asignacion': 'grupos',
+                'complejidad': 3,
+                'tipo': 'colaborativa',
+                'tiempo_estimado': 60,
+                'competencias_requeridas': ['transversales'],
+                'adaptaciones': {}
+            }]
+        
+        for i, etapa in enumerate(etapas):
+            if not isinstance(etapa, dict):
+                logger.warning(f"⚠️ Etapa {i} no es un diccionario válido")
+                continue
+                
+            nombre_etapa = etapa.get('nombre', f'Etapa {i+1}')
+            tareas_etapa = etapa.get('tareas', [])
+            
+            if not isinstance(tareas_etapa, list):
+                logger.warning(f"⚠️ Tareas de etapa '{nombre_etapa}' no es una lista")
+                continue
+            
+            for j, tarea_data in enumerate(tareas_etapa):
+                if not isinstance(tarea_data, dict):
+                    logger.warning(f"⚠️ Tarea {j} en etapa '{nombre_etapa}' no es un diccionario")
+                    continue
+                    
+                tarea_normalizada = {
+                    'id': f'tarea_{contador_tareas:02d}',
+                    'nombre': tarea_data.get('nombre', f'Tarea {contador_tareas}'),
+                    'descripcion': tarea_data.get('descripcion', 'Tarea sin descripción'),
+                    'etapa': nombre_etapa,
+                    'formato_asignacion': tarea_data.get('formato_asignacion', 'grupos'),
+                    'complejidad': self._estimar_complejidad_tarea(tarea_data),
+                    'tipo': self._determinar_tipo_tarea(tarea_data),
+                    'tiempo_estimado': self._estimar_tiempo_tarea(tarea_data),
+                    'competencias_requeridas': self._extraer_competencias_tarea(tarea_data),
+                    'adaptaciones': tarea_data.get('estrategias_adaptacion', {})
+                }
+                
+                tareas_extraidas.append(tarea_normalizada)
+                contador_tareas += 1
+        
+        if not tareas_extraidas:
+            logger.warning("⚠️ No se pudieron extraer tareas válidas, creando tarea por defecto")
+            return [{
+                'id': 'tarea_01',
+                'nombre': 'Actividad Principal',
+                'descripcion': actividad.get('objetivo', 'Realizar la actividad propuesta'),
+                'etapa': 'Principal',
+                'formato_asignacion': 'grupos',
+                'complejidad': 3,
+                'tipo': 'colaborativa',
+                'tiempo_estimado': 60,
+                'competencias_requeridas': ['transversales'],
+                'adaptaciones': {}
+            }]
+        
+        logger.debug(f"📝 Extraídas {len(tareas_extraidas)} tareas de la actividad")
+        return tareas_extraidas
+    
+    def _estimar_complejidad_tarea(self, tarea_data: dict) -> int:
+        """Estima complejidad de 1-5 basada en descripción"""
+        descripcion = tarea_data.get('descripcion', '').lower()
+        
+        # Palabras que indican alta complejidad
+        palabras_complejas = ['análisis', 'evaluar', 'crear', 'diseñar', 'investigar', 'planificar']
+        # Palabras que indican baja complejidad  
+        palabras_simples = ['listar', 'copiar', 'leer', 'observar', 'identificar']
+        
+        for palabra in palabras_complejas:
+            if palabra in descripcion:
+                return 4
+        
+        for palabra in palabras_simples:
+            if palabra in descripcion:
+                return 2
+                
+        return 3  # Complejidad media por defecto
+    
+    def _determinar_tipo_tarea(self, tarea_data: dict) -> str:
+        """Determina si la tarea es individual, colaborativa o creativa"""
+        formato = tarea_data.get('formato_asignacion', 'grupos')
+        descripcion = tarea_data.get('descripcion', '').lower()
+        
+        if 'grupos' in formato or 'colaborat' in descripcion or 'equipo' in descripcion:
+            return 'colaborativa'
+        elif 'individual' in formato or 'personal' in descripcion or 'autónomo' in descripcion:
+            return 'individual'
+        elif 'crear' in descripcion or 'diseñar' in descripcion or 'arte' in descripcion:
+            return 'creativa'
+        else:
+            return 'colaborativa'  # Por defecto
+    
+    def _estimar_tiempo_tarea(self, tarea_data: dict) -> int:
+        """Estima tiempo en minutos basado en complejidad y tipo"""
+        complejidad = self._estimar_complejidad_tarea(tarea_data)
+        tipo = self._determinar_tipo_tarea(tarea_data)
+        
+        # Base de tiempo según complejidad
+        tiempo_base = complejidad * 15
+        
+        # Ajustar según tipo
+        if tipo == 'colaborativa':
+            tiempo_base += 15  # Más tiempo para coordinación
+        elif tipo == 'creativa':
+            tiempo_base += 30  # Más tiempo para creatividad
+            
+        return min(120, max(15, tiempo_base))  # Entre 15 y 120 minutos
+    
+    def _extraer_competencias_tarea(self, tarea_data: dict) -> list:
+        """Extrae competencias requeridas de la descripción de la tarea"""
+        descripcion = tarea_data.get('descripcion', '').lower()
+        competencias = []
+        
+        # Mapeo de palabras clave a competencias
+        mapeo_competencias = {
+            'matemática': ['cálculo', 'números', 'operaciones', 'fracciones', 'suma', 'resta'],
+            'lingüística': ['escritura', 'lectura', 'textos', 'comunicación', 'presentar'],
+            'científica': ['experimento', 'observar', 'investigar', 'ciencias', 'método'],
+            'digital': ['tecnología', 'ordenador', 'internet', 'digital'],
+            'artística': ['crear', 'diseñar', 'dibujar', 'arte', 'creativo'],
+            'social': ['grupos', 'equipo', 'colaborar', 'compartir', 'ayudar']
         }
         
-        # Mapa simplificado de datos necesarios por agente (Fase 1 - 3 agentes)
-        mapa_datos = {
-            'analizador_tareas': {
-                'prompt': proyecto_base.get('descripcion', ''),  # Para embeddings
-                'proyecto_base': proyecto_base
-            },
-            'perfilador_estudiantes': {
-                'tareas': resultados.get('analizador_tareas', {})
-            },
-            'optimizador_asignaciones': {
-                'tareas': resultados.get('analizador_tareas', {}),
-                'analisis_estudiantes': resultados.get('perfilador_estudiantes', {}),
-                'perfilador': self.perfilador
-            }
-            # 'generador_recursos' eliminado - recursos incluidos en actividades JSON
-        }
+        for competencia, palabras_clave in mapeo_competencias.items():
+            if any(palabra in descripcion for palabra in palabras_clave):
+                competencias.append(competencia)
         
-        # Añadir datos específicos del agente si existen
-        if agente_nombre in mapa_datos:
-            datos_base.update(mapa_datos[agente_nombre])
-        
-        return datos_base
+        return competencias if competencias else ['transversales']
     
     def _consolidar_resultados_mejorado(self, proyecto_base: dict, resultados: dict) -> dict:
         """
@@ -718,8 +871,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
                 'analizador_tareas': resultados.get('analizador_tareas', {}),
                 'perfilador_estudiantes': resultados.get('perfilador_estudiantes', {}),
                 'optimizador_asignaciones': resultados.get('optimizador_asignaciones', {})
-                # 'generador_recursos' eliminado - recursos incluidos en actividades JSON
-            },
+                },
             'coherencia': coherencia_final,
             'estadisticas': estadisticas,
             'metadatos': {
@@ -768,9 +920,18 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
             
             actividad_seleccionada = resultado_seleccion['actividad']
             
+            # NUEVO: Extraer tareas con método híbrido
+            logger.info("🎯 PASO 1b/3: Extracción híbrida de tareas")
+            tareas_extraidas = self.analizador_tareas.extraer_tareas_hibrido(
+                actividad_seleccionada, 
+                prompt_usuario
+            )
+            resultado_seleccion['tareas_extraidas'] = tareas_extraidas
+            
             logger.info(f"✅ Actividad seleccionada: {actividad_seleccionada.get('titulo', 'Sin título')}")
             logger.info(f"   • Estrategia: {resultado_seleccion.get('estrategia', 'N/A')}")
             logger.info(f"   • Similitud: {resultado_seleccion.get('similitud', 0):.3f}")
+            logger.info(f"   • Tareas extraídas: {len(tareas_extraidas)}")
             
             # =================== PASO 2: USO DIRECTO DE PERFILES REALES ===================
             logger.info("👥 PASO 2/3: Uso directo de perfiles de estudiantes reales")
@@ -824,10 +985,11 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
                 }
             }
             
-            # Ejecutar optimización
+            # Ejecutar optimización con argumentos correctos
             resultado_optimizacion = self.optimizador.optimizar_asignaciones(
-                perfiles_estructurados, 
-                resultado_seleccion
+                tareas_input=tareas_extraidas,  # Primer argumento requerido
+                analisis_estudiantes=perfiles_estructurados,  # Segundo argumento
+                perfilador=self.perfilador  # Tercer argumento opcional
             )
             
             logger.info(f"✅ Asignaciones generadas exitosamente")

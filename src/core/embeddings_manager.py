@@ -7,59 +7,143 @@ import os
 import json
 import logging
 import numpy as np
+import hashlib
 from typing import Dict, List, Any, Tuple, Optional
 
 logger = logging.getLogger("SistemaAgentesABP.EmbeddingsManager")
 
 class EmbeddingsManager:
-    """Gestor de embeddings para selección inteligente de actividades JSON"""
+    """Gestor de embeddings para selección inteligente de actividades JSON y TXT"""
     
-    def __init__(self, actividades_json_path: str, ollama_integrator):
+    def __init__(self, actividades_base_path: str, ollama_integrator):
         """
-        Inicializa el gestor de embeddings
+        Inicializa el gestor de embeddings con cache persistente
         
         Args:
-            actividades_json_path: Ruta al directorio con actividades JSON
+            actividades_base_path: Ruta base al directorio de actividades (buscará JSON y TXT)
             ollama_integrator: Instancia del integrador Ollama
         """
-        self.actividades_path = actividades_json_path
+        self.actividades_base_path = actividades_base_path
         self.ollama = ollama_integrator
         self.actividades = {}
         self.embeddings_cache = {}
         self.textos_enriquecidos = {}
+        self.cache_file = os.path.join(actividades_base_path, "embeddings_cache.json")
         
-        # Cargar actividades y generar embeddings
-        self._cargar_actividades_json()
-        self._generar_embeddings_actividades()
+        # Cargar actividades JSON y TXT
+        self._cargar_actividades_json_y_txt()
+        
+        # Cargar embeddings desde cache o generar nuevos
+        self._cargar_o_generar_embeddings()
         
         logger.info(f"✅ EmbeddingsManager inicializado con {len(self.actividades)} actividades")
     
-    def _cargar_actividades_json(self) -> None:
-        """Carga todas las actividades JSON del directorio especificado"""
+    def _cargar_actividades_json_y_txt(self) -> None:
+        """Carga actividades JSON y TXT del directorio base"""
         try:
-            if not os.path.exists(self.actividades_path):
-                logger.error(f"❌ Directorio de actividades no encontrado: {self.actividades_path}")
-                return
+            # Buscar archivos JSON en subdirectorio json_actividades
+            json_path = os.path.join(self.actividades_base_path, "json_actividades")
+            if os.path.exists(json_path):
+                self._cargar_actividades_json_desde_directorio(json_path)
             
-            archivos_json = [f for f in os.listdir(self.actividades_path) if f.endswith('.json')]
+            # Buscar archivos TXT en el directorio base
+            self._cargar_actividades_txt_desde_directorio(self.actividades_base_path)
+            
+            logger.info(f"✅ Cargadas {len(self.actividades)} actividades (JSON + TXT)")
+            
+        except Exception as e:
+            logger.error(f"❌ Error en carga de actividades: {e}")
+    
+    def _cargar_actividades_json_desde_directorio(self, directorio: str) -> None:
+        """Carga actividades JSON de un directorio específico"""
+        try:
+            archivos_json = [f for f in os.listdir(directorio) if f.endswith('.json')]
             
             for archivo in archivos_json:
-                ruta_completa = os.path.join(self.actividades_path, archivo)
+                ruta_completa = os.path.join(directorio, archivo)
                 try:
                     with open(ruta_completa, 'r', encoding='utf-8') as f:
                         actividad_data = json.load(f)
                         actividad_id = os.path.splitext(archivo)[0]  # nombre sin extensión
+                        actividad_data['_tipo_fuente'] = 'json'
+                        actividad_data['_archivo_origen'] = archivo
                         self.actividades[actividad_id] = actividad_data
-                        logger.info(f"📚 Cargada actividad: {actividad_id}")
+                        logger.info(f"📚 Cargada actividad JSON: {actividad_id}")
                         
                 except Exception as e:
-                    logger.error(f"❌ Error cargando {archivo}: {e}")
+                    logger.error(f"❌ Error cargando JSON {archivo}: {e}")
                     continue
-            
-            logger.info(f"✅ Cargadas {len(self.actividades)} actividades JSON")
-            
+                    
         except Exception as e:
-            logger.error(f"❌ Error en carga de actividades: {e}")
+            logger.error(f"❌ Error listando directorio JSON {directorio}: {e}")
+    
+    def _cargar_actividades_txt_desde_directorio(self, directorio: str) -> None:
+        """Carga actividades TXT de un directorio específico"""
+        try:
+            archivos_txt = [f for f in os.listdir(directorio) if f.startswith('k_') and f.endswith('.txt')]
+            
+            for archivo in archivos_txt:
+                ruta_completa = os.path.join(directorio, archivo)
+                try:
+                    with open(ruta_completa, 'r', encoding='utf-8') as f:
+                        contenido_txt = f.read()
+                        actividad_id = os.path.splitext(archivo)[0]  # nombre sin extensión
+                        
+                        # Solo cargar TXT si no existe ya una versión JSON del mismo
+                        if actividad_id not in self.actividades:
+                            # Crear estructura básica para TXT
+                            actividad_data = self._parsear_actividad_txt(contenido_txt, actividad_id, archivo)
+                            actividad_data['_tipo_fuente'] = 'txt'
+                            actividad_data['_archivo_origen'] = archivo
+                            self.actividades[actividad_id] = actividad_data
+                            logger.info(f"📝 Cargada actividad TXT: {actividad_id}")
+                        else:
+                            # Agregar contenido TXT como enriquecimiento a la versión JSON
+                            self.actividades[actividad_id]['_contenido_txt_complementario'] = contenido_txt
+                            logger.info(f"🔗 Enriquecida actividad JSON con TXT: {actividad_id}")
+                        
+                except Exception as e:
+                    logger.error(f"❌ Error cargando TXT {archivo}: {e}")
+                    continue
+                    
+        except Exception as e:
+            logger.error(f"❌ Error listando directorio TXT {directorio}: {e}")
+    
+    def _parsear_actividad_txt(self, contenido: str, actividad_id: str, archivo: str) -> dict:
+        """Parsea contenido TXT para crear estructura básica de actividad"""
+        lineas = contenido.split('\n')
+        
+        # Extraer título
+        titulo = ""
+        for linea in lineas[:10]:  # Buscar en las primeras 10 líneas
+            if "título" in linea.lower() or "Título" in linea:
+                titulo = linea.split(':', 1)[-1].strip(' "').strip()
+                break
+        
+        if not titulo:
+            titulo = f"Actividad {actividad_id.replace('k_', '').replace('_', ' ').title()}"
+        
+        # Extraer objetivo
+        objetivo = ""
+        for linea in lineas:
+            if "objetivo" in linea.lower():
+                objetivo = linea.split(':', 1)[-1].strip(' "').strip()
+                break
+        
+        if not objetivo:
+            objetivo = f"Actividad educativa basada en {actividad_id.replace('k_', '').replace('_', ' ')}"
+        
+        return {
+            'id': actividad_id.upper(),
+            'titulo': titulo,
+            'objetivo': objetivo,
+            'nivel_educativo': 'Primaria',
+            'duracion_minutos': 'Variable',
+            'contenido_completo': contenido,
+            'etapas': [],
+            'recursos': [],
+            'observaciones': f'Actividad cargada desde archivo TXT: {archivo}'
+        }
     
     def _generar_texto_enriquecido(self, actividad_id: str, actividad_data: dict) -> str:
         """
@@ -67,85 +151,187 @@ class EmbeddingsManager:
         
         Args:
             actividad_id: ID de la actividad
-            actividad_data: Datos JSON de la actividad
+            actividad_data: Datos de la actividad
             
         Returns:
             Texto enriquecido para generar embedding
         """
         texto_base = []
         
-        # Información básica del JSON
+        # Información básica
         texto_base.append(f"TÍTULO: {actividad_data.get('titulo', '')}")
         texto_base.append(f"OBJETIVO: {actividad_data.get('objetivo', '')}")
         texto_base.append(f"NIVEL: {actividad_data.get('nivel_educativo', '')}")
         texto_base.append(f"DURACIÓN: {actividad_data.get('duracion_minutos', '')}")
         
-        # Recursos como contexto temático
-        recursos = actividad_data.get('recursos', [])
-        if recursos:
-            texto_base.append(f"RECURSOS: {', '.join(recursos[:5])}")  # Primeros 5 recursos
+        # Si es actividad TXT pura, usar contenido completo
+        if actividad_data.get('_tipo_fuente') == 'txt':
+            contenido_completo = actividad_data.get('contenido_completo', '')
+            if contenido_completo:
+                # Usar primeros 1000 caracteres del TXT completo
+                texto_base.append(f"CONTENIDO COMPLETO: {contenido_completo[:1000]}")
+        else:
+            # Para actividades JSON, procesar estructura normal
+            recursos = actividad_data.get('recursos', [])
+            if recursos:
+                texto_base.append(f"RECURSOS: {', '.join(recursos[:5])}")
+            
+            # Etapas y tareas
+            etapas = actividad_data.get('etapas', [])
+            for etapa in etapas[:3]:
+                texto_base.append(f"ETAPA: {etapa.get('nombre', '')}")
+                tareas = etapa.get('tareas', [])
+                for tarea in tareas[:2]:
+                    texto_base.append(f"TAREA: {tarea.get('descripcion', '')}")
+            
+            # Adaptaciones
+            observaciones = actividad_data.get('observaciones', '')
+            if observaciones:
+                texto_base.append(f"ADAPTACIONES: {observaciones[:200]}")
         
-        # Etapas y tareas como contenido pedagógico
-        etapas = actividad_data.get('etapas', [])
-        for etapa in etapas[:3]:  # Primeras 3 etapas
-            texto_base.append(f"ETAPA: {etapa.get('nombre', '')}")
-            tareas = etapa.get('tareas', [])
-            for tarea in tareas[:2]:  # Primeras 2 tareas por etapa
-                texto_base.append(f"TAREA: {tarea.get('descripcion', '')}")
-        
-        # Adaptaciones como contexto inclusivo
-        observaciones = actividad_data.get('observaciones', '')
-        if observaciones:
-            texto_base.append(f"ADAPTACIONES: {observaciones[:200]}")  # Primeros 200 chars
-        
-        # Buscar archivo TXT complementario (ruta específica para tu estructura)
-        # Convertir k_celula.json -> k_celula.txt
-        base_name = actividad_id.replace('k_', '')
-        txt_path = os.path.join(
-            os.path.dirname(self.actividades_path), 
-            f"k_{base_name}.txt"
-        )
-        
-        if os.path.exists(txt_path):
-            try:
-                with open(txt_path, 'r', encoding='utf-8') as f:
-                    contenido_txt = f.read()[:500]  # Primeros 500 caracteres
-                    texto_base.append(f"CONTEXTO PEDAGÓGICO: {contenido_txt}")
-                    logger.debug(f"📖 Añadido contexto TXT para {actividad_id}")
-            except Exception as e:
-                logger.warning(f"⚠️ Error leyendo TXT para {actividad_id}: {e}")
+        # Si hay contenido TXT complementario, añadirlo
+        contenido_txt_complementario = actividad_data.get('_contenido_txt_complementario', '')
+        if contenido_txt_complementario:
+            texto_base.append(f"CONTEXTO PEDAGÓGICO EXTENDIDO: {contenido_txt_complementario[:500]}")
+            logger.debug(f"📖 Añadido contexto TXT complementario para {actividad_id}")
         
         texto_final = "\n".join(texto_base)
         self.textos_enriquecidos[actividad_id] = texto_final
         
         return texto_final
     
-    def _generar_embeddings_actividades(self) -> None:
-        """Genera embeddings para todas las actividades cargadas"""
-        logger.info("🔄 Generando embeddings para actividades...")
+    def _calcular_hash_archivo(self, archivo_path: str) -> str:
+        """Calcula hash MD5 de un archivo para detectar cambios"""
+        try:
+            with open(archivo_path, 'rb') as f:
+                return hashlib.md5(f.read()).hexdigest()
+        except Exception as e:
+            logger.warning(f"⚠️ Error calculando hash de {archivo_path}: {e}")
+            return ""
+    
+    def _cargar_cache_embeddings(self) -> Dict:
+        """Carga cache de embeddings desde archivo JSON"""
+        try:
+            if os.path.exists(self.cache_file):
+                with open(self.cache_file, 'r', encoding='utf-8') as f:
+                    cache_data = json.load(f)
+                    logger.info(f"📥 Cache de embeddings cargado: {len(cache_data.get('embeddings', {}))} entradas")
+                    return cache_data
+        except Exception as e:
+            logger.warning(f"⚠️ Error cargando cache de embeddings: {e}")
+        
+        return {"embeddings": {}, "metadata": {}}
+    
+    def _guardar_cache_embeddings(self, cache_data: Dict) -> None:
+        """Guarda cache de embeddings a archivo JSON"""
+        try:
+            # Convertir numpy arrays a listas para JSON
+            cache_serializable = {
+                "embeddings": {},
+                "metadata": cache_data.get("metadata", {})
+            }
+            
+            for actividad_id, embedding in cache_data.get("embeddings", {}).items():
+                if isinstance(embedding, np.ndarray):
+                    cache_serializable["embeddings"][actividad_id] = embedding.tolist()
+                else:
+                    cache_serializable["embeddings"][actividad_id] = embedding
+            
+            with open(self.cache_file, 'w', encoding='utf-8') as f:
+                json.dump(cache_serializable, f, indent=2, ensure_ascii=False)
+                
+            logger.info(f"💾 Cache de embeddings guardado: {len(cache_serializable['embeddings'])} entradas")
+            
+        except Exception as e:
+            logger.error(f"❌ Error guardando cache de embeddings: {e}")
+    
+    def _cargar_o_generar_embeddings(self) -> None:
+        """Carga embeddings desde cache o genera los necesarios"""
+        logger.info("🔄 Inicializando embeddings...")
+        
+        # Cargar cache existente
+        cache_data = self._cargar_cache_embeddings()
+        embeddings_cache = cache_data.get("embeddings", {})
+        metadata_cache = cache_data.get("metadata", {})
+        
+        embeddings_actualizados = {}
+        metadata_actualizada = {}
+        embeddings_generados = 0
+        embeddings_reutilizados = 0
         
         for actividad_id, actividad_data in self.actividades.items():
             try:
-                # Generar texto enriquecido
-                texto_enriquecido = self._generar_texto_enriquecido(actividad_id, actividad_data)
-                
-                # Generar embedding usando Ollama
-                embedding = self.ollama.generar_embedding(texto_enriquecido)
-                
-                if embedding and len(embedding) > 0:
-                    self.embeddings_cache[actividad_id] = np.array(embedding)
-                    logger.debug(f"🔹 Embedding generado para {actividad_id} ({len(embedding)} dims)")
-                else:
-                    logger.warning(f"⚠️ Embedding vacío para {actividad_id}, usando fallback")
-                    # Fallback: embedding aleatorio normalizado
-                    self.embeddings_cache[actividad_id] = np.random.normal(0, 1, 384) / np.linalg.norm(np.random.normal(0, 1, 384))
+                # Calcular hash actual del contenido
+                archivo_origen = actividad_data.get('_archivo_origen', '')
+                if archivo_origen:
+                    if actividad_data.get('_tipo_fuente') == 'json':
+                        archivo_path = os.path.join(self.actividades_base_path, "json_actividades", archivo_origen)
+                    else:
+                        archivo_path = os.path.join(self.actividades_base_path, archivo_origen)
                     
+                    hash_actual = self._calcular_hash_archivo(archivo_path)
+                else:
+                    hash_actual = ""
+                
+                # Verificar si necesitamos regenerar
+                metadata_previa = metadata_cache.get(actividad_id, {})
+                hash_previo = metadata_previa.get('hash', '')
+                
+                if hash_actual == hash_previo and actividad_id in embeddings_cache:
+                    # Reutilizar embedding existente
+                    embedding_lista = embeddings_cache[actividad_id]
+                    self.embeddings_cache[actividad_id] = np.array(embedding_lista)
+                    embeddings_actualizados[actividad_id] = embedding_lista
+                    metadata_actualizada[actividad_id] = metadata_previa
+                    embeddings_reutilizados += 1
+                    logger.debug(f"♻️ Embedding reutilizado para {actividad_id}")
+                    
+                else:
+                    # Generar nuevo embedding
+                    texto_enriquecido = self._generar_texto_enriquecido(actividad_id, actividad_data)
+                    embedding = self.ollama.generar_embedding(texto_enriquecido)
+                    
+                    if embedding and len(embedding) > 0:
+                        self.embeddings_cache[actividad_id] = np.array(embedding)
+                        embeddings_actualizados[actividad_id] = embedding
+                        metadata_actualizada[actividad_id] = {
+                            'hash': hash_actual,
+                            'archivo': archivo_origen,
+                            'tipo': actividad_data.get('_tipo_fuente', 'unknown')
+                        }
+                        embeddings_generados += 1
+                        logger.debug(f"🔹 Embedding generado para {actividad_id} ({len(embedding)} dims)")
+                    else:
+                        logger.warning(f"⚠️ Embedding vacío para {actividad_id}, usando fallback")
+                        embedding_fallback = np.random.normal(0, 1, 384)
+                        embedding_fallback = embedding_fallback / np.linalg.norm(embedding_fallback)
+                        self.embeddings_cache[actividad_id] = embedding_fallback
+                        embeddings_actualizados[actividad_id] = embedding_fallback.tolist()
+                        metadata_actualizada[actividad_id] = {
+                            'hash': hash_actual,
+                            'archivo': archivo_origen,
+                            'tipo': 'fallback'
+                        }
+                        embeddings_generados += 1
+                        
             except Exception as e:
-                logger.error(f"❌ Error generando embedding para {actividad_id}: {e}")
-                # Fallback para casos de error
-                self.embeddings_cache[actividad_id] = np.random.normal(0, 1, 384) / np.linalg.norm(np.random.normal(0, 1, 384))
+                logger.error(f"❌ Error procesando embedding para {actividad_id}: {e}")
+                # Fallback
+                embedding_fallback = np.random.normal(0, 1, 384)
+                embedding_fallback = embedding_fallback / np.linalg.norm(embedding_fallback)
+                self.embeddings_cache[actividad_id] = embedding_fallback
+                embeddings_actualizados[actividad_id] = embedding_fallback.tolist()
+                metadata_actualizada[actividad_id] = {'hash': '', 'archivo': archivo_origen, 'tipo': 'error'}
         
-        logger.info(f"✅ Embeddings generados: {len(self.embeddings_cache)} actividades")
+        # Guardar cache actualizado
+        cache_actualizado = {
+            "embeddings": embeddings_actualizados,
+            "metadata": metadata_actualizada
+        }
+        self._guardar_cache_embeddings(cache_actualizado)
+        
+        logger.info(f"✅ Embeddings: {embeddings_reutilizados} reutilizados, {embeddings_generados} generados")
+    
     
     def encontrar_actividad_similar(self, prompt: str, top_k: int = 3) -> List[Tuple[str, float, dict]]:
         """
@@ -462,3 +648,22 @@ class EmbeddingsManager:
             Texto enriquecido o cadena vacía
         """
         return self.textos_enriquecidos.get(actividad_id, "")
+    
+    def limpiar_cache(self) -> bool:
+        """
+        Elimina el archivo de cache para forzar regeneración completa
+        
+        Returns:
+            True si se eliminó correctamente
+        """
+        try:
+            if os.path.exists(self.cache_file):
+                os.remove(self.cache_file)
+                logger.info("🗑️ Cache de embeddings eliminado")
+                return True
+            else:
+                logger.info("ℹ️ No hay cache para eliminar")
+                return True
+        except Exception as e:
+            logger.error(f"❌ Error eliminando cache: {e}")
+            return False
