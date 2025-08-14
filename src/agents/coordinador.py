@@ -181,6 +181,57 @@ class AgenteCoordinador:
         
         return ideas
     
+    def matizar_idea_especifica(self, idea_base: Dict, matizaciones: str, contexto_hibrido: ContextoHibrido) -> List[Dict]:
+        """
+        Matiza una idea específica aplicando las modificaciones solicitadas
+        
+        Args:
+            idea_base: Idea base a matizar
+            matizaciones: Matizaciones específicas solicitadas
+            contexto_hibrido: Contexto híbrido
+            
+        Returns:
+            Lista de ideas matizadas (generalmente 1-2 variantes)
+        """
+        
+        # Crear prompt específico para matización
+        prompt_matizacion = f"""Eres un experto en diseño de actividades educativas para 4º de Primaria.
+
+IDEA BASE A MATIZAR:
+Título: {idea_base.get('titulo', '')}
+Descripción: {idea_base.get('descripcion', '')}
+Nivel: {idea_base.get('nivel', '4º Primaria')}
+Duración: {idea_base.get('duracion', '')}
+Competencias: {idea_base.get('competencias', '')}
+
+MATIZACIONES SOLICITADAS:
+{matizaciones}
+
+INSTRUCCIONES:
+Toma la IDEA BASE y aplica EXACTAMENTE las matizaciones solicitadas.
+Mantén la esencia de la actividad pero incorpora ESPECÍFICAMENTE los cambios pedidos.
+Genera 1-2 variantes de la idea matizada.
+
+FORMATO OBLIGATORIO:
+1. [Título de la idea matizada]
+   Descripción: [Descripción detallada incorporando las matizaciones]
+   Nivel: 4º Primaria
+   Duración: [duración apropiada]
+   Competencias: [competencias desarrolladas]
+
+RESPONDE SOLO CON LAS IDEAS MATIZADAS, SIN EXPLICACIONES ADICIONALES."""
+        
+        # Generar respuesta matizada
+        respuesta = self.ollama.generar_respuesta(prompt_matizacion, max_tokens=500)
+        ideas_matizadas = self._parsear_ideas(respuesta)
+        
+        # Procesar respuesta con contexto híbrido
+        contexto_hibrido.procesar_respuesta_llm(respuesta, f"Matizar: {matizaciones}")
+        
+        logger.info(f"✅ Ideas matizadas: {len(ideas_matizadas)} variantes generadas")
+        
+        return ideas_matizadas if ideas_matizadas else [idea_base]  # Fallback a idea original
+    
     def _crear_prompt_hibrido(self, prompt_profesor: str, contexto_hibrido: ContextoHibrido) -> str:
         """
         Crea prompt usando contexto híbrido auto-detectado
@@ -1358,3 +1409,168 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         self.contexto_hibrido.actualizar_estado("estructura_base_creada", "AgenteCoordinador")
         
         return proyecto_base
+    
+    # =================== NUEVO FLUJO MEJORADO CON MVP ===================
+    def ejecutar_flujo_mejorado_mvp(self, descripcion_actividad: str, duracion_minutos: int = 45) -> Dict:
+        """
+        NUEVO MÉTODO: Flujo mejorado que usa las mejoras integradas del MVP
+        Análisis profundo + Asignación neurotipos usando agentes existentes mejorados
+        
+        Args:
+            descripcion_actividad: Descripción de la actividad
+            duracion_minutos: Duración total en minutos
+            
+        Returns:
+            Dict: Proyecto completo con mejoras del MVP integradas
+        """
+        self._log_processing_start(f"🧠 FLUJO MEJORADO MVP: '{descripcion_actividad}'")
+        
+        # PASO 1: Crear actividad personalizada basada únicamente en el prompt
+        actividad_personalizada = {
+            'titulo': f'Actividad: {descripcion_actividad[:50]}...',
+            'objetivo': f'Desarrollar competencias específicas mediante: {descripcion_actividad}',
+            'nivel_educativo': '4º Primaria',
+            'duracion_minutos': f'{duracion_minutos} minutos',
+            'etapas': [],  # Se generarán durante el análisis
+            'tipo': 'actividad_personalizada'
+        }
+        
+        # PASO 1: Usar analizador mejorado con análisis profundo del prompt específico
+        tareas_profundas = self.analizador_tareas.extraer_tareas_hibrido(
+            actividad_data=actividad_personalizada, 
+            prompt_original=descripcion_actividad  # Esto activa el análisis profundo
+        )
+        logger.info(f"✅ PASO 1: Análisis profundo completado - {len(tareas_profundas)} tareas específicas")
+        
+        # PASO 2: Usar perfilador existente
+        perfiles_procesados = self.perfilador.analizar_perfiles({
+            'estudiantes': self.perfilador.perfiles_base
+        })
+        logger.info(f"✅ PASO 2: Perfiles procesados - {len(self.perfilador.perfiles_base)} estudiantes")
+        
+        # PASO 3: Usar optimizador mejorado con criterios neurotípicos
+        asignaciones_neurotipos = self.optimizador.optimizar_asignaciones(
+            tareas_input=tareas_profundas,
+            analisis_estudiantes=perfiles_procesados,
+            perfilador=self.perfilador
+        )
+        logger.info(f"✅ PASO 3: Asignaciones neurotípicas completadas")
+        
+        # PASO 4: Construir proyecto mejorado con actividad personalizada
+        proyecto_mejorado = {
+            'tipo': 'flujo_mvp_integrado',
+            'descripcion_actividad': descripcion_actividad,
+            'duracion_minutos': duracion_minutos,
+            'tareas_especificas': [asdict(t) if hasattr(t, '__dataclass_fields__') else t.__dict__ if hasattr(t, '__dict__') else t for t in tareas_profundas],
+            'asignaciones_neurotipos': asignaciones_neurotipos,
+            'perfiles_estudiantes': perfiles_procesados,
+            'actividad_personalizada': actividad_personalizada,  # ← Actividad específica del prompt
+            'metadatos': {
+                'version': '2.1.0-mvp-integrado',
+                'mejoras_aplicadas': [
+                    'analisis_profundo_especifico',
+                    'criterios_neurotipos_tea_tdah_ac',
+                    'justificaciones_pedagogicas',
+                    'fallbacks_inteligentes',
+                    'actividad_personalizada_prompt'
+                ],
+                'agentes_utilizados': ['analizador_mejorado', 'perfilador', 'optimizador_neurotipos']
+            }
+        }
+        
+        # Actualizar contexto híbrido
+        self.contexto_hibrido.actualizar_estado("flujo_mvp_completado", "AgenteCoordinador")
+        self.contexto_hibrido.finalizar_proyecto(proyecto_mejorado)
+        
+        logger.info("🎉 FLUJO MEJORADO MVP COMPLETADO")
+        logger.info(f"   📊 Tareas específicas: {len(tareas_profundas)}")
+        logger.info(f"   👥 Estudiantes: {len(self.perfilador.perfiles_base)}")
+        logger.info(f"   🧠 Criterios neurotípicos aplicados: {asignaciones_neurotipos.get('metadatos', {}).get('criterios_aplicados', [])}")
+        
+        return proyecto_mejorado
+    
+    def formatear_proyecto_mejorado_para_profesor(self, proyecto: Dict) -> str:
+        """
+        Formatea el proyecto mejorado con MVP para el profesor
+        
+        Args:
+            proyecto: Proyecto con mejoras del MVP integradas
+            
+        Returns:
+            String formateado para el profesor
+        """
+        descripcion = proyecto.get('descripcion_actividad', 'Actividad Educativa')
+        tareas = proyecto.get('tareas_especificas', [])
+        asignaciones = proyecto.get('asignaciones_neurotipos', {})
+        metadatos = proyecto.get('metadatos', {})
+        
+        output = f"""
+🧠 PROYECTO EDUCATIVO MEJORADO CON MVP
+{'='*80}
+📝 Actividad: {descripcion}
+⏱️ Duración: {proyecto.get('duracion_minutos', 45)} minutos
+🤖 Sistema: Agentes con mejoras del MVP integradas
+📊 Versión: {metadatos.get('version', 'N/A')}
+
+🎯 MEJORAS APLICADAS:
+{chr(10).join(f"   ✅ {mejora.replace('_', ' ').title()}" for mejora in metadatos.get('mejoras_aplicadas', []))}
+
+📋 TAREAS ESPECÍFICAS IDENTIFICADAS ({len(tareas)}):
+"""
+        
+        for i, tarea in enumerate(tareas[:6], 1):
+            if isinstance(tarea, dict):
+                descripcion_tarea = tarea.get('descripcion', 'Sin descripción')
+                complejidad = tarea.get('complejidad', 3)
+                tipo = tarea.get('tipo', 'colaborativa')
+                output += f"   {i}. {descripcion_tarea} (Complejidad: {complejidad}, Tipo: {tipo})\n"
+        
+        # Mostrar asignaciones neurotípicas si están disponibles
+        if isinstance(asignaciones, dict) and 'justificaciones' in asignaciones:
+            output += f"""
+
+👥 ASIGNACIONES NEUROTÍPICAS:
+{'='*50}"""
+            
+            justificaciones = asignaciones.get('justificaciones', {})
+            for estudiante_id, info in justificaciones.items():
+                neurotipo = info.get('neurotipo', 'tipico')
+                emoji = {'TEA': '🧩', 'TDAH': '⚡', 'altas_capacidades': '🌟', 'tipico': '👤'}.get(neurotipo, '👤')
+                
+                output += f"""
+{emoji} Estudiante {estudiante_id} ({neurotipo}):
+   💡 {info.get('justificacion', 'Sin justificación')}
+   📋 Tareas asignadas: {info.get('num_tareas', 0)}
+   🎯 Criterios: {', '.join(info.get('criterios_aplicados', []))}
+"""
+        
+        # Estadísticas neurotípicas
+        if isinstance(asignaciones, dict) and 'estadisticas_neurotipos' in asignaciones:
+            stats = asignaciones['estadisticas_neurotipos']
+            output += f"""
+
+📊 DISTRIBUCIÓN NEUROTÍPICA:
+"""
+            for neurotipo, cantidad in stats.items():
+                emoji = {'TEA': '🧩', 'TDAH': '⚡', 'altas_capacidades': '🌟', 'tipico': '👤'}.get(neurotipo, '👤')
+                output += f"   {emoji} {neurotipo}: {cantidad} estudiantes\n"
+        
+        output += f"""
+
+🎯 RESUMEN DE MEJORAS INTEGRADAS:
+   🧠 Análisis profundo: Tareas específicas por tipo de actividad
+   ⚖️ Criterios neurotípicos: Asignación TEA, TDAH, altas capacidades
+   💡 Justificaciones: Decisiones pedagógicamente fundamentadas
+   🛡️ Fallbacks inteligentes: Sistema robusto ante fallos
+   🔄 Compatibilidad: Funciona con el flujo existente
+"""
+        
+        return output
+    
+    def _log_processing_start(self, description: str):
+        """Log del inicio del procesamiento"""
+        logger.info(f"🚀 COORDINADOR: {description}")
+    
+    def _log_processing_end(self, description: str):
+        """Log del fin del procesamiento"""
+        logger.info(f"🎯 COORDINADOR: {description}")

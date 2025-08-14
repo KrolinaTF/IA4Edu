@@ -211,23 +211,39 @@ class CLIViews:
         """
         print("\n🔍 VALIDACIÓN FINAL:")
         
-        proyecto_base = proyecto_final.get('proyecto_base', {})
-        if not isinstance(proyecto_base, dict):
-            proyecto_base = {}
-            
-        resultados = proyecto_final.get('resultados_agentes', {})
-        if not isinstance(resultados, dict):
-            resultados = {}
+        # DETECTAR ESTRUCTURA: MVP vs LEGACY
+        if 'tipo' in proyecto_final and proyecto_final['tipo'] == 'flujo_mvp_integrado':
+            # ESTRUCTURA MVP: El proyecto es directamente los resultados
+            proyecto_base = proyecto_final.get('actividad_personalizada', {})
+            resultados = proyecto_final  # El proyecto completo son los resultados
+            print(f"   DEBUG - ESTRUCTURA MVP DETECTADA")
+        else:
+            # ESTRUCTURA LEGACY
+            proyecto_base = proyecto_final.get('proyecto_base', {})
+            if not isinstance(proyecto_base, dict):
+                proyecto_base = {}
+                
+            resultados = proyecto_final.get('resultados_agentes', {})
+            if not isinstance(resultados, dict):
+                resultados = {}
+            print(f"   DEBUG - ESTRUCTURA LEGACY DETECTADA")
         
         print(f"Título: {proyecto_base.get('titulo', 'N/A')}")
-        print(f"Descripción: {proyecto_base.get('descripcion', 'N/A')}")
+        print(f"Descripción: {proyecto_base.get('descripcion', proyecto_final.get('descripcion_actividad', 'N/A'))}")
         
         # ===== INFORMACIÓN DETALLADA DE TAREAS =====
         tareas_list = []
         actividad_info = {}
         
-        # Buscar en la nueva estructura: resultados_agentes -> analizador_tareas
-        if 'analizador_tareas' in resultados:
+        # PRIORIDAD 1: Buscar en estructura del flujo MVP integrado
+        if 'tipo' in resultados and resultados['tipo'] == 'flujo_mvp_integrado':
+            # Estructura del flujo MVP mejorado
+            tareas_list = resultados.get('tareas_especificas', [])
+            actividad_info = resultados.get('actividad_personalizada', {})
+            print(f"   DEBUG - Estructura MVP detectada: {len(tareas_list)} tareas, actividad: {actividad_info.get('titulo', 'Sin título')}")
+            
+        # PRIORIDAD 2: Buscar en la estructura anterior: resultados_agentes -> analizador_tareas
+        elif 'analizador_tareas' in resultados:
             analizador_data = resultados['analizador_tareas']
             if isinstance(analizador_data, list):
                 tareas_list = analizador_data
@@ -251,6 +267,9 @@ class CLIViews:
                 tareas_list = tareas_info.get('tareas', []) if isinstance(tareas_info, dict) else []
         
         print(f"Tareas generadas: {len(tareas_list)}")
+        print(f"   DEBUG - Estructura de resultados: {list(resultados.keys())}")
+        print(f"   DEBUG - Tipo de resultados: {resultados.get('tipo', 'N/A')}")
+        print(f"   DEBUG - Actividad info keys: {list(actividad_info.keys()) if actividad_info else 'Vacío'}")
         
         # ===== MOSTRAR LISTADO DE TAREAS =====
         if tareas_list and len(tareas_list) > 0:
@@ -298,8 +317,16 @@ class CLIViews:
                         print(f"     {i}. {etapa.get('nombre', f'Etapa {i}')}")
         
         # ===== MOSTRAR ASIGNACIONES DE ESTUDIANTES =====
-        if 'optimizador_asignaciones' in resultados:
+        asignaciones = None
+        
+        # PRIORIDAD 1: Buscar asignaciones en flujo MVP
+        if 'asignaciones_neurotipos' in resultados:
+            asignaciones = resultados['asignaciones_neurotipos']
+        # PRIORIDAD 2: Buscar en estructura anterior
+        elif 'optimizador_asignaciones' in resultados:
             asignaciones = resultados['optimizador_asignaciones']
+        
+        if asignaciones:
             if isinstance(asignaciones, dict) and asignaciones:
                 print(f"\n👥 ASIGNACIONES POR ESTUDIANTE:")
                 

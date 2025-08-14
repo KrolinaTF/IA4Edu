@@ -23,6 +23,38 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
         """
         super().__init__(ollama_integrator)
         self.perfiles = {}  # Se actualizará cuando reciba los perfiles
+        
+        # NUEVOS CRITERIOS NEUROTÍPICOS DEL MVP
+        self.criterios_neurotipos = {
+            'TEA': {
+                'preferencias': ['organización', 'planificación', 'precisión', 'estructura'],
+                'evitar': ['improvisación', 'cambios_rapidos'],
+                'complejidad_max': 5,  # Pueden manejar alta complejidad
+                'tipo_preferido': 'individual',
+                'justificacion_base': "Su necesidad de estructura y precisión es ideal para"
+            },
+            'TDAH': {
+                'preferencias': ['movimiento', 'dinamismo', 'demostracion', 'accion'],
+                'evitar': ['tareas_largas', 'detalle_excesivo'],
+                'complejidad_max': 3,  # Mejor con complejidad media
+                'tipo_preferido': 'colaborativa',
+                'justificacion_base': "Su energía y dinamismo encajan perfectamente con"
+            },
+            'altas_capacidades': {
+                'preferencias': ['análisis', 'coordinación', 'planificación', 'síntesis'],
+                'evitar': ['tareas_simples'],
+                'complejidad_max': 5,  # Necesitan alta complejidad
+                'tipo_preferido': 'individual',
+                'justificacion_base': "Su capacidad analítica permite manejar"
+            },
+            'tipico': {
+                'preferencias': ['colaboración', 'comunicación', 'apoyo'],
+                'evitar': [],
+                'complejidad_max': 4,  # Flexibles
+                'tipo_preferido': 'colaborativa',
+                'justificacion_base': "Su versatilidad le permite contribuir efectivamente en"
+            }
+        }
 
     def optimizar_asignaciones(self, tareas_input, analisis_estudiantes: Dict, perfilador=None, **kwargs) -> Dict:
         """
@@ -85,6 +117,7 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
             )
             
             self.logger.debug(f"📥 Respuesta del LLM recibida: {len(respuesta_llm)} caracteres")
+            self.logger.info(f"🔍 RESPUESTA COMPLETA DEL LLM:\n{respuesta_llm}")
             
             # 6. Parsear respuesta del LLM
             asignaciones_parseadas = self._parsear_respuesta_llm(respuesta_llm)
@@ -488,11 +521,28 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
         if not asignaciones:
             return {}
         
-        tareas_ids_disponibles = {tarea['id'] for tarea in tareas}
+        # ARREGLO: Manejar tanto objetos Tarea como diccionarios
+        tareas_ids_disponibles = set()
+        for tarea in tareas:
+            if hasattr(tarea, 'id'):  # Objeto Tarea
+                tareas_ids_disponibles.add(tarea.id)
+            elif isinstance(tarea, dict) and 'id' in tarea:  # Diccionario
+                tareas_ids_disponibles.add(tarea['id'])
+            else:
+                self.logger.warning(f"⚠️ Tarea sin ID válido: {tarea}")
+        
+        self.logger.info(f"🔍 DEBUG - IDs de tareas disponibles: {tareas_ids_disponibles}")
+        
         estudiantes_sistema = set(self.perfiles.keys())
         asignaciones_validadas = {}
         
         # Validar cada asignación
+        self.logger.info(f"🔍 DEBUG - Asignaciones del LLM: {asignaciones}")
+        
+        # CREAR MAPEO DE IDS: LLM -> SISTEMA
+        mapeo_ids = self._crear_mapeo_ids_llm_a_sistema(asignaciones, tareas_ids_disponibles)
+        self.logger.info(f"🔄 DEBUG - Mapeo de IDs: {mapeo_ids}")
+        
         for estudiante_id, tareas_asignadas in asignaciones.items():
             # Normalizar ID de estudiante
             estudiante_id_normalizado = estudiante_id
@@ -504,8 +554,14 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
                 self.logger.warning(f"⚠️ Estudiante {estudiante_id_normalizado} no existe en sistema")
                 continue
             
-            # Filtrar tareas válidas
-            tareas_validas = [t for t in tareas_asignadas if t in tareas_ids_disponibles]
+            # Filtrar tareas válidas usando mapeo de IDs
+            tareas_validas = []
+            for t in tareas_asignadas:
+                if t in tareas_ids_disponibles:
+                    tareas_validas.append(t)  # ID exacto
+                elif t in mapeo_ids:
+                    tareas_validas.append(mapeo_ids[t])  # ID mapeado
+                    self.logger.info(f"🔄 Mapeado: {t} -> {mapeo_ids[t]}")
             
             if tareas_validas:
                 asignaciones_validadas[estudiante_id_normalizado] = tareas_validas
@@ -528,55 +584,256 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
     def _generar_asignaciones_inteligentes(self, tareas: List[Dict], analisis_estudiantes: Dict) -> Dict:
         """
         Genera asignaciones usando lógica basada en reglas (fallback inteligente)
+        MEJORADO CON MVP: Criterios neurotípicos específicos
         
         Args:
             tareas: Lista de tareas normalizadas
             analisis_estudiantes: Análisis de estudiantes
             
         Returns:
-            Diccionario con asignaciones basadas en reglas
+            Diccionario con asignaciones basadas en reglas neurotípicas
         """
         if not tareas or not self.perfiles:
             return {}
         
-        self.logger.info("🧠 Generando asignaciones con lógica basada en reglas...")
+        self.logger.info("🧠 Generando asignaciones con criterios neurotípicos del MVP...")
         
         asignaciones = {}
         tareas_disponibles = tareas.copy()
         estudiantes_ids = list(self.perfiles.keys())
         
-        # Distribuir tareas según capacidades y necesidades
-        for i, estudiante_id in enumerate(estudiantes_ids):
-            estudiante = self.perfiles[estudiante_id]
-            
-            # Determinar número de tareas según disponibilidad
-            if hasattr(estudiante, 'disponibilidad'):
-                disponibilidad = estudiante.disponibilidad
-            else:
-                disponibilidad = estudiante.get('disponibilidad', 85) if isinstance(estudiante, dict) else 85
-            
-            if disponibilidad > 85:
-                num_tareas = min(4, len(tareas_disponibles))
-            elif disponibilidad > 70:
-                num_tareas = min(3, len(tareas_disponibles))
-            else:
-                num_tareas = min(2, len(tareas_disponibles))
-            
-            # Seleccionar tareas apropiadas
-            tareas_estudiante = self._seleccionar_tareas_para_estudiante(
-                estudiante, 
-                tareas_disponibles, 
-                num_tareas
-            )
-            
-            if tareas_estudiante:
-                asignaciones[estudiante_id] = [t['id'] for t in tareas_estudiante]
-                # Remover tareas asignadas de disponibles
-                for tarea in tareas_estudiante:
-                    if tarea in tareas_disponibles:
-                        tareas_disponibles.remove(tarea)
+        # NUEVO: Clasificar estudiantes por neurotipo para priorización
+        estudiantes_por_neurotipo = self._clasificar_estudiantes_por_neurotipo()
         
-        return asignaciones
+        # PASO 1: Asignar tareas complejas primero a estudiantes de altas capacidades
+        self._asignar_por_prioridad_neurotipica(asignaciones, estudiantes_por_neurotipo, tareas_disponibles)
+        
+        # PASO 2: Completar asignaciones para estudiantes restantes
+        for estudiante_id in estudiantes_ids:
+            if estudiante_id not in asignaciones:
+                estudiante = self.perfiles[estudiante_id]
+                neurotipo = self._determinar_neurotipo_estudiante(estudiante)
+                
+                # Determinar número de tareas según neurotipo y disponibilidad
+                num_tareas = self._calcular_num_tareas_por_neurotipo(estudiante, neurotipo)
+                
+                # Seleccionar tareas apropiadas con criterios neurotípicos
+                tareas_estudiante = self._seleccionar_tareas_neurotipos(
+                    estudiante, neurotipo, tareas_disponibles, num_tareas
+                )
+                
+                if tareas_estudiante:
+                    asignaciones[estudiante_id] = [t['id'] for t in tareas_estudiante]
+                    # Remover tareas asignadas de disponibles
+                    for tarea in tareas_estudiante:
+                        if tarea in tareas_disponibles:
+                            tareas_disponibles.remove(tarea)
+        
+        # PASO 3: Generar justificaciones pedagógicas
+        asignaciones_con_justificacion = self._generar_asignaciones_con_justificacion(asignaciones, tareas)
+        
+        self.logger.info(f"✅ Asignaciones neurotípicas generadas para {len(asignaciones)} estudiantes")
+        return asignaciones_con_justificacion
+    
+    def _clasificar_estudiantes_por_neurotipo(self) -> Dict[str, List[str]]:
+        """Clasifica estudiantes por neurotipo para priorización"""
+        neurotipos = {'TEA': [], 'TDAH': [], 'altas_capacidades': [], 'tipico': []}
+        
+        for estudiante_id, estudiante in self.perfiles.items():
+            neurotipo = self._determinar_neurotipo_estudiante(estudiante)
+            neurotipos[neurotipo].append(estudiante_id)
+        
+        return neurotipos
+    
+    def _determinar_neurotipo_estudiante(self, estudiante) -> str:
+        """Determina el neurotipo de un estudiante (del MVP)"""
+        # Intentar desde adaptaciones si es estudiante objeto
+        if hasattr(estudiante, 'adaptaciones'):
+            adaptaciones = estudiante.adaptaciones
+        elif isinstance(estudiante, dict) and 'adaptaciones' in estudiante:
+            adaptaciones = estudiante['adaptaciones']
+        elif isinstance(estudiante, dict) and 'diagnostico_formal' in estudiante:
+            diagnostico = estudiante['diagnostico_formal'].lower()
+            if 'tea' in diagnostico:
+                return 'TEA'
+            elif 'tdah' in diagnostico:
+                return 'TDAH'
+            elif 'altas_capacidades' in diagnostico:
+                return 'altas_capacidades'
+            else:
+                return 'tipico'
+        else:
+            return 'tipico'
+        
+        # Analizar adaptaciones para determinar neurotipo
+        adaptaciones_str = ' '.join(adaptaciones).lower() if adaptaciones else ''
+        
+        if any(keyword in adaptaciones_str for keyword in ['tea', 'autismo', 'rutinas']):
+            return 'TEA'
+        elif any(keyword in adaptaciones_str for keyword in ['tdah', 'hiperactividad', 'descansos']):
+            return 'TDAH'
+        elif any(keyword in adaptaciones_str for keyword in ['altas capacidades', 'retos', 'gifted']):
+            return 'altas_capacidades'
+        else:
+            return 'tipico'
+    
+    def _asignar_por_prioridad_neurotipica(self, asignaciones: Dict, estudiantes_por_neurotipo: Dict, tareas_disponibles: List[Dict]):
+        """Asigna tareas prioritarias por neurotipo"""
+        # Prioridad 1: Altas capacidades con tareas complejas
+        for estudiante_id in estudiantes_por_neurotipo['altas_capacidades']:
+            tareas_complejas = [t for t in tareas_disponibles if t.get('complejidad', 3) >= 4]
+            if tareas_complejas:
+                asignaciones[estudiante_id] = [tareas_complejas[0]['id']]
+                if tareas_complejas[0] in tareas_disponibles:
+                    tareas_disponibles.remove(tareas_complejas[0])
+        
+        # Prioridad 2: TEA con tareas individuales estructuradas  
+        for estudiante_id in estudiantes_por_neurotipo['TEA']:
+            tareas_individuales = [t for t in tareas_disponibles if t.get('tipo', '') == 'individual']
+            if tareas_individuales:
+                asignaciones[estudiante_id] = [tareas_individuales[0]['id']]
+                if tareas_individuales[0] in tareas_disponibles:
+                    tareas_disponibles.remove(tareas_individuales[0])
+    
+    def _calcular_num_tareas_por_neurotipo(self, estudiante, neurotipo: str) -> int:
+        """Calcula número de tareas óptimo según neurotipo"""
+        # Obtener disponibilidad
+        if hasattr(estudiante, 'disponibilidad'):
+            disponibilidad = estudiante.disponibilidad
+        else:
+            disponibilidad = estudiante.get('disponibilidad', 85) if isinstance(estudiante, dict) else 85
+        
+        criterio = self.criterios_neurotipos.get(neurotipo, self.criterios_neurotipos['tipico'])
+        
+        # Ajustar según neurotipo
+        if neurotipo == 'altas_capacidades':
+            base_tareas = 3 if disponibilidad > 80 else 2
+        elif neurotipo == 'TDAH':
+            base_tareas = 2  # Menos tareas para evitar sobrecarga
+        elif neurotipo == 'TEA':
+            base_tareas = 2  # Estructura y predictibilidad
+        else:  # tipico
+            base_tareas = 3 if disponibilidad > 75 else 2
+        
+        return min(base_tareas, 4)  # Máximo 4 tareas
+    
+    def _seleccionar_tareas_neurotipos(self, estudiante, neurotipo: str, tareas_disponibles: List[Dict], num_tareas: int) -> List[Dict]:
+        """Selecciona tareas según criterios neurotípicos específicos (del MVP)"""
+        criterio = self.criterios_neurotipos.get(neurotipo, self.criterios_neurotipos['tipico'])
+        tareas_apropiadas = []
+        
+        # Filtrar tareas según criterios neurotípicos
+        for tarea in tareas_disponibles:
+            puntuacion = self._evaluar_tarea_neurotipo(tarea, criterio)
+            if puntuacion > 0:
+                tarea_con_puntuacion = tarea.copy()
+                tarea_con_puntuacion['puntuacion_neurotipo'] = puntuacion
+                tareas_apropiadas.append(tarea_con_puntuacion)
+        
+        # Ordenar por puntuación y seleccionar las mejores
+        tareas_apropiadas.sort(key=lambda t: t['puntuacion_neurotipo'], reverse=True)
+        return tareas_apropiadas[:num_tareas]
+    
+    def _evaluar_tarea_neurotipo(self, tarea: Dict, criterio: Dict) -> float:
+        """Evalúa qué tan apropiada es una tarea para un neurotipo específico"""
+        puntuacion = 0.0
+        
+        descripcion = tarea.get('descripcion', '').lower()
+        tipo = tarea.get('tipo', '').lower()
+        complejidad = tarea.get('complejidad', 3)
+        
+        # Puntos por preferencias
+        for preferencia in criterio['preferencias']:
+            if preferencia in descripcion or preferencia in tipo:
+                puntuacion += 2.0
+        
+        # Penalización por elementos a evitar
+        for evitar in criterio['evitar']:
+            if evitar in descripcion:
+                puntuacion -= 3.0
+        
+        # Puntos por complejidad apropiada
+        if complejidad <= criterio['complejidad_max']:
+            puntuacion += 1.0
+        else:
+            puntuacion -= 2.0
+        
+        # Puntos por tipo preferido
+        if tipo == criterio['tipo_preferido']:
+            puntuacion += 1.5
+        
+        return max(0.0, puntuacion)  # No permitir puntuaciones negativas
+    
+    def _generar_asignaciones_con_justificacion(self, asignaciones: Dict, tareas: List[Dict]) -> Dict:
+        """Genera asignaciones con justificaciones pedagógicas"""
+        resultado = {
+            'asignaciones': asignaciones,
+            'justificaciones': {},
+            'estadisticas_neurotipos': self._generar_estadisticas_neurotipos(asignaciones),
+            'metadatos': {
+                'metodo': 'asignacion_neurotipos_mvp',
+                'criterios_aplicados': list(self.criterios_neurotipos.keys()),
+                'total_estudiantes': len(asignaciones)
+            }
+        }
+        
+        # Generar justificación para cada estudiante
+        for estudiante_id, tareas_ids in asignaciones.items():
+            if estudiante_id in self.perfiles:
+                estudiante = self.perfiles[estudiante_id]
+                neurotipo = self._determinar_neurotipo_estudiante(estudiante)
+                criterio = self.criterios_neurotipos.get(neurotipo, self.criterios_neurotipos['tipico'])
+                
+                justificacion = f"{criterio['justificacion_base']} las tareas asignadas según sus características de {neurotipo}"
+                resultado['justificaciones'][estudiante_id] = {
+                    'justificacion': justificacion,
+                    'neurotipo': neurotipo,
+                    'num_tareas': len(tareas_ids),
+                    'criterios_aplicados': criterio['preferencias'][:2]  # Primeros 2 criterios
+                }
+        
+        return resultado
+    
+    def _generar_estadisticas_neurotipos(self, asignaciones: Dict) -> Dict:
+        """Genera estadísticas de distribución por neurotipos"""
+        stats = {'TEA': 0, 'TDAH': 0, 'altas_capacidades': 0, 'tipico': 0}
+        
+        for estudiante_id in asignaciones.keys():
+            if estudiante_id in self.perfiles:
+                neurotipo = self._determinar_neurotipo_estudiante(self.perfiles[estudiante_id])
+                stats[neurotipo] = stats.get(neurotipo, 0) + 1
+        
+        return stats
+    
+    def _crear_mapeo_ids_llm_a_sistema(self, asignaciones_llm: Dict, ids_sistema: set) -> Dict[str, str]:
+        """
+        Crea mapeo entre IDs genéricos del LLM y IDs reales del sistema
+        
+        Args:
+            asignaciones_llm: Asignaciones del LLM con IDs genéricos
+            ids_sistema: Set de IDs reales del sistema
+            
+        Returns:
+            Diccionario de mapeo {id_llm: id_sistema}
+        """
+        mapeo = {}
+        
+        # Extraer todos los IDs únicos del LLM
+        ids_llm = set()
+        for tareas in asignaciones_llm.values():
+            ids_llm.update(tareas)
+        
+        # Convertir a listas ordenadas para mapeo secuencial
+        ids_llm_ordenados = sorted([id for id in ids_llm if id.startswith('tarea_')])
+        ids_sistema_ordenados = sorted(list(ids_sistema))
+        
+        # Crear mapeo secuencial: tarea_01 -> tarea_profunda_01, etc.
+        for i, id_llm in enumerate(ids_llm_ordenados):
+            if i < len(ids_sistema_ordenados):
+                mapeo[id_llm] = ids_sistema_ordenados[i]
+        
+        return mapeo
+    
     def _generar_asignaciones_fallback(self, tareas: List[Dict]) -> Dict:
         """
         Genera asignaciones básicas de fallback cuando no hay perfiles

@@ -21,7 +21,6 @@ from agents.coordinador import AgenteCoordinador
 from agents.analizador import AgenteAnalizadorTareas
 from agents.perfilador import AgentePerfiladorEstudiantes
 from agents.optimizador import AgenteOptimizadorAsignaciones
-# from agents.generador import AgenteGeneradorRecursos  # ELIMINADO Fase 1
 from core.sistema import SistemaAgentesABP
 from ui.controller import UIController
 from ui.cli import CLI

@@ -61,14 +61,11 @@ class UIController:
         idea_seleccionada = ideas[idea_idx]
         logger.info(f"🎮 Solicitando matización de idea: {idea_seleccionada.get('titulo', '')}...")
         
-        # Crear prompt para matizar la idea seleccionada
-        prompt_matizacion = f"Toma esta idea: '{idea_seleccionada.get('titulo', '')}' - {idea_seleccionada.get('descripcion', '')} y aplica estos cambios/matizaciones: {matizaciones}"
-        
         # Obtener contexto híbrido del coordinador
         contexto_hibrido = self.coordinador.contexto_hibrido
         
-        # Generar ideas matizadas
-        return self.coordinador.generar_ideas_actividades_hibrido(prompt_matizacion, contexto_hibrido)
+        # Usar método específico de matización
+        return self.coordinador.matizar_idea_especifica(idea_seleccionada, matizaciones, contexto_hibrido)
     
     def generar_nuevas_ideas(self, nuevo_prompt: str) -> List[Dict]:
         """
@@ -112,7 +109,7 @@ class UIController:
     
     def ejecutar_flujo_orquestado(self, actividad_seleccionada: Dict, info_adicional: str = "") -> Dict:
         """
-        Solicita al coordinador ejecutar el flujo orquestado completo
+        Solicita al coordinador ejecutar el flujo mejorado con MVP
         
         Args:
             actividad_seleccionada: Actividad seleccionada para procesar
@@ -121,10 +118,15 @@ class UIController:
         Returns:
             Proyecto final generado
         """
-        logger.info(f"🎮 Solicitando ejecución de flujo para: {actividad_seleccionada.get('titulo', 'Sin título')}")
+        logger.info(f"🎮 Solicitando ejecución de flujo MVP mejorado para: {actividad_seleccionada.get('titulo', 'Sin título')}")
         
-        # Ejecutar flujo orquestado
-        return self.coordinador.ejecutar_flujo_orquestado(actividad_seleccionada, info_adicional)
+        # Extraer descripción de la actividad
+        descripcion_actividad = actividad_seleccionada.get('descripcion', actividad_seleccionada.get('titulo', ''))
+        if info_adicional:
+            descripcion_actividad += f" {info_adicional}"
+        
+        # Ejecutar flujo MVP mejorado (análisis profundo + neurotipos)
+        return self.coordinador.ejecutar_flujo_mejorado_mvp(descripcion_actividad)
     
     def guardar_proyecto(self, proyecto: Dict, nombre_archivo: str = None) -> str:
         """

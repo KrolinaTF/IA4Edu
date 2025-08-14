@@ -40,6 +40,7 @@ class AgenteAnalizadorTareas(BaseAgent):
     def extraer_tareas_hibrido(self, actividad_data: Dict, prompt_original: str = "") -> List[Tarea]:
         """
         NUEVA FUNCIÓN HÍBRIDA: Extrae tareas usando la mejor estrategia disponible
+        MEJORADO CON MVP: Análisis profundo específico de cada actividad
         
         Args:
             actividad_data: Datos de la actividad (JSON o dict)
@@ -48,25 +49,39 @@ class AgenteAnalizadorTareas(BaseAgent):
         Returns:
             Lista de objetos Tarea garantizada
         """
-        self._log_processing_start(f"Extracción híbrida de tareas")
+        self._log_processing_start(f"Extracción híbrida de tareas mejorada")
         
-        # ESTRATEGIA 1: Extraer directamente desde JSON (PRIORIDAD MÁXIMA)
+        # ESTRATEGIA 1: ANÁLISIS PROFUNDO CON LLM (NUEVA - DEL MVP)
+        if prompt_original:
+            self.logger.info("🧠 Estrategia 1: Análisis profundo específico (MVP)")
+            tareas = self._analizar_actividad_profundo(prompt_original, actividad_data)
+            if tareas:
+                self._log_processing_end(f"✅ Análisis profundo: {len(tareas)} tareas específicas")
+                
+                # Si tenemos actividad personalizada, usarla como información base
+                if actividad_data.get('tipo') == 'actividad_personalizada':
+                    self.logger.info("📋 Usando actividad personalizada del prompt")
+                    return tareas
+                else:
+                    return tareas
+        
+        # ESTRATEGIA 2: Extraer directamente desde JSON (PRIORIDAD ALTA)
         if self._tiene_estructura_json_valida(actividad_data):
-            self.logger.info("🎯 Estrategia 1: Extracción directa desde JSON")
+            self.logger.info("🎯 Estrategia 2: Extracción directa desde JSON")
             tareas = self._extraer_tareas_desde_json(actividad_data)
             if tareas:
                 self._log_processing_end(f"✅ Extraídas {len(tareas)} tareas desde JSON")
                 return tareas
         
-        # ESTRATEGIA 2: Usar plantilla estructurada con LLM
-        self.logger.info("🎯 Estrategia 2: Plantilla estructurada con LLM")
+        # ESTRATEGIA 3: Usar plantilla estructurada con LLM
+        self.logger.info("🎯 Estrategia 3: Plantilla estructurada con LLM")
         tareas = self._generar_tareas_con_plantilla(actividad_data, prompt_original)
         if tareas:
             self._log_processing_end(f"✅ Generadas {len(tareas)} tareas con plantilla")
             return tareas
         
-        # ESTRATEGIA 3: Prompt minimalista (FALLBACK)
-        self.logger.warning("🎯 Estrategia 3: Prompt minimalista de emergencia")
+        # ESTRATEGIA 4: Prompt minimalista (FALLBACK)
+        self.logger.warning("🎯 Estrategia 4: Prompt minimalista de emergencia")
         tareas = self._generar_tareas_prompt_simple(actividad_data)
         if tareas:
             self._log_processing_end(f"⚠️ Generadas {len(tareas)} tareas con prompt simple")
@@ -75,6 +90,252 @@ class AgenteAnalizadorTareas(BaseAgent):
         # ÚLTIMO RECURSO: Tareas hardcodeadas
         self.logger.error("❌ Todas las estrategias fallaron, usando tareas de emergencia")
         return self._crear_tareas_fallback()
+    
+    def _analizar_actividad_profundo(self, descripcion_actividad: str, actividad_data: Dict) -> List[Tarea]:
+        """
+        NUEVO: Análisis profundo específico de cada actividad (del MVP)
+        
+        Args:
+            descripcion_actividad: Descripción específica de la actividad
+            actividad_data: Datos adicionales de contexto
+            
+        Returns:
+            Lista de tareas específicas analizadas profundamente
+        """
+        prompt_analisis = f"""Eres un experto pedagogo especializado en diseño de actividades educativas para 4º de Primaria.
+
+ACTIVIDAD A ANALIZAR: "{descripcion_actividad}"
+
+Analiza esta actividad específica en profundidad y genera tareas concretas:
+
+1. OBJETIVO ESPECÍFICO: ¿Qué aprenderán exactamente los estudiantes?
+
+2. TAREAS ESPECÍFICAS: ¿Qué tareas concretas hay que hacer?
+   Formato: TAREA: [nombre] - DESCRIPCIÓN: [qué hacer exactamente] - HABILIDADES: [habilidades requeridas] - COMPLEJIDAD: [1-5] - TIPO: [individual/colaborativa/creativa]
+
+3. MATERIALES ESPECÍFICOS: Lista de materiales concretos necesarios
+
+Sé MUY ESPECÍFICO para esta actividad, no uses generalidades.
+
+ANÁLISIS:"""
+
+        try:
+            respuesta = self.ollama.generar_respuesta(prompt_analisis, max_tokens=600)
+            
+            # DEBUG: Log de la respuesta completa del LLM
+            self.logger.info(f"🧠 RESPUESTA LLM ANÁLISIS PROFUNDO:\n{respuesta}")
+            
+            return self._parsear_tareas_del_analisis_profundo(respuesta, descripcion_actividad)
+        except Exception as e:
+            self.logger.error(f"Error en análisis profundo: {e}")
+            return []
+    
+    def _parsear_tareas_del_analisis_profundo(self, respuesta: str, descripcion: str) -> List[Tarea]:
+        """Parsea tareas del análisis profundo específico - MEJORADO PARA FLEXIBILIDAD"""
+        tareas = []
+        lineas = respuesta.split('\n')
+        tarea_id = 1
+        
+        # DEBUG: Log de las líneas parseadas
+        self.logger.info(f"🔍 DEBUG PARSING - Líneas a procesar: {len(lineas)}")
+        
+        for i, linea in enumerate(lineas):
+            linea_clean = linea.strip()
+            if not linea_clean:
+                continue
+                
+            # MÉTODO MEJORADO: Buscar múltiples patrones
+            es_tarea = any([
+                'TAREA:' in linea.upper(),
+                'TAREA ' in linea.upper() and ':' in linea,
+                linea_clean.startswith(('1.', '2.', '3.', '4.', '5.')),
+                'DESCRIPCIÓN:' in linea.upper() and 'TAREA' in lineas[max(0, i-1)].upper()
+            ])
+            
+            if es_tarea:
+                try:
+                    self.logger.info(f"🎯 PARSEANDO LÍNEA {i+1}: {linea_clean[:100]}...")
+                    
+                    # PARSING FLEXIBLE
+                    nombre = self._extraer_nombre_tarea(linea_clean)
+                    descripcion_tarea = self._extraer_descripcion_tarea(linea_clean, descripcion)
+                    habilidades = self._extraer_habilidades(linea_clean)
+                    complejidad = self._extraer_complejidad(linea_clean, descripcion)
+                    tipo = self._extraer_tipo_tarea(linea_clean)
+                    
+                    # Log de extracción
+                    self.logger.info(f"📝 Tarea extraída: '{descripcion_tarea[:50]}...'")
+                    
+                    # Estimar tiempo basado en complejidad
+                    tiempo_estimado = max(15, complejidad * 12)
+                    
+                    tarea = Tarea(
+                        id=f"tarea_profunda_{tarea_id:02d}",
+                        descripcion=descripcion_tarea,
+                        competencias_requeridas=habilidades,
+                        complejidad=complejidad,
+                        tipo=tipo,
+                        dependencias=[],
+                        tiempo_estimado=tiempo_estimado
+                    )
+                    
+                    tareas.append(tarea)
+                    tarea_id += 1
+                    
+                except Exception as e:
+                    self.logger.warning(f"⚠️ Error parseando línea: {e}")
+                    continue
+        
+        # DEBUG: Resultado del parsing
+        self.logger.info(f"🎯 RESULTADO PARSING: {len(tareas)} tareas extraídas")
+        
+        # Si no se parseó nada, generar tareas básicas específicas
+        if not tareas:
+            self.logger.warning("🔄 Parsing falló, usando fallback específico")
+            tareas = self._generar_tareas_especificas_basicas(descripcion)
+        
+        return tareas[:6]  # Máximo 6 tareas
+    
+    def _extraer_nombre_tarea(self, linea: str) -> str:
+        """Extrae nombre de tarea de manera flexible"""
+        if 'TAREA:' in linea.upper():
+            return linea.split(':', 1)[1].split('-')[0].strip()
+        elif ':' in linea:
+            return linea.split(':', 1)[1].split('-')[0].strip()
+        else:
+            return "Tarea específica"
+    
+    def _extraer_descripcion_tarea(self, linea: str, contexto: str) -> str:
+        """Extrae descripción específica basada en contexto"""
+        # Buscar descripción explícita
+        if 'DESCRIPCIÓN:' in linea.upper():
+            desc = linea.split('DESCRIPCIÓN:', 1)[1].split('-')[0].strip()
+        elif 'DESCRIPCION:' in linea.upper():
+            desc = linea.split('DESCRIPCION:', 1)[1].split('-')[0].strip()
+        elif ':' in linea:
+            # Usar todo después de : como descripción
+            desc = linea.split(':', 1)[1].strip()
+            if not desc or desc.startswith('['):
+                desc = self._generar_descripcion_contextual(contexto)
+        else:
+            # Fallback inteligente basado en contexto
+            desc = self._generar_descripcion_contextual(contexto)
+        
+        # LIMPIAR FORMATO EXTRAÑO: quitar comillas y asteriscos
+        desc = desc.strip('"').strip("'").strip('*').strip()
+        
+        return desc
+    
+    def _generar_descripcion_contextual(self, descripcion: str) -> str:
+        """Genera descripción contextual específica"""
+        desc_lower = descripcion.lower()
+        
+        if 'terrario' in desc_lower:
+            return "Construir y monitorear terrario experimental"
+        elif 'slime' in desc_lower:
+            return "Experimentar con mezclas y propiedades químicas"
+        elif 'robot' in desc_lower:
+            return "Diseñar y programar robot funcional"
+        elif 'matemáticas' in desc_lower or 'fracciones' in desc_lower:
+            return "Resolver problemas matemáticos aplicados"
+        elif 'célula' in desc_lower:
+            return "Explorar estructura y función celular"
+        else:
+            return f"Desarrollar actividad específica: {descripcion[:30]}..."
+    
+    def _extraer_habilidades(self, linea: str) -> List[str]:
+        """Extrae habilidades de manera flexible"""
+        if 'HABILIDADES:' in linea.upper():
+            hab_texto = linea.split('HABILIDADES:', 1)[1].split('-')[0].strip()
+            return [h.strip() for h in hab_texto.split(',')]
+        
+        # Inferir habilidades del contenido
+        linea_lower = linea.lower()
+        habilidades = []
+        
+        mapeo_habilidades = {
+            'matemáticas': ['calcul', 'número', 'medic', 'proporc'],
+            'ciencias': ['observ', 'experim', 'investig', 'analiz'],
+            'creatividad': ['diseñ', 'crea', 'innov', 'art'],
+            'colaboración': ['grupo', 'equipo', 'colabor', 'comparti'],
+            'comunicación': ['present', 'explic', 'comunicar']
+        }
+        
+        for habilidad, palabras in mapeo_habilidades.items():
+            if any(palabra in linea_lower for palabra in palabras):
+                habilidades.append(habilidad)
+        
+        return habilidades if habilidades else ['transversales']
+    
+    def _extraer_complejidad(self, linea: str, contexto: str) -> int:
+        """Extrae complejidad de manera flexible"""
+        if 'COMPLEJIDAD:' in linea.upper():
+            try:
+                comp_texto = linea.split('COMPLEJIDAD:', 1)[1].split('-')[0].strip()
+                return min(5, max(1, int(comp_texto)))
+            except:
+                pass
+        
+        # Inferir complejidad del contenido
+        linea_lower = linea.lower()
+        contexto_lower = contexto.lower()
+        
+        palabras_complejas = ['analizar', 'evaluar', 'diseñar', 'planificar', 'coordinar']
+        palabras_simples = ['identificar', 'listar', 'copiar', 'observar']
+        
+        if any(palabra in linea_lower or palabra in contexto_lower for palabra in palabras_complejas):
+            return 4
+        elif any(palabra in linea_lower or palabra in contexto_lower for palabra in palabras_simples):
+            return 2
+        else:
+            return 3
+    
+    def _extraer_tipo_tarea(self, linea: str) -> str:
+        """Extrae tipo de tarea de manera flexible"""
+        if 'TIPO:' in linea.upper():
+            tipo = linea.split('TIPO:', 1)[1].strip().lower()
+            if 'individual' in tipo:
+                return 'individual'
+            elif 'creativ' in tipo:
+                return 'creativa'
+            else:
+                return 'colaborativa'
+        
+        # Inferir tipo del contenido
+        linea_lower = linea.lower()
+        if any(palabra in linea_lower for palabra in ['individual', 'personal', 'propio']):
+            return 'individual'
+        elif any(palabra in linea_lower for palabra in ['crear', 'diseñar', 'inventar', 'arte']):
+            return 'creativa'
+        else:
+            return 'colaborativa'
+    
+    def _generar_tareas_especificas_basicas(self, descripcion: str) -> List[Tarea]:
+        """Genera tareas básicas específicas según la descripción"""
+        desc_lower = descripcion.lower()
+        
+        # Tareas específicas según el tipo de actividad
+        if 'terrario' in desc_lower:
+            return [
+                Tarea("prep_terrario", "Preparar recipiente y sistema de drenaje", ["organización", "precisión"], 2, "individual", [], 20),
+                Tarea("plant_terrario", "Plantar especies seleccionadas", ["cuidado", "biología"], 3, "colaborativa", ["prep_terrario"], 25),
+                Tarea("obs_terrario", "Observar y registrar ciclo del agua", ["observación", "registro"], 4, "individual", ["plant_terrario"], 30)
+            ]
+        elif 'slime' in desc_lower:
+            return [
+                Tarea("prep_slime", "Medir ingredientes según proporciones", ["matemáticas", "precisión"], 3, "individual", [], 15),
+                Tarea("mezcla_slime", "Mezclar componentes químicos", ["química", "experimentación"], 4, "colaborativa", ["prep_slime"], 20),
+                Tarea("test_slime", "Probar propiedades magnéticas", ["investigación", "análisis"], 4, "colaborativa", ["mezcla_slime"], 25)
+            ]
+        elif 'robot' in desc_lower:
+            return [
+                Tarea("diseño_robot", "Diseñar estructura del robot", ["creatividad", "ingeniería"], 4, "individual", [], 30),
+                Tarea("construir_robot", "Ensamblar robot con materiales", ["construcción", "precisión"], 3, "colaborativa", ["diseño_robot"], 35),
+                Tarea("program_robot", "Programar movimientos básicos", ["lógica", "tecnología"], 5, "individual", ["construir_robot"], 25)
+            ]
+        else:
+            # Tareas genéricas mejoradas
+            return self._crear_tareas_fallback()
     
     def _tiene_estructura_json_valida(self, actividad: Dict) -> bool:
         """Verifica si la actividad tiene estructura JSON válida"""

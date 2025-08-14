@@ -15,6 +15,81 @@ class Tarea:
     tipo: str  # "individual", "colaborativa", "creativa"
     dependencias: List[str]
     tiempo_estimado: int
+
+@dataclass
+class TareaEspecifica:
+    """Una tarea concreta de la actividad con análisis profundo del MVP"""
+    id: str
+    nombre: str
+    descripcion: str
+    habilidades_requeridas: List[str]
+    materiales_especificos: List[str]
+    duracion_estimada: int
+    complejidad: str  # "baja", "media", "alta"
+    tipo_interaccion: str  # "individual", "parejas", "grupo"
+    
+    @classmethod
+    def from_tarea(cls, tarea: Tarea) -> 'TareaEspecifica':
+        """Convierte una Tarea básica a TareaEspecifica"""
+        complejidad_map = {1: "baja", 2: "baja", 3: "media", 4: "alta", 5: "alta"}
+        tipo_map = {"individual": "individual", "colaborativa": "grupo", "creativa": "grupo"}
+        
+        return cls(
+            id=tarea.id,
+            nombre=tarea.descripcion[:50] + "..." if len(tarea.descripcion) > 50 else tarea.descripcion,
+            descripcion=tarea.descripcion,
+            habilidades_requeridas=tarea.competencias_requeridas,
+            materiales_especificos=[],  # Se llenarían con análisis LLM
+            duracion_estimada=tarea.tiempo_estimado,
+            complejidad=complejidad_map.get(tarea.complejidad, "media"),
+            tipo_interaccion=tipo_map.get(tarea.tipo, "grupo")
+        )
+
+@dataclass
+class AnalisisActividad:
+    """Análisis completo de una actividad específica del MVP"""
+    titulo: str
+    objetivos_especificos: List[str]
+    pasos_detallados: List[str]
+    tareas_identificadas: List[TareaEspecifica]
+    materiales_completos: List[str]
+    conceptos_clave: List[str]
+    retos_potenciales: List[str]
+
+@dataclass
+class EstudianteFaseInteligente:
+    """Estudiante con tareas específicas reales del MVP"""
+    id: str
+    nombre: str
+    neurotipo: str
+    tareas_asignadas: List[TareaEspecifica]
+    rol_coordinado: str
+    justificacion_detallada: str
+    apoyos_especificos: List[str]
+    tiempo_total: int
+
+@dataclass
+class FaseInteligente:
+    """Fase con tareas reales coordinadas del MVP"""
+    numero: int
+    nombre: str
+    objetivo_fase: str
+    minuto_inicio: int
+    minuto_fin: int
+    estudiantes: List[EstudianteFaseInteligente]
+    tareas_paralelas: List[str]
+    puntos_sincronizacion: List[str]
+    materiales_fase: List[str]
+
+@dataclass
+class ActividadInteligente:
+    """Actividad completamente analizada y coordinada del MVP"""
+    analisis: AnalisisActividad
+    fases: List[FaseInteligente]
+    duracion_total: int
+    preparacion_detallada: List[str]
+    evaluacion_sugerida: List[str]
+    extension_posible: List[str]
     
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Tarea':
