@@ -28,6 +28,7 @@ class CLI:
     def ejecutar(self) -> Dict:
         """
         Ejecuta el flujo completo de interacción con el usuario
+        CON SOPORTE PARA INPUTS ESTRUCTURADOS
         
         Returns:
             Proyecto final generado
@@ -36,13 +37,19 @@ class CLI:
             # Mostrar bienvenida
             self.views.mostrar_bienvenida()
             
-            # Solicitar prompt inicial
-            prompt_profesor = self.views.solicitar_prompt_inicial()
+            # NUEVO: Solicitar modo de generación
+            modo_generacion = self.views.solicitar_modo_generacion()
             
-            # Generar ideas iniciales
-            self.views.mostrar_mensaje_procesando()
-            ideas = self.controller.generar_ideas_desde_prompt(prompt_profesor)
+            # Generar ideas según el modo seleccionado
+            if modo_generacion == 'estructurado':
+                ideas, datos_contexto = self._flujo_progresivo()
+            else:
+                ideas, datos_contexto = self._flujo_input_libre(), None
             
+            if not ideas:
+                self.views.mostrar_mensaje_error("No se pudieron generar ideas")
+                return {}
+                
             # Mostrar ideas generadas
             self.views.mostrar_ideas(ideas)
             
@@ -53,12 +60,14 @@ class CLI:
                 self.views.mostrar_mensaje_error("No se seleccionó ninguna actividad")
                 return {}
             
-            # Solicitar información adicional opcional
-            info_adicional = self.views.solicitar_detalles_adicionales(actividad_seleccionada.get('titulo', 'la actividad'))
-            
-            # Ejecutar flujo orquestado
-            self.views.mostrar_mensaje_procesando()
-            proyecto_final = self.controller.ejecutar_flujo_orquestado(actividad_seleccionada, info_adicional)
+            # NUEVO FLUJO: Aplicar estructura específica si es modo progresivo
+            if modo_generacion == 'estructurado' and datos_contexto:
+                proyecto_final = self._aplicar_estructura_progresiva(actividad_seleccionada, datos_contexto)
+            else:
+                # Flujo tradicional para modo libre
+                info_adicional = self.views.solicitar_detalles_adicionales(actividad_seleccionada.get('titulo', 'la actividad'))
+                self.views.mostrar_mensaje_procesando()
+                proyecto_final = self.controller.ejecutar_flujo_orquestado(actividad_seleccionada, info_adicional)
             
             # Mostrar resumen y validación
             self.views.mostrar_resumen_proceso(proyecto_final)
@@ -163,3 +172,109 @@ class CLI:
                 self.views.mostrar_mensaje_error(f"Error en selección: {e}")
         
         return actividad_seleccionada
+    
+    def _flujo_input_estructurado(self) -> List[Dict]:
+        """
+        Flujo para capturar input estructurado y generar ideas
+        
+        Returns:
+            Lista de ideas generadas desde input estructurado
+        """
+        logger.info("🔄 Iniciando flujo de input estructurado")
+        
+        # Solicitar input estructurado
+        input_estructurado = self.views.solicitar_input_estructurado()
+        
+        if not input_estructurado:
+            logger.warning("⚠️ Input estructurado cancelado por el usuario")
+            return []
+        
+        # Generar ideas desde input estructurado
+        self.views.mostrar_mensaje_procesando()
+        ideas = self.controller.generar_ideas_desde_input_estructurado(input_estructurado)
+        
+        logger.info(f"✅ Generadas {len(ideas)} ideas desde input estructurado")
+        return ideas
+    
+    def _flujo_input_libre(self) -> List[Dict]:
+        """
+        Flujo tradicional para capturar prompt libre y generar ideas
+        
+        Returns:
+            Lista de ideas generadas desde prompt libre
+        """
+        logger.info("🔄 Iniciando flujo de input libre (tradicional)")
+        
+        # Solicitar prompt inicial
+        prompt_profesor = self.views.solicitar_prompt_inicial()
+        
+        if not prompt_profesor.strip():
+            logger.warning("⚠️ Prompt vacío proporcionado")
+            return []
+        
+        # Generar ideas iniciales
+        self.views.mostrar_mensaje_procesando()
+        ideas = self.controller.generar_ideas_desde_prompt(prompt_profesor)
+        
+        logger.info(f"✅ Generadas {len(ideas)} ideas desde prompt libre")
+        return ideas
+    
+    def _flujo_progresivo(self) -> tuple:
+        """
+        NUEVO: Flujo progresivo paso a paso
+        
+        Returns:
+            Tupla (ideas, datos_contexto)
+        """
+        logger.info("🎓 Iniciando flujo progresivo paso a paso")
+        
+        # PASO 1-4: Captura básica (materia, tema, idea previa, duración)
+        input_basico = self.views.solicitar_input_estructurado_progresivo()
+        
+        if not input_basico:
+            logger.warning("⚠️ Input básico cancelado por el usuario")
+            return [], None
+        
+        # GENERAR IDEAS desde input básico
+        self.views.mostrar_mensaje_procesando()
+        ideas = self.controller.generar_ideas_desde_input_progresivo(input_basico)
+        
+        if not ideas:
+            logger.warning("⚠️ No se generaron ideas desde input progresivo")
+            return [], None
+        
+        logger.info(f"✅ Generadas {len(ideas)} ideas desde input progresivo")
+        return ideas, input_basico
+    
+    def _aplicar_estructura_progresiva(self, actividad_seleccionada: Dict, datos_contexto: Dict) -> Dict:
+        """
+        Aplica estructura detallada al modo progresivo
+        
+        Args:
+            actividad_seleccionada: Actividad elegida por el profesor
+            datos_contexto: Datos del contexto básico capturado
+            
+        Returns:
+            Proyecto final con estructura aplicada
+        """
+        logger.info("🔧 Aplicando estructura progresiva detallada")
+        
+        # CAPTURAR ESTRUCTURA DETALLADA post-selección
+        estructura_detallada = self.views.solicitar_estructura_post_seleccion(actividad_seleccionada)
+        
+        if not estructura_detallada:
+            logger.warning("⚠️ Estructura detallada cancelada, usando flujo tradicional")
+            # Fallback al flujo tradicional
+            info_adicional = self.views.solicitar_detalles_adicionales(actividad_seleccionada.get('titulo', 'la actividad'))
+            self.views.mostrar_mensaje_procesando()
+            return self.controller.ejecutar_flujo_orquestado(actividad_seleccionada, info_adicional)
+        
+        # APLICAR ESTRUCTURA DETALLADA
+        self.views.mostrar_mensaje_procesando()
+        proyecto_final = self.controller.aplicar_estructura_post_seleccion(
+            actividad_seleccionada, 
+            estructura_detallada
+        )
+        
+        logger.info("✅ Estructura progresiva aplicada exitosamente")
+        return proyecto_final

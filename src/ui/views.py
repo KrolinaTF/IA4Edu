@@ -24,14 +24,655 @@ class CLIViews:
     @staticmethod
     def solicitar_prompt_inicial() -> str:
         """
-        Solicita el prompt inicial al usuario
+        LEGACY: Solicita el prompt inicial al usuario (formato libre)
         
         Returns:
             Prompt ingresado por el usuario
         """
-        print("\n📝 GENERACIÓN DE IDEAS")
+        print("\n📝 GENERACIÓN DE IDEAS (FORMATO LIBRE)")
         print("-" * 40)
         return input("Describa la actividad educativa que desea generar: ")
+    
+    @staticmethod
+    def solicitar_input_estructurado_progresivo() -> Dict:
+        """
+        NUEVO: Flujo progresivo para crear actividades paso a paso
+        
+        Returns:
+            Diccionario con información básica para generar ideas
+        """
+        print("\n🎓 CREACIÓN PROGRESIVA DE ACTIVIDAD ABP")
+        print("=" * 50)
+        print("Vamos a crear su actividad paso a paso, de lo general a lo específico")
+        
+        input_basico = {}
+        
+        # PASO 1: MATERIA
+        input_basico['materia'] = CLIViews._solicitar_materia()
+        
+        # PASO 2: TEMA
+        input_basico['tema'] = CLIViews._solicitar_tema()
+        
+        # PASO 3: ¿TIENES ALGO EN MENTE?
+        input_basico['prompt_especifico'] = CLIViews._solicitar_idea_previa()
+        
+        # PASO 4: DURACIÓN
+        input_basico['duracion'] = CLIViews._solicitar_duracion_sesiones()
+        
+        return input_basico
+    
+    @staticmethod
+    def solicitar_estructura_post_seleccion(actividad_seleccionada: Dict) -> Dict:
+        """
+        Solicita estructura detallada DESPUÉS de seleccionar/matizar la idea
+        
+        Args:
+            actividad_seleccionada: Actividad que el profesor ha elegido
+            
+        Returns:
+            Diccionario con estructura detallada de fases
+        """
+        print(f"\n🔧 ESTRUCTURA DETALLADA DE LA ACTIVIDAD")
+        print("=" * 50)
+        print(f"Actividad seleccionada: {actividad_seleccionada.get('titulo', 'Sin título')}")
+        print("\nAhora vamos a definir cómo estructurar esta actividad específicamente:")
+        
+        estructura = {}
+        
+        # FASE 1: ¿PREPARACIÓN?
+        estructura['preparacion'] = CLIViews._configurar_fase_preparacion()
+        
+        # FASE 2: EJECUCIÓN (obligatoria)
+        estructura['ejecucion'] = CLIViews._configurar_fase_ejecucion()
+        
+        # FASE 3: ¿REFLEXIÓN?
+        estructura['reflexion'] = CLIViews._configurar_fase_reflexion()
+        
+        # FASE 4: ¿RECOGIDA/LIMPIEZA?
+        estructura['recogida'] = CLIViews._configurar_fase_recogida()
+        
+        return estructura
+    
+    # ========== MÉTODOS DE APOYO PARA EL FLUJO PROGRESIVO ==========
+    
+    @staticmethod
+    def _solicitar_materia() -> str:
+        """Solicita materia de forma simple"""
+        print(f"\n📚 PASO 1: MATERIA/ÁREA")
+        print("   1. Matemáticas")
+        print("   2. Lengua Castellana") 
+        print("   3. Ciencias Naturales")
+        print("   4. Ciencias Sociales")
+        print("   5. Educación Artística")
+        print("   6. Educación Física")
+        print("   7. Interdisciplinar")
+        print("   8. Otra")
+        
+        materias_map = {
+            '1': 'Matemáticas', '2': 'Lengua Castellana', '3': 'Ciencias Naturales',
+            '4': 'Ciencias Sociales', '5': 'Educación Artística', '6': 'Educación Física',
+            '7': 'Interdisciplinar', '8': 'Otra'
+        }
+        
+        while True:
+            opcion = input("Seleccione materia (1-8): ").strip()
+            if opcion in materias_map:
+                if opcion == '8':
+                    return input("Especifique la materia: ").strip()
+                else:
+                    return materias_map[opcion]
+            print("❌ Opción inválida. Seleccione 1-8.")
+    
+    @staticmethod
+    def _solicitar_tema() -> str:
+        """Solicita tema específico"""
+        print(f"\n🎯 PASO 2: TEMA ESPECÍFICO")
+        return input("¿Qué tema concreto quiere trabajar? (ej: 'Fracciones', 'El cuerpo humano'):\n> ").strip()
+    
+    @staticmethod
+    def _solicitar_idea_previa() -> str:
+        """Pregunta si tiene algo específico en mente"""
+        print(f"\n💭 PASO 3: ¿TIENES ALGO ESPECÍFICO EN MENTE?")
+        tiene_idea = input("¿Ya tienes una idea específica de actividad? (s/n): ").strip().lower()
+        
+        if tiene_idea.startswith('s'):
+            return input("Describe tu idea:\n> ").strip()
+        else:
+            return ""
+    
+    @staticmethod
+    def _solicitar_duracion_sesiones() -> Dict:
+        """Solicita duración en sesiones"""
+        print(f"\n⏱️ PASO 4: DURACIÓN")
+        print("   1. Una sesión (45 min)")
+        print("   2. Dos sesiones (90 min)")
+        print("   3. Una semana (5 sesiones)")
+        print("   4. Personalizada")
+        
+        while True:
+            opcion = input("¿Cuánto tiempo tienes disponible? (1-4): ").strip()
+            if opcion == '1':
+                return {'valor': 45, 'descripcion': 'Una sesión', 'sesiones': 1}
+            elif opcion == '2':
+                return {'valor': 90, 'descripcion': 'Dos sesiones', 'sesiones': 2}
+            elif opcion == '3':
+                return {'valor': 225, 'descripcion': 'Una semana', 'sesiones': 5}
+            elif opcion == '4':
+                try:
+                    sesiones = int(input("¿Cuántas sesiones? "))
+                    minutos = sesiones * 45
+                    return {'valor': minutos, 'descripcion': f'{sesiones} sesiones', 'sesiones': sesiones}
+                except ValueError:
+                    print("❌ Ingrese un número válido.")
+            else:
+                print("❌ Opción inválida. Seleccione 1-4.")
+    
+    @staticmethod
+    def _configurar_fase_preparacion() -> Dict:
+        """Configura la fase de preparación opcional"""
+        print(f"\n🏗️ FASE DE PREPARACIÓN")
+        incluir = input("¿Quieres incluir una fase de preparación/introducción? (s/n): ").strip().lower()
+        
+        if not incluir.startswith('s'):
+            return {'incluir': False}
+        
+        print("¿Cómo trabajarán en la preparación?")
+        modalidad = CLIViews._seleccionar_modalidad_simple()
+        
+        return {
+            'incluir': True,
+            'modalidad': modalidad,
+            'nombre': 'Preparación e Introducción'
+        }
+    
+    @staticmethod
+    def _configurar_fase_ejecucion() -> Dict:
+        """Configura la fase de ejecución (obligatoria)"""
+        print(f"\n🚀 FASE DE EJECUCIÓN (Principal)")
+        print("¿Qué aspectos quieres incluir en la ejecución? (puedes elegir varios)")
+        
+        aspectos_disponibles = {
+            '1': 'investigación',
+            '2': 'creatividad', 
+            '3': 'experimentación',
+            '4': 'colaboración',
+            '5': 'presentación',
+            '6': 'análisis',
+            '7': 'construcción/creación'
+        }
+        
+        print("   1. Investigación  2. Creatividad  3. Experimentación")
+        print("   4. Colaboración   5. Presentación  6. Análisis")
+        print("   7. Construcción/Creación")
+        
+        aspectos_seleccionados = []
+        while True:
+            seleccion = input("Selecciona aspectos (ej: '1,3,5' o Enter para terminar): ").strip()
+            if not seleccion:
+                break
+            
+            try:
+                opciones = [op.strip() for op in seleccion.split(',')]
+                for opcion in opciones:
+                    if opcion in aspectos_disponibles:
+                        aspecto = aspectos_disponibles[opcion]
+                        if aspecto not in aspectos_seleccionados:
+                            aspectos_seleccionados.append(aspecto)
+                            print(f"✅ Añadido: {aspecto}")
+                break
+            except:
+                print("❌ Formato inválido. Usa números separados por comas.")
+        
+        if not aspectos_seleccionados:
+            aspectos_seleccionados = ['colaboración']  # Default
+        
+        print("¿Cómo trabajarán en la ejecución?")
+        modalidad = CLIViews._seleccionar_modalidad_simple()
+        
+        return {
+            'incluir': True,
+            'aspectos': aspectos_seleccionados,
+            'modalidad': modalidad,
+            'nombre': 'Ejecución de la Actividad'
+        }
+    
+    @staticmethod
+    def _configurar_fase_reflexion() -> Dict:
+        """Configura la fase de reflexión opcional"""
+        print(f"\n🤔 FASE DE REFLEXIÓN")
+        incluir = input("¿Quieres incluir una fase de reflexión/evaluación? (s/n): ").strip().lower()
+        
+        if not incluir.startswith('s'):
+            return {'incluir': False}
+        
+        print("¿Cómo trabajarán en la reflexión?")
+        modalidad = CLIViews._seleccionar_modalidad_simple()
+        
+        return {
+            'incluir': True,
+            'modalidad': modalidad,
+            'nombre': 'Reflexión y Evaluación'
+        }
+    
+    @staticmethod
+    def _configurar_fase_recogida() -> Dict:
+        """Configura la fase de recogida/limpieza opcional"""
+        print(f"\n🧹 FASE DE RECOGIDA Y ORGANIZACIÓN")
+        incluir = input("¿Incluir fase de recogida de materiales y limpieza? (s/n): ").strip().lower()
+        
+        if not incluir.startswith('s'):
+            return {'incluir': False}
+        
+        # Preguntar sobre reparto de tareas
+        reparto = input("¿Quieres repartir tareas específicas de limpieza entre estudiantes? (s/n): ").strip().lower()
+        repartir_tareas = reparto.startswith('s')
+        
+        modalidad = CLIViews._seleccionar_modalidad_simple()
+        
+        return {
+            'incluir': True,
+            'modalidad': modalidad,
+            'repartir_tareas': repartir_tareas,
+            'nombre': 'Recogida y Organización'
+        }
+    
+    @staticmethod
+    def _seleccionar_modalidad_simple() -> str:
+        """Selector simple de modalidad"""
+        print("   1. Individual  2. Parejas  3. Grupos pequeños  4. Grupos grandes  5. Toda la clase")
+        
+        modalidades_map = {
+            '1': 'individual', '2': 'parejas', '3': 'grupos_pequeños',
+            '4': 'grupos_grandes', '5': 'clase_completa'
+        }
+        
+        while True:
+            opcion = input("¿Cómo trabajan? (1-5): ").strip()
+            if opcion in modalidades_map:
+                modalidad = modalidades_map[opcion]
+                print(f"✅ {modalidad.replace('_', ' ')}")
+                return modalidad
+            print("❌ Opción inválida. Seleccione 1-5.")
+    
+    @staticmethod
+    def solicitar_input_estructurado() -> Dict:
+        """
+        LEGACY: Mantener compatibilidad con el sistema anterior
+        """
+        print("\n📋 GENERACIÓN ESTRUCTURADA DE ACTIVIDAD (MODO LEGACY)")
+        print("=" * 50)
+        print("Complete los siguientes campos para generar su actividad ABP:")
+        
+        input_estructurado = {}
+        
+        # 1. MATERIA
+        print(f"\n📚 MATERIA/ÁREA:")
+        print("   1. Matemáticas")
+        print("   2. Lengua Castellana y Literatura") 
+        print("   3. Ciencias Naturales")
+        print("   4. Ciencias Sociales/Geografía")
+        print("   5. Educación Artística")
+        print("   6. Educación Física")
+        print("   7. Interdisciplinar")
+        print("   8. Otra (especificar)")
+        
+        while True:
+            try:
+                opcion_materia = input("Seleccione materia (1-8): ").strip()
+                materias_map = {
+                    '1': 'Matemáticas',
+                    '2': 'Lengua Castellana y Literatura',
+                    '3': 'Ciencias Naturales', 
+                    '4': 'Ciencias Sociales',
+                    '5': 'Educación Artística',
+                    '6': 'Educación Física',
+                    '7': 'Interdisciplinar',
+                    '8': 'Otra'
+                }
+                
+                if opcion_materia in materias_map:
+                    if opcion_materia == '8':
+                        input_estructurado['materia'] = input("Especifique la materia: ").strip()
+                    else:
+                        input_estructurado['materia'] = materias_map[opcion_materia]
+                    break
+                else:
+                    print("❌ Opción inválida. Seleccione 1-8.")
+            except:
+                print("❌ Entrada inválida. Intente de nuevo.")
+        
+        # 2. TEMA/CONTENIDO
+        print(f"\n🎯 TEMA O CONTENIDO ESPECÍFICO:")
+        input_estructurado['tema'] = input("Ej: 'Fracciones equivalentes', 'El cuerpo humano', 'Comunidades autónomas':\n> ").strip()
+        
+        # 3. DURACIÓN
+        print(f"\n⏱️ DURACIÓN:")
+        print("   1. Una sesión (45-60 min)")
+        print("   2. Dos sesiones")
+        print("   3. Una semana (5 sesiones)")
+        print("   4. Proyecto largo (2-3 semanas)")
+        print("   5. Personalizada")
+        
+        while True:
+            try:
+                opcion_duracion = input("Seleccione duración (1-5): ").strip()
+                duraciones_map = {
+                    '1': {'valor': 45, 'descripcion': 'Una sesión (45 minutos)'},
+                    '2': {'valor': 90, 'descripcion': 'Dos sesiones (90 minutos)'},
+                    '3': {'valor': 225, 'descripcion': 'Una semana (5 sesiones)'},
+                    '4': {'valor': 450, 'descripcion': 'Proyecto largo (2-3 semanas)'},
+                    '5': {'valor': 'custom', 'descripcion': 'Personalizada'}
+                }
+                
+                if opcion_duracion in duraciones_map:
+                    if opcion_duracion == '5':
+                        while True:
+                            try:
+                                minutos_custom = int(input("Duración en minutos: "))
+                                input_estructurado['duracion'] = {
+                                    'valor': minutos_custom,
+                                    'descripcion': f'{minutos_custom} minutos personalizados'
+                                }
+                                break
+                            except ValueError:
+                                print("❌ Ingrese un número válido de minutos.")
+                    else:
+                        input_estructurado['duracion'] = duraciones_map[opcion_duracion]
+                    break
+                else:
+                    print("❌ Opción inválida. Seleccione 1-5.")
+            except:
+                print("❌ Entrada inválida. Intente de nuevo.")
+        
+        # 4. MODALIDADES DE TRABAJO
+        print(f"\n👥 MODALIDADES DE TRABAJO (puede seleccionar varias):")
+        print("   1. Individual")
+        print("   2. Parejas") 
+        print("   3. Grupos pequeños (3-4 estudiantes)")
+        print("   4. Grupos grandes (5-6 estudiantes)")
+        print("   5. Toda la clase")
+        
+        modalidades_seleccionadas = []
+        modalidades_map = {
+            '1': 'individual',
+            '2': 'parejas',
+            '3': 'grupos_pequeños',
+            '4': 'grupos_grandes', 
+            '5': 'clase_completa'
+        }
+        
+        while True:
+            seleccion = input("Seleccione modalidades (ej: '1,3,5' o presione Enter para terminar): ").strip()
+            if not seleccion:
+                break
+                
+            try:
+                opciones = [op.strip() for op in seleccion.split(',')]
+                modalidades_validas = []
+                
+                for opcion in opciones:
+                    if opcion in modalidades_map:
+                        modalidad = modalidades_map[opcion]
+                        if modalidad not in modalidades_seleccionadas:
+                            modalidades_seleccionadas.append(modalidad)
+                            modalidades_validas.append(f"{opcion}={modalidad}")
+                    else:
+                        print(f"❌ Opción '{opcion}' inválida.")
+                
+                if modalidades_validas:
+                    print(f"✅ Añadidas: {', '.join(modalidades_validas)}")
+                    
+            except:
+                print("❌ Formato inválido. Use números separados por comas (ej: 1,3,5)")
+                
+        input_estructurado['modalidades'] = modalidades_seleccionadas if modalidades_seleccionadas else ['grupos_pequeños']
+        
+        # 5. ESTRUCTURA DE FASES CON MODALIDADES ESPECÍFICAS
+        print(f"\n🔄 ESTRUCTURA DE FASES:")
+        print("   1. Simple (Introducción → Desarrollo → Cierre)")
+        print("   2. Investigación (Pregunta → Investigación → Presentación)")
+        print("   3. Creativa (Inspiración → Creación → Exhibición)")
+        print("   4. Experimental (Hipótesis → Experimento → Análisis)")
+        print("   5. Personalizada (definir fases propias)")
+        print("   6. Libre (que el sistema decida)")
+        
+        while True:
+            try:
+                opcion_fases = input("Seleccione estructura (1-6): ").strip()
+                
+                if opcion_fases == '1':
+                    fases_base = ['Introducción y Preparación', 'Desarrollo y Práctica', 'Aplicación y Cierre']
+                    input_estructurado['estructura_fases'] = CLIViews._configurar_modalidades_por_fase(fases_base, 'simple')
+                    break
+                elif opcion_fases == '2':
+                    fases_base = ['Planteamiento del Problema', 'Investigación y Recogida de Datos', 'Presentación de Resultados']
+                    input_estructurado['estructura_fases'] = CLIViews._configurar_modalidades_por_fase(fases_base, 'investigacion')
+                    break
+                elif opcion_fases == '3':
+                    fases_base = ['Inspiración y Lluvia de Ideas', 'Proceso Creativo', 'Exhibición y Reflexión']
+                    input_estructurado['estructura_fases'] = CLIViews._configurar_modalidades_por_fase(fases_base, 'creativa')
+                    break
+                elif opcion_fases == '4':
+                    fases_base = ['Formulación de Hipótesis', 'Experimentación', 'Análisis y Conclusiones']
+                    input_estructurado['estructura_fases'] = CLIViews._configurar_modalidades_por_fase(fases_base, 'experimental')
+                    break
+                elif opcion_fases == '5':
+                    # Fases personalizadas
+                    input_estructurado['estructura_fases'] = CLIViews._configurar_fases_personalizadas()
+                    break
+                elif opcion_fases == '6':
+                    input_estructurado['estructura_fases'] = {'tipo': 'libre', 'fases': []}
+                    break
+                else:
+                    print("❌ Opción inválida. Seleccione 1-6.")
+            except:
+                print("❌ Entrada inválida. Intente de nuevo.")
+        
+        # 6. CONTEXTO ADICIONAL (OPCIONAL)
+        print(f"\n💡 CONTEXTO ADICIONAL (opcional):")
+        contexto = input("Añada cualquier detalle específico, recursos disponibles, o adaptaciones necesarias:\n> ").strip()
+        if contexto:
+            input_estructurado['contexto_adicional'] = contexto
+            
+        # MOSTRAR RESUMEN
+        CLIViews._mostrar_resumen_input_estructurado(input_estructurado)
+        
+        # CONFIRMACIÓN
+        confirmacion = input("\n¿Confirma estos datos para generar la actividad? (s/n): ").strip().lower()
+        if not confirmacion.startswith('s'):
+            print("❌ Generación cancelada. Volviendo al menú principal.")
+            return None
+            
+        return input_estructurado
+    
+    @staticmethod
+    def _mostrar_resumen_input_estructurado(input_data: Dict):
+        """Muestra resumen del input estructurado"""
+        print(f"\n📋 RESUMEN DE LA ACTIVIDAD A GENERAR:")
+        print("=" * 50)
+        print(f"📚 Materia: {input_data.get('materia', 'N/A')}")
+        print(f"🎯 Tema: {input_data.get('tema', 'N/A')}")
+        print(f"⏱️ Duración: {input_data.get('duracion', {}).get('descripcion', 'N/A')}")
+        
+        modalidades = input_data.get('modalidades', [])
+        if modalidades:
+            modalidades_texto = ', '.join(modalidades).replace('_', ' ')
+            print(f"👥 Modalidades: {modalidades_texto}")
+        
+        estructura = input_data.get('estructura_fases', {})
+        if estructura.get('tipo') != 'libre':
+            print(f"🔄 Estructura: {estructura.get('tipo', 'N/A').title()}")
+            fases = estructura.get('fases', [])
+            if fases:
+                for i, fase in enumerate(fases, 1):
+                    print(f"   {i}. {fase}")
+        
+        contexto = input_data.get('contexto_adicional', '')
+        if contexto:
+            print(f"💡 Contexto: {contexto[:100]}{'...' if len(contexto) > 100 else ''}")
+        
+        # Mostrar estructura detallada de fases si existe
+        estructura = input_data.get('estructura_fases', {})
+        if estructura.get('fases_detalladas'):
+            print(f"\n🔄 FASES Y MODALIDADES DETALLADAS:")
+            for i, fase in enumerate(estructura['fases_detalladas'], 1):
+                modalidad = fase.get('modalidad', 'N/A').replace('_', ' ')
+                print(f"   {i}. {fase.get('nombre', 'Sin nombre')} ({modalidad})")
+    
+    @staticmethod
+    def _configurar_modalidades_por_fase(fases_base: List[str], tipo_estructura: str) -> Dict:
+        """
+        Configura modalidades específicas para cada fase
+        
+        Args:
+            fases_base: Lista de nombres de fases
+            tipo_estructura: Tipo de estructura seleccionada
+            
+        Returns:
+            Diccionario con estructura completa
+        """
+        print(f"\n📋 CONFIGURACIÓN POR FASE:")
+        print("Para cada fase, seleccione cómo trabajarán los estudiantes:")
+        print("   1. Individual  2. Parejas  3. Grupos pequeños  4. Grupos grandes  5. Toda la clase")
+        
+        fases_detalladas = []
+        modalidades_map = {
+            '1': 'individual',
+            '2': 'parejas', 
+            '3': 'grupos_pequeños',
+            '4': 'grupos_grandes',
+            '5': 'clase_completa'
+        }
+        
+        for i, fase_nombre in enumerate(fases_base, 1):
+            print(f"\n🔸 FASE {i}: {fase_nombre}")
+            
+            while True:
+                try:
+                    modalidad_opcion = input(f"¿Cómo trabajan en esta fase? (1-5): ").strip()
+                    
+                    if modalidad_opcion in modalidades_map:
+                        modalidad = modalidades_map[modalidad_opcion]
+                        modalidad_texto = modalidad.replace('_', ' ')
+                        
+                        fases_detalladas.append({
+                            'nombre': fase_nombre,
+                            'modalidad': modalidad,
+                            'orden': i
+                        })
+                        
+                        print(f"✅ {fase_nombre} → {modalidad_texto}")
+                        break
+                    else:
+                        print("❌ Opción inválida. Seleccione 1-5.")
+                except:
+                    print("❌ Entrada inválida. Intente de nuevo.")
+        
+        return {
+            'tipo': tipo_estructura,
+            'fases': [fase['nombre'] for fase in fases_detalladas],
+            'fases_detalladas': fases_detalladas
+        }
+    
+    @staticmethod
+    def _configurar_fases_personalizadas() -> Dict:
+        """
+        Permite al usuario definir fases completamente personalizadas
+        
+        Returns:
+            Diccionario con estructura personalizada
+        """
+        print(f"\n🛠️ FASES PERSONALIZADAS:")
+        print("Defina sus propias fases (mínimo 2, máximo 5)")
+        
+        fases_detalladas = []
+        modalidades_map = {
+            '1': 'individual',
+            '2': 'parejas',
+            '3': 'grupos_pequeños', 
+            '4': 'grupos_grandes',
+            '5': 'clase_completa'
+        }
+        
+        for i in range(1, 6):  # Máximo 5 fases
+            print(f"\n📝 FASE {i}:")
+            nombre_fase = input(f"Nombre de la fase {i} (o Enter para terminar): ").strip()
+            
+            if not nombre_fase:
+                if i >= 3:  # Mínimo 2 fases
+                    break
+                else:
+                    print("❌ Debe definir al menos 2 fases.")
+                    continue
+            
+            print("Modalidad de trabajo:")
+            print("   1. Individual  2. Parejas  3. Grupos pequeños  4. Grupos grandes  5. Toda la clase")
+            
+            while True:
+                try:
+                    modalidad_opcion = input(f"¿Cómo trabajan en '{nombre_fase}'? (1-5): ").strip()
+                    
+                    if modalidad_opcion in modalidades_map:
+                        modalidad = modalidades_map[modalidad_opcion]
+                        modalidad_texto = modalidad.replace('_', ' ')
+                        
+                        fases_detalladas.append({
+                            'nombre': nombre_fase,
+                            'modalidad': modalidad,
+                            'orden': i
+                        })
+                        
+                        print(f"✅ {nombre_fase} → {modalidad_texto}")
+                        break
+                    else:
+                        print("❌ Opción inválida. Seleccione 1-5.")
+                except:
+                    print("❌ Entrada inválida. Intente de nuevo.")
+        
+        if len(fases_detalladas) < 2:
+            print("❌ Se requieren al menos 2 fases. Usando estructura simple por defecto.")
+            return CLIViews._configurar_modalidades_por_fase(
+                ['Introducción y Preparación', 'Desarrollo y Práctica', 'Aplicación y Cierre'], 
+                'simple'
+            )
+        
+        return {
+            'tipo': 'personalizada',
+            'fases': [fase['nombre'] for fase in fases_detalladas],
+            'fases_detalladas': fases_detalladas
+        }
+    
+    @staticmethod
+    def solicitar_modo_generacion() -> str:
+        """
+        Solicita al usuario que elija el modo de generación
+        
+        Returns:
+            'estructurado' o 'libre'
+        """
+        print("\n🚀 MODO DE GENERACIÓN DE ACTIVIDAD")
+        print("=" * 40)
+        print("Elija cómo desea crear su actividad:")
+        print()
+        print("📋 1. MODO ESTRUCTURADO (Recomendado)")
+        print("     • Formulario guiado paso a paso")
+        print("     • Campos específicos (materia, duración, modalidades)")
+        print("     • Mayor precisión en los resultados")
+        print()
+        print("✏️  2. MODO LIBRE (Tradicional)")
+        print("     • Descripción libre de la actividad") 
+        print("     • Más flexibilidad en la expresión")
+        print("     • Sistema interpreta automáticamente")
+        print()
+        
+        while True:
+            opcion = input("Seleccione modo (1 o 2): ").strip()
+            if opcion == '1':
+                return 'estructurado'
+            elif opcion == '2':
+                return 'libre' 
+            else:
+                print("❌ Opción inválida. Seleccione 1 o 2.")
     
     @staticmethod
     def mostrar_ideas(ideas: List[Dict]):

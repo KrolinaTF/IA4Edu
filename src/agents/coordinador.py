@@ -1481,15 +1481,18 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         # Obtener metadatos del contexto híbrido para enriquecer la estructura
         metadatos_contexto = self.contexto_hibrido.metadatos
         
+        # NUEVO: Aplicar metadatos estructurados si están disponibles
+        duracion_final = self._aplicar_metadatos_estructurados(metadatos_contexto, duracion_minutos)
+        
         # Generar ID único para la actividad
         timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         
         actividad_base_estructurada = {
             'id': f'ACT_GEN_{timestamp}',
-            'titulo': self._extraer_titulo_inteligente(descripcion_actividad),
+            'titulo': self._extraer_titulo_inteligente_con_estructura(descripcion_actividad, metadatos_contexto),
             'objetivo': self._generar_objetivo_especifico(descripcion_actividad, metadatos_contexto),
             'nivel_educativo': '4º Primaria',
-            'duracion_minutos': f'{duracion_minutos} minutos',
+            'duracion_minutos': f'{duracion_final} minutos',
             'recursos': [],  # Se generarán durante el análisis
             'etapas': [],   # Se generarán con tareas agrupadas
             'tipo_generacion': 'mvp_integrado'
@@ -1542,8 +1545,8 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         logger.info(f"✅ PASO 4: Asignaciones neurotípicas completadas")
         
         # PASO 5: Construir actividad coherente con formato k_*.json
-        # Organizar tareas en etapas lógicas
-        actividad_estructurada = self._organizar_tareas_en_etapas(
+        # Organizar tareas en etapas lógicas CON modalidades específicas por fase
+        actividad_estructurada = self._organizar_tareas_en_etapas_con_modalidades(
             actividad_base_estructurada, 
             tareas_profundas, 
             metadatos_contexto
@@ -1747,22 +1750,6 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         Returns:
             Dict con información de validación
         """
-        # LÓGICA DE TESTING: Simular falla en primer intento
-        if hasattr(self, '_modo_test_retry') and self._modo_test_retry:
-            self._contador_intentos_test += 1
-            
-            # Forzar falla en el primer intento para probar retry
-            if self._contador_intentos_test == 1:
-                logger.info("🧪 TEST: Simulando falla en primer intento para probar retry")
-                return {
-                    'valido': False,
-                    'puntuacion': 0.3,
-                    'nivel': 'test_falla_simulada',
-                    'problemas': ['test_estructura_incompleta', 'test_asignaciones_desequilibradas'],
-                    'recomendaciones': ['Mejorar estructura de la actividad', 'Rebalancear asignaciones'],
-                    'modo_test': True
-                }
-        
         try:
             actividad = proyecto.get('actividad_generada', {})
             perfiles = proyecto.get('perfiles_estudiantes', {})
@@ -1839,62 +1826,6 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         
         logger.info(f"🔧 Contexto ajustado con {len(problemas)} problemas y {len(recomendaciones)} recomendaciones")
     
-    def probar_sistema_retry(self, descripcion_test: str = "actividad de prueba para testing") -> Dict:
-        """
-        MÉTODO DE TESTING: Simula fallas para probar el sistema de retry
-        
-        Args:
-            descripcion_test: Descripción de prueba
-            
-        Returns:
-            Dict con información del test de retry
-        """
-        logger.info("🧪 INICIANDO TEST DE SISTEMA RETRY")
-        
-        # Guardar configuración original
-        config_original = self.flujo_config.copy()
-        
-        # Configurar para testing (más agresivo)
-        self.flujo_config.update({
-            'max_iteraciones': 2,  # Solo 2 intentos para test rápido
-            'validacion_automatica': True,
-            'reintentos_por_agente': 1
-        })
-        
-        # Forzar fallas en las primeras validaciones
-        self._modo_test_retry = True
-        self._contador_intentos_test = 0
-        
-        try:
-            resultado = self.ejecutar_flujo_mejorado_mvp(descripcion_test, 30)
-            
-            test_info = {
-                'test_completado': True,
-                'intentos_realizados': resultado.get('intentos_realizados', 0),
-                'validacion_final': resultado.get('validacion_final', {}),
-                'sistema_retry_funcional': resultado.get('intentos_realizados', 0) > 1,
-                'mensaje': f"Test completado en {resultado.get('intentos_realizados', 0)} intentos"
-            }
-            
-        except Exception as e:
-            test_info = {
-                'test_completado': False,
-                'error': str(e),
-                'intentos_realizados': self._contador_intentos_test,
-                'sistema_retry_funcional': self._contador_intentos_test > 1,
-                'mensaje': f"Test falló después de {self._contador_intentos_test} intentos: {e}"
-            }
-        
-        finally:
-            # Restaurar configuración original
-            self.flujo_config = config_original
-            self._modo_test_retry = False
-            self._contador_intentos_test = 0
-        
-        logger.info(f"🧪 RESULTADO TEST RETRY: {test_info['mensaje']}")
-        logger.info(f"   • Sistema funcional: {test_info['sistema_retry_funcional']}")
-        
-        return test_info
     
     def _inferir_recursos_necesarios(self, tareas: List, metadatos: Dict) -> List[str]:
         """Infiere recursos necesarios basados en tareas y metadatos"""
@@ -2014,4 +1945,312 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
     
     def _log_processing_end(self, description: str):
         """Log del fin del procesamiento"""
-        logger.info(f"🎯 COORDINADOR: {description}")
+        logger.info(f"✅ COORDINADOR: {description}")
+    
+    def _aplicar_metadatos_estructurados(self, metadatos: Dict, duracion_default: int) -> int:
+        """
+        Aplica metadatos estructurados del input a la generación de actividades
+        
+        Args:
+            metadatos: Metadatos del contexto híbrido
+            duracion_default: Duración por defecto
+            
+        Returns:
+            Duración final a usar
+        """
+        # Aplicar duración objetivo si está disponible
+        duracion_objetivo = metadatos.get('duracion_objetivo')
+        if duracion_objetivo and isinstance(duracion_objetivo, int):
+            logger.info(f"📅 Aplicando duración estructurada: {duracion_objetivo} minutos")
+            return duracion_objetivo
+        
+        # Registrar otras preferencias estructuradas
+        modalidades = metadatos.get('modalidades_preferidas', [])
+        if modalidades:
+            logger.info(f"👥 Modalidades preferidas registradas: {', '.join(modalidades)}")
+            
+        estructura = metadatos.get('estructura_preferida', '')
+        if estructura and estructura != 'libre':
+            logger.info(f"🔄 Estructura preferida registrada: {estructura}")
+            
+        materia = metadatos.get('materia', '')
+        if materia:
+            logger.info(f"📚 Materia específica registrada: {materia}")
+            
+        tema = metadatos.get('tema', '')
+        if tema:
+            logger.info(f"🎯 Tema específico registrado: {tema}")
+        
+        return duracion_default
+    
+    def _extraer_titulo_inteligente_con_estructura(self, descripcion: str, metadatos: Dict) -> str:
+        """
+        Extrae título inteligente considerando metadatos estructurados
+        
+        Args:
+            descripcion: Descripción de la actividad
+            metadatos: Metadatos estructurados
+            
+        Returns:
+            Título mejorado
+        """
+        # Usar título base
+        titulo_base = self._extraer_titulo_inteligente(descripcion)
+        
+        # Enriquecer con metadatos estructurados
+        materia = metadatos.get('materia', '')
+        tema = metadatos.get('tema', '')
+        
+        # Si hay tema específico, usar como título principal
+        if tema and len(tema.strip()) > 3:
+            # Capitalizar correctamente el tema
+            tema_capitalizado = ' '.join(word.capitalize() for word in tema.split())
+            
+            # Si hay materia, crear título compuesto
+            if materia and materia != 'Interdisciplinar':
+                return f"{tema_capitalizado}: Actividad de {materia}"
+            else:
+                return f"Explorando {tema_capitalizado}"
+        
+        # Si hay materia pero no tema específico, enriquecer título base
+        elif materia and materia != 'Interdisciplinar':
+            if titulo_base != "Actividad Educativa":
+                return f"{titulo_base} - {materia}"
+            else:
+                return f"Actividad de {materia}"
+        
+        # Fallback al título base
+        return titulo_base
+    
+    def _organizar_tareas_en_etapas_con_modalidades(self, actividad_base: Dict, tareas: List, metadatos: Dict) -> Dict:
+        """
+        Organiza las tareas en etapas lógicas CON modalidades específicas por fase
+        
+        Args:
+            actividad_base: Estructura base de la actividad
+            tareas: Lista de tareas extraídas
+            metadatos: Metadatos del contexto híbrido
+            
+        Returns:
+            Actividad con etapas y modalidades organizadas
+        """
+        from dataclasses import asdict
+        
+        # Convertir dataclass objects a diccionarios si es necesario
+        tareas_dict = []
+        for tarea in tareas:
+            if hasattr(tarea, '__dict__'):
+                # Es un dataclass
+                tarea_dict = asdict(tarea)
+            elif isinstance(tarea, dict):
+                # Ya es un diccionario
+                tarea_dict = tarea
+            else:
+                # Fallback
+                tarea_dict = {'descripcion': str(tarea), 'tipo': 'colaborativa'}
+                
+            tareas_dict.append(tarea_dict)
+        
+        # Verificar si hay fases detalladas con modalidades específicas
+        fases_detalladas = metadatos.get('fases_detalladas', [])
+        
+        if fases_detalladas:
+            # USAR FASES ESTRUCTURADAS CON MODALIDADES ESPECÍFICAS
+            etapas = self._crear_etapas_desde_fases_detalladas(tareas_dict, fases_detalladas)
+        else:
+            # FALLBACK: Usar organización estándar
+            etapas = self._crear_etapas_estandar(tareas_dict)
+        
+        # Actualizar actividad base con las etapas
+        actividad_base['etapas'] = etapas
+        
+        logger.info(f"🔄 Etapas organizadas: {len(etapas)} etapas con modalidades específicas")
+        return actividad_base
+    
+    def _crear_etapas_desde_fases_detalladas(self, tareas: List[Dict], fases_detalladas: List[Dict]) -> List[Dict]:
+        """
+        Crea etapas basadas en las fases detalladas con modalidades específicas
+        
+        Args:
+            tareas: Lista de tareas a distribuir
+            fases_detalladas: Lista de fases con modalidades
+            
+        Returns:
+            Lista de etapas con modalidades aplicadas
+        """
+        etapas = []
+        num_fases = len(fases_detalladas)
+        
+        # Distribuir tareas entre las fases
+        tareas_por_fase = len(tareas) // num_fases
+        resto = len(tareas) % num_fases
+        
+        indice_tarea = 0
+        
+        for i, fase_detalle in enumerate(fases_detalladas):
+            # Calcular cuántas tareas para esta fase
+            tareas_en_fase = tareas_por_fase + (1 if i < resto else 0)
+            
+            # Obtener tareas para esta fase
+            tareas_fase = tareas[indice_tarea:indice_tarea + tareas_en_fase]
+            indice_tarea += tareas_en_fase
+            
+            # Aplicar modalidad específica a todas las tareas de esta fase
+            modalidad_fase = fase_detalle.get('modalidad', 'grupos_pequeños')
+            formato_asignacion = self._convertir_modalidad_a_formato(modalidad_fase)
+            
+            # Convertir tareas aplicando la modalidad específica
+            tareas_formato_k = []
+            for tarea in tareas_fase:
+                tarea_k = self._convertir_tarea_individual_con_modalidad(tarea, formato_asignacion)
+                tareas_formato_k.append(tarea_k)
+            
+            # Crear etapa con modalidad específica
+            etapa = {
+                'nombre': fase_detalle.get('nombre', f'Fase {i+1}'),
+                'descripcion': self._generar_descripcion_fase(fase_detalle, modalidad_fase),
+                'tareas': tareas_formato_k,
+                'modalidad_predominante': modalidad_fase
+            }
+            
+            etapas.append(etapa)
+            
+            logger.debug(f"🔸 Fase '{fase_detalle.get('nombre')}': {len(tareas_fase)} tareas, modalidad: {modalidad_fase}")
+        
+        return etapas
+    
+    def _crear_etapas_estandar(self, tareas: List[Dict]) -> List[Dict]:
+        """
+        Crea etapas usando el método estándar (fallback)
+        
+        Args:
+            tareas: Lista de tareas
+            
+        Returns:
+            Lista de etapas estándar
+        """
+        # Usar el método existente como fallback
+        if len(tareas) <= 2:
+            # Actividad simple: una etapa
+            etapas = [{
+                'nombre': 'Fase Principal',
+                'descripcion': 'Los estudiantes desarrollan la actividad completa',
+                'tareas': self._convertir_tareas_a_formato_k(tareas)
+            }]
+        elif len(tareas) <= 4:
+            # Actividad media: dos etapas
+            medio = len(tareas) // 2
+            etapas = [
+                {
+                    'nombre': 'Fase 1: Preparación y Exploración',
+                    'descripcion': 'Los estudiantes se preparan y exploran los conceptos básicos',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas[:medio])
+                },
+                {
+                    'nombre': 'Fase 2: Desarrollo y Síntesis',
+                    'descripcion': 'Los estudiantes desarrollan la actividad y sintetizan los aprendizajes',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas[medio:])
+                }
+            ]
+        else:
+            # Actividad compleja: tres etapas
+            tercio = len(tareas) // 3
+            etapas = [
+                {
+                    'nombre': 'Fase 1: Introducción y Preparación',
+                    'descripcion': 'Los estudiantes se familiarizan con los conceptos y materiales',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas[:tercio])
+                },
+                {
+                    'nombre': 'Fase 2: Desarrollo y Práctica', 
+                    'descripcion': 'Los estudiantes practican y desarrollan las competencias principales',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas[tercio:tercio*2])
+                },
+                {
+                    'nombre': 'Fase 3: Aplicación y Evaluación',
+                    'descripcion': 'Los estudiantes aplican lo aprendido y evalúan sus resultados',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas[tercio*2:])
+                }
+            ]
+        
+        return etapas
+    
+    def _convertir_modalidad_a_formato(self, modalidad: str) -> str:
+        """
+        Convierte modalidad del input a formato de asignación
+        
+        Args:
+            modalidad: Modalidad de trabajo
+            
+        Returns:
+            Formato de asignación compatible
+        """
+        mapeo_modalidades = {
+            'individual': 'individual',
+            'parejas': 'parejas',
+            'grupos_pequeños': 'grupos',
+            'grupos_grandes': 'grupos',
+            'clase_completa': 'grupos'  # Grupos grandes para toda la clase
+        }
+        
+        return mapeo_modalidades.get(modalidad, 'grupos')
+    
+    def _convertir_tarea_individual_con_modalidad(self, tarea: Dict, formato_asignacion: str) -> Dict:
+        """
+        Convierte una tarea individual aplicando modalidad específica
+        
+        Args:
+            tarea: Tarea a convertir
+            formato_asignacion: Formato de asignación específico
+            
+        Returns:
+            Tarea en formato k_ con modalidad aplicada
+        """
+        self._tarea_counter += 1
+        
+        tarea_k = {
+            'id': f'tarea_profunda_{self._tarea_counter:02d}',
+            'nombre': tarea.get('descripcion', 'Tarea sin nombre')[:50],
+            'descripcion': tarea.get('descripcion', 'Descripción de la tarea'),
+            'formato_asignacion': formato_asignacion
+        }
+        
+        # Añadir estrategias de adaptación si hay estudiantes especiales detectados
+        if self.contexto_hibrido.metadatos.get('estudiantes_especiales'):
+            tarea_k['estrategias_adaptacion'] = self._generar_adaptaciones_neurotipos(tarea)
+        
+        return tarea_k
+    
+    def _generar_descripcion_fase(self, fase_detalle: Dict, modalidad: str) -> str:
+        """
+        Genera descripción pedagógica para una fase con modalidad específica
+        
+        Args:
+            fase_detalle: Detalles de la fase
+            modalidad: Modalidad de trabajo
+            
+        Returns:
+            Descripción pedagógica de la fase
+        """
+        nombre_fase = fase_detalle.get('nombre', 'Fase')
+        
+        descripciones_modalidad = {
+            'individual': 'Los estudiantes trabajan de manera autónoma',
+            'parejas': 'Los estudiantes colaboran en parejas',
+            'grupos_pequeños': 'Los estudiantes trabajan en grupos pequeños de 3-4 personas',
+            'grupos_grandes': 'Los estudiantes se organizan en grupos grandes de 5-6 personas',
+            'clase_completa': 'Toda la clase trabaja junta como un gran equipo'
+        }
+        
+        descripcion_base = descripciones_modalidad.get(modalidad, 'Los estudiantes trabajan colaborativamente')
+        
+        if 'preparación' in nombre_fase.lower() or 'introducción' in nombre_fase.lower():
+            return f"{descripcion_base} para familiarizarse con los conceptos y preparar la actividad"
+        elif 'desarrollo' in nombre_fase.lower() or 'ejecución' in nombre_fase.lower():
+            return f"{descripcion_base} para desarrollar las competencias principales de la actividad"
+        elif 'presentación' in nombre_fase.lower() or 'exhibición' in nombre_fase.lower():
+            return f"{descripcion_base} para presentar y compartir sus resultados"
+        elif 'evaluación' in nombre_fase.lower() or 'reflexión' in nombre_fase.lower():
+            return f"{descripcion_base} para evaluar y reflexionar sobre los aprendizajes"
+        else:
+            return f"{descripcion_base} para completar las tareas de esta fase"
