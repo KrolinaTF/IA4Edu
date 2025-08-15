@@ -225,8 +225,13 @@ RESPONDE SOLO CON LAS IDEAS MATIZADAS, SIN EXPLICACIONES ADICIONALES."""
         respuesta = self.ollama.generar_respuesta(prompt_matizacion, max_tokens=500)
         ideas_matizadas = self._parsear_ideas(respuesta)
         
-        # Procesar respuesta con contexto híbrido
+        # Procesar respuesta con contexto híbrido y registrar decisión
         contexto_hibrido.procesar_respuesta_llm(respuesta, f"Matizar: {matizaciones}")
+        contexto_hibrido.registrar_decision("AgenteCoordinador", f"Matización aplicada: {matizaciones[:50]}...", {
+            'matizaciones_originales': matizaciones,
+            'ideas_generadas': len(ideas_matizadas),
+            'idea_base_titulo': idea_base.get('titulo', 'Sin título')
+        })
         
         logger.info(f"✅ Ideas matizadas: {len(ideas_matizadas)} variantes generadas")
         
@@ -596,9 +601,8 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
             
         self.contexto_hibrido.actualizar_estado("informacion_recopilada", "AgenteCoordinador")
         
-        # Generar ideas base usando el método existente
-        contexto_temporal = ContextoHibrido()
-        ideas = self.generar_ideas_actividades_hibrido(prompt_profesor, contexto_temporal)
+        # Usar contexto híbrido existente en lugar de crear uno temporal
+        ideas = self.generar_ideas_actividades_hibrido(prompt_profesor, self.contexto_hibrido)
         
         return {
             'ideas_generadas': ideas,
@@ -1415,6 +1419,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         """
         NUEVO MÉTODO: Flujo mejorado que usa las mejoras integradas del MVP
         Análisis profundo + Asignación neurotipos usando agentes existentes mejorados
+        CON SISTEMA DE RETRY Y VALIDACIÓN AUTOMÁTICA
         
         Args:
             descripcion_actividad: Descripción de la actividad
@@ -1423,62 +1428,159 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         Returns:
             Dict: Proyecto completo con mejoras del MVP integradas
         """
-        self._log_processing_start(f"🧠 FLUJO MEJORADO MVP: '{descripcion_actividad}'")
+        self._log_processing_start(f"🧠 FLUJO MEJORADO MVP CON RETRY: '{descripcion_actividad}'")
         
-        # PASO 1: Crear actividad personalizada basada únicamente en el prompt
-        actividad_personalizada = {
-            'titulo': f'Actividad: {descripcion_actividad[:50]}...',
-            'objetivo': f'Desarrollar competencias específicas mediante: {descripcion_actividad}',
+        # IMPLEMENTAR SISTEMA DE RETRY CON VALIDACIÓN
+        max_intentos = self.flujo_config.get('max_iteraciones', 3)
+        validacion_automatica = self.flujo_config.get('validacion_automatica', True)
+        
+        for intento in range(1, max_intentos + 1):
+            logger.info(f"🔄 INTENTO {intento}/{max_intentos} del flujo MVP")
+            
+            try:
+                proyecto_resultado = self._ejecutar_flujo_mvp_interno(descripcion_actividad, duracion_minutos)
+                
+                # VALIDACIÓN AUTOMÁTICA SI ESTÁ HABILITADA
+                if validacion_automatica:
+                    validacion = self._validar_proyecto_resultado(proyecto_resultado)
+                    
+                    if validacion['valido']:
+                        logger.info(f"✅ ÉXITO en intento {intento}: Proyecto válido (puntuación: {validacion['puntuacion']:.2f})")
+                        proyecto_resultado['intentos_realizados'] = intento
+                        proyecto_resultado['validacion_final'] = validacion
+                        return proyecto_resultado
+                    else:
+                        logger.warning(f"⚠️ RETRY necesario en intento {intento}: {validacion['problemas']}")
+                        if intento < max_intentos:
+                            self._ajustar_contexto_para_retry(proyecto_resultado, validacion)
+                        continue
+                else:
+                    # Sin validación automática, retornar resultado
+                    logger.info(f"✅ Flujo completado en intento {intento} (sin validación automática)")
+                    proyecto_resultado['intentos_realizados'] = intento
+                    return proyecto_resultado
+                    
+            except Exception as e:
+                logger.error(f"❌ Error en intento {intento}: {e}")
+                if intento == max_intentos:
+                    raise
+                continue
+        
+        # Si llegamos aquí, todos los intentos fallaron
+        logger.error(f"❌ FALLO TOTAL: {max_intentos} intentos agotados")
+        raise Exception(f"Flujo MVP falló después de {max_intentos} intentos")
+    
+    def _ejecutar_flujo_mvp_interno(self, descripcion_actividad: str, duracion_minutos: int = 45) -> Dict:
+        """
+        Ejecuta la lógica interna del flujo MVP (sin retry)
+        """
+        # REINICIALIZAR CONTADOR DE TAREAS para IDs consistentes
+        self._tarea_counter = 0
+        
+        # PASO 1: Crear estructura base coherente con formato k_*.json
+        # Obtener metadatos del contexto híbrido para enriquecer la estructura
+        metadatos_contexto = self.contexto_hibrido.metadatos
+        
+        # Generar ID único para la actividad
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+        
+        actividad_base_estructurada = {
+            'id': f'ACT_GEN_{timestamp}',
+            'titulo': self._extraer_titulo_inteligente(descripcion_actividad),
+            'objetivo': self._generar_objetivo_especifico(descripcion_actividad, metadatos_contexto),
             'nivel_educativo': '4º Primaria',
             'duracion_minutos': f'{duracion_minutos} minutos',
-            'etapas': [],  # Se generarán durante el análisis
-            'tipo': 'actividad_personalizada'
+            'recursos': [],  # Se generarán durante el análisis
+            'etapas': [],   # Se generarán con tareas agrupadas
+            'tipo_generacion': 'mvp_integrado'
         }
         
-        # PASO 1: Usar analizador mejorado con análisis profundo del prompt específico
-        tareas_profundas = self.analizador_tareas.extraer_tareas_hibrido(
-            actividad_data=actividad_personalizada, 
-            prompt_original=descripcion_actividad  # Esto activa el análisis profundo
-        )
-        logger.info(f"✅ PASO 1: Análisis profundo completado - {len(tareas_profundas)} tareas específicas")
+        # Cargar perfiles al contexto híbrido si no están ya cargados
+        if not self.contexto_hibrido.perfiles_estudiantes:
+            self.contexto_hibrido.perfiles_estudiantes = self.perfilador.perfiles_base
+            logger.info(f"👥 Perfiles cargados al contexto híbrido: {len(self.perfilador.perfiles_base)} estudiantes")
         
-        # PASO 2: Usar perfilador existente
+        # Registrar inicio de flujo MVP en el contexto
+        self.contexto_hibrido.registrar_decision("AgenteCoordinador", f"Iniciando flujo MVP para: {descripcion_actividad[:50]}...", {
+            'tipo_flujo': 'flujo_mvp_integrado',
+            'duracion_minutos': duracion_minutos,
+            'descripcion_completa': descripcion_actividad
+        })
+        
+        # PASO 2: Usar analizador mejorado con análisis profundo + contexto híbrido
+        tareas_profundas = self.analizador_tareas.extraer_tareas_hibrido(
+            actividad_data=actividad_base_estructurada, 
+            prompt_original=descripcion_actividad,  # Esto activa el análisis profundo
+            contexto_hibrido=self.contexto_hibrido  # 🆕 Pasar contexto híbrido
+        )
+        logger.info(f"✅ PASO 2: Análisis profundo completado - {len(tareas_profundas)} tareas específicas")
+        
+        # Registrar resultados del análisis en contexto
+        self.contexto_hibrido.registrar_decision("AgenteAnalizador", f"Analisis completado: {len(tareas_profundas)} tareas identificadas", {
+            'tareas_identificadas': len(tareas_profundas),
+            'tipo_analisis': 'analisis_profundo'
+        })
+        
+        # PASO 3: Usar perfilador existente + contexto híbrido
         perfiles_procesados = self.perfilador.analizar_perfiles({
             'estudiantes': self.perfilador.perfiles_base
-        })
-        logger.info(f"✅ PASO 2: Perfiles procesados - {len(self.perfilador.perfiles_base)} estudiantes")
+        }, contexto_hibrido=self.contexto_hibrido)  # 🆕 Pasar contexto híbrido
+        logger.info(f"✅ PASO 3: Perfiles procesados - {len(self.perfilador.perfiles_base)} estudiantes")
         
-        # PASO 3: Usar optimizador mejorado con criterios neurotípicos
+        # Registrar procesamiento de perfiles
+        self.contexto_hibrido.registrar_decision("AgentePerfilador", f"Perfiles procesados: {len(self.perfilador.perfiles_base)} estudiantes", {
+            'estudiantes_procesados': len(self.perfilador.perfiles_base)
+        })
+        
+        # PASO 4: Usar optimizador mejorado con criterios neurotípicos + contexto híbrido
         asignaciones_neurotipos = self.optimizador.optimizar_asignaciones(
             tareas_input=tareas_profundas,
             analisis_estudiantes=perfiles_procesados,
-            perfilador=self.perfilador
+            perfilador=self.perfilador,
+            contexto_hibrido=self.contexto_hibrido  # 🆕 Pasar contexto híbrido
         )
-        logger.info(f"✅ PASO 3: Asignaciones neurotípicas completadas")
+        logger.info(f"✅ PASO 4: Asignaciones neurotípicas completadas")
         
-        # PASO 4: Construir proyecto mejorado con actividad personalizada
+        # PASO 5: Construir actividad coherente con formato k_*.json
+        # Organizar tareas en etapas lógicas
+        actividad_estructurada = self._organizar_tareas_en_etapas(
+            actividad_base_estructurada, 
+            tareas_profundas, 
+            metadatos_contexto
+        )
+        
+        # Generar recursos basados en las tareas y contexto
+        actividad_estructurada['recursos'] = self._inferir_recursos_necesarios(
+            tareas_profundas, 
+            metadatos_contexto
+        )
+        
+        # PASO 6: Construir proyecto final con estructura unificada
         proyecto_mejorado = {
-            'tipo': 'flujo_mvp_integrado',
-            'descripcion_actividad': descripcion_actividad,
-            'duracion_minutos': duracion_minutos,
-            'tareas_especificas': [asdict(t) if hasattr(t, '__dataclass_fields__') else t.__dict__ if hasattr(t, '__dict__') else t for t in tareas_profundas],
+            'tipo': 'flujo_mvp_integrado_v3',
+            'actividad_generada': actividad_estructurada,  # ← NUEVA estructura coherente
             'asignaciones_neurotipos': asignaciones_neurotipos,
             'perfiles_estudiantes': perfiles_procesados,
-            'actividad_personalizada': actividad_personalizada,  # ← Actividad específica del prompt
             'metadatos': {
-                'version': '2.1.0-mvp-integrado',
+                'version': '3.0.0-estructura-unificada',
+                'formato_coherente': 'k_actividades_json',
                 'mejoras_aplicadas': [
                     'analisis_profundo_especifico',
-                    'criterios_neurotipos_tea_tdah_ac',
-                    'justificaciones_pedagogicas',
-                    'fallbacks_inteligentes',
-                    'actividad_personalizada_prompt'
+                    'criterios_neurotipos_tea_tdah_ac', 
+                    'estructura_coherente_k_json',
+                    'organizacion_etapas_logicas'
                 ],
                 'agentes_utilizados': ['analizador_mejorado', 'perfilador', 'optimizador_neurotipos']
             }
         }
         
-        # Actualizar contexto híbrido
+        # Registrar finalización exitosa del flujo
+        self.contexto_hibrido.registrar_decision("AgenteOptimizador", "Asignaciones neurotípicas completadas", {
+            'total_asignaciones': len(asignaciones_neurotipos.get('asignaciones', {})),
+            'criterios_aplicados': asignaciones_neurotipos.get('metadatos', {}).get('criterios_aplicados', [])
+        })
+        
+        # Actualizar contexto híbrido con estado final
         self.contexto_hibrido.actualizar_estado("flujo_mvp_completado", "AgenteCoordinador")
         self.contexto_hibrido.finalizar_proyecto(proyecto_mejorado)
         
@@ -1488,6 +1590,345 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         logger.info(f"   🧠 Criterios neurotípicos aplicados: {asignaciones_neurotipos.get('metadatos', {}).get('criterios_aplicados', [])}")
         
         return proyecto_mejorado
+    
+    def _extraer_titulo_inteligente(self, descripcion: str) -> str:
+        """Extrae un título inteligente de la descripción"""
+        # Limpiar y obtener las primeras palabras significativas
+        palabras = descripcion.split()[:8]  # Primeras 8 palabras
+        titulo_base = ' '.join(palabras)
+        
+        # Capitalizar correctamente
+        titulo_limpio = ' '.join(word.capitalize() for word in titulo_base.split())
+        
+        # Asegurar que no sea demasiado largo
+        if len(titulo_limpio) > 60:
+            titulo_limpio = titulo_limpio[:57] + '...'
+            
+        return titulo_limpio
+    
+    def _generar_objetivo_especifico(self, descripcion: str, metadatos: Dict) -> str:
+        """Genera un objetivo pedagógico específico"""
+        # Base del objetivo según la materia detectada
+        materia = metadatos.get('materia', 'general')
+        
+        objetivos_base = {
+            'matematicas': 'Desarrollar competencias matemáticas mediante',
+            'lengua': 'Mejorar competencias lingüísticas a través de',
+            'ciencias': 'Fomentar el pensamiento científico mediante',
+            'creatividad': 'Estimular la creatividad y expresión a través de',
+            'general': 'Desarrollar competencias transversales mediante'
+        }
+        
+        objetivo_base = objetivos_base.get(materia, objetivos_base['general'])
+        return f"{objetivo_base} {descripcion.lower()}, fomentando el trabajo colaborativo y la inclusión educativa."
+    
+    def _organizar_tareas_en_etapas(self, actividad_base: Dict, tareas: List, metadatos: Dict) -> Dict:
+        """Organiza las tareas en etapas lógicas siguiendo el formato k_*.json"""
+        from dataclasses import asdict
+        
+        # Convertir tareas a diccionarios si son objetos
+        tareas_dict = []
+        for tarea in tareas:
+            if hasattr(tarea, '__dataclass_fields__'):
+                tarea_dict = asdict(tarea)
+            elif hasattr(tarea, '__dict__'):
+                tarea_dict = tarea.__dict__
+            else:
+                tarea_dict = tarea
+            tareas_dict.append(tarea_dict)
+        
+        # Lógica de agrupación de tareas en etapas
+        if len(tareas_dict) <= 2:
+            # Actividad simple: una sola etapa
+            etapas = [{
+                'nombre': 'Desarrollo de la Actividad',
+                'descripcion': f'Los estudiantes realizan {actividad_base["titulo"].lower()}',
+                'tareas': self._convertir_tareas_a_formato_k(tareas_dict)
+            }]
+        elif len(tareas_dict) <= 4:
+            # Actividad media: dos etapas
+            medio = len(tareas_dict) // 2
+            etapas = [
+                {
+                    'nombre': 'Fase 1: Preparación y Exploración',
+                    'descripcion': 'Los estudiantes se preparan y exploran los conceptos básicos',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas_dict[:medio])
+                },
+                {
+                    'nombre': 'Fase 2: Desarrollo y Síntesis',
+                    'descripcion': 'Los estudiantes desarrollan la actividad y sintetizan los aprendizajes',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas_dict[medio:])
+                }
+            ]
+        else:
+            # Actividad compleja: tres etapas
+            tercio = len(tareas_dict) // 3
+            etapas = [
+                {
+                    'nombre': 'Fase 1: Introducción y Preparación',
+                    'descripcion': 'Los estudiantes se familiarizan con los conceptos y materiales',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas_dict[:tercio])
+                },
+                {
+                    'nombre': 'Fase 2: Desarrollo y Práctica',
+                    'descripcion': 'Los estudiantes practican y desarrollan las competencias principales',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas_dict[tercio:tercio*2])
+                },
+                {
+                    'nombre': 'Fase 3: Aplicación y Evaluación',
+                    'descripcion': 'Los estudiantes aplican lo aprendido y evalúan sus resultados',
+                    'tareas': self._convertir_tareas_a_formato_k(tareas_dict[tercio*2:])
+                }
+            ]
+        
+        # Actualizar actividad base con las etapas
+        actividad_base['etapas'] = etapas
+        return actividad_base
+    
+    def _convertir_tareas_a_formato_k(self, tareas: List[Dict]) -> List[Dict]:
+        """Convierte tareas del formato interno al formato k_*.json"""
+        tareas_formato_k = []
+        
+        # Contador global para IDs consistentes
+        if not hasattr(self, '_tarea_counter'):
+            self._tarea_counter = 0
+        
+        for tarea in tareas:
+            self._tarea_counter += 1
+            
+            # Mapear tipo a formato_asignacion
+            tipo_mapping = {
+                'individual': 'individual',
+                'colaborativa': 'grupos', 
+                'creativa': 'grupos',
+                'parejas': 'parejas'
+            }
+            
+            formato_asignacion = tipo_mapping.get(tarea.get('tipo', 'colaborativa'), 'grupos')
+            
+            tarea_k = {
+                'id': f'tarea_profunda_{self._tarea_counter:02d}',  # ← ID CONSISTENTE
+                'nombre': tarea.get('descripcion', 'Tarea sin nombre')[:50],  # Usar descripción como nombre
+                'descripcion': tarea.get('descripcion', 'Descripción de la tarea'),
+                'formato_asignacion': formato_asignacion
+            }
+            
+            # Añadir estrategias de adaptación si hay estudiantes especiales detectados
+            if self.contexto_hibrido.metadatos.get('estudiantes_especiales'):
+                tarea_k['estrategias_adaptacion'] = self._generar_adaptaciones_neurotipos(tarea)
+            
+            tareas_formato_k.append(tarea_k)
+        
+        return tareas_formato_k
+    
+    def _generar_adaptaciones_neurotipos(self, tarea: Dict) -> Dict:
+        """Genera adaptaciones específicas para neurotipos basadas en la tarea"""
+        adaptaciones = {}
+        
+        # Adaptaciones para Elena (TEA)
+        adaptaciones['para_elena'] = f"Proporcionar estructura clara y rutina predecible para {tarea.get('descripcion', 'la tarea')[:30]}. Usar apoyos visuales."
+        
+        # Adaptaciones para Luis (TDAH)
+        adaptaciones['para_luis'] = f"Permitir movimiento y descansos durante {tarea.get('descripcion', 'la tarea')[:30]}. Fragmentar en pasos pequeños."
+        
+        # Adaptaciones para Ana (Altas capacidades)
+        adaptaciones['para_ana'] = f"Proporcionar retos adicionales y roles de liderazgo en {tarea.get('descripcion', 'la tarea')[:30]}."
+        
+        return adaptaciones
+    
+    def _validar_proyecto_resultado(self, proyecto: Dict) -> Dict:
+        """
+        Valida el proyecto resultado usando el ValidadorCoherencia
+        CON SIMULACIÓN DE FALLAS PARA TESTING
+        
+        Args:
+            proyecto: Proyecto a validar
+            
+        Returns:
+            Dict con información de validación
+        """
+        # LÓGICA DE TESTING: Simular falla en primer intento
+        if hasattr(self, '_modo_test_retry') and self._modo_test_retry:
+            self._contador_intentos_test += 1
+            
+            # Forzar falla en el primer intento para probar retry
+            if self._contador_intentos_test == 1:
+                logger.info("🧪 TEST: Simulando falla en primer intento para probar retry")
+                return {
+                    'valido': False,
+                    'puntuacion': 0.3,
+                    'nivel': 'test_falla_simulada',
+                    'problemas': ['test_estructura_incompleta', 'test_asignaciones_desequilibradas'],
+                    'recomendaciones': ['Mejorar estructura de la actividad', 'Rebalancear asignaciones'],
+                    'modo_test': True
+                }
+        
+        try:
+            actividad = proyecto.get('actividad_generada', {})
+            perfiles = proyecto.get('perfiles_estudiantes', {})
+            asignaciones = proyecto.get('asignaciones_neurotipos', {})
+            
+            # Usar validación rápida primero
+            validacion_rapida = self.validador.validar_coherencia_rapida(actividad, perfiles)
+            
+            # Si pasa validación rápida, hacer validación completa
+            if validacion_rapida.get('valida', False):
+                validacion_completa = self.validador.validar_proyecto_completo(actividad, perfiles, asignaciones)
+                
+                return {
+                    'valido': validacion_completa.get('valido_globalmente', False),
+                    'puntuacion': validacion_completa.get('puntuacion_global', 0.0),
+                    'nivel': validacion_completa.get('nivel_coherencia', 'insuficiente'),
+                    'problemas': validacion_completa.get('aspectos_fallidos', []),
+                    'recomendaciones': validacion_completa.get('recomendaciones_consolidadas', []),
+                    'validacion_rapida': validacion_rapida,
+                    'validacion_completa': validacion_completa
+                }
+            else:
+                return {
+                    'valido': False,
+                    'puntuacion': validacion_rapida.get('puntuacion', 0.0),
+                    'nivel': 'fallo_rapido',
+                    'problemas': validacion_rapida.get('alertas', []),
+                    'recomendaciones': ['Revisar estructura básica del proyecto'],
+                    'validacion_rapida': validacion_rapida
+                }
+                
+        except Exception as e:
+            logger.error(f"❌ Error en validación: {e}")
+            return {
+                'valido': False,
+                'puntuacion': 0.0,
+                'nivel': 'error_validacion',
+                'problemas': [f'Error de validación: {e}'],
+                'recomendaciones': ['Revisar estructura del proyecto']
+            }
+    
+    def _ajustar_contexto_para_retry(self, proyecto_fallido: Dict, validacion: Dict):
+        """
+        Ajusta el contexto híbrido basado en los problemas detectados para mejorar el siguiente intento
+        
+        Args:
+            proyecto_fallido: Proyecto que falló validación
+            validacion: Información de validación
+        """
+        logger.info("🔧 Ajustando contexto para retry...")
+        
+        problemas = validacion.get('problemas', [])
+        recomendaciones = validacion.get('recomendaciones', [])
+        
+        # Registrar problemas en el contexto híbrido
+        self.contexto_hibrido.actualizar_estado("retry_necesario", "ValidadorCoherencia")
+        
+        # Ajustes específicos basados en problemas detectados
+        if 'estructura_actividad' in problemas:
+            self.contexto_hibrido.actualizar_estado("mejorar_estructura", "ValidadorCoherencia")
+            
+        if 'coherencia_actividad_perfiles' in problemas:
+            self.contexto_hibrido.actualizar_estado("ajustar_complejidad", "ValidadorCoherencia")
+            
+        if 'asignaciones_capacidades' in problemas:
+            self.contexto_hibrido.actualizar_estado("redistribuir_asignaciones", "ValidadorCoherencia")
+            
+        if 'inclusion_dua' in problemas:
+            self.contexto_hibrido.actualizar_estado("reforzar_adaptaciones", "ValidadorCoherencia")
+        
+        # Agregar recomendaciones al contexto para el siguiente intento
+        for recomendacion in recomendaciones[:3]:  # Máximo 3 recomendaciones
+            self.contexto_hibrido.actualizar_estado(f"recomendacion: {recomendacion}", "ValidadorCoherencia")
+        
+        logger.info(f"🔧 Contexto ajustado con {len(problemas)} problemas y {len(recomendaciones)} recomendaciones")
+    
+    def probar_sistema_retry(self, descripcion_test: str = "actividad de prueba para testing") -> Dict:
+        """
+        MÉTODO DE TESTING: Simula fallas para probar el sistema de retry
+        
+        Args:
+            descripcion_test: Descripción de prueba
+            
+        Returns:
+            Dict con información del test de retry
+        """
+        logger.info("🧪 INICIANDO TEST DE SISTEMA RETRY")
+        
+        # Guardar configuración original
+        config_original = self.flujo_config.copy()
+        
+        # Configurar para testing (más agresivo)
+        self.flujo_config.update({
+            'max_iteraciones': 2,  # Solo 2 intentos para test rápido
+            'validacion_automatica': True,
+            'reintentos_por_agente': 1
+        })
+        
+        # Forzar fallas en las primeras validaciones
+        self._modo_test_retry = True
+        self._contador_intentos_test = 0
+        
+        try:
+            resultado = self.ejecutar_flujo_mejorado_mvp(descripcion_test, 30)
+            
+            test_info = {
+                'test_completado': True,
+                'intentos_realizados': resultado.get('intentos_realizados', 0),
+                'validacion_final': resultado.get('validacion_final', {}),
+                'sistema_retry_funcional': resultado.get('intentos_realizados', 0) > 1,
+                'mensaje': f"Test completado en {resultado.get('intentos_realizados', 0)} intentos"
+            }
+            
+        except Exception as e:
+            test_info = {
+                'test_completado': False,
+                'error': str(e),
+                'intentos_realizados': self._contador_intentos_test,
+                'sistema_retry_funcional': self._contador_intentos_test > 1,
+                'mensaje': f"Test falló después de {self._contador_intentos_test} intentos: {e}"
+            }
+        
+        finally:
+            # Restaurar configuración original
+            self.flujo_config = config_original
+            self._modo_test_retry = False
+            self._contador_intentos_test = 0
+        
+        logger.info(f"🧪 RESULTADO TEST RETRY: {test_info['mensaje']}")
+        logger.info(f"   • Sistema funcional: {test_info['sistema_retry_funcional']}")
+        
+        return test_info
+    
+    def _inferir_recursos_necesarios(self, tareas: List, metadatos: Dict) -> List[str]:
+        """Infiere recursos necesarios basados en tareas y metadatos"""
+        recursos = set()  # Usar set para evitar duplicados
+        
+        # Recursos base por materia
+        materia = metadatos.get('materia', 'general')
+        recursos_base = {
+            'matematicas': ['Material manipulativo', 'Calculadoras', 'Papel y lápices'],
+            'lengua': ['Tarjetas de palabras', 'Papel y lápices', 'Diccionarios'],
+            'ciencias': ['Material de laboratorio básico', 'Lupas', 'Cuaderno de observaciones'],
+            'general': ['Papel y lápices', 'Materiales de manualidades básicos']
+        }
+        
+        recursos.update(recursos_base.get(materia, recursos_base['general']))
+        
+        # Recursos detectados en metadatos
+        if 'materiales' in metadatos:
+            recursos.update(metadatos['materiales'])
+        
+        # Recursos inferidos de las descripciones de tareas
+        for tarea in tareas:
+            descripcion = str(tarea.get('descripcion', '')).lower() if hasattr(tarea, 'get') else str(tarea).lower()
+            
+            if 'tarjetas' in descripcion or 'cartas' in descripcion:
+                recursos.add('Tarjetas o cartas didácticas')
+            if 'dinero' in descripcion or 'euros' in descripcion:
+                recursos.add('Dinero de juguete')
+            if 'digital' in descripcion or 'ordenador' in descripcion:
+                recursos.add('Dispositivos digitales (tablets/ordenadores)')
+            if 'dibujar' in descripcion or 'pintar' in descripcion:
+                recursos.add('Materiales de dibujo y pintura')
+        
+        return list(recursos)
     
     def formatear_proyecto_mejorado_para_profesor(self, proyecto: Dict) -> str:
         """

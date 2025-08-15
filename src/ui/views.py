@@ -211,8 +211,13 @@ class CLIViews:
         """
         print("\n🔍 VALIDACIÓN FINAL:")
         
-        # DETECTAR ESTRUCTURA: MVP vs LEGACY
-        if 'tipo' in proyecto_final and proyecto_final['tipo'] == 'flujo_mvp_integrado':
+        # DETECTAR ESTRUCTURA: NUEVA UNIFICADA vs MVP vs LEGACY
+        if 'actividad_generada' in proyecto_final:
+            # NUEVA ESTRUCTURA UNIFICADA (v3.0)
+            proyecto_base = proyecto_final.get('actividad_generada', {})
+            resultados = proyecto_final
+            print(f"   DEBUG - ESTRUCTURA UNIFICADA V3 DETECTADA")
+        elif 'tipo' in proyecto_final and 'flujo_mvp_integrado' in str(proyecto_final['tipo']):
             # ESTRUCTURA MVP: El proyecto es directamente los resultados
             proyecto_base = proyecto_final.get('actividad_personalizada', {})
             resultados = proyecto_final  # El proyecto completo son los resultados
@@ -235,14 +240,28 @@ class CLIViews:
         tareas_list = []
         actividad_info = {}
         
-        # PRIORIDAD 1: Buscar en estructura del flujo MVP integrado
-        if 'tipo' in resultados and resultados['tipo'] == 'flujo_mvp_integrado':
+        # PRIORIDAD 1: Buscar en estructura unificada v3.0
+        if 'actividad_generada' in resultados:
+            # Nueva estructura unificada que sigue formato k_*.json
+            actividad_generada = resultados['actividad_generada']
+            
+            # Extraer tareas de todas las etapas
+            tareas_list = []
+            for etapa in actividad_generada.get('etapas', []):
+                tareas_etapa = etapa.get('tareas', [])
+                tareas_list.extend(tareas_etapa)
+            
+            actividad_info = actividad_generada
+            print(f"   DEBUG - Estructura UNIFICADA V3 detectada: {len(tareas_list)} tareas, actividad: {actividad_info.get('titulo', 'Sin título')}")
+            
+        # PRIORIDAD 2: Buscar en estructura del flujo MVP integrado
+        elif 'tipo' in resultados and 'flujo_mvp_integrado' in str(resultados.get('tipo', '')):
             # Estructura del flujo MVP mejorado
             tareas_list = resultados.get('tareas_especificas', [])
             actividad_info = resultados.get('actividad_personalizada', {})
             print(f"   DEBUG - Estructura MVP detectada: {len(tareas_list)} tareas, actividad: {actividad_info.get('titulo', 'Sin título')}")
             
-        # PRIORIDAD 2: Buscar en la estructura anterior: resultados_agentes -> analizador_tareas
+        # PRIORIDAD 3: Buscar en la estructura anterior: resultados_agentes -> analizador_tareas
         elif 'analizador_tareas' in resultados:
             analizador_data = resultados['analizador_tareas']
             if isinstance(analizador_data, list):
@@ -272,7 +291,40 @@ class CLIViews:
         print(f"   DEBUG - Actividad info keys: {list(actividad_info.keys()) if actividad_info else 'Vacío'}")
         
         # ===== MOSTRAR LISTADO DE TAREAS =====
-        if tareas_list and len(tareas_list) > 0:
+        if 'actividad_generada' in resultados:
+            # MOSTRAR ETAPAS Y TAREAS ESTRUCTURADAS (FORMATO K_*.JSON)
+            print(f"\n📋 ESTRUCTURA DE LA ACTIVIDAD:")
+            actividad = resultados['actividad_generada']
+            
+            print(f"   Título: {actividad.get('titulo', 'Sin título')}")
+            print(f"   Objetivo: {actividad.get('objetivo', 'Sin objetivo')[:100]}...")
+            print(f"   Duración: {actividad.get('duracion_minutos', 'No especificada')}")
+            
+            # Mostrar recursos
+            recursos = actividad.get('recursos', [])
+            if recursos:
+                print(f"\n🎨 RECURSOS NECESARIOS:")
+                for recurso in recursos[:5]:  # Máximo 5 recursos
+                    print(f"   • {recurso}")
+            
+            # Mostrar etapas y tareas
+            etapas = actividad.get('etapas', [])
+            print(f"\n🔄 ETAPAS DE LA ACTIVIDAD ({len(etapas)}):")
+            
+            for i, etapa in enumerate(etapas, 1):
+                print(f"\n   🔸 ETAPA {i}: {etapa.get('nombre', 'Sin nombre')}")
+                print(f"      {etapa.get('descripcion', 'Sin descripción')[:80]}...")
+                
+                tareas_etapa = etapa.get('tareas', [])
+                if tareas_etapa:
+                    print(f"      📋 Tareas ({len(tareas_etapa)}):")
+                    for j, tarea in enumerate(tareas_etapa[:3], 1):  # Máximo 3 tareas por etapa
+                        nombre = tarea.get('nombre', 'Sin nombre')[:40]
+                        formato = tarea.get('formato_asignacion', 'N/A')
+                        print(f"         {j}. {nombre} ({formato})")
+                        
+        elif tareas_list and len(tareas_list) > 0:
+            # MOSTRAR TAREAS EN FORMATO ANTERIOR (COMPATIBILIDAD)
             print(f"\n📋 TAREAS ESPECÍFICAS:")
             print(f"   DEBUG - Tipo tareas_list: {type(tareas_list)}")
             print(f"   DEBUG - Primer elemento: {tareas_list[0] if tareas_list else 'Vacío'}")

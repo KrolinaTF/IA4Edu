@@ -34,7 +34,7 @@ def main():
         ollama_config = {
             "host": "192.168.1.10",
             "port": 11434,
-            "model": "llama3.2",
+            "model": "mistral",
             "embedding_model": "nomic-embed-text"
         }
         ollama_integrator = OllamaIntegrator(**ollama_config)

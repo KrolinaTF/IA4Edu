@@ -661,25 +661,47 @@ class AgentePerfiladorEstudiantes(BaseAgent):
         from datetime import datetime
         return datetime.now().isoformat()
     
-    def analizar_perfiles(self, datos_entrada: Dict[str, Any] = None, **kwargs) -> Dict[str, Any]:
+    def analizar_perfiles(self, datos_entrada: Dict[str, Any] = None, contexto_hibrido=None, **kwargs) -> Dict[str, Any]:
         """
         Método específico para análisis de perfiles (usado por comunicador)
         
         Args:
             datos_entrada: Datos de entrada con tareas y contexto (opcional)
+            contexto_hibrido: Contexto híbrido compartido (opcional)
             **kwargs: Argumentos adicionales como contexto_global, timestamp, etc.
             
         Returns:
             Resultados del análisis de perfiles
         """
+        # Usar información del contexto híbrido si está disponible
+        if contexto_hibrido:
+            contexto_hibrido.registrar_decision("AgentePerfilador", "Iniciando análisis de perfiles con contexto híbrido", {
+                'perfiles_disponibles': len(self.perfiles_base),
+                'metadatos_contexto': list(contexto_hibrido.metadatos.keys())
+            })
+            self.logger.info(f"🔄 Usando contexto híbrido con {len(contexto_hibrido.perfiles_estudiantes)} perfiles globales")
+        
         # Combinar datos de entrada con kwargs
         if datos_entrada is None:
             datos_entrada = {}
         
+        # Añadir contexto híbrido a datos si está disponible
+        if contexto_hibrido:
+            datos_entrada['contexto_hibrido'] = contexto_hibrido
+        
         # Añadir kwargs a datos_entrada
         datos_entrada.update(kwargs)
         
-        return self.process(datos_entrada)
+        resultado = self.process(datos_entrada)
+        
+        # Registrar finalización en contexto híbrido
+        if contexto_hibrido:
+            contexto_hibrido.registrar_decision("AgentePerfilador", "Análisis de perfiles completado", {
+                'perfiles_analizados': len(self.perfiles_base),
+                'resultado_keys': list(resultado.keys()) if isinstance(resultado, dict) else 'No dict'
+            })
+        
+        return resultado
     
     def obtener_perfiles_optimizados(self, actividad_contexto: Dict[str, Any] = None) -> Dict[str, Any]:
         """

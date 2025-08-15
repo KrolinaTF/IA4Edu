@@ -4,9 +4,6 @@ Actúa como intermediario entre la interfaz de usuario y la lógica de negocio.
 """
 
 import logging
-import os
-import json
-from datetime import datetime
 from typing import Dict, List, Any, Optional
 
 logger = logging.getLogger("SistemaAgentesABP.UIController")
@@ -28,7 +25,7 @@ class UIController:
     
     def generar_ideas_desde_prompt(self, prompt: str) -> List[Dict]:
         """
-        Solicita al coordinador generar ideas basadas en el prompt
+        Solicita al sistema generar ideas basadas en el prompt
         
         Args:
             prompt: Prompt inicial del profesor
@@ -38,13 +35,13 @@ class UIController:
         """
         logger.info(f"🎮 Solicitando generación de ideas para prompt: {prompt[:50]}...")
         
-        # Llamar al método correspondiente del coordinador
-        info_inicial = self.coordinador.recoger_informacion_inicial(prompt_profesor=prompt)
+        # Usar la capa de abstracción del sistema
+        info_inicial = self.sistema.generar_ideas(prompt_profesor=prompt)
         return info_inicial.get('ideas_generadas', [])
     
     def matizar_idea(self, ideas: List[Dict], idea_idx: int, matizaciones: str) -> List[Dict]:
         """
-        Solicita al coordinador matizar una idea seleccionada
+        Solicita al sistema matizar una idea seleccionada
         
         Args:
             ideas: Lista de ideas actuales
@@ -61,15 +58,12 @@ class UIController:
         idea_seleccionada = ideas[idea_idx]
         logger.info(f"🎮 Solicitando matización de idea: {idea_seleccionada.get('titulo', '')}...")
         
-        # Obtener contexto híbrido del coordinador
-        contexto_hibrido = self.coordinador.contexto_hibrido
-        
-        # Usar método específico de matización
-        return self.coordinador.matizar_idea_especifica(idea_seleccionada, matizaciones, contexto_hibrido)
+        # Usar la capa de abstracción del sistema
+        return self.sistema.matizar_actividad(idea_seleccionada, matizaciones)
     
     def generar_nuevas_ideas(self, nuevo_prompt: str) -> List[Dict]:
         """
-        Solicita al coordinador generar nuevas ideas con un prompt diferente
+        Solicita al sistema generar nuevas ideas con un prompt diferente
         
         Args:
             nuevo_prompt: Nuevo prompt para generar ideas
@@ -79,11 +73,8 @@ class UIController:
         """
         logger.info(f"🎮 Solicitando nuevas ideas con prompt: {nuevo_prompt[:50]}...")
         
-        # Obtener contexto híbrido del coordinador
-        contexto_hibrido = self.coordinador.contexto_hibrido
-        
-        # Generar nuevas ideas
-        return self.coordinador.generar_ideas_actividades_hibrido(nuevo_prompt, contexto_hibrido)
+        # Usar la capa de abstracción del sistema
+        return self.sistema.generar_nuevas_ideas(nuevo_prompt)
     
     def registrar_detalles_adicionales(self, actividad: Dict, detalles: str):
         """
@@ -93,23 +84,14 @@ class UIController:
             actividad: Actividad seleccionada
             detalles: Detalles adicionales
         """
-        if not detalles.strip():
-            return
-            
         logger.info(f"🎮 Registrando detalles adicionales para: {actividad.get('titulo', 'Sin título')}")
         
-        # Registrar en el historial de prompts del coordinador
-        self.coordinador.historial_prompts.append({
-            "tipo": "detalles_actividad_seleccionada",
-            "actividad_id": actividad.get('id'),
-            "actividad_titulo": actividad.get('titulo'),
-            "detalles_adicionales": detalles,
-            "timestamp": datetime.now().isoformat()
-        })
+        # Usar la capa de abstracción del sistema
+        self.sistema.registrar_detalles_adicionales(actividad, detalles)
     
     def ejecutar_flujo_orquestado(self, actividad_seleccionada: Dict, info_adicional: str = "") -> Dict:
         """
-        Solicita al coordinador ejecutar el flujo mejorado con MVP
+        Solicita al sistema ejecutar el flujo completo
         
         Args:
             actividad_seleccionada: Actividad seleccionada para procesar
@@ -118,47 +100,34 @@ class UIController:
         Returns:
             Proyecto final generado
         """
-        logger.info(f"🎮 Solicitando ejecución de flujo MVP mejorado para: {actividad_seleccionada.get('titulo', 'Sin título')}")
+        logger.info(f"🎮 Solicitando ejecución de flujo completo para: {actividad_seleccionada.get('titulo', 'Sin título')}")
         
-        # Extraer descripción de la actividad
-        descripcion_actividad = actividad_seleccionada.get('descripcion', actividad_seleccionada.get('titulo', ''))
-        if info_adicional:
-            descripcion_actividad += f" {info_adicional}"
+        # Usar la capa de abstracción del sistema
+        proyecto_final = self.sistema.ejecutar_flujo(actividad_seleccionada, info_adicional)
         
-        # Ejecutar flujo MVP mejorado (análisis profundo + neurotipos)
-        return self.coordinador.ejecutar_flujo_mejorado_mvp(descripcion_actividad)
+        # Validar automáticamente si el proyecto se completó correctamente
+        if proyecto_final and isinstance(proyecto_final, dict):
+            self.sistema.validar_proyecto(True)
+        
+        return proyecto_final
     
-    def guardar_proyecto(self, proyecto: Dict, nombre_archivo: str = None) -> str:
+    def guardar_proyecto(self, proyecto: Dict = None, nombre_archivo: str = None) -> str:
         """
-        Guarda el proyecto en un archivo JSON
+        Guarda el proyecto actual del sistema en un archivo JSON
         
         Args:
-            proyecto: Proyecto a guardar
+            proyecto: Proyecto a guardar (opcional, usará el proyecto actual del sistema)
             nombre_archivo: Nombre de archivo opcional
             
         Returns:
             Ruta del archivo guardado
         """
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        if nombre_archivo:
-            nombre_archivo = f"{nombre_archivo}_{timestamp}.json"
-        else:
-            nombre_archivo = f"abp_{timestamp}.json"
-            
-        # Asegurar que la ruta incluya el directorio temp
-        if not nombre_archivo.startswith("temp/"):
-            nombre_archivo = f"temp/{nombre_archivo}"
+        logger.info(f"🎮 Solicitando guardado de proyecto")
         
-        try:
-            # Crear directorio temp si no existe
-            os.makedirs(os.path.dirname(nombre_archivo), exist_ok=True)
-            
-            with open(nombre_archivo, 'w', encoding='utf-8') as f:
-                json.dump(proyecto, f, indent=2, ensure_ascii=False)
-            
-            logger.info(f"💾 Proyecto guardado en: {nombre_archivo}")
-            return nombre_archivo
-            
-        except Exception as e:
-            logger.error(f"❌ Error guardando proyecto: {e}")
-            return None
+        # Si no se especifica proyecto, usar el del sistema
+        if proyecto is None:
+            return self.sistema.guardar_proyecto(nombre_archivo)
+        else:
+            # Actualizar proyecto actual del sistema y luego guardarlo
+            self.sistema.proyecto_actual = proyecto
+            return self.sistema.guardar_proyecto(nombre_archivo)

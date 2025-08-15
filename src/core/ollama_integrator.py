@@ -11,7 +11,7 @@ logger = logging.getLogger("SistemaAgentesABP.OllamaIntegrator")
 class OllamaIntegrator:
     """Integrador simplificado con Ollama API"""
     
-    def __init__(self, host: str = "192.168.1.10", port: int = 11434, model: str = "llama3.2", 
+    def __init__(self, host: str = "192.168.1.10", port: int = 11434, model: str = "mistral", 
                  embedding_model: str = "nomic-embed-text"):
         """
         Inicializa el integrador con Ollama

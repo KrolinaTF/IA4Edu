@@ -37,7 +37,7 @@ class AgenteAnalizadorTareas(BaseAgent):
         else:
             self.embeddings_manager = embeddings_manager
     
-    def extraer_tareas_hibrido(self, actividad_data: Dict, prompt_original: str = "") -> List[Tarea]:
+    def extraer_tareas_hibrido(self, actividad_data: Dict, prompt_original: str = "", contexto_hibrido=None) -> List[Tarea]:
         """
         NUEVA FUNCIÓN HÍBRIDA: Extrae tareas usando la mejor estrategia disponible
         MEJORADO CON MVP: Análisis profundo específico de cada actividad
@@ -45,18 +45,37 @@ class AgenteAnalizadorTareas(BaseAgent):
         Args:
             actividad_data: Datos de la actividad (JSON o dict)
             prompt_original: Prompt original del usuario (opcional)
+            contexto_hibrido: Contexto híbrido compartido (opcional)
             
         Returns:
             Lista de objetos Tarea garantizada
         """
         self._log_processing_start(f"Extracción híbrida de tareas mejorada")
         
-        # ESTRATEGIA 1: ANÁLISIS PROFUNDO CON LLM (NUEVA - DEL MVP)
+        # Usar información del contexto híbrido si está disponible
+        if contexto_hibrido:
+            # Registrar uso del contexto en el análisis
+            contexto_hibrido.registrar_decision("AgenteAnalizador", "Iniciando análisis de tareas con contexto híbrido", {
+                'tiene_perfiles': len(contexto_hibrido.perfiles_estudiantes) > 0,
+                'metadatos_disponibles': list(contexto_hibrido.metadatos.keys()),
+                'prompt_original': prompt_original[:50] + '...' if prompt_original else 'No disponible'
+            })
+            self.logger.info(f"🔄 Usando contexto híbrido con {len(contexto_hibrido.perfiles_estudiantes)} perfiles")
+        
+        # ESTRATEGIA 1: ANÁLISIS PROFUNDO CON LLM 
         if prompt_original:
             self.logger.info("🧠 Estrategia 1: Análisis profundo específico (MVP)")
             tareas = self._analizar_actividad_profundo(prompt_original, actividad_data)
             if tareas:
                 self._log_processing_end(f"✅ Análisis profundo: {len(tareas)} tareas específicas")
+                
+                # Registrar éxito en contexto híbrido si está disponible
+                if contexto_hibrido:
+                    contexto_hibrido.registrar_decision("AgenteAnalizador", f"Análisis profundo exitoso: {len(tareas)} tareas generadas", {
+                        'metodo_usado': 'analisis_profundo_especifico',
+                        'tareas_generadas': len(tareas),
+                        'actividad_personalizada': actividad_data.get('tipo') == 'actividad_personalizada'
+                    })
                 
                 # Si tenemos actividad personalizada, usarla como información base
                 if actividad_data.get('tipo') == 'actividad_personalizada':
@@ -93,7 +112,7 @@ class AgenteAnalizadorTareas(BaseAgent):
     
     def _analizar_actividad_profundo(self, descripcion_actividad: str, actividad_data: Dict) -> List[Tarea]:
         """
-        NUEVO: Análisis profundo específico de cada actividad (del MVP)
+        Análisis profundo específico de cada actividad 
         
         Args:
             descripcion_actividad: Descripción específica de la actividad
@@ -106,21 +125,37 @@ class AgenteAnalizadorTareas(BaseAgent):
 
 ACTIVIDAD A ANALIZAR: "{descripcion_actividad}"
 
-Analiza esta actividad específica en profundidad y genera tareas concretas:
+Analiza esta actividad y genera tareas concretas siguiendo EXACTAMENTE este formato:
 
-1. OBJETIVO ESPECÍFICO: ¿Qué aprenderán exactamente los estudiantes?
+TAREA 1: [nombre corto]
+DESCRIPCIÓN: [qué hacer exactamente - máximo 100 caracteres]
+HABILIDADES: [matemáticas/lengua/ciencias/creatividad/colaboración]
+COMPLEJIDAD: [1-5]
+TIPO: [individual/colaborativa/creativa]
 
-2. TAREAS ESPECÍFICAS: ¿Qué tareas concretas hay que hacer?
-   Formato: TAREA: [nombre] - DESCRIPCIÓN: [qué hacer exactamente] - HABILIDADES: [habilidades requeridas] - COMPLEJIDAD: [1-5] - TIPO: [individual/colaborativa/creativa]
+TAREA 2: [nombre corto]
+DESCRIPCIÓN: [qué hacer exactamente - máximo 100 caracteres]
+HABILIDADES: [matemáticas/lengua/ciencias/creatividad/colaboración]
+COMPLEJIDAD: [1-5]
+TIPO: [individual/colaborativa/creativa]
 
-3. MATERIALES ESPECÍFICOS: Lista de materiales concretos necesarios
+TAREA 3: [nombre corto]
+DESCRIPCIÓN: [qué hacer exactamente - máximo 100 caracteres]
+HABILIDADES: [matemáticas/lengua/ciencias/creatividad/colaboración]
+COMPLEJIDAD: [1-5]
+TIPO: [individual/colaborativa/creativa]
 
-Sé MUY ESPECÍFICO para esta actividad, no uses generalidades.
+REGLAS OBLIGATORIAS:
+- Descripciones máximo 100 caracteres
+- Habilidades solo de la lista: matemáticas, lengua, ciencias, creatividad, colaboración
+- Complejidad solo números 1-5
+- Tipo solo: individual, colaborativa, creativa
+- NO añadir texto extra fuera del formato
 
 ANÁLISIS:"""
 
         try:
-            respuesta = self.ollama.generar_respuesta(prompt_analisis, max_tokens=600)
+            respuesta = self.ollama.generar_respuesta(prompt_analisis, max_tokens=800)
             
             # DEBUG: Log de la respuesta completa del LLM
             self.logger.info(f"🧠 RESPUESTA LLM ANÁLISIS PROFUNDO:\n{respuesta}")
@@ -224,6 +259,13 @@ ANÁLISIS:"""
         # LIMPIAR FORMATO EXTRAÑO: quitar comillas y asteriscos
         desc = desc.strip('"').strip("'").strip('*').strip()
         
+        # NUEVO: Limpiar metadatos del LLM incluidos en la descripción
+        desc = self._limpiar_metadatos_llm(desc)
+        
+        # NUEVO: Limitar longitud máxima
+        if len(desc) > 150:
+            desc = desc[:147] + "..."
+        
         return desc
     
     def _generar_descripcion_contextual(self, descripcion: str) -> str:
@@ -243,29 +285,91 @@ ANÁLISIS:"""
         else:
             return f"Desarrollar actividad específica: {descripcion[:30]}..."
     
+    def _limpiar_metadatos_llm(self, desc: str) -> str:
+        """Limpia metadatos incluidos por el LLM en las descripciones"""
+        import re
+        
+        # Eliminar patrones comunes de metadatos del LLM
+        patrones_metadatos = [
+            r'\(HABILIDADES:.*?\)',
+            r'\(COMPLEJIDAD:.*?\)', 
+            r'\(TIPO:.*?\)',
+            r'- HABILIDADES:.*?-',
+            r'- COMPLEJIDAD:.*?-',
+            r'- TIPO:.*?(?=-|$)',
+            r'HABILIDADES:.*?(?=COMPLEJIDAD|TIPO|$)',
+            r'COMPLEJIDAD:.*?(?=TIPO|$)',
+            r'TIPO:.*$'
+        ]
+        
+        for patron in patrones_metadatos:
+            desc = re.sub(patron, '', desc, flags=re.IGNORECASE)
+        
+        # Limpiar espacios múltiples y puntuación residual
+        desc = re.sub(r'\s+', ' ', desc)
+        desc = desc.strip(' -.,;:')
+        
+        return desc
+    
     def _extraer_habilidades(self, linea: str) -> List[str]:
-        """Extrae habilidades de manera flexible"""
+        """Extrae habilidades con lista normalizada de competencias estándar"""
+        # COMPETENCIAS ESTÁNDAR DE 4º PRIMARIA
+        COMPETENCIAS_ESTANDAR = {
+            'matemáticas': ['calcul', 'número', 'medic', 'proporc', 'fracción', 'suma', 'resta'],
+            'lengua': ['lectura', 'escritura', 'gramática', 'comunicación', 'texto', 'palabras', 'oraciones'],
+            'ciencias': ['observ', 'experim', 'investig', 'analiz', 'ciencia', 'natural', 'célula'],
+            'creatividad': ['diseñ', 'crea', 'innov', 'art', 'imaginación', 'inventar'],
+            'colaboración': ['grupo', 'equipo', 'colabor', 'comparti', 'ayudar', 'juntos']
+        }
+        
+        # Extraer habilidades mencionadas explícitamente
         if 'HABILIDADES:' in linea.upper():
             hab_texto = linea.split('HABILIDADES:', 1)[1].split('-')[0].strip()
-            return [h.strip() for h in hab_texto.split(',')]
+            habs_extraidas = [h.strip() for h in hab_texto.split(',')]
+            # Normalizar contra competencias estándar
+            return self._normalizar_competencias(habs_extraidas, COMPETENCIAS_ESTANDAR)
         
         # Inferir habilidades del contenido
         linea_lower = linea.lower()
-        habilidades = []
+        habilidades_detectadas = []
         
-        mapeo_habilidades = {
-            'matemáticas': ['calcul', 'número', 'medic', 'proporc'],
-            'ciencias': ['observ', 'experim', 'investig', 'analiz'],
-            'creatividad': ['diseñ', 'crea', 'innov', 'art'],
-            'colaboración': ['grupo', 'equipo', 'colabor', 'comparti'],
-            'comunicación': ['present', 'explic', 'comunicar']
-        }
-        
-        for habilidad, palabras in mapeo_habilidades.items():
+        for competencia, palabras in COMPETENCIAS_ESTANDAR.items():
             if any(palabra in linea_lower for palabra in palabras):
-                habilidades.append(habilidad)
+                habilidades_detectadas.append(competencia)
         
-        return habilidades if habilidades else ['transversales']
+        # Fallback inteligente por contexto
+        if not habilidades_detectadas:
+            if any(word in linea_lower for word in ['digital', 'google', 'powerpoint', 'interactiv']):
+                habilidades_detectadas = ['creatividad']
+            elif any(word in linea_lower for word in ['tarjetas', 'palabras', 'oraciones']):
+                habilidades_detectadas = ['lengua']
+            else:
+                habilidades_detectadas = ['colaboración']  # Fallback más específico
+        
+        return habilidades_detectadas
+    
+    def _normalizar_competencias(self, competencias_raw: List[str], estandar: Dict) -> List[str]:
+        """Normaliza competencias contra lista estándar"""
+        competencias_normalizadas = []
+        
+        for comp_raw in competencias_raw:
+            comp_lower = comp_raw.lower().strip()
+            
+            # Buscar mapeo directo
+            if comp_lower in estandar.keys():
+                competencias_normalizadas.append(comp_lower)
+                continue
+            
+            # Buscar por similitud de palabras clave
+            for comp_estandar, palabras_clave in estandar.items():
+                if any(palabra in comp_lower for palabra in palabras_clave):
+                    competencias_normalizadas.append(comp_estandar)
+                    break
+            else:
+                # Si no coincide con ninguna, mapear a colaboración por defecto
+                competencias_normalizadas.append('colaboración')
+        
+        return list(set(competencias_normalizadas))  # Eliminar duplicados
     
     def _extraer_complejidad(self, linea: str, contexto: str) -> int:
         """Extrae complejidad de manera flexible"""

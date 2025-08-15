@@ -56,7 +56,7 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
             }
         }
 
-    def optimizar_asignaciones(self, tareas_input, analisis_estudiantes: Dict, perfilador=None, **kwargs) -> Dict:
+    def optimizar_asignaciones(self, tareas_input, analisis_estudiantes: Dict, perfilador=None, contexto_hibrido=None, **kwargs) -> Dict:
         """
         Optimiza las asignaciones de tareas basándose en el análisis de perfiles
         
@@ -130,6 +130,13 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
                 )
                 
                 if asignaciones_validadas:
+                    # Registrar finalización exitosa en contexto híbrido
+                    if contexto_hibrido:
+                        contexto_hibrido.registrar_decision("AgenteOptimizador", "Optimización LLM completada exitosamente", {
+                            'asignaciones_totales': len(asignaciones_validadas),
+                            'metodo_usado': 'llm_optimization'
+                        })
+                    
                     self.logger.info(f"✅ Asignaciones generadas exitosamente para {len(asignaciones_validadas)} estudiantes")
                     return asignaciones_validadas
             
@@ -144,6 +151,14 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
                 tareas_normalizadas, 
                 analisis_estudiantes
             )
+            
+            # Registrar finalización fallback en contexto híbrido
+            if contexto_hibrido:
+                contexto_hibrido.registrar_decision("AgenteOptimizador", "Optimización fallback completada", {
+                    'asignaciones_totales': len(asignaciones_fallback),
+                    'metodo_usado': 'fallback_inteligente',
+                    'motivo': 'error_llm_optimization'
+                })
             
             self.logger.info(f"✅ Asignaciones fallback generadas para {len(asignaciones_fallback)} estudiantes")
             return asignaciones_fallback
@@ -347,23 +362,7 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
     - Cada estudiante debe tener 2-4 tareas según capacidad y disponibilidad
 
     RESPONDE ÚNICAMENTE CON ESTE JSON (sin texto adicional):
-    {{
-        "asignaciones": {{
-            "001": ["tarea_01", "tarea_03"],
-            "002": ["tarea_02", "tarea_04"],
-            "003": ["tarea_05"],
-            "004": ["tarea_06", "tarea_07"],
-            "005": ["tarea_08", "tarea_01"],
-            "006": ["tarea_02"],
-            "007": ["tarea_03", "tarea_09"],
-            "008": ["tarea_04", "tarea_10"]
-        }},
-        "explicacion": {{
-            "criterio_principal": "Asignación basada en fortalezas y necesidades DUA",
-            "adaptaciones_aplicadas": ["TEA_estructura", "TDAH_dinamismo", "AC_liderazgo"],
-            "equilibrio_carga": "2-4 tareas por estudiante según capacidad"
-        }}
-    }}"""
+    {self._generar_template_json_asignaciones(tareas)}"""
         
         return prompt
 
@@ -412,6 +411,40 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
             info_tareas.append(info_tarea)
         
         return "\n".join(info_tareas)
+    
+    def _generar_template_json_asignaciones(self, tareas: List[Dict]) -> str:
+        """Genera template JSON dinámico con IDs reales de tareas"""
+        # Extraer IDs reales de las tareas
+        ids_tareas = [tarea.get('id', f'tarea_{i+1:02d}') for i, tarea in enumerate(tareas)]
+        
+        # Generar asignaciones de ejemplo distribuyendo tareas
+        estudiantes = ['001', '002', '003', '004', '005', '006', '007', '008']
+        ejemplo_asignaciones = {}
+        
+        # Distribuir tareas de manera equilibrada para el ejemplo
+        for i, estudiante in enumerate(estudiantes):
+            if i < len(ids_tareas):
+                # Asignar 1-2 tareas por estudiante en el ejemplo
+                tareas_asignadas = [ids_tareas[i]]
+                if i + len(estudiantes) < len(ids_tareas):
+                    tareas_asignadas.append(ids_tareas[i + len(estudiantes)])
+                ejemplo_asignaciones[estudiante] = tareas_asignadas
+            else:
+                # Si hay más estudiantes que tareas, asignar alguna existente
+                ejemplo_asignaciones[estudiante] = [ids_tareas[i % len(ids_tareas)]]
+        
+        # Formatear como JSON string para el prompt
+        import json
+        template = {
+            "asignaciones": ejemplo_asignaciones,
+            "explicacion": {
+                "criterio_principal": "Asignación basada en fortalezas y necesidades DUA",
+                "adaptaciones_aplicadas": ["TEA_estructura", "TDAH_dinamismo", "AC_liderazgo"],
+                "equilibrio_carga": "2-4 tareas por estudiante según capacidad"
+            }
+        }
+        
+        return json.dumps(template, indent=8, ensure_ascii=False)
 
     def _formatear_analisis_para_prompt(self, analisis: Dict) -> str:
         """Formatea análisis de estudiantes para el prompt"""
