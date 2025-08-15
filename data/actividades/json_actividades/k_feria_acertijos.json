@@ -1,0 +1,135 @@
+{
+  "id": "ACT002",
+  "titulo": "Feria Matemática: Acertijos de Piratas y Tesoros",
+  "objetivo": "Aplicar y fortalecer las habilidades matemáticas en un contexto de resolución de problemas colaborativo y significativo. Específicamente, se busca que los alumnos refuercen la comprensión y aplicación de fracciones y volumen, comprendan el concepto de área, clasifiquen figuras geométricas y apliquen el razonamiento lógico-matemático. También se busca fomentar la colaboración y la perseverancia al enfrentar desafíos.",
+  "nivel_educativo": "Primaria",
+  "duracion_minutos": "La actividad se llevará a cabo a lo largo de la semana, culminando el viernes en la Feria Matemática.",
+  "recursos": [
+    "Recortables y montables de figuras geométricas ",
+    "Dados de varias caras ",
+    "Tarjetas con nombres de objetos del aula ",
+    "Tarjetas con unidades de medida (imanix, dominó, cuerda) ",
+    "Botellas de diferentes tamaños (por ejemplo, garrafas de 6 y 8 litros y botellas de 1,5L) ",
+    "Cartelitos con el volumen en decimales y fracciones ",
+    "Tarjetas de cantidades (ej. 4,75L) ",
+    "Pizarra y tiza/rotuladores ",
+    "Paneles para cada puesto ",
+    "Trozo de frase de matemático o dato mágico/curioso "
+  ],
+  "etapas": [
+    {
+      "nombre": "Preparación Semanal (Lunes a Jueves)",
+      "descripcion": "Durante la semana, se prepararán los materiales y se realizarán dinámicas introductorias sin revelar el objetivo final de la Feria Matemática.",
+      "tareas": [
+        {
+          "nombre": "Taller de formas geométricas (Lunes)",
+          "descripcion": "Recortar y montar figuras geométricas. Encontrar objetos en el aula y crear tarjetas con su nombre y forma geométrica.",
+          "formato_asignacion": "individual y aula completa",
+          "estrategias_adaptacion": {
+            "para_todos": "Se guardan las tarjetas en botes o carpetas para su uso posterior."
+          }
+        },
+        {
+          "nombre": "Dinámica de cálculo de áreas (Martes)",
+          "descripcion": "Calcular el área de objetos utilizando materiales no convencionales (cuerdas, dominó, imanix). Se crearán tarjetas de objetos y de unidades de medida.",
+          "formato_asignacion": "aula completa",
+          "estrategias_adaptacion": {
+            "para_todos": "Jugar con diferentes formas de calcular cuánto ocupan las cosas."
+          }
+        },
+        {
+          "nombre": "Dinámica de lógica (Miércoles)",
+          "descripcion": "Resolver ejercicios de ecuaciones con símbolos en la pizarra de forma grupal y luego crear uno propio para guardarlo.",
+          "formato_asignacion": "aula completa e individual",
+          "estrategias_adaptacion": {
+            "para_todos": "Todos los ejercicios han de ser validados antes de incluirlos en el bote."
+          }
+        },
+        {
+          "nombre": "Botellas y revelación de la Feria (Jueves)",
+          "descripcion": "Contar y catalogar las botellas, escribir carteles con su volumen en decimales y fracciones. Después, se revela la actividad de la Feria Matemática y se explican los puestos brevemente.",
+          "formato_asignacion": "aula completa",
+          "estrategias_adaptacion": {
+            "para_todos": "La propia acción de verter agua y mover carteles facilita la comprensión concreta.",
+            "para_alumnos_con_intereses": "Se puede intentar que el dato final conecte con un interés general del grupo (ciencia, naturaleza, el cuerpo humano, etc.)."
+          }
+        },
+        {
+          "nombre": "Organización de la Feria (Jueves por la tarde)",
+          "descripcion": "Cada equipo creará un panel informativo para su puesto y decorará la feria. Se aseguran de que cada puesto esté preparado con los materiales y las instrucciones.",
+          "formato_asignacion": "grupos",
+          "estrategias_adaptacion": {
+            "para_alex_maria": "Son una pareja funcional y equilibrada.",
+            "para_elena_emma": "Se asigna una tarea que puede generar tensión a Elena, y Emma es un apoyo tranquilo.",
+            "para_ana_hugo": "Ambos argumentan bien, lo que favorece la lógica y la conversación.",
+            "para_sara_luis": "Sara ayudará con buena argumentación y Luis creará opciones creativas."
+          }
+        }
+      ]
+    },
+    {
+      "nombre": "Feria Matemática (Viernes)",
+      "descripcion": "El día de la feria, los equipos rotarán por los puestos resolviendo los acertijos. El docente validará cada prueba.",
+      "tareas": [
+        {
+          "nombre": "Puesto de Geometría",
+          "descripcion": "Colocar cada figura geométrica con su nombre correspondiente. Además, colocar el nombre de la forma geométrica a 5 objetos del aula.",
+          "formato_asignacion": "parejas",
+          "estrategias_adaptacion": {
+            "para_habilidades_especificas": "Fomentar la comunicación oral y la discusión de estrategias en pareja.",
+            "para_todos": "Se proporcionan múltiples medios de representación (figuras y nombres escritos)."
+          }
+        },
+        {
+          "nombre": "Puesto de Áreas",
+          "descripcion": "Encontrar la manera de describir en términos de las unidades que les hayan salido, cuánto ocupa el objeto que les ha tocado en una tarjeta.",
+          "formato_asignacion": "parejas",
+          "estrategias_adaptacion": {
+            "para_todos": "Se proporcionan numerosos materiales con los que medir áreas."
+          }
+        },
+        {
+          "nombre": "Puesto de Lógica",
+          "descripcion": "Resolver 2 o 3 de las actividades de ecuaciones con símbolos que ellos mismos diseñaron.",
+          "formato_asignacion": "parejas",
+          "estrategias_adaptacion": {
+            "para_todos": "La validación del profesor en cada reto ofrece retroalimentación instantánea, fomentando la autocorrección."
+          }
+        },
+        {
+          "nombre": "Puesto de Garrafas (Fracciones y Volumen)",
+          "descripcion": "Elegir una garrafa y usar dos botellas pequeñas con su volumen correspondiente para rellenarla.",
+          "formato_asignacion": "parejas",
+          "estrategias_adaptacion": {
+            "para_todos": "La acción de verter agua y manipular las botellas facilita la comprensión concreta."
+          }
+        }
+      ]
+    },
+    {
+      "nombre": "Cierre y Evaluación (Viernes)",
+      "descripcion": "Al finalizar las rondas, los equipos reciben un trozo de frase o un dato mágico sobre matemáticas para construir una frase o un acertijo conjunto.",
+      "tareas": [
+        {
+          "nombre": "Construcción de la frase/acertijo",
+          "descripcion": "Reunir todos los trozos de frases para construir una frase de un matemático famoso o resolver un acertijo entre todo el aula.",
+          "formato_asignacion": "aula completa",
+          "estrategias_adaptacion": {
+            "para_todos": "El trabajo en pareja y la posterior resolución conjunta fomenta la colaboración."
+          }
+        }
+      ]
+    }
+  ],
+  "alumnos_objetivo": [
+    "Elena",
+    "Luis",
+    "Ana",
+    "Alex",
+    "María",
+    "Emma",
+    "Hugo",
+    "Sara"
+  ],
+  "observaciones": "El docente realizará una observación activa y discreta, guiando a través de preguntas abiertas en lugar de dar soluciones. Se monitoreará la frustración y se recordará la importancia del esfuerzo. Se sugieren 'descansos cerebrales' si se perciben altos niveles de ansiedad, especialmente para Elena y Luis. La actividad busca desarrollar la perseverancia y la autonomía. Para Elena, se dispondrá de cascos y estrategias de regulación como plastilina. Para Luis, la actividad es motivante y estructurada. Para Ana, es un reto que incluye la aleatoriedad."
+}

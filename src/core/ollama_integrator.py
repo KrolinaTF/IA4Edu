@@ -11,18 +11,21 @@ logger = logging.getLogger("SistemaAgentesABP.OllamaIntegrator")
 class OllamaIntegrator:
     """Integrador simplificado con Ollama API"""
     
-    def __init__(self, host: str = "192.168.1.10", port: int = 11434, model: str = "llama3.2"):
+    def __init__(self, host: str = "192.168.1.10", port: int = 11434, model: str = "mistral", 
+                 embedding_model: str = "nomic-embed-text"):
         """
         Inicializa el integrador con Ollama
         
         Args:
             host: Host donde se ejecuta Ollama
             port: Puerto de Ollama
-            model: Modelo a utilizar
+            model: Modelo principal para generación de texto
+            embedding_model: Modelo específico para embeddings
         """
         self.host = host
         self.port = port
         self.model = model
+        self.embedding_model = embedding_model
         self.base_url = f"http://{host}:{port}"
         
         # Conectar directamente con Ollama API usando requests
@@ -165,3 +168,84 @@ class OllamaIntegrator:
         else:
             logger.error(f"❌ Modelo no disponible: {nuevo_modelo}")
             return False
+    
+    def generar_embedding(self, texto: str) -> list:
+        """
+        Genera embedding usando Ollama API
+        
+        Args:
+            texto: Texto para generar embedding
+            
+        Returns:
+            Lista con el vector embedding o lista vacía en caso de error
+        """
+        if not self.ollama_disponible:
+            logger.warning("⚠️ Ollama no disponible, usando embedding fallback")
+            return self._embedding_fallback(texto)
+            
+        try:
+            payload = {
+                "model": self.embedding_model,
+                "input": texto
+            }
+            
+            response = self.session.post(
+                f"{self.base_url}/api/embed",
+                json=payload,
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                embedding = result.get("embeddings", [])
+                # Si es una lista de embeddings, tomar el primero
+                if isinstance(embedding, list) and len(embedding) > 0:
+                    embedding = embedding[0] if isinstance(embedding[0], list) else embedding
+                
+                if embedding and len(embedding) > 0:
+                    logger.debug(f"✅ Embedding generado ({len(embedding)} dims)")
+                    return embedding
+                else:
+                    logger.warning("⚠️ Embedding vacío, usando fallback")
+                    return self._embedding_fallback(texto)
+                    
+            else:
+                logger.error(f"❌ Error en API embeddings: {response.status_code}")
+                return self._embedding_fallback(texto)
+                
+        except Exception as e:
+            logger.error(f"❌ Error generando embedding: {e}")
+            return self._embedding_fallback(texto)
+    
+    def _embedding_fallback(self, texto: str) -> list:
+        """
+        Genera embedding fallback determinista basado en el texto
+        
+        Args:
+            texto: Texto de entrada
+            
+        Returns:
+            Vector embedding simulado de 384 dimensiones
+        """
+        import hashlib
+        
+        # Crear hash determinista del texto
+        hash_object = hashlib.md5(texto.encode('utf-8'))
+        hash_hex = hash_object.hexdigest()
+        
+        # Generar vector determinista de 384 dimensiones
+        vector = []
+        for i in range(0, len(hash_hex), 2):
+            # Convertir cada par de caracteres hex a número normalizado
+            hex_pair = hash_hex[i:i+2]
+            num = int(hex_pair, 16) / 255.0  # Normalizar a [0,1]
+            vector.append(num - 0.5)  # Centrar en 0
+        
+        # Extender a 384 dimensiones repitiendo el patrón
+        while len(vector) < 384:
+            vector.extend(vector[:min(16, 384 - len(vector))])
+        
+        vector = vector[:384]  # Asegurar exactamente 384 dimensiones
+        
+        logger.debug(f"🔄 Embedding fallback generado para '{texto[:30]}...'")
+        return vector

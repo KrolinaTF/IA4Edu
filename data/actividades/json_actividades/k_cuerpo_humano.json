@@ -1,0 +1,103 @@
+{
+  "id": "ACT004",
+  "titulo": "Construcción del Cuerpo Humano en Grupos",
+  "objetivo": "Construir un modelo del cuerpo humano, identificando sus partes y funciones, aplicando proporciones matemáticas y fomentando el trabajo en equipo y la investigación. Se busca que los estudiantes apliquen conocimientos de ciencias naturales y matemáticas.",
+  "nivel_educativo": "4º de Primaria",
+  "duracion_minutos": "El proyecto se estructura en 5 sesiones, con una duración aproximada de una sesión por fase.",
+  "recursos": [
+    "Diagrama de proporciones del cuerpo humano",
+    "Hojas cuadriculadas",
+    "Cartón grande",
+    "Tijeras, pegamento, cinta adhesiva",
+    "Pinturas, rotuladores",
+    "Materiales reciclados (lana, telas, etc.)",
+    "Libros de consulta sobre el cuerpo humano"
+  ],
+  "etapas": [
+    {
+      "nombre": "Fase 1: Planificación y Medidas",
+      "descripcion": "Introducción al proyecto, diagramas de proporciones y cálculos de medidas en grupos.",
+      "tareas": [
+        {
+          "nombre": "Introducción y proporciones",
+          "descripcion": "El profesor presenta el proyecto y un diagrama de proporciones del cuerpo humano, explicando las medidas clave.",
+          "formato_asignacion": "aula completa"
+        },
+        {
+          "nombre": "Cálculo de medidas específicas",
+          "descripcion": "Cada grupo calcula sus medidas específicas y las dibuja en hojas cuadriculadas.",
+          "formato_asignacion": "grupos",
+          "estrategias_adaptacion": {
+            "para_maria_l": "Se le ofrecerá apoyo adicional con los cálculos de proporciones y se usarán plantillas o guías visuales para las medidas."
+          }
+        }
+      ]
+    },
+    {
+      "nombre": "Fase 2: Investigación",
+      "descripcion": "Cada grupo investiga la parte del cuerpo asignada y crea un cartel informativo.",
+      "tareas": [
+        {
+          "nombre": "Investigación y creación de carteles",
+          "descripcion": "Los grupos investigan las partes del cuerpo asignadas y crean un cartel sobre sus funciones. Por ejemplo, el 'Grupo Cabeza' investiga el cerebro y los órganos sensoriales.",
+          "formato_asignacion": "grupos",
+          "estrategias_adaptacion": {
+            "para_elena_r": "Se le proporcionarán instrucciones visuales paso a paso y se le asignarán tareas específicas y estructuradas dentro del grupo.",
+            "para_ana_v": "Se le asignará investigación más profunda sobre el sistema nervioso y se le animará a hacer conexiones con otros sistemas."
+          }
+        }
+      ]
+    },
+    {
+      "nombre": "Fase 3: Construcción",
+      "descripcion": "Los grupos dibujan, cortan y decoran la silueta del cuerpo humano en cartón, añadiendo los elementos internos.",
+      "tareas": [
+        {
+          "nombre": "Dibujar y cortar siluetas",
+          "descripcion": "Cada grupo dibuja la silueta de su parte en cartón según las medidas calculadas y la recorta.",
+          "formato_asignacion": "grupos",
+          "estrategias_adaptacion": {
+            "para_luis_t": "Se le incluirán tareas de movimiento como recortar, pegar y moverse por el aula."
+          }
+        },
+        {
+          "nombre": "Decoración y detalles internos",
+          "descripcion": "Decorar la parte exterior y añadir elementos internos (órganos, músculos) con materiales reciclados.",
+          "formato_asignacion": "grupos"
+        }
+      ]
+    },
+    {
+      "nombre": "Fase 4: Montaje y Presentación",
+      "descripcion": "Unir todas las partes del cuerpo humano y cada grupo presenta su trabajo al resto de la clase.",
+      "tareas": [
+        {
+          "nombre": "Montaje conjunto",
+          "descripcion": "Unir todas las partes del cuerpo humano con cinta o broches, verificando las proporciones.",
+          "formato_asignacion": "aula completa"
+        },
+        {
+          "nombre": "Presentación grupal",
+          "descripcion": "Cada grupo presenta su parte, explica la estructura y sus funciones usando el cartel informativo.",
+          "formato_asignacion": "grupos"
+        },
+        {
+          "nombre": "Evaluación colectiva",
+          "descripcion": "Reflexión conjunta sobre si las medidas son proporcionales, qué se ha aprendido y cómo funcionó el trabajo en equipo.",
+          "formato_asignacion": "aula completa"
+        }
+      ]
+    }
+  ],
+  "alumnos_objetivo": [
+    "Elena R.",
+    "Ana V.",
+    "Alex M.",
+    "Emma K.",
+    "Luis T.",
+    "Sara M.",
+    "María L.",
+    "Hugo P."
+  ],
+  "observaciones": "La actividad se estructura para adaptarse a los perfiles de los estudiantes. Elena (TEA) necesita estructura y se le dan instrucciones visuales. Luis (TDAH) necesita actividad física, por lo que se le asignan tareas de movimiento. Ana (altas capacidades) tiene la oportunidad de profundizar en la investigación. María (con apoyo en matemáticas) recibe asistencia con los cálculos. El proyecto está dividido en segmentos cortos para mantener la atención."
+}

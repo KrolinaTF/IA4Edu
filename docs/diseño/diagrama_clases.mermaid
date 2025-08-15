@@ -1,19 +1,4 @@
 classDiagram
-    class EstadoGlobalProyecto {
-        -metadatos
-        -perfiles_estudiantes
-        -recursos_disponibles
-        -restricciones
-        -historial_decisiones
-        -version
-        -timestamp_inicio
-        -estado_actual
-        -errores
-        -validaciones
-        +actualizar_estado()
-        +registrar_decision()
-        +validar_coherencia()
-    }
     
     class ComunicadorAgentes {
         -mensajes
@@ -25,23 +10,38 @@ classDiagram
     
     class ContextoHibrido {
         -metadatos
+        -perfiles_estudiantes
+        -recursos_disponibles
+        -restricciones
+        -historial_decisiones
+        -version
+        -timestamp_inicio
+        -estado_actual
+        -errores
+        -validaciones
         -texto_completo
         -historial
         -session_id
-        -timestamp_inicio
         -prompts_realizados
+        +actualizar_estado()
+        +registrar_decision()
+        +validar_coherencia()
         +procesar_respuesta_llm()
         +autodetectar_metadatos()
         +determinar_accion()
         +get_contexto_para_llm()
         +get_resumen_sesion()
+        +obtener_resumen()
+        +registrar_error()
+        +reiniciar()
+        +finalizar_proyecto()
     }
     
     class AgenteCoordinador {
         -ollama
         -historial_prompts
         -ejemplos_k
-        -estado_global
+        -contexto_hibrido
         -comunicador
         -agentes_especializados
         -flujo_config
@@ -57,13 +57,7 @@ classDiagram
     }
     
     class SistemaAgentesABP {
-        -ollama
-        -contexto_hibrido
         -coordinador
-        -analizador_tareas
-        -perfilador
-        -optimizador
-        -generador_recursos
         -proyecto_actual
         -validado
         +ejecutar_flujo_completo()
@@ -77,26 +71,45 @@ classDiagram
         -host
         -port
         -model
+        -embedding_model
         -base_url
         -session
         -ollama_disponible
         +generar_respuesta()
+        +generar_embedding()
         +_respuesta_fallback()
     }
     
     class AgenteAnalizadorTareas {
         -ollama
+        -embeddings_manager
         +descomponer_actividad()
+        +seleccionar_y_adaptar_actividad()
         +_parsear_tareas()
         +_extraer_campo()
         +_extraer_lista()
         +_extraer_numero()
+    }
+
+    class EmbeddingsManager {
+        -ollama
+        -actividades_path
+        -actividades
+        -embeddings_cache
+        +cargar_actividades()
+        +encontrar_actividad_similar()
+        +_generar_texto_enriquecido()
+        +_generar_embeddings_actividades()
+        +_enriquecer_prompt_usuario()
+        +_calcular_similitud_coseno()
+        +_seleccionar_por_palabras_clave()
     }
     
     class AgentePerfiladorEstudiantes {
         -ollama
         -perfiles_base
         +_cargar_perfiles_reales()
+        +obtener_perfiles_optimizados()
         +_extraer_fortalezas()
         +_extraer_necesidades_apoyo()
         +analizar_perfiles()
@@ -110,10 +123,13 @@ classDiagram
         +_parsear_asignaciones()
     }
     
-    class AgenteGeneradorRecursos {
-        -ollama
-        +generar_recursos()
-        +_parsear_recursos()
+    class ValidadorCoherencia {
+        +validar_proyecto_completo()
+        +_validar_estructura()
+        +_validar_coherencia_actividad_perfiles()
+        +_validar_asignaciones_capacidades()
+        +_validar_inclusion_dua()
+        +_validar_equilibrio_carga()
     }
     
     class Actividad {
@@ -164,26 +180,25 @@ classDiagram
         -timestamp
     }
     
-    SistemaAgentesABP --> ContextoHibrido
     SistemaAgentesABP --> AgenteCoordinador
-    SistemaAgentesABP --> AgenteAnalizadorTareas
-    SistemaAgentesABP --> AgentePerfiladorEstudiantes
-    SistemaAgentesABP --> AgenteOptimizadorAsignaciones
-    SistemaAgentesABP --> AgenteGeneradorRecursos
-    SistemaAgentesABP --> OllamaIntegrator
     
-    AgenteCoordinador --> EstadoGlobalProyecto
+    AgenteCoordinador --> ContextoHibrido
     AgenteCoordinador --> ComunicadorAgentes
+    AgenteCoordinador --> ValidadorCoherencia
     AgenteCoordinador --> OllamaIntegrator
+    AgenteCoordinador --> AgenteAnalizadorTareas
+    AgenteCoordinador --> AgentePerfiladorEstudiantes
+    AgenteCoordinador --> AgenteOptimizadorAsignaciones
     
     AgenteAnalizadorTareas --> OllamaIntegrator
+    AgenteAnalizadorTareas --> EmbeddingsManager
     AgentePerfiladorEstudiantes --> OllamaIntegrator
     AgenteOptimizadorAsignaciones --> OllamaIntegrator
-    AgenteGeneradorRecursos --> OllamaIntegrator
+    
+    EmbeddingsManager --> OllamaIntegrator
     
     ComunicadorAgentes --> AgenteAnalizadorTareas
     ComunicadorAgentes --> AgentePerfiladorEstudiantes
     ComunicadorAgentes --> AgenteOptimizadorAsignaciones
-    ComunicadorAgentes --> AgenteGeneradorRecursos
     
     ContextoHibrido --> IteracionPrompt

@@ -1,0 +1,145 @@
+{
+  "id": "ACT007",
+  "titulo": "Mural del Tiempo: Ayer, Hoy y Mañana",
+  "objetivo": "Crear un mural colectivo que represente los tres tiempos verbales (pasado, presente y futuro) de manera práctica y significativa. La actividad busca que los alumnos comprendan las diferencias entre los tiempos verbales a través de la exploración, la expresión artística y la reflexión, mientras se respetan sus ritmos de trabajo y estilos de aprendizaje. También se fomenta la competencia social, la escucha activa y la expresión de ideas y emociones.",
+  "nivel_educativo": "Primaria",
+  "duracion_minutos": "El proyecto se desarrolla a lo largo de una semana, con actividades diarias.",
+  "recursos": [
+    "Mural grande con 3 secciones: AYER, HOY, MAÑANA",
+    "Periódicos, cuentos, revistas y fotos/imágenes",
+    "Material de dibujo y escritura",
+    "Hojas con formas para escribir frases",
+    "Cascos antirruido para Elena",
+    "Carteles con indicaciones (opcional)"
+  ],
+  "etapas": [
+    {
+      "nombre": "Lunes: Día del Pasado",
+      "descripcion": "El día se enfoca en el pasado, a través de actividades que evocan recuerdos y el reconocimiento de verbos en pretérito.",
+      "tareas": [
+        {
+          "nombre": "Círculo de bienvenida",
+          "descripcion": "En un círculo, los alumnos comparten algo que hicieron el día anterior. Se introduce el mural vacío con sus tres secciones.",
+          "formato_asignacion": "aula completa",
+          "estrategias_adaptacion": {
+            "para_todos": "Se fomenta la escucha activa y los turnos de palabra."
+          }
+        },
+        {
+          "nombre": "Estaciones de trabajo",
+          "descripcion": "Se organizan estaciones de trabajo rotativas (cada 10-12 minutos) para explorar el pasado a través de diferentes actividades.",
+          "formato_asignacion": "estaciones",
+          "estrategias_adaptacion": {
+            "para_elena": "Puede coger materiales y trabajar en una sola actividad de forma individual si así lo necesita, con la opción de usar cascos antirruido para mantener un clima tranquilo.",
+            "para_luis": "Tiene opciones de movimiento y elección flexible para explorar las estaciones.",
+            "para_ana": "Puede desarrollar aspectos más profundos y detallados en su trabajo."
+          }
+        },
+        {
+          "nombre": "Actividad: 'Cazadores de Palabras del Ayer'",
+          "descripcion": "Buscar en periódicos y cuentos palabras que representen el pasado ('fue', 'hizo', 'corrieron').",
+          "formato_asignacion": "estaciones",
+          "estrategias_adaptacion": {
+            "para_luis": "Puede leer en voz alta las palabras que encuentra para canalizar su necesidad de movimiento y expresión oral."
+          }
+        },
+        {
+          "nombre": "Actividad: 'Pintores de Recuerdos'",
+          "descripcion": "Dibujar momentos especiales del pasado, como vacaciones o cumpleaños.",
+          "formato_asignacion": "estaciones"
+        },
+        {
+          "nombre": "Actividad: 'Coleccionistas de Momentos'",
+          "descripcion": "Recortar fotos o imágenes que representen 'lo que ya pasó' o 'lo que estaba pasando'.",
+          "formato_asignacion": "estaciones",
+          "estrategias_adaptacion": {
+            "para_todos": "Clasificar las imágenes por 'hace poco' o 'hace mucho'."
+          }
+        },
+        {
+          "nombre": "Cierre: Montaje del mural",
+          "descripcion": "Pegar los trabajos en la sección 'AYER' del mural y colorear los verbos para diferenciar entre pasado simple y pasado continuo. Se realiza una reflexión grupal sobre los patrones verbales encontrados.",
+          "formato_asignacion": "aula completa"
+        }
+      ]
+    },
+    {
+      "nombre": "Martes: Día del Presente",
+      "descripcion": "El día se centra en el presente, con actividades que abordan lo que 'está pasando ahora' y la diferencia entre presente y presente continuo.",
+      "tareas": [
+        {
+          "nombre": "Inicio y juego corporal",
+          "descripcion": "Juego 'Estatuas del presente', donde los alumnos congelan una acción y la describen. Se introduce la diferencia entre 'estoy' y 'estoy -endo'.",
+          "formato_asignacion": "aula completa"
+        },
+        {
+          "nombre": "Estaciones de trabajo",
+          "descripcion": "Se organizan nuevas estaciones con actividades relacionadas con el presente.",
+          "formato_asignacion": "estaciones"
+        },
+        {
+          "nombre": "Actividad: 'Reporteros del Ahora'",
+          "descripcion": "Escribir mini-noticias sobre lo que sucede en el aula o el colegio en el momento.",
+          "formato_asignacion": "estaciones"
+        },
+        {
+          "nombre": "Actividad: 'Científicos Observadores'",
+          "descripcion": "Dibujar experimentos u observaciones actuales (plantas creciendo, clima).",
+          "formato_asignacion": "estaciones"
+        },
+        {
+          "nombre": "Actividad: 'Fotógrafos de Emociones'",
+          "descripcion": "Recortar caras o gestos de revistas que muestren 'cómo nos sentimos hoy'.",
+          "formato_asignacion": "estaciones"
+        },
+        {
+          "nombre": "Cierre: Montaje y debate",
+          "descripcion": "Pegar los trabajos en la sección 'HOY' y realizar un mini-debate sobre las diferencias entre las palabras del presente y las del pasado.",
+          "formato_asignacion": "aula completa"
+        }
+      ]
+    },
+    {
+      "nombre": "Miércoles: Día del Futuro",
+      "descripcion": "El día se enfoca en el futuro, explorando lo que 'queremos que pase' a través de la visualización y la planificación.",
+      "tareas": [
+        {
+          "nombre": "Inicio: Visualización guiada",
+          "descripcion": "Ejercicio de visualización para imaginar el próximo recreo. Se fomenta la competencia imaginativa.",
+          "formato_asignacion": "aula completa"
+        },
+        {
+          "nombre": "Estaciones de trabajo",
+          "descripcion": "Se organizan nuevas estaciones con actividades relacionadas con el futuro.",
+          "formato_asignacion": "estaciones"
+        },
+        {
+          "nombre": "Actividad: 'Escritores de Sueños'",
+          "descripcion": "Escribir frases en recortes con formas ('quiero', 'haré', 'será') para crear listas de deseos y planificar metas.",
+          "formato_asignacion": "estaciones",
+          "estrategias_adaptacion": {
+            "para_hugo": "Puede planear proyectos tecnológicos en esta actividad."
+          }
+        },
+        {
+          "nombre": "Actividad: 'Constructores de Metas'",
+          "descripcion": "Dibujar o escribir sobre planes y objetivos a corto y largo plazo.",
+          "formato_asignacion": "estaciones"
+        },
+        {
+          "nombre": "Actividad: 'Poetas del Mañana'",
+          "descripcion": "Escribir un pequeño poema o historia sobre lo que harán en el futuro.",
+          "formato_asignacion": "estaciones"
+        }
+      ]
+    }
+  ],
+  "alumnos_objetivo": [
+    "Elena",
+    "Luis",
+    "Ana",
+    "Sara",
+    "Hugo"
+  ],
+  "observaciones": "El docente adapta su rol para ser un guía, gestionando el clima del aula para mantener la calma y la regulación emocional, especialmente en Elena y Luis. Se permite la autonomía y la elección flexible de las actividades para que cada alumno trabaje a su propio ritmo y profundice en los temas de su interés. El trabajo colaborativo es opcional y se fomenta cuando los alumnos lo eligen. Los apoyos visuales y los recordatorios reiterativos ayudan a todo el aula a entender las consignas."
+}

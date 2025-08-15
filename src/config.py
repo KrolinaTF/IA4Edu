@@ -17,7 +17,8 @@ EXAMPLES_DIR = os.path.join(DATA_DIR, "actividades")
 OLLAMA_CONFIG = {
     "host": "192.168.1.10",
     "port": 11434,
-    "model": "llama3.2"
+    "model": "llama3.2",
+    "embedding_model": "nomic-embed-text"
 }
 
 # Configuración de agentes

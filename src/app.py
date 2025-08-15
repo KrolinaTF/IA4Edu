@@ -21,7 +21,6 @@ from agents.coordinador import AgenteCoordinador
 from agents.analizador import AgenteAnalizadorTareas
 from agents.perfilador import AgentePerfiladorEstudiantes
 from agents.optimizador import AgenteOptimizadorAsignaciones
-from agents.generador import AgenteGeneradorRecursos
 from core.sistema import SistemaAgentesABP
 from ui.controller import UIController
 from ui.cli import CLI
@@ -35,23 +34,24 @@ def main():
         ollama_config = {
             "host": "192.168.1.10",
             "port": 11434,
-            "model": "llama3.2"
+            "model": "mistral",
+            "embedding_model": "nomic-embed-text"
         }
         ollama_integrator = OllamaIntegrator(**ollama_config)
         
-        # Inicializar agentes
+        # Inicializar agentes (Fase 2 - Solo 3 agentes esenciales)
         analizador = AgenteAnalizadorTareas(ollama_integrator)
         perfilador = AgentePerfiladorEstudiantes(ollama_integrator)
         optimizador = AgenteOptimizadorAsignaciones(ollama_integrator)
-        generador = AgenteGeneradorRecursos(ollama_integrator)
+        # generador eliminado en Fase 1
         
         # Inicializar coordinador con agentes
         coordinador = AgenteCoordinador(
             ollama_integrator=ollama_integrator,
             analizador_tareas=analizador,
             perfilador=perfilador,
-            optimizador=optimizador,
-            generador_recursos=generador
+            optimizador=optimizador
+            # generador_recursos eliminado
         )
         
         # Inicializar sistema
