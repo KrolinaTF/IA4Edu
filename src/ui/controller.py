@@ -323,9 +323,9 @@ class UIController:
             elementos.append(f"con duración de {duracion['descripcion']}")
         
         # Idea específica si la hay
-        prompt_especifico = input_basico.get('prompt_especifico', '')
-        if prompt_especifico:
-            elementos.append(f"Idea específica del profesor: {prompt_especifico}")
+        prompt_usuario = input_basico.get('prompt_usuario', '')
+        if prompt_usuario:
+            elementos.append(f"Idea específica del profesor: {prompt_usuario}")
         
         # Contexto ABP
         elementos.append("La actividad debe seguir metodología ABP (Aprendizaje Basado en Proyectos)")
@@ -353,20 +353,29 @@ class UIController:
         if estructura.get('preparacion', {}).get('incluir'):
             prep = estructura['preparacion']
             modalidad = prep.get('modalidad', 'grupos_pequeños').replace('_', ' ')
-            fases_incluidas.append(f"Preparación e Introducción (trabajo {modalidad})")
+            if prep.get('repartir_tareas'):
+                fases_incluidas.append(f"Preparación con reparto específico de tareas (trabajo {modalidad})")
+            else:
+                fases_incluidas.append(f"Preparación e Introducción (trabajo {modalidad})")
         
         # Ejecución (siempre incluida)
         ejecucion = estructura.get('ejecucion', {})
         aspectos = ejecucion.get('aspectos', ['colaboración'])
         modalidad_ej = ejecucion.get('modalidad', 'grupos_pequeños').replace('_', ' ')
         aspectos_texto = ', '.join(aspectos)
-        fases_incluidas.append(f"Ejecución principal con {aspectos_texto} (trabajo {modalidad_ej})")
+        if ejecucion.get('repartir_tareas'):
+            fases_incluidas.append(f"Ejecución principal con {aspectos_texto} y reparto específico de tareas (trabajo {modalidad_ej})")
+        else:
+            fases_incluidas.append(f"Ejecución principal con {aspectos_texto} (trabajo {modalidad_ej})")
         
         # Reflexión
         if estructura.get('reflexion', {}).get('incluir'):
             refl = estructura['reflexion']
             modalidad = refl.get('modalidad', 'grupos_pequeños').replace('_', ' ')
-            fases_incluidas.append(f"Reflexión y Evaluación (trabajo {modalidad})")
+            if refl.get('repartir_tareas'):
+                fases_incluidas.append(f"Reflexión con reparto específico de tareas (trabajo {modalidad})")
+            else:
+                fases_incluidas.append(f"Reflexión y Evaluación (trabajo {modalidad})")
         
         # Recogida
         if estructura.get('recogida', {}).get('incluir'):
@@ -395,7 +404,7 @@ class UIController:
             'tema': input_basico.get('tema', ''),
             'duracion_objetivo': input_basico.get('duracion', {}).get('valor', 45),
             'sesiones_objetivo': input_basico.get('duracion', {}).get('sesiones', 1),
-            'prompt_especifico_profesor': input_basico.get('prompt_especifico', ''),
+            'prompt_usuario': input_basico.get('prompt_usuario', ''),
             'flujo_tipo': 'progresivo'
         }
         
@@ -413,8 +422,12 @@ class UIController:
             'estructura_detallada_aplicada': True,
             'fases_configuradas': estructura,
             'preparacion_incluida': estructura.get('preparacion', {}).get('incluir', False),
+            'preparacion_reparto_tareas': estructura.get('preparacion', {}).get('repartir_tareas', False),
+            'ejecucion_reparto_tareas': estructura.get('ejecucion', {}).get('repartir_tareas', False),
             'reflexion_incluida': estructura.get('reflexion', {}).get('incluir', False),
+            'reflexion_reparto_tareas': estructura.get('reflexion', {}).get('repartir_tareas', False),
             'recogida_incluida': estructura.get('recogida', {}).get('incluir', False),
+            'recogida_reparto_tareas': estructura.get('recogida', {}).get('repartir_tareas', False),
             'aspectos_ejecucion': estructura.get('ejecucion', {}).get('aspectos', [])
         }
         
@@ -435,7 +448,7 @@ class UIController:
                 'materia_solicitada': input_basico.get('materia', ''),
                 'tema_solicitado': input_basico.get('tema', ''),
                 'duracion_solicitada': input_basico.get('duracion', {}).get('descripcion', ''),
-                'prompt_especifico': input_basico.get('prompt_especifico', '')
+                'prompt_usuario': input_basico.get('prompt_usuario', '')
             }
             
             # Actualizar duración específica

@@ -4,6 +4,8 @@ Combina auto-detección de metadatos, gestión de estado global y coordinación 
 """
 
 import re
+import json
+import os
 import logging
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass
@@ -55,8 +57,13 @@ class ContextoHibrido:
         self.timestamp_inicio = datetime.now().isoformat()
         self.prompts_realizados = 0
         
+        # === PERSISTENCIA ===
+        self.archivo_persistencia = "contexto_historico.json"
+        self.cargar_estado_previo()
+        
         logger.info(f"🔄 ContextoHibrido inicializado - Session: {self.session_id}")
         logger.info(f"🔄 Estado global inicializado")
+        logger.info(f"💾 Persistencia activada: {self.archivo_persistencia}")
     
     def _generar_session_id(self) -> str:
         """Genera un ID único para la sesión"""
@@ -182,6 +189,10 @@ class ContextoHibrido:
         # DETECCIÓN DE ESTRUCTURA TEMPORAL
         if any(palabra in texto_lower for palabra in ['preparación', 'desarrollo', 'cierre', 'fases', 'etapas']):
             metadatos['tiene_estructura_temporal'] = True
+            
+        # DETECCIÓN DE REPARTO ESPECÍFICO DE TAREAS
+        if any(palabra in texto_lower for palabra in ['reparto específico', 'repartir tareas', 'asignación individual']):
+            metadatos['requiere_reparto_especifico'] = True
         
         return metadatos
     
@@ -389,7 +400,119 @@ class ContextoHibrido:
         self.metadatos['timestamp_finalizacion'] = datetime.now().isoformat()
         self.actualizar_estado("finalizado", "ContextoHibrido")
         
+        # Guardar estado al finalizar
+        self.guardar_estado()
+        
         logger.info(f"🎯 Proyecto finalizado: {proyecto_final.get('proyecto_base', {}).get('titulo', 'Sin título')}")
+    
+    # ===== MÉTODOS DE PERSISTENCIA =====
+    
+    def guardar_estado(self) -> None:
+        """
+        Guarda el estado actual del contexto a archivo JSON
+        """
+        try:
+            estado_serializable = {
+                'session_id': self.session_id,
+                'timestamp_inicio': self.timestamp_inicio,
+                'metadatos': self.metadatos,
+                'historial_decisiones': self.historial_decisiones[-10:],  # Últimas 10
+                'estado_actual': self.estado_actual,
+                'version': self.version,
+                'prompts_realizados': self.prompts_realizados,
+                'patrones_exitosos': self._extraer_patrones_exitosos(),
+                'timestamp_guardado': datetime.now().isoformat()
+            }
+            
+            with open(self.archivo_persistencia, 'w', encoding='utf-8') as f:
+                json.dump(estado_serializable, f, indent=2, ensure_ascii=False)
+            
+            logger.info(f"💾 Estado guardado en {self.archivo_persistencia}")
+            
+        except Exception as e:
+            logger.warning(f"⚠️ Error guardando estado: {e}")
+    
+    def cargar_estado_previo(self) -> None:
+        """
+        Carga estado de sesiones anteriores si existe
+        """
+        try:
+            if os.path.exists(self.archivo_persistencia):
+                with open(self.archivo_persistencia, 'r', encoding='utf-8') as f:
+                    estado_previo = json.load(f)
+                
+                # Integrar patrones exitosos del pasado
+                patrones_previos = estado_previo.get('patrones_exitosos', [])
+                if patrones_previos:
+                    self.metadatos['patrones_historicos'] = patrones_previos
+                    logger.info(f"📚 Cargados {len(patrones_previos)} patrones históricos")
+                
+                # Cargar metadatos útiles
+                metadatos_previos = estado_previo.get('metadatos', {})
+                materias_usadas = metadatos_previos.get('materias_trabajadas', [])
+                if materias_usadas:
+                    self.metadatos['materias_historicas'] = materias_usadas
+                
+                logger.info(f"🔄 Estado histórico cargado desde {self.archivo_persistencia}")
+            
+        except Exception as e:
+            logger.warning(f"⚠️ Error cargando estado previo: {e}")
+    
+    def _extraer_patrones_exitosos(self) -> List[Dict]:
+        """
+        Extrae patrones de proyectos exitosos para reutilización futura
+        
+        Returns:
+            Lista de patrones exitosos
+        """
+        patrones = []
+        
+        # Si el proyecto actual fue exitoso, extraer patrón
+        if (self.estado_actual == "finalizado" and 
+            self.metadatos.get('proyecto_final')):
+            
+            patron = {
+                'materia': self.metadatos.get('materia', ''),
+                'tema': self.metadatos.get('tema', ''),
+                'duracion': self.metadatos.get('duracion', ''),
+                'tipo_actividad': self.metadatos.get('tipo_actividad', ''),
+                'modalidades_usadas': self.metadatos.get('modalidades_preferidas', []),
+                'timestamp': datetime.now().isoformat(),
+                'exito': True
+            }
+            
+            patrones.append(patron)
+        
+        return patrones
+    
+    def recomendar_basado_en_historial(self, nueva_solicitud: Dict) -> List[str]:
+        """
+        Genera recomendaciones basadas en patrones históricos
+        
+        Args:
+            nueva_solicitud: Nueva solicitud del usuario
+            
+        Returns:
+            Lista de recomendaciones
+        """
+        recomendaciones = []
+        
+        patrones_historicos = self.metadatos.get('patrones_historicos', [])
+        materias_historicas = self.metadatos.get('materias_historicas', [])
+        
+        # Recomendar basado en materia
+        materia_nueva = nueva_solicitud.get('materia', '')
+        if materia_nueva in materias_historicas:
+            recomendaciones.append(f"He trabajado antes con {materia_nueva}, puedo sugerir actividades similares")
+        
+        # Recomendar basado en patrones exitosos
+        for patron in patrones_historicos:
+            if patron.get('materia') == materia_nueva:
+                tipo_previo = patron.get('tipo_actividad', '')
+                if tipo_previo:
+                    recomendaciones.append(f"Actividades tipo '{tipo_previo}' funcionaron bien anteriormente")
+        
+        return recomendaciones
     
     # ===== MÉTODOS DE COMPATIBILIDAD =====
     

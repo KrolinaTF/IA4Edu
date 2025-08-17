@@ -54,7 +54,7 @@ class CLIViews:
         input_basico['tema'] = CLIViews._solicitar_tema()
         
         # PASO 3: ¿TIENES ALGO EN MENTE?
-        input_basico['prompt_especifico'] = CLIViews._solicitar_idea_previa()
+        input_basico['prompt_usuario'] = CLIViews._solicitar_idea_previa()
         
         # PASO 4: DURACIÓN
         input_basico['duracion'] = CLIViews._solicitar_duracion_sesiones()
@@ -179,9 +179,14 @@ class CLIViews:
         print("¿Cómo trabajarán en la preparación?")
         modalidad = CLIViews._seleccionar_modalidad_simple()
         
+        # Preguntar sobre reparto específico de tareas
+        reparto = input("¿Quieres repartir tareas específicas de preparación entre estudiantes? (s/n): ").strip().lower()
+        repartir_tareas = reparto.startswith('s')
+        
         return {
             'incluir': True,
             'modalidad': modalidad,
+            'repartir_tareas': repartir_tareas,
             'nombre': 'Preparación e Introducción'
         }
     
@@ -229,10 +234,15 @@ class CLIViews:
         print("¿Cómo trabajarán en la ejecución?")
         modalidad = CLIViews._seleccionar_modalidad_simple()
         
+        # Preguntar sobre reparto específico de tareas
+        reparto = input("¿Quieres repartir tareas específicas de ejecución entre estudiantes? (s/n): ").strip().lower()
+        repartir_tareas = reparto.startswith('s')
+        
         return {
             'incluir': True,
             'aspectos': aspectos_seleccionados,
             'modalidad': modalidad,
+            'repartir_tareas': repartir_tareas,
             'nombre': 'Ejecución de la Actividad'
         }
     
@@ -248,9 +258,14 @@ class CLIViews:
         print("¿Cómo trabajarán en la reflexión?")
         modalidad = CLIViews._seleccionar_modalidad_simple()
         
+        # Preguntar sobre reparto específico de tareas
+        reparto = input("¿Quieres repartir tareas específicas de reflexión entre estudiantes? (s/n): ").strip().lower()
+        repartir_tareas = reparto.startswith('s')
+        
         return {
             'incluir': True,
             'modalidad': modalidad,
+            'repartir_tareas': repartir_tareas,
             'nombre': 'Reflexión y Evaluación'
         }
     

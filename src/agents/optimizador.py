@@ -58,7 +58,9 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
 
     def optimizar_asignaciones(self, tareas_input, analisis_estudiantes: Dict, perfilador=None, contexto_hibrido=None, **kwargs) -> Dict:
         """
-        Optimiza las asignaciones de tareas basándose en el análisis de perfiles
+        Optimiza las asignaciones de tareas basándose en el análisis de perfiles. Estas tareas tienen que definirse específicamente para cada estudiante y para 
+        la actividad concreta que estamos realizando. Una vez tenemos la actividad y las tareas definidas, han de repartirse de la manera más inteligentemente posible para 
+        el aula concreta con la que se está trabajando. 
         
         Args:
             tareas_input: Puede ser List[Tarea], Dict con actividad, o datos del analizador

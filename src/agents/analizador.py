@@ -37,14 +37,17 @@ class AgenteAnalizadorTareas(BaseAgent):
         else:
             self.embeddings_manager = embeddings_manager
     
-    def extraer_tareas_hibrido(self, actividad_data: Dict, prompt_original: str = "", contexto_hibrido=None) -> List[Tarea]:
+    def extraer_tareas_hibrido(self, actividad_data: Dict, prompt_usuario: str = "", contexto_hibrido=None) -> List[Tarea]:
         """
-        NUEVA FUNCIÓN HÍBRIDA: Extrae tareas usando la mejor estrategia disponible
-        MEJORADO CON MVP: Análisis profundo específico de cada actividad
+       Extrae tareas usando la mejor estrategia disponible. Las tareas son actividades concretas que los estudiantes deben realizar 
+       (recortar una plantilla, resolver un problema que le damos concreto, etc) Debemos definir las tareas que cada alumno deberá realizar, en ocasiones
+       los estudiantes pueden hacer las mismas tareas, y en otras ocasiones pueden diferenciarse las tareas entre cada uno de los estudiantes.
+
+       Análisis profundo específico de cada actividad
         
         Args:
             actividad_data: Datos de la actividad (JSON o dict)
-            prompt_original: Prompt original del usuario (opcional)
+            prompt_usuario: Prompt del usuario (opcional)
             contexto_hibrido: Contexto híbrido compartido (opcional)
             
         Returns:
@@ -58,14 +61,14 @@ class AgenteAnalizadorTareas(BaseAgent):
             contexto_hibrido.registrar_decision("AgenteAnalizador", "Iniciando análisis de tareas con contexto híbrido", {
                 'tiene_perfiles': len(contexto_hibrido.perfiles_estudiantes) > 0,
                 'metadatos_disponibles': list(contexto_hibrido.metadatos.keys()),
-                'prompt_original': prompt_original[:50] + '...' if prompt_original else 'No disponible'
+                'prompt_usuario': prompt_usuario[:50] + '...' if prompt_usuario else 'No disponible'
             })
             self.logger.info(f"🔄 Usando contexto híbrido con {len(contexto_hibrido.perfiles_estudiantes)} perfiles")
         
         # ESTRATEGIA 1: ANÁLISIS PROFUNDO CON LLM 
-        if prompt_original:
+        if prompt_usuario:
             self.logger.info("🧠 Estrategia 1: Análisis profundo específico (MVP)")
-            tareas = self._analizar_actividad_profundo(prompt_original, actividad_data)
+            tareas = self._analizar_actividad_profundo(prompt_usuario, actividad_data)
             if tareas:
                 self._log_processing_end(f"✅ Análisis profundo: {len(tareas)} tareas específicas")
                 
@@ -94,7 +97,7 @@ class AgenteAnalizadorTareas(BaseAgent):
         
         # ESTRATEGIA 3: Usar plantilla estructurada con LLM
         self.logger.info("🎯 Estrategia 3: Plantilla estructurada con LLM")
-        tareas = self._generar_tareas_con_plantilla(actividad_data, prompt_original)
+        tareas = self._generar_tareas_con_plantilla(actividad_data, prompt_usuario)
         if tareas:
             self._log_processing_end(f"✅ Generadas {len(tareas)} tareas con plantilla")
             return tareas
@@ -124,6 +127,9 @@ class AgenteAnalizadorTareas(BaseAgent):
         prompt_analisis = f"""Eres un experto pedagogo especializado en diseño de actividades educativas para 4º de Primaria.
 
 ACTIVIDAD A ANALIZAR: "{descripcion_actividad}"
+
+Tienes que responder estas preguntas: ¿Qué tareas concretas deben realizar los estudiantes? ¿Cómo se pueden dividir las tareas para que cada estudiante tenga una actividad específica y diferenciada?
+En cada fase de la actividad, ¿qué tareas deben realizar los estudiantes? ¿Cómo se pueden adaptar las tareas a diferentes perfiles de estudiantes?
 
 Analiza esta actividad y genera tareas concretas siguiendo EXACTAMENTE este formato:
 
@@ -483,7 +489,7 @@ ANÁLISIS:"""
         
         return tareas
     
-    def _generar_tareas_con_plantilla(self, actividad: Dict, prompt_original: str) -> List[Tarea]:
+    def _generar_tareas_con_plantilla(self, actividad: Dict, prompt_usuario: str) -> List[Tarea]:
         """Genera tareas usando plantilla JSON estructurada"""
         
         plantilla = {
@@ -501,7 +507,7 @@ ANÁLISIS:"""
         }
         
         titulo = actividad.get('titulo', 'Actividad educativa')
-        objetivo = actividad.get('objetivo', prompt_original)
+        objetivo = actividad.get('objetivo', prompt_usuario)
         
         prompt = f"""Completa esta plantilla JSON con 3-5 tareas específicas para la actividad educativa.
 

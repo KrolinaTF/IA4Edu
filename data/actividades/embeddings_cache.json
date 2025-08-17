@@ -9243,42 +9243,42 @@
   },
   "metadata": {
     "k_celula": {
-      "hash": "ca0e8115c257fe1a9879a2df279f170a",
+      "hash": "31738a85e059e3f485f3580ee8710013",
       "archivo": "k_celula.json",
       "tipo": "json"
     },
     "k_cuerpo_humano": {
-      "hash": "09e86b3b84ac15d206bad0e81af1c8ce",
+      "hash": "9b0eac58c00145c68265b6ffedb081de",
       "archivo": "k_cuerpo_humano.json",
       "tipo": "json"
     },
     "k_fabrica_fracciones": {
-      "hash": "bf50bcdda8faaa56361e8eaddd3f7d94",
+      "hash": "3858ff041e6450acb54430fb18cc53b0",
       "archivo": "k_fabrica_fracciones.json",
       "tipo": "json"
     },
     "k_feria_acertijos": {
-      "hash": "9aacff838aaa3f570619a1947f426e57",
+      "hash": "c617071d3241cf0f8845c92dba4e264a",
       "archivo": "k_feria_acertijos.json",
       "tipo": "json"
     },
     "k_llevadas": {
-      "hash": "b5568381c837af80ea864d8bde3bfe6b",
+      "hash": "72518d54c854fb58ad94b266e516921e",
       "archivo": "k_llevadas.json",
       "tipo": "json"
     },
     "k_mapas_deporte": {
-      "hash": "1ee41573c6f3abb660613a12765d0d05",
+      "hash": "d9676bc59d75d3f9579332b66c9754c2",
       "archivo": "k_mapas_deporte.json",
       "tipo": "json"
     },
     "k_mural_tiempos_verbales": {
-      "hash": "6ed218c534b336c61eb48dbec7c369ed",
+      "hash": "cbb4808383c2ee3f6b0bbf6bfc0a060b",
       "archivo": "k_mural_tiempos_verbales.json",
       "tipo": "json"
     },
     "k_supermercado": {
-      "hash": "736249963a0b6e438831627a7c885d4a",
+      "hash": "263c25cabd92efa8757ebdb7c53ffa06",
       "archivo": "k_supermercado.json",
       "tipo": "json"
     },

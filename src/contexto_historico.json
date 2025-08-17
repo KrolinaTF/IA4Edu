@@ -1,0 +1,573 @@
+{
+  "session_id": "abp_hibrido_20250817_154442",
+  "timestamp_inicio": "2025-08-17T15:44:42.986333",
+  "metadatos": {
+    "materia": "matematicas",
+    "tema": "fracciones",
+    "duracion_objetivo": 90,
+    "sesiones_objetivo": 2,
+    "prompt_usuario": "Crear una actividad de Matemáticas sobre fracciones. con duración de Dos sesiones. Idea específica del profesor: quisiera hacer algo tipo concurso de fracciones, por grupos o algo asi. La actividad debe seguir metodología ABP (Aprendizaje Basado en Proyectos). Incluir adaptaciones para estudiantes con TEA, TDAH y altas capacidades.",
+    "flujo_tipo": "progresivo",
+    "duracion": "60 minutos",
+    "estudiantes_especiales": [
+      "Elena (TEA - apoyo visual)",
+      "Luis (TDAH - necesita movimiento)",
+      "Ana (Altas capacidades - desafíos extra)"
+    ],
+    "materiales": [
+      "dinero",
+      "tarjetas"
+    ],
+    "tipo_actividad": "simulación de mercado",
+    "roles_detectados": [
+      "cajero"
+    ],
+    "estructura_detallada_aplicada": true,
+    "fases_configuradas": {
+      "preparacion": {
+        "incluir": true,
+        "modalidad": "parejas",
+        "repartir_tareas": true,
+        "nombre": "Preparación e Introducción"
+      },
+      "ejecucion": {
+        "incluir": true,
+        "aspectos": [
+          "creatividad",
+          "experimentación",
+          "construcción/creación",
+          "análisis"
+        ],
+        "modalidad": "grupos_grandes",
+        "repartir_tareas": true,
+        "nombre": "Ejecución de la Actividad"
+      },
+      "reflexion": {
+        "incluir": false
+      },
+      "recogida": {
+        "incluir": true,
+        "modalidad": "grupos_grandes",
+        "repartir_tareas": true,
+        "nombre": "Recogida y Organización"
+      }
+    },
+    "preparacion_incluida": true,
+    "preparacion_reparto_tareas": true,
+    "ejecucion_reparto_tareas": true,
+    "reflexion_incluida": false,
+    "reflexion_reparto_tareas": false,
+    "recogida_incluida": true,
+    "recogida_reparto_tareas": true,
+    "aspectos_ejecucion": [
+      "creatividad",
+      "experimentación",
+      "construcción/creación",
+      "análisis"
+    ],
+    "proyecto_final": {
+      "tipo": "flujo_mvp_integrado_v3",
+      "actividad_generada": {
+        "id": "ACT_GEN_20250817_154718",
+        "titulo": "Fracciones: Actividad de matematicas",
+        "objetivo": "Desarrollar competencias matemáticas mediante desarrollar la actividad '2: título: creando un juego de fracciones descripción:'. descripción: los estudiantes crearán su propio juego de tablero con fracciones como puntuación. los jugadores tienen que resolver problemas relacionados con fracciones para avanzar en el tablero y ganar la partida.\nnivel. estructurar en las siguientes fases: preparación con reparto específico de tareas (trabajo parejas) → ejecución principal con creatividad, experimentación, construcción/creación, análisis y reparto específico de tareas (trabajo grupos grandes) → recogida con reparto específico de tareas (trabajo grupos grandes). seguir metodología abp con adaptaciones para neurotipos diversos., fomentando el trabajo colaborativo y la inclusión educativa.",
+        "nivel_educativo": "4º Primaria",
+        "duracion_minutos": "90 minutos",
+        "recursos": [
+          "dinero",
+          "tarjetas",
+          "Papel y lápices",
+          "Material manipulativo",
+          "Calculadoras"
+        ],
+        "etapas": [
+          {
+            "nombre": "Fase 1: Introducción y Preparación",
+            "descripcion": "Los estudiantes se familiarizan con los conceptos y materiales",
+            "tareas": [
+              {
+                "id": "tarea_profunda_01",
+                "nombre": "Preparación (trabajo parejas)",
+                "descripcion": "Preparación (trabajo parejas)",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Preparación (trabajo parejas). Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Preparación (trabajo parejas). Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Preparación (trabajo parejas)."
+                }
+              },
+              {
+                "id": "tarea_profunda_02",
+                "nombre": "Diseñe un tablero de juego con fracciones como pun",
+                "descripcion": "Diseñe un tablero de juego con fracciones como puntuación",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Diseñe un tablero de juego con. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Diseñe un tablero de juego con. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Diseñe un tablero de juego con."
+                }
+              }
+            ]
+          },
+          {
+            "nombre": "Fase 2: Desarrollo y Práctica",
+            "descripcion": "Los estudiantes practican y desarrollan las competencias principales",
+            "tareas": [
+              {
+                "id": "tarea_profunda_03",
+                "nombre": "Preparación (trabajo parejas)",
+                "descripcion": "Preparación (trabajo parejas)",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Preparación (trabajo parejas). Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Preparación (trabajo parejas). Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Preparación (trabajo parejas)."
+                }
+              },
+              {
+                "id": "tarea_profunda_04",
+                "nombre": "Cree problemas relacionados con fracciones",
+                "descripcion": "Cree problemas relacionados con fracciones",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Cree problemas relacionados co. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Cree problemas relacionados co. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Cree problemas relacionados co."
+                }
+              }
+            ]
+          },
+          {
+            "nombre": "Fase 3: Aplicación y Evaluación",
+            "descripcion": "Los estudiantes aplican lo aprendido y evalúan sus resultados",
+            "tareas": [
+              {
+                "id": "tarea_profunda_05",
+                "nombre": "Preparación (trabajo parejas)",
+                "descripcion": "Preparación (trabajo parejas)",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Preparación (trabajo parejas). Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Preparación (trabajo parejas). Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Preparación (trabajo parejas)."
+                }
+              },
+              {
+                "id": "tarea_profunda_06",
+                "nombre": "Determine las reglas del juego",
+                "descripcion": "Determine las reglas del juego",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Determine las reglas del juego. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Determine las reglas del juego. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Determine las reglas del juego."
+                }
+              }
+            ]
+          }
+        ],
+        "tipo_generacion": "mvp_integrado"
+      },
+      "asignaciones_neurotipos": {
+        "001": [
+          "tarea_profunda_01",
+          "tarea_profunda_05"
+        ],
+        "002": [
+          "tarea_profunda_02",
+          "tarea_profunda_06"
+        ],
+        "003": [
+          "tarea_profunda_03",
+          "tarea_profunda_04"
+        ],
+        "004": [
+          "tarea_profunda_04"
+        ],
+        "005": [
+          "tarea_profunda_01",
+          "tarea_profunda_05"
+        ],
+        "006": [
+          "tarea_profunda_06"
+        ],
+        "007": [
+          "tarea_profunda_01"
+        ],
+        "008": [
+          "tarea_profunda_02"
+        ]
+      },
+      "perfiles_estudiantes": {
+        "estudiantes": {
+          "001": {
+            "id": "001",
+            "nombre": "Alex M.",
+            "fortalezas": [
+              "matemáticas_números",
+              "gramática",
+              "comunicación_escrita",
+              "curiosidad_científica",
+              "comprensión_lectora",
+              "pensamiento_analítico"
+            ],
+            "necesidades_apoyo": [
+              "apoyos_visuales"
+            ],
+            "disponibilidad": 95,
+            "historial_roles": [
+              "diseñador_visual",
+              "investigador_científico",
+              "analista_información"
+            ],
+            "adaptaciones": []
+          },
+          "002": {
+            "id": "002",
+            "nombre": "María L.",
+            "fortalezas": [
+              "matemáticas_números",
+              "operaciones_matemáticas",
+              "gramática",
+              "comunicación_escrita",
+              "investigación",
+              "comprensión_lectora",
+              "pensamiento_analítico",
+              "perseverancia"
+            ],
+            "necesidades_apoyo": [
+              "explicaciones_verbales"
+            ],
+            "disponibilidad": 100,
+            "historial_roles": [
+              "comunicador",
+              "analista_información"
+            ],
+            "adaptaciones": []
+          },
+          "003": {
+            "id": "003",
+            "nombre": "Elena R.",
+            "fortalezas": [
+              "matemáticas_números",
+              "operaciones_matemáticas",
+              "investigación",
+              "curiosidad_científica",
+              "pensamiento_analítico"
+            ],
+            "necesidades_apoyo": [
+              "supervisión_continua",
+              "apoyo_emocional",
+              "tareas_graduadas",
+              "apoyos_visuales",
+              "rutinas_estructuradas",
+              "ambiente_predecible"
+            ],
+            "disponibilidad": 60,
+            "historial_roles": [
+              "diseñador_visual",
+              "investigador_científico"
+            ],
+            "adaptaciones": [
+              "apoyo visual",
+              "estructuración",
+              "predictibilidad"
+            ]
+          },
+          "004": {
+            "id": "004",
+            "nombre": "Luis T.",
+            "fortalezas": [
+              "experimentación"
+            ],
+            "necesidades_apoyo": [
+              "supervisión_continua",
+              "apoyo_emocional",
+              "tareas_graduadas",
+              "instrucciones_claras",
+              "descansos_frecuentes"
+            ],
+            "disponibilidad": 60,
+            "historial_roles": [
+              "experimentador"
+            ],
+            "adaptaciones": [
+              "movimiento",
+              "fraccionamiento tareas",
+              "descansos"
+            ]
+          },
+          "005": {
+            "id": "005",
+            "nombre": "Ana V.",
+            "fortalezas": [
+              "matemáticas_números",
+              "operaciones_matemáticas",
+              "gramática",
+              "comunicación_escrita",
+              "investigación",
+              "comprensión_lectora",
+              "pensamiento_analítico"
+            ],
+            "necesidades_apoyo": [
+              "check_ins_regulares",
+              "explicaciones_verbales",
+              "retos_adicionales",
+              "proyectos_autonomos"
+            ],
+            "disponibilidad": 85,
+            "historial_roles": [
+              "comunicador",
+              "analista_información",
+              "mentor_académico"
+            ],
+            "adaptaciones": [
+              "enriquecimiento",
+              "desafíos",
+              "autonomía"
+            ]
+          },
+          "006": {
+            "id": "006",
+            "nombre": "Sara M.",
+            "fortalezas": [
+              "matemáticas_números",
+              "gramática",
+              "comunicación_escrita",
+              "colaboración",
+              "perseverancia"
+            ],
+            "necesidades_apoyo": [
+              "explicaciones_verbales"
+            ],
+            "disponibilidad": 100,
+            "historial_roles": [
+              "comunicador"
+            ],
+            "adaptaciones": []
+          },
+          "007": {
+            "id": "007",
+            "nombre": "Emma K.",
+            "fortalezas": [
+              "matemáticas_números",
+              "operaciones_matemáticas",
+              "gramática",
+              "comunicación_escrita",
+              "investigación",
+              "comprensión_lectora",
+              "pensamiento_analítico",
+              "perseverancia"
+            ],
+            "necesidades_apoyo": [
+              "apoyos_visuales"
+            ],
+            "disponibilidad": 100,
+            "historial_roles": [
+              "diseñador_visual",
+              "analista_información"
+            ],
+            "adaptaciones": []
+          },
+          "008": {
+            "id": "008",
+            "nombre": "Hugo P.",
+            "fortalezas": [
+              "matemáticas_números",
+              "gramática",
+              "investigación",
+              "curiosidad_científica",
+              "experimentación"
+            ],
+            "necesidades_apoyo": [
+              "check_ins_regulares",
+              "apoyos_visuales"
+            ],
+            "disponibilidad": 85,
+            "historial_roles": [
+              "diseñador_visual",
+              "investigador_científico",
+              "experimentador"
+            ],
+            "adaptaciones": []
+          }
+        },
+        "estadisticas": {
+          "total_estudiantes": 8,
+          "con_diagnostico": 3,
+          "sin_diagnostico": 5,
+          "estilos_aprendizaje": {}
+        },
+        "metadatos": {
+          "agente": "AgentePerfiladorEstudiantes",
+          "version": "1.0",
+          "timestamp": "2025-08-17T15:47:31.749204"
+        }
+      },
+      "metadatos": {
+        "version": "3.0.0-estructura-unificada",
+        "formato_coherente": "k_actividades_json",
+        "mejoras_aplicadas": [
+          "analisis_profundo_especifico",
+          "criterios_neurotipos_tea_tdah_ac",
+          "estructura_coherente_k_json",
+          "organizacion_etapas_logicas"
+        ],
+        "agentes_utilizados": [
+          "analizador_mejorado",
+          "perfilador",
+          "optimizador_neurotipos"
+        ]
+      }
+    },
+    "timestamp_finalizacion": "2025-08-17T15:47:41.977705"
+  },
+  "historial_decisiones": [
+    {
+      "timestamp": "2025-08-17T15:47:18.381352",
+      "agente": "AgenteAnalizador",
+      "decision": "Iniciando análisis de tareas con contexto híbrido",
+      "datos": {
+        "tiene_perfiles": true,
+        "metadatos_disponibles": [
+          "materia",
+          "tema",
+          "duracion_objetivo",
+          "sesiones_objetivo",
+          "prompt_usuario",
+          "flujo_tipo",
+          "duracion",
+          "estudiantes_especiales",
+          "materiales",
+          "tipo_actividad",
+          "roles_detectados",
+          "estructura_detallada_aplicada",
+          "fases_configuradas",
+          "preparacion_incluida",
+          "preparacion_reparto_tareas",
+          "ejecucion_reparto_tareas",
+          "reflexion_incluida",
+          "reflexion_reparto_tareas",
+          "recogida_incluida",
+          "recogida_reparto_tareas",
+          "aspectos_ejecucion"
+        ],
+        "prompt_usuario": "Desarrollar la actividad '2: Título: Creando Un Ju..."
+      }
+    },
+    {
+      "timestamp": "2025-08-17T15:47:31.746205",
+      "agente": "AgenteAnalizador",
+      "decision": "Análisis profundo exitoso: 6 tareas generadas",
+      "datos": {
+        "metodo_usado": "analisis_profundo_especifico",
+        "tareas_generadas": 6,
+        "actividad_personalizada": false
+      }
+    },
+    {
+      "timestamp": "2025-08-17T15:47:31.747206",
+      "agente": "AgenteAnalizador",
+      "decision": "Analisis completado: 6 tareas identificadas",
+      "datos": {
+        "tareas_identificadas": 6,
+        "tipo_analisis": "analisis_profundo"
+      }
+    },
+    {
+      "timestamp": "2025-08-17T15:47:31.748203",
+      "agente": "AgentePerfilador",
+      "decision": "Iniciando análisis de perfiles con contexto híbrido",
+      "datos": {
+        "perfiles_disponibles": 8,
+        "metadatos_contexto": [
+          "materia",
+          "tema",
+          "duracion_objetivo",
+          "sesiones_objetivo",
+          "prompt_usuario",
+          "flujo_tipo",
+          "duracion",
+          "estudiantes_especiales",
+          "materiales",
+          "tipo_actividad",
+          "roles_detectados",
+          "estructura_detallada_aplicada",
+          "fases_configuradas",
+          "preparacion_incluida",
+          "preparacion_reparto_tareas",
+          "ejecucion_reparto_tareas",
+          "reflexion_incluida",
+          "reflexion_reparto_tareas",
+          "recogida_incluida",
+          "recogida_reparto_tareas",
+          "aspectos_ejecucion"
+        ]
+      }
+    },
+    {
+      "timestamp": "2025-08-17T15:47:31.750202",
+      "agente": "AgentePerfilador",
+      "decision": "Análisis de perfiles completado",
+      "datos": {
+        "perfiles_analizados": 8,
+        "resultado_keys": [
+          "estudiantes",
+          "estadisticas",
+          "metadatos"
+        ]
+      }
+    },
+    {
+      "timestamp": "2025-08-17T15:47:31.750202",
+      "agente": "AgentePerfilador",
+      "decision": "Perfiles procesados: 8 estudiantes",
+      "datos": {
+        "estudiantes_procesados": 8
+      }
+    },
+    {
+      "timestamp": "2025-08-17T15:47:41.975695",
+      "agente": "AgenteOptimizador",
+      "decision": "Optimización LLM completada exitosamente",
+      "datos": {
+        "asignaciones_totales": 8,
+        "metodo_usado": "llm_optimization"
+      }
+    },
+    {
+      "timestamp": "2025-08-17T15:47:41.976696",
+      "agente": "AgenteOptimizador",
+      "decision": "Asignaciones neurotípicas completadas",
+      "datos": {
+        "total_asignaciones": 0,
+        "criterios_aplicados": []
+      }
+    },
+    {
+      "timestamp": "2025-08-17T15:47:41.977705",
+      "agente": "AgenteCoordinador",
+      "estado": "flujo_mvp_completado"
+    },
+    {
+      "timestamp": "2025-08-17T15:47:41.977705",
+      "agente": "ContextoHibrido",
+      "estado": "finalizado"
+    }
+  ],
+  "estado_actual": "finalizado",
+  "version": 1,
+  "prompts_realizados": 1,
+  "patrones_exitosos": [
+    {
+      "materia": "matematicas",
+      "tema": "fracciones",
+      "duracion": "60 minutos",
+      "tipo_actividad": "simulación de mercado",
+      "modalidades_usadas": [],
+      "timestamp": "2025-08-17T15:47:41.977705",
+      "exito": true
+    }
+  ],
+  "timestamp_guardado": "2025-08-17T15:47:41.977705"
+}

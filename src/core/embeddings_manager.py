@@ -29,6 +29,7 @@ class EmbeddingsManager:
         self.embeddings_cache = {}
         self.textos_enriquecidos = {}
         self.cache_file = os.path.join(actividades_base_path, "embeddings_cache.json")
+        self.cache_persistente = True  # Activar cache persistente por defecto
         
         # Cargar actividades JSON y TXT
         self._cargar_actividades_json_y_txt()
@@ -333,6 +334,81 @@ class EmbeddingsManager:
         logger.info(f"✅ Embeddings: {embeddings_reutilizados} reutilizados, {embeddings_generados} generados")
     
     
+    def crear_embedding_cached(self, texto: str) -> np.ndarray:
+        """
+        Crea embedding con cache persistente
+        
+        Args:
+            texto: Texto para generar embedding
+            
+        Returns:
+            Array numpy con embedding
+        """
+        # Calcular hash del texto
+        hash_texto = hashlib.md5(texto.encode('utf-8')).hexdigest()
+        
+        # Buscar en cache de memoria primero
+        if hash_texto in self.embeddings_cache:
+            logger.debug(f"📊 Cache hit (memoria) para texto (hash: {hash_texto[:8]})")
+            return self.embeddings_cache[hash_texto]
+        
+        # Buscar en cache persistente
+        cache_data = self._cargar_cache_embeddings()
+        if hash_texto in cache_data.get("embeddings", {}):
+            logger.debug(f"📊 Cache hit (persistente) para texto (hash: {hash_texto[:8]})")
+            embedding_lista = cache_data["embeddings"][hash_texto]
+            embedding_array = np.array(embedding_lista)
+            # Cargar en cache de memoria para próxima vez
+            self.embeddings_cache[hash_texto] = embedding_array
+            return embedding_array
+        
+        # Generar nuevo embedding
+        logger.debug(f"🔄 Generando nuevo embedding para texto (hash: {hash_texto[:8]})")
+        embedding = self.ollama.generar_embedding(texto)
+        
+        if embedding and len(embedding) > 0:
+            embedding_array = np.array(embedding)
+            # Guardar en cache de memoria
+            self.embeddings_cache[hash_texto] = embedding_array
+            
+            # Guardar en cache persistente si está habilitado
+            if self.cache_persistente:
+                self._actualizar_cache_persistente(hash_texto, embedding)
+            
+            return embedding_array
+        else:
+            # Fallback
+            logger.warning(f"⚠️ Embedding vacío, usando fallback")
+            embedding_fallback = np.random.normal(0, 1, 384)
+            embedding_fallback = embedding_fallback / np.linalg.norm(embedding_fallback)
+            self.embeddings_cache[hash_texto] = embedding_fallback
+            return embedding_fallback
+    
+    def _actualizar_cache_persistente(self, hash_texto: str, embedding: List[float]) -> None:
+        """
+        Actualiza el cache persistente con un nuevo embedding
+        
+        Args:
+            hash_texto: Hash del texto
+            embedding: Embedding generado
+        """
+        try:
+            # Cargar cache actual
+            cache_data = self._cargar_cache_embeddings()
+            
+            # Añadir nuevo embedding
+            cache_data["embeddings"][hash_texto] = embedding
+            cache_data["metadata"][hash_texto] = {
+                'timestamp': str(hash(hash_texto))[:8],
+                'tipo': 'texto_usuario'
+            }
+            
+            # Guardar cache actualizado
+            self._guardar_cache_embeddings(cache_data)
+            
+        except Exception as e:
+            logger.warning(f"⚠️ Error actualizando cache persistente: {e}")
+    
     def encontrar_actividad_similar(self, prompt: str, top_k: int = 3) -> List[Tuple[str, float, dict]]:
         """
         Encuentra las actividades más similares al prompt usando embeddings mejorados
@@ -352,14 +428,14 @@ class EmbeddingsManager:
             # Enriquecer el prompt del usuario para mejor matching
             prompt_enriquecido = self._enriquecer_prompt_usuario(prompt)
             
-            # Generar embedding del prompt enriquecido
-            prompt_embedding = self.ollama.generar_embedding(prompt_enriquecido)
+            # Generar embedding del prompt enriquecido usando cache
+            prompt_embedding = self.crear_embedding_cached(prompt_enriquecido)
             
-            if not prompt_embedding or len(prompt_embedding) == 0:
+            if prompt_embedding is None or len(prompt_embedding) == 0:
                 logger.warning("⚠️ No se pudo generar embedding del prompt, usando selección por palabras clave")
                 return self._seleccion_por_palabras_clave(prompt, top_k)
             
-            prompt_embedding = np.array(prompt_embedding)
+            # prompt_embedding ya es np.array desde crear_embedding_cached
             similitudes = []
             
             # Calcular similitudes coseno con ponderación inteligente

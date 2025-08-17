@@ -155,12 +155,12 @@ class AgenteCoordinador:
             
         logger.info(f"✅ Creado archivo de ejemplo k_ mínimo: {ruta_archivo}")
     
-    def generar_ideas_actividades_hibrido(self, prompt_profesor: str, contexto_hibrido: ContextoHibrido) -> List[Dict]:
+    def generar_ideas_actividades_hibrido(self, prompt_usuario: str, contexto_hibrido: ContextoHibrido) -> List[Dict]:
         """
         Genera 3 ideas de actividades usando contexto híbrido auto-detectado
         
         Args:
-            prompt_profesor: Prompt del profesor
+            prompt_usuario: Prompt del usuario
             contexto_hibrido: Contexto híbrido
             
         Returns:
@@ -168,14 +168,14 @@ class AgenteCoordinador:
         """
         
         # Crear prompt enriquecido con contexto híbrido
-        prompt_completo = self._crear_prompt_hibrido(prompt_profesor, contexto_hibrido)
+        prompt_completo = self._crear_prompt_hibrido(prompt_usuario, contexto_hibrido)
         
         # Generar ideas
         respuesta = self.ollama.generar_respuesta(prompt_completo, max_tokens=600)
         ideas = self._parsear_ideas(respuesta)
         
         # PROCESAR RESPUESTA CON CONTEXTO HÍBRIDO
-        contexto_hibrido.procesar_respuesta_llm(respuesta, prompt_profesor)
+        contexto_hibrido.procesar_respuesta_llm(respuesta, prompt_usuario)
         
         logger.info(f"📊 Contexto actualizado: {list(contexto_hibrido.metadatos.keys())}")
         
@@ -237,7 +237,7 @@ RESPONDE SOLO CON LAS IDEAS MATIZADAS, SIN EXPLICACIONES ADICIONALES."""
         
         return ideas_matizadas if ideas_matizadas else [idea_base]  # Fallback a idea original
     
-    def _crear_prompt_hibrido(self, prompt_profesor: str, contexto_hibrido: ContextoHibrido) -> str:
+    def _crear_prompt_hibrido(self, prompt_usuario: str, contexto_hibrido: ContextoHibrido) -> str:
         """
         Crea prompt usando contexto híbrido auto-detectado
         
@@ -263,7 +263,7 @@ Eres un experto en diseño de actividades educativas para 4º de Primaria.
 {contexto_str}
 
 === NUEVA PETICIÓN DEL USUARIO ===
-{prompt_profesor}
+{prompt_usuario}
 
 === ESTUDIANTES ESPECÍFICOS (AULA_A_4PRIM) ===
 - 001 ALEX M.: reflexivo, visual, CI 102
@@ -591,7 +591,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         logger.info("📋 Recogiendo información inicial del proyecto")
         
         # Actualizar contexto hibrido con información inicial
-        self.contexto_hibrido.metadatos['prompt_original'] = prompt_profesor
+        self.contexto_hibrido.metadatos['prompt_usuario'] = prompt_profesor
         if perfiles_estudiantes:
             self.contexto_hibrido.perfiles_estudiantes = perfiles_estudiantes
         if recursos_disponibles:
@@ -1034,7 +1034,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
                 'actividad': actividad_seleccionada,
                 'perfiles': perfiles_estructurados,
                 'contexto_global': {
-                    'prompt_original': prompt_usuario,
+                    'prompt_usuario': prompt_usuario,
                     'timestamp': inicio_tiempo.isoformat(),
                     'metodo_seleccion': resultado_seleccion.get('estrategia', 'unknown')
                 }
@@ -1069,7 +1069,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
                     'timestamp_inicio': inicio_tiempo.isoformat(),
                     'timestamp_fin': fin_tiempo.isoformat(),
                     'duracion_segundos': duracion,
-                    'prompt_original': prompt_usuario,
+                    'prompt_usuario': prompt_usuario,
                     'estudiantes_procesados': len(perfiles_estructurados['estudiantes']),
                     'flujo': 'optimizado_fase2'
                 },
@@ -1106,7 +1106,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
                 'metadatos': {
                     'version': '2.0.0-fase2',
                     'estado': 'error',
-                    'prompt_original': prompt_usuario
+                    'prompt_usuario': prompt_usuario
                 }
             }
             
@@ -1513,7 +1513,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         # PASO 2: Usar analizador mejorado con análisis profundo + contexto híbrido
         tareas_profundas = self.analizador_tareas.extraer_tareas_hibrido(
             actividad_data=actividad_base_estructurada, 
-            prompt_original=descripcion_actividad,  # Esto activa el análisis profundo
+            prompt_usuario=descripcion_actividad,  # Esto activa el análisis profundo
             contexto_hibrido=self.contexto_hibrido  # 🆕 Pasar contexto híbrido
         )
         logger.info(f"✅ PASO 2: Análisis profundo completado - {len(tareas_profundas)} tareas específicas")
