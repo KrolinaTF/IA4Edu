@@ -33,48 +33,19 @@ class SistemaAgentesABP:
         
         logger.info("🚀 Sistema de Agentes ABP inicializado")
     
-    def generar_ideas(self, prompt_profesor: str) -> Dict:
-        """
-        Genera ideas a partir del prompt del profesor
-        
-        Args:
-            prompt_profesor: Prompt inicial del profesor
-            
-        Returns:
-            Diccionario con información inicial e ideas generadas
-        """
-        logger.info(f"💡 Generando ideas para prompt: {prompt_profesor[:50]}...")
-        
-        # Recolectar información inicial y generar ideas
-        info_inicial = self.coordinador.recoger_informacion_inicial(
-            prompt_profesor=prompt_profesor
-        )
-        
-        return info_inicial
     
     def ejecutar_flujo(self, actividad_seleccionada: Dict, info_adicional: str = "") -> Dict:
         """
-        Ejecuta el flujo completo de procesamiento para una actividad seleccionada
-        
-        Args:
-            actividad_seleccionada: Actividad seleccionada para procesar
-            info_adicional: Información adicional opcional
-            
-        Returns:
-            Proyecto final generado
+        Ejecuta el flujo completo usando el coordinador simplificado
         """
-        logger.info(f"🚀 Ejecutando flujo para: {actividad_seleccionada.get('titulo', 'Sin título')}")
+        # Extraer descripción de la actividad
+        descripcion = actividad_seleccionada.get('descripcion', 
+                    actividad_seleccionada.get('titulo', 'Actividad educativa'))
         
-        # Ejecutar flujo MVP mejorado (en lugar del legacy orquestado)
-        descripcion_actividad = actividad_seleccionada.get('descripcion', actividad_seleccionada.get('titulo', ''))
-        if info_adicional:
-            descripcion_actividad += f" {info_adicional}"
-            
-        proyecto_final = self.coordinador.ejecutar_flujo_mejorado_mvp(descripcion_actividad)
+        # Usar el nuevo flujo único del coordinador
+        proyecto_final = self.coordinador.ejecutar_flujo_completo(descripcion, info_adicional)
         
-        # Guardar proyecto actual para referencia futura
         self.proyecto_actual = proyecto_final
-        
         return proyecto_final
     
     def validar_proyecto(self, validado: bool = True) -> None:
@@ -219,115 +190,3 @@ class SistemaAgentesABP:
             actividad_limpia['observaciones'] = ' '.join(observaciones)
         
         return actividad_limpia
-    
-    def obtener_estadisticas(self) -> Dict:
-        """
-        Obtiene estadísticas del proyecto actual
-        
-        Returns:
-            Diccionario con estadísticas
-        """
-        if not self.proyecto_actual:
-            return {
-                'hay_proyecto': False,
-                'mensaje': 'No hay proyecto actual',
-                'timestamp': datetime.now().isoformat()
-            }
-        
-        # Extrae estadísticas del proyecto actual de forma segura
-        validacion = self.proyecto_actual.get('validacion', {})
-        if not isinstance(validacion, dict):
-            validacion = {}
-            
-        estadisticas = validacion.get('estadisticas', {})
-        if not isinstance(estadisticas, dict):
-            estadisticas = {}
-        
-        # Añadir información adicional
-        estadisticas.update({
-            'hay_proyecto': True,
-            'proyecto_validado': self.validado,
-            'timestamp_consulta': datetime.now().isoformat()
-        })
-        
-        return estadisticas
-    
-    def ejecutar_flujo_mvp(self, descripcion_actividad: str) -> Dict:
-        """
-        Ejecuta el flujo MVP mejorado específicamente
-        
-        Args:
-            descripcion_actividad: Descripción completa de la actividad
-            
-        Returns:
-            Proyecto final generado
-        """
-        logger.info(f"🚀 Ejecutando flujo MVP para actividad")
-        
-        # Ejecutar flujo MVP mejorado
-        proyecto_final = self.coordinador.ejecutar_flujo_mejorado_mvp(descripcion_actividad)
-        
-        # Guardar proyecto actual para referencia futura
-        self.proyecto_actual = proyecto_final
-        
-        return proyecto_final
-    
-    def matizar_actividad(self, idea_base: Dict, matizaciones: str) -> List[Dict]:
-        """
-        Matiza una idea específica con refinamientos del usuario
-        
-        Args:
-            idea_base: Idea base a matizar
-            matizaciones: Matizaciones solicitadas por el usuario
-            
-        Returns:
-            Lista de ideas matizadas
-        """
-        logger.info(f"💡 Matizando idea: {idea_base.get('titulo', 'Sin título')}")
-        
-        # Usar el contexto híbrido del coordinador
-        contexto_hibrido = self.coordinador.contexto_hibrido
-        
-        # Ejecutar matización específica
-        return self.coordinador.matizar_idea_especifica(idea_base, matizaciones, contexto_hibrido)
-    
-    def generar_nuevas_ideas(self, prompt: str) -> List[Dict]:
-        """
-        Genera nuevas ideas con contexto híbrido
-        
-        Args:
-            prompt: Prompt para generar nuevas ideas
-            
-        Returns:
-            Lista de nuevas ideas generadas
-        """
-        logger.info(f"💡 Generando nuevas ideas con contexto híbrido")
-        
-        # Obtener contexto híbrido del coordinador
-        contexto_hibrido = self.coordinador.contexto_hibrido
-        
-        # Generar ideas con contexto
-        return self.coordinador.generar_ideas_actividades_hibrido(prompt, contexto_hibrido)
-    
-    def registrar_detalles_adicionales(self, actividad: Dict, detalles: str):
-        """
-        Registra detalles adicionales en el historial del coordinador
-        
-        Args:
-            actividad: Actividad seleccionada
-            detalles: Detalles adicionales
-        """
-        if not detalles.strip():
-            return
-            
-        logger.info(f"📝 Registrando detalles adicionales para: {actividad.get('titulo', 'Sin título')}")
-        
-        # Registrar en el historial de prompts del coordinador
-        from datetime import datetime
-        self.coordinador.historial_prompts.append({
-            "tipo": "detalles_actividad_seleccionada",
-            "actividad_id": actividad.get('id'),
-            "actividad_titulo": actividad.get('titulo'),
-            "detalles_adicionales": detalles,
-            "timestamp": datetime.now().isoformat()
-        })

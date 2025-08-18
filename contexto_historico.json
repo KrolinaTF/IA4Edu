@@ -1,0 +1,554 @@
+{
+  "session_id": "abp_hibrido_20250818_100916",
+  "timestamp_inicio": "2025-08-18T10:09:16.060479",
+  "metadatos": {
+    "materia": "ciencias",
+    "tema": "sistema solar",
+    "duracion_objetivo": 45,
+    "sesiones_objetivo": 1,
+    "prompt_usuario": "Crear una actividad de Ciencias Naturales sobre sistema solar. con duración de Una sesión. Idea específica del profesor: quisiera que me ayudes a crear un juego para el patio para que se aprendan los nombres de los planetas y comprendan los movimientos de rotacion y traslacion. La actividad debe seguir metodología ABP (Aprendizaje Basado en Proyectos). Incluir adaptaciones para estudiantes con TEA, TDAH y altas capacidades.",
+    "flujo_tipo": "progresivo",
+    "estudiantes_especiales": [
+      "Elena (TEA - apoyo visual)",
+      "Luis (TDAH - necesita movimiento)",
+      "Ana (Altas capacidades - desafíos extra)"
+    ],
+    "materiales": [
+      "tarjetas"
+    ],
+    "tipo_actividad": "laboratorio",
+    "estructura_detallada_aplicada": true,
+    "fases_configuradas": {
+      "preparacion": {
+        "incluir": false
+      },
+      "ejecucion": {
+        "incluir": true,
+        "aspectos": [
+          "colaboración"
+        ],
+        "modalidad": "clase_completa",
+        "repartir_tareas": true,
+        "nombre": "Ejecución de la Actividad"
+      },
+      "reflexion": {
+        "incluir": false
+      },
+      "recogida": {
+        "incluir": false
+      }
+    },
+    "preparacion_incluida": false,
+    "preparacion_reparto_tareas": false,
+    "ejecucion_reparto_tareas": true,
+    "reflexion_incluida": false,
+    "reflexion_reparto_tareas": false,
+    "recogida_incluida": false,
+    "recogida_reparto_tareas": false,
+    "aspectos_ejecucion": [
+      "colaboración"
+    ],
+    "proyecto_final": {
+      "tipo": "flujo_mvp_integrado_v3",
+      "actividad_generada": {
+        "id": "ACT_GEN_20250818_101202",
+        "titulo": "Sistema Solar: Actividad de ciencias",
+        "objetivo": "Fomentar el pensamiento científico mediante desarrollar la actividad '1: título: sistema solar planetas y movimientos descripción:'. descripción: en esta actividad, los estudiantes jugarán un juego de movimiento donde representan a cada planeta del sistema solar en el patio. la meta es aprender los nombres de los planetas y comprender sus movimientos de rotación y traslación. para elena (tea), se le proporcionará una tarjeta visual con las imágenes de cada planeta para ayudarla a identificarlos. para luis (tdah), se le asignará el rol del sol, que requiere movimiento alrededor del patio mientras los demás estudiantes giran alrededor de él. para ana (altas capacidades), se le proporcionarán información adicional sobre cada planeta para que pueda comprender detalles más avanzados.. estructurar en las siguientes fases: ejecución principal con colaboración y reparto específico de tareas (trabajo clase completa). seguir metodología abp con adaptaciones para neurotipos diversos., fomentando el trabajo colaborativo y la inclusión educativa.",
+        "nivel_educativo": "4º Primaria",
+        "duracion_minutos": "45 minutos",
+        "recursos": [
+          "Cuaderno de observaciones",
+          "Material de laboratorio básico",
+          "tarjetas",
+          "Lupas"
+        ],
+        "etapas": [
+          {
+            "nombre": "Fase 1: Introducción y Preparación",
+            "descripcion": "Los estudiantes se familiarizan con los conceptos y materiales",
+            "tareas": [
+              {
+                "id": "tarea_profunda_01",
+                "nombre": "Identificar planetas",
+                "descripcion": "Identificar planetas",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Identificar planetas. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Identificar planetas. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Identificar planetas."
+                }
+              },
+              {
+                "id": "tarea_profunda_02",
+                "nombre": "Los estudiantes se identifican a sí mismos con las",
+                "descripcion": "Los estudiantes se identifican a sí mismos con las imágenes de los planetas",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Los estudiantes se identifican. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Los estudiantes se identifican. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Los estudiantes se identifican."
+                }
+              }
+            ]
+          },
+          {
+            "nombre": "Fase 2: Desarrollo y Práctica",
+            "descripcion": "Los estudiantes practican y desarrollan las competencias principales",
+            "tareas": [
+              {
+                "id": "tarea_profunda_03",
+                "nombre": "Movimiento de rotación",
+                "descripcion": "Movimiento de rotación",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Movimiento de rotación. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Movimiento de rotación. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Movimiento de rotación."
+                }
+              },
+              {
+                "id": "tarea_profunda_04",
+                "nombre": "Los estudiantes que representan a un planeta se mu",
+                "descripcion": "Los estudiantes que representan a un planeta se mueven alrededor del sol (Luis) girando en su eje, simulando la rotación",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Los estudiantes que representa. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Los estudiantes que representa. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Los estudiantes que representa."
+                }
+              }
+            ]
+          },
+          {
+            "nombre": "Fase 3: Aplicación y Evaluación",
+            "descripcion": "Los estudiantes aplican lo aprendido y evalúan sus resultados",
+            "tareas": [
+              {
+                "id": "tarea_profunda_05",
+                "nombre": "Movimiento de traslación",
+                "descripcion": "Movimiento de traslación",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Movimiento de traslación. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Movimiento de traslación. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Movimiento de traslación."
+                }
+              },
+              {
+                "id": "tarea_profunda_06",
+                "nombre": "Los estudiantes se mueven alrededor del patio simu",
+                "descripcion": "Los estudiantes se mueven alrededor del patio simulando la órbita de cada planeta",
+                "formato_asignacion": "grupos",
+                "estrategias_adaptacion": {
+                  "para_elena": "Proporcionar estructura clara y rutina predecible para Los estudiantes se mueven alre. Usar apoyos visuales.",
+                  "para_luis": "Permitir movimiento y descansos durante Los estudiantes se mueven alre. Fragmentar en pasos pequeños.",
+                  "para_ana": "Proporcionar retos adicionales y roles de liderazgo en Los estudiantes se mueven alre."
+                }
+              }
+            ]
+          }
+        ],
+        "tipo_generacion": "mvp_integrado"
+      },
+      "asignaciones_neurotipos": {
+        "001": [
+          "tarea_profunda_01",
+          "tarea_profunda_05"
+        ],
+        "002": [
+          "tarea_profunda_02",
+          "tarea_profunda_06"
+        ],
+        "003": [
+          "tarea_profunda_03",
+          "tarea_profunda_04"
+        ],
+        "004": [
+          "tarea_profunda_04"
+        ],
+        "005": [
+          "tarea_profunda_01",
+          "tarea_profunda_03",
+          "tarea_profunda_05"
+        ],
+        "006": [
+          "tarea_profunda_02",
+          "tarea_profunda_06"
+        ],
+        "007": [
+          "tarea_profunda_01",
+          "tarea_profunda_03"
+        ],
+        "008": [
+          "tarea_profunda_02"
+        ]
+      },
+      "perfiles_estudiantes": {
+        "estudiantes": {
+          "001": {
+            "id": "001",
+            "nombre": "Alex M.",
+            "fortalezas": [
+              "matemáticas_números",
+              "gramática",
+              "comunicación_escrita",
+              "curiosidad_científica",
+              "comprensión_lectora",
+              "pensamiento_analítico"
+            ],
+            "necesidades_apoyo": [
+              "apoyos_visuales"
+            ],
+            "disponibilidad": 95,
+            "historial_roles": [
+              "diseñador_visual",
+              "investigador_científico",
+              "analista_información"
+            ],
+            "adaptaciones": []
+          },
+          "002": {
+            "id": "002",
+            "nombre": "María L.",
+            "fortalezas": [
+              "matemáticas_números",
+              "operaciones_matemáticas",
+              "gramática",
+              "comunicación_escrita",
+              "investigación",
+              "comprensión_lectora",
+              "pensamiento_analítico",
+              "perseverancia"
+            ],
+            "necesidades_apoyo": [
+              "explicaciones_verbales"
+            ],
+            "disponibilidad": 100,
+            "historial_roles": [
+              "comunicador",
+              "analista_información"
+            ],
+            "adaptaciones": []
+          },
+          "003": {
+            "id": "003",
+            "nombre": "Elena R.",
+            "fortalezas": [
+              "matemáticas_números",
+              "operaciones_matemáticas",
+              "investigación",
+              "curiosidad_científica",
+              "pensamiento_analítico"
+            ],
+            "necesidades_apoyo": [
+              "supervisión_continua",
+              "apoyo_emocional",
+              "tareas_graduadas",
+              "apoyos_visuales",
+              "rutinas_estructuradas",
+              "ambiente_predecible"
+            ],
+            "disponibilidad": 60,
+            "historial_roles": [
+              "diseñador_visual",
+              "investigador_científico"
+            ],
+            "adaptaciones": [
+              "apoyo visual",
+              "estructuración",
+              "predictibilidad"
+            ]
+          },
+          "004": {
+            "id": "004",
+            "nombre": "Luis T.",
+            "fortalezas": [
+              "experimentación"
+            ],
+            "necesidades_apoyo": [
+              "supervisión_continua",
+              "apoyo_emocional",
+              "tareas_graduadas",
+              "instrucciones_claras",
+              "descansos_frecuentes"
+            ],
+            "disponibilidad": 60,
+            "historial_roles": [
+              "experimentador"
+            ],
+            "adaptaciones": [
+              "movimiento",
+              "fraccionamiento tareas",
+              "descansos"
+            ]
+          },
+          "005": {
+            "id": "005",
+            "nombre": "Ana V.",
+            "fortalezas": [
+              "matemáticas_números",
+              "operaciones_matemáticas",
+              "gramática",
+              "comunicación_escrita",
+              "investigación",
+              "comprensión_lectora",
+              "pensamiento_analítico"
+            ],
+            "necesidades_apoyo": [
+              "check_ins_regulares",
+              "explicaciones_verbales",
+              "retos_adicionales",
+              "proyectos_autonomos"
+            ],
+            "disponibilidad": 85,
+            "historial_roles": [
+              "comunicador",
+              "analista_información",
+              "mentor_académico"
+            ],
+            "adaptaciones": [
+              "enriquecimiento",
+              "desafíos",
+              "autonomía"
+            ]
+          },
+          "006": {
+            "id": "006",
+            "nombre": "Sara M.",
+            "fortalezas": [
+              "matemáticas_números",
+              "gramática",
+              "comunicación_escrita",
+              "colaboración",
+              "perseverancia"
+            ],
+            "necesidades_apoyo": [
+              "explicaciones_verbales"
+            ],
+            "disponibilidad": 100,
+            "historial_roles": [
+              "comunicador"
+            ],
+            "adaptaciones": []
+          },
+          "007": {
+            "id": "007",
+            "nombre": "Emma K.",
+            "fortalezas": [
+              "matemáticas_números",
+              "operaciones_matemáticas",
+              "gramática",
+              "comunicación_escrita",
+              "investigación",
+              "comprensión_lectora",
+              "pensamiento_analítico",
+              "perseverancia"
+            ],
+            "necesidades_apoyo": [
+              "apoyos_visuales"
+            ],
+            "disponibilidad": 100,
+            "historial_roles": [
+              "diseñador_visual",
+              "analista_información"
+            ],
+            "adaptaciones": []
+          },
+          "008": {
+            "id": "008",
+            "nombre": "Hugo P.",
+            "fortalezas": [
+              "matemáticas_números",
+              "gramática",
+              "investigación",
+              "curiosidad_científica",
+              "experimentación"
+            ],
+            "necesidades_apoyo": [
+              "check_ins_regulares",
+              "apoyos_visuales"
+            ],
+            "disponibilidad": 85,
+            "historial_roles": [
+              "diseñador_visual",
+              "investigador_científico",
+              "experimentador"
+            ],
+            "adaptaciones": []
+          }
+        },
+        "estadisticas": {
+          "total_estudiantes": 8,
+          "con_diagnostico": 3,
+          "sin_diagnostico": 5,
+          "estilos_aprendizaje": {}
+        },
+        "metadatos": {
+          "agente": "AgentePerfiladorEstudiantes",
+          "version": "1.0",
+          "timestamp": "2025-08-18T10:12:17.512598"
+        }
+      },
+      "metadatos": {
+        "version": "3.0.0-estructura-unificada",
+        "formato_coherente": "k_actividades_json",
+        "mejoras_aplicadas": [
+          "analisis_profundo_especifico",
+          "criterios_neurotipos_tea_tdah_ac",
+          "estructura_coherente_k_json",
+          "organizacion_etapas_logicas"
+        ],
+        "agentes_utilizados": [
+          "analizador_mejorado",
+          "perfilador",
+          "optimizador_neurotipos"
+        ]
+      }
+    },
+    "timestamp_finalizacion": "2025-08-18T10:12:28.819987"
+  },
+  "historial_decisiones": [
+    {
+      "timestamp": "2025-08-18T10:12:02.223002",
+      "agente": "AgenteAnalizador",
+      "decision": "Iniciando análisis de tareas con contexto híbrido",
+      "datos": {
+        "tiene_perfiles": true,
+        "metadatos_disponibles": [
+          "materia",
+          "tema",
+          "duracion_objetivo",
+          "sesiones_objetivo",
+          "prompt_usuario",
+          "flujo_tipo",
+          "estudiantes_especiales",
+          "materiales",
+          "tipo_actividad",
+          "estructura_detallada_aplicada",
+          "fases_configuradas",
+          "preparacion_incluida",
+          "preparacion_reparto_tareas",
+          "ejecucion_reparto_tareas",
+          "reflexion_incluida",
+          "reflexion_reparto_tareas",
+          "recogida_incluida",
+          "recogida_reparto_tareas",
+          "aspectos_ejecucion"
+        ],
+        "prompt_usuario": "Desarrollar la actividad '1: Título: Sistema Solar..."
+      }
+    },
+    {
+      "timestamp": "2025-08-18T10:12:17.510755",
+      "agente": "AgenteAnalizador",
+      "decision": "Análisis profundo exitoso: 6 tareas generadas",
+      "datos": {
+        "metodo_usado": "analisis_profundo_especifico",
+        "tareas_generadas": 6,
+        "actividad_personalizada": false
+      }
+    },
+    {
+      "timestamp": "2025-08-18T10:12:17.511316",
+      "agente": "AgenteAnalizador",
+      "decision": "Analisis completado: 6 tareas identificadas",
+      "datos": {
+        "tareas_identificadas": 6,
+        "tipo_analisis": "analisis_profundo"
+      }
+    },
+    {
+      "timestamp": "2025-08-18T10:12:17.511713",
+      "agente": "AgentePerfilador",
+      "decision": "Iniciando análisis de perfiles con contexto híbrido",
+      "datos": {
+        "perfiles_disponibles": 8,
+        "metadatos_contexto": [
+          "materia",
+          "tema",
+          "duracion_objetivo",
+          "sesiones_objetivo",
+          "prompt_usuario",
+          "flujo_tipo",
+          "estudiantes_especiales",
+          "materiales",
+          "tipo_actividad",
+          "estructura_detallada_aplicada",
+          "fases_configuradas",
+          "preparacion_incluida",
+          "preparacion_reparto_tareas",
+          "ejecucion_reparto_tareas",
+          "reflexion_incluida",
+          "reflexion_reparto_tareas",
+          "recogida_incluida",
+          "recogida_reparto_tareas",
+          "aspectos_ejecucion"
+        ]
+      }
+    },
+    {
+      "timestamp": "2025-08-18T10:12:17.512922",
+      "agente": "AgentePerfilador",
+      "decision": "Análisis de perfiles completado",
+      "datos": {
+        "perfiles_analizados": 8,
+        "resultado_keys": [
+          "estudiantes",
+          "estadisticas",
+          "metadatos"
+        ]
+      }
+    },
+    {
+      "timestamp": "2025-08-18T10:12:17.513435",
+      "agente": "AgentePerfilador",
+      "decision": "Perfiles procesados: 8 estudiantes",
+      "datos": {
+        "estudiantes_procesados": 8
+      }
+    },
+    {
+      "timestamp": "2025-08-18T10:12:28.817446",
+      "agente": "AgenteOptimizador",
+      "decision": "Optimización LLM completada exitosamente",
+      "datos": {
+        "asignaciones_totales": 8,
+        "metodo_usado": "llm_optimization"
+      }
+    },
+    {
+      "timestamp": "2025-08-18T10:12:28.819376",
+      "agente": "AgenteOptimizador",
+      "decision": "Asignaciones neurotípicas completadas",
+      "datos": {
+        "total_asignaciones": 0,
+        "criterios_aplicados": []
+      }
+    },
+    {
+      "timestamp": "2025-08-18T10:12:28.819708",
+      "agente": "AgenteCoordinador",
+      "estado": "flujo_mvp_completado"
+    },
+    {
+      "timestamp": "2025-08-18T10:12:28.820011",
+      "agente": "ContextoHibrido",
+      "estado": "finalizado"
+    }
+  ],
+  "estado_actual": "finalizado",
+  "version": 1,
+  "prompts_realizados": 1,
+  "patrones_exitosos": [
+    {
+      "materia": "ciencias",
+      "tema": "sistema solar",
+      "duracion": "",
+      "tipo_actividad": "laboratorio",
+      "modalidades_usadas": [],
+      "timestamp": "2025-08-18T10:12:28.820346",
+      "exito": true
+    }
+  ],
+  "timestamp_guardado": "2025-08-18T10:12:28.820355"
+}

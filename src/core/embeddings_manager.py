@@ -247,112 +247,116 @@ class EmbeddingsManager:
             logger.error(f"❌ Error guardando cache de embeddings: {e}")
     
     def _cargar_o_generar_embeddings(self) -> None:
-        """Carga embeddings desde cache o genera los necesarios"""
-        logger.info("🔄 Inicializando embeddings...")
+        """
+        Carga embeddings existentes o genera nuevos con cache optimizado
         
-        # Cargar cache existente
-        cache_data = self._cargar_cache_embeddings()
-        embeddings_cache = cache_data.get("embeddings", {})
-        metadata_cache = cache_data.get("metadata", {})
-        
-        embeddings_actualizados = {}
-        metadata_actualizada = {}
-        embeddings_generados = 0
-        embeddings_reutilizados = 0
-        
-        for actividad_id, actividad_data in self.actividades.items():
-            try:
-                # Calcular hash actual del contenido
-                archivo_origen = actividad_data.get('_archivo_origen', '')
-                if archivo_origen:
-                    if actividad_data.get('_tipo_fuente') == 'json':
-                        archivo_path = os.path.join(self.actividades_base_path, "json_actividades", archivo_origen)
-                    else:
-                        archivo_path = os.path.join(self.actividades_base_path, archivo_origen)
+        """
+        try:
+            cache_data = self._cargar_cache_embeddings()
+            embeddings_cache = cache_data.get("embeddings", {})
+            metadata_cache = cache_data.get("metadata", {})
+            
+            embeddings_reutilizados = 0
+            embeddings_generados = 0
+            embeddings_actualizados = {}
+            metadata_actualizada = {}
+            
+            for actividad_id, actividad_data in self.actividades.items():
+                try:
+                    #Construir según el tipo de fuente
+                    archivo_origen = actividad_data.get('_archivo_origen', '')
                     
-                    hash_actual = self._calcular_hash_archivo(archivo_path)
-                else:
-                    hash_actual = ""
-                
-                # Verificar si necesitamos regenerar
-                metadata_previa = metadata_cache.get(actividad_id, {})
-                hash_previo = metadata_previa.get('hash', '')
-                
-                if hash_actual == hash_previo and actividad_id in embeddings_cache:
-                    # Reutilizar embedding existente
-                    embedding_lista = embeddings_cache[actividad_id]
-                    self.embeddings_cache[actividad_id] = np.array(embedding_lista)
-                    embeddings_actualizados[actividad_id] = embedding_lista
-                    metadata_actualizada[actividad_id] = metadata_previa
-                    embeddings_reutilizados += 1
-                    logger.debug(f"♻️ Embedding reutilizado para {actividad_id}")
-                    
-                else:
-                    # Generar nuevo embedding
-                    texto_enriquecido = self._generar_texto_enriquecido(actividad_id, actividad_data)
-                    embedding = self.ollama.generar_embedding(texto_enriquecido)
-                    
-                    if embedding and len(embedding) > 0:
-                        self.embeddings_cache[actividad_id] = np.array(embedding)
-                        embeddings_actualizados[actividad_id] = embedding
-                        metadata_actualizada[actividad_id] = {
-                            'hash': hash_actual,
-                            'archivo': archivo_origen,
-                            'tipo': actividad_data.get('_tipo_fuente', 'unknown')
-                        }
-                        embeddings_generados += 1
-                        logger.debug(f"🔹 Embedding generado para {actividad_id} ({len(embedding)} dims)")
-                    else:
-                        logger.warning(f"⚠️ Embedding vacío para {actividad_id}, usando fallback")
-                        embedding_fallback = np.random.normal(0, 1, 384)
-                        embedding_fallback = embedding_fallback / np.linalg.norm(embedding_fallback)
-                        self.embeddings_cache[actividad_id] = embedding_fallback
-                        embeddings_actualizados[actividad_id] = embedding_fallback.tolist()
-                        metadata_actualizada[actividad_id] = {
-                            'hash': hash_actual,
-                            'archivo': archivo_origen,
-                            'tipo': 'fallback'
-                        }
-                        embeddings_generados += 1
+                    if archivo_origen:
+                        tipo_fuente = actividad_data.get('_tipo_fuente', 'unknown')
                         
-            except Exception as e:
-                logger.error(f"❌ Error procesando embedding para {actividad_id}: {e}")
-                # Fallback
-                embedding_fallback = np.random.normal(0, 1, 384)
-                embedding_fallback = embedding_fallback / np.linalg.norm(embedding_fallback)
-                self.embeddings_cache[actividad_id] = embedding_fallback
-                embeddings_actualizados[actividad_id] = embedding_fallback.tolist()
-                metadata_actualizada[actividad_id] = {'hash': '', 'archivo': archivo_origen, 'tipo': 'error'}
-        
-        # Guardar cache actualizado
-        cache_actualizado = {
-            "embeddings": embeddings_actualizados,
-            "metadata": metadata_actualizada
-        }
-        self._guardar_cache_embeddings(cache_actualizado)
-        
-        logger.info(f"✅ Embeddings: {embeddings_reutilizados} reutilizados, {embeddings_generados} generados")
+                        if tipo_fuente == 'json':
+                            # Los archivos JSON están en subdirectorio json_actividades
+                            archivo_path = os.path.join(self.actividades_base_path, "json_actividades", archivo_origen)
+                        else:
+                            # Los archivos TXT están en directorio base
+                            archivo_path = os.path.join(self.actividades_base_path, archivo_origen)
+                        
+                        hash_actual = self._calcular_hash_archivo(archivo_path)
+                    else:
+                        hash_actual = ""
+                    
+                    # Verificar si necesitamos regenerar
+                    metadata_previa = metadata_cache.get(actividad_id, {})
+                    hash_previo = metadata_previa.get('hash', '')
+                    
+                    if hash_actual == hash_previo and actividad_id in embeddings_cache:
+                        # Reutilizar embedding existente
+                        embedding_lista = embeddings_cache[actividad_id]
+                        self.embeddings_cache[actividad_id] = np.array(embedding_lista)
+                        embeddings_actualizados[actividad_id] = embedding_lista
+                        metadata_actualizada[actividad_id] = metadata_previa
+                        embeddings_reutilizados += 1
+                        logger.debug(f"♻️ Embedding reutilizado para {actividad_id}")
+                        
+                    else:
+                        # Generar nuevo embedding
+                        texto_enriquecido = self._generar_texto_enriquecido(actividad_id, actividad_data)
+                        embedding = self.ollama.generar_embedding(texto_enriquecido)
+                        
+                        if embedding and len(embedding) > 0:
+                            self.embeddings_cache[actividad_id] = np.array(embedding)
+                            embeddings_actualizados[actividad_id] = embedding
+                            metadata_actualizada[actividad_id] = {
+                                'hash': hash_actual,
+                                'archivo': archivo_origen,
+                                'tipo': actividad_data.get('_tipo_fuente', 'unknown')
+                            }
+                            embeddings_generados += 1
+                            logger.debug(f"🔹 Embedding generado para {actividad_id} ({len(embedding)} dims)")
+                        else:
+                            logger.warning(f"⚠️ Embedding vacío para {actividad_id}, usando fallback")
+                            embedding_fallback = np.random.normal(0, 1, 384)
+                            embedding_fallback = embedding_fallback / np.linalg.norm(embedding_fallback)
+                            self.embeddings_cache[actividad_id] = embedding_fallback
+                            embeddings_actualizados[actividad_id] = embedding_fallback.tolist()
+                            metadata_actualizada[actividad_id] = {
+                                'hash': hash_actual,
+                                'archivo': archivo_origen,
+                                'tipo': 'fallback'
+                            }
+                            embeddings_generados += 1
+                            
+                except Exception as e:
+                    logger.error(f"❌ Error procesando embedding para {actividad_id}: {e}")
+                    # Fallback
+                    embedding_fallback = np.random.normal(0, 1, 384)
+                    embedding_fallback = embedding_fallback / np.linalg.norm(embedding_fallback)
+                    self.embeddings_cache[actividad_id] = embedding_fallback
+                    embeddings_actualizados[actividad_id] = embedding_fallback.tolist()
+                    metadata_actualizada[actividad_id] = {'hash': '', 'archivo': archivo_origen, 'tipo': 'error'}
+            
+            # Guardar cache actualizado
+            cache_actualizado = {
+                "embeddings": embeddings_actualizados,
+                "metadata": metadata_actualizada
+            }
+            self._guardar_cache_embeddings(cache_actualizado)
+            
+            logger.info(f"✅ Embeddings: {embeddings_reutilizados} reutilizados, {embeddings_generados} generados")
+            
+        except Exception as e:
+            logger.error(f"❌ Error en carga/generación de embeddings: {e}")
     
     
     def crear_embedding_cached(self, texto: str) -> np.ndarray:
         """
         Crea embedding con cache persistente
         
-        Args:
-            texto: Texto para generar embedding
-            
-        Returns:
-            Array numpy con embedding
         """
-        # Calcular hash del texto
+        # Calcular hash del texto SOLO para cache
         hash_texto = hashlib.md5(texto.encode('utf-8')).hexdigest()
         
-        # Buscar en cache de memoria primero
+        # Buscar en cache de memoria primero (por hash)
         if hash_texto in self.embeddings_cache:
             logger.debug(f"📊 Cache hit (memoria) para texto (hash: {hash_texto[:8]})")
             return self.embeddings_cache[hash_texto]
         
-        # Buscar en cache persistente
+        # Buscar en cache persistente (por hash)
         cache_data = self._cargar_cache_embeddings()
         if hash_texto in cache_data.get("embeddings", {}):
             logger.debug(f"📊 Cache hit (persistente) para texto (hash: {hash_texto[:8]})")
@@ -362,13 +366,13 @@ class EmbeddingsManager:
             self.embeddings_cache[hash_texto] = embedding_array
             return embedding_array
         
-        # Generar nuevo embedding
+        # Generar nuevo embedding DEL TEXTO REAL
         logger.debug(f"🔄 Generando nuevo embedding para texto (hash: {hash_texto[:8]})")
-        embedding = self.ollama.generar_embedding(texto)
+        embedding = self.ollama.generar_embedding(texto)  # ← TEXTO REAL, no hash
         
         if embedding and len(embedding) > 0:
             embedding_array = np.array(embedding)
-            # Guardar en cache de memoria
+            # Guardar en cache de memoria (por hash)
             self.embeddings_cache[hash_texto] = embedding_array
             
             # Guardar en cache persistente si está habilitado
@@ -412,18 +416,11 @@ class EmbeddingsManager:
     def encontrar_actividad_similar(self, prompt: str, top_k: int = 3) -> List[Tuple[str, float, dict]]:
         """
         Encuentra las actividades más similares al prompt usando embeddings mejorados
-        
-        Args:
-            prompt: Prompt del usuario
-            top_k: Número de actividades a retornar
-            
-        Returns:
-            Lista de tuplas (actividad_id, similitud, datos_actividad)
         """
         if not self.embeddings_cache:
             logger.error("❌ No hay embeddings disponibles")
             return []
-        
+
         try:
             # Enriquecer el prompt del usuario para mejor matching
             prompt_enriquecido = self._enriquecer_prompt_usuario(prompt)
@@ -438,21 +435,29 @@ class EmbeddingsManager:
             # prompt_embedding ya es np.array desde crear_embedding_cached
             similitudes = []
             
-            # Calcular similitudes coseno con ponderación inteligente
-            for actividad_id, embedding in self.embeddings_cache.items():
+            # CAMBIO CRÍTICO: Iterar solo sobre actividades conocidas, no sobre todo el cache
+            for actividad_id, actividad_data in self.actividades.items():
                 try:
-                    similitud_base = self._similitud_coseno(prompt_embedding, embedding)
-                    
-                    # Aplicar boost semántico basado en características del prompt
-                    similitud_ponderada = self._aplicar_boost_semantico(
-                        similitud_base, prompt, self.actividades[actividad_id]
-                    )
-                    
-                    similitudes.append((actividad_id, similitud_ponderada, self.actividades[actividad_id]))
-                    
+                    # Verificar que existe embedding para esta actividad
+                    if actividad_id in self.embeddings_cache:
+                        embedding = self.embeddings_cache[actividad_id]
+                        
+                        # Calcular similitud
+                        similitud_base = self._similitud_coseno(prompt_embedding, embedding)
+                        
+                        # Aplicar boost semántico basado en características del prompt
+                        similitud_ponderada = self._aplicar_boost_semantico(
+                            similitud_base, prompt, actividad_data
+                        )
+                        
+                        similitudes.append((actividad_id, similitud_ponderada, actividad_data))
+                    else:
+                        logger.debug(f"⚠️ No hay embedding para actividad {actividad_id}")
+                        similitudes.append((actividad_id, 0.0, actividad_data))
+                        
                 except Exception as e:
                     logger.warning(f"⚠️ Error calculando similitud para {actividad_id}: {e}")
-                    similitudes.append((actividad_id, 0.0, self.actividades[actividad_id]))
+                    similitudes.append((actividad_id, 0.0, actividad_data))
             
             # Ordenar por similitud descendente y filtrar por umbral mínimo
             similitudes_filtradas = [s for s in similitudes if s[1] > 0.2]  # Umbral mínimo
@@ -464,9 +469,12 @@ class EmbeddingsManager:
                 similitudes_ordenadas.extend(similitudes_adicionales)
             
             # Log de resultados mejorado
-            logger.info(f"🎯 Actividades seleccionadas para '{prompt[:50]}...':")
-            for i, (act_id, sim, act_data) in enumerate(similitudes_ordenadas[:top_k]):
-                logger.info(f"   {i+1}. {act_id} - {act_data.get('titulo', 'Sin título')} (similitud: {sim:.3f})")
+            if similitudes_ordenadas:
+                logger.info(f"🎯 Actividades seleccionadas para '{prompt[:50]}...':")
+                for i, (act_id, sim, act_data) in enumerate(similitudes_ordenadas[:top_k]):
+                    logger.info(f"   {i+1}. {act_id} - {act_data.get('titulo', 'Sin título')} (similitud: {sim:.3f})")
+            else:
+                logger.warning("⚠️ No se encontraron actividades similares")
             
             return similitudes_ordenadas[:top_k]
             

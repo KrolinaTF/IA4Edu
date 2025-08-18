@@ -226,7 +226,7 @@ class ContextoHibrido:
         else:
             for clave, valor in self.metadatos.items():
                 if isinstance(valor, list):
-                    contexto_str += f"- {clave.replace('_', ' ').title()}: {', '.join(valor)}\n"
+                    contexto_str += f"- {clave.replace('_', ' ').title()}: {', '.join(str(v) for v in valor)}\n"
                 else:
                     contexto_str += f"- {clave.replace('_', ' ').title()}: {valor}\n"
         

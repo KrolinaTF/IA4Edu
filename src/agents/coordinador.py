@@ -14,6 +14,7 @@ from core.contexto import ContextoHibrido
 from core.comunicador import ComunicadorAgentes
 from core.ollama_integrator import OllamaIntegrator
 from core.validador_coherencia import ValidadorCoherencia
+from core.embeddings_manager import EmbeddingsManager
 
 from agents.analizador import AgenteAnalizadorTareas
 from agents.perfilador import AgentePerfiladorEstudiantes
@@ -40,8 +41,13 @@ class AgenteCoordinador:
         # Inicializar integrador Ollama
         self.ollama = ollama_integrator or OllamaIntegrator()
         
+        # Accedemos a los embeddings
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        base_dir = os.path.dirname(script_dir)
+        actividades_path = os.path.join(base_dir, "data", "actividades")
+        self.embeddings_manager = EmbeddingsManager(actividades_path, self.ollama)
+        
         self.historial_prompts = []
-        self.ejemplos_k = self._cargar_ejemplos_k()
         self.contexto_hibrido = ContextoHibrido()
         self.validador = ValidadorCoherencia()
 
@@ -76,84 +82,6 @@ class AgenteCoordinador:
         
         logger.info(f"🚀 AgenteCoordinador inicializado con {len(self.agentes_especializados)} agentes especializados")
     
-    def _cargar_ejemplos_k(self) -> Dict[str, str]:
-        """
-        Carga ejemplos k_ para few-shot learning
-        
-        Returns:
-            Diccionario con ejemplos k_
-        """
-        ejemplos = {}
-        
-        # Obtener directorio base del proyecto
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        base_dir = os.path.dirname(script_dir)  # Subir un nivel desde /agents
-        
-        # Rutas absolutas para los archivos k_
-        archivos_k = [
-            os.path.join(base_dir, "data", "actividades", "k_feria_acertijos.txt"),
-            os.path.join(base_dir, "data", "actividades", "k_sonnet_supermercado.txt"), 
-            os.path.join(base_dir, "data", "actividades", "k_celula.txt"),
-            os.path.join(base_dir, "data", "actividades", "k_piratas.txt"),
-            os.path.join(base_dir, "data", "actividades", "k_sonnet7_fabrica_fracciones.txt")
-        ]
-        
-        # Crear directorio si no existe
-        os.makedirs(os.path.join(base_dir, "data", "actividades"), exist_ok=True)
-        
-        for archivo in archivos_k:
-            try:
-                # Si el archivo no existe, crear un ejemplo mínimo
-                if not os.path.exists(archivo):
-                    self._crear_ejemplo_k_minimo(archivo)
-                
-                with open(archivo, 'r', encoding='utf-8') as f:
-                    contenido = f.read()
-                    nombre_ejemplo = os.path.basename(archivo).replace('.txt', '').replace('k_', '')
-                    ejemplos[nombre_ejemplo] = contenido  # Contenido completo del ejemplo
-                    logger.info(f"✅ Cargado ejemplo k_: {nombre_ejemplo}")
-            except FileNotFoundError:
-                logger.warning(f"❌ No se encontró el archivo: {archivo}")
-                continue
-            except Exception as e:
-                logger.error(f"❌ Error cargando ejemplo {archivo}: {e}")
-                continue
-        
-        if ejemplos:
-            logger.info(f"📚 Cargados {len(ejemplos)} ejemplos k_ para few-shot learning")
-        else:
-            logger.warning("⚠️ No se cargaron ejemplos k_, usando fallback")
-            
-        return ejemplos
-    
-    def _crear_ejemplo_k_minimo(self, ruta_archivo: str) -> None:
-        """
-        Crea un archivo de ejemplo k_ mínimo
-        
-        Args:
-            ruta_archivo: Ruta donde crear el archivo
-        """
-        # Crear directorio si no existe
-        os.makedirs(os.path.dirname(ruta_archivo), exist_ok=True)
-        
-        # Determinar tipo de ejemplo basado en nombre de archivo
-        nombre_archivo = os.path.basename(ruta_archivo)
-        
-        # Contenido genérico basado en tipo
-        contenido = "ACTIVIDAD DE EJEMPLO: Mercado de fracciones\n\n"
-        contenido += "DESCRIPCIÓN: Los estudiantes crean un mercado donde intercambian productos usando fracciones como moneda.\n\n"
-        contenido += "COMPETENCIAS: Matemáticas (fracciones), trabajo en equipo, resolución de problemas\n\n"
-        contenido += "ADAPTACIONES:\n"
-        contenido += "- TEA: Usar tarjetas visuales con pasos claros\n"
-        contenido += "- TDAH: Asignar rol de cajero que requiere movimiento\n"
-        contenido += "- Altas capacidades: Retos con fracciones más complejas\n\n"
-        contenido += "DESARROLLO: Preparación de materiales, explicación de reglas, desarrollo del mercado, reflexión final\n"
-        
-        # Guardar archivo
-        with open(ruta_archivo, 'w', encoding='utf-8') as f:
-            f.write(contenido)
-            
-        logger.info(f"✅ Creado archivo de ejemplo k_ mínimo: {ruta_archivo}")
     
     def generar_ideas_actividades_hibrido(self, prompt_usuario: str, contexto_hibrido: ContextoHibrido) -> List[Dict]:
         """
@@ -254,7 +182,10 @@ RESPONDE SOLO CON LAS IDEAS MATIZADAS, SIN EXPLICACIONES ADICIONALES."""
         
         # Seleccionar ejemplo k_ relevante basado en metadatos detectados
         tema_detectado = contexto_hibrido.metadatos.get('materia', '') + ' ' + contexto_hibrido.metadatos.get('tema', '')
-        ejemplo_seleccionado = self._seleccionar_ejemplo_relevante(tema_detectado.strip())
+        actividades_similares = self.embeddings_manager.encontrar_actividad_similar(prompt_usuario, top_k=1)
+        ejemplo_seleccionado = ""
+        if actividades_similares:
+            ejemplo_seleccionado = self.embeddings_manager.get_texto_enriquecido(actividades_similares[0][0])
         
         # Construir prompt híbrido
         prompt_hibrido = f"""
@@ -333,53 +264,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
 """
         
         return prompt_hibrido
-    
-    def _seleccionar_ejemplo_relevante(self, tema: str) -> str:
-        """
-        Selecciona el ejemplo k_ más relevante según el tema del contexto JSON
-        
-        Args:
-            tema: Tema detectado
-            
-        Returns:
-            Ejemplo k_ seleccionado
-        """
-        if not tema:
-            return ""  # Sin tema, sin ejemplo específico
-            
-        tema_lower = tema.lower()
-        
-        # Mapeo dinámico basado en el contexto real
-        mapeo_ejemplos = {
-            'supermercado': 'sonnet_supermercado',
-            'dinero': 'sonnet_supermercado', 
-            'comercio': 'sonnet_supermercado',
-            'fracciones': 'sonnet7_fabrica_fracciones',
-            'fábrica': 'sonnet7_fabrica_fracciones',
-            'ciencias': 'celula',
-            'células': 'celula',
-            'biología': 'celula',
-            'piratas': 'piratas',
-            'tesoro': 'piratas',
-            'aventura': 'piratas',
-            # NO HAY EJEMPLOS DE GEOGRAFÍA - Devolver vacío para máxima creatividad
-            'geografia': None,
-            'españa': None,
-            'comunidades': None,
-            'viajes': None
-        }
-        
-        # Buscar coincidencias exactas
-        for palabra_clave, ejemplo in mapeo_ejemplos.items():
-            if palabra_clave in tema_lower:
-                if ejemplo is None:
-                    # Intencionalmente sin ejemplo para máxima creatividad
-                    return ""
-                elif ejemplo in self.ejemplos_k:
-                    return self.ejemplos_k[ejemplo]
-        
-        # Si no hay coincidencias, devolver vacío para que el LLM sea más creativo
-        return ""
+
     
     def _parsear_ideas(self, respuesta: str) -> List[Dict]:
         """
@@ -609,107 +494,6 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
             'estado': self.contexto_hibrido,
             'timestamp': datetime.now().isoformat()
         }
-    
-    def ejecutar_flujo_orquestado(self, idea_seleccionada: dict, informacion_adicional: str = "") -> dict:
-        """
-        Ejecuta el flujo completo orquestado con validaciones y manejo de errores
-        
-        Args:
-            idea_seleccionada: Idea seleccionada para desarrollar
-            informacion_adicional: Información adicional (opcional)
-            
-        Returns:
-            Proyecto final generado
-        """
-        logger.info("🚀 Iniciando flujo orquestado mejorado")
-        
-        # Actualizar estado global con idea seleccionada
-        self.contexto_hibrido.metadatos.update(idea_seleccionada)
-        self.contexto_hibrido.metadatos['informacion_adicional'] = informacion_adicional
-        self.contexto_hibrido.actualizar_estado("ejecutando_flujo", "AgenteCoordinador")
-        
-        # Definir flujo optimizado de ejecución (3 agentes - Fase 1)
-        flujo = [
-            {
-                'agente': 'analizador_tareas',
-                'metodo': 'seleccionar_y_adaptar_actividad',  # NUEVO método con embeddings
-                'prioridad': 1,
-                'descripcion': 'Seleccionar actividad con embeddings y adaptar'
-            },
-            {
-                'agente': 'perfilador_estudiantes',
-                'metodo': 'analizar_perfiles',
-                'prioridad': 2,
-                'descripcion': 'Analizar perfiles de estudiantes reales'
-            },
-            {
-                'agente': 'optimizador_asignaciones',
-                'metodo': 'optimizar_asignaciones',
-                'prioridad': 3,
-                'descripcion': 'Optimizar asignaciones estudiante-tarea'
-            }
-        ]
-        
-        # Ejecutar cada paso del flujo
-        resultados = {}
-        proyecto_base = self._crear_proyecto_base(idea_seleccionada, informacion_adicional)
-        
-        for i, paso in enumerate(flujo):
-            try:
-                logger.info(f"⚙️ Paso {i+1}/{len(flujo)}: {paso['descripcion']}")
-                
-                # Ejecutar agente usando el comunicador si está disponible
-                if paso['agente'] in self.agentes_especializados:
-                    datos = self._preparar_datos_para_agente(paso['agente'], proyecto_base, resultados)
-                    
-                    # Llamada especial para analizador con nuevo método de embeddings
-                    if paso['agente'] == 'analizador_tareas' and paso['metodo'] == 'seleccionar_y_adaptar_actividad':
-                        prompt = datos.get('prompt', proyecto_base.get('descripcion', ''))
-                        resultado = self.analizador_tareas.seleccionar_y_adaptar_actividad(prompt)
-                        
-                        # NUEVO: Extraer tareas usando método híbrido
-                        if resultado and 'actividad' in resultado:
-                            actividad_seleccionada = resultado['actividad']
-                            tareas_extraidas = self.analizador_tareas.extraer_tareas_hibrido(
-                                actividad_seleccionada, 
-                                prompt
-                            )
-                            # Añadir tareas al resultado
-                            resultado['tareas_extraidas'] = tareas_extraidas
-                            logger.info(f"✅ Extraídas {len(tareas_extraidas)} tareas con método híbrido")
-                    else:
-                        # Llamada estándar vía comunicador
-                        resultado = self.comunicador.enviar_mensaje(
-                            remitente="AgenteCoordinador",
-                            destinatario=paso['agente'],
-                            metodo=paso['metodo'],
-                            datos=datos
-                        )
-                    resultados[paso['agente']] = resultado
-                    
-                    # Validación intermedia
-                    coherencia = self.contexto_hibrido.validar_coherencia()
-                    if coherencia['sugerencias']:
-                        logger.info(f"💡 Sugerencias: {coherencia['sugerencias']}")
-                        
-                    logger.info(f"✅ Paso {i+1} completado exitosamente")
-                else:
-                    logger.warning(f"⚠️ Agente {paso['agente']} no disponible, saltando paso")
-                    
-            except Exception as e:
-                logger.error(f"❌ Error en paso {i+1} ({paso['agente']}): {e}")
-                self.contexto_hibrido.errores.append({
-                    'paso': i+1,
-                    'agente': paso['agente'],
-                    'error': str(e),
-                    'timestamp': datetime.now().isoformat()
-                })
-                
-                # Continuar con el siguiente paso en caso de error
-                continue
-                
-        # Consolidación final
-        return self._consolidar_resultados_mejorado(proyecto_base, resultados)
     
     def _preparar_datos_para_agente(self, agente_nombre, proyecto_base, resultados):
         """Método corregido en coordinador.py"""
@@ -948,170 +732,6 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         # Retornar el proyecto consolidado
         return proyecto_consolidado
     
-    def ejecutar_flujo_optimizado_fase2(self, prompt_usuario: str, perfiles_estudiantes: list = None) -> dict:
-        """
-        Flujo optimizado de 3 pasos para Fase 2
-        
-        Args:
-            prompt_usuario: Descripción de la actividad deseada
-            perfiles_estudiantes: Lista de perfiles (opcional, usa los predefinidos)
-            
-        Returns:
-            Proyecto completo optimizado
-        """
-        logger.info("🚀 Iniciando flujo optimizado Fase 2 (3 pasos esenciales)")
-        
-        inicio_tiempo = datetime.now()
-        self.contexto_hibrido.actualizar_estado("iniciando_flujo_fase2", "AgenteCoordinador")
-        
-        try:
-            # =================== PASO 1: SELECCIÓN INTELIGENTE DE ACTIVIDAD ===================
-            logger.info("🎯 PASO 1/3: Selección inteligente de actividad con embeddings")
-            
-            resultado_seleccion = self.analizador_tareas.seleccionar_y_adaptar_actividad(prompt_usuario)
-            
-            if not resultado_seleccion or not resultado_seleccion.get('actividad'):
-                raise Exception("No se pudo seleccionar actividad adecuada")
-            
-            actividad_seleccionada = resultado_seleccion['actividad']
-            
-            # NUEVO: Extraer tareas con método híbrido
-            logger.info("🎯 PASO 1b/3: Extracción híbrida de tareas")
-            tareas_extraidas = self.analizador_tareas.extraer_tareas_hibrido(
-                actividad_seleccionada, 
-                prompt_usuario
-            )
-            resultado_seleccion['tareas_extraidas'] = tareas_extraidas
-            
-            logger.info(f"✅ Actividad seleccionada: {actividad_seleccionada.get('titulo', 'Sin título')}")
-            logger.info(f"   • Estrategia: {resultado_seleccion.get('estrategia', 'N/A')}")
-            logger.info(f"   • Similitud: {resultado_seleccion.get('similitud', 0):.3f}")
-            logger.info(f"   • Tareas extraídas: {len(tareas_extraidas)}")
-            
-            # =================== PASO 2: USO DIRECTO DE PERFILES REALES ===================
-            logger.info("👥 PASO 2/3: Uso directo de perfiles de estudiantes reales")
-            
-            # Usar perfiles existentes directamente sin procesamiento LLM
-            perfiles_utilizados = perfiles_estudiantes or self.perfilador.perfiles_base
-            
-            perfiles_estructurados = {
-                'estudiantes': {},
-                'estadisticas': {
-                    'total': len(perfiles_utilizados),
-                    'con_necesidades_especiales': 0,
-                    'sin_necesidades_especiales': 0
-                },
-                'resumen_capacidades': self._generar_resumen_capacidades(perfiles_utilizados)
-            }
-            
-            for estudiante in perfiles_utilizados:
-                perfil_id = estudiante.id if hasattr(estudiante, 'id') else str(estudiante.get('id', 'unknown'))
-                
-                perfiles_estructurados['estudiantes'][perfil_id] = {
-                    'id': perfil_id,
-                    'nombre': estudiante.nombre if hasattr(estudiante, 'nombre') else estudiante.get('nombre', 'N/A'),
-                    'fortalezas': estudiante.fortalezas if hasattr(estudiante, 'fortalezas') else estudiante.get('fortalezas', []),
-                    'necesidades_apoyo': estudiante.necesidades_apoyo if hasattr(estudiante, 'necesidades_apoyo') else estudiante.get('necesidades_apoyo', []),
-                    'adaptaciones': estudiante.adaptaciones if hasattr(estudiante, 'adaptaciones') else estudiante.get('adaptaciones', []),
-                    'disponibilidad': estudiante.disponibilidad if hasattr(estudiante, 'disponibilidad') else estudiante.get('disponibilidad', 85)
-                }
-                
-                # Actualizar estadísticas
-                if perfiles_estructurados['estudiantes'][perfil_id]['adaptaciones']:
-                    perfiles_estructurados['estadisticas']['con_necesidades_especiales'] += 1
-                else:
-                    perfiles_estructurados['estadisticas']['sin_necesidades_especiales'] += 1
-            
-            logger.info(f"✅ Perfiles procesados: {len(perfiles_estructurados['estudiantes'])} estudiantes")
-            logger.info(f"   • Con necesidades especiales: {perfiles_estructurados['estadisticas']['con_necesidades_especiales']}")
-            logger.info(f"   • Neurotipos diversos: {len([e for e in perfiles_estructurados['estudiantes'].values() if e['adaptaciones']])}")
-            
-            # =================== PASO 3: ASIGNACIONES OPTIMIZADAS ===================
-            logger.info("⚡ PASO 3/3: Generación de asignaciones optimizadas")
-            
-            # Preparar datos para optimizador
-            datos_optimizacion = {
-                'actividad': actividad_seleccionada,
-                'perfiles': perfiles_estructurados,
-                'contexto_global': {
-                    'prompt_usuario': prompt_usuario,
-                    'timestamp': inicio_tiempo.isoformat(),
-                    'metodo_seleccion': resultado_seleccion.get('estrategia', 'unknown')
-                }
-            }
-            
-            # Ejecutar optimización con argumentos correctos
-            resultado_optimizacion = self.optimizador.optimizar_asignaciones(
-                tareas_input=tareas_extraidas,  # Primer argumento requerido
-                analisis_estudiantes=perfiles_estructurados,  # Segundo argumento
-                perfilador=self.perfilador  # Tercer argumento opcional
-            )
-            
-            logger.info(f"✅ Asignaciones generadas exitosamente")
-            
-            # =================== CONSOLIDACIÓN FINAL ===================
-            fin_tiempo = datetime.now()
-            duracion = (fin_tiempo - inicio_tiempo).total_seconds()
-            
-            proyecto_final = {
-                'actividad_base': actividad_seleccionada,
-                'seleccion_info': {
-                    'estrategia': resultado_seleccion.get('estrategia'),
-                    'similitud': resultado_seleccion.get('similitud'),
-                    'fuente': resultado_seleccion.get('actividad_fuente'),
-                    'adaptaciones_aplicadas': resultado_seleccion.get('adaptaciones_aplicadas', [])
-                },
-                'perfiles_estudiantes': perfiles_estructurados,
-                'asignaciones': resultado_optimizacion,
-                'metadatos': {
-                    'version': '2.0.0-fase2',
-                    'arquitectura': '3_pasos_optimizados',
-                    'timestamp_inicio': inicio_tiempo.isoformat(),
-                    'timestamp_fin': fin_tiempo.isoformat(),
-                    'duracion_segundos': duracion,
-                    'prompt_usuario': prompt_usuario,
-                    'estudiantes_procesados': len(perfiles_estructurados['estudiantes']),
-                    'flujo': 'optimizado_fase2'
-                },
-                'coherencia': self.validador.validar_coherencia_rapida(
-                    actividad_seleccionada, 
-                    perfiles_estructurados
-                ),
-                'coherencia_completa': self.validador.validar_proyecto_completo(
-                    actividad_seleccionada,
-                    perfiles_estructurados, 
-                    resultado_optimizacion
-                )
-            }
-            
-            # Actualizar contexto híbrido
-            self.contexto_hibrido.actualizar_estado("completado_fase2", "AgenteCoordinador")
-            self.contexto_hibrido.finalizar_proyecto(proyecto_final)
-            
-            logger.info(f"🎉 Flujo optimizado completado en {duracion:.2f} segundos")
-            logger.info(f"📊 Coherencia del proyecto: {proyecto_final['coherencia']['puntuacion']:.2f}/1.0")
-            logger.info(f"🔍 Validación completa: {proyecto_final['coherencia_completa']['nivel_coherencia']}")
-            
-            return proyecto_final
-            
-        except Exception as e:
-            logger.error(f"❌ Error en flujo optimizado Fase 2: {e}")
-            
-            # Crear respuesta de error estructurada
-            error_response = {
-                'error': True,
-                'mensaje': str(e),
-                'flujo': 'optimizado_fase2',
-                'timestamp': datetime.now().isoformat(),
-                'metadatos': {
-                    'version': '2.0.0-fase2',
-                    'estado': 'error',
-                    'prompt_usuario': prompt_usuario
-                }
-            }
-            
-            self.contexto_hibrido.registrar_error("AgenteCoordinador", str(e), {"flujo": "fase2"})
-            return error_response
     
     def _generar_resumen_capacidades(self, perfiles: list) -> dict:
         """
@@ -1377,7 +997,49 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
             estadisticas['error_estadisticas'] = str(e)
         
         return estadisticas
-    
+    def ejecutar_flujo_completo(self, descripcion_actividad: str, info_adicional: str = "") -> Dict:
+        """
+        FLUJO ÚNICO COMPLETO - Hace todo lo necesario sin complejidad innecesaria
+        
+        Args:
+            descripcion_actividad: Descripción de la actividad educativa deseada
+            info_adicional: Información adicional opcional
+            
+        Returns:
+            Proyecto ABP completo con actividad, perfiles y asignaciones
+        """
+        logger.info(f"🚀 Ejecutando flujo completo para: {descripcion_actividad[:50]}...")
+        
+        # PASO 1: Seleccionar y adaptar actividad con embeddings
+        resultado_actividad = self.analizador_tareas.seleccionar_y_adaptar_actividad(descripcion_actividad)
+        
+        # PASO 2: Analizar perfiles de estudiantes
+        perfiles = self.perfilador.analizar_perfiles()
+        
+        # PASO 3: Optimizar asignaciones estudiante-tarea
+        asignaciones = self.optimizador.optimizar_asignaciones(
+            resultado_actividad,  
+            perfiles,
+            perfilador=self.perfilador  
+        )
+        
+        # PASO 4: Consolidar resultado final
+        proyecto_final = {
+            'actividad_personalizada': resultado_actividad.get('actividad', {}),
+            'tareas_especificas': resultado_actividad.get('tareas_extraidas', []),
+            'perfiles_estudiantes': perfiles,
+            'asignaciones_neurotipos': asignaciones,
+            'metadatos': {
+                'timestamp': datetime.now().isoformat(),
+                'descripcion_original': descripcion_actividad,
+                'info_adicional': info_adicional,
+                'arquitectura': '3_agentes_directo'
+            }
+        }
+        
+        logger.info("✅ Flujo completo ejecutado exitosamente")
+        return proyecto_final
+
     def _crear_proyecto_base(self, actividad_seleccionada: dict, info_adicional: str = "") -> dict:
         """
         Crea la estructura base del proyecto ABP
@@ -1413,186 +1075,6 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         self.contexto_hibrido.actualizar_estado("estructura_base_creada", "AgenteCoordinador")
         
         return proyecto_base
-    
-    # =================== NUEVO FLUJO MEJORADO CON MVP ===================
-    def ejecutar_flujo_mejorado_mvp(self, descripcion_actividad: str, duracion_minutos: int = 45) -> Dict:
-        """
-        NUEVO MÉTODO: Flujo mejorado que usa las mejoras integradas del MVP
-        Análisis profundo + Asignación neurotipos usando agentes existentes mejorados
-        CON SISTEMA DE RETRY Y VALIDACIÓN AUTOMÁTICA
-        
-        Args:
-            descripcion_actividad: Descripción de la actividad
-            duracion_minutos: Duración total en minutos
-            
-        Returns:
-            Dict: Proyecto completo con mejoras del MVP integradas
-        """
-        self._log_processing_start(f"🧠 FLUJO MEJORADO MVP CON RETRY: '{descripcion_actividad}'")
-        
-        # IMPLEMENTAR SISTEMA DE RETRY CON VALIDACIÓN
-        max_intentos = self.flujo_config.get('max_iteraciones', 3)
-        validacion_automatica = self.flujo_config.get('validacion_automatica', True)
-        
-        for intento in range(1, max_intentos + 1):
-            logger.info(f"🔄 INTENTO {intento}/{max_intentos} del flujo MVP")
-            
-            try:
-                proyecto_resultado = self._ejecutar_flujo_mvp_interno(descripcion_actividad, duracion_minutos)
-                
-                # VALIDACIÓN AUTOMÁTICA SI ESTÁ HABILITADA
-                if validacion_automatica:
-                    validacion = self._validar_proyecto_resultado(proyecto_resultado)
-                    
-                    if validacion['valido']:
-                        logger.info(f"✅ ÉXITO en intento {intento}: Proyecto válido (puntuación: {validacion['puntuacion']:.2f})")
-                        proyecto_resultado['intentos_realizados'] = intento
-                        proyecto_resultado['validacion_final'] = validacion
-                        return proyecto_resultado
-                    else:
-                        logger.warning(f"⚠️ RETRY necesario en intento {intento}: {validacion['problemas']}")
-                        if intento < max_intentos:
-                            self._ajustar_contexto_para_retry(proyecto_resultado, validacion)
-                        continue
-                else:
-                    # Sin validación automática, retornar resultado
-                    logger.info(f"✅ Flujo completado en intento {intento} (sin validación automática)")
-                    proyecto_resultado['intentos_realizados'] = intento
-                    return proyecto_resultado
-                    
-            except Exception as e:
-                logger.error(f"❌ Error en intento {intento}: {e}")
-                if intento == max_intentos:
-                    raise
-                continue
-        
-        # Si llegamos aquí, todos los intentos fallaron
-        logger.error(f"❌ FALLO TOTAL: {max_intentos} intentos agotados")
-        raise Exception(f"Flujo MVP falló después de {max_intentos} intentos")
-    
-    def _ejecutar_flujo_mvp_interno(self, descripcion_actividad: str, duracion_minutos: int = 45) -> Dict:
-        """
-        Ejecuta la lógica interna del flujo MVP (sin retry)
-        """
-        # REINICIALIZAR CONTADOR DE TAREAS para IDs consistentes
-        self._tarea_counter = 0
-        
-        # PASO 1: Crear estructura base coherente con formato k_*.json
-        # Obtener metadatos del contexto híbrido para enriquecer la estructura
-        metadatos_contexto = self.contexto_hibrido.metadatos
-        
-        # NUEVO: Aplicar metadatos estructurados si están disponibles
-        duracion_final = self._aplicar_metadatos_estructurados(metadatos_contexto, duracion_minutos)
-        
-        # Generar ID único para la actividad
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        
-        actividad_base_estructurada = {
-            'id': f'ACT_GEN_{timestamp}',
-            'titulo': self._extraer_titulo_inteligente_con_estructura(descripcion_actividad, metadatos_contexto),
-            'objetivo': self._generar_objetivo_especifico(descripcion_actividad, metadatos_contexto),
-            'nivel_educativo': '4º Primaria',
-            'duracion_minutos': f'{duracion_final} minutos',
-            'recursos': [],  # Se generarán durante el análisis
-            'etapas': [],   # Se generarán con tareas agrupadas
-            'tipo_generacion': 'mvp_integrado'
-        }
-        
-        # Cargar perfiles al contexto híbrido si no están ya cargados
-        if not self.contexto_hibrido.perfiles_estudiantes:
-            self.contexto_hibrido.perfiles_estudiantes = self.perfilador.perfiles_base
-            logger.info(f"👥 Perfiles cargados al contexto híbrido: {len(self.perfilador.perfiles_base)} estudiantes")
-        
-        # Registrar inicio de flujo MVP en el contexto
-        self.contexto_hibrido.registrar_decision("AgenteCoordinador", f"Iniciando flujo MVP para: {descripcion_actividad[:50]}...", {
-            'tipo_flujo': 'flujo_mvp_integrado',
-            'duracion_minutos': duracion_minutos,
-            'descripcion_completa': descripcion_actividad
-        })
-        
-        # PASO 2: Usar analizador mejorado con análisis profundo + contexto híbrido
-        tareas_profundas = self.analizador_tareas.extraer_tareas_hibrido(
-            actividad_data=actividad_base_estructurada, 
-            prompt_usuario=descripcion_actividad,  # Esto activa el análisis profundo
-            contexto_hibrido=self.contexto_hibrido  # 🆕 Pasar contexto híbrido
-        )
-        logger.info(f"✅ PASO 2: Análisis profundo completado - {len(tareas_profundas)} tareas específicas")
-        
-        # Registrar resultados del análisis en contexto
-        self.contexto_hibrido.registrar_decision("AgenteAnalizador", f"Analisis completado: {len(tareas_profundas)} tareas identificadas", {
-            'tareas_identificadas': len(tareas_profundas),
-            'tipo_analisis': 'analisis_profundo'
-        })
-        
-        # PASO 3: Usar perfilador existente + contexto híbrido
-        perfiles_procesados = self.perfilador.analizar_perfiles({
-            'estudiantes': self.perfilador.perfiles_base
-        }, contexto_hibrido=self.contexto_hibrido)  # 🆕 Pasar contexto híbrido
-        logger.info(f"✅ PASO 3: Perfiles procesados - {len(self.perfilador.perfiles_base)} estudiantes")
-        
-        # Registrar procesamiento de perfiles
-        self.contexto_hibrido.registrar_decision("AgentePerfilador", f"Perfiles procesados: {len(self.perfilador.perfiles_base)} estudiantes", {
-            'estudiantes_procesados': len(self.perfilador.perfiles_base)
-        })
-        
-        # PASO 4: Usar optimizador mejorado con criterios neurotípicos + contexto híbrido
-        asignaciones_neurotipos = self.optimizador.optimizar_asignaciones(
-            tareas_input=tareas_profundas,
-            analisis_estudiantes=perfiles_procesados,
-            perfilador=self.perfilador,
-            contexto_hibrido=self.contexto_hibrido  # 🆕 Pasar contexto híbrido
-        )
-        logger.info(f"✅ PASO 4: Asignaciones neurotípicas completadas")
-        
-        # PASO 5: Construir actividad coherente con formato k_*.json
-        # Organizar tareas en etapas lógicas CON modalidades específicas por fase
-        actividad_estructurada = self._organizar_tareas_en_etapas_con_modalidades(
-            actividad_base_estructurada, 
-            tareas_profundas, 
-            metadatos_contexto
-        )
-        
-        # Generar recursos basados en las tareas y contexto
-        actividad_estructurada['recursos'] = self._inferir_recursos_necesarios(
-            tareas_profundas, 
-            metadatos_contexto
-        )
-        
-        # PASO 6: Construir proyecto final con estructura unificada
-        proyecto_mejorado = {
-            'tipo': 'flujo_mvp_integrado_v3',
-            'actividad_generada': actividad_estructurada,  # ← NUEVA estructura coherente
-            'asignaciones_neurotipos': asignaciones_neurotipos,
-            'perfiles_estudiantes': perfiles_procesados,
-            'metadatos': {
-                'version': '3.0.0-estructura-unificada',
-                'formato_coherente': 'k_actividades_json',
-                'mejoras_aplicadas': [
-                    'analisis_profundo_especifico',
-                    'criterios_neurotipos_tea_tdah_ac', 
-                    'estructura_coherente_k_json',
-                    'organizacion_etapas_logicas'
-                ],
-                'agentes_utilizados': ['analizador_mejorado', 'perfilador', 'optimizador_neurotipos']
-            }
-        }
-        
-        # Registrar finalización exitosa del flujo
-        self.contexto_hibrido.registrar_decision("AgenteOptimizador", "Asignaciones neurotípicas completadas", {
-            'total_asignaciones': len(asignaciones_neurotipos.get('asignaciones', {})),
-            'criterios_aplicados': asignaciones_neurotipos.get('metadatos', {}).get('criterios_aplicados', [])
-        })
-        
-        # Actualizar contexto híbrido con estado final
-        self.contexto_hibrido.actualizar_estado("flujo_mvp_completado", "AgenteCoordinador")
-        self.contexto_hibrido.finalizar_proyecto(proyecto_mejorado)
-        
-        logger.info("🎉 FLUJO MEJORADO MVP COMPLETADO")
-        logger.info(f"   📊 Tareas específicas: {len(tareas_profundas)}")
-        logger.info(f"   👥 Estudiantes: {len(self.perfilador.perfiles_base)}")
-        logger.info(f"   🧠 Criterios neurotípicos aplicados: {asignaciones_neurotipos.get('metadatos', {}).get('criterios_aplicados', [])}")
-        
-        return proyecto_mejorado
     
     def _extraer_titulo_inteligente(self, descripcion: str) -> str:
         """Extrae un título inteligente de la descripción"""
@@ -1913,7 +1395,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
 {emoji} Estudiante {estudiante_id} ({neurotipo}):
    💡 {info.get('justificacion', 'Sin justificación')}
    📋 Tareas asignadas: {info.get('num_tareas', 0)}
-   🎯 Criterios: {', '.join(info.get('criterios_aplicados', []))}
+   🎯 Criterios: {', '.join(str(c) for c in info.get('criterios_aplicados', []))}
 """
         
         # Estadísticas neurotípicas
@@ -1967,7 +1449,14 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         # Registrar otras preferencias estructuradas
         modalidades = metadatos.get('modalidades_preferidas', [])
         if modalidades:
-            logger.info(f"👥 Modalidades preferidas registradas: {', '.join(modalidades)}")
+            # Convertir modalidades a strings si son diccionarios
+            modalidades_str = []
+            for mod in modalidades:
+                if isinstance(mod, dict):
+                    modalidades_str.append(mod.get('nombre', str(mod)))
+                else:
+                    modalidades_str.append(str(mod))
+            logger.info(f"👥 Modalidades preferidas registradas: {', '.join(modalidades_str)}")
             
         estructura = metadatos.get('estructura_preferida', '')
         if estructura and estructura != 'libre':

@@ -13,12 +13,13 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 TEMP_DIR = os.path.join(BASE_DIR, "temp")
 EXAMPLES_DIR = os.path.join(DATA_DIR, "actividades")
 
-# Configuración de Ollama
+# === CONFIGURACIÓN OLLAMA CENTRALIZADA ===
 OLLAMA_CONFIG = {
     "host": "192.168.1.10",
     "port": 11434,
-    "model": "llama3.2",
-    "embedding_model": "nomic-embed-text"
+    "model": "mistral",  # PUNTO ÚNICO para cambiar modelo
+    "embedding_model": "nomic-embed-text",
+    "timeout": 30
 }
 
 # Configuración de agentes
@@ -29,52 +30,15 @@ AGENTS_CONFIG = {
     "timeout_por_agente": 60
 }
 
-# Patrones para detección de metadatos
-MATERIA_PATRONES = {
-    'matematicas': ['matemáticas', 'fracciones', 'números', 'operaciones', 'mercado de las fracciones', 'cálculo', 'geometría'],
-    'lengua': ['escritura', 'lectura', 'texto', 'poesía', 'gramática', 'ortografía', 'redacción'],
-    'ciencias': ['experimento', 'laboratorio', 'célula', 'planeta', 'científico', 'naturaleza', 'física', 'química'],
-    'geografia': ['geografía', 'mapa', 'comunidades', 'países', 'ciudades', 'regiones', 'españa', 'andalucía', 'cataluña', 'valencia', 'viajes', 'turismo', 'autonomas'],
-    'historia': ['historia', 'época', 'siglos', 'acontecimientos', 'pasado'],
-    'arte': ['arte', 'pintura', 'dibujo', 'creatividad', 'manualidades']
-}
-
-# Mapeo de ejemplos para contexto híbrido
-EJEMPLOS_MAPEO = {
-    'supermercado': 'sonnet_supermercado',
-    'dinero': 'sonnet_supermercado', 
-    'comercio': 'sonnet_supermercado',
-    'fracciones': 'sonnet7_fabrica_fracciones',
-    'fábrica': 'sonnet7_fabrica_fracciones',
-    'ciencias': 'celula',
-    'células': 'celula',
-    'biología': 'celula',
-    'piratas': 'piratas',
-    'tesoro': 'piratas',
-    'aventura': 'piratas',
-    'geografia': None,
-    'españa': None,
-    'comunidades': None,
-    'viajes': None
-}
-
 # Configuración de logging
 LOGGING_CONFIG = {
     "level": logging.INFO,
     "format": '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
 }
 
-# Perfiles de estudiantes predeterminados
-ESTUDIANTES_AULA_A_4PRIM = """
-- 001 ALEX M.: reflexivo, visual, CI 102
-- 002 MARÍA L.: reflexivo, auditivo
-- 003 ELENA R.: reflexivo, visual, TEA nivel 1, CI 118 - Necesita apoyo visual y rutinas
-- 004 LUIS T.: impulsivo, kinestetico, TDAH combinado, CI 102 - Necesita movimiento
-- 005 ANA V.: reflexivo, auditivo, altas capacidades, CI 141 - Necesita desafíos extra
-- 006 SARA M.: equilibrado, auditivo, CI 115
-- 007 EMMA K.: reflexivo, visual, CI 132
-- 008 HUGO P.: equilibrado, visual, CI 114
-"""
+
+
+# === FUNCIONES NECESARIAS ===
 
 # Crear directorios si no existen
 def ensure_directories():

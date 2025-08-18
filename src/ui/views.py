@@ -22,18 +22,6 @@ class CLIViews:
         print("=" * 60)
     
     @staticmethod
-    def solicitar_prompt_inicial() -> str:
-        """
-        LEGACY: Solicita el prompt inicial al usuario (formato libre)
-        
-        Returns:
-            Prompt ingresado por el usuario
-        """
-        print("\n📝 GENERACIÓN DE IDEAS (FORMATO LIBRE)")
-        print("-" * 40)
-        return input("Describa la actividad educativa que desea generar: ")
-    
-    @staticmethod
     def solicitar_input_estructurado_progresivo() -> Dict:
         """
         NUEVO: Flujo progresivo para crear actividades paso a paso
@@ -310,197 +298,6 @@ class CLIViews:
             print("❌ Opción inválida. Seleccione 1-5.")
     
     @staticmethod
-    def solicitar_input_estructurado() -> Dict:
-        """
-        LEGACY: Mantener compatibilidad con el sistema anterior
-        """
-        print("\n📋 GENERACIÓN ESTRUCTURADA DE ACTIVIDAD (MODO LEGACY)")
-        print("=" * 50)
-        print("Complete los siguientes campos para generar su actividad ABP:")
-        
-        input_estructurado = {}
-        
-        # 1. MATERIA
-        print(f"\n📚 MATERIA/ÁREA:")
-        print("   1. Matemáticas")
-        print("   2. Lengua Castellana y Literatura") 
-        print("   3. Ciencias Naturales")
-        print("   4. Ciencias Sociales/Geografía")
-        print("   5. Educación Artística")
-        print("   6. Educación Física")
-        print("   7. Interdisciplinar")
-        print("   8. Otra (especificar)")
-        
-        while True:
-            try:
-                opcion_materia = input("Seleccione materia (1-8): ").strip()
-                materias_map = {
-                    '1': 'Matemáticas',
-                    '2': 'Lengua Castellana y Literatura',
-                    '3': 'Ciencias Naturales', 
-                    '4': 'Ciencias Sociales',
-                    '5': 'Educación Artística',
-                    '6': 'Educación Física',
-                    '7': 'Interdisciplinar',
-                    '8': 'Otra'
-                }
-                
-                if opcion_materia in materias_map:
-                    if opcion_materia == '8':
-                        input_estructurado['materia'] = input("Especifique la materia: ").strip()
-                    else:
-                        input_estructurado['materia'] = materias_map[opcion_materia]
-                    break
-                else:
-                    print("❌ Opción inválida. Seleccione 1-8.")
-            except:
-                print("❌ Entrada inválida. Intente de nuevo.")
-        
-        # 2. TEMA/CONTENIDO
-        print(f"\n🎯 TEMA O CONTENIDO ESPECÍFICO:")
-        input_estructurado['tema'] = input("Ej: 'Fracciones equivalentes', 'El cuerpo humano', 'Comunidades autónomas':\n> ").strip()
-        
-        # 3. DURACIÓN
-        print(f"\n⏱️ DURACIÓN:")
-        print("   1. Una sesión (45-60 min)")
-        print("   2. Dos sesiones")
-        print("   3. Una semana (5 sesiones)")
-        print("   4. Proyecto largo (2-3 semanas)")
-        print("   5. Personalizada")
-        
-        while True:
-            try:
-                opcion_duracion = input("Seleccione duración (1-5): ").strip()
-                duraciones_map = {
-                    '1': {'valor': 45, 'descripcion': 'Una sesión (45 minutos)'},
-                    '2': {'valor': 90, 'descripcion': 'Dos sesiones (90 minutos)'},
-                    '3': {'valor': 225, 'descripcion': 'Una semana (5 sesiones)'},
-                    '4': {'valor': 450, 'descripcion': 'Proyecto largo (2-3 semanas)'},
-                    '5': {'valor': 'custom', 'descripcion': 'Personalizada'}
-                }
-                
-                if opcion_duracion in duraciones_map:
-                    if opcion_duracion == '5':
-                        while True:
-                            try:
-                                minutos_custom = int(input("Duración en minutos: "))
-                                input_estructurado['duracion'] = {
-                                    'valor': minutos_custom,
-                                    'descripcion': f'{minutos_custom} minutos personalizados'
-                                }
-                                break
-                            except ValueError:
-                                print("❌ Ingrese un número válido de minutos.")
-                    else:
-                        input_estructurado['duracion'] = duraciones_map[opcion_duracion]
-                    break
-                else:
-                    print("❌ Opción inválida. Seleccione 1-5.")
-            except:
-                print("❌ Entrada inválida. Intente de nuevo.")
-        
-        # 4. MODALIDADES DE TRABAJO
-        print(f"\n👥 MODALIDADES DE TRABAJO (puede seleccionar varias):")
-        print("   1. Individual")
-        print("   2. Parejas") 
-        print("   3. Grupos pequeños (3-4 estudiantes)")
-        print("   4. Grupos grandes (5-6 estudiantes)")
-        print("   5. Toda la clase")
-        
-        modalidades_seleccionadas = []
-        modalidades_map = {
-            '1': 'individual',
-            '2': 'parejas',
-            '3': 'grupos_pequeños',
-            '4': 'grupos_grandes', 
-            '5': 'clase_completa'
-        }
-        
-        while True:
-            seleccion = input("Seleccione modalidades (ej: '1,3,5' o presione Enter para terminar): ").strip()
-            if not seleccion:
-                break
-                
-            try:
-                opciones = [op.strip() for op in seleccion.split(',')]
-                modalidades_validas = []
-                
-                for opcion in opciones:
-                    if opcion in modalidades_map:
-                        modalidad = modalidades_map[opcion]
-                        if modalidad not in modalidades_seleccionadas:
-                            modalidades_seleccionadas.append(modalidad)
-                            modalidades_validas.append(f"{opcion}={modalidad}")
-                    else:
-                        print(f"❌ Opción '{opcion}' inválida.")
-                
-                if modalidades_validas:
-                    print(f"✅ Añadidas: {', '.join(modalidades_validas)}")
-                    
-            except:
-                print("❌ Formato inválido. Use números separados por comas (ej: 1,3,5)")
-                
-        input_estructurado['modalidades'] = modalidades_seleccionadas if modalidades_seleccionadas else ['grupos_pequeños']
-        
-        # 5. ESTRUCTURA DE FASES CON MODALIDADES ESPECÍFICAS
-        print(f"\n🔄 ESTRUCTURA DE FASES:")
-        print("   1. Simple (Introducción → Desarrollo → Cierre)")
-        print("   2. Investigación (Pregunta → Investigación → Presentación)")
-        print("   3. Creativa (Inspiración → Creación → Exhibición)")
-        print("   4. Experimental (Hipótesis → Experimento → Análisis)")
-        print("   5. Personalizada (definir fases propias)")
-        print("   6. Libre (que el sistema decida)")
-        
-        while True:
-            try:
-                opcion_fases = input("Seleccione estructura (1-6): ").strip()
-                
-                if opcion_fases == '1':
-                    fases_base = ['Introducción y Preparación', 'Desarrollo y Práctica', 'Aplicación y Cierre']
-                    input_estructurado['estructura_fases'] = CLIViews._configurar_modalidades_por_fase(fases_base, 'simple')
-                    break
-                elif opcion_fases == '2':
-                    fases_base = ['Planteamiento del Problema', 'Investigación y Recogida de Datos', 'Presentación de Resultados']
-                    input_estructurado['estructura_fases'] = CLIViews._configurar_modalidades_por_fase(fases_base, 'investigacion')
-                    break
-                elif opcion_fases == '3':
-                    fases_base = ['Inspiración y Lluvia de Ideas', 'Proceso Creativo', 'Exhibición y Reflexión']
-                    input_estructurado['estructura_fases'] = CLIViews._configurar_modalidades_por_fase(fases_base, 'creativa')
-                    break
-                elif opcion_fases == '4':
-                    fases_base = ['Formulación de Hipótesis', 'Experimentación', 'Análisis y Conclusiones']
-                    input_estructurado['estructura_fases'] = CLIViews._configurar_modalidades_por_fase(fases_base, 'experimental')
-                    break
-                elif opcion_fases == '5':
-                    # Fases personalizadas
-                    input_estructurado['estructura_fases'] = CLIViews._configurar_fases_personalizadas()
-                    break
-                elif opcion_fases == '6':
-                    input_estructurado['estructura_fases'] = {'tipo': 'libre', 'fases': []}
-                    break
-                else:
-                    print("❌ Opción inválida. Seleccione 1-6.")
-            except:
-                print("❌ Entrada inválida. Intente de nuevo.")
-        
-        # 6. CONTEXTO ADICIONAL (OPCIONAL)
-        print(f"\n💡 CONTEXTO ADICIONAL (opcional):")
-        contexto = input("Añada cualquier detalle específico, recursos disponibles, o adaptaciones necesarias:\n> ").strip()
-        if contexto:
-            input_estructurado['contexto_adicional'] = contexto
-            
-        # MOSTRAR RESUMEN
-        CLIViews._mostrar_resumen_input_estructurado(input_estructurado)
-        
-        # CONFIRMACIÓN
-        confirmacion = input("\n¿Confirma estos datos para generar la actividad? (s/n): ").strip().lower()
-        if not confirmacion.startswith('s'):
-            print("❌ Generación cancelada. Volviendo al menú principal.")
-            return None
-            
-        return input_estructurado
-    
-    @staticmethod
     def _mostrar_resumen_input_estructurado(input_data: Dict):
         """Muestra resumen del input estructurado"""
         print(f"\n📋 RESUMEN DE LA ACTIVIDAD A GENERAR:")
@@ -511,7 +308,7 @@ class CLIViews:
         
         modalidades = input_data.get('modalidades', [])
         if modalidades:
-            modalidades_texto = ', '.join(modalidades).replace('_', ' ')
+            modalidades_texto = ', '.join(str(m) for m in modalidades).replace('_', ' ')
             print(f"👥 Modalidades: {modalidades_texto}")
         
         estructura = input_data.get('estructura_fases', {})
@@ -656,38 +453,6 @@ class CLIViews:
             'fases': [fase['nombre'] for fase in fases_detalladas],
             'fases_detalladas': fases_detalladas
         }
-    
-    @staticmethod
-    def solicitar_modo_generacion() -> str:
-        """
-        Solicita al usuario que elija el modo de generación
-        
-        Returns:
-            'estructurado' o 'libre'
-        """
-        print("\n🚀 MODO DE GENERACIÓN DE ACTIVIDAD")
-        print("=" * 40)
-        print("Elija cómo desea crear su actividad:")
-        print()
-        print("📋 1. MODO ESTRUCTURADO (Recomendado)")
-        print("     • Formulario guiado paso a paso")
-        print("     • Campos específicos (materia, duración, modalidades)")
-        print("     • Mayor precisión en los resultados")
-        print()
-        print("✏️  2. MODO LIBRE (Tradicional)")
-        print("     • Descripción libre de la actividad") 
-        print("     • Más flexibilidad en la expresión")
-        print("     • Sistema interpreta automáticamente")
-        print()
-        
-        while True:
-            opcion = input("Seleccione modo (1 o 2): ").strip()
-            if opcion == '1':
-                return 'estructurado'
-            elif opcion == '2':
-                return 'libre' 
-            else:
-                print("❌ Opción inválida. Seleccione 1 o 2.")
     
     @staticmethod
     def mostrar_ideas(ideas: List[Dict]):
@@ -858,25 +623,19 @@ class CLIViews:
     def mostrar_validacion_final(proyecto_final: dict) -> bool:
         """
         Muestra información de validación y solicita aprobación
-        
-        Args:
-            proyecto_final: Proyecto final generado
-            
-        Returns:
-            True si el usuario aprueba el proyecto, False en caso contrario
         """
         print("\n🔍 VALIDACIÓN FINAL:")
         
-        # DETECTAR ESTRUCTURA: NUEVA UNIFICADA vs MVP vs LEGACY
+        # DETECTAR ESTRUCTURA CORRECTA PARA EL FLUJO ACTUAL
         if 'actividad_generada' in proyecto_final:
             # NUEVA ESTRUCTURA UNIFICADA (v3.0)
             proyecto_base = proyecto_final.get('actividad_generada', {})
             resultados = proyecto_final
             print(f"   DEBUG - ESTRUCTURA UNIFICADA V3 DETECTADA")
-        elif 'tipo' in proyecto_final and 'flujo_mvp_integrado' in str(proyecto_final['tipo']):
-            # ESTRUCTURA MVP: El proyecto es directamente los resultados
+        elif 'actividad_personalizada' in proyecto_final:
+            # ESTRUCTURA MVP ACTUAL - ESTE ES EL CASO QUE TENEMOS
             proyecto_base = proyecto_final.get('actividad_personalizada', {})
-            resultados = proyecto_final  # El proyecto completo son los resultados
+            resultados = proyecto_final
             print(f"   DEBUG - ESTRUCTURA MVP DETECTADA")
         else:
             # ESTRUCTURA LEGACY
@@ -890,51 +649,39 @@ class CLIViews:
             print(f"   DEBUG - ESTRUCTURA LEGACY DETECTADA")
         
         print(f"Título: {proyecto_base.get('titulo', 'N/A')}")
-        print(f"Descripción: {proyecto_base.get('descripcion', proyecto_final.get('descripcion_actividad', 'N/A'))}")
+        print(f"Descripción: {proyecto_base.get('descripcion', proyecto_base.get('objetivo', 'N/A'))}")
         
         # ===== INFORMACIÓN DETALLADA DE TAREAS =====
         tareas_list = []
         actividad_info = {}
         
-        # PRIORIDAD 1: Buscar en estructura unificada v3.0
-        if 'actividad_generada' in resultados:
-            # Nueva estructura unificada que sigue formato k_*.json
+        # PRIORIDAD 1: Buscar en estructura MVP actual
+        if 'actividad_personalizada' in proyecto_final:
+            actividad_personalizada = proyecto_final['actividad_personalizada']
+            actividad_info = actividad_personalizada
+            
+            # Extraer tareas de las etapas
+            etapas = actividad_personalizada.get('etapas', [])
+            for etapa in etapas:
+                tareas_etapa = etapa.get('tareas', [])
+                tareas_list.extend(tareas_etapa)
+            
+            print(f"   DEBUG - Estructura MVP actual: {len(tareas_list)} tareas, actividad: {actividad_info.get('titulo', 'Sin título')}")
+        
+        # PRIORIDAD 2: Buscar en estructura unificada v3.0
+        elif 'actividad_generada' in resultados:
             actividad_generada = resultados['actividad_generada']
             
             # Extraer tareas de todas las etapas
-            tareas_list = []
             for etapa in actividad_generada.get('etapas', []):
                 tareas_etapa = etapa.get('tareas', [])
                 tareas_list.extend(tareas_etapa)
             
             actividad_info = actividad_generada
-            print(f"   DEBUG - Estructura UNIFICADA V3 detectada: {len(tareas_list)} tareas, actividad: {actividad_info.get('titulo', 'Sin título')}")
+            print(f"   DEBUG - Estructura UNIFICADA V3 detectada: {len(tareas_list)} tareas")
             
-        # PRIORIDAD 2: Buscar en estructura del flujo MVP integrado
-        elif 'tipo' in resultados and 'flujo_mvp_integrado' in str(resultados.get('tipo', '')):
-            # Estructura del flujo MVP mejorado
-            tareas_list = resultados.get('tareas_especificas', [])
-            actividad_info = resultados.get('actividad_personalizada', {})
-            print(f"   DEBUG - Estructura MVP detectada: {len(tareas_list)} tareas, actividad: {actividad_info.get('titulo', 'Sin título')}")
-            
-        # PRIORIDAD 3: Buscar en la estructura anterior: resultados_agentes -> analizador_tareas
-        elif 'analizador_tareas' in resultados:
-            analizador_data = resultados['analizador_tareas']
-            if isinstance(analizador_data, list):
-                tareas_list = analizador_data
-            elif isinstance(analizador_data, dict):
-                # Extraer información de actividad
-                actividad_info = analizador_data.get('actividad', {})
-                
-                # Buscar tareas en diferentes ubicaciones
-                tareas_list = (
-                    analizador_data.get('tareas_extraidas', []) or
-                    analizador_data.get('tareas', []) or
-                    []
-                )
-        
-        # Fallback: buscar en estructura antigua
-        if not tareas_list:
+        # FALLBACK: Buscar en estructura legacy
+        else:
             tareas_info = resultados.get('tareas', {})
             if isinstance(tareas_info, list):
                 tareas_list = tareas_info
@@ -942,144 +689,43 @@ class CLIViews:
                 tareas_list = tareas_info.get('tareas', []) if isinstance(tareas_info, dict) else []
         
         print(f"Tareas generadas: {len(tareas_list)}")
-        print(f"   DEBUG - Estructura de resultados: {list(resultados.keys())}")
-        print(f"   DEBUG - Tipo de resultados: {resultados.get('tipo', 'N/A')}")
-        print(f"   DEBUG - Actividad info keys: {list(actividad_info.keys()) if actividad_info else 'Vacío'}")
+        print(f"   DEBUG - Estructura de resultados: {list(proyecto_final.keys())}")
         
-        # ===== MOSTRAR LISTADO DE TAREAS =====
-        if 'actividad_generada' in resultados:
-            # MOSTRAR ETAPAS Y TAREAS ESTRUCTURADAS (FORMATO K_*.JSON)
+        # MOSTRAR ASIGNACIONES SI EXISTEN
+        if 'asignaciones_neurotipos' in proyecto_final:
+            asignaciones = proyecto_final['asignaciones_neurotipos']
+            if isinstance(asignaciones, dict) and 'asignaciones' in asignaciones:
+                num_asignaciones = len(asignaciones['asignaciones'])
+                print(f"Asignaciones generadas: {num_asignaciones} estudiantes")
+            else:
+                print(f"Asignaciones generadas: Disponibles")
+        
+        # MOSTRAR DETALLES DE ETAPAS Y TAREAS
+        if tareas_list:
             print(f"\n📋 ESTRUCTURA DE LA ACTIVIDAD:")
-            actividad = resultados['actividad_generada']
+            if actividad_info:
+                print(f"   Título: {actividad_info.get('titulo', 'Sin título')}")
+                print(f"   Objetivo: {actividad_info.get('objetivo', 'Sin objetivo')[:100]}...")
+                print(f"   Duración: {actividad_info.get('duracion_minutos', 'No especificada')}")
             
-            print(f"   Título: {actividad.get('titulo', 'Sin título')}")
-            print(f"   Objetivo: {actividad.get('objetivo', 'Sin objetivo')[:100]}...")
-            print(f"   Duración: {actividad.get('duracion_minutos', 'No especificada')}")
-            
-            # Mostrar recursos
-            recursos = actividad.get('recursos', [])
-            if recursos:
-                print(f"\n🎨 RECURSOS NECESARIOS:")
-                for recurso in recursos[:5]:  # Máximo 5 recursos
-                    print(f"   • {recurso}")
-            
-            # Mostrar etapas y tareas
-            etapas = actividad.get('etapas', [])
-            print(f"\n🔄 ETAPAS DE LA ACTIVIDAD ({len(etapas)}):")
-            
-            for i, etapa in enumerate(etapas, 1):
-                print(f"\n   🔸 ETAPA {i}: {etapa.get('nombre', 'Sin nombre')}")
-                print(f"      {etapa.get('descripcion', 'Sin descripción')[:80]}...")
+            # Mostrar etapas organizadas
+            if 'actividad_personalizada' in proyecto_final:
+                etapas = proyecto_final['actividad_personalizada'].get('etapas', [])
+                print(f"\n📄 ETAPAS DE LA ACTIVIDAD ({len(etapas)}):")
                 
-                tareas_etapa = etapa.get('tareas', [])
-                if tareas_etapa:
-                    print(f"      📋 Tareas ({len(tareas_etapa)}):")
-                    for j, tarea in enumerate(tareas_etapa[:3], 1):  # Máximo 3 tareas por etapa
-                        nombre = tarea.get('nombre', 'Sin nombre')[:40]
-                        formato = tarea.get('formato_asignacion', 'N/A')
-                        print(f"         {j}. {nombre} ({formato})")
-                        
-        elif tareas_list and len(tareas_list) > 0:
-            # MOSTRAR TAREAS EN FORMATO ANTERIOR (COMPATIBILIDAD)
-            print(f"\n📋 TAREAS ESPECÍFICAS:")
-            print(f"   DEBUG - Tipo tareas_list: {type(tareas_list)}")
-            print(f"   DEBUG - Primer elemento: {tareas_list[0] if tareas_list else 'Vacío'}")
-            
-            for i, tarea in enumerate(tareas_list[:5], 1):  # Mostrar máximo 5
-                print(f"   DEBUG - Tarea {i} tipo: {type(tarea)}")
-                
-                if isinstance(tarea, dict):
-                    # Es un diccionario
-                    tarea_id = tarea.get('id', f'tarea_{i:02d}')
-                    descripcion = tarea.get('descripcion', tarea.get('nombre', 'Sin descripción'))
-                    complejidad = tarea.get('complejidad', 'N/A')
-                elif hasattr(tarea, 'id') and hasattr(tarea, 'descripcion'):
-                    # Es un objeto Tarea (dataclass)
-                    tarea_id = tarea.id
-                    descripcion = tarea.descripcion
-                    complejidad = getattr(tarea, 'complejidad', 'N/A')
-                else:
-                    # Fallback
-                    tarea_id = f'tarea_{i:02d}'
-                    descripcion = str(tarea)[:50]
-                    complejidad = 'N/A'
-                
-                print(f"   {i}. {descripcion} (Complejidad: {complejidad})")
-            
-            if len(tareas_list) > 5:
-                print(f"   ... y {len(tareas_list) - 5} tareas más")
+                for i, etapa in enumerate(etapas, 1):
+                    print(f"\n   🔸 ETAPA {i}: {etapa.get('nombre', 'Sin nombre')}")
+                    print(f"      {etapa.get('descripcion', 'Sin descripción')[:80]}...")
+                    
+                    tareas_etapa = etapa.get('tareas', [])
+                    if tareas_etapa:
+                        print(f"      📋 Tareas ({len(tareas_etapa)}):")
+                        for j, tarea in enumerate(tareas_etapa[:3], 1):  # Máximo 3 tareas por etapa
+                            nombre = tarea.get('nombre', 'Sin nombre')[:40]
+                            formato = tarea.get('formato_asignacion', 'N/A')
+                            print(f"         {j}. {nombre} ({formato})")
         
-        # ===== MOSTRAR DETALLE DE LA ACTIVIDAD =====
-        if actividad_info:
-            print(f"\n📚 DETALLE DE LA ACTIVIDAD:")
-            print(f"   • Objetivo: {actividad_info.get('objetivo', 'No especificado')}")
-            print(f"   • Duración: {actividad_info.get('duracion_minutos', 'No especificada')}")
-            print(f"   • Nivel: {actividad_info.get('nivel_educativo', '4º Primaria')}")
-            
-            # Mostrar etapas si existen
-            etapas = actividad_info.get('etapas', [])
-            if etapas:
-                print(f"   • Etapas ({len(etapas)}):")
-                for i, etapa in enumerate(etapas[:3], 1):  # Mostrar máximo 3
-                    if isinstance(etapa, dict):
-                        print(f"     {i}. {etapa.get('nombre', f'Etapa {i}')}")
-        
-        # ===== MOSTRAR ASIGNACIONES DE ESTUDIANTES =====
-        asignaciones = None
-        
-        # PRIORIDAD 1: Buscar asignaciones en flujo MVP
-        if 'asignaciones_neurotipos' in resultados:
-            asignaciones = resultados['asignaciones_neurotipos']
-        # PRIORIDAD 2: Buscar en estructura anterior
-        elif 'optimizador_asignaciones' in resultados:
-            asignaciones = resultados['optimizador_asignaciones']
-        
-        if asignaciones:
-            if isinstance(asignaciones, dict) and asignaciones:
-                print(f"\n👥 ASIGNACIONES POR ESTUDIANTE:")
-                
-                # Crear mapeo de ID de tarea -> descripción
-                tarea_descripciones = {}
-                print(f"   DEBUG - Creando mapeo de {len(tareas_list)} tareas")
-                if isinstance(tareas_list, list):
-                    for tarea in tareas_list:
-                        print(f"   DEBUG - Tipo de tarea: {type(tarea)}")
-                        
-                        if isinstance(tarea, dict):
-                            # Es un diccionario
-                            tarea_id = tarea.get('id', '')
-                            descripcion = tarea.get('descripcion', tarea.get('nombre', tarea_id))
-                        elif hasattr(tarea, 'id') and hasattr(tarea, 'descripcion'):
-                            # Es un objeto Tarea (dataclass)
-                            tarea_id = tarea.id
-                            descripcion = tarea.descripcion
-                        else:
-                            # Intentar convertir a string
-                            tarea_id = f'tarea_unknown_{len(tarea_descripciones)+1}'
-                            descripcion = str(tarea)[:50]
-                        
-                        # Limitar descripción a 40 caracteres para legibilidad
-                        if len(descripcion) > 40:
-                            descripcion = descripcion[:37] + "..."
-                        
-                        tarea_descripciones[tarea_id] = descripcion
-                        print(f"   DEBUG - Mapeado: {tarea_id} -> {descripcion}")
-                
-                print(f"   DEBUG - Mapeo final: {tarea_descripciones}")
-                
-                for estudiante_id, tareas_asignadas in asignaciones.items():
-                    if isinstance(tareas_asignadas, list) and tareas_asignadas:
-                        # Convertir IDs a descripciones
-                        descripciones_tareas = []
-                        for tarea_id in tareas_asignadas[:2]:  # Mostrar máximo 2
-                            descripcion = tarea_descripciones.get(tarea_id, tarea_id)
-                            descripciones_tareas.append(descripcion)
-                        
-                        tareas_texto = ', '.join(descripciones_tareas)
-                        if len(tareas_asignadas) > 2:
-                            tareas_texto += '...'
-                        
-                        print(f"   • Estudiante {estudiante_id}: {len(tareas_asignadas)} tareas ({tareas_texto})")
-        
-        # Validación manual
-        return input("\n✅ ¿Aprueba el proyecto generado? (s/n): ").lower().startswith('s')
+        # Solicitar aprobación
+        print(f"\n¿Aprueba este proyecto? (s/n): ", end="")
+        respuesta = input().strip().lower()
+        return respuesta.startswith('s')

@@ -5,6 +5,7 @@ Actúa como intermediario entre la interfaz de usuario y la lógica de negocio.
 
 import logging
 from typing import Dict, List, Any, Optional
+from datetime import datetime
 
 logger = logging.getLogger("SistemaAgentesABP.UIController")
 
@@ -25,18 +26,12 @@ class UIController:
     
     def generar_ideas_desde_prompt(self, prompt: str) -> List[Dict]:
         """
-        LEGACY: Solicita al sistema generar ideas basadas en el prompt libre
-        
-        Args:
-            prompt: Prompt inicial del profesor
-            
-        Returns:
-            Lista de ideas generadas
+        Genera ideas basadas en el prompt libre llamando directamente al coordinador
         """
         logger.info(f"🎮 Solicitando generación de ideas para prompt: {prompt[:50]}...")
         
-        # Usar la capa de abstracción del sistema
-        info_inicial = self.sistema.generar_ideas(prompt_profesor=prompt)
+        # Llamar directamente al coordinador
+        info_inicial = self.coordinador.recoger_informacion_inicial(prompt_profesor=prompt)
         return info_inicial.get('ideas_generadas', [])
     
     def generar_ideas_desde_input_estructurado(self, input_estructurado: Dict) -> List[Dict]:
@@ -61,7 +56,7 @@ class UIController:
         self._registrar_metadatos_estructurados(input_estructurado)
         
         # Usar la capa de abstracción del sistema con prompt enriquecido
-        info_inicial = self.sistema.generar_ideas(prompt_profesor=prompt_enriquecido)
+        info_inicial = self.coordinador.recoger_informacion_inicial(prompt_profesor=prompt_enriquecido)
         
         # Enriquecer ideas con metadatos estructurados
         ideas_enriquecidas = self._enriquecer_ideas_con_estructura(
@@ -259,7 +254,7 @@ class UIController:
         self._registrar_metadatos_basicos(input_basico)
         
         # Generar ideas usando el sistema existente
-        info_inicial = self.sistema.generar_ideas(prompt_profesor=prompt_base)
+        info_inicial = self.coordinador.recoger_informacion_inicial(prompt_profesor=prompt_base)
         ideas_base = info_inicial.get('ideas_generadas', [])
         
         # Enriquecer ideas con información básica
@@ -288,7 +283,7 @@ class UIController:
         
         # Ejecutar flujo MVP con prompt enriquecido
         logger.info("🚀 Ejecutando flujo MVP con estructura aplicada")
-        proyecto_final = self.sistema.ejecutar_flujo_mvp(prompt_estructurado)
+        proyecto_final = self.sistema.ejecutar_flujo({'descripcion': prompt_estructurado}, "")
         
         # Añadir metadatos de estructura al proyecto
         if 'metadatos' not in proyecto_final:
@@ -465,15 +460,7 @@ class UIController:
     
     def matizar_idea(self, ideas: List[Dict], idea_idx: int, matizaciones: str) -> List[Dict]:
         """
-        Solicita al sistema matizar una idea seleccionada
-        
-        Args:
-            ideas: Lista de ideas actuales
-            idea_idx: Índice de la idea a matizar (0-based)
-            matizaciones: Texto con las matizaciones solicitadas
-            
-        Returns:
-            Lista actualizada de ideas
+        Solicita al coordinador matizar una idea seleccionada
         """
         if not (0 <= idea_idx < len(ideas)):
             logger.error(f"🎮 Índice de idea inválido: {idea_idx}")
@@ -482,40 +469,45 @@ class UIController:
         idea_seleccionada = ideas[idea_idx]
         logger.info(f"🎮 Solicitando matización de idea: {idea_seleccionada.get('titulo', '')}...")
         
-        # Usar la capa de abstracción del sistema
-        return self.sistema.matizar_actividad(idea_seleccionada, matizaciones)
+        # Llamar directamente al coordinador
+        return self.coordinador.matizar_idea_especifica(
+            idea_seleccionada, 
+            matizaciones, 
+            self.coordinador.contexto_hibrido
+        )
     
     def generar_nuevas_ideas(self, nuevo_prompt: str) -> List[Dict]:
         """
-        Solicita al sistema generar nuevas ideas con un prompt diferente
-        
-        Args:
-            nuevo_prompt: Nuevo prompt para generar ideas
-            
-        Returns:
-            Lista de nuevas ideas generadas
+        Solicita al coordinador generar nuevas ideas con un prompt diferente
         """
         logger.info(f"🎮 Solicitando nuevas ideas con prompt: {nuevo_prompt[:50]}...")
         
-        # Usar la capa de abstracción del sistema
-        return self.sistema.generar_nuevas_ideas(nuevo_prompt)
+        # Llamar directamente al coordinador
+        return self.coordinador.generar_ideas_actividades_hibrido(
+            nuevo_prompt, 
+            self.coordinador.contexto_hibrido
+        )
     
     def registrar_detalles_adicionales(self, actividad: Dict, detalles: str):
         """
         Registra detalles adicionales para una actividad seleccionada
-        
-        Args:
-            actividad: Actividad seleccionada
-            detalles: Detalles adicionales
         """
         logger.info(f"🎮 Registrando detalles adicionales para: {actividad.get('titulo', 'Sin título')}")
         
-        # Usar la capa de abstracción del sistema
-        self.sistema.registrar_detalles_adicionales(actividad, detalles)
+        # Registrar directamente en el coordinador
+        if detalles.strip():
+            from datetime import datetime
+            self.coordinador.historial_prompts.append({
+                "tipo": "detalles_actividad_seleccionada",
+                "actividad_id": actividad.get('id'),
+                "actividad_titulo": actividad.get('titulo'),
+                "detalles_adicionales": detalles,
+                "timestamp": datetime.now().isoformat()
+            })
     
-    def ejecutar_flujo_orquestado(self, actividad_seleccionada: Dict, info_adicional: str = "") -> Dict:
+    def ejecutar_flujo_completo(self, actividad_seleccionada: Dict, info_adicional: str = "") -> Dict:
         """
-        Solicita al sistema ejecutar el flujo completo
+        Solicita al sistema ejecutar el flujo completo (usando MVP mejorado)
         
         Args:
             actividad_seleccionada: Actividad seleccionada para procesar

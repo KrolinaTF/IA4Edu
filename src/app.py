@@ -15,6 +15,9 @@ logger = logging.getLogger("SistemaAgentesABP")
 # Asegurar que podamos importar módulos desde el directorio actual
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
+# Importar configuración centralizada
+from config import OLLAMA_CONFIG, ensure_directories
+
 # Importar componentes principales
 from core.ollama_integrator import OllamaIntegrator
 from agents.coordinador import AgenteCoordinador
@@ -30,20 +33,19 @@ def main():
     try:
         logger.info("🚀 Iniciando Sistema de Agentes ABP")
         
-        # Inicializar integrador Ollama
-        ollama_config = {
-            "host": "192.168.1.10",
-            "port": 11434,
-            "model": "mistral",
-            "embedding_model": "nomic-embed-text"
-        }
-        ollama_integrator = OllamaIntegrator(**ollama_config)
+        # Asegurar directorios necesarios
+        ensure_directories()
         
-        # Inicializar agentes (Fase 2 - Solo 3 agentes esenciales)
+        # Usar configuración centralizada de Ollama
+        logger.info(f"📡 Conectando a Ollama en {OLLAMA_CONFIG['host']}:{OLLAMA_CONFIG['port']} con modelo {OLLAMA_CONFIG['model']}")
+        
+        ollama_integrator = OllamaIntegrator(**OLLAMA_CONFIG)
+        
+        # Inicializar agentes
         analizador = AgenteAnalizadorTareas(ollama_integrator)
         perfilador = AgentePerfiladorEstudiantes(ollama_integrator)
         optimizador = AgenteOptimizadorAsignaciones(ollama_integrator)
-        # generador eliminado en Fase 1
+        
         
         # Inicializar coordinador con agentes
         coordinador = AgenteCoordinador(

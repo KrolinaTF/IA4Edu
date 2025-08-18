@@ -56,7 +56,7 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
             }
         }
 
-    def optimizar_asignaciones(self, tareas_input, analisis_estudiantes: Dict, perfilador=None, contexto_hibrido=None, **kwargs) -> Dict:
+    def optimizar_asignaciones(self, tareas_input, analisis_estudiantes: Dict, perfilador=None, contexto_hibrido=None, estructura_fases=None, **kwargs) -> Dict:
         """
         Optimiza las asignaciones de tareas basándose en el análisis de perfiles. Estas tareas tienen que definirse específicamente para cada estudiante y para 
         la actividad concreta que estamos realizando. Una vez tenemos la actividad y las tareas definidas, han de repartirse de la manera más inteligentemente posible para 
@@ -66,10 +66,12 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
             tareas_input: Puede ser List[Tarea], Dict con actividad, o datos del analizador
             analisis_estudiantes: Análisis de compatibilidades entre estudiantes y tareas
             perfilador: Referencia al perfilador (opcional)
+            contexto_hibrido: Contexto híbrido compartido (opcional)
+            estructura_fases: Configuración de fases definida por el profesor (opcional)
             **kwargs: Parámetros adicionales
             
         Returns:
-            Diccionario con asignaciones optimizadas
+            Diccionario con asignaciones optimizadas por fases
         """
         self.logger.info("🎯 Iniciando optimización de asignaciones...")
         
@@ -98,7 +100,17 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
         estudiantes_disponibles = list(self.perfiles.keys())
         self.logger.info(f"📋 Estudiantes disponibles en sistema: {estudiantes_disponibles}")
         
-        # =================== PREPARACIÓN DE DATOS PARA LLM ===================
+        # 3.2. NUEVO: Validar si hay estructura de fases definida
+        if estructura_fases:
+            self.logger.info("🏗️ Estructura de fases detectada - aplicando asignación por fases")
+            return self._optimizar_asignaciones_por_fases(
+                tareas_normalizadas, 
+                analisis_estudiantes, 
+                estructura_fases,
+                contexto_hibrido
+            )
+        
+        # =================== PREPARACIÓN DE DATOS PARA LLM (FLUJO LEGACY) ===================
         
         # 4. Preparar prompt optimizado para el LLM
         prompt_optimizacion = self._construir_prompt_optimizacion(

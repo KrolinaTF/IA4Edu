@@ -6,27 +6,34 @@ import logging
 import requests
 from typing import Dict, Any, Optional
 
+# Importar configuración centralizada
+from config import OLLAMA_CONFIG
+
 logger = logging.getLogger("SistemaAgentesABP.OllamaIntegrator")
 
 class OllamaIntegrator:
     """Integrador simplificado con Ollama API"""
     
-    def __init__(self, host: str = "192.168.1.10", port: int = 11434, model: str = "mistral", 
-                 embedding_model: str = "nomic-embed-text"):
+    def __init__(self, host: str = None, port: int = None, model: str = None, 
+                 embedding_model: str = None, timeout: int = None):
         """
         Inicializa el integrador con Ollama
         
         Args:
-            host: Host donde se ejecuta Ollama
-            port: Puerto de Ollama
-            model: Modelo principal para generación de texto
-            embedding_model: Modelo específico para embeddings
+            host: Host donde se ejecuta Ollama (usa config si no se especifica)
+            port: Puerto de Ollama (usa config si no se especifica)
+            model: Modelo principal para generación de texto (usa config si no se especifica)
+            embedding_model: Modelo específico para embeddings (usa config si no se especifica)
+            timeout: Timeout para requests (usa config si no se especifica)
         """
-        self.host = host
-        self.port = port
-        self.model = model
-        self.embedding_model = embedding_model
-        self.base_url = f"http://{host}:{port}"
+        # Usar configuración centralizada como fallback
+        self.host = host or OLLAMA_CONFIG["host"]
+        self.port = port or OLLAMA_CONFIG["port"]
+        self.model = model or OLLAMA_CONFIG["model"]
+        self.embedding_model = embedding_model or OLLAMA_CONFIG["embedding_model"]
+        self.timeout = timeout or OLLAMA_CONFIG.get("timeout", 30)
+        
+        self.base_url = f"http://{self.host}:{self.port}"
         
         # Conectar directamente con Ollama API usando requests
         self.session = requests.Session()
@@ -36,6 +43,7 @@ class OllamaIntegrator:
             response = self.session.get(f"{self.base_url}/api/tags", timeout=5)
             if response.status_code == 200:
                 logger.info(f"✅ Conectado exitosamente a Ollama en {self.base_url}")
+                logger.info(f"📋 Modelo configurado: {self.model} | Embeddings: {self.embedding_model}")
                 self.ollama_disponible = True
             else:
                 logger.error(f"❌ Error conectando a Ollama: {response.status_code}")
@@ -74,44 +82,86 @@ class OllamaIntegrator:
                 response = self.session.post(
                     f"{self.base_url}/api/generate",
                     json=payload,
-                    timeout=60
+                    timeout=self.timeout
                 )
                 
                 if response.status_code == 200:
                     result = response.json()
-                    return result.get("response", "")
+                    respuesta = result.get("response", "").strip()
+                    
+                    if respuesta:
+                        logger.debug(f"✅ Respuesta generada ({len(respuesta)} chars)")
+                        return respuesta
+                    else:
+                        logger.warning("⚠️ Respuesta vacía de Ollama")
+                        return self._respuesta_fallback()
                 else:
-                    logger.error(f"❌ Error en API Ollama: {response.status_code}")
+                    logger.error(f"❌ Error en API de Ollama: {response.status_code}")
                     return self._respuesta_fallback()
                     
             except Exception as e:
                 logger.error(f"❌ Error generando respuesta: {e}")
                 return self._respuesta_fallback()
         else:
+            logger.warning("⚠️ Ollama no disponible, usando respuesta fallback")
             return self._respuesta_fallback()
     
     def _respuesta_fallback(self) -> str:
-        """
-        Respuesta de fallback cuando Ollama no está disponible
-        
-        Returns:
-            Texto con respuesta de fallback
-        """
+        """Genera una respuesta de fallback cuando Ollama no está disponible"""
         return """
-        [SIMULADO JSON]
-        {
-            "estudiante_001": {
+        TAREA 1: Investigación básica
+        DESCRIPCIÓN: Buscar información sobre el tema asignado
+        HABILIDADES: investigación, lectura
+        COMPLEJIDAD: 2
+        TIPO: individual
+        
+        TAREA 2: Presentación grupal
+        DESCRIPCIÓN: Preparar presentación con la información encontrada
+        HABILIDADES: comunicación, colaboración
+        COMPLEJIDAD: 3
+        TIPO: colaborativa
+        """
+    
+    def generar_asignaciones(self, tareas_json: str, perfiles_json: str, adaptaciones_especiales: str = "") -> str:
+        """
+        Genera asignaciones estudiante-tarea usando el LLM
+        
+        Args:
+            tareas_json: JSON con las tareas disponibles
+            perfiles_json: JSON con los perfiles de estudiantes
+            adaptaciones_especiales: Adaptaciones específicas requeridas
+            
+        Returns:
+            JSON con las asignaciones generadas
+        """
+        prompt = f"""
+        INSTRUCCIONES: Asigna cada tarea del proyecto a estudiantes específicos, considerando sus perfiles y necesidades.
+        
+        TAREAS DISPONIBLES:
+        {tareas_json}
+        
+        PERFILES DE ESTUDIANTES:
+        {perfiles_json}
+        
+        ADAPTACIONES ESPECIALES:
+        {adaptaciones_especiales}
+        
+        GENERA asignaciones en formato JSON:
+        {{
+            "estudiante_001": {{
                 "tareas": ["tarea_01", "tarea_03"],
-                "rol": "coordinador",
-                "justificacion": "Basado en su fortaleza de liderazgo."
-            },
-            "estudiante_002": {
+                "rol": "investigador",
+                "justificacion": "Su perfil visual se adapta bien a estas tareas de investigación."
+            }},
+            "estudiante_002": {{
                 "tareas": ["tarea_02"],
                 "rol": "diseñador",
                 "justificacion": "Su creatividad visual es perfecta para esta tarea."
-            }
-        }
+            }}
+        }}
         """
+        
+        return self.generar_respuesta(prompt, max_tokens=800, temperatura=0.5)
     
     def listar_modelos(self) -> list:
         """
@@ -192,7 +242,7 @@ class OllamaIntegrator:
             response = self.session.post(
                 f"{self.base_url}/api/embed",
                 json=payload,
-                timeout=30
+                timeout=self.timeout
             )
             
             if response.status_code == 200:
@@ -206,11 +256,10 @@ class OllamaIntegrator:
                     logger.debug(f"✅ Embedding generado ({len(embedding)} dims)")
                     return embedding
                 else:
-                    logger.warning("⚠️ Embedding vacío, usando fallback")
+                    logger.warning("⚠️ Embedding vacío de Ollama")
                     return self._embedding_fallback(texto)
-                    
             else:
-                logger.error(f"❌ Error en API embeddings: {response.status_code}")
+                logger.error(f"❌ Error en API de embedding: {response.status_code}")
                 return self._embedding_fallback(texto)
                 
         except Exception as e:
@@ -218,34 +267,19 @@ class OllamaIntegrator:
             return self._embedding_fallback(texto)
     
     def _embedding_fallback(self, texto: str) -> list:
-        """
-        Genera embedding fallback determinista basado en el texto
-        
-        Args:
-            texto: Texto de entrada
-            
-        Returns:
-            Vector embedding simulado de 384 dimensiones
-        """
+        """Genera un embedding simple como fallback"""
+        # Embedding básico basado en hash del texto
         import hashlib
+        hash_obj = hashlib.sha256(texto.encode())
+        hash_int = int(hash_obj.hexdigest(), 16)
         
-        # Crear hash determinista del texto
-        hash_object = hashlib.md5(texto.encode('utf-8'))
-        hash_hex = hash_object.hexdigest()
+        # Generar vector de 128 dimensiones a partir del hash
+        embedding = []
+        for i in range(128):
+            embedding.append((hash_int >> i) & 1)
         
-        # Generar vector determinista de 384 dimensiones
-        vector = []
-        for i in range(0, len(hash_hex), 2):
-            # Convertir cada par de caracteres hex a número normalizado
-            hex_pair = hash_hex[i:i+2]
-            num = int(hex_pair, 16) / 255.0  # Normalizar a [0,1]
-            vector.append(num - 0.5)  # Centrar en 0
+        # Normalizar a floats entre -1 y 1
+        embedding = [(x - 0.5) * 2 for x in embedding]
         
-        # Extender a 384 dimensiones repitiendo el patrón
-        while len(vector) < 384:
-            vector.extend(vector[:min(16, 384 - len(vector))])
-        
-        vector = vector[:384]  # Asegurar exactamente 384 dimensiones
-        
-        logger.debug(f"🔄 Embedding fallback generado para '{texto[:30]}...'")
-        return vector
+        logger.debug(f"🔄 Embedding fallback generado ({len(embedding)} dims)")
+        return embedding

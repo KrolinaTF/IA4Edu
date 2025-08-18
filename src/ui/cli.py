@@ -36,19 +36,8 @@ class CLI:
         try:
             # Mostrar bienvenida
             self.views.mostrar_bienvenida()
-            
-            # NUEVO: Solicitar modo de generación
-            modo_generacion = self.views.solicitar_modo_generacion()
-            
-            # Generar ideas según el modo seleccionado
-            if modo_generacion == 'estructurado':
-                ideas, datos_contexto = self._flujo_progresivo()
-            else:
-                ideas, datos_contexto = self._flujo_input_libre(), None
-            
-            if not ideas:
-                self.views.mostrar_mensaje_error("No se pudieron generar ideas")
-                return {}
+             
+            ideas, datos_contexto = self._flujo_progresivo()
                 
             # Mostrar ideas generadas
             self.views.mostrar_ideas(ideas)
@@ -60,14 +49,13 @@ class CLI:
                 self.views.mostrar_mensaje_error("No se seleccionó ninguna actividad")
                 return {}
             
-            # NUEVO FLUJO: Aplicar estructura específica si es modo progresivo
-            if modo_generacion == 'estructurado' and datos_contexto:
+            if datos_contexto:
                 proyecto_final = self._aplicar_estructura_progresiva(actividad_seleccionada, datos_contexto)
             else:
-                # Flujo tradicional para modo libre
+                # Fallback si no hay contexto
                 info_adicional = self.views.solicitar_detalles_adicionales(actividad_seleccionada.get('titulo', 'la actividad'))
                 self.views.mostrar_mensaje_procesando()
-                proyecto_final = self.controller.ejecutar_flujo_orquestado(actividad_seleccionada, info_adicional)
+                proyecto_final = self.controller.ejecutar_flujo_completo(actividad_seleccionada, info_adicional)
             
             # Mostrar resumen y validación
             self.views.mostrar_resumen_proceso(proyecto_final)
@@ -172,52 +160,7 @@ class CLI:
                 self.views.mostrar_mensaje_error(f"Error en selección: {e}")
         
         return actividad_seleccionada
-    
-    def _flujo_input_estructurado(self) -> List[Dict]:
-        """
-        Flujo para capturar input estructurado y generar ideas
-        
-        Returns:
-            Lista de ideas generadas desde input estructurado
-        """
-        logger.info("🔄 Iniciando flujo de input estructurado")
-        
-        # Solicitar input estructurado
-        input_estructurado = self.views.solicitar_input_estructurado()
-        
-        if not input_estructurado:
-            logger.warning("⚠️ Input estructurado cancelado por el usuario")
-            return []
-        
-        # Generar ideas desde input estructurado
-        self.views.mostrar_mensaje_procesando()
-        ideas = self.controller.generar_ideas_desde_input_estructurado(input_estructurado)
-        
-        logger.info(f"✅ Generadas {len(ideas)} ideas desde input estructurado")
-        return ideas
-    
-    def _flujo_input_libre(self) -> List[Dict]:
-        """
-        Flujo tradicional para capturar prompt libre y generar ideas
-        
-        Returns:
-            Lista de ideas generadas desde prompt libre
-        """
-        logger.info("🔄 Iniciando flujo de input libre (tradicional)")
-        
-        # Solicitar prompt inicial
-        prompt_profesor = self.views.solicitar_prompt_inicial()
-        
-        if not prompt_profesor.strip():
-            logger.warning("⚠️ Prompt vacío proporcionado")
-            return []
-        
-        # Generar ideas iniciales
-        self.views.mostrar_mensaje_procesando()
-        ideas = self.controller.generar_ideas_desde_prompt(prompt_profesor)
-        
-        logger.info(f"✅ Generadas {len(ideas)} ideas desde prompt libre")
-        return ideas
+     
     
     def _flujo_progresivo(self) -> tuple:
         """
@@ -267,7 +210,7 @@ class CLI:
             # Fallback al flujo tradicional
             info_adicional = self.views.solicitar_detalles_adicionales(actividad_seleccionada.get('titulo', 'la actividad'))
             self.views.mostrar_mensaje_procesando()
-            return self.controller.ejecutar_flujo_orquestado(actividad_seleccionada, info_adicional)
+            return self.controller.ejecutar_flujo_completo(actividad_seleccionada, info_adicional)
         
         # APLICAR ESTRUCTURA DETALLADA
         self.views.mostrar_mensaje_procesando()
