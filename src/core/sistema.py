@@ -11,7 +11,7 @@ import json
 
 from agents.coordinador import AgenteCoordinador
 from core.ollama_integrator import OllamaIntegrator
-from typing import Dict, List, Any, Optional
+
 
 logger = logging.getLogger("SistemaAgentesABP.Sistema")
 

@@ -1,84 +1,430 @@
 {
   "id": "ACT009",
   "titulo": "La Fábrica de Fracciones: Construyendo el 1",
-  "objetivo": "Comprender y visualizar el concepto de fracción y las equivalencias, entendiendo las fracciones como partes de un todo. La actividad busca construir el conocimiento de manera manipulativa y colaborativa, fomentando la paciencia, la comunicación y la gestión emocional del grupo.",
+  "objetivo": "Comprender y visualizar el concepto de fracción a través de una experiencia inmersiva de fábrica con estaciones rotativas. Los alumnos construyen conocimiento manipulativo sobre fracciones, equivalencias y el concepto abstracto del '1', trabajando en equipo para diseñar, construir y operar una fábrica que fracciona objetos reales, fomentando la paciencia, comunicación y gestión emocional del grupo.",
   "nivel_educativo": "3º de Primaria",
-  "duracion_minutos": "El proyecto se desarrolla en tres sesiones de una hora cada una.",
+  "duracion_minutos": "60 minutos (15 min preparación + 30 min operación de fábrica + 15 min reflexión)",
   "recursos": [
-    "Cartulinas de colores (representando la unidad, la mitad, los tercios, los cuartos, etc.)",
-    "Tijeras, pegamento, rotuladores y lápices",
-    "Pizarra y tiza/rotuladores",
-    "Plantillas de círculos (para Ana V.)",
-    "Ficha de trabajo para el registro de fracciones",
-    "Cuento o video sobre un pastel para introducir el tema"
+    "Mesas del aula para crear 'cinta transportadora'",
+    "Objetos diversos del aula para fraccionar",
+    "Cartulinas de colores para carteles informativos",
+    "Cinta fina, cuerdas, rotuladores lavables",
+    "Tijeras, pegamento, rotuladores permanentes",
+    "Papel para 'pantallas' de estaciones",
+    "Materiales para paneles de mando decorativos",
+    "Cinta adhesiva para unir mesas"
   ],
   "etapas": [
     {
-      "nombre": "Día 1: Preparación y Creación de Materiales",
-      "descripcion": "El profesor introduce el tema con una historia y los alumnos, en grupos, preparan los materiales de trabajo (círculos y partes de cartulina).",
+      "nombre": "Preparación de la Fábrica (15 minutos)",
+      "descripcion": "Los alumnos, organizados en parejas especializadas, preparan el espacio físico y los materiales necesarios para crear la fábrica de fracciones con 4 estaciones conectadas por una 'cinta transportadora'.",
       "tareas": [
         {
-          "nombre": "Introducción y cuento",
-          "descripcion": "El profesor introduce el tema de las fracciones con un cuento o video, centrado en un pastel que se va a repartir.",
-          "formato_asignacion": "aula completa"
-        },
-        {
-          "nombre": "Creación del 'material de la fábrica'",
-          "descripcion": "Cada grupo de 4-5 alumnos, identificados por cartulinas de colores, recibe una unidad (círculo) y una fracción específica para crear con cartulina.",
-          "formato_asignacion": "grupos",
-          "estrategias_adaptacion": {
-            "para_grupos": "Los grupos están pensados para que haya diversidad de perfiles, con un apoyo claro para cada uno.",
-            "para_ana_v": "Se le asigna una tarea más compleja (como los quintos) y se le proporcionan plantillas de círculos para que pueda centrarse en el concepto de la fracción sin tener que lidiar con la dificultad del dibujo.",
-            "para_luis_t": "Se le asigna un grupo con tareas de corte y movimiento, y donde su creatividad pueda ser canalizada."
-          }
-        },
-        {
-          "nombre": "Montaje de la 'fábrica'",
-          "descripcion": "Cada grupo crea su parte de la fábrica de fracciones y la expone en la clase.",
-          "formato_asignacion": "grupos"
-        }
-      ]
-    },
-    {
-      "nombre": "Día 2: Exploración de Equivalencias",
-      "descripcion": "Los alumnos, en parejas, exploran las relaciones entre fracciones y descubren las equivalencias de forma práctica.",
-      "tareas": [
-        {
-          "nombre": "Asignación de roles y pareja",
-          "descripcion": "Los alumnos se emparejan. Uno tiene el rol de 'investigador' (explora con los materiales) y el otro de 'secretario' (rellena una ficha de trabajo).",
-          "formato_asignacion": "parejas",
-          "estrategias_adaptacion": {
-            "para_emma_k": "Se le asigna a Emma, que tiene dificultades, una pareja con Luis, quien tiene una gran habilidad en la visualización, pero no tanta en el registro. Se apoyan mutuamente."
-          }
-        },
-        {
-          "nombre": "Descubrir equivalencias",
-          "descripcion": "Las parejas exploran las relaciones entre los materiales de la fábrica, buscando diferentes formas de construir 'el 1'.",
-          "formato_asignacion": "parejas"
-        },
-        {
-          "nombre": "Registro de fracciones",
-          "descripcion": "El 'secretario' rellena una ficha de trabajo con las fracciones descubiertas y sus equivalencias.",
-          "formato_asignacion": "parejas"
-        }
-      ]
-    },
-    {
-      "nombre": "Día 3: Cierre, Debate y Evaluación",
-      "descripcion": "Los alumnos, en gran grupo, debaten las conclusiones de la exploración y resuelven un pequeño problema que refuerce los conocimientos adquiridos.",
-      "tareas": [
-        {
-          "nombre": "Debate colectivo",
-          "descripcion": "En el gran grupo, los alumnos comparten sus hallazgos, defienden sus conclusiones y resuelven un problema conjunto sobre fracciones.",
+          "nombre": "Introducción conceptual",
+          "descripcion": "El profesor plantea la pregunta central: '¿Qué entendéis por fábrica de fracciones? ¿La fábrica fabrica fracciones o está hecha de fracciones?' Introducir el concepto de proceso de fraccionamiento.",
           "formato_asignacion": "aula completa",
-          "estrategias_adaptacion": {
-            "para_todos": "Se fomenta la escucha activa y el debate respetuoso."
+          "asignaciones_especificas": {
+            "modalidad": "lluvia_ideas_dirigida",
+            "facilitador": "Profesor",
+            "dinamica": [
+              "Presentar el dilema conceptual sobre fraccionamiento",
+              "Explicar que van a crear una cinta transportadora con 4 estaciones",
+              "Cada estación tendrá una función específica en el proceso",
+              "Al final habrá rotaciones para que todos experimenten cada estación"
+            ],
+            "participacion_estudiantes": "Aportar ideas sobre qué significa fraccionar objetos reales"
           }
         },
         {
-          "nombre": "Evaluación final",
-          "descripcion": "Se puede usar un juego o una actividad de 'prueba y error' en la pizarra para evaluar de forma lúdica si el grupo ha comprendido el concepto de fracción.",
-          "formato_asignacion": "aula completa"
+          "nombre": "Montaje del mobiliario",
+          "descripcion": "Colocar las mesas del aula para crear la 'cinta transportadora' de la fábrica, tratando de no hacer ruido y organizando el flujo de trabajo.",
+          "formato_asignacion": "parejas",
+          "asignaciones_especificas": {
+            "modalidad": "construccion_colaborativa",
+            "parejas_asignadas": [
+              {
+                "pareja": ["Alex", "Luis"],
+                "rol": "Arquitectos de la fábrica",
+                "tarea_especifica": [
+                  "Alex: Planificar disposición de mesas para flujo óptimo",
+                  "Luis: Mover mesas físicamente, conectar espacios",
+                  "Ambos: Crear 'cinta transportadora' uniendo 4 estaciones",
+                  "Verificar que el recorrido sea accesible y funcional"
+                ],
+                "justificacion": "Alex aporta planificación visual, Luis necesita actividad física previa",
+                "adaptaciones_luis": "Trabajo manual intensivo, desgaste de energía antes de comenzar",
+                "tiempo_estimado": "10 minutos",
+                "materiales": "Mesas, cinta adhesiva para marcar recorrido"
+              }
+            ],
+            "beneficios_pedagogicos": {
+              "luis": "Actividad física + repaso mental del proceso mientras construye",
+              "alex": "Aplicación de habilidades de planificación espacial",
+              "resto_clase": "Observan la estructura que van a usar"
+            }
+          }
+        },
+        {
+          "nombre": "Creación de carteles informativos",
+          "descripcion": "Recorrer las 4 estaciones y crear carteles que expliquen qué ocurre en cada una, proporcionando apoyo visual para toda la clase.",
+          "formato_asignacion": "parejas",
+          "asignaciones_especificas": {
+            "modalidad": "documentacion_visual",
+            "parejas_asignadas": [
+              {
+                "pareja": ["María", "Elena"],
+                "rol": "Diseñadoras de comunicación",
+                "tarea_especifica": [
+                  "Recorrer las 4 estaciones en orden",
+                  "María: Escribir explicaciones simples de cada estación",
+                  "Elena: Crear elementos visuales claros y estructurados",
+                  "Ambas: Verificar que los carteles sean comprensibles"
+                ],
+                "estaciones_documentar": [
+                  "Estación 1: Selección de objetos",
+                  "Estación 2: Decisión de fraccionamiento",
+                  "Estación 3: Realización de la fracción",
+                  "Estación 4: Clasificación de resultados"
+                ],
+                "justificacion": "Elena (TEA) se beneficia de crear el apoyo visual que luego usará. María refuerza comprensión explicando a otros",
+                "adaptaciones_elena": "Trabajo estructurado, creación de su propio apoyo visual",
+                "tiempo_estimado": "8 minutos",
+                "materiales": "Cartulinas, rotuladores, ejemplos visuales"
+              }
+            ],
+            "beneficios_pedagogicos": {
+              "elena": "Repaso conceptual + creación de apoyo visual personal",
+              "maria": "Refuerzo de comprensión al explicar conceptos",
+              "toda_clase": "Apoyo visual durante la operación de la fábrica"
+            }
+          }
+        },
+        {
+          "nombre": "Selección de objetos fraccionables",
+          "descripcion": "Recorrer el aula y elegir objetos adecuados para el fraccionamiento, creando un 'almacén' de materias primas para la fábrica.",
+          "formato_asignacion": "parejas",
+          "asignaciones_especificas": {
+            "modalidad": "curacion_materiales",
+            "parejas_asignadas": [
+              {
+                "pareja": ["Ana", "Sara"],
+                "rol": "Seleccionadoras de materias primas",
+                "tarea_especifica": [
+                  "Ana: Analizar qué objetos se pueden fraccionar de manera interesante",
+                  "Sara: Evaluar viabilidad práctica de cada objeto",
+                  "Ana: Considerar diferentes tipos de fraccionamiento posibles",
+                  "Sara: Organizar objetos por facilidad de fraccionamiento",
+                  "Ambas: Crear 'almacén' en Estación 1 con variedad suficiente"
+                ],
+                "criterios_seleccion": [
+                  "Objetos que se puedan dividir longitudinalmente",
+                  "Elementos que permitan división transversal",
+                  "Materiales que soporten múltiples tipos de fracción",
+                  "Variedad de formas, tamaños y texturas"
+                ],
+                "justificacion": "Ana (altas capacidades) puede visualizar abstractamente las posibilidades. Sara aporta equilibrio práctico",
+                "tiempo_estimado": "6 minutos",
+                "materiales": "Objetos diversos del aula, contenedor para almacén"
+              }
+            ],
+            "beneficios_pedagogicos": {
+              "ana": "Toma de decisiones complejas, visualización abstracta",
+              "sara": "Aplicación práctica de criterios de selección",
+              "proceso": "Garantiza material suficiente y variado para toda la clase"
+            }
+          }
+        },
+        {
+          "nombre": "Diseño de paneles de mando",
+          "descripcion": "Crear elementos decorativos y funcionales que hagan la experiencia más inmersiva y ayuden a los alumnos a sentirse en una fábrica real.",
+          "formato_asignacion": "parejas",
+          "asignaciones_especificas": {
+            "modalidad": "ambientacion_ludica",
+            "parejas_asignadas": [
+              {
+                "pareja": ["Emma", "Hugo"],
+                "rol": "Diseñadores de experiencia",
+                "tarea_especifica": [
+                  "Emma: Diseñar paneles de control visual para cada estación",
+                  "Hugo: Crear elementos interactivos (botones, palancas simuladas)",
+                  "Emma: Desarrollar indicadores de proceso (luces, flechas)",
+                  "Hugo: Integrar elementos que mejoren la inmersión",
+                  "Ambas: Distribuir paneles en las 4 estaciones"
+                ],
+                "elementos_crear": [
+                  "Panel de control para Estación 1 (selección)",
+                  "Pantalla para Estación 2 (registro de fracciones)",
+                  "Herramientas visuales para Estación 3 (fraccionamiento)",
+                  "Sistema de clasificación para Estación 4"
+                ],
+                "justificacion": "Emma y Hugo pueden aportar creatividad sin presión conceptual matemática",
+                "tiempo_estimado": "7 minutos",
+                "materiales": "Cartulinas, rotuladores, materiales decorativos"
+              }
+            ],
+            "beneficios_pedagogicos": {
+              "emma_hugo": "Contribución creativa significativa al proyecto",
+              "ambiente": "Aumenta motivación y sensación de juego real",
+              "inmersion": "Facilita la comprensión conceptual a través del juego"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "nombre": "Operación de la Fábrica (30 minutos)",
+      "descripcion": "Los alumnos operan la fábrica en rotaciones, pasando por las 4 estaciones y experimentando todo el proceso de fraccionamiento de objetos reales.",
+      "tareas": [
+        {
+          "nombre": "Encendido de la máquina - Primera rotación",
+          "descripcion": "Primera ronda de funcionamiento de la fábrica con todas las estaciones operativas simultáneamente.",
+          "formato_asignacion": "parejas rotativas",
+          "asignaciones_especificas": {
+            "modalidad": "estaciones_simultaneas",
+            "duracion_rotacion": "7-8 minutos por estación",
+            "rotaciones_programadas": [
+              {
+                "rotacion": 1,
+                "asignaciones": [
+                  {
+                    "estacion": "Estación 1: Selección de objetos",
+                    "pareja": ["Ana", "Sara"],
+                    "funcion": "Elegir objetos del 'almacén' para fraccionar",
+                    "proceso": [
+                      "Ana: Evaluar qué objeto fraccionar (nivel conceptual)",
+                      "Sara: Seleccionar objeto específico del almacén",
+                      "Ambas: Decidir si el objeto representa 'un 1' completo",
+                      "Enviar objeto a Estación 2 con justificación"
+                    ],
+                    "preguntas_guia": "¿Este objeto puede representar 'un 1'? ¿Qué tipos de fracción permitiría?"
+                  },
+                  {
+                    "estacion": "Estación 2: Decisión de fraccionamiento",
+                    "pareja": ["María", "Elena"],
+                    "funcion": "Decidir cómo se va a fraccionar el objeto recibido",
+                    "proceso": [
+                      "Elena: Recibir objeto de Estación 1",
+                      "María: Decidir tipo de fraccionamiento (mitades, tercios, cuartos)",
+                      "Elena: Escribir la fracción en la 'pantalla' (apoyo visual)",
+                      "Ambas: Enviar objeto + instrucción a Estación 3"
+                    ],
+                    "adaptaciones_elena": "Pantalla visual clara, escritura estructurada de fracciones",
+                    "preguntas_guia": "¿En cuántas partes dividimos? ¿Longitudinal o transversal?"
+                  },
+                  {
+                    "estacion": "Estación 3: Realización de la fracción",
+                    "pareja": ["Alex", "Luis"],
+                    "funcion": "Ejecutar físicamente el fraccionamiento del objeto",
+                    "proceso": [
+                      "Alex: Planificar cómo realizar la división indicada",
+                      "Luis: Ejecutar el fraccionamiento (cinta, cuerda, rotuladores)",
+                      "Alex: Verificar que las partes sean equivalentes",
+                      "Luis: Preparar objeto fraccionado para clasificación"
+                    ],
+                    "adaptaciones_luis": "Trabajo manual activo, herramientas manipulativas",
+                    "preguntas_guia": "¿Las partes son iguales? ¿Representan realmente la fracción?"
+                  },
+                  {
+                    "estacion": "Estación 4: Clasificación de resultados",
+                    "pareja": ["Emma", "Hugo"],
+                    "funcion": "Clasificar los objetos fraccionados según criterios elegidos",
+                    "proceso": [
+                      "Emma: Recibir objetos fraccionados",
+                      "Hugo: Decidir criterios de clasificación",
+                      "Emma: Organizar por grupos (tamaño, tipo, número de partes)",
+                      "Hugo: Documentar criterios usados"
+                    ],
+                    "opciones_clasificacion": "Por tipo de objeto, por fracción aplicada, por campo semántico",
+                    "preguntas_guia": "¿Cómo agrupamos estos resultados? ¿Qué tienen en común?"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "nombre": "Segunda rotación - Cambio de estaciones",
+          "descripcion": "Los alumnos rotan a la siguiente estación para experimentar una función diferente del proceso.",
+          "formato_asignacion": "parejas rotativas",
+          "asignaciones_especificas": {
+            "modalidad": "rotacion_horaria",
+            "rotacion": 2,
+            "asignaciones": [
+              {
+                "estacion": "Estación 1: Selección de objetos",
+                "pareja": ["Emma", "Hugo"],
+                "nueva_experiencia": "Ahora experimentan la toma de decisiones inicial"
+              },
+              {
+                "estacion": "Estación 2: Decisión de fraccionamiento",
+                "pareja": ["Ana", "Sara"],
+                "nueva_experiencia": "Ana puede profundizar en tipos de fracción matemática"
+              },
+              {
+                "estacion": "Estación 3: Realización de la fracción",
+                "pareja": ["María", "Elena"],
+                "nueva_experiencia": "Elena trabaja con herramientas, María ve aplicación práctica"
+              },
+              {
+                "estacion": "Estación 4: Clasificación de resultados",
+                "pareja": ["Alex", "Luis"],
+                "nueva_experiencia": "Luis puede crear criterios creativos, Alex sistematiza"
+              }
+            ],
+            "tiempo_rotacion": "7-8 minutos"
+          }
+        },
+        {
+          "nombre": "Tercera rotación - Profundización",
+          "descripcion": "Tercera ronda para que todos experimenten más funciones, con mayor fluidez del proceso.",
+          "formato_asignacion": "parejas rotativas",
+          "asignaciones_especificas": {
+            "modalidad": "rotacion_avanzada",
+            "rotacion": 3,
+            "asignaciones": [
+              {
+                "estacion": "Estación 1: Selección de objetos",
+                "pareja": ["Alex", "Luis"],
+                "enfoque": "Selección estratégica de objetos más complejos"
+              },
+              {
+                "estacion": "Estación 2: Decisión de fraccionamiento",
+                "pareja": ["Emma", "Hugo"],
+                "enfoque": "Experimentar con fracciones más creativas"
+              },
+              {
+                "estacion": "Estación 3: Realización de la fracción",
+                "pareja": ["Ana", "Sara"],
+                "enfoque": "Ana puede explorar equivalencias, Sara ejecuta con precisión"
+              },
+              {
+                "estacion": "Estación 4: Clasificación de resultados",
+                "pareja": ["María", "Elena"],
+                "enfoque": "Elena organiza visualmente, María aplica criterios aprendidos"
+              }
+            ],
+            "tiempo_rotacion": "7-8 minutos"
+          }
+        },
+        {
+          "nombre": "Cuarta rotación - Maestría del proceso",
+          "descripcion": "Rotación final donde cada pareja completa su experiencia en todas las estaciones.",
+          "formato_asignacion": "parejas rotativas",
+          "asignaciones_especificas": {
+            "modalidad": "rotacion_completa",
+            "rotacion": 4,
+            "asignaciones": [
+              {
+                "estacion": "Estación 1: Selección de objetos",
+                "pareja": ["María", "Elena"],
+                "enfoque": "Elena puede aplicar su comprensión visual desarrollada"
+              },
+              {
+                "estacion": "Estación 2: Decisión de fraccionamiento",
+                "pareja": ["Alex", "Luis"],
+                "enfoque": "Alex planifica, Luis decide creativamente"
+              },
+              {
+                "estacion": "Estación 3: Realización de la fracción",
+                "pareja": ["Emma", "Hugo"],
+                "enfoque": "Trabajo en equipo en la ejecución práctica"
+              },
+              {
+                "estacion": "Estación 4: Clasificación de resultados",
+                "pareja": ["Ana", "Sara"],
+                "enfoque": "Ana puede crear categorías complejas, Sara organiza"
+              }
+            ],
+            "tiempo_rotacion": "7-8 minutos"
+          }
+        }
+      ]
+    },
+    {
+      "nombre": "Reflexión y Evaluación (15 minutos)",
+      "descripcion": "Análisis colectivo de la experiencia, reflexión sobre el concepto de fracción y el significado del '1', evaluación del trabajo colaborativo.",
+      "tareas": [
+        {
+          "nombre": "Análisis de resultados de la fábrica",
+          "descripcion": "Observar todos los objetos fraccionados producidos y analizar qué se aprendió sobre fracciones y equivalencias.",
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "reflexion_dirigida",
+            "facilitacion": {
+              "moderador": "Profesor",
+              "co_facilitadores": ["Ana", "Alex"],
+              "justificacion": "Ana puede profundizar conceptualmente, Alex puede organizar observaciones"
+            },
+            "preguntas_reflexion": [
+              {
+                "tema": "Concepto del '1'",
+                "pregunta": "¿Qué hemos decidido que es 'un 1' en nuestra fábrica?",
+                "facilitador": "Ana",
+                "participacion_esperada": [
+                  "Identificar que el '1' es arbitrario",
+                  "Reconocer que las personas decidimos qué es 'un todo'",
+                  "Conectar con ejemplos de la fábrica"
+                ],
+                "tiempo": "4 minutos"
+              },
+              {
+                "tema": "Equivalencias observadas",
+                "pregunta": "¿Son equivalentes las fracciones que hemos hecho en diferentes objetos?",
+                "facilitador": "Alex",
+                "participacion_esperada": [
+                  "Comparar 1/2 de diferentes objetos",
+                  "Discutir por qué algunas no son equivalentes",
+                  "Reflexionar sobre cómo hacer equivalencias"
+                ],
+                "tiempo": "4 minutos"
+              },
+              {
+                "tema": "Proceso colaborativo",
+                "pregunta": "¿Cómo funcionó nuestro trabajo en equipo en la fábrica?",
+                "facilitadores": ["Sara", "Hugo"],
+                "participacion_esperada": [
+                  "Valorar la rotación por estaciones",
+                  "Reconocer diferentes roles y contribuciones",
+                  "Identificar momentos de colaboración exitosa"
+                ],
+                "tiempo": "3 minutos"
+              },
+              {
+                "tema": "Aplicación futura",
+                "pregunta": "¿Dónde más podemos aplicar lo que aprendimos sobre fraccionar?",
+                "facilitadores": ["Emma", "Luis"],
+                "participacion_esperada": [
+                  "Conectar con situaciones cotidianas",
+                  "Proponer nuevos objetos para fraccionar",
+                  "Imaginar otras 'fábricas' de conceptos matemáticos"
+                ],
+                "tiempo": "3 minutos",
+                "adaptaciones_luis": "Puede expresarse de pie, con gestos y movimiento"
+              }
+            ]
+          }
+        },
+        {
+          "nombre": "Evaluación individual y grupal",
+          "descripcion": "Reflexión personal sobre el aprendizaje y evaluación del funcionamiento del equipo durante el proceso.",
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "autoevaluacion_guiada",
+            "proceso": [
+              "Cada alumno comparte una cosa nueva que aprendió sobre fracciones",
+              "Reconocimiento de las contribuciones de cada compañero",
+              "Reflexión sobre qué estación les gustó más y por qué",
+              "Evaluación de cómo se sintieron trabajando en parejas diferentes"
+            ],
+            "adaptaciones_individuales": {
+              "elena": "Puede usar apoyo visual de sus carteles para expresarse",
+              "luis": "Reflexión activa, puede moverse mientras piensa",
+              "ana": "Puede profundizar en conexiones conceptuales",
+              "maria": "Apoyo para articular sus aprendizajes",
+              "todos": "Ambiente de escucha activa y respeto"
+            },
+            "tiempo": "1 minuto por alumno aproximadamente"
+          }
         }
       ]
     }
@@ -89,7 +435,9 @@
     "Emma K.",
     "Elena R.",
     "Alex M.",
-    "Sara M."
+    "Sara M.",
+    "María L.",
+    "Hugo P."
   ],
-  "observaciones": "El profesor tiene un rol de guía y observador, fomentando que los alumnos se ayuden entre ellos. La actividad se enfoca en el aprendizaje manipulativo, que ayuda a los alumnos a asentar conceptos abstractos. Los roles y las adaptaciones están diseñados para fomentar la participación de todos, respetando los ritmos individuales. El uso de cartulinas de colores facilita la identificación de los grupos."
+  "observaciones": "La actividad integra aprendizaje manipulativo de fracciones con trabajo colaborativo y gestión emocional. Elena (TEA) se beneficia de crear y usar apoyos visuales estructurados. Luis (TDAH) tiene múltiples oportunidades de movimiento y trabajo manual. Ana (altas capacidades) puede profundizar en conceptos abstractos como la arbitrariedad del '1' y las equivalencias. El sistema de rotaciones asegura que todos experimenten cada aspecto del proceso, mientras que las parejas variadas fomentan diferentes tipos de colaboración. La metáfora de la 'fábrica' hace el aprendizaje más inmersivo y significativo, conectando matemáticas abstractas con experiencias concretas y manipulativas."
 }

@@ -19,7 +19,7 @@ OLLAMA_CONFIG = {
     "port": 11434,
     "model": "mistral",  # PUNTO ÚNICO para cambiar modelo
     "embedding_model": "nomic-embed-text",
-    "timeout": 30
+    "timeout": 60
 }
 
 # Configuración de agentes

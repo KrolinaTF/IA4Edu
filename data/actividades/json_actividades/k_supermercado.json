@@ -1,82 +1,550 @@
 {
   "id": "ACT008",
-  "titulo": "¡Vamos al Supermercado! Aventura de Compras y Sumas",
-  "objetivo": "Aprender a sumar y manejar el dinero de forma práctica, reforzando la lectoescritura, la concentración y el trabajo colaborativo. Se busca que los alumnos se apoyen entre sí, valoren el esfuerzo ajeno y resuelvan problemas reales de la vida cotidiana.",
+  "titulo": "Supermercado de Números: Centro Comercial Matemático",
+  "objetivo": "Trabajar matemáticas aplicadas con dinero real a través de simulación completa de centro comercial con 3 tiendas temáticas. Los alumnos desarrollan competencias en números decimales, operaciones básicas, gestión presupuestaria, comunicación comercial y trabajo colaborativo, mientras asumen roles diferenciados de cajeros, clientes y supervisor en contexto realista de compra-venta.",
   "nivel_educativo": "4º de Primaria",
-  "duracion_minutos": "El proyecto se desarrolla en dos días.",
+  "duracion_minutos": "Duración flexible: 60-90 minutos (termina cuando todos los clientes completan sus listas)",
+  "contexto_pedagogico": {
+    "momento_curso": "Semana 1 del curso - Repaso y evaluación inicial",
+    "nivel_matematico": "Números enteros 6€-25€ y decimales simples (.50€), sumas múltiples dígitos con llevadas",
+    "presupuesto_individual": "60€ por cliente (deben gestionar y que sobre dinero)",
+    "complejidad_social": "Interacción comercial normal y cortés"
+  },
   "recursos": [
-    "Materiales de clase para representar alimentos (fotos, objetos reales o dibujos)",
-    "Pizarra o paneles grandes para los precios",
-    "Dinero de juguete (monedas y billetes)",
-    "Cajas de cartón para simular cestas o carros",
-    "Tarjetas con los precios de los productos",
-    "Lista de la compra (una por grupo)"
+    "Productos etiquetados para 3 tiendas temáticas",
+    "Dinero real: 330€ total en circulación (90€ cambio inicial + 240€ clientes)",
+    "3 cajas registradoras simuladas con calculadoras",
+    "Materiales de decoración para ambientación comercial",
+    "Papel, rotuladores, tijeras, lápices para señalización",
+    "Zona de autoselección con apoyos pedagógicos",
+    "Ábacos, manipulativos, pegatinas organizativas",
+    "Cascos de reducción de ruido, cuerdas delimitadoras"
   ],
   "etapas": [
     {
-      "nombre": "Día 1: Planificación y Creación del Supermercado",
-      "descripcion": "Los alumnos, divididos en grupos, crean las listas de la compra, organizan y valoran los productos para montar el supermercado.",
+      "nombre": "Preparación Integrada y Organización Comercial (20 minutos)",
+      "descripcion": "Montaje del centro comercial con 3 tiendas temáticas, asignación de roles específicos y preparación individualizada según perfil de cada estudiante.",
       "tareas": [
         {
-          "nombre": "Creación de listas y roles",
-          "descripcion": "Cada grupo recibe una lista de la compra vacía, con espacios para dibujar y escribir los productos. El grupo con Alex y Sara tiene una lista más completa, mientras que otros grupos se centran en sumas con menos cifras.",
-          "formato_asignacion": "grupos",
-          "estrategias_adaptacion": {
-            "para_alex_sara": "Se les asigna una lista de la compra con mayor complejidad (más productos y precios más altos).",
-            "para_elena": "Se le asigna al 'Grupo de las Maravillas' para ayudarla a gestionar su frustración y fomentar la concentración. Su tarea es encontrar y colocar los productos de su lista."
+          "nombre": "Explicación inicial y presentación del proyecto",
+          "descripcion": "El profesor presenta la actividad general: transformar el aula en un centro comercial con 3 tiendas especializadas donde practicarán matemáticas reales.",
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "presentacion_inmersiva",
+            "facilitador": "Profesor",
+            "concepto_clave": "Centro comercial real con dinero real y transacciones auténticas",
+            "estructura_comercial": [
+              "3 tiendas temáticas con productos específicos",
+              "Roles diferenciados: 3 cajeros + 1 supervisor + 4 clientes",
+              "Sistema financiero cerrado con control total de 330€",
+              "Contextos realistas de compra familiar"
+            ],
+            "tiempo_estimado": "5 minutos"
           }
         },
         {
-          "nombre": "Valorar y exponer productos",
-          "descripcion": "Cada grupo pone precio a sus productos, asegurándose de que la suma no supere el presupuesto inicial de 10 euros.",
-          "formato_asignacion": "grupos"
+          "nombre": "Montaje de tiendas temáticas especializadas",
+          "descripcion": "Organización física del aula en 3 tiendas temáticas con productos, precios y decoración específica para cada contexto comercial.",
+          "formato_asignacion": "grupos especializados por tienda",
+          "asignaciones_especificas": {
+            "modalidad": "construccion_comercial_tematica",
+            "tiendas_especificas": [
+              {
+                "tienda": "TIENDA 1: Material Escolar",
+                "responsable_montaje": ["Alex", "Ana"],
+                "cajero_asignado": "Alex",
+                "productos_catalogo": [
+                  {"producto": "Mochila", "precio": "25€"},
+                  {"producto": "Estuche", "precio": "12€"},
+                  {"producto": "Diccionario", "precio": "18€"},
+                  {"producto": "Set rotuladores", "precio": "9€"},
+                  {"producto": "Agenda", "precio": "15€"},
+                  {"producto": "Compás", "precio": "11€"}
+                ],
+                "contexto_tematico": "Valorar cuánto gastan las familias en material escolar",
+                "decoracion": "Carteles escolares, ambiente académico",
+                "ubicacion": "Zona delantera izquierda del aula"
+              },
+              {
+                "tienda": "TIENDA 2: Souvenirs de Viaje",
+                "responsable_montaje": ["Elena", "Sara"],
+                "cajero_asignado": "Elena",
+                "productos_catalogo": [
+                  {"producto": "Camiseta", "precio": "16€"},
+                  {"producto": "Llavero", "precio": "7€"},
+                  {"producto": "Imán nevera", "precio": "4€"},
+                  {"producto": "Gorra", "precio": "13€"},
+                  {"producto": "Postal", "precio": "2€"},
+                  {"producto": "Taza", "precio": "8€"}
+                ],
+                "contexto_tematico": "Compras de recuerdos para familiares",
+                "decoracion": "Ambiente turístico, mapas, banderas",
+                "ubicacion": "Zona central del aula",
+                "adaptaciones_elena": "Zona tranquila, señalización clara, protocolo estructurado"
+              },
+              {
+                "tienda": "TIENDA 3: Hobbies y Tiempo Libre",
+                "responsable_montaje": ["Emma", "Hugo"],
+                "cajero_asignado": "Emma",
+                "productos_catalogo": [
+                  {"producto": "Libro", "precio": "14€"},
+                  {"producto": "Juego mesa", "precio": "22€"},
+                  {"producto": "Pelota", "precio": "10€"},
+                  {"producto": "Puzzle", "precio": "17€"},
+                  {"producto": "Cartas", "precio": "6€"},
+                  {"producto": "Kit manualidades", "precio": "19€"}
+                ],
+                "contexto_tematico": "Actividades para el tiempo libre",
+                "decoracion": "Ambiente lúdico, colores vibrantes",
+                "ubicacion": "Zona trasera derecha del aula"
+              }
+            ],
+            "tiempo_montaje": "10 minutos por tienda simultáneamente"
+          }
         },
         {
-          "nombre": "Montaje de los puestos",
-          "descripcion": "Los grupos preparan y exponen sus productos en el aula, con carteles de precios para montar los puestos del supermercado.",
-          "formato_asignacion": "grupos"
+          "nombre": "Reuniones individuales de preparación por rol",
+          "descripcion": "El profesor realiza reuniones específicas con cada alumno según su rol asignado, proporcionando orientación personalizada y adaptaciones necesarias.",
+          "formato_asignacion": "individual especializado",
+          "asignaciones_especificas": {
+            "modalidad": "preparacion_personalizada",
+            "reuniones_individuales": [
+              {
+                "alumno": "Ana",
+                "rol_asignado": "Supervisor/Reponedor",
+                "duracion_reunion": "3 minutos",
+                "contenido_reunion": [
+                  "Coordinar organización espacial y flujo de actividad",
+                  "Revisar responsabilidades de reposición de productos",
+                  "Preparar lista para dictados individualizados",
+                  "Establecer protocolo de resolución de problemas"
+                ],
+                "competencias_desarrollar": "Liderazgo, organización, matemáticas básicas, comunicación",
+                "materiales_entregados": "Lista maestra de precios, productos de reposición",
+                "responsabilidades": [
+                  "Coordinar actividad general",
+                  "Reponer productos cuando necesario",
+                  "Resolver problemas entre cajeros y clientes",
+                  "Realizar dictados personalizados a clientes",
+                  "Crear informe final de gestión"
+                ]
+              },
+              {
+                "alumno": "Elena",
+                "rol_asignado": "Cajero TEA (Souvenirs)",
+                "duracion_reunion": "4 minutos",
+                "contenido_reunion": [
+                  "Revisar secuencias de atención al cliente paso a paso",
+                  "Establecer protocolo claro de interacción",
+                  "Explicar uso de apoyos disponibles (cascos, delimitadores)",
+                  "Practicar frases estándar de cortesía comercial"
+                ],
+                "adaptaciones_especificas": [
+                  "Secuencias visuales de procedimientos",
+                  "Cascos de reducción de ruido disponibles",
+                  "Cuerda delimitadora para 'cerrar tienda' si necesita",
+                  "Rol fijo sin rotaciones para mantener predictibilidad"
+                ],
+                "apoyo_disponible": "Profesor supervisa su caja periódicamente",
+                "competencias_desarrollar": "Matemáticas con dinero, atención sostenida, comunicación estructurada"
+              },
+              {
+                "alumno": "Luis",
+                "rol_asignado": "Cliente TDAH",
+                "duracion_reunion": "3 minutos",
+                "contenido_reunion": [
+                  "Momento de centrado y enfoque",
+                  "Revisar plan de compras específico",
+                  "Estrategias de organización para recorrer tiendas",
+                  "Técnicas de autorregulación durante actividad"
+                ],
+                "adaptaciones_especificas": [
+                  "Lista de compra con organización visual por tiendas",
+                  "Estrategias de movimiento controlado",
+                  "Posibilidad de usar manipulativos para cálculos",
+                  "Flexibilidad en orden de compras"
+                ],
+                "competencias_desarrollar": "Escritura (dictado), planificación, cálculo presupuesto, autorregulación"
+              },
+              {
+                "alumno": "Alex",
+                "rol_asignado": "Cajero (Material Escolar)",
+                "duracion_reunion": "2 minutos",
+                "contenido_reunion": [
+                  "Revisar productos y precios de su tienda",
+                  "Protocolo de manejo de caja registradora",
+                  "Procedimientos de cortesía comercial"
+                ],
+                "competencias_desarrollar": "Matemáticas con dinero, atención sostenida, comunicación comercial"
+              },
+              {
+                "alumno": "Emma",
+                "rol_asignado": "Cajero (Hobbies)",
+                "duracion_reunion": "2 minutos",
+                "contenido_reunion": [
+                  "Revisar productos específicos de tiempo libre",
+                  "Manejo de transacciones múltiples",
+                  "Atención personalizada a clientes"
+                ],
+                "competencias_desarrollar": "Matemáticas aplicadas, comunicación, organización"
+              }
+            ]
+          }
         }
       ]
     },
     {
-      "nombre": "Día 2: Compras y Cajas",
-      "descripcion": "Los grupos rotan entre el rol de comprador y cajero para realizar las sumas y manejar el dinero de forma práctica.",
+      "nombre": "Ejecución Simultánea: Funcionamiento del Centro Comercial (40-70 minutos)",
+      "descripcion": "Operación completa del centro comercial con roles diferenciados: clientes realizan compras según listas dictadas, cajeros atienden transacciones y supervisor coordina la actividad.",
       "tareas": [
         {
-          "nombre": "Rotación de roles",
-          "descripcion": "Un grupo actúa como 'vendedor' y el otro como 'comprador'. Se realiza una rotación para que todos los alumnos pasen por ambos roles. Un tutor acompañará a los niños en las 'cajas'.",
-          "formato_asignacion": "grupos",
-          "estrategias_adaptacion": {
-            "para_elena": "Se le da un rol fijo como 'cajera' para que pueda manejar el dinero y calcular sumas, proporcionando un entorno predecible y sin cambios de foco. Su tutor o el docente puede acompañarla en la 'caja' para ofrecer apoyo."
+          "nombre": "Dictado personalizado de listas de compra",
+          "descripcion": "Ana (supervisor) dicta a cada cliente su lista personalizada de productos, adaptada a su nivel matemático y distribuida entre las 3 tiendas.",
+          "formato_asignacion": "individual (supervisor → clientes)",
+          "asignaciones_especificas": {
+            "modalidad": "dictado_diferenciado",
+            "supervisor": "Ana",
+            "proceso_dictado": [
+              "Ana dicta lista personalizada a cada cliente",
+              "Cliente escribe productos y calcula presupuesto aproximado",
+              "Ana verifica comprensión y aclara dudas",
+              "Cliente organiza ruta de compra por tiendas"
+            ],
+            "listas_personalizadas": [
+              {
+                "cliente": "Sara",
+                "productos_dictados": [
+                  {"producto": "mochila", "tienda": "Material Escolar", "precio": "25€"},
+                  {"producto": "llavero", "tienda": "Souvenirs", "precio": "7€"},
+                  {"producto": "libro", "tienda": "Hobbies", "precio": "14€"},
+                  {"producto": "gorra", "tienda": "Souvenirs", "precio": "13€"}
+                ],
+                "total_presupuestado": "59€",
+                "presupuesto_disponible": "60€",
+                "complejidad": "Media - cálculo exacto con mínimo margen"
+              },
+              {
+                "cliente": "Luis",
+                "productos_dictados": [
+                  {"producto": "estuche", "tienda": "Material Escolar", "precio": "12€"},
+                  {"producto": "kit manualidades", "tienda": "Hobbies", "precio": "19€"},
+                  {"producto": "puzzle", "tienda": "Hobbies", "precio": "17€"},
+                  {"producto": "postal", "tienda": "Souvenirs", "precio": "2€"}
+                ],
+                "total_presupuestado": "50€",
+                "presupuesto_disponible": "60€",
+                "complejidad": "Media-baja - margen amplio para autorregulación",
+                "adaptaciones": "Lista organizada por tiendas, secuencia visual de recorrido"
+              },
+              {
+                "cliente": "María",
+                "productos_dictados": [
+                  {"producto": "diccionario", "tienda": "Material Escolar", "precio": "18€"},
+                  {"producto": "imán nevera", "tienda": "Souvenirs", "precio": "4€"},
+                  {"producto": "taza", "tienda": "Souvenirs", "precio": "8€"},
+                  {"producto": "pelota", "tienda": "Hobbies", "precio": "10€"}
+                ],
+                "total_presupuestado": "40€",
+                "presupuesto_disponible": "60€",
+                "complejidad": "Baja - amplio margen, cálculos simples"
+              },
+              {
+                "cliente": "Hugo",
+                "productos_dictados": [
+                  {"producto": "camiseta", "tienda": "Souvenirs", "precio": "16€"},
+                  {"producto": "juego mesa", "tienda": "Hobbies", "precio": "22€"},
+                  {"producto": "cartas", "tienda": "Hobbies", "precio": "6€"},
+                  {"producto": "set rotuladores", "tienda": "Material Escolar", "precio": "9€"}
+                ],
+                "total_presupuestado": "53€",
+                "presupuesto_disponible": "60€",
+                "complejidad": "Media - requiere planificación de recorrido"
+              }
+            ],
+            "tiempo_dictado": "10 minutos total (2.5 min por cliente)"
           }
         },
         {
-          "nombre": "Realizar la compra",
-          "descripcion": "Los compradores van por el supermercado con su lista, seleccionando los productos y calculando la suma total de su compra.",
-          "formato_asignacion": "grupos"
+          "nombre": "Funcionamiento simultáneo de las 3 tiendas",
+          "descripcion": "Operación paralela de las tres tiendas con cajeros atendiendo, clientes comprando según sus listas y supervisor coordinando el flujo general.",
+          "formato_asignacion": "roles simultaneos",
+          "asignaciones_especificas": {
+            "modalidad": "simulacion_comercial_completa",
+            "operacion_cajeros": [
+              {
+                "cajero": "Alex",
+                "tienda": "Material Escolar",
+                "dinero_inicial": "30€ (cambio)",
+                "productos_responsable": ["Mochila 25€", "Estuche 12€", "Diccionario 18€", "Set rotuladores 9€", "Agenda 15€", "Compás 11€"],
+                "proceso_atencion": [
+                  "Recibir cliente con lista",
+                  "Verificar productos solicitados",
+                  "Calcular total de compra",
+                  "Recibir pago de 60€",
+                  "Calcular y entregar cambio",
+                  "Proporcionar ticket de compra"
+                ],
+                "competencias_especificas": "Sumas múltiples, cálculo de cambio, comunicación comercial",
+                "clientes_esperados": ["Sara (mochila 25€)", "Luis (estuche 12€)", "María (diccionario 18€)", "Hugo (set rotuladores 9€)"]
+              },
+              {
+                "cajero": "Elena",
+                "tienda": "Souvenirs de Viaje",
+                "dinero_inicial": "30€ (cambio)",
+                "productos_responsable": ["Camiseta 16€", "Llavero 7€", "Imán nevera 4€", "Gorra 13€", "Postal 2€", "Taza 8€"],
+                "proceso_atencion": [
+                  "Seguir secuencia visual de atención",
+                  "Usar frases estructuradas de cortesía",
+                  "Calcular con apoyo de calculadora si necesario",
+                  "Manejar una transacción a la vez",
+                  "Usar cuerda delimitadora si necesita pausa"
+                ],
+                "adaptaciones_especificas": [
+                  "Secuencias visuales en su caja",
+                  "Cascos de reducción de ruido disponibles",
+                  "Apoyo del profesor cada 10 minutos",
+                  "Cuerda para 'cerrar temporalmente' si necesita"
+                ],
+                "clientes_esperados": ["Sara (llavero 7€, gorra 13€)", "Luis (postal 2€)", "María (imán 4€, taza 8€)", "Hugo (camiseta 16€)"]
+              },
+              {
+                "cajero": "Emma",
+                "tienda": "Hobbies y Tiempo Libre",
+                "dinero_inicial": "30€ (cambio)",
+                "productos_responsable": ["Libro 14€", "Juego mesa 22€", "Pelota 10€", "Puzzle 17€", "Cartas 6€", "Kit manualidades 19€"],
+                "proceso_atencion": [
+                  "Atender múltiples productos por cliente",
+                  "Gestionar transacciones de mayor complejidad",
+                  "Proporcionar recomendaciones sobre hobbies",
+                  "Calcular totales con varios artículos"
+                ],
+                "competencias_especificas": "Operaciones múltiples, gestión de inventario, comunicación especializada",
+                "clientes_esperados": ["Sara (libro 14€)", "Luis (kit manualidades 19€, puzzle 17€)", "María (pelota 10€)", "Hugo (juego mesa 22€, cartas 6€)"]
+              }
+            ],
+            "operacion_clientes": [
+              {
+                "cliente": "Sara",
+                "presupuesto": "60€",
+                "ruta_compra": "Material Escolar → Souvenirs → Hobbies",
+                "secuencia_compras": [
+                  "1. Material Escolar: mochila (25€) - Paga 30€, recibe 5€",
+                  "2. Souvenirs: llavero (7€) + gorra (13€) = 20€ - Paga 25€, recibe 5€",
+                  "3. Hobbies: libro (14€) - Paga 15€, recibe 1€"
+                ],
+                "dinero_final_esperado": "11€ (60€ - 49€ gastados)",
+                "competencias": "Planificación de ruta, gestión presupuestaria, comunicación comercial"
+              },
+              {
+                "cliente": "Luis",
+                "presupuesto": "60€",
+                "ruta_compra": "Material Escolar → Hobbies → Souvenirs",
+                "secuencia_compras": [
+                  "1. Material Escolar: estuche (12€) - Paga 15€, recibe 3€",
+                  "2. Hobbies: kit manualidades (19€) + puzzle (17€) = 36€ - Paga 40€, recibe 4€",
+                  "3. Souvenirs: postal (2€) - Paga 5€, recibe 3€"
+                ],
+                "dinero_final_esperado": "10€ (60€ - 50€ gastados)",
+                "adaptaciones": "Puede usar manipulativos, flexibilidad en orden si necesita autorregulación"
+              },
+              {
+                "cliente": "María",
+                "presupuesto": "60€",
+                "ruta_compra": "Material Escolar → Souvenirs → Hobbies",
+                "secuencia_compras": [
+                  "1. Material Escolar: diccionario (18€) - Paga 20€, recibe 2€",
+                  "2. Souvenirs: imán nevera (4€) + taza (8€) = 12€ - Paga 15€, recibe 3€",
+                  "3. Hobbies: pelota (10€) - Paga 10€, recibe 0€"
+                ],
+                "dinero_final_esperado": "20€ (60€ - 40€ gastados)",
+                "adaptaciones": "Puede trabajar con apoyo de Ana si necesita ayuda con cálculos"
+              },
+              {
+                "cliente": "Hugo",
+                "presupuesto": "60€", 
+                "ruta_compra": "Souvenirs → Hobbies → Material Escolar",
+                "secuencia_compras": [
+                  "1. Souvenirs: camiseta (16€) - Paga 20€, recibe 4€",
+                  "2. Hobbies: juego mesa (22€) + cartas (6€) = 28€ - Paga 30€, recibe 2€",
+                  "3. Material Escolar: set rotuladores (9€) - Paga 10€, recibe 1€"
+                ],
+                "dinero_final_esperado": "7€ (60€ - 53€ gastados)",
+                "competencias": "Cálculo con múltiples artículos, gestión de cambio en cada tienda"
+              }
+            ],
+            "supervision_ana": {
+              "responsabilidades_continuas": [
+                "Circular por las 3 tiendas verificando funcionamiento",
+                "Reponer productos si se agotan",
+                "Resolver conflictos o dudas entre cajeros y clientes",
+                "Apoyar cálculos complejos si solicitado",
+                "Documentar incidencias para informe final"
+              ],
+              "interacciones_esperadas": [
+                "Apoyar a Elena si necesita pausa o clarificación",
+                "Ayudar a Luis con organización si se desregula",
+                "Verificar cálculos complejos de Emma",
+                "Coordinar flujo si se forman colas"
+              ]
+            },
+            "tiempo_operacion": "30-60 minutos (hasta que todos los clientes completen sus listas)"
+          }
         },
         {
-          "nombre": "Pagar y devolver",
-          "descripcion": "En la caja, se paga con el dinero de juguete y se comprueba si la suma es correcta y si hay que devolver cambio.",
-          "formato_asignacion": "grupos"
+          "nombre": "Control financiero y verificación matemática",
+          "descripcion": "Proceso de cierre con verificación del sistema financiero cerrado, comprobando que las matemáticas cuadran perfectamente.",
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "verificacion_matematica_total",
+            "sistema_control": {
+              "dinero_inicial_total": "330€",
+              "distribucion_inicial": [
+                "3 cajeros x 30€ = 90€ (cambio inicial)",
+                "4 clientes x 60€ = 240€ (presupuestos)"
+              ]
+            },
+            "proceso_verificacion": [
+              {
+                "paso": 1,
+                "accion": "Conteo individual de dinero final",
+                "responsables": "Cada cajero y cliente cuenta su dinero",
+                "resultado_esperado": "Cada uno declara cantidad final"
+              },
+              {
+                "paso": 2,
+                "accion": "Suma total verificación",
+                "formula": "Dinero final 3 cajeros + Dinero final 4 clientes = 330€",
+                "responsable": "Ana (supervisor) con apoyo de profesor"
+              },
+              {
+                "paso": 3,
+                "accion": "Cálculo de beneficios por tienda",
+                "formula": "30€ inicial + ventas realizadas - dinero final = beneficio",
+                "ejemplo": "Alex: 30€ + (25€+12€+18€+9€) - dinero_final = beneficio_material_escolar"
+              },
+              {
+                "paso": 4,
+                "accion": "Verificación final",
+                "formula": "Suma beneficios 3 cajeros = Total gastado por 4 clientes",
+                "resultado_magico": "¡Las matemáticas funcionan!",
+                "competencia_desarrollada": "Comprensión del sistema económico cerrado"
+              }
+            ],
+            "tiempo_verificacion": "10 minutos"
+          }
+        }
+      ]
+    },
+    {
+      "nombre": "Evaluación y Reflexión Final (10 minutos)",
+      "descripcion": "Reflexión sobre competencias desarrolladas, efectividad de adaptaciones y aprendizajes matemáticos y sociales adquiridos.",
+      "tareas": [
+        {
+          "nombre": "Informes finales por rol",
+          "descripcion": "Cada alumno presenta un informe de su experiencia según el rol desempeñado, destacando aprendizajes y dificultades encontradas.",
+          "formato_asignacion": "individual con presentación grupal",
+          "asignaciones_especificas": {
+            "modalidad": "reflexion_experiencial",
+            "informes_por_rol": [
+              {
+                "rol": "Cajeros",
+                "presentadores": ["Alex", "Elena", "Emma"],
+                "contenido_informe": [
+                  "Reporte de ventas y gestión de caja",
+                  "Dificultades en cálculos de cambio",
+                  "Experiencia de atención al cliente",
+                  "Efectividad de adaptaciones (especialmente Elena)"
+                ]
+              },
+              {
+                "rol": "Supervisor",
+                "presentador": "Ana",
+                "contenido_informe": [
+                  "Síntesis de incidencias y coordinación",
+                  "Efectividad del dictado personalizado",
+                  "Gestión de problemas surgidos",
+                  "Observaciones del funcionamiento general"
+                ]
+              },
+              {
+                "rol": "Clientes",
+                "presentadores": ["Sara", "Luis", "María", "Hugo"],
+                "contenido_informe": [
+                  "Experiencia de gestión presupuestaria",
+                  "Dificultades en planificación de compras",
+                  "Interacción con diferentes cajeros",
+                  "Efectividad de adaptaciones (especialmente Luis)"
+                ]
+              }
+            ],
+            "tiempo_presentaciones": "7 minutos total"
+          }
         },
         {
-          "nombre": "Validación de la compra",
-          "descripcion": "Una vez hecha la compra, se valida el proceso. Si hay errores, se busca en qué punto se cometieron para corregirlos.",
-          "formato_asignacion": "grupos"
+          "nombre": "Evaluación docente y observación de adaptaciones",
+          "descripcion": "El profesor documenta la efectividad de las adaptaciones implementadas y evalúa el desarrollo de competencias por cada estudiante.",
+          "formato_asignacion": "registro docente",
+          "asignaciones_especificas": {
+            "modalidad": "evaluacion_adaptaciones",
+            "aspectos_observados": [
+              {
+                "estudiante": "Elena (TEA)",
+                "adaptaciones_usadas": "Secuencias visuales, cascos antirruido, cuerda delimitadora, rol fijo",
+                "efectividad": "Evaluar impacto en concentración y estrés",
+                "competencias_desarrolladas": "Matemáticas con dinero, comunicación estructurada"
+              },
+              {
+                "estudiante": "Luis (TDAH)",
+                "adaptaciones_usadas": "Lista visual organizada, manipulativos, flexibilidad de ruta",
+                "efectividad": "Evaluar capacidad de autorregulación y organización",
+                "competencias_desarrolladas": "Planificación, gestión presupuestaria, escritura"
+              },
+              {
+                "estudiante": "Ana (Altas capacidades)",
+                "rol_liderazgo": "Supervisor/coordinador",
+                "efectividad": "Evaluar ejercicio de liderazgo y apoyo a compañeros",
+                "competencias_desarrolladas": "Coordinación, comunicación, gestión de grupo"
+              }
+            ],
+            "registro_observaciones": "Documentar para futuras actividades",
+            "tiempo_evaluacion": "3 minutos"
+          }
         }
       ]
     }
   ],
+  "zona_autoseleccion": {
+    "descripcion": "Banco de recursos disponibles para cualquier estudiante que los necesite durante la actividad",
+    "recursos_disponibles": [
+      "Ábacos y manipulativos para cálculo",
+      "Pegatinas organizativas (productos, cantidades)",
+      "Folios con cuadrantes para organizar listas por tienda",
+      "Tablas de apoyo visual para operaciones",
+      "Cascos de reducción de ruido",
+      "Cuerdas delimitadoras para 'cerrar tienda' temporalmente",
+      "Leyendas visuales de procedimientos",
+      "Carteles con precios únicos para todos"
+    ],
+    "principio_pedagogico": "Autoselección de apoyos según necesidades individuales"
+  },
+  "control_financiero": {
+    "dinero_total_circulacion": "330€",
+    "distribucion_inicial": {
+      "cajeros": "3 x 30€ = 90€ (cambio)",
+      "clientes": "4 x 60€ = 240€ (presupuestos)"
+    },
+    "verificacion_final": "Suma dinero final todos = 330€ (las matemáticas funcionan)",
+    "objetivo_pedagogico": "Comprensión sistema económico cerrado"
+  },
   "alumnos_objetivo": [
-    "Alex",
-    "Sara",
-    "Elena",
-    "Luis",
-    "Emma",
-    "Hugo",
-    "Ana",
-    "El resto del grupo de las maravillas"
+    "Alex M.",
+    "Sara M.", 
+    "Elena R.",
+    "Luis T.",
+    "Emma K.",
+    "Hugo P.",
+    "Ana V.",
+    "María L."
   ],
-  "observaciones": "El profesor y los tutores acompañarán a los alumnos en las 'cajas' para guiar el proceso y prevenir errores. La actividad se diseñó para que el aprendizaje sea colaborativo y para que los alumnos con más habilidades (Alex y Sara) apoyen a los que tienen más dificultades. Se permite que cada alumno trabaje a su ritmo."
+  "observaciones": "La actividad integra matemáticas aplicadas con competencias sociales y comerciales en contexto realista. Elena (TEA) recibe rol fijo de cajero con múltiples adaptaciones: secuencias visuales, cascos antirruido, cuerda delimitadora y supervisión periódica. Luis (TDAH) tiene rol de cliente con lista organizada visualmente, manipulativos disponibles y flexibilidad en ruta de compras. Ana (altas capacidades) ejerce liderazgo como supervisor, coordinando actividad y realizando dictados personalizados. El sistema financiero cerrado permite verificación matemática completa, desarrollando comprensión de economía básica. La duración flexible respeta ritmos individuales, terminando cuando todos completan sus objetivos sin presión temporal."
 }

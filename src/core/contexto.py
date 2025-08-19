@@ -240,22 +240,6 @@ class ContextoHibrido:
         
         return contexto_str
     
-    def get_resumen_sesion(self) -> Dict:
-        """Obtiene un resumen de la sesión actual"""
-        return {
-            'session_id': self.session_id,
-            'prompts_realizados': self.prompts_realizados,
-            'metadatos_detectados': self.metadatos,
-            'tiene_actividad': bool(self.texto_completo),
-            'iteraciones': len(self.historial)
-        }
-    
-    def analizar_continuidad_contexto(self, prompt_nuevo: str) -> str:
-        """MÉTODO OBSOLETO - Usar determinar_accion() en su lugar"""
-        return self.determinar_accion(prompt_nuevo)
-    
-    # ===== MÉTODOS DE ESTADO GLOBAL Y COORDINACIÓN =====
-    
     def actualizar_estado(self, nuevo_estado: str, agente: str = None):
         """
         Actualiza el estado del proyecto

@@ -5,12 +5,12 @@
   "nivel_educativo": "Primaria",
   "duracion_minutos": "La actividad se lleva a cabo a lo largo de varias sesiones.",
   "recursos": [
-    "Papel continuo grande (2x1.5m o similar) o sábana vieja ",
-    "Lápices, gomas, rotuladores permanentes y pinturas de varios colores ",
-    "Materiales con textura: algodón, lentejuelas/purpurina, lana/fideos, botones/garbanzos, plastilina ",
-    "Pegamento, tijeras, cinta adhesiva ",
-    "Libros de ciencias y cartulinas para etiquetas ",
-    "Reloj de aula visible para todos "
+    "Papel continuo grande (2x1.5m o similar) o sábana vieja",
+    "Lápices, gomas, rotuladores permanentes y pinturas de varios colores",
+    "Materiales con textura: algodón, lentejuelas/purpurina, lana/fideos, botones/garbanzos, plastilina",
+    "Pegamento, tijeras, cinta adhesiva",
+    "Libros de ciencias y cartulinas para etiquetas",
+    "Reloj de aula visible para todos"
   ],
   "etapas": [
     {
@@ -20,26 +20,201 @@
         {
           "nombre": "Activación de conocimientos",
           "descripcion": "Conversación sobre 'qué nos hace estar vivos' y presentación de la célula como unidad básica.",
-          "formato_asignacion": "aula completa"
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "conversacion_dirigida",
+            "facilitador_principal": "Profesor",
+            "participantes_activos": [
+              {
+                "alumno": "Ana",
+                "rol": "Generadora de preguntas complejas",
+                "tarea_especifica": "Plantear preguntas sobre la vida a nivel microscópico",
+                "justificacion": "Sus altas capacidades le permiten explorar conceptos abstractos"
+              },
+              {
+                "alumno": "Sara", 
+                "rol": "Conectora de ideas",
+                "tarea_especifica": "Relacionar conceptos con experiencias conocidas",
+                "justificacion": "Equilibrada y con buen nivel, puede hacer puentes conceptuales"
+              },
+              {
+                "resto_grupo": ["Elena", "Alex", "Luis"],
+                "rol": "Participantes activos",
+                "tarea_especifica": "Compartir ideas y hacer preguntas sobre la vida",
+                "adaptaciones": "Elena: apoyo visual en pizarra, Luis: puede expresarse de pie o en movimiento"
+              }
+            ]
+          }
         },
         {
           "nombre": "Búsqueda de información",
           "descripcion": "Visitar la biblioteca del colegio o usar los libros del aula para buscar información sobre la célula.",
           "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "investigacion_por_equipos",
+            "formacion_grupos": [
+              {
+                "nombre": "Equipo Núcleo y ADN",
+                "miembros": ["Ana", "Sara"],
+                "tema_asignado": "Núcleo celular y material genético (ADN)",
+                "tarea_especifica": "Investigar estructura del núcleo, función del ADN, cromosomas",
+                "justificacion": "Ana (altas capacidades) + Sara (equilibrada) = equipo que puede abordar la complejidad del material genético",
+                "complejidad": "Alta - Conceptos abstractos y fundamentales",
+                "recursos_sugeridos": "Libros avanzados, imágenes microscópicas"
+              },
+              {
+                "nombre": "Equipo Orgánulos Pequeños",
+                "miembros": ["Elena", "Alex"],
+                "tema_asignado": "Ribosomas, lisosomas y retículo endoplásmico",
+                "tarea_especifica": "Investigar función de síntesis de proteínas, digestión celular y transporte",
+                "justificacion": "Elena (TEA con CI alto) + Alex (reflexivo y visual) = equipo que puede manejar múltiples orgánulos con apoyo estructurado",
+                "complejidad": "Media-Alta - Múltiples elementos con funciones específicas",
+                "adaptaciones_elena": "Bibliografía con apoyos visuales claros, tiempo para procesar información",
+                "recursos_sugeridos": "Libros con diagramas claros, modelos visuales"
+              },
+              {
+                "nombre": "Equipo Energía y Movimiento",
+                "miembros": ["Luis", "Hugo", "Emma"],
+                "tema_asignado": "Mitocondrias, centríolo y aparato de Golgi",
+                "tarea_especifica": "Investigar producción de energía, división celular y procesamiento de proteínas",
+                "justificacion": "Luis (TDAH) necesita grupo con más trabajo manual y elementos dinámicos. Hugo y Emma aportan equilibrio",
+                "complejidad": "Media - Conceptos relacionados con energía y movimiento",
+                "adaptaciones_luis": "Elementos manipulativos, posibilidad de moverse durante la investigación",
+                "recursos_sugeridos": "Material manipulativo, diagramas de procesos"
+              },
+              {
+                "nombre": "Equipo Estructura Base",
+                "miembros": ["Alex", "María"],
+                "tema_asignado": "Membrana celular y citoplasma",
+                "tarea_especifica": "Investigar límites celulares, permeabilidad y medio interno",
+                "justificacion": "Conceptos fundamentales pero menos complejos, apropiados para completar el equipo",
+                "complejidad": "Media - Conceptos estructurales básicos",
+                "recursos_sugeridos": "Libros básicos, material manipulativo para la membrana"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
             "para_todos": "Se les da un rato para que con la bibliografía que tienen disponible revisen en qué consisten sus partes.",
-            "para_alumnos_con_necesidades": "Ana, con altas capacidades, está en un grupo que le aporte más riqueza y complejidad."
+            "para_ana": "Bibliografía más avanzada y compleja, puede guiar la investigación de su equipo",
+            "para_elena": "Apoyo visual en la pizarra, bibliografía disponible con apoyos visuales que le agraden",
+            "para_luis": "Grupo que necesite más elementos que crear y/o más trabajo manual"
           }
         },
         {
           "nombre": "Análisis de componentes y función",
           "descripcion": "Cada grupo evalúa cómo es cada elemento dentro de la célula (forma, tamaño) y toma apuntes de su función.",
-          "formato_asignacion": "grupos"
+          "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "analisis_colaborativo",
+            "proceso_por_grupo": [
+              {
+                "grupo": "Núcleo y ADN",
+                "responsables": ["Ana", "Sara"],
+                "tareas_especificas": [
+                  "Ana: Analizar la complejidad del ADN y su función reguladora",
+                  "Sara: Documentar características físicas del núcleo (tamaño, ubicación)",
+                  "Ambas: Calcular proporción del núcleo respecto al total de la célula",
+                  "Ambas: Tomar apuntes sobre función de control del núcleo"
+                ],
+                "producto_esperado": "Ficha detallada con funciones complejas y proporciones"
+              },
+              {
+                "grupo": "Orgánulos Pequeños", 
+                "responsables": ["Elena", "Alex"],
+                "tareas_especificas": [
+                  "Elena: Analizar ribosomas (cantidad, ubicación) con apoyo visual",
+                  "Alex: Investigar lisosomas y retículo (forma, función)",
+                  "Elena: Documentar función de síntesis con diagramas claros",
+                  "Alex: Tomar apuntes sobre transporte y digestión celular"
+                ],
+                "producto_esperado": "Ficha con múltiples orgánulos bien diferenciados",
+                "adaptaciones_elena": "Tiempo extra, organización visual de la información"
+              },
+              {
+                "grupo": "Energía y Movimiento",
+                "responsables": ["Luis", "Hugo", "Emma"],
+                "tareas_especificas": [
+                  "Luis: Explorar mitocondrias (forma dinámica, movimiento)",
+                  "Hugo: Analizar centríolo (función en división celular)",
+                  "Emma: Documentar aparato de Golgi (estructura, transporte)",
+                  "Todos: Relacionar energía con movimiento celular"
+                ],
+                "producto_esperado": "Ficha enfocada en procesos dinámicos",
+                "adaptaciones_luis": "Investigación activa, material manipulativo"
+              },
+              {
+                "grupo": "Estructura Base",
+                "responsables": ["Alex", "María"],
+                "tareas_especificas": [
+                  "Alex: Analizar membrana (permeabilidad, límites)",
+                  "María: Estudiar citoplasma (composición, función de soporte)",
+                  "Ambos: Calcular proporción de citoplasma en la célula",
+                  "Ambos: Documentar función estructural básica"
+                ],
+                "producto_esperado": "Ficha con conceptos estructurales fundamentales"
+              }
+            ]
+          }
         },
         {
           "nombre": "Selección de materiales",
           "descripcion": "Cada equipo elige libremente los materiales con los que van a representar su tema específico.",
-          "formato_asignacion": "grupos"
+          "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "seleccion_colaborativa",
+            "proceso_decision": [
+              {
+                "grupo": "Núcleo y ADN",
+                "responsables": ["Ana", "Sara"],
+                "materiales_sugeridos": "Plastilina (núcleo), lana/fideos (ADN), botones (cromosomas)",
+                "decision_proceso": [
+                  "Ana: Proponer materiales que representen la complejidad del ADN",
+                  "Sara: Evaluar viabilidad práctica de los materiales",
+                  "Ambas: Decidir colores y texturas para diferenciar estructuras",
+                  "Ambas: Calcular cantidades necesarias"
+                ],
+                "criterios_decision": "Representar complejidad y función reguladora"
+              },
+              {
+                "grupo": "Orgánulos Pequeños",
+                "responsables": ["Elena", "Alex"], 
+                "materiales_sugeridos": "Algodón (retículo), lentejuelas (ribosomas), botones (lisosomas)",
+                "decision_proceso": [
+                  "Elena: Elegir materiales con texturas agradables y claras",
+                  "Alex: Proponer formas que representen cada orgánulo",
+                  "Elena: Validar que los materiales le resulten cómodos",
+                  "Alex: Organizar materiales por orgánulo"
+                ],
+                "criterios_decision": "Claridad visual y diferenciación de orgánulos",
+                "adaptaciones_elena": "Materiales con texturas cómodas, decisión estructurada"
+              },
+              {
+                "grupo": "Energía y Movimiento",
+                "responsables": ["Luis", "Hugo", "Emma"],
+                "materiales_sugeridos": "Purpurina (energía), lana (movimiento), plastilina moldeable",
+                "decision_proceso": [
+                  "Luis: Seleccionar materiales que permitan manipulación activa",
+                  "Hugo: Proponer formas dinámicas para representar movimiento",
+                  "Emma: Organizar y documentar decisiones del grupo",
+                  "Todos: Experimentar con materiales para representar energía"
+                ],
+                "criterios_decision": "Dinamismo y representación de procesos energéticos",
+                "adaptaciones_luis": "Materiales manipulativos, decisión activa"
+              },
+              {
+                "grupo": "Estructura Base",
+                "responsables": ["Alex", "María"],
+                "materiales_sugeridos": "Papel continuo (base), pinturas (citoplasma), algodón (membrana)",
+                "decision_proceso": [
+                  "Alex: Proponer base sólida para la célula",
+                  "María: Seleccionar colores representativos",
+                  "Ambos: Decidir técnicas de aplicación",
+                  "Ambos: Calcular superficie necesaria"
+                ],
+                "criterios_decision": "Funcionalidad como base para otros elementos"
+              }
+            ]
+          }
         }
       ]
     },
@@ -48,29 +223,224 @@
       "descripcion": "Los grupos se reparten las tareas para crear los elementos, agregarlos al mural y hacer los carteles informativos.",
       "tareas": [
         {
-          "nombre": "Reparto de grupos y temas",
-          "descripcion": "Formación de grupos con asignaciones específicas para cada parte de la célula.",
-          "formato_asignacion": "grupos",
-          "estrategias_adaptacion": {
-            "equipo_nucleo_adn": "Ana y Sara.",
-            "equipo_ribosomas_lisosomas_reticulo": "Elena y Alex.",
-            "equipo_mitocondrias_centriolo_golgi": "Un grupo de alumnos.",
-            "equipo_membrana_citoplasma": "Un grupo de alumnos.",
-            "para_alumnos_con_necesidades": "Luis (TDAH) puede estar en un grupo que necesite más elementos que crear o trabajo manual."
-          }
-        },
-        {
-          "nombre": "Cálculo de materiales",
+          "nombre": "Cálculo de materiales y viabilidad",
           "descripcion": "Revisar la viabilidad de los materiales y calcular la cantidad necesaria para representar su parte en el mural.",
-          "formato_asignacion": "grupos"
+          "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "planificacion_matematica",
+            "proceso_calculo": [
+              {
+                "grupo": "Núcleo y ADN",
+                "responsables": ["Ana", "Sara"],
+                "calculos_especificos": [
+                  "Ana: Calcular proporción núcleo/célula (aproximadamente 1/10 del total)",
+                  "Sara: Medir cantidad de lana necesaria para representar ADN",
+                  "Ana: Estimar número de cromosomas a representar",
+                  "Sara: Calcular cantidad de plastilina para el núcleo",
+                  "Ambas: Verificar viabilidad con superficie disponible"
+                ],
+                "habilidades_matematicas": "Proporciones, estimaciones, medidas"
+              },
+              {
+                "grupo": "Orgánulos Pequeños",
+                "responsables": ["Elena", "Alex"],
+                "calculos_especificos": [
+                  "Elena: Contar ribosomas necesarios (con apoyo visual claro)",
+                  "Alex: Medir retículo endoplásmico según espacio disponible",
+                  "Elena: Calcular cantidad de algodón para retículo",
+                  "Alex: Estimar número de lisosomas y botones necesarios",
+                  "Ambas: Verificar que todo cabe en el espacio asignado"
+                ],
+                "habilidades_matematicas": "Conteo, estimaciones, organización espacial",
+                "adaptaciones_elena": "Cálculos con apoyo visual, tiempo adicional"
+              },
+              {
+                "grupo": "Energía y Movimiento",
+                "responsables": ["Luis", "Hugo", "Emma"],
+                "calculos_especificos": [
+                  "Luis: Experimentar con cantidades de purpurina (manipulación activa)",
+                  "Hugo: Calcular número de mitocondrias por célula",
+                  "Emma: Organizar y documentar todas las mediciones",
+                  "Luis: Medir lana para representar movimiento",
+                  "Todos: Estimar plastilina necesaria para formas complejas"
+                ],
+                "habilidades_matematicas": "Experimentación con cantidades, medidas",
+                "adaptaciones_luis": "Cálculo manipulativo, movimiento permitido"
+              },
+              {
+                "grupo": "Estructura Base",
+                "responsables": ["Alex", "María"],
+                "calculos_especificos": [
+                  "Alex: Medir superficie total del mural (2x1.5m)",
+                  "María: Calcular área del citoplasma (descontando orgánulos)",
+                  "Alex: Estimar pintura necesaria para cubrir citoplasma",
+                  "María: Medir perímetro para la membrana celular",
+                  "Ambos: Verificar que la base soporte todos los elementos"
+                ],
+                "habilidades_matematicas": "Área, perímetro, estimaciones de material"
+              }
+            ]
+          }
         },
         {
           "nombre": "Creación de elementos y carteles",
           "descripcion": "Cada grupo se reparte las tareas para crear los elementos de su parte, incorporarlos al mural y diseñar los carteles informativos con la función de cada elemento.",
           "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "creacion_colaborativa",
+            "distribucion_tareas": [
+              {
+                "grupo": "Núcleo y ADN",
+                "responsables": ["Ana", "Sara"],
+                "tareas_creacion": [
+                  {
+                    "tarea": "Diseño del núcleo",
+                    "responsable": "Sara",
+                    "descripcion": "Moldear núcleo con plastilina, definir membrana nuclear",
+                    "tiempo_estimado": "30 minutos"
+                  },
+                  {
+                    "tarea": "Creación del ADN",
+                    "responsable": "Ana", 
+                    "descripcion": "Crear estructura de doble hélice con lana/fideos, representar cromosomas",
+                    "tiempo_estimado": "45 minutos",
+                    "complejidad": "Alta - requiere precisión conceptual"
+                  },
+                  {
+                    "tarea": "Cartel informativo",
+                    "responsables": ["Ana", "Sara"],
+                    "descripcion": "Explicar función de control del núcleo y herencia genética",
+                    "tiempo_estimado": "25 minutos",
+                    "contenido": "Control celular, material genético, reproducción"
+                  },
+                  {
+                    "tarea": "Integración al mural",
+                    "responsables": ["Ana", "Sara"],
+                    "descripcion": "Colocar núcleo en posición central, fijar ADN",
+                    "tiempo_estimado": "20 minutos"
+                  }
+                ],
+                "libertad_decisiones": "Tamaño del núcleo, disposición del ADN, diseño del cartel"
+              },
+              {
+                "grupo": "Orgánulos Pequeños", 
+                "responsables": ["Elena", "Alex"],
+                "tareas_creacion": [
+                  {
+                    "tarea": "Ribosomas",
+                    "responsable": "Elena",
+                    "descripcion": "Crear ribosomas con lentejuelas, distribuir por retículo y citoplasma",
+                    "tiempo_estimado": "25 minutos",
+                    "adaptaciones": "Trabajo en zona tranquila, patrones visuales claros"
+                  },
+                  {
+                    "tarea": "Retículo endoplásmico",
+                    "responsable": "Alex",
+                    "descripcion": "Crear red de transporte con algodón, conectar con núcleo",
+                    "tiempo_estimado": "35 minutos"
+                  },
+                  {
+                    "tarea": "Lisosomas",
+                    "responsable": "Elena",
+                    "descripcion": "Crear pequeños 'estómagos celulares' con botones",
+                    "tiempo_estimado": "20 minutos",
+                    "adaptaciones": "Materiales cómodos al tacto"
+                  },
+                  {
+                    "tarea": "Cartel informativo",
+                    "responsables": ["Elena", "Alex"],
+                    "descripcion": "Explicar síntesis de proteínas, transporte y digestión",
+                    "tiempo_estimado": "30 minutos",
+                    "adaptaciones_elena": "Apoyo visual, estructura clara del cartel"
+                  },
+                  {
+                    "tarea": "Integración al mural",
+                    "responsables": ["Elena", "Alex"],
+                    "descripcion": "Colocar orgánulos en posiciones funcionales",
+                    "tiempo_estimado": "25 minutos"
+                  }
+                ],
+                "libertad_decisiones": "Distribución de ribosomas, forma del retículo, ubicación de lisosomas"
+              },
+              {
+                "grupo": "Energía y Movimiento",
+                "responsables": ["Luis", "Hugo", "Emma"],
+                "tareas_creacion": [
+                  {
+                    "tarea": "Mitocondrias",
+                    "responsable": "Luis",
+                    "descripcion": "Crear 'centrales energéticas' con purpurina y plastilina",
+                    "tiempo_estimado": "30 minutos",
+                    "adaptaciones": "Trabajo manual activo, formas dinámicas"
+                  },
+                  {
+                    "tarea": "Centríolo",
+                    "responsable": "Hugo",
+                    "descripcion": "Crear estructura de división celular",
+                    "tiempo_estimado": "25 minutos"
+                  },
+                  {
+                    "tarea": "Aparato de Golgi",
+                    "responsable": "Emma",
+                    "descripcion": "Crear 'oficina de correos celular' con materiales apilados",
+                    "tiempo_estimado": "30 minutos"
+                  },
+                  {
+                    "tarea": "Cartel informativo",
+                    "responsables": ["Luis", "Hugo", "Emma"],
+                    "descripcion": "Explicar producción de energía, división y transporte",
+                    "tiempo_estimado": "25 minutos",
+                    "adaptaciones_luis": "Puede moverse mientras piensa y planifica"
+                  },
+                  {
+                    "tarea": "Integración al mural",
+                    "responsables": ["Luis", "Hugo", "Emma"],
+                    "descripcion": "Distribuir orgánulos energéticos por la célula",
+                    "tiempo_estimado": "20 minutos"
+                  }
+                ],
+                "libertad_decisiones": "Número de mitocondrias, forma del Golgi, ubicación del centríolo"
+              },
+              {
+                "grupo": "Estructura Base",
+                "responsables": ["Alex", "María"],
+                "tareas_creacion": [
+                  {
+                    "tarea": "Membrana celular",
+                    "responsable": "Alex",
+                    "descripcion": "Crear límite permeable de la célula",
+                    "tiempo_estimado": "25 minutos"
+                  },
+                  {
+                    "tarea": "Citoplasma",
+                    "responsable": "María",
+                    "descripcion": "Pintar medio interno donde flotan los orgánulos",
+                    "tiempo_estimado": "40 minutos"
+                  },
+                  {
+                    "tarea": "Cartel informativo",
+                    "responsables": ["Alex", "María"],
+                    "descripcion": "Explicar función estructural y de soporte",
+                    "tiempo_estimado": "20 minutos"
+                  },
+                  {
+                    "tarea": "Preparación base",
+                    "responsables": ["Alex", "María"],
+                    "descripcion": "Preparar superficie para que otros grupos trabajen",
+                    "tiempo_estimado": "30 minutos",
+                    "prioridad": "Alta - otros grupos dependen de esta tarea"
+                  }
+                ],
+                "libertad_decisiones": "Color del citoplasma, grosor de la membrana, estilo del cartel"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
             "para_todos": "Cada grupo tiene libertad para incorporar sus partes y tomar decisiones de tamaño y diseño.",
-            "para_necesidades_especiales": "Si la niña con TEA (Elena) muestra facilidad para delinear, se le animará a ello. También se le ofrecen apoyos visuales en la pizarra y bibliografía disponible."
+            "para_elena": "Si muestra facilidad para delinear, se le animará a ello. Apoyo visual en pizarra y bibliografía disponible.",
+            "para_luis": "Grupo con más trabajo manual y elementos que crear, permite movimiento durante la creación",
+            "para_ana": "Puede liderar decisiones complejas en su grupo y apoyar a otros si termina antes",
+            "coordinacion_general": "El profesor gestiona tiempos con reloj visible y anuncia cambios con anticipación"
           }
         }
       ]
@@ -82,22 +452,100 @@
         {
           "nombre": "Exposición de la parte del mural",
           "descripcion": "Cada grupo expone su parte y explica qué hace cada elemento en la célula.",
-          "formato_asignacion": "grupos"
+          "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "presentaciones_estructuradas",
+            "orden_presentacion": [
+              {
+                "orden": 1,
+                "grupo": "Estructura Base",
+                "presentadores": ["Alex", "María"],
+                "duracion": "5 minutos",
+                "contenido": [
+                  "Alex: Explicar la membrana celular como frontera selectiva",
+                  "María: Describir el citoplasma como medio de vida celular",
+                  "Ambos: Mostrar cómo su trabajo es la base para todos los demás elementos"
+                ],
+                "justificacion": "Empezar por la estructura básica facilita la comprensión del resto"
+              },
+              {
+                "orden": 2,
+                "grupo": "Núcleo y ADN",
+                "presentadores": ["Ana", "Sara"],
+                "duracion": "7 minutos",
+                "contenido": [
+                  "Ana: Explicar el núcleo como centro de control celular",
+                  "Sara: Describir el ADN como biblioteca de instrucciones",
+                  "Ana: Relacionar núcleo con reproducción y herencia",
+                  "Sara: Mostrar la estructura del ADN en el mural"
+                ],
+                "justificacion": "El núcleo es fundamental y Ana puede manejar la complejidad conceptual",
+                "rol_ana": "Puede profundizar en conceptos complejos y responder preguntas avanzadas"
+              },
+              {
+                "orden": 3,
+                "grupo": "Orgánulos Pequeños",
+                "presentadores": ["Elena", "Alex"],
+                "duracion": "6 minutos",
+                "contenido": [
+                  "Alex: Introducir los orgánulos y su función general",
+                  "Elena: Explicar ribosomas como fábricas de proteínas (con apoyo visual)",
+                  "Alex: Describir retículo como sistema de transporte",
+                  "Elena: Explicar lisosomas como recicladores celulares"
+                ],
+                "justificacion": "Alex puede introducir y Elena explicar elementos específicos con apoyo",
+                "adaptaciones_elena": "Apoyo visual del cartel, puede usar puntero, tiempo extra si necesita"
+              },
+              {
+                "orden": 4,
+                "grupo": "Energía y Movimiento",
+                "presentadores": ["Luis", "Hugo", "Emma"],
+                "duracion": "6 minutos",
+                "contenido": [
+                  "Emma: Introducir la importancia de la energía celular",
+                  "Luis: Explicar mitocondrias como centrales energéticas (con dinamismo)",
+                  "Hugo: Describir centríolo y la división celular",
+                  "Emma: Explicar aparato de Golgi como procesador y empaquetador"
+                ],
+                "justificacion": "Luis puede mostrar dinamismo al explicar energía, con apoyo estructurado",
+                "adaptaciones_luis": "Puede moverse mientras explica, usar gestos dinámicos"
+              }
+            ],
+            "rol_audiencia": {
+              "participacion_activa": "Cada grupo puede hacer preguntas al grupo presentador",
+              "toma_notas": "Opcional, pueden anotar cosas que no sabían",
+              "conexiones": "Pueden comentar cómo se relaciona con su propia parte"
+            }
+          }
         },
         {
           "nombre": "Debate y reflexión conjunta",
           "descripcion": "Debate sobre las similitudes con los libros de ciencias, las proporciones y la organización del trabajo, permitiendo que los alumnos pregunten sobre lo que no han entendido.",
-          "formato_asignacion": "aula completa"
-        }
-      ]
-    }
-  ],
-  "alumnos_objetivo": [
-    "Ana",
-    "Sara",
-    "Elena",
-    "Alex",
-    "Luis"
-  ],
-  "observaciones": "El rol del profesor es ser guía y mantener cierto orden, dejando que los alumnos piensen por sí mismos y guiándolos en el pensamiento crítico. Se observan los procesos de cada uno y su creatividad. El tiempo es gestionado con un reloj de aula visible y se anuncian los cambios con anticipación para facilitar las transiciones. Se proporcionan apoyos visuales y se fomenta la autonomía en la resolución de problemas."
-}
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "debate_moderado",
+            "moderacion": {
+              "moderador_principal": "Profesor",
+              "co_moderador_estudiante": "Ana",
+              "justificacion_ana": "Sus altas capacidades le permiten facilitar discusión y hacer conexiones complejas"
+            },
+            "temas_debate": [
+              {
+                "tema": "Comparación con libros de ciencias",
+                "pregunta_disparadora": "¿Se parece nuestra célula a la de nuestros libros?",
+                "facilitadores": ["Ana", "Sara"],
+                "participacion_esperada": [
+                  "Comparar proporciones reales vs representadas",
+                  "Identificar elementos que faltaron o sobraron",
+                  "Discutir diferencias estilísticas"
+                ]
+              },
+              {
+                "tema": "Proporciones y exactitud",
+                "pregunta_disparadora": "¿Mantienen proporciones? ¿Qué tan exactos fuimos?",
+                "facilitadores": ["Alex", "María"],
+                "participacion_esperada": [
+                  "Evaluar cálculos realizados",
+                  "Comparar tamaños relativos",
+                  "Reflexionar sobre dificultades matemáticas"
+                ]

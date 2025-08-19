@@ -5,16 +5,16 @@
   "nivel_educativo": "Primaria",
   "duracion_minutos": "La actividad se llevará a cabo a lo largo de la semana, culminando el viernes en la Feria Matemática.",
   "recursos": [
-    "Recortables y montables de figuras geométricas ",
-    "Dados de varias caras ",
-    "Tarjetas con nombres de objetos del aula ",
-    "Tarjetas con unidades de medida (imanix, dominó, cuerda) ",
-    "Botellas de diferentes tamaños (por ejemplo, garrafas de 6 y 8 litros y botellas de 1,5L) ",
-    "Cartelitos con el volumen en decimales y fracciones ",
-    "Tarjetas de cantidades (ej. 4,75L) ",
-    "Pizarra y tiza/rotuladores ",
-    "Paneles para cada puesto ",
-    "Trozo de frase de matemático o dato mágico/curioso "
+    "Recortables y montables de figuras geométricas",
+    "Dados de varias caras",
+    "Tarjetas con nombres de objetos del aula",
+    "Tarjetas con unidades de medida (imanix, dominó, cuerda)",
+    "Botellas de diferentes tamaños (garrafas de 6 y 8 litros y botellas de 1,5L)",
+    "Cartelitos con el volumen en decimales y fracciones",
+    "Tarjetas de cantidades (ej. 4,75L)",
+    "Pizarra y tiza/rotuladores",
+    "Paneles para cada puesto",
+    "Trozo de frase de matemático o dato mágico/curioso"
   ],
   "etapas": [
     {
@@ -23,8 +23,33 @@
       "tareas": [
         {
           "nombre": "Taller de formas geométricas (Lunes)",
-          "descripcion": "Recortar y montar figuras geométricas. Encontrar objetos en el aula y crear tarjetas con su nombre y forma geométrica.",
+          "descripcion": "Recortar y montar figuras geométricas. Encontrar objetos en el aula y crear tarjetas con su nombre y forma geométrica usando dados de varias caras para la selección.",
           "formato_asignacion": "individual y aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "individual_con_apoyo_grupal",
+            "detalles": [
+              {
+                "alumno": "Elena",
+                "tarea_especifica": "Recortar figuras con plantillas claras y crear 2-3 tarjetas de objetos conocidos",
+                "adaptacion": "Plantillas pre-marcadas, objetos familiares del aula, trabajo en zona tranquila"
+              },
+              {
+                "alumno": "Luis", 
+                "tarea_especifica": "Usar dados para seleccionar objetos y crear 4-5 tarjetas variadas",
+                "adaptacion": "Permite movimiento por el aula, cambio frecuente de actividad"
+              },
+              {
+                "alumno": "Ana",
+                "tarea_especifica": "Crear sistema de clasificación de tarjetas y ayudar a compañeros",
+                "adaptacion": "Puede liderar la organización del material y mentorizar"
+              },
+              {
+                "resto_grupo": ["Alex", "María", "Emma", "Hugo", "Sara"],
+                "tarea_especifica": "Participar en la creación colectiva de tarjetas y figuras",
+                "adaptacion": "Trabajo colaborativo estándar"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
             "para_todos": "Se guardan las tarjetas en botes o carpetas para su uso posterior."
           }
@@ -33,6 +58,35 @@
           "nombre": "Dinámica de cálculo de áreas (Martes)",
           "descripcion": "Calcular el área de objetos utilizando materiales no convencionales (cuerdas, dominó, imanix). Se crearán tarjetas de objetos y de unidades de medida.",
           "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "grupos_rotativos",
+            "grupos": [
+              {
+                "nombre": "Grupo Exploración",
+                "miembros": ["Ana", "Hugo"],
+                "tarea_especifica": "Experimentar con diferentes unidades de medida y documentar métodos",
+                "justificacion": "Ambos buenos para argumentar y explorar conceptos"
+              },
+              {
+                "nombre": "Grupo Creación",
+                "miembros": ["Sara", "Luis"],
+                "tarea_especifica": "Crear tarjetas con objetos creativos y unidades innovadoras",
+                "justificacion": "Sara aporta argumentación, Luis creatividad"
+              },
+              {
+                "nombre": "Grupo Organización",
+                "miembros": ["Alex", "María"],
+                "tarea_especifica": "Sistematizar las mediciones y organizar el material",
+                "justificacion": "Pareja funcional y equilibrada"
+              },
+              {
+                "nombre": "Grupo Apoyo",
+                "miembros": ["Elena", "Emma"],
+                "tarea_especifica": "Medir objetos conocidos con unidades simples",
+                "justificacion": "Emma proporciona calma a Elena en actividad potencialmente estresante"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
             "para_todos": "Jugar con diferentes formas de calcular cuánto ocupan las cosas."
           }
@@ -41,6 +95,37 @@
           "nombre": "Dinámica de lógica (Miércoles)",
           "descripcion": "Resolver ejercicios de ecuaciones con símbolos en la pizarra de forma grupal y luego crear uno propio para guardarlo.",
           "formato_asignacion": "aula completa e individual",
+          "asignaciones_especificas": {
+            "modalidad": "grupal_luego_individual",
+            "fase_grupal": {
+              "lider_actividad": "Ana",
+              "justificacion": "Tiene capacidad para guiar el razonamiento lógico",
+              "apoyos_activos": ["Hugo", "Sara"],
+              "justificacion_apoyos": "Buenos argumentando y explicando"
+            },
+            "fase_individual": [
+              {
+                "alumno": "Elena",
+                "objetivo": "Crear 1 ejercicio simple validado",
+                "apoyo": "Supervisión directa del profesor"
+              },
+              {
+                "alumno": "Luis",
+                "objetivo": "Crear 2-3 ejercicios variados",
+                "adaptacion": "Permitir simbolos creativos y no convencionales"
+              },
+              {
+                "alumno": "Ana",
+                "objetivo": "Crear 2-3 ejercicios complejos y ayudar en validación",
+                "rol_adicional": "Mentor de compañeros"
+              },
+              {
+                "resto_grupo": ["Alex", "María", "Emma", "Hugo", "Sara"],
+                "objetivo": "Crear 1-2 ejercicios cada uno",
+                "modalidad": "Estándar con validación grupal"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
             "para_todos": "Todos los ejercicios han de ser validados antes de incluirlos en el bote."
           }
@@ -49,6 +134,35 @@
           "nombre": "Botellas y revelación de la Feria (Jueves)",
           "descripcion": "Contar y catalogar las botellas, escribir carteles con su volumen en decimales y fracciones. Después, se revela la actividad de la Feria Matemática y se explican los puestos brevemente.",
           "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "estaciones_rotativas",
+            "estaciones": [
+              {
+                "nombre": "Estación Conteo",
+                "responsables": ["Alex", "María"],
+                "tarea": "Contar y clasificar botellas por tamaño",
+                "justificacion": "Equipo organizado y metódico"
+              },
+              {
+                "nombre": "Estación Cálculo",
+                "responsables": ["Ana", "Hugo"], 
+                "tarea": "Calcular volúmenes y crear carteles con decimales/fracciones",
+                "justificacion": "Capacidad matemática y argumentación"
+              },
+              {
+                "nombre": "Estación Manipulación",
+                "responsables": ["Sara", "Luis"],
+                "tarea": "Verter agua, mover botellas y crear tarjetas de cantidades",
+                "justificacion": "Luis necesita actividad física, Sara aporta estructura"
+              },
+              {
+                "nombre": "Estación Preparación",
+                "responsables": ["Elena", "Emma"],
+                "tarea": "Preparar etiquetas y organizar material para la feria",
+                "justificacion": "Tarea estructurada y predecible para Elena con apoyo de Emma"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
             "para_todos": "La propia acción de verter agua y mover carteles facilita la comprensión concreta.",
             "para_alumnos_con_intereses": "Se puede intentar que el dato final conecte con un interés general del grupo (ciencia, naturaleza, el cuerpo humano, etc.)."
@@ -58,11 +172,66 @@
           "nombre": "Organización de la Feria (Jueves por la tarde)",
           "descripcion": "Cada equipo creará un panel informativo para su puesto y decorará la feria. Se aseguran de que cada puesto esté preparado con los materiales y las instrucciones.",
           "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "parejas_por_puesto",
+            "asignacion_puestos": [
+              {
+                "puesto": "Geometría",
+                "pareja": ["Alex", "María"],
+                "tareas_especificas": [
+                  "Crear panel informativo sobre figuras geométricas",
+                  "Organizar tarjetas de figuras y nombres",
+                  "Preparar 5 objetos del aula para clasificar",
+                  "Decorar espacio del puesto"
+                ],
+                "justificacion": "Son una pareja funcional y equilibrada",
+                "materiales_asignados": ["Figuras geométricas", "Tarjetas de nombres", "Objetos del aula"]
+              },
+              {
+                "puesto": "Áreas", 
+                "pareja": ["Elena", "Emma"],
+                "tareas_especificas": [
+                  "Crear panel explicativo sobre cálculo de áreas",
+                  "Organizar tarjetas de objetos y unidades de medida",
+                  "Preparar materiales de medición (imanix, dominó, cuerdas)",
+                  "Establecer sistema de validación de medidas"
+                ],
+                "justificacion": "Se asigna una tarea que puede generar tensión a Elena, y Emma es un apoyo tranquilo",
+                "adaptaciones_especiales": "Elena: cascos disponibles, zona tranquila. Emma: rol de mediadora y apoyo emocional",
+                "materiales_asignados": ["Tarjetas de objetos", "Unidades de medida", "Materiales manipulativos"]
+              },
+              {
+                "puesto": "Lógica",
+                "pareja": ["Ana", "Hugo"], 
+                "tareas_especificas": [
+                  "Crear panel con ejemplos de ecuaciones con símbolos",
+                  "Seleccionar y organizar ejercicios creados por la clase",
+                  "Preparar sistema de validación de respuestas",
+                  "Diseñar estrategias de ayuda para equipos atascados"
+                ],
+                "justificacion": "Ambos argumentan bien, lo que favorece la lógica y la conversación",
+                "rol_especial": "Ana puede actuar como mentora durante la feria",
+                "materiales_asignados": ["Ejercicios de lógica", "Pizarra pequeña", "Material de validación"]
+              },
+              {
+                "puesto": "Garrafas (Fracciones y Volumen)",
+                "pareja": ["Sara", "Luis"],
+                "tareas_especificas": [
+                  "Crear panel sobre fracciones y volumen",
+                  "Organizar garrafas de 6L y 8L",
+                  "Preparar tarjetas de cantidades y botellas pequeñas",
+                  "Establecer zona de vertido de agua",
+                  "Crear sistema de limpieza y orden"
+                ],
+                "justificacion": "Sara ayudará con buena argumentación y Luis creará opciones creativas",
+                "adaptaciones_especiales": "Luis: actividad física con agua, cambios de ritmo. Sara: estructura y organización",
+                "materiales_asignados": ["Garrafas grandes", "Botellas pequeñas", "Tarjetas de volumen", "Agua", "Toallas"]
+              }
+            ]
+          },
           "estrategias_adaptacion": {
-            "para_alex_maria": "Son una pareja funcional y equilibrada.",
-            "para_elena_emma": "Se asigna una tarea que puede generar tensión a Elena, y Emma es un apoyo tranquilo.",
-            "para_ana_hugo": "Ambos argumentan bien, lo que favorece la lógica y la conversación.",
-            "para_sara_luis": "Sara ayudará con buena argumentación y Luis creará opciones creativas."
+            "coordinacion_general": "El profesor supervisará la organización y asegurará que cada pareja entienda su responsabilidad",
+            "flexibilidad": "Si alguna pareja termina antes, puede ayudar en decoración general o apoyo a otros puestos"
           }
         }
       ]
@@ -72,36 +241,96 @@
       "descripcion": "El día de la feria, los equipos rotarán por los puestos resolviendo los acertijos. El docente validará cada prueba.",
       "tareas": [
         {
-          "nombre": "Puesto de Geometría",
-          "descripcion": "Colocar cada figura geométrica con su nombre correspondiente. Además, colocar el nombre de la forma geométrica a 5 objetos del aula.",
-          "formato_asignacion": "parejas",
+          "nombre": "Rotación por puestos",
+          "descripcion": "Las parejas rotan por todos los puestos, resolviendo los retos matemáticos en cada uno.",
+          "formato_asignacion": "parejas rotativas",
+          "asignaciones_especificas": {
+            "modalidad": "rotacion_supervisada",
+            "sistema_parejas": [
+              {
+                "pareja_visitante": ["Alex", "María"],
+                "fortalezas": "Trabajo metódico y colaborativo",
+                "estrategia_rotacion": "Pueden ayudar a otras parejas si terminan antes"
+              },
+              {
+                "pareja_visitante": ["Elena", "Emma"],
+                "fortalezas": "Elena muy capaz con apoyo tranquilo de Emma",
+                "adaptaciones": "Tiempo extra si es necesario, señales visuales para transiciones",
+                "estrategia_rotacion": "Rotación pausada, con tiempo de adaptación entre puestos"
+              },
+              {
+                "pareja_visitante": ["Ana", "Hugo"],
+                "fortalezas": "Excelente análisis y argumentación",
+                "estrategia_rotacion": "Pueden profundizar en retos adicionales",
+                "rol_especial": "Pueden actuar como mentores discretos"
+              },
+              {
+                "pareja_visitante": ["Sara", "Luis"],
+                "fortalezas": "Creatividad y argumentación sólida",
+                "adaptaciones": "Luis necesita actividad variada, Sara aporta estructura",
+                "estrategia_rotacion": "Rotación dinámica con pausas activas entre puestos"
+              }
+            ],
+            "cronograma_rotacion": {
+              "duracion_por_puesto": "15-20 minutos",
+              "tiempo_transicion": "5 minutos",
+              "flexibilidad": "El profesor puede ajustar tiempos según el progreso"
+            }
+          },
+          "puestos_detallados": [
+            {
+              "nombre": "Puesto de Geometría",
+              "responsables_puesto": ["Alex", "María"],
+              "descripcion": "Colocar cada figura geométrica con su nombre correspondiente. Además, colocar el nombre de la forma geométrica a 5 objetos del aula.",
+              "materiales": ["Figuras geométricas recortadas", "Tarjetas de nombres", "5 objetos del aula seleccionados"],
+              "criterios_validacion": "Todas las figuras correctamente emparejadas, objetos clasificados correctamente",
+              "adaptaciones_por_visitante": {
+                "elena_emma": "Tiempo extra, figuras grandes y claras",
+                "ana_hugo": "Reto adicional: explicar propiedades de las figuras",
+                "sara_luis": "Luis puede manipular objetos físicamente, Sara valida"
+              }
+            },
+            {
+              "nombre": "Puesto de Áreas",
+              "responsables_puesto": ["Elena", "Emma"],
+              "descripcion": "Encontrar la manera de describir en términos de las unidades que les hayan salido, cuánto ocupa el objeto que les ha tocado en una tarjeta.",
+              "materiales": ["Tarjetas de objetos del aula", "Unidades de medida variadas (imanix, dominó, cuerdas)", "Objetos a medir"],
+              "criterios_validacion": "Medición realizada correctamente con justificación del método",
+              "adaptaciones_por_visitante": {
+                "alex_maria": "Medición estándar con documentación del proceso",
+                "ana_hugo": "Pueden comparar diferentes métodos de medición",
+                "sara_luis": "Luis manipula y mide activamente, Sara estructura la respuesta"
+              }
+            },
+            {
+              "nombre": "Puesto de Lógica", 
+              "responsables_puesto": ["Ana", "Hugo"],
+              "descripcion": "Resolver 2 o 3 de las actividades de ecuaciones con símbolos que ellos mismos diseñaron.",
+              "materiales": ["Ejercicios de lógica creados por la clase", "Pizarra para cálculos", "Material de apoyo"],
+              "criterios_validacion": "Resolución correcta con explicación del razonamiento",
+              "adaptaciones_por_visitante": {
+                "alex_maria": "Resolución estándar con verificación mutua",
+                "elena_emma": "Ejercicios más simples con apoyo visual",
+                "sara_luis": "Variedad de ejercicios, Luis puede usar métodos creativos"
+              }
+            },
+            {
+              "nombre": "Puesto de Garrafas (Fracciones y Volumen)",
+              "responsables_puesto": ["Sara", "Luis"],
+              "descripcion": "Elegir una garrafa y usar dos botellas pequeñas con su volumen correspondiente para rellenarla.",
+              "materiales": ["Garrafas de 6L y 8L", "Botellas pequeñas con volúmenes marcados", "Tarjetas de cantidades", "Agua", "Toallas"],
+              "criterios_validacion": "Garrafa llena correctamente con cálculo de fracciones exacto",
+              "adaptaciones_por_visitante": {
+                "alex_maria": "Cálculo preciso con verificación matemática",
+                "elena_emma": "Manipulación cuidadosa con apoyo en fracciones simples",
+                "ana_hugo": "Pueden calcular múltiples combinaciones posibles"
+              }
+            }
+          ],
           "estrategias_adaptacion": {
-            "para_habilidades_especificas": "Fomentar la comunicación oral y la discusión de estrategias en pareja.",
-            "para_todos": "Se proporcionan múltiples medios de representación (figuras y nombres escritos)."
-          }
-        },
-        {
-          "nombre": "Puesto de Áreas",
-          "descripcion": "Encontrar la manera de describir en términos de las unidades que les hayan salido, cuánto ocupa el objeto que les ha tocado en una tarjeta.",
-          "formato_asignacion": "parejas",
-          "estrategias_adaptacion": {
-            "para_todos": "Se proporcionan numerosos materiales con los que medir áreas."
-          }
-        },
-        {
-          "nombre": "Puesto de Lógica",
-          "descripcion": "Resolver 2 o 3 de las actividades de ecuaciones con símbolos que ellos mismos diseñaron.",
-          "formato_asignacion": "parejas",
-          "estrategias_adaptacion": {
-            "para_todos": "La validación del profesor en cada reto ofrece retroalimentación instantánea, fomentando la autocorrección."
-          }
-        },
-        {
-          "nombre": "Puesto de Garrafas (Fracciones y Volumen)",
-          "descripcion": "Elegir una garrafa y usar dos botellas pequeñas con su volumen correspondiente para rellenarla.",
-          "formato_asignacion": "parejas",
-          "estrategias_adaptacion": {
-            "para_todos": "La acción de verter agua y manipular las botellas facilita la comprensión concreta."
+            "para_todos": "El trabajo en pareja fomenta la comunicación y resolución colaborativa",
+            "validacion_profesor": "El profesor circula y valida cada reto antes de permitir el avance",
+            "flexibilidad_tiempo": "Adaptación de ritmos según necesidades de cada pareja"
           }
         }
       ]
@@ -114,8 +343,53 @@
           "nombre": "Construcción de la frase/acertijo",
           "descripcion": "Reunir todos los trozos de frases para construir una frase de un matemático famoso o resolver un acertijo entre todo el aula.",
           "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "construccion_colaborativa",
+            "roles_especificos": [
+              {
+                "rol": "Coordinador General",
+                "alumno": "Ana",
+                "tarea": "Coordinar la unión de las piezas de la frase",
+                "justificacion": "Capacidad de liderazgo y visión global"
+              },
+              {
+                "rol": "Secretarios",
+                "alumnos": ["Alex", "María"],
+                "tarea": "Escribir la frase final y leerla al grupo",
+                "justificacion": "Trabajo metódico y claro"
+              },
+              {
+                "rol": "Verificadores",
+                "alumnos": ["Sara", "Hugo"],
+                "tarea": "Verificar que todos los trozos están incluidos y en orden correcto",
+                "justificacion": "Buenos argumentando y verificando lógica"
+              },
+              {
+                "rol": "Presentadores",
+                "alumnos": ["Luis", "Emma"],
+                "tarea": "Presentar la frase final y compartir reflexiones",
+                "justificacion": "Luis aporta creatividad en presentación, Emma tranquilidad"
+              },
+              {
+                "rol": "Apoyo Especial",
+                "alumno": "Elena",
+                "tarea": "Participar en el ordenamiento con apoyo directo",
+                "adaptacion": "Puede usar sus cascos si hay mucho ruido, trabajo en zona tranquila"
+              }
+            ],
+            "proceso": [
+              "1. Cada pareja presenta su trozo de frase",
+              "2. Ana coordina la discusión sobre el orden",
+              "3. Sara y Hugo verifican la lógica",
+              "4. Alex y María escriben la versión final",
+              "5. Luis y Emma presentan al grupo",
+              "6. Reflexión grupal sobre la experiencia"
+            ]
+          },
           "estrategias_adaptacion": {
-            "para_todos": "El trabajo en pareja y la posterior resolución conjunta fomenta la colaboración."
+            "para_todos": "El trabajo en pareja y la posterior resolución conjunta fomenta la colaboración.",
+            "inclusion_total": "Todos los alumnos tienen un rol específico y valorado en el cierre",
+            "celebracion": "Momento de celebración del trabajo colaborativo de toda la semana"
           }
         }
       ]
@@ -123,7 +397,7 @@
   ],
   "alumnos_objetivo": [
     "Elena",
-    "Luis",
+    "Luis", 
     "Ana",
     "Alex",
     "María",

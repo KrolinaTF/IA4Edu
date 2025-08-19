@@ -1,77 +1,477 @@
 {
   "id": "ACT005",
-  "titulo": "Actividad deportiva con geografía",
-  "objetivo": "Crear un mapa completo de España con sus comunidades autónomas y banderas, y luego participar en un juego para fortalecer el reconocimiento territorial y la ubicación geográfica.",
+  "titulo": "Actividad deportiva con geografía: Construyendo España",
+  "objetivo": "Crear un mapa completo de España con todas sus comunidades autónomas y banderas a través de trabajo colaborativo especializado, y luego participar en juegos kinestésicos para fortalecer el reconocimiento territorial, ubicación geográfica y identidad nacional. Integrar geografía con educación física mediante aprendizaje experiencial y manipulativo.",
   "nivel_educativo": "4º de Primaria",
-  "duracion_minutos": "El proyecto se estructura en dos días, uno de preparación y otro de juego.",
+  "duracion_minutos": "El proyecto se estructura en dos días: Día 1 (50 min preparación) + Día 2 (60 min juegos)",
   "recursos": [
-    "Cartulinas de colores (19 para cada comunidad/ciudad autónoma)",
+    "19 cartulinas de colores (una por comunidad/ciudad autónoma)",
     "Rotuladores, lápices de colores, tijeras",
-    "Plantillas impresas de contornos (especialmente para ELENA y LUIS)",
-    "Imágenes de referencia de las banderas",
-    "Pegamento, cinta adhesiva y velcro",
-    "Tiza para dibujar el mapa gigante en el patio",
-    "Música para las actividades",
-    "Plan B en caso de mal tiempo"
+    "Plantillas impresas de contornos simplificados (especialmente para Elena y Luis)",
+    "Imágenes de referencia de todas las banderas autonómicas",
+    "Pegamento, cinta adhesiva y velcro para montaje",
+    "Tiza para dibujar mapa gigante en el patio",
+    "Música para actividades kinestésicas",
+    "Plan B en caso de mal tiempo (aula alternativa)",
+    "Bandejas organizadoras por zonas de trabajo"
   ],
   "etapas": [
     {
-      "nombre": "DÍA 1: Preparación de Materiales",
-      "descripcion": "Elaboración de mapas y banderas de cada comunidad autónoma de España.",
+      "nombre": "DÍA 1: Preparación de Materiales (50 minutos)",
+      "descripcion": "Cada alumno crea las comunidades autónomas y banderas asignadas específicamente según sus capacidades, construyendo colaborativamente un mapa completo de España.",
       "tareas": [
         {
-          "nombre": "Dibujar contornos de comunidades",
-          "descripcion": "Cada alumno dibujará y coloreará 2-3 comunidades autónomas en cartulinas, con tareas adaptadas a sus capacidades. Se entregan plantillas con el contorno marcado a Elena.",
-          "formato_asignacion": "individual",
-          "estrategias_adaptacion": {
-            "para_elena_r": "Comunidades pequeñas y definidas (Asturias y Cantabria). Recibirá plantillas con el contorno ya marcado para colorear.",
-            "para_ana_v": "Se le asignan una comunidad grande y dos pequeñas (Castilla y León, La Rioja y Madrid) debido a sus altas capacidades.",
-            "para_luis_t": "Se le asignan varias piezas pequeñas (Navarra, Islas Canarias, Ceuta y Melilla) que le permiten cambiar de foco."
+          "nombre": "Introducción y organización territorial",
+          "descripcion": "El profesor presenta el proyecto de 'Construir España juntos' y explica las asignaciones específicas de comunidades autónomas para cada alumno.",
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "presentacion_colaborativa",
+            "facilitador": "Profesor",
+            "concepto_clave": "Cada alumno será especialista en 2-3 comunidades autónomas",
+            "dinamica": [
+              "Mostrar mapa de España vacío",
+              "Explicar que van a 'rellenar' España entre todos",
+              "Cada uno será experto en sus comunidades asignadas",
+              "Al final tendrán un mapa completo hecho por la clase"
+            ],
+            "asignaciones_comunidades_overview": "Elena (pequeñas definidas), Ana (grande + pequeñas), Luis (varias pequeñas para cambiar foco)"
+          }
+        },
+        {
+          "nombre": "Dibujar contornos de comunidades autónomas",
+          "descripcion": "Cada alumno dibuja y colorea las comunidades autónomas específicamente asignadas según criterios pedagógicos de nivel y necesidades.",
+          "formato_asignacion": "individual especializado",
+          "asignaciones_especificas": {
+            "modalidad": "especializacion_geografica",
+            "asignaciones_individuales": [
+              {
+                "alumno": "Elena R.",
+                "comunidades_asignadas": ["Asturias", "Cantabria"],
+                "criterio_asignacion": "Comunidades pequeñas con límites muy definidos",
+                "adaptaciones": [
+                  "Recibe plantillas con contorno ya marcado para colorear",
+                  "Contornos claros y reconocibles",
+                  "Trabajo en zona tranquila del aula"
+                ],
+                "materiales_especificos": "Plantillas pre-marcadas, colores suaves",
+                "tiempo_estimado": "25 minutos",
+                "justificacion": "TEA necesita estructura clara y predecible"
+              },
+              {
+                "alumno": "Alex M.",
+                "comunidades_asignadas": ["Galicia", "País Vasco"],
+                "criterio_asignacion": "Comunidades con contornos característicos y reconocibles",
+                "adaptaciones": [
+                  "Trabajo visual-reflexivo",
+                  "Puede usar técnicas de sombreado",
+                  "Acceso a múltiples referencias visuales"
+                ],
+                "materiales_especificos": "Lápices de colores variados, referencias visuales",
+                "tiempo_estimado": "22 minutos",
+                "justificacion": "Visual-reflexivo, buen nivel para formas complejas"
+              },
+              {
+                "alumno": "Ana V.",
+                "comunidades_asignadas": ["Castilla y León", "La Rioja", "Madrid"],
+                "criterio_asignacion": "Una comunidad grande y dos pequeñas por sus altas capacidades",
+                "adaptaciones": [
+                  "Puede investigar datos adicionales de sus comunidades",
+                  "Trabajo con mayor complejidad geográfica",
+                  "Rol de consultora para compañeros si termina antes"
+                ],
+                "materiales_especificos": "Materiales completos, atlas de referencia",
+                "tiempo_estimado": "20 minutos + apoyo a otros",
+                "justificacion": "Altas capacidades pueden manejar mayor carga y complejidad"
+              },
+              {
+                "alumno": "María L.",
+                "comunidades_asignadas": ["Extremadura", "Murcia"],
+                "criterio_asignacion": "Comunidades de tamaño medio con contornos sencillos",
+                "adaptaciones": [
+                  "Apoyo auditivo con descripciones verbales",
+                  "Trabajo con ritmo adaptado",
+                  "Verificación periódica del progreso"
+                ],
+                "materiales_especificos": "Plantillas de apoyo, rotuladores gruesos",
+                "tiempo_estimado": "25 minutos",
+                "justificacion": "Nivel medio, auditiva necesita apoyo estructurado"
+              },
+              {
+                "alumno": "Emma K.",
+                "comunidades_asignadas": ["Castilla-La Mancha", "Comunidad Valenciana"],
+                "criterio_asignacion": "Comunidades con formas características para análisis visual",
+                "adaptaciones": [
+                  "Enfoque visual-analítico",
+                  "Puede crear versiones detalladas",
+                  "Trabajo de precisión en contornos"
+                ],
+                "materiales_especificos": "Instrumentos de precisión, colores variados",
+                "tiempo_estimado": "23 minutos",
+                "justificacion": "Visual-analítico, buen nivel para formas complejas"
+              },
+              {
+                "alumno": "Hugo P.",
+                "comunidades_asignadas": ["Aragón", "Cataluña"],
+                "criterio_asignacion": "Formas geométricas reconocibles para enfoque práctico",
+                "adaptaciones": [
+                  "Enfoque visual-práctico",
+                  "Trabajo con formas geométricas claras",
+                  "Técnicas de construcción paso a paso"
+                ],
+                "materiales_especificos": "Reglas, plantillas geométricas",
+                "tiempo_estimado": "24 minutos",
+                "justificacion": "Visual-práctico, formas geométricas reconocibles"
+              },
+              {
+                "alumno": "Sara M.",
+                "comunidades_asignadas": ["Andalucía", "Islas Baleares"],
+                "criterio_asignacion": "Una comunidad grande y un archipiélago pequeño",
+                "adaptaciones": [
+                  "Nivel medio-alto",
+                  "Desafío de diferentes escalas geográficas",
+                  "Trabajo con conceptos de mainland e islas"
+                ],
+                "materiales_especificos": "Materiales completos, mapas de referencia",
+                "tiempo_estimado": "22 minutos",
+                "justificacion": "Nivel medio-alto puede manejar variedad geográfica"
+              },
+              {
+                "alumno": "Luis T.",
+                "comunidades_asignadas": ["Navarra", "Islas Canarias", "Ceuta", "Melilla"],
+                "criterio_asignacion": "Varias piezas pequeñas que permiten cambiar de foco",
+                "adaptaciones": [
+                  "Trabajo fragmentado en bloques cortos",
+                  "Cambio de actividad cada 8-10 minutos",
+                  "Posibilidad de moverse entre tareas"
+                ],
+                "materiales_especificos": "Plantillas pre-marcadas, rotuladores variados",
+                "tiempo_estimado": "20 minutos (4 bloques de 5 min)",
+                "justificacion": "TDAH necesita variedad y cambios frecuentes de foco"
+              }
+            ]
           }
         },
         {
           "nombre": "Crear banderas autonómicas",
-          "descripcion": "Cada alumno creará 2-3 banderas autonómicas en tamaño A5, con un reparto de tareas adaptado a sus niveles.",
-          "formato_asignacion": "individual",
-          "estrategias_adaptacion": {
-            "para_elena_r": "Banderas sencillas (Asturias y Cantabria).",
-            "para_ana_v": "Incluye banderas de diferente complejidad (Castilla y León, La Rioja y Ceuta).",
-            "para_luis_t": "Varias banderas sencillas (Navarra, Islas Canarias y Melilla) para mantener su interés."
+          "descripcion": "Cada alumno crea las banderas correspondientes a sus comunidades asignadas, en tamaño A5 con diferentes niveles de complejidad.",
+          "formato_asignacion": "individual especializado",
+          "asignaciones_especificas": {
+            "modalidad": "diseño_simbolico",
+            "proceso_creacion": [
+              {
+                "alumno": "Elena R.",
+                "banderas_asignadas": ["Asturias", "Cantabria"],
+                "caracteristicas": "Banderas sencillas que corresponden a sus comunidades",
+                "proceso_adaptado": [
+                  "Elena: Usar plantillas base de las banderas",
+                  "Colorear siguiendo modelo visual claro",
+                  "Verificar colores con referencia siempre visible"
+                ],
+                "complejidad": "Baja - elementos simples y claros",
+                "tiempo_estimado": "20 minutos"
+              },
+              {
+                "alumno": "Alex M.",
+                "banderas_asignadas": ["Galicia", "País Vasco"],
+                "caracteristicas": "Banderas con elementos definidos",
+                "proceso_adaptado": [
+                  "Alex: Analizar simbología de cada bandera",
+                  "Recrear elementos con precisión visual",
+                  "Crear versión personal interpretativa"
+                ],
+                "complejidad": "Media - elementos distintivos claros",
+                "tiempo_estimado": "18 minutos"
+              },
+              {
+                "alumno": "Ana V.",
+                "banderas_asignadas": ["Castilla y León", "La Rioja", "Ceuta"],
+                "caracteristicas": "Incluye banderas de diferente complejidad",
+                "proceso_adaptado": [
+                  "Ana: Investigar significado histórico de símbolos",
+                  "Crear versiones detalladas con explicaciones",
+                  "Desarrollar presentación sobre simbología"
+                ],
+                "complejidad": "Alta - variedad de elementos complejos",
+                "tiempo_estimado": "15 minutos + investigación adicional"
+              },
+              {
+                "alumno": "María L.",
+                "banderas_asignadas": ["Extremadura", "Murcia"],
+                "caracteristicas": "Banderas relativamente sencillas",
+                "proceso_adaptado": [
+                  "María: Seguir instrucciones paso a paso",
+                  "Usar apoyo visual constante",
+                  "Verificar cada elemento antes de continuar"
+                ],
+                "complejidad": "Media-baja - elementos claros",
+                "tiempo_estimado": "22 minutos"
+              },
+              {
+                "alumno": "Emma K.",
+                "banderas_asignadas": ["Castilla-La Mancha", "Madrid"],
+                "caracteristicas": "Banderas con elementos geométricos claros",
+                "proceso_adaptado": [
+                  "Emma: Análisis visual de proporciones",
+                  "Recreación precisa de elementos geométricos",
+                  "Trabajo de detalle en símbolos"
+                ],
+                "complejidad": "Media - elementos geométricamente definidos",
+                "tiempo_estimado": "19 minutos"
+              },
+              {
+                "alumno": "Hugo P.",
+                "banderas_asignadas": ["Aragón", "Comunidad Valenciana"],
+                "caracteristicas": "Banderas con franjas y elementos distintivos",
+                "proceso_adaptado": [
+                  "Hugo: Construcción práctica por elementos",
+                  "Trabajo sistemático de franjas y símbolos",
+                  "Verificación visual de proporciones"
+                ],
+                "complejidad": "Media - elementos estructurados",
+                "tiempo_estimado": "20 minutos"
+              },
+              {
+                "alumno": "Sara M.",
+                "banderas_asignadas": ["Andalucía", "Islas Baleares"],
+                "caracteristicas": "Incluye banderas reconocibles",
+                "proceso_adaptado": [
+                  "Sara: Trabajo equilibrado de elementos",
+                  "Atención a detalles distintivos",
+                  "Creación cuidadosa de símbolos"
+                ],
+                "complejidad": "Media - elementos reconocibles",
+                "tiempo_estimado": "18 minutos"
+              },
+              {
+                "alumno": "Luis T.",
+                "banderas_asignadas": ["Navarra", "Islas Canarias", "Melilla"],
+                "caracteristicas": "Varias banderas sencillas para mantener interés",
+                "proceso_adaptado": [
+                  "Luis: Crear una bandera cada 7-8 minutos",
+                  "Cambio frecuente entre banderas",
+                  "Trabajo activo con movimiento permitido"
+                ],
+                "complejidad": "Baja-media - elementos simples, variedad alta",
+                "tiempo_estimado": "21 minutos (3 bloques de 7 min)"
+              }
+            ]
           }
         }
       ]
     },
     {
-      "nombre": "DÍA 2: Juego 'Conoce España'",
-      "descripcion": "Juego en el patio con las comunidades y banderas creadas en la primera fase.",
+      "nombre": "DÍA 2: Juego 'Conoce España' (60 minutos)",
+      "descripcion": "Juego kinestésico en el patio utilizando las comunidades y banderas creadas, con tres actividades progresivas para fortalecer el reconocimiento territorial.",
       "tareas": [
         {
-          "nombre": "Construyendo España",
-          "descripcion": "Los alumnos colocan sus comunidades en un mapa gigante de tiza y cada uno presenta brevemente sus comunidades.",
+          "nombre": "Preparación del espacio y construcción colaborativa",
+          "descripcion": "Dibujar mapa gigante en el patio y que cada alumno coloque sus comunidades mientras presenta brevemente su trabajo.",
           "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "construccion_territorial_colaborativa",
+            "preparacion_fisica": {
+              "responsable": "Profesor",
+              "tarea": "Dibujar contorno de España con tiza en el patio",
+              "tiempo_previo": "15 minutos antes del inicio"
+            },
+            "proceso_construccion": [
+              {
+                "fase": "Colocación de comunidades grandes",
+                "participantes": ["Ana", "Sara", "Emma", "Hugo"],
+                "proceso": [
+                  "Ana: Colocar Castilla y León (comunidad más grande) como referencia central",
+                  "Sara: Posicionar Andalucía en el sur del mapa",
+                  "Emma: Ubicar Castilla-La Mancha en el centro",
+                  "Hugo: Colocar Aragón y Cataluña en el nordeste"
+                ],
+                "tiempo": "8 minutos"
+              },
+              {
+                "fase": "Colocación de comunidades medianas",
+                "participantes": ["Alex", "María", "Sara"],
+                "proceso": [
+                  "Alex: Posicionar Galicia en el noroeste y País Vasco en el norte",
+                  "María: Ubicar Extremadura y Murcia",
+                  "Sara: Colocar Islas Baleares en el Mediterráneo"
+                ],
+                "tiempo": "6 minutos"
+              },
+              {
+                "fase": "Colocación de comunidades pequeñas y ciudades autónomas",
+                "participantes": ["Elena", "Luis", "Ana"],
+                "proceso": [
+                  "Elena: Colocar Asturias y Cantabria con apoyo de Ana",
+                  "Luis: Posicionar Navarra, después Islas Canarias en zona designada",
+                  "Luis: Colocar Ceuta y Melilla en ubicaciones africanas marcadas",
+                  "Ana: Finalizar con La Rioja y Madrid"
+                ],
+                "tiempo": "8 minutos",
+                "adaptaciones_elena": "Ana actúa como compañera de apoyo, secuencia visual disponible"
+              },
+              {
+                "fase": "Presentaciones breves",
+                "modalidad": "Cada alumno presenta sus comunidades (30 segundos por comunidad)",
+                "orden": "Orden geográfico: Norte → Sur → Islas → Ciudades autónomas",
+                "contenido": "Nombre, ubicación, una característica destacada",
+                "tiempo": "6 minutos total"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
-            "para_todos": "Se utiliza un mapa gigante en el patio para fomentar el movimiento y el aprendizaje kinestésico."
+            "para_todos": "Se utiliza un mapa gigante en el patio para fomentar el movimiento y el aprendizaje kinestésico.",
+            "para_elena": "Secuencia visual del proceso, apoyo de Ana como compañera",
+            "para_luis": "Actividad física constante, cambios frecuentes de posición"
           }
         },
         {
-          "nombre": "Carrera de banderas",
-          "descripcion": "Se forman 2 equipos para una carrera de relevos donde los alumnos deben colocar banderas en la comunidad correspondiente del mapa.",
-          "formato_asignacion": "grupos",
+          "nombre": "Carrera de banderas por equipos",
+          "descripcion": "Competición por equipos donde deben colocar banderas en las comunidades correspondientes del mapa, integrando conocimiento geográfico con actividad física.",
+          "formato_asignacion": "grupos competitivos",
+          "asignaciones_especificas": {
+            "modalidad": "competicion_educativa",
+            "formacion_equipos": {
+              "criterio": "Equipos equilibrados por nivel y necesidades",
+              "equipo_1": {
+                "nombre": "Exploradores del Norte",
+                "miembros": ["Ana", "Elena", "Alex", "Hugo"],
+                "fortalezas": "Ana lidera estrategia, Elena aporta precisión, Alex y Hugo equilibrio",
+                "adaptaciones": "Elena tiene apoyo directo de Ana"
+              },
+              "equipo_2": {
+                "nombre": "Navegantes del Sur", 
+                "miembros": ["Sara", "Luis", "María", "Emma"],
+                "fortalezas": "Sara y Emma aportan estabilidad, Luis energía, María esfuerzo",
+                "adaptaciones": "Luis tiene roles activos, María apoyo de Sara/Emma"
+              }
+            },
+            "proceso_competicion": [
+              {
+                "ronda": 1,
+                "tema": "Comunidades grandes",
+                "banderas": ["Andalucía", "Castilla y León", "Castilla-La Mancha", "Cataluña"],
+                "participantes_activos": ["Ana", "Sara", "Emma", "Hugo"],
+                "tiempo": "8 minutos"
+              },
+              {
+                "ronda": 2,
+                "tema": "Comunidades del norte",
+                "banderas": ["Galicia", "Asturias", "Cantabria", "País Vasco"],
+                "participantes_activos": ["Elena", "Alex", "María", "Luis"],
+                "adaptaciones_luis": "Rol de recolector de banderas y distribuidor activo",
+                "tiempo": "8 minutos"
+              },
+              {
+                "ronda": 3,
+                "tema": "Islas y ciudades autónomas",
+                "banderas": ["Islas Canarias", "Islas Baleares", "Ceuta", "Melilla"],
+                "participantes_activos": ["Luis", "Sara", "Ana", "Emma"],
+                "tiempo": "6 minutos"
+              },
+              {
+                "ronda": 4,
+                "tema": "Reto final: comunidades restantes",
+                "banderas": ["Aragón", "Navarra", "La Rioja", "Madrid", "Extremadura", "Murcia", "Comunidad Valenciana"],
+                "participantes": "Todo el equipo puede participar",
+                "tiempo": "10 minutos"
+              }
+            ],
+            "sistema_puntuacion": {
+              "bandera_correcta": "2 puntos",
+              "bandera_casi_correcta": "1 punto", 
+              "trabajo_en_equipo": "1 punto bonus por ronda",
+              "objetivo": "Fomentar colaboración sobre competición"
+            }
+          },
           "estrategias_adaptacion": {
-            "para_luis_t": "Se le asignarán roles activos como la recogida de banderas y la distribución."
+            "para_luis": "Se le asignarán roles activos como la recogida de banderas y la distribución.",
+            "para_elena": "Apoyo de Ana, puede verificar colocaciones desde posición estática",
+            "para_maria": "Roles adaptados a su nivel, apoyo del equipo"
           }
         },
         {
-          "nombre": "La gran rotación",
-          "descripcion": "Los alumnos rotan por el mapa al ritmo de la música y deben nombrar la comunidad en la que se detienen.",
+          "nombre": "La gran rotación musical",
+          "descripcion": "Los alumnos rotan por el mapa al ritmo de la música y deben nombrar la comunidad donde se detienen, integrando reconocimiento territorial con coordinación motriz.",
           "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "rotacion_kinestesica",
+            "estructura_actividad": {
+              "duracion_total": "15 minutos",
+              "numero_rondas": "6-8 rondas",
+              "tiempo_por_ronda": "1.5-2 minutos"
+            },
+            "dinamica_rotacion": [
+              {
+                "ronda": 1,
+                "tema": "Reconocimiento básico",
+                "instruccion": "Nombrar la comunidad donde se detienen",
+                "musica": "Ritmo moderado",
+                "adaptaciones_elena": "Secuencia visual disponible, Ana como apoyo cercano"
+              },
+              {
+                "ronda": 2,
+                "tema": "Ubicación relativa",
+                "instruccion": "Nombrar comunidad + una comunidad vecina",
+                "musica": "Ritmo dinámico",
+                "adaptaciones_luis": "Movimiento libre, puede expresarse gesticulando"
+              },
+              {
+                "ronda": 3,
+                "tema": "Características",
+                "instruccion": "Nombrar comunidad + una característica (costa, montaña, etc.)",
+                "musica": "Ritmo tranquilo para pensar"
+              },
+              {
+                "ronda": 4,
+                "tema": "Capital",
+                "instruccion": "Nombrar comunidad + su capital",
+                "nivel": "Avanzado - pueden ayudarse entre compañeros"
+              },
+              {
+                "ronda": 5,
+                "tema": "Reto colaborativo",
+                "instruccion": "Entre toda la clase, formar una frase que incluya todas las comunidades donde están",
+                "enfoque": "Cooperación sobre competición"
+              }
+            ],
+            "roles_especiales": [
+              {
+                "rol": "DJ y coordinador",
+                "responsable": "Profesor",
+                "tarea": "Controlar música y facilitar respuestas"
+              },
+              {
+                "rol": "Apoyo móvil",
+                "responsable": "Ana",
+                "tarea": "Apoyar a Elena y otros compañeros según necesidad",
+                "justificacion": "Sus altas capacidades le permiten ayudar mientras participa"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
-            "para_elena_r": "Se le proporcionará una secuencia visual del juego, se le permitirá conocer con anticipación las rotaciones y se le asignará un compañero de apoyo (Ana V.)."
+            "para_elena": "Se le proporcionará una secuencia visual del juego, se le permitirá conocer con anticipación las rotaciones y se le asignará un compañero de apoyo (Ana V.).",
+            "para_luis": "Roles activos constantes, movimiento libre, expresión gestual permitida",
+            "para_todos": "Enfoque en diversión y aprendizaje colaborativo, no eliminación"
           }
         }
       ]
     }
   ],
+  "preparacion_previa_profesor": {
+    "dia_1": [
+      "Imprimir plantillas de contornos simplificados (especialmente Elena y Luis)",
+      "Preparar imágenes de referencia de todas las banderas autonómicas",
+      "Organizar mesas por zonas de trabajo especializadas",
+      "Tener listos todos los materiales en bandejas organizadas",
+      "Preparar carteles identificativos para cada zona de trabajo"
+    ],
+    "dia_2": [
+      "Llegar con 15 minutos extra para dibujar contorno de España",
+      "Preparar sistema de sujeción para cartulinas y banderas (velcro, cinta)",
+      "Tener preparada lista de música variada para las actividades",
+      "Preparar Plan B en caso de mal tiempo (aula alternativa)",
+      "Organizar material de primeros auxilios para actividad física"
+    ]
+  },
   "alumnos_objetivo": [
     "Elena R.",
     "Alex M.",
@@ -82,5 +482,5 @@
     "Sara M.",
     "Luis T."
   ],
-  "observaciones": "El profesor debe imprimir plantillas de contornos para Elena y Luis. Se deben tener listas las imágenes de referencia de las banderas. El juego del Día 2 se centra en el reconocimiento territorial básico. Para las adaptaciones, se proporcionará una secuencia visual del juego para Elena y se asignarán roles activos a Luis. La carga de trabajo individual es manejable y adaptada a las capacidades de cada alumno."
+  "observaciones": "La actividad integra geografía con educación física mediante trabajo colaborativo especializado. Elena (TEA) recibe estructura clara, plantillas pre-marcadas y apoyo constante de Ana. Luis (TDAH) tiene roles activos continuos, cambios frecuentes de foco y actividad física constante. Ana (altas capacidades) maneja mayor complejidad y ejerce rol de apoyo a compañeros. María recibe apoyo adaptado y verificación continua. Cada alumno se convierte en especialista de sus comunidades asignadas, creando expertise distribuida que beneficia el aprendizaje colaborativo. La progresión de actividades va de construcción colaborativa a competición amistosa y rotación kinestésica, manteniendo engagement y aprendizaje activo."
 }

@@ -1,90 +1,964 @@
 {
   "id": "ACT004",
   "titulo": "Construcción del Cuerpo Humano en Grupos",
-  "objetivo": "Construir un modelo del cuerpo humano, identificando sus partes y funciones, aplicando proporciones matemáticas y fomentando el trabajo en equipo y la investigación. Se busca que los estudiantes apliquen conocimientos de ciencias naturales y matemáticas.",
+  "objetivo": "Construir un modelo del cuerpo humano, identificando sus partes y funciones, aplicando proporciones matemáticas y fomentando el trabajo en equipo y la investigación. Se busca que los estudiantes apliquen conocimientos de ciencias naturales y matemáticas de forma integrada, desarrollando la comprensión del cuerpo como sistema y las habilidades de medición, cálculo y construcción colaborativa.",
   "nivel_educativo": "4º de Primaria",
-  "duracion_minutos": "El proyecto se estructura en 5 sesiones, con una duración aproximada de una sesión por fase.",
+  "duracion_minutos": "El proyecto se estructura en 4 fases, con una duración aproximada de una sesión por fase (200 minutos total distribuidos en 4 sesiones de 50 minutos).",
   "recursos": [
-    "Diagrama de proporciones del cuerpo humano",
-    "Hojas cuadriculadas",
-    "Cartón grande",
-    "Tijeras, pegamento, cinta adhesiva",
-    "Pinturas, rotuladores",
-    "Materiales reciclados (lana, telas, etc.)",
-    "Libros de consulta sobre el cuerpo humano"
+    "Diagrama de proporciones del cuerpo humano (modelo de Leonardo da Vinci adaptado)",
+    "Hojas cuadriculadas A4 y A3",
+    "Cartón grande (2x1.5m)",
+    "Tijeras, pegamento, cinta adhesiva, broches",
+    "Pinturas, rotuladores, pinceles",
+    "Materiales reciclados (lana, telas, algodón, botones)",
+    "Libros de consulta sobre el cuerpo humano",
+    "Reglas, metros, calculadoras",
+    "Plantillas de órganos principales"
   ],
   "etapas": [
     {
       "nombre": "Fase 1: Planificación y Medidas",
-      "descripcion": "Introducción al proyecto, diagramas de proporciones y cálculos de medidas en grupos.",
+      "descripcion": "Introducción al proyecto, análisis de proporciones del cuerpo humano y cálculos de medidas en grupos especializados.",
       "tareas": [
         {
-          "nombre": "Introducción y proporciones",
-          "descripcion": "El profesor presenta el proyecto y un diagrama de proporciones del cuerpo humano, explicando las medidas clave.",
-          "formato_asignacion": "aula completa"
+          "nombre": "Introducción y análisis de proporciones",
+          "descripcion": "El profesor presenta el proyecto con el diagrama de proporciones humanas, explicando las relaciones matemáticas básicas: cabeza = 1/8 del cuerpo, brazos extendidos = altura total, etc.",
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "presentacion_interactiva",
+            "facilitador": "Profesor",
+            "participantes_activos": [
+              {
+                "alumno": "Ana",
+                "rol": "Analista de proporciones complejas",
+                "tarea_especifica": "Identificar y explicar las relaciones matemáticas más complejas (regla de los octavos, proporción áurea)",
+                "justificacion": "Sus altas capacidades le permiten comprender conceptos matemáticos avanzados"
+              },
+              {
+                "alumno": "Alex",
+                "rol": "Medidor oficial",
+                "tarea_especifica": "Demostrar mediciones básicas en un voluntario de la clase",
+                "justificacion": "Su estilo reflexivo y visual es ideal para mediciones precisas"
+              },
+              {
+                "resto_grupo": ["Elena", "Luis", "Sara", "María", "Emma", "Hugo"],
+                "rol": "Observadores participativos",
+                "tarea_especifica": "Tomar notas y hacer preguntas sobre proporciones",
+                "adaptaciones": "Elena: apoyo visual con diagrama en pizarra, Luis: puede moverse y gesticular"
+              }
+            ]
+          }
+        },
+        {
+          "nombre": "Formación de grupos especializados",
+          "descripcion": "División en grupos según partes del cuerpo, cada uno con responsabilidades específicas de medición y construcción.",
+          "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "especializacion_por_sistemas",
+            "grupos_formados": [
+              {
+                "nombre": "Grupo Cabeza y Sistema Nervioso",
+                "miembros": ["Ana", "Elena"],
+                "parte_asignada": "Cabeza (1/8 del cuerpo total)",
+                "sistemas_incluidos": "Cerebro, órganos sensoriales, sistema nervioso",
+                "justificacion": "Ana (altas capacidades) puede manejar la complejidad del sistema nervioso. Elena (TEA con CI alto) puede trabajar con precisión en la cabeza",
+                "complejidad": "Alta - sistemas complejos y funciones múltiples",
+                "medidas_base": "Si cuerpo = 160cm, cabeza = 20cm",
+                "responsabilidades_especificas": {
+                  "Ana": "Investigar sistema nervioso, calcular proporciones del cerebro",
+                  "Elena": "Diseñar y dibujar contorno de cabeza, órganos sensoriales"
+                }
+              },
+              {
+                "nombre": "Grupo Tronco y Órganos Vitales",
+                "miembros": ["Alex", "Sara"],
+                "parte_asignada": "Tronco (3/8 del cuerpo total)",
+                "sistemas_incluidos": "Corazón, pulmones, hígado, estómago, sistema digestivo",
+                "justificacion": "Alex (reflexivo y visual) + Sara (equilibrada) = equipo estable para órganos centrales",
+                "complejidad": "Media-Alta - múltiples órganos vitales",
+                "medidas_base": "Si cuerpo = 160cm, tronco = 60cm",
+                "responsabilidades_especificas": {
+                  "Alex": "Calcular posiciones y tamaños de órganos vitales",
+                  "Sara": "Investigar funciones del sistema digestivo y respiratorio"
+                }
+              },
+              {
+                "nombre": "Grupo Extremidades Superiores",
+                "miembros": ["Luis", "Hugo"],
+                "parte_asignada": "Brazos y manos (envergadura = altura total)",
+                "sistemas_incluidos": "Huesos, músculos, articulaciones de brazos",
+                "justificacion": "Luis (TDAH) necesita trabajo manual activo. Hugo aporta equilibrio y organización",
+                "complejidad": "Media - elementos móviles y articulaciones",
+                "medidas_base": "Si cuerpo = 160cm, envergadura = 160cm",
+                "responsabilidades_especificas": {
+                  "Luis": "Construir articulaciones móviles, trabajo manual de recorte",
+                  "Hugo": "Calcular proporciones de brazos (brazo = antebrazo + mano)"
+                }
+              },
+              {
+                "nombre": "Grupo Extremidades Inferiores",
+                "miembros": ["María", "Emma"],
+                "parte_asignada": "Piernas y pies (4/8 del cuerpo total)",
+                "sistemas_incluidos": "Huesos largos, músculos, articulaciones de piernas",
+                "justificacion": "María (apoyo en matemáticas) trabajará con Emma (CI alto) para reforzar cálculos",
+                "complejidad": "Media - proporciones largas y apoyo corporal",
+                "medidas_base": "Si cuerpo = 160cm, piernas = 80cm",
+                "responsabilidades_especificas": {
+                  "María": "Calcular proporciones básicas con apoyo de Emma",
+                  "Emma": "Investigar sistema locomotor y articulaciones"
+                }
+              }
+            ]
+          }
         },
         {
           "nombre": "Cálculo de medidas específicas",
-          "descripcion": "Cada grupo calcula sus medidas específicas y las dibuja en hojas cuadriculadas.",
+          "descripcion": "Cada grupo calcula las medidas específicas de su parte y las dibuja en hojas cuadriculadas, aplicando las proporciones del modelo humano estándar.",
           "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "calculo_colaborativo",
+            "proceso_matematico": [
+              {
+                "grupo": "Cabeza y Sistema Nervioso",
+                "responsables": ["Ana", "Elena"],
+                "calculos_especificos": [
+                  {
+                    "tarea": "Proporción cabeza/cuerpo",
+                    "responsable": "Ana",
+                    "calculo": "Si cuerpo total = 160cm, entonces cabeza = 160÷8 = 20cm",
+                    "aplicacion": "Calcular ancho de cabeza (3/4 del largo)",
+                    "tiempo_estimado": "15 minutos"
+                  },
+                  {
+                    "tarea": "Ubicación de órganos sensoriales",
+                    "responsable": "Elena",
+                    "calculo": "Ojos en mitad superior, nariz en centro, boca en tercio inferior",
+                    "aplicacion": "Dibujar cuadrícula facial en papel",
+                    "tiempo_estimado": "20 minutos",
+                    "adaptaciones": "Plantilla visual clara, reglas marcadas"
+                  },
+                  {
+                    "tarea": "Tamaño del cerebro",
+                    "responsable": "Ana",
+                    "calculo": "Cerebro = 80% del volumen craneal",
+                    "aplicacion": "Calcular espacio interno para el cerebro",
+                    "tiempo_estimado": "10 minutos"
+                  }
+                ],
+                "producto_esperado": "Diagrama cabeza con medidas exactas y ubicación de órganos"
+              },
+              {
+                "grupo": "Tronco y Órganos Vitales",
+                "responsables": ["Alex", "Sara"],
+                "calculos_especificos": [
+                  {
+                    "tarea": "Dimensiones del tronco",
+                    "responsable": "Alex",
+                    "calculo": "Largo = 60cm (3/8 del total), ancho = 1/3 del largo = 20cm",
+                    "aplicacion": "Dibujar rectángulo base del tronco",
+                    "tiempo_estimado": "15 minutos"
+                  },
+                  {
+                    "tarea": "Ubicación del corazón",
+                    "responsable": "Sara",
+                    "calculo": "Centro-izquierda, entre costilla 2 y 6",
+                    "aplicacion": "Marcar posición en el diagrama del tronco",
+                    "tiempo_estimado": "10 minutos"
+                  },
+                  {
+                    "tarea": "Espacio pulmonar",
+                    "responsable": "Alex",
+                    "calculo": "Pulmones ocupan 70% de la caja torácica",
+                    "aplicacion": "Calcular área pulmonar en cm²",
+                    "tiempo_estimado": "15 minutos"
+                  },
+                  {
+                    "tarea": "Sistema digestivo",
+                    "responsable": "Sara",
+                    "calculo": "Estómago en cuadrante superior izquierdo",
+                    "aplicacion": "Ubicar órganos digestivos en diagrama",
+                    "tiempo_estimado": "15 minutos"
+                  }
+                ],
+                "producto_esperado": "Diagrama tronco con órganos ubicados proporcionalmente"
+              },
+              {
+                "grupo": "Extremidades Superiores",
+                "responsables": ["Luis", "Hugo"],
+                "calculos_especificos": [
+                  {
+                    "tarea": "Longitud total del brazo",
+                    "responsable": "Hugo",
+                    "calculo": "Brazo completo = 80cm (1/2 de la altura)",
+                    "aplicacion": "Dividir en brazo (30cm) + antebrazo (25cm) + mano (25cm)",
+                    "tiempo_estimado": "15 minutos"
+                  },
+                  {
+                    "tarea": "Articulaciones móviles",
+                    "responsable": "Luis",
+                    "calculo": "Hombro, codo, muñeca = puntos de flexión",
+                    "aplicacion": "Diseñar sistema de broches para movimiento",
+                    "tiempo_estimado": "20 minutos",
+                    "adaptaciones": "Trabajo manual activo, experimentación con materiales"
+                  },
+                  {
+                    "tarea": "Proporción de la mano",
+                    "responsable": "Hugo",
+                    "calculo": "Mano = largo de la cara (desde frente a barbilla)",
+                    "aplicacion": "Calcular dedos y palma proporcionalmente",
+                    "tiempo_estimado": "10 minutos"
+                  }
+                ],
+                "producto_esperado": "Diagrama brazos con articulaciones funcionales diseñadas"
+              },
+              {
+                "grupo": "Extremidades Inferiores",
+                "responsables": ["María", "Emma"],
+                "calculos_especificos": [
+                  {
+                    "tarea": "Longitud de las piernas",
+                    "responsable": "Emma",
+                    "calculo": "Piernas = 80cm (1/2 de la altura total)",
+                    "aplicacion": "Dividir en muslo (40cm) + pantorrilla (30cm) + pie (10cm)",
+                    "tiempo_estimado": "15 minutos"
+                  },
+                  {
+                    "tarea": "Cálculos básicos con apoyo",
+                    "responsable": "María",
+                    "calculo": "Ancho de cadera = 1/4 de la altura",
+                    "aplicacion": "Calcular 160÷4 = 40cm con apoyo de Emma",
+                    "tiempo_estimado": "20 minutos",
+                    "adaptaciones": "Emma guía los cálculos, María aplica con plantillas"
+                  },
+                  {
+                    "tarea": "Proporciones del pie",
+                    "responsable": "Emma",
+                    "calculo": "Pie = 1/7 de la altura total",
+                    "aplicacion": "160÷7 = 23cm aproximadamente",
+                    "tiempo_estimado": "10 minutos"
+                  }
+                ],
+                "producto_esperado": "Diagrama piernas con medidas proporcionales correctas"
+              }
+            ]
+          },
           "estrategias_adaptacion": {
-            "para_maria_l": "Se le ofrecerá apoyo adicional con los cálculos de proporciones y se usarán plantillas o guías visuales para las medidas."
+            "para_maria": "Se le ofrecerá apoyo adicional con los cálculos de proporciones y se usarán plantillas o guías visuales para las medidas.",
+            "para_elena": "Apoyo visual constante, tiempo extra para procesar información",
+            "para_luis": "Cálculos manipulativos, puede moverse durante el trabajo",
+            "para_ana": "Puede profundizar en relaciones matemáticas complejas"
           }
         }
       ]
     },
     {
       "nombre": "Fase 2: Investigación",
-      "descripcion": "Cada grupo investiga la parte del cuerpo asignada y crea un cartel informativo.",
+      "descripcion": "Cada grupo investiga en profundidad la parte del cuerpo asignada, sus funciones y sistemas, creando carteles informativos especializados.",
       "tareas": [
         {
-          "nombre": "Investigación y creación de carteles",
-          "descripcion": "Los grupos investigan las partes del cuerpo asignadas y crean un cartel sobre sus funciones. Por ejemplo, el 'Grupo Cabeza' investiga el cerebro y los órganos sensoriales.",
+          "nombre": "Investigación especializada y creación de carteles",
+          "descripcion": "Los grupos investigan las partes del cuerpo asignadas y crean carteles informativos sobre sus funciones, conectando anatomía con fisiología.",
           "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "investigacion_profunda",
+            "proceso_investigacion": [
+              {
+                "grupo": "Cabeza y Sistema Nervioso",
+                "investigadores": ["Ana", "Elena"],
+                "temas_investigacion": [
+                  {
+                    "tema": "Sistema nervioso central",
+                    "responsable": "Ana",
+                    "contenido": [
+                      "Función del cerebro como centro de control",
+                      "Conexiones neuronales y transmisión de información",
+                      "Relación entre cerebro y comportamiento",
+                      "Cerebelo y coordinación de movimientos"
+                    ],
+                    "nivel_profundidad": "Alto - conceptos complejos sobre neurotransmisión",
+                    "tiempo_estimado": "30 minutos"
+                  },
+                  {
+                    "tema": "Órganos sensoriales",
+                    "responsable": "Elena",
+                    "contenido": [
+                      "Función de ojos: visión y percepción",
+                      "Oídos: audición y equilibrio",
+                      "Nariz: olfato y respiración",
+                      "Lengua: gusto y comunicación"
+                    ],
+                    "nivel_profundidad": "Medio - funciones claras y específicas",
+                    "tiempo_estimado": "25 minutos",
+                    "adaptaciones": "Información estructurada con imágenes claras"
+                  }
+                ],
+                "cartel_conjunto": {
+                  "diseño": "Ana diseña esquemas complejos, Elena organiza información visual",
+                  "contenido": "Diagrama cerebro + órganos sensoriales + funciones principales",
+                  "tiempo_creacion": "35 minutos"
+                }
+              },
+              {
+                "grupo": "Tronco y Órganos Vitales",
+                "investigadores": ["Alex", "Sara"],
+                "temas_investigacion": [
+                  {
+                    "tema": "Sistema cardiovascular",
+                    "responsable": "Alex",
+                    "contenido": [
+                      "Corazón como bomba del cuerpo",
+                      "Circulación sanguínea: arterias y venas",
+                      "Función de la sangre: transporte de oxígeno",
+                      "Pulso y ritmo cardíaco"
+                    ],
+                    "nivel_profundidad": "Medio-Alto - conceptos de circulación",
+                    "tiempo_estimado": "25 minutos"
+                  },
+                  {
+                    "tema": "Sistema respiratorio y digestivo",
+                    "responsable": "Sara",
+                    "contenido": [
+                      "Pulmones: intercambio de gases",
+                      "Proceso de respiración",
+                      "Sistema digestivo: de la boca al estómago",
+                      "Transformación de alimentos en energía"
+                    ],
+                    "nivel_profundidad": "Medio - procesos observables",
+                    "tiempo_estimado": "25 minutos"
+                  }
+                ],
+                "cartel_conjunto": {
+                  "diseño": "Diagrama con flujos de circulación y digestión",
+                  "contenido": "Órganos vitales + sus funciones + conexiones entre sistemas",
+                  "tiempo_creacion": "30 minutos"
+                }
+              },
+              {
+                "grupo": "Extremidades Superiores",
+                "investigadores": ["Luis", "Hugo"],
+                "temas_investigacion": [
+                  {
+                    "tema": "Sistema locomotor de brazos",
+                    "responsable": "Hugo",
+                    "contenido": [
+                      "Huesos principales: húmero, radio, cúbito",
+                      "Músculos y su función en el movimiento",
+                      "Articulaciones: hombro, codo, muñeca",
+                      "Coordinación cerebro-músculos"
+                    ],
+                    "nivel_profundidad": "Medio - anatomía básica",
+                    "tiempo_estimado": "20 minutos"
+                  },
+                  {
+                    "tema": "Funciones de las manos",
+                    "responsable": "Luis",
+                    "contenido": [
+                      "Manos como herramientas de precisión",
+                      "Dedos y movimientos finos",
+                      "Sentido del tacto en las manos",
+                      "Importancia de las manos en la comunicación"
+                    ],
+                    "nivel_profundidad": "Medio - funciones observables",
+                    "tiempo_estimado": "20 minutos",
+                    "adaptaciones": "Investigación activa, experimentación con movimientos"
+                  }
+                ],
+                "cartel_conjunto": {
+                  "diseño": "Hugo organiza información, Luis crea elementos móviles",
+                  "contenido": "Anatomía brazos + demostración de movimientos + funciones",
+                  "tiempo_creacion": "25 minutos"
+                }
+              },
+              {
+                "grupo": "Extremidades Inferiores",
+                "investigadores": ["María", "Emma"],
+                "temas_investigacion": [
+                  {
+                    "tema": "Sistema locomotor de piernas",
+                    "responsable": "Emma",
+                    "contenido": [
+                      "Huesos principales: fémur, tibia, peroné",
+                      "Músculos de las piernas",
+                      "Articulaciones: cadera, rodilla, tobillo",
+                      "Equilibrio y coordinación"
+                    ],
+                    "nivel_profundidad": "Medio - anatomía con apoyo",
+                    "tiempo_estimado": "25 minutos"
+                  },
+                  {
+                    "tema": "Funciones de sostén y movimiento",
+                    "responsable": "María",
+                    "contenido": [
+                      "Piernas como soporte del cuerpo",
+                      "Caminar, correr, saltar",
+                      "Importancia de los pies en el equilibrio",
+                      "Cuidado de las piernas"
+                    ],
+                    "nivel_profundidad": "Básico - funciones evidentes",
+                    "tiempo_estimado": "20 minutos",
+                    "adaptaciones": "Emma guía la investigación, María busca información básica"
+                  }
+                ],
+                "cartel_conjunto": {
+                  "diseño": "Emma estructura el cartel, María contribuye con dibujos simples",
+                  "contenido": "Anatomía piernas + funciones de movimiento + cuidados",
+                  "tiempo_creacion": "30 minutos"
+                }
+              }
+            ]
+          },
           "estrategias_adaptacion": {
-            "para_elena_r": "Se le proporcionarán instrucciones visuales paso a paso y se le asignarán tareas específicas y estructuradas dentro del grupo.",
-            "para_ana_v": "Se le asignará investigación más profunda sobre el sistema nervioso y se le animará a hacer conexiones con otros sistemas."
+            "para_elena": "Se le proporcionarán instrucciones visuales paso a paso y se le asignarán tareas específicas y estructuradas dentro del grupo.",
+            "para_ana": "Se le asignará investigación más profunda sobre el sistema nervioso y se le animará a hacer conexiones con otros sistemas.",
+            "para_luis": "Investigación activa con experimentación de movimientos",
+            "para_maria": "Apoyo constante de Emma, información simplificada"
           }
         }
       ]
     },
     {
       "nombre": "Fase 3: Construcción",
-      "descripcion": "Los grupos dibujan, cortan y decoran la silueta del cuerpo humano en cartón, añadiendo los elementos internos.",
+      "descripcion": "Los grupos materializan sus diseños dibujando, cortando y decorando las siluetas del cuerpo humano en cartón, añadiendo elementos internos y externos.",
       "tareas": [
         {
           "nombre": "Dibujar y cortar siluetas",
-          "descripcion": "Cada grupo dibuja la silueta de su parte en cartón según las medidas calculadas y la recorta.",
+          "descripcion": "Cada grupo dibuja la silueta de su parte en cartón según las medidas calculadas, la recorta y prepara para el ensamblaje.",
           "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "construccion_colaborativa",
+            "proceso_construccion": [
+              {
+                "grupo": "Cabeza y Sistema Nervioso",
+                "constructores": ["Ana", "Elena"],
+                "tareas_construccion": [
+                  {
+                    "tarea": "Dibujo de contorno",
+                    "responsable": "Elena",
+                    "descripcion": "Dibujar contorno de cabeza (20cm x 15cm) con plantilla",
+                    "materiales": "Cartón, lápiz, plantilla pre-marcada",
+                    "tiempo_estimado": "15 minutos",
+                    "adaptaciones": "Plantilla clara con líneas marcadas, trabajo en zona tranquila"
+                  },
+                  {
+                    "tarea": "Recorte preciso",
+                    "responsable": "Ana",
+                    "descripcion": "Recortar cabeza siguiendo líneas, crear aberturas para órganos",
+                    "materiales": "Tijeras, cúter (con supervisión)",
+                    "tiempo_estimado": "20 minutos"
+                  },
+                  {
+                    "tarea": "Preparación interna",
+                    "responsables": ["Ana", "Elena"],
+                    "descripcion": "Crear espacio interno para cerebro, marcar ubicación de órganos sensoriales",
+                    "tiempo_estimado": "15 minutos"
+                  }
+                ],
+                "adaptaciones_especiales": "Elena trabaja con herramientas seguras, Ana supervisa cortes complejos"
+              },
+              {
+                "grupo": "Tronco y Órganos Vitales",
+                "constructores": ["Alex", "Sara"],
+                "tareas_construccion": [
+                  {
+                    "tarea": "Dibujo del tronco",
+                    "responsable": "Alex",
+                    "descripcion": "Dibujar rectángulo base (60cm x 20cm) con divisiones internas",
+                    "materiales": "Cartón grande, regla, lápiz",
+                    "tiempo_estimado": "20 minutos"
+                  },
+                  {
+                    "tarea": "Recorte y aberturas",
+                    "responsable": "Sara",
+                    "descripcion": "Recortar tronco y crear ventanas para órganos",
+                    "materiales": "Tijeras grandes, marcador",
+                    "tiempo_estimado": "25 minutos"
+                  },
+                  {
+                    "tarea": "Estructura interna",
+                    "responsables": ["Alex", "Sara"],
+                    "descripcion": "Crear compartimentos para corazón, pulmones, estómago",
+                    "tiempo_estimado": "20 minutos"
+                  }
+                ]
+              },
+              {
+                "grupo": "Extremidades Superiores",
+                "constructores": ["Luis", "Hugo"],
+                "tareas_construccion": [
+                  {
+                    "tarea": "Dibujo de brazos",
+                    "responsable": "Hugo",
+                    "descripcion": "Dibujar brazo (30cm), antebrazo (25cm), mano (25cm) por separado",
+                    "materiales": "Cartón, regla, compás",
+                    "tiempo_estimado": "25 minutos"
+                  },
+                  {
+                    "tarea": "Recorte activo",
+                    "responsable": "Luis",
+                    "descripcion": "Recortar todas las piezas de brazos y manos",
+                    "materiales": "Tijeras, segueta pequeña",
+                    "tiempo_estimado": "30 minutos",
+                    "adaptaciones": "Trabajo manual intensivo, cambios de posición permitidos"
+                  },
+                  {
+                    "tarea": "Sistema de articulaciones",
+                    "responsables": ["Luis", "Hugo"],
+                    "descripcion": "Instalar broches en hombro, codo, muñeca para movimiento",
+                    "materiales": "Broches, perforadora",
+                    "tiempo_estimado": "20 minutos"
+                  }
+                ],
+                "adaptaciones_especiales": "Luis puede moverse libremente, tareas variadas cada 10 minutos"
+              },
+              {
+                "grupo": "Extremidades Inferiores",
+                "constructores": ["María", "Emma"],
+                "tareas_construccion": [
+                  {
+                    "tarea": "Dibujo guiado",
+                    "responsable": "Emma",
+                    "descripcion": "Guiar a María en el dibujo de muslo (40cm) y pantorrilla (30cm)",
+                    "materiales": "Cartón, plantillas de apoyo",
+                    "tiempo_estimado": "25 minutos",
+                    "adaptaciones": "Emma supervisa medidas, María ejecuta con apoyo"
+                  },
+                  {
+                    "tarea": "Recorte colaborativo",
+                    "responsables": ["María", "Emma"],
+                    "descripcion": "María recorta piezas simples, Emma las complejas",
+                    "materiales": "Tijeras de diferentes tamaños",
+                    "tiempo_estimado": "25 minutos"
+                  },
+                  {
+                    "tarea": "Pies proporcionales",
+                    "responsable": "Emma",
+                    "descripcion": "Crear pies (23cm) con dedos proporcionales",
+                    "tiempo_estimado": "15 minutos"
+                  }
+                ]
+              }
+            ]
+          },
           "estrategias_adaptacion": {
-            "para_luis_t": "Se le incluirán tareas de movimiento como recortar, pegar y moverse por el aula."
+            "para_luis": "Se le incluirán tareas de movimiento como recortar, pegar y moverse por el aula.",
+            "para_elena": "Herramientas seguras, plantillas claras, trabajo estructurado",
+            "para_maria": "Apoyo constante de Emma, tareas adaptadas a su nivel",
+            "coordinacion_general": "Profesor supervisa herramientas y coordina entre grupos"
           }
         },
         {
           "nombre": "Decoración y detalles internos",
-          "descripcion": "Decorar la parte exterior y añadir elementos internos (órganos, músculos) con materiales reciclados.",
-          "formato_asignacion": "grupos"
+          "descripcion": "Decorar la parte exterior y añadir elementos internos (órganos, músculos) con materiales reciclados, creando un modelo anatómico funcional.",
+          "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "decoracion_anatomica",
+            "proceso_decoracion": [
+              {
+                "grupo": "Cabeza y Sistema Nervioso",
+                "decoradores": ["Ana", "Elena"],
+                "elementos_crear": [
+                  {
+                    "elemento": "Cerebro interno",
+                    "responsable": "Ana",
+                    "materiales": "Algodón rosado, plastilina",
+                    "descripcion": "Crear cerebro con hemisferios marcados, cerebelo diferenciado",
+                    "tiempo": "20 minutos"
+                  },
+                  {
+                    "elemento": "Órganos sensoriales",
+                    "responsable": "Elena",
+                    "materiales": "Botones (ojos), lana (cabello), tela (piel)",
+                    "descripcion": "Crear ojos, nariz, boca, orejas proporcionales",
+                    "tiempo": "25 minutos",
+                    "adaptaciones": "Materiales cómodos al tacto, colores claros"
+                  },
+                  {
+                    "elemento": "Sistema nervioso visible",
+                    "responsables": ["Ana", "Elena"],
+                    "materiales": "Hilos o lana fina para nervios",
+                    "descripcion": "Crear red de nervios desde cerebro hacia el cuerpo",
+                    "tiempo": "15 minutos"
+                  }
+                ]
+              },
+              {
+                "grupo": "Tronco y Órganos Vitales",
+                "decoradores": ["Alex", "Sara"],
+                "elementos_crear": [
+                  {
+                    "elemento": "Corazón funcional",
+                    "responsable": "Alex",
+                    "materiales": "Plastilina roja, tubitos para arterias",
+                    "descripcion": "Crear corazón con 4 cámaras, arterias y venas principales",
+                    "tiempo": "25 minutos"
+                  },
+                  {
+                    "elemento": "Sistema respiratorio",
+                    "responsable": "Sara",
+                    "materiales": "Esponjas (pulmones), pajitas (bronquios)",
+                    "descripcion": "Crear pulmones con tráquea y bronquios",
+                    "tiempo": "20 minutos"
+                  },
+                  {
+                    "elemento": "Órganos digestivos",
+                    "responsables": ["Alex", "Sara"],
+                    "materiales": "Globo (estómago), manguera (intestinos)",
+                    "descripcion": "Crear estómago, hígado, intestinos con formas realistas",
+                    "tiempo": "20 minutos"
+                  }
+                ]
+              },
+              {
+                "grupo": "Extremidades Superiores",
+                "decoradores": ["Luis", "Hugo"],
+                "elementos_crear": [
+                  {
+                    "elemento": "Músculos y huesos",
+                    "responsable": "Luis",
+                    "materiales": "Algodón (músculos), palitos (huesos)",
+                    "descripcion": "Crear estructura interna visible de huesos y músculos",
+                    "tiempo": "25 minutos",
+                    "adaptaciones": "Trabajo manual variado, puede cambiar de posición"
+                  },
+                  {
+                    "elemento": "Articulaciones móviles",
+                    "responsable": "Hugo",
+                    "materiales": "Broches, arandelas, tornillos pequeños",
+                    "descripcion": "Perfeccionar sistema de movimiento en hombro, codo, muñeca",
+                    "tiempo": "20 minutos"
+                  },
+                  {
+                    "elemento": "Detalles de manos",
+                    "responsables": ["Luis", "Hugo"],
+                    "materiales": "Fieltro (piel), hilos (tendones)",
+                    "descripcion": "Crear dedos articulados y líneas de la palma",
+                    "tiempo": "15 minutos"
+                  }
+                ]
+              },
+              {
+                "grupo": "Extremidades Inferiores", 
+                "decoradores": ["María", "Emma"],
+                "elementos_crear": [
+                  {
+                    "elemento": "Estructura ósea",
+                    "responsable": "Emma",
+                    "materiales": "Tubos de cartón (huesos largos), plastilina (articulaciones)",
+                    "descripcion": "Crear fémur, tibia, peroné con articulaciones",
+                    "tiempo": "25 minutos"
+                  },
+                  {
+                    "elemento": "Músculos principales",
+                    "responsable": "María",
+                    "materiales": "Algodón rosa, bandas elásticas",
+                    "descripcion": "Añadir músculos principales de muslos y pantorrillas",
+                    "tiempo": "20 minutos",
+                    "adaptaciones": "Tarea simplificada con apoyo de Emma"
+                  },
+                  {
+                    "elemento": "Pies funcionales",
+                    "responsables": ["María", "Emma"],
+                    "materiales": "Goma eva, velcro",
+                    "descripcion": "Crear pies con dedos y arco plantar",
+                    "tiempo": "15 minutos"
+                  }
+                ]
+              }
+            ]
+          }
         }
       ]
     },
     {
       "nombre": "Fase 4: Montaje y Presentación",
-      "descripcion": "Unir todas las partes del cuerpo humano y cada grupo presenta su trabajo al resto de la clase.",
+      "descripcion": "Unir todas las partes del cuerpo humano, verificar proporciones y realizar presentaciones grupales sobre el trabajo realizado.",
       "tareas": [
         {
           "nombre": "Montaje conjunto",
-          "descripcion": "Unir todas las partes del cuerpo humano con cinta o broches, verificando las proporciones.",
-          "formato_asignacion": "aula completa"
+          "descripcion": "Unir todas las partes del cuerpo humano con cinta o broches, verificando las proporciones y funcionalidad del modelo completo.",
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "ensamblaje_colaborativo",
+            "coordinacion_general": {
+              "director_montaje": "Ana",
+              "justificacion": "Sus altas capacidades le permiten coordinar el proceso complejo",
+              "asistentes": ["Alex", "Sara"],
+              "justificacion_asistentes": "Equipos estables que pueden seguir instrucciones precisas"
+            },
+            "proceso_ensamblaje": [
+              {
+                "orden": 1,
+                "tarea": "Preparación del espacio",
+                "responsables": ["Luis", "Hugo"],
+                "descripcion": "Limpiar y preparar área de montaje, colocar cartón base",
+                "tiempo": "10 minutos",
+                "justificacion": "Luis necesita actividad inicial, Hugo aporta organización"
+              },
+              {
+                "orden": 2,
+                "tarea": "Colocación del tronco base",
+                "responsables": ["Alex", "Sara"],
+                "descripcion": "Colocar tronco en posición central, verificar orientación",
+                "tiempo": "5 minutos",
+                "criterios": "Tronco centrado, órganos internos visibles"
+              },
+              {
+                "orden": 3,
+                "tarea": "Conexión de cabeza",
+                "responsables": ["Ana", "Elena"],
+                "descripcion": "Conectar cabeza al tronco verificando proporción 1:8",
+                "tiempo": "10 minutos",
+                "verificacion": "Ana confirma proporciones matemáticas",
+                "adaptaciones_elena": "Trabajo en zona tranquila del montaje"
+              },
+              {
+                "orden": 4,
+                "tarea": "Instalación de brazos",
+                "responsables": ["Luis", "Hugo"],
+                "descripcion": "Conectar brazos verificando envergadura = altura",
+                "tiempo": "15 minutos",
+                "verificacion": "Medir envergadura total con cinta métrica",
+                "adaptaciones_luis": "Trabajo manual activo con herramientas"
+              },
+              {
+                "orden": 5,
+                "tarea": "Conexión de piernas",
+                "responsables": ["María", "Emma"],
+                "descripcion": "Conectar piernas verificando que representen 1/2 de la altura",
+                "tiempo": "15 minutos",
+                "verificacion": "Emma supervisa proporciones, María ejecuta conexiones"
+              },
+              {
+                "orden": 6,
+                "tarea": "Verificación final",
+                "responsable": "Ana",
+                "asistentes": "Todo el grupo",
+                "descripcion": "Verificar todas las proporciones y funcionalidad",
+                "tiempo": "10 minutos",
+                "criterios": [
+                  "Cabeza = 1/8 del cuerpo total",
+                  "Brazos extendidos = altura total", 
+                  "Piernas = 1/2 de la altura",
+                  "Tronco = 3/8 del cuerpo"
+                ]
+              }
+            ]
+          }
         },
         {
           "nombre": "Presentación grupal",
-          "descripcion": "Cada grupo presenta su parte, explica la estructura y sus funciones usando el cartel informativo.",
-          "formato_asignacion": "grupos"
+          "descripcion": "Cada grupo presenta su parte del cuerpo, explica la estructura, funciones y proceso de construcción usando el cartel informativo.",
+          "formato_asignacion": "grupos",
+          "asignaciones_especificas": {
+            "modalidad": "presentaciones_especializadas",
+            "orden_presentacion": [
+              {
+                "orden": 1,
+                "grupo": "Cabeza y Sistema Nervioso",
+                "presentadores": ["Ana", "Elena"],
+                "duracion": "8 minutos",
+                "estructura_presentacion": [
+                  {
+                    "seccion": "Anatomía básica",
+                    "presentador": "Elena",
+                    "contenido": "Mostrar partes de la cabeza: ojos, nariz, boca, orejas",
+                    "tiempo": "2 minutos",
+                    "adaptaciones": "Puede usar puntero, apoyo visual del cartel"
+                  },
+                  {
+                    "seccion": "Sistema nervioso",
+                    "presentador": "Ana",
+                    "contenido": "Explicar función del cerebro, conexiones neuronales, control del cuerpo",
+                    "tiempo": "4 minutos",
+                    "nivel": "Profundizar en conceptos complejos"
+                  },
+                  {
+                    "seccion": "Proceso constructivo",
+                    "presentadores": ["Ana", "Elena"],
+                    "contenido": "Explicar cálculos de proporciones y decisiones de diseño",
+                    "tiempo": "2 minutos"
+                  }
+                ],
+                "preguntas_audiencia": "Permitir 3-4 preguntas del resto de grupos"
+              },
+              {
+                "orden": 2,
+                "grupo": "Tronco y Órganos Vitales",
+                "presentadores": ["Alex", "Sara"],
+                "duracion": "8 minutos",
+                "estructura_presentacion": [
+                  {
+                    "seccion": "Sistemas respiratorio y circulatorio",
+                    "presentador": "Alex",
+                    "contenido": "Mostrar corazón, pulmones, explicar circulación de sangre",
+                    "tiempo": "4 minutos"
+                  },
+                  {
+                    "seccion": "Sistema digestivo",
+                    "presentador": "Sara",
+                    "contenido": "Explicar proceso digestivo, ubicación de órganos",
+                    "tiempo": "3 minutos"
+                  },
+                  {
+                    "seccion": "Integración de sistemas",
+                    "presentadores": ["Alex", "Sara"],
+                    "contenido": "Cómo trabajan juntos todos los órganos del tronco",
+                    "tiempo": "1 minuto"
+                  }
+                ]
+              },
+              {
+                "orden": 3,
+                "grupo": "Extremidades Superiores",
+                "presentadores": ["Luis", "Hugo"],
+                "duracion": "7 minutos",
+                "estructura_presentacion": [
+                  {
+                    "seccion": "Demostración de movimiento",
+                    "presentador": "Luis",
+                    "contenido": "Mostrar articulaciones móviles, flexión de brazos",
+                    "tiempo": "3 minutos",
+                    "adaptaciones": "Presentación activa con movimiento"
+                  },
+                  {
+                    "seccion": "Anatomía y función",
+                    "presentador": "Hugo",
+                    "contenido": "Explicar huesos, músculos, importancia de las manos",
+                    "tiempo": "3 minutos"
+                  },
+                  {
+                    "seccion": "Proceso técnico",
+                    "presentadores": ["Luis", "Hugo"],
+                    "contenido": "Cómo crearon las articulaciones móviles",
+                    "tiempo": "1 minuto"
+                  }
+                ]
+              },
+              {
+                "orden": 4,
+                "grupo": "Extremidades Inferiores",
+                "presentadores": ["María", "Emma"],
+                "duracion": "6 minutos",
+                "estructura_presentacion": [
+                  {
+                    "seccion": "Función de soporte",
+                    "presentador": "Emma",
+                    "contenido": "Explicar cómo las piernas sostienen el cuerpo",
+                    "tiempo": "3 minutos"
+                  },
+                  {
+                    "seccion": "Movimiento y equilibrio",
+                    "presentador": "María",
+                    "contenido": "Mostrar cómo caminamos, función de los pies",
+                    "tiempo": "2 minutos",
+                    "adaptaciones": "Apoyo de Emma si necesita ayuda"
+                  },
+                  {
+                    "seccion": "Cálculos realizados",
+                    "presentadores": ["María", "Emma"],
+                    "contenido": "Compartir proceso de medición y proporción",
+                    "tiempo": "1 minuto"
+                  }
+                ]
+              }
+            ]
+          }
         },
         {
           "nombre": "Evaluación colectiva",
           "descripcion": "Reflexión conjunta sobre si las medidas son proporcionales, qué se ha aprendido y cómo funcionó el trabajo en equipo.",
-          "formato_asignacion": "aula completa"
+          "formato_asignacion": "aula completa",
+          "asignaciones_especificas": {
+            "modalidad": "evaluacion_reflexiva",
+            "facilitacion": {
+              "moderador_principal": "Profesor",
+              "co_moderador_estudiante": "Ana",
+              "justificacion": "Ana puede facilitar reflexiones profundas y hacer conexiones"
+            },
+            "areas_evaluacion": [
+              {
+                "area": "Precisión matemática",
+                "facilitador": "Ana",
+                "preguntas_guia": [
+                  "¿Nuestras medidas fueron precisas?",
+                  "¿Qué proporciones funcionaron mejor?",
+                  "¿Dónde encontramos errores de cálculo?"
+                ],
+                "participacion_esperada": [
+                  "Cada grupo evalúa sus propios cálculos",
+                  "Comparar medidas reales con teóricas",
+                  "Identificar fuentes de error"
+                ],
+                "tiempo": "8 minutos"
+              },
+              {
+                "area": "Aprendizaje científico",
+                "facilitadores": ["Alex", "Sara"],
+                "preguntas_guia": [
+                  "¿Qué nuevos conocimientos sobre el cuerpo humano adquirimos?",
+                  "¿Cómo se relacionan los diferentes sistemas?",
+                  "¿Qué nos sorprendió más?"
+                ],
+                "participacion_esperada": [
+                  "Compartir descubrimientos sobre anatomía",
+                  "Conectar estructura con función",
+                  "Reflexionar sobre la complejidad del cuerpo"
+                ],
+                "tiempo": "10 minutos"
+              },
+              {
+                "area": "Trabajo en equipo",
+                "facilitadores": ["Hugo", "Emma"],
+                "preguntas_guia": [
+                  "¿Cómo funcionó la colaboración en cada grupo?",
+                  "¿Qué fortalezas aportó cada miembro?",
+                  "¿Cómo resolvimos las dificultades?"
+                ],
+                "participacion_esperada": [
+                  "Reconocer contribuciones individuales",
+                  "Identificar estrategias exitosas de colaboración",
+                  "Valorar diversidad de habilidades"
+                ],
+                "tiempo": "8 minutos"
+              },
+              {
+                "area": "Proceso constructivo",
+                "facilitadores": ["Luis", "María"],
+                "preguntas_guia": [
+                  "¿Qué fue lo más desafiante de construir?",
+                  "¿Cómo superamos los problemas técnicos?",
+                  "¿Qué haríamos diferente la próxima vez?"
+                ],
+                "participacion_esperada": [
+                  "Reflexionar sobre resolución de problemas",
+                  "Valorar persistencia y creatividad",
+                  "Proponer mejoras para el futuro"
+                ],
+                "tiempo": "7 minutos",
+                "adaptaciones": "Luis puede expresarse de pie, María con apoyo si necesita"
+              },
+              {
+                "area": "Conexiones interdisciplinarias",
+                "facilitador": "Ana",
+                "preguntas_guia": [
+                  "¿Cómo conectamos matemáticas con ciencias?",
+                  "¿Qué otras materias usamos en este proyecto?",
+                  "¿Dónde podemos aplicar lo aprendido?"
+                ],
+                "participacion_esperada": [
+                  "Identificar aprendizajes transversales",
+                  "Conectar con experiencias cotidianas",
+                  "Proponer aplicaciones futuras"
+                ],
+                "tiempo": "7 minutos"
+              }
+            ],
+            "cierre_celebrativo": {
+              "actividad": "Cada estudiante escribe una palabra en el modelo que represente lo que más valoró del proyecto",
+              "proposito": "Cerrar con reconocimiento y celebración del logro colectivo",
+              "tiempo": "10 minutos"
+            }
+          }
         }
       ]
     }
@@ -99,5 +973,4 @@
     "María L.",
     "Hugo P."
   ],
-  "observaciones": "La actividad se estructura para adaptarse a los perfiles de los estudiantes. Elena (TEA) necesita estructura y se le dan instrucciones visuales. Luis (TDAH) necesita actividad física, por lo que se le asignan tareas de movimiento. Ana (altas capacidades) tiene la oportunidad de profundizar en la investigación. María (con apoyo en matemáticas) recibe asistencia con los cálculos. El proyecto está dividido en segmentos cortos para mantener la atención."
-}
+  "observaciones": "La actividad se estructura para adaptarse a los perfiles de los estudiantes integrando aprendizaje de ciencias naturales con matemáticas aplicadas. Elena (TEA) recibe estructura clara y apoyo visual constante. Luis (TDAH) tiene múltiples oportunidades de actividad física y trabajo manual. Ana (altas capacidades) puede profundizar en conceptos complejos y ejercer liderazgo académico. María (apoyo en matemáticas) trabaja siempre con compañeros que pueden guiarla. El proyecto desarrolla competencias de medición, anatomía, trabajo colaborativo y pens

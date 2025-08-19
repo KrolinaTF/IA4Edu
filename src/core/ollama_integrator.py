@@ -31,7 +31,7 @@ class OllamaIntegrator:
         self.port = port or OLLAMA_CONFIG["port"]
         self.model = model or OLLAMA_CONFIG["model"]
         self.embedding_model = embedding_model or OLLAMA_CONFIG["embedding_model"]
-        self.timeout = timeout or OLLAMA_CONFIG.get("timeout", 30)
+        self.timeout = timeout or OLLAMA_CONFIG.get("timeout", 60)
         
         self.base_url = f"http://{self.host}:{self.port}"
         
