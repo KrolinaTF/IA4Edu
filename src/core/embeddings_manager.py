@@ -534,61 +534,25 @@ class EmbeddingsManager:
     
     def _aplicar_boost_semantico(self, similitud_base: float, prompt: str, actividad_data: dict) -> float:
         """
-        Aplica boost semántico basado en características específicas
-        
-        Args:
-            similitud_base: Similitud coseno base
-            prompt: Prompt del usuario
-            actividad_data: Datos de la actividad
-            
-        Returns:
-            Similitud con boost aplicado
+        MEJORADO: Detección semántica más inteligente SIN crear nuevos archivos
         """
         boost_total = 0.0
         prompt_lower = prompt.lower()
+        texto_actividad = f"{actividad_data.get('titulo', '')} {actividad_data.get('objetivo', '')}".lower()
         
-        # Boost por coincidencia directa de términos clave
-        titulo = actividad_data.get('titulo', '').lower()
-        objetivo = actividad_data.get('objetivo', '').lower()
+        # DETECCIÓN DE TIPO DE ACTIVIDAD (Lo que necesitas)
+        if any(word in prompt_lower for word in ['gymnkana', 'gymkana', 'feria']):
+            if any(word in texto_actividad for word in ['feria', 'puestos', 'rotar', 'equipos']):
+                boost_total += 0.5  # BOOST ALTO para gymnkana real
+            elif any(word in texto_actividad for word in ['construir', 'proyecto', 'modelo']):
+                boost_total -= 0.3  # PENALIZACIÓN por mismatch
         
-        # Términos específicos con boost alto
-        terminos_especificos = {
-            'fracciones': 0.15,
-            'células': 0.15, 
-            'supermercado': 0.15,
-            'piratas': 0.15,
-            'mural': 0.10,
-            'tienda': 0.10
-        }
+        # DETECCIÓN DE CONTENIDO
+        if 'fracciones' in prompt_lower:
+            if 'fracciones' in texto_actividad:
+                boost_total += 0.3
         
-        for termino, boost in terminos_especificos.items():
-            if termino in prompt_lower and termino in (titulo + objetivo):
-                boost_total += boost
-                logger.debug(f"🚀 Boost {boost:.2f} aplicado por término '{termino}'")
-        
-        # Boost por nivel educativo
-        if '4º' in prompt_lower or 'cuarto' in prompt_lower:
-            nivel = actividad_data.get('nivel_educativo', '').lower()
-            if 'primaria' in nivel:
-                boost_total += 0.05
-        
-        # Boost por modalidad de trabajo
-        if 'colaborat' in prompt_lower or 'grupo' in prompt_lower:
-            etapas = actividad_data.get('etapas', [])
-            for etapa in etapas[:3]:  # Revisar primeras 3 etapas
-                tareas = etapa.get('tareas', [])
-                for tarea in tareas[:2]:  # Revisar primeras 2 tareas
-                    if 'grupos' in tarea.get('formato_asignacion', ''):
-                        boost_total += 0.05
-                        break
-        
-        # Aplicar boost con límite máximo
-        similitud_final = min(1.0, similitud_base + boost_total)
-        
-        if boost_total > 0:
-            logger.debug(f"🎯 Boost total {boost_total:.3f} aplicado: {similitud_base:.3f} → {similitud_final:.3f}")
-        
-        return similitud_final
+        return min(1.0, similitud_base + boost_total)
     
     def _seleccion_por_palabras_clave(self, prompt: str, top_k: int) -> List[Tuple[str, float, dict]]:
         """
