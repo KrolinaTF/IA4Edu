@@ -94,8 +94,11 @@ class SistemaAgentesABP:
             # Crear directorio temp si no existe
             os.makedirs(os.path.dirname(nombre_archivo), exist_ok=True)
             
+            # Convertir proyecto a formato serializable
+            proyecto_serializable = self._hacer_serializable(self.proyecto_actual)
+            
             with open(nombre_archivo, 'w', encoding='utf-8') as f:
-                json.dump(self.proyecto_actual, f, indent=2, ensure_ascii=False)
+                json.dump(proyecto_serializable, f, indent=2, ensure_ascii=False)
             
             logger.info(f"💾 Proyecto guardado en: {nombre_archivo}")
             return nombre_archivo
@@ -103,6 +106,41 @@ class SistemaAgentesABP:
         except Exception as e:
             logger.error(f"❌ Error guardando proyecto: {e}")
             return None
+    
+    def _hacer_serializable(self, obj):
+        """
+        Convierte objetos no serializables a diccionarios serializables para JSON
+        
+        Args:
+            obj: Objeto a convertir
+            
+        Returns:
+            Objeto serializable
+        """
+        from dataclasses import asdict, is_dataclass
+        import datetime
+        
+        if obj is None:
+            return None
+        elif is_dataclass(obj):
+            return asdict(obj)
+        elif hasattr(obj, '__dict__'):
+            # Para objetos con atributos, convertir a dict
+            return {k: self._hacer_serializable(v) for k, v in obj.__dict__.items()}
+        elif isinstance(obj, dict):
+            return {k: self._hacer_serializable(v) for k, v in obj.items()}
+        elif isinstance(obj, (list, tuple)):
+            return [self._hacer_serializable(item) for item in obj]
+        elif isinstance(obj, (datetime.datetime, datetime.date)):
+            return obj.isoformat()
+        elif isinstance(obj, (str, int, float, bool)):
+            return obj
+        else:
+            # Para cualquier otro tipo, intentar convertir a string
+            try:
+                return str(obj)
+            except:
+                return None
     
     def guardar_como_ejemplo_k(self, proyecto: Dict = None, nombre_base: str = None) -> Optional[str]:
         """

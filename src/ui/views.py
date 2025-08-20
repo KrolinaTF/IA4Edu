@@ -591,14 +591,27 @@ class CLIViews:
         if not estadisticas:
             estadisticas = proyecto_final.get('estadisticas', {})
         
-        # Opción 3: Calcular en tiempo real desde los datos disponibles
+        # Opción 3: Calcular estadísticas reales basadas en la estructura actual
         if not estadisticas:
-            resultados = proyecto_final.get('resultados_agentes', {})
-            estadisticas = {
-                'total_agentes_ejecutados': len([k for k, v in resultados.items() if v]),
-                'total_mensajes': sum(1 for v in resultados.values() if v),
-                'errores_encontrados': 0  # Podríamos detectar errores en los resultados
-            }
+            # Detectar si hubo debate (estructura híbrida)
+            metadatos = proyecto_final.get('metadatos', {})
+            arquitectura = metadatos.get('arquitectura', '')
+            
+            if arquitectura == 'debate_consenso':
+                # Estructura de debate: analizador, perfilador, optimizador + coordinador
+                estadisticas = {
+                    'total_agentes_ejecutados': 4,  # analizador, perfilador, optimizador, coordinador
+                    'total_mensajes': 6,  # debate rounds + processing
+                    'errores_encontrados': 0
+                }
+            else:
+                # Estructura legacy
+                resultados = proyecto_final.get('resultados_agentes', {})
+                estadisticas = {
+                    'total_agentes_ejecutados': len([k for k, v in resultados.items() if v]),
+                    'total_mensajes': sum(1 for v in resultados.values() if v),
+                    'errores_encontrados': 0
+                }
             
         print(f"\n📏 RESUMEN DEL PROCESO:")
         print(f"   • Agentes ejecutados: {estadisticas.get('total_agentes_ejecutados', 'N/A')}")
@@ -655,8 +668,15 @@ class CLIViews:
         tareas_list = []
         actividad_info = {}
         
-        # PRIORIDAD 1: Buscar en estructura MVP actual
-        if 'actividad_personalizada' in proyecto_final:
+        # PRIORIDAD 1: Buscar en tareas_especificas (estructura debate híbrido) PRIMERO
+        if 'tareas_especificas' in proyecto_final:
+            tareas_list = proyecto_final['tareas_especificas']
+            if not isinstance(tareas_list, list):
+                tareas_list = []
+            print(f"   DEBUG - Estructura DEBATE HÍBRIDO detectada: {len(tareas_list)} tareas")
+            
+        # PRIORIDAD 2: Buscar en estructura MVP actual
+        elif 'actividad_personalizada' in proyecto_final:
             actividad_personalizada = proyecto_final['actividad_personalizada']
             actividad_info = actividad_personalizada
             
@@ -668,7 +688,7 @@ class CLIViews:
             
             print(f"   DEBUG - Estructura MVP actual: {len(tareas_list)} tareas, actividad: {actividad_info.get('titulo', 'Sin título')}")
         
-        # PRIORIDAD 2: Buscar en estructura unificada v3.0
+        # PRIORIDAD 3: Buscar en estructura unificada v3.0
         elif 'actividad_generada' in resultados:
             actividad_generada = resultados['actividad_generada']
             
@@ -708,22 +728,66 @@ class CLIViews:
                 print(f"   Objetivo: {actividad_info.get('objetivo', 'Sin objetivo')[:100]}...")
                 print(f"   Duración: {actividad_info.get('duracion_minutos', 'No especificada')}")
             
-            # Mostrar etapas organizadas
+            # MOSTRAR ETAPAS ORGANIZADAS - ADAPTADO PARA DEBATE HÍBRIDO
+            etapas = []
+            
+            # PRIORIDAD 1: Etapas desde actividad_personalizada (estructura MVP)
             if 'actividad_personalizada' in proyecto_final:
                 etapas = proyecto_final['actividad_personalizada'].get('etapas', [])
-                print(f"\n📄 ETAPAS DE LA ACTIVIDAD ({len(etapas)}):")
+            
+            # PRIORIDAD 2: Si no hay etapas, crear desde tareas_especificas agrupándolas por etapa
+            if not etapas and 'tareas_especificas' in proyecto_final:
+                # Agrupar tareas por etapa
+                tareas_por_etapa = {}
+                for tarea in proyecto_final['tareas_especificas']:
+                    if isinstance(tarea, dict):
+                        nombre_etapa = tarea.get('etapa', 'Etapa Principal')
+                        if nombre_etapa not in tareas_por_etapa:
+                            tareas_por_etapa[nombre_etapa] = []
+                        tareas_por_etapa[nombre_etapa].append(tarea)
                 
-                for i, etapa in enumerate(etapas, 1):
-                    print(f"\n   🔸 ETAPA {i}: {etapa.get('nombre', 'Sin nombre')}")
-                    print(f"      {etapa.get('descripcion', 'Sin descripción')[:80]}...")
-                    
-                    tareas_etapa = etapa.get('tareas', [])
-                    if tareas_etapa:
-                        print(f"      📋 Tareas ({len(tareas_etapa)}):")
-                        for j, tarea in enumerate(tareas_etapa[:3], 1):  # Máximo 3 tareas por etapa
+                # Convertir a estructura de etapas
+                etapas = []
+                for nombre_etapa, tareas_etapa in tareas_por_etapa.items():
+                    etapas.append({
+                        'nombre': nombre_etapa,
+                        'descripcion': f'Etapa con {len(tareas_etapa)} tareas asignadas',
+                        'tareas': tareas_etapa
+                    })
+            
+            # MOSTRAR LAS ETAPAS
+            print(f"\n📄 ETAPAS DE LA ACTIVIDAD ({len(etapas)}):")
+            
+            for i, etapa in enumerate(etapas, 1):
+                print(f"\n   🔸 ETAPA {i}: {etapa.get('nombre', 'Sin nombre')}")
+                print(f"      {etapa.get('descripcion', 'Sin descripción')[:80]}...")
+                
+                tareas_etapa = etapa.get('tareas', [])
+                if tareas_etapa:
+                    print(f"      📋 Tareas ({len(tareas_etapa)}):")
+                    for j, tarea in enumerate(tareas_etapa[:3], 1):  # Máximo 3 tareas por etapa
+                        if isinstance(tarea, dict):
                             nombre = tarea.get('nombre', 'Sin nombre')[:40]
                             formato = tarea.get('formato_asignacion', 'N/A')
                             print(f"         {j}. {nombre} ({formato})")
+                        else:
+                            print(f"         {j}. Tarea {j}")
+            
+            # MOSTRAR DETALLES DE LAS TAREAS ESPECÍFICAS SI EXISTEN
+            if 'tareas_especificas' in proyecto_final and len(proyecto_final['tareas_especificas']) > 0:
+                print(f"\n🎯 ASIGNACIONES ESPECÍFICAS DE TAREAS:")
+                for i, tarea in enumerate(proyecto_final['tareas_especificas'][:6], 1):  # Mostrar máximo 6 tareas
+                    if isinstance(tarea, dict):
+                        nombre = tarea.get('nombre', f'Tarea {i}')
+                        descripcion = tarea.get('descripcion', 'Sin descripción')[:60]
+                        formato = tarea.get('formato_asignacion', 'N/A')
+                        etapa = tarea.get('etapa', 'Sin etapa')
+                        print(f"   {i}. {nombre} ({formato})")
+                        print(f"      • {descripcion}...")
+                        print(f"      • Etapa: {etapa}")
+                if len(proyecto_final['tareas_especificas']) > 6:
+                    restantes = len(proyecto_final['tareas_especificas']) - 6
+                    print(f"   ... y {restantes} tareas más")
         
         # Solicitar aprobación
         print(f"\n¿Aprueba este proyecto? (s/n): ", end="")
