@@ -419,6 +419,14 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
             'fracciones': 'Competencia matemática',
             'sumas': 'Competencia matemática',
             'decimales': 'Competencia matemática',
+            'geografía': 'Competencia en ciencias naturales y geografía',
+            'geográficos': 'Competencia en ciencias naturales y geografía',
+            'accidentes geográficos': 'Competencia en ciencias naturales y geografía',
+            'lugares': 'Competencia en ciencias naturales y geografía',
+            'viaje': 'Competencia social y cultural',
+            'turistas': 'Competencia social y cultural',
+            'investigación': 'Competencia científica',
+            'ciencias naturales': 'Competencia en ciencias naturales',
             'comunicación': 'Competencia lingüística',
             'trabajo en equipo': 'Competencia social',
             'creatividad': 'Competencia artística',
@@ -430,7 +438,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
             if keyword in texto_lower and competencia not in competencias_encontradas:
                 competencias_encontradas.append(competencia)
         
-        return ', '.join(competencias_encontradas) if competencias_encontradas else "Competencia matemática, trabajo colaborativo"
+        return ', '.join(competencias_encontradas) if competencias_encontradas else "Competencia transversal, trabajo colaborativo"
     
     def _extraer_duracion_inteligente(self, texto: str) -> str:
         """
@@ -1137,10 +1145,10 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
             'estrategia_debate': 'consenso_multiagente'
         }
         
-        # Extraer tareas de múltiples fuentes
-        tareas_combinadas = []
+        # CREAR ACTIVIDAD INSPIRADA EN EJEMPLOS (no extraer tareas literalmente)
+        ejemplos_inspiracion = []
         
-        # Obtener las actividades completas para extraer tareas
+        # Obtener las actividades completas como ejemplos de inspiración
         for candidata in actividades_a_combinar:
             actividad_id = candidata.get('id')
             if actividad_id:
@@ -1149,13 +1157,15 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
                 if actividades_similares:
                     # actividades_similares es List[Tuple[str, float, dict]]
                     _, _, actividad_completa = actividades_similares[0]
-                    # CRÍTICO: Pasar contexto dinámico para extracción adaptativa
-                    contexto_dinamico = self._extraer_contexto_para_tareas()
-                    tareas_actividad = self.analizador_tareas._extraer_tareas_desde_json(actividad_completa, contexto_dinamico)
-                    
-                    # Tomar máximo 2-3 tareas por actividad para no sobrecargar
-                    tareas_seleccionadas = tareas_actividad[:3]
-                    tareas_combinadas.extend(tareas_seleccionadas)
+                    ejemplos_inspiracion.append(actividad_completa)
+        
+        # GENERAR NUEVA ACTIVIDAD USANDO LLM CON EJEMPLOS COMO INSPIRACIÓN
+        tareas_combinadas = self._generar_actividad_con_llm_inspiracion(
+            descripcion_actividad, 
+            ejemplos_inspiracion, 
+            adaptaciones, 
+            modificaciones
+        )
         
         # Aplicar adaptaciones pedagógicas
         if adaptaciones and isinstance(adaptaciones, dict):
@@ -1187,15 +1197,724 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         if hasattr(self, 'contexto_hibrido') and self.contexto_hibrido:
             metadatos = self.contexto_hibrido.metadatos if hasattr(self.contexto_hibrido, 'metadatos') else {}
             
-            # Buscar estructura_fases en metadatos
+            # DEBUG: Mostrar contenido de metadatos para diagnóstico
+            logger.info(f"🔍 DEBUG - Metadatos disponibles: {list(metadatos.keys())}")
+            
+            # Buscar fases_configuradas en metadatos (formato del controller)
+            if 'fases_configuradas' in metadatos:
+                fases_configuradas = metadatos['fases_configuradas']
+                logger.info(f"🔍 DEBUG - Encontradas fases_configuradas: {fases_configuradas}")
+                
+                # Convertir fases_configuradas a fases_detalladas
+                fases_detalladas = []
+                
+                for fase_nombre, fase_config in fases_configuradas.items():
+                    if isinstance(fase_config, dict) and fase_config.get('incluir', False):
+                        fase_detallada = {
+                            'nombre': fase_config.get('nombre', fase_nombre.title()),
+                            'modalidad': fase_config.get('modalidad', 'colaborativa'),
+                            'repartir_tareas': fase_config.get('repartir_tareas', True),
+                            'aspectos': fase_config.get('aspectos', [])
+                        }
+                        fases_detalladas.append(fase_detallada)
+                        logger.info(f"🎯 Fase convertida: {fase_detallada['nombre']} (modalidad: {fase_detallada['modalidad']})")
+                
+                logger.info(f"✅ Convertidas {len(fases_detalladas)} fases de fases_configuradas")
+                return {'estructura_fases': {'fases_detalladas': fases_detalladas}}
+            
+            # Buscar estructura_aplicada en metadatos (formato posterior - JSON final)
+            if 'estructura_aplicada' in metadatos:
+                estructura_aplicada = metadatos['estructura_aplicada']
+                logger.info(f"🔍 DEBUG - Encontrada estructura_aplicada: {estructura_aplicada}")
+                
+                # Convertir estructura_aplicada a fases_detalladas
+                fases_detalladas = []
+                
+                for fase_nombre, fase_config in estructura_aplicada.items():
+                    if isinstance(fase_config, dict) and fase_config.get('incluir', False):
+                        fase_detallada = {
+                            'nombre': fase_config.get('nombre', fase_nombre.title()),
+                            'modalidad': fase_config.get('modalidad', 'colaborativa'),
+                            'repartir_tareas': fase_config.get('repartir_tareas', True),
+                            'aspectos': fase_config.get('aspectos', [])
+                        }
+                        fases_detalladas.append(fase_detallada)
+                
+                logger.info(f"✅ Convertidas {len(fases_detalladas)} fases de estructura_aplicada")
+                return {'estructura_fases': {'fases_detalladas': fases_detalladas}}
+            
+            # Buscar estructura_fases en metadatos (formato antiguo)  
             if 'input_estructurado' in metadatos:
                 input_data = metadatos['input_estructurado']
                 if isinstance(input_data, dict) and 'estructura_fases' in input_data:
                     return {'estructura_fases': input_data['estructura_fases']}
         
         # Fallback: retornar estructura vacía
-        logger.debug("🔍 No se encontró contexto dinámico, usando modalidades por defecto")
+        logger.warning("⚠️ No se encontró contexto dinámico, usando modalidades por defecto")
         return {'estructura_fases': {'fases_detalladas': []}}
+    
+    def _generar_actividad_con_llm_inspiracion(self, descripcion_actividad: str, ejemplos_inspiracion: List[Dict], adaptaciones: Dict, modificaciones: Dict) -> List[Dict]:
+        """
+        Genera una actividad completamente nueva usando LLM con ejemplos como inspiración
+        
+        Args:
+            descripcion_actividad: Descripción de la actividad solicitada por el usuario
+            ejemplos_inspiracion: Actividades ejemplo para inspirarse (NO copiar)
+            adaptaciones: Adaptaciones pedagógicas necesarias
+            modificaciones: Modificaciones de viabilidad
+            
+        Returns:
+            Lista de tareas y etapas generadas para la nueva actividad
+        """
+        logger.info(f"🎨 Generando actividad nueva con LLM usando {len(ejemplos_inspiracion)} ejemplos como inspiración...")
+        
+        # Extraer estructura de fases del usuario
+        contexto_dinamico = self._extraer_contexto_para_tareas()
+        estructura_fases = contexto_dinamico.get('estructura_fases', {})
+        fases_detalladas = estructura_fases.get('fases_detalladas', [])
+        
+        # Crear prompt estructurado para el LLM
+        prompt = self._crear_prompt_generacion_actividad(
+            descripcion_actividad, 
+            ejemplos_inspiracion, 
+            fases_detalladas,
+            adaptaciones, 
+            modificaciones
+        )
+        
+        try:
+            logger.info("🤖 Enviando prompt al LLM para generar actividad completamente nueva...")
+            respuesta_llm = self.ollama.generar_respuesta(prompt)
+            
+            # DEBUG: Mostrar respuesta completa del LLM para diagnóstico
+            logger.info(f"🔍 DEBUG - Respuesta completa del LLM (primeros 1000 chars):")
+            logger.info(respuesta_llm[:1000] if len(respuesta_llm) > 1000 else respuesta_llm)
+            logger.info(f"🔍 DEBUG - Longitud total de respuesta: {len(respuesta_llm)} chars")
+            
+            # Parsear respuesta del LLM
+            actividad_generada = self._parsear_respuesta_actividad_llm(respuesta_llm)
+            
+            logger.info(f"✅ Actividad generada con {len(actividad_generada.get('etapas', []))} etapas y {sum(len(etapa.get('tareas', [])) for etapa in actividad_generada.get('etapas', []))} tareas")
+            
+            # Retornar tareas en formato plano para compatibilidad
+            return self._extraer_tareas_de_actividad_generada(actividad_generada)
+            
+        except Exception as e:
+            logger.error(f"❌ Error generando actividad con LLM: {e}")
+            # Fallback: crear actividad básica
+            return self._crear_actividad_fallback(descripcion_actividad, fases_detalladas)
+    
+    def _crear_prompt_generacion_actividad(self, descripcion_actividad: str, ejemplos_inspiracion: List[Dict], fases_detalladas: List[Dict], adaptaciones: Dict, modificaciones: Dict) -> str:
+        """
+        Crea prompt estructurado para que el LLM genere una actividad nueva inspirándose en ejemplos y usando plantilla guiada
+        """
+        
+        # Cargar plantilla guiada
+        plantilla_guiada = self._cargar_plantilla_guiada()
+        
+        # Extraer información de adaptaciones
+        neurotipos_detectados = []
+        adaptaciones_requeridas = {}
+        if adaptaciones and 'adaptaciones_pedagogicas' in adaptaciones:
+            adap_ped = adaptaciones['adaptaciones_pedagogicas']
+            neurotipos_detectados = adap_ped.get('compatibilidad_perfiles', {}).get('neurotipos_detectados', [])
+            adaptaciones_requeridas = adap_ped.get('adaptaciones_requeridas', {})
+        
+        # Crear resumen de las fases solicitadas por el usuario
+        fases_usuario = []
+        for fase in fases_detalladas:
+            nombre = fase.get('nombre', 'Sin nombre')
+            modalidad = fase.get('modalidad', 'colaborativa')
+            fases_usuario.append(f"- {nombre} (modalidad: {modalidad})")
+        
+        fases_texto = '\n'.join(fases_usuario) if fases_usuario else "- El usuario no especificó fases concretas"
+        
+        # Extraer ejemplos de estructura de los JSONs
+        estructuras_ejemplo = []
+        for i, ejemplo in enumerate(ejemplos_inspiracion[:2], 1):  # Máximo 2 ejemplos
+            titulo = ejemplo.get('titulo', 'Sin título')
+            etapas = ejemplo.get('etapas', [])
+            estructura_ejemplo = f"\n**EJEMPLO {i} - {titulo}**\n"
+            estructura_ejemplo += f"Número de etapas: {len(etapas)}\n"
+            
+            for j, etapa in enumerate(etapas[:3], 1):  # Máximo 3 etapas por ejemplo
+                nombre_etapa = etapa.get('nombre', f'Etapa {j}')
+                num_tareas = len(etapa.get('tareas', []))
+                estructura_ejemplo += f"  • {nombre_etapa} ({num_tareas} tareas)\n"
+                
+                # Mostrar una tarea de ejemplo para ver el formato COMPLETO
+                tareas = etapa.get('tareas', [])
+                if tareas:
+                    tarea_ejemplo = tareas[0]
+                    estructura_ejemplo += f"    - Ejemplo tarea: {tarea_ejemplo.get('nombre', 'Sin nombre')}\n"
+                    estructura_ejemplo += f"      Formato: {tarea_ejemplo.get('formato_asignacion', 'sin especificar')}\n"
+                    
+                    # MOSTRAR ESTRUCTURA COMPLETA DE ASIGNACIONES
+                    if 'asignaciones_especificas' in tarea_ejemplo:
+                        asig = tarea_ejemplo['asignaciones_especificas']
+                        estructura_ejemplo += f"      Asignaciones específicas:\n"
+                        
+                        # Si tiene grupos
+                        if 'grupos' in asig and isinstance(asig['grupos'], list):
+                            estructura_ejemplo += f"        - {len(asig['grupos'])} grupos definidos\n"
+                            for grupo in asig['grupos'][:2]:  # Mostrar max 2 grupos como ejemplo
+                                estructura_ejemplo += f"          • {grupo.get('nombre', 'Grupo')}: {grupo.get('miembros', [])}\n"
+                                estructura_ejemplo += f"            Tarea: {grupo.get('tarea_especifica', 'Sin especificar')[:50]}...\n"
+                        
+                        # Si tiene asignaciones individuales
+                        elif 'asignaciones_individuales' in asig:
+                            estructura_ejemplo += f"        - Asignaciones individuales para cada alumno\n"
+                            asigs_ind = asig['asignaciones_individuales']
+                            if isinstance(asigs_ind, list) and asigs_ind:
+                                estructura_ejemplo += f"          Ejemplo: {asigs_ind[0].get('alumno', 'Alumno')} - {asigs_ind[0].get('tarea_especifica', '')[:50]}...\n"
+            
+            estructuras_ejemplo.append(estructura_ejemplo)
+        
+        ejemplos_texto = '\n'.join(estructuras_ejemplo)
+        
+        prompt = f"""Eres un experto español en crear actividades educativas ABP (Aprendizaje Basado en Proyectos) para 4º de Primaria.
+
+RESPONDE ÚNICAMENTE EN ESPAÑOL. NO uses etiquetas <think> ni texto en inglés.
+
+**SOLICITUD DEL USUARIO:**
+{descripcion_actividad}
+
+**FASES SOLICITADAS POR EL USUARIO:**
+{fases_texto}
+
+**NEUROTIPOS EN EL AULA:**
+{', '.join(neurotipos_detectados) if neurotipos_detectados else 'Aula típica'}
+
+**ADAPTACIONES NECESARIAS:**
+{adaptaciones_requeridas if adaptaciones_requeridas else 'Adaptaciones estándar'}
+
+**EJEMPLOS PARA INSPIRARTE (NO COPIAR - SOLO VER LA CALIDAD Y ESTRUCTURA):**
+{ejemplos_texto}
+
+**PLANTILLA GUIADA - USA ESTO COMO INSTRUCCIONES DIRECTAS:**
+{plantilla_guiada}
+
+**INTERPRETACIÓN DE LA PLANTILLA:**
+- Los textos entre [ ] son INSTRUCCIONES que debes seguir
+- Reemplaza cada "[CREAR: ...]" con contenido específico para el tema del usuario  
+- Reemplaza cada "[USAR: ...]" con la información que te proporciono
+- Reemplaza cada "[RESPONDER: ...]" con respuestas concretas y específicas
+- NO incluyas los corchetes [ ] ni las instrucciones en tu respuesta final
+
+**INSTRUCCIONES:**
+1. SIGUE LA PLANTILLA GUIADA completamente - es tu guía principal
+2. Crea una actividad COMPLETAMENTE NUEVA que responda exactamente a la solicitud del usuario
+3. USA los ejemplos solo para inspirarte en la calidad y formato - NO copies contenido
+4. RESPONDE A TODAS las preguntas de "[RESPONDER: ...]" de la plantilla con soluciones concretas
+5. La actividad DEBE estar relacionada con el tema solicitado por el usuario
+6. Estructura usando las fases que pidió el usuario (disponibles en la sección anterior)
+7. **CRÍTICO**: Crear asignaciones específicas para todos los 8 estudiantes en cada fase
+8. **CRÍTICO**: Responder todas las preguntas de adaptaciones con estrategias específicas y concretas
+9. **PROHIBIDO INVENTAR**: Si no tienes información específica para un campo, déjalo vacío o pon "No especificado"
+10. **PROHIBIDO**: NO inventes materiales específicos, duraciones exactas, datos o información que no puedas derivar directamente del tema
+11. **REGLA DE ORO**: Es mejor un campo vacío que información incorrecta o inventada
+
+RESPONDE SOLO CON EL JSON COMPLETO EN ESPAÑOL siguiendo la estructura de la plantilla guiada - NO agregues explicaciones ni comentarios.
+
+IMPORTANTE: Tu respuesta debe ser un JSON válido que siga exactamente la estructura de la plantilla guiada, pero con todo el contenido entre [ ] reemplazado por contenido real y específico para el tema solicitado.
+
+**RECORDATORIO FINAL**: No rellenes campos con información sin sentido solo por completar. Si no hay información disponible, usa "No especificado" o deja el campo vacío.
+Genera la actividad ahora:"""
+        
+        return prompt
+    
+    def _cargar_plantilla_guiada(self) -> str:
+        """
+        Carga la plantilla guiada con instrucciones embebidas
+        
+        Returns:
+            String con la plantilla JSON guiada
+        """
+        try:
+            # Construir ruta a la plantilla
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            base_dir = os.path.dirname(script_dir)
+            proyecto_root = os.path.dirname(base_dir)
+            plantilla_path = os.path.join(proyecto_root, "data", "actividades", "plantilla_guiada.json")
+            
+            # Cargar plantilla
+            with open(plantilla_path, 'r', encoding='utf-8') as f:
+                plantilla_content = f.read()
+                
+            logger.debug(f"✅ Plantilla guiada cargada desde: {plantilla_path}")
+            return plantilla_content
+            
+        except Exception as e:
+            logger.warning(f"⚠️ Error cargando plantilla guiada: {e}")
+            # Fallback a plantilla básica embebida
+            return '''
+{
+  "titulo": "[CREAR: Título relacionado con el tema solicitado]",
+  "objetivo": "[CREAR: Objetivo específico para el tema y materia solicitados]",
+  "etapas": [
+    {
+      "nombre": "[USAR: Fase configurada por el usuario]",
+      "tareas": [
+        {
+          "asignaciones_especificas": {
+            "detalles": "[IMPORTANTE: Crear asignaciones específicas para cada uno de los 8 estudiantes]"
+          }
+        }
+      ]
+    }
+  ]
+}'''
+    
+    def _parsear_respuesta_actividad_llm(self, respuesta_llm: str) -> Dict:
+        """
+        Parsea la respuesta del LLM que contiene la actividad generada
+        """
+        import json
+        
+        try:
+            # Buscar JSON en la respuesta (puede haber texto antes y después)
+            inicio_json = respuesta_llm.find('{')
+            fin_json = respuesta_llm.rfind('}') + 1
+            
+            if inicio_json != -1 and fin_json > inicio_json:
+                json_texto = respuesta_llm[inicio_json:fin_json]
+                
+                # Intentar parsing directo primero
+                try:
+                    actividad_parseada = json.loads(json_texto)
+                    if actividad_parseada and isinstance(actividad_parseada, dict):
+                        logger.info("✅ Actividad parseada correctamente con JSON nativo")
+                        return actividad_parseada
+                except json.JSONDecodeError as e:
+                    logger.warning(f"⚠️ JSON nativo falló: {e}")
+                    
+                # Intentar con parser seguro como fallback
+                from utils.json_parser import parse_json_seguro
+                actividad_parseada = parse_json_seguro(json_texto)
+                
+                if actividad_parseada and isinstance(actividad_parseada, dict):
+                    logger.info("✅ Actividad parseada correctamente con parser seguro")
+                    return actividad_parseada
+                else:
+                    logger.warning("⚠️ Parser seguro también falló")
+            
+            # Si no se pudo parsear como JSON, extraer info de texto plano
+            logger.warning("⚠️ No se pudo parsear JSON, extrayendo información del texto")
+            return self._extraer_actividad_desde_texto_plano(respuesta_llm)
+            
+        except Exception as e:
+            logger.error(f"❌ Error parseando respuesta del LLM: {e}")
+            return self._crear_estructura_basica_desde_respuesta(respuesta_llm)
+    
+    def _extraer_actividad_desde_texto_plano(self, respuesta_llm: str) -> Dict:
+        """
+        Extrae información de actividad desde texto plano cuando falla el parsing JSON
+        """
+        import re
+        
+        # Extraer título
+        titulo_match = re.search(r'"titulo":\s*"([^"]+)"', respuesta_llm)
+        titulo = titulo_match.group(1) if titulo_match else "Actividad de Accidentes Geográficos"
+        
+        # Extraer objetivo
+        objetivo_match = re.search(r'"objetivo":\s*"([^"]+)"', respuesta_llm)
+        objetivo = objetivo_match.group(1) if objetivo_match else "Aprender sobre accidentes geográficos mundiales"
+        
+        # Buscar etapas mencionadas en el texto
+        etapas_encontradas = []
+        
+        # DEBUG: Verificar si hay etapas válidas primero
+        logger.info("🔍 DEBUG - Buscando etapas en la respuesta del LLM...")
+        
+        # Patrones comunes de etapas
+        patrones_etapas = [
+            r'"nombre":\s*"([^"]*[Pp]reparación[^"]*)"',
+            r'"nombre":\s*"([^"]*[Ee]jecución[^"]*)"',
+            r'"nombre":\s*"([^"]*[Rr]eflexión[^"]*)"',
+            r'"nombre":\s*"([^"]*[Dd]esarrollo[^"]*)"',
+            r'"nombre":\s*"([^"]*[Pp]resentación[^"]*)"'
+        ]
+        
+        for patron in patrones_etapas:
+            matches = re.findall(patron, respuesta_llm)
+            logger.info(f"🔍 DEBUG - Patrón {patron} encontró: {matches}")
+            for match in matches:
+                if match not in [e.get('nombre') for e in etapas_encontradas]:
+                    etapas_encontradas.append({
+                        'nombre': match,
+                        'descripcion': f'Etapa de {match.lower()}',
+                        'tareas': [{
+                            'nombre': f'Actividad de {match}',
+                            'descripcion': f'Los estudiantes realizan actividades de {match.lower()} sobre el tema solicitado',
+                            'formato_asignacion': 'parejas',
+                            'etapa': match
+                        }]
+                    })
+        
+        logger.info(f"🔍 DEBUG - Total etapas encontradas con regex: {len(etapas_encontradas)}")
+        
+        # Si no encontramos TODAS las etapas esperadas, crear etapas usando el contexto del usuario
+        contexto_dinamico = self._extraer_contexto_para_tareas()
+        estructura_fases = contexto_dinamico.get('estructura_fases', {})
+        fases_detalladas = estructura_fases.get('fases_detalladas', [])
+        
+        if len(etapas_encontradas) < len(fases_detalladas):
+            logger.info(f"🔍 DEBUG - Solo {len(etapas_encontradas)} etapas encontradas, pero usuario configuró {len(fases_detalladas)} fases")
+            logger.info("🎯 Usando configuración del usuario para generar todas las etapas...")
+            # Limpiar etapas parciales y generar completas desde configuración
+            etapas_encontradas = []
+            
+            if fases_detalladas:
+                # Crear etapas basadas en la configuración del usuario
+                logger.info(f"🎯 Creando etapas basadas en {len(fases_detalladas)} fases configuradas por el usuario")
+                for i, fase in enumerate(fases_detalladas):
+                    logger.info(f"🔍 DEBUG - Procesando fase {i+1}: {fase}")
+                for fase in fases_detalladas:
+                    nombre_fase = fase.get('nombre', 'Fase sin nombre')
+                    modalidad = fase.get('modalidad', 'parejas')
+                    
+                    # Detectar tipo de actividad según el tema
+                    # Obtener descripción desde contexto híbrido
+                    descripcion_actividad = self.contexto_hibrido.metadatos.get('prompt_usuario', 'actividad educativa')
+                    
+                    if 'preparación' in nombre_fase.lower():
+                        tarea_especifica = self._crear_tarea_preparacion_geografica(descripcion_actividad, modalidad)
+                    elif 'ejecución' in nombre_fase.lower() or 'desarrollo' in nombre_fase.lower():
+                        tarea_especifica = self._crear_tarea_ejecucion_geografica(descripcion_actividad, modalidad)
+                    elif 'reflexión' in nombre_fase.lower():
+                        tarea_especifica = self._crear_tarea_reflexion_geografica(descripcion_actividad, modalidad)
+                    else:
+                        tarea_especifica = self._crear_tarea_generica_geografica(descripcion_actividad, modalidad, nombre_fase)
+                    
+                    etapas_encontradas.append({
+                        'nombre': nombre_fase,
+                        'descripcion': f'Los estudiantes trabajan en {modalidad} para {tarea_especifica["descripcion"].lower()}',
+                        'tareas': [tarea_especifica]
+                    })
+            else:
+                # Fallback si no hay configuración del usuario
+                etapas_encontradas = [
+                {
+                    'nombre': 'Preparación: Investigación de Destinos',
+                    'descripcion': 'Las parejas seleccionan y investigan accidentes geográficos',
+                    'tareas': [{
+                        'nombre': 'Selección de accidentes geográficos',
+                        'descripcion': 'Cada pareja elige un accidente geográfico (Gran Cañón, Cataratas Victoria, etc.) para investigar',
+                        'formato_asignacion': 'parejas',
+                        'etapa': 'Preparación: Investigación de Destinos'
+                    }]
+                },
+                {
+                    'nombre': 'Ejecución: Creación de Cuaderno de Viaje',
+                    'descripcion': 'Las parejas desarrollan su cuaderno de viaje con información recopilada',
+                    'tareas': [{
+                        'nombre': 'Desarrollo del cuaderno de viaje',
+                        'descripcion': 'Crear páginas con información, ilustraciones y datos sobre el accidente geográfico elegido',
+                        'formato_asignacion': 'parejas',
+                        'etapa': 'Ejecución: Creación de Cuaderno de Viaje'
+                    }]
+                },
+                {
+                    'nombre': 'Reflexión: Presentación de Viajes',
+                    'descripcion': 'Las parejas comparten sus viajes y reflexionan sobre lo aprendido',
+                    'tareas': [{
+                        'nombre': 'Presentación de cuadernos de viaje',
+                        'descripcion': 'Cada pareja presenta su accidente geográfico y comparte experiencias del "viaje"',
+                        'formato_asignacion': 'parejas',
+                        'etapa': 'Reflexión: Presentación de Viajes'
+                    }]
+                }
+            ]
+        
+        logger.info(f"✅ Actividad extraída desde texto plano con {len(etapas_encontradas)} etapas")
+        
+        return {
+            "titulo": titulo,
+            "objetivo": objetivo,
+            "nivel_educativo": "4º de Primaria",
+            "duracion_minutos": "120 minutos",
+            "etapas": etapas_encontradas
+        }
+    
+    def _crear_estructura_basica_desde_respuesta(self, respuesta_llm: str) -> Dict:
+        """
+        Crea estructura básica si el parsing JSON falla
+        MEJORADO: No inventar información, solo crear estructura mínima válida
+        """
+        # Validar si la respuesta parece coherente
+        respuesta_validada = self._validar_respuesta_llm(respuesta_llm)
+        
+        if respuesta_validada:
+            descripcion_tarea = respuesta_validada
+        else:
+            # Si la respuesta no tiene sentido, usar descripción genérica
+            logger.warning("⚠️ Respuesta del LLM incoherente, usando descripción genérica")
+            descripcion_tarea = "Actividad educativa sobre el tema solicitado"
+        
+        return {
+            "titulo": "Actividad Educativa",
+            "objetivo": "Desarrollar competencias según el tema solicitado",
+            "nivel_educativo": "4º de Primaria", 
+            "duracion_minutos": "90-120 minutos",
+            "etapas": [
+                {
+                    "nombre": "Desarrollo de la Actividad",
+                    "descripcion": "Los estudiantes trabajan en el tema propuesto",
+                    "tareas": [
+                        {
+                            "nombre": "Actividad Principal",
+                            "descripcion": descripcion_tarea,
+                            "formato_asignacion": "parejas",
+                            "etapa": "Desarrollo de la Actividad"
+                        }
+                    ]
+                }
+            ]
+        }
+    
+    def _validar_respuesta_llm(self, respuesta: str) -> Optional[str]:
+        """
+        Valida si la respuesta del LLM tiene sentido o es incoherente
+        
+        Returns:
+            String válido si la respuesta tiene sentido, None si es incoherente
+        """
+        if not respuesta or len(respuesta.strip()) < 20:
+            return None
+            
+        respuesta_clean = respuesta.strip()
+        
+        # Detectar respuestas incoherentes comunes
+        indicadores_incoherentes = [
+            'First, I need to',
+            'I should create',
+            'For each variation',
+            'Let me check',
+            'Make sure',
+            'I need to ensure'
+        ]
+        
+        for indicador in indicadores_incoherentes:
+            if indicador in respuesta_clean[:100]:  # Verificar primeros 100 chars
+                logger.debug(f"🚫 Respuesta incoherente detectada: contiene '{indicador}'")
+                return None
+        
+        # Si pasa las validaciones, tomar máximo 200 caracteres
+        return respuesta_clean[:200] + "..." if len(respuesta_clean) > 200 else respuesta_clean
+    
+    def _extraer_tareas_de_actividad_generada(self, actividad_generada: Dict) -> List[Dict]:
+        """
+        Extrae tareas en formato plano de la actividad generada por LLM
+        """
+        tareas_extraidas = []
+        contador = 1
+        
+        etapas = actividad_generada.get('etapas', [])
+        for etapa in etapas:
+            nombre_etapa = etapa.get('nombre', 'Etapa Principal')
+            tareas_etapa = etapa.get('tareas', [])
+            
+            for tarea in tareas_etapa:
+                tarea_normalizada = {
+                    'id': f'tarea_{contador:02d}',
+                    'nombre': tarea.get('nombre', f'Tarea {contador}'),
+                    'descripcion': tarea.get('descripcion', 'Actividad a realizar'),
+                    'etapa': nombre_etapa,  # CRÍTICO: Asignar etapa correctamente
+                    'formato_asignacion': tarea.get('formato_asignacion', 'parejas'),
+                    'complejidad': 3,
+                    'tipo': 'colaborativa',
+                    'tiempo_estimado': 30,
+                    'competencias_requeridas': ['transversales'],
+                    'asignaciones_especificas': tarea.get('asignaciones_especificas', {}),
+                    'dependencias': []
+                }
+                tareas_extraidas.append(tarea_normalizada)
+                contador += 1
+        
+        logger.info(f"✅ Extraídas {len(tareas_extraidas)} tareas de actividad generada con etapas asignadas")
+        return tareas_extraidas
+    
+    def _crear_actividad_fallback(self, descripcion_actividad: str, fases_detalladas: List[Dict]) -> List[Dict]:
+        """
+        Crea actividad básica como fallback si falla la generación con LLM
+        """
+        logger.warning("⚠️ Creando actividad fallback básica")
+        
+        # Crear etapas básicas basadas en las fases del usuario
+        if not fases_detalladas:
+            fases_detalladas = [
+                {'nombre': 'Preparación', 'modalidad': 'parejas'},
+                {'nombre': 'Desarrollo', 'modalidad': 'parejas'},
+                {'nombre': 'Presentación', 'modalidad': 'clase_completa'}
+            ]
+        
+        tareas_fallback = []
+        contador = 1
+        
+        for fase in fases_detalladas:
+            nombre_fase = fase.get('nombre', f'Fase {contador}')
+            modalidad = fase.get('modalidad', 'parejas')
+            
+            tarea_fallback = {
+                'id': f'tarea_{contador:02d}',
+                'nombre': f'{nombre_fase}: Trabajo sobre {descripcion_actividad[:50]}...',
+                'descripcion': f'Los estudiantes trabajan en {modalidad} desarrollando actividades relacionadas con: {descripcion_actividad}',
+                'etapa': nombre_fase,  # CRÍTICO: Asignar etapa
+                'formato_asignacion': modalidad,
+                'complejidad': 3,
+                'tipo': 'colaborativa',
+                'tiempo_estimado': 30,
+                'competencias_requeridas': ['transversales'],
+                'dependencias': []
+            }
+            tareas_fallback.append(tarea_fallback)
+            contador += 1
+        
+        return tareas_fallback
+    
+    def _crear_tarea_preparacion_geografica(self, descripcion_actividad: str, modalidad: str) -> Dict:
+        """Crea tarea específica para fase de preparación adaptada al tema del usuario"""
+        # Extraer palabras clave del tema para adaptar la tarea
+        if 'geográfic' in descripcion_actividad.lower() or 'viaj' in descripcion_actividad.lower():
+            nombre = 'Selección y asignación de rutas temáticas'
+            descripcion = f'Cada pareja selecciona elementos relacionados con {descripcion_actividad} y se asigna roles específicos para su investigación y desarrollo'
+        elif 'matemátic' in descripcion_actividad.lower() or 'número' in descripcion_actividad.lower():
+            nombre = 'Preparación de materiales y conceptos matemáticos'
+            descripcion = f'Cada pareja prepara materiales y revisa conceptos necesarios para {descripcion_actividad}'
+        elif 'histori' in descripcion_actividad.lower() or 'época' in descripcion_actividad.lower():
+            nombre = 'Investigación de contexto histórico'
+            descripcion = f'Cada pareja investiga el contexto y antecedentes necesarios para {descripcion_actividad}'
+        else:
+            nombre = 'Preparación temática colaborativa'
+            descripcion = f'Cada pareja se prepara y organiza para desarrollar actividades relacionadas con {descripcion_actividad}'
+            
+        # Crear asignaciones específicas según modalidad
+        asignaciones_especificas = self._crear_asignaciones_por_modalidad(modalidad, descripcion_actividad, 'preparacion')
+        
+        return {
+            'nombre': nombre,
+            'descripcion': descripcion,
+            'formato_asignacion': modalidad,
+            'etapa': 'Preparación con reparto específico de tareas (trabajo parejas)',
+            'asignaciones_especificas': asignaciones_especificas
+        }
+    
+    def _crear_asignaciones_por_modalidad(self, modalidad: str, descripcion_actividad: str, fase: str) -> Dict:
+        """
+        Crea asignaciones específicas para los 8 estudiantes según la modalidad
+        
+        Args:
+            modalidad: parejas, grupos_pequeños, clase_completa, etc.
+            descripcion_actividad: Descripción de la actividad para contexto
+            fase: preparacion, ejecucion, reflexion
+            
+        Returns:
+            Dict con estructura de asignaciones específicas
+        """
+        if modalidad == 'parejas':
+            return {
+                'modalidad': 'parejas',
+                'grupos': [
+                    {
+                        'nombre': 'Pareja 1',
+                        'miembros': ['Elena', 'Ana'],
+                        'tarea_especifica': f'Investigar con apoyo visual estructurado para Elena (TEA)',
+                        'justificacion': 'Ana (altas capacidades) puede apoyar a Elena con estructura clara'
+                    },
+                    {
+                        'nombre': 'Pareja 2',
+                        'miembros': ['Luis', 'Hugo'],
+                        'tarea_especifica': f'Desarrollar actividad con componentes dinámicos para Luis (TDAH)',
+                        'justificacion': 'Hugo puede ayudar a canalizar la energía de Luis productivamente'
+                    },
+                    {
+                        'nombre': 'Pareja 3',
+                        'miembros': ['María', 'Emma'],
+                        'tarea_especifica': f'Trabajar de manera equilibrada en la actividad',
+                        'justificacion': 'Pareja con habilidades complementarias'
+                    },
+                    {
+                        'nombre': 'Pareja 4',
+                        'miembros': ['Alex', 'Sara'],
+                        'tarea_especifica': f'Desarrollar aspectos analíticos de la actividad',
+                        'justificacion': 'Ambos con buenas capacidades analíticas'
+                    }
+                ]
+            }
+        elif modalidad == 'clase_completa' or modalidad == 'clase completa':
+            return {
+                'modalidad': 'clase_completa',
+                'organizacion': 'Presentación por turnos',
+                'orden_participacion': [
+                    {'estudiante': 'Elena', 'rol': 'Presentadora con apoyo visual', 'tiempo': '3 min'},
+                    {'estudiante': 'Luis', 'rol': 'Dinamizador de actividad', 'tiempo': '3 min'},
+                    {'estudiante': 'Ana', 'rol': 'Coordinadora general', 'tiempo': '5 min'},
+                    {'estudiante': 'María', 'rol': 'Secretaria', 'tiempo': '3 min'},
+                    {'estudiante': 'Emma', 'rol': 'Apoyo visual', 'tiempo': '3 min'},
+                    {'estudiante': 'Hugo', 'rol': 'Presentador', 'tiempo': '3 min'},
+                    {'estudiante': 'Alex', 'rol': 'Analista', 'tiempo': '3 min'},
+                    {'estudiante': 'Sara', 'rol': 'Sintetizadora', 'tiempo': '3 min'}
+                ]
+            }
+        else:  # grupos pequeños u otras modalidades
+            return {
+                'modalidad': 'grupos',
+                'grupos': [
+                    {
+                        'nombre': 'Grupo A',
+                        'miembros': ['Elena', 'Ana', 'María', 'Emma'],
+                        'tarea_especifica': 'Desarrollo con estructura y apoyo visual',
+                        'justificacion': 'Ana lidera, Elena tiene apoyo múltiple'
+                    },
+                    {
+                        'nombre': 'Grupo B',
+                        'miembros': ['Luis', 'Hugo', 'Alex', 'Sara'],
+                        'tarea_especifica': 'Desarrollo dinámico y analítico',
+                        'justificacion': 'Balance entre energía de Luis y análisis del resto'
+                    }
+                ]
+            }
+    
+    def _crear_tarea_ejecucion_geografica(self, descripcion_actividad: str, modalidad: str) -> Dict:
+        """Crea tarea específica para fase de ejecución adaptada al tema del usuario"""
+        # Adaptar según el tema
+        if 'geográfic' in descripcion_actividad.lower() or 'viaj' in descripcion_actividad.lower():
+            nombre = 'Desarrollo del proyecto temático principal'
+            descripcion = f'Las parejas desarrollan el proyecto principal sobre {descripcion_actividad}, creando materiales, investigando y preparando presentaciones según sus roles asignados'
+        elif 'matemátic' in descripcion_actividad.lower():
+            nombre = 'Resolución y creación de problemas matemáticos'
+            descripcion = f'Las parejas trabajan resolviendo y creando ejercicios relacionados con {descripcion_actividad}'
+        elif 'cienci' in descripcion_actividad.lower():
+            nombre = 'Experimentación y análisis científico'
+            descripcion = f'Las parejas realizan experimentos y análisis sobre {descripcion_actividad}'
+        else:
+            nombre = 'Desarrollo del proyecto colaborativo'
+            descripcion = f'Las parejas desarrollan colaborativamente el proyecto sobre {descripcion_actividad}'
+            
+        return {
+            'nombre': nombre,
+            'descripcion': descripcion,
+            'formato_asignacion': modalidad,
+            'etapa': 'Ejecución principal con investigación, creatividad, presentación, construcción/creación'
+        }
+    
+    def _crear_tarea_reflexion_geografica(self, descripcion_actividad: str, modalidad: str) -> Dict:
+        """Crea tarea específica para fase de reflexión adaptada al tema del usuario"""
+        return {
+            'nombre': 'Presentación y reflexión grupal',
+            'descripcion': f'Los estudiantes presentan sus trabajos sobre {descripcion_actividad} y reflexionan grupalmente sobre lo aprendido, compartiendo experiencias y conclusiones',
+            'formato_asignacion': modalidad,
+            'etapa': 'Reflexión con reparto específico de tareas (trabajo clase completa)'
+        }
+    
+    def _crear_tarea_generica_geografica(self, descripcion_actividad: str, modalidad: str, nombre_fase: str) -> Dict:
+        """Crea tarea genérica adaptada al tema del usuario"""
+        return {
+            'nombre': f'Actividades de {nombre_fase}',
+            'descripcion': f'Los estudiantes trabajan en {modalidad} desarrollando actividades relacionadas con {descripcion_actividad}',
+            'formato_asignacion': modalidad,
+            'etapa': nombre_fase
+        }
     
     def _crear_actividad_pedagogica_adaptada(self, adaptaciones: Dict, descripcion_actividad: str) -> Dict:
         """

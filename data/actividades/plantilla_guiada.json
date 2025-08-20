@@ -1,0 +1,42 @@
+{
+  "_instrucciones_generales": "[CRÍTICO: Si no tienes información específica para completar un campo, déjalo vacío o usa 'No especificado'. NO inventes datos, materiales, duraciones exactas o información que no esté claramente relacionada con el tema solicitado. Es mejor un campo vacío que información incorrecta.]",
+  "id": "[GENERAR: ID único para la actividad]",
+  "titulo": "[CREAR: Título atractivo relacionado con el tema solicitado por el usuario]",
+  "objetivo": "[CREAR: Objetivo educativo específico para la materia y tema solicitados, incluyendo competencias a desarrollar]",
+  "nivel_educativo": "[USAR: 4º Primaria por defecto, ajustar si el usuario especifica otro nivel]",
+  "duracion_minutos": "[USAR: Duración configurada por el usuario. Si no está especificada, usar 'No especificado' en lugar de inventar un tiempo]",
+  "recursos": [
+    "[CREAR: Lista de materiales necesarios específicos para el tema y actividad propuesta. Si no puedes determinar materiales concretos, usa descripciones generales como 'Material de escritura' en lugar de inventar marcas o elementos específicos]"
+  ],
+  "etapas": [
+    {
+      "nombre": "[USAR: Nombre de la fase configurada por el usuario (ej: Preparación, Ejecución, Reflexión)]",
+      "descripcion": "[CREAR: Descripción detallada de qué se hace en esta fase]",
+      "tareas": [
+        {
+          "nombre": "[CREAR: Nombre descriptivo de la tarea específica para el tema]",
+          "descripcion": "[CREAR: Descripción detallada de la tarea adaptada al tema solicitado]",
+          "formato_asignacion": "[ESPECIFICAR: individual, parejas, grupos_pequeños, grupos_grandes, o aula_completa]",
+          "asignaciones_especificas": {
+            "modalidad": "[USAR: Modalidad de trabajo configurada por el usuario para esta fase]",
+            "detalles": "[IMPORTANTE: Crear asignaciones específicas para cada uno de los 8 estudiantes del aula, considerando sus perfiles individuales y neurotipos]"
+          },
+          "estrategias_adaptacion": {
+            "para_todos": "[CREAR: Estrategias generales de adaptación para la tarea]",
+            "preguntas_clave_adaptacion": [
+              "[RESPONDER: ¿Esta actividad incluye la manera concreta en la que se van a dar los apoyos visuales para estudiantes con TEA?]",
+              "[RESPONDER: ¿Es posible incluir movimiento o cambios de ritmo y si no es posible, cómo podemos facilitar a la persona TDAH una tarea estimulante en esta actividad concreta?]",
+              "[RESPONDER: ¿Qué retos adicionales específicos se ofrecen para estudiantes con altas capacidades en esta tarea particular?]",
+              "[RESPONDER: ¿Cómo se proporcionará tiempo individual para explicar objetivos antes del trabajo colaborativo?]",
+              "[RESPONDER: ¿Qué estrategias concretas de regulación emocional se incluyen si la actividad genera ansiedad?]"
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "alumnos_objetivo": [
+    "[USAR: Lista de 8 estudiantes del aula actual]"
+  ],
+  "observaciones": "[CREAR: Observaciones específicas sobre adaptaciones considerando los perfiles de neurotipos del aula actual]"
+}

@@ -380,11 +380,11 @@ class EmbeddingsManager:
                 """Calcula prioridad final considerando tipo de fuente y asignaciones específicas"""
                 prioridad = similitud
                 
-                # Boost para actividades JSON
-                if actividad_data.get('_tipo_fuente') == 'json':
-                    prioridad += 0.1
+                # Boost MUY LIGERO para actividades JSON (solo si ya tienen buena similitud)
+                if actividad_data.get('_tipo_fuente') == 'json' and similitud > 0.4:
+                    prioridad += 0.05  # Reducido de 0.1 a 0.05
                     
-                    # Boost adicional si tiene asignaciones específicas
+                    # Boost adicional LIGERO si tiene asignaciones específicas
                     etapas = actividad_data.get('etapas', [])
                     for etapa in etapas:
                         if isinstance(etapa, dict):
@@ -393,8 +393,8 @@ class EmbeddingsManager:
                                     asignaciones = tarea.get('asignaciones_especificas', {})
                                     if ('asignaciones_individuales' in asignaciones or 
                                         'asignacion_puestos' in asignaciones):
-                                        prioridad += 0.15  # Boost significativo para asignaciones específicas
-                                        logger.debug(f"🎯 Boost para {actividad_id}: tiene asignaciones específicas")
+                                        prioridad += 0.08  # Reducido de 0.15 a 0.08
+                                        logger.debug(f"🎯 Boost ligero para {actividad_id}: tiene asignaciones específicas")
                                         break
                             else:
                                 continue
@@ -597,8 +597,9 @@ class EmbeddingsManager:
             # Calcular similitud coseno
             similitud = np.dot(vec1, vec2) / (norma1 * norma2)
             
-            # Convertir de [-1, 1] a [0, 1]
-            similitud_normalizada = (similitud + 1) / 2
+            # CORREGIDO: Solo considerar similitudes positivas como válidas
+            # -1 (opuestos) = 0, 0 (ortogonales) = 0, 1 (idénticos) = 1.0 
+            similitud_normalizada = max(0.0, similitud)
             
             return float(similitud_normalizada)
             
