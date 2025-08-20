@@ -40,17 +40,13 @@ class EmbeddingsManager:
         logger.info(f"✅ EmbeddingsManager inicializado con {len(self.actividades)} actividades")
     
     def _cargar_actividades_json_y_txt(self) -> None:
-        """Carga actividades JSON y TXT del directorio base"""
+        """Carga actividades JSON del directorio json_actividades"""
         try:
-            # Buscar archivos JSON en subdirectorio json_actividades
             json_path = os.path.join(self.actividades_base_path, "json_actividades")
             if os.path.exists(json_path):
                 self._cargar_actividades_json_desde_directorio(json_path)
             
-            # Buscar archivos TXT en el directorio base
-            self._cargar_actividades_txt_desde_directorio(self.actividades_base_path)
-            
-            logger.info(f"✅ Cargadas {len(self.actividades)} actividades (JSON + TXT)")
+            logger.info(f"✅ Cargadas {len(self.actividades)} actividades JSON")
             
         except Exception as e:
             logger.error(f"❌ Error en carga de actividades: {e}")
@@ -78,73 +74,7 @@ class EmbeddingsManager:
         except Exception as e:
             logger.error(f"❌ Error listando directorio JSON {directorio}: {e}")
     
-    def _cargar_actividades_txt_desde_directorio(self, directorio: str) -> None:
-        """Carga actividades TXT de un directorio específico"""
-        try:
-            archivos_txt = [f for f in os.listdir(directorio) if f.startswith('k_') and f.endswith('.txt')]
-            
-            for archivo in archivos_txt:
-                ruta_completa = os.path.join(directorio, archivo)
-                try:
-                    with open(ruta_completa, 'r', encoding='utf-8') as f:
-                        contenido_txt = f.read()
-                        actividad_id = os.path.splitext(archivo)[0]  # nombre sin extensión
-                        
-                        # Solo cargar TXT si no existe ya una versión JSON del mismo
-                        if actividad_id not in self.actividades:
-                            # Crear estructura básica para TXT
-                            actividad_data = self._parsear_actividad_txt(contenido_txt, actividad_id, archivo)
-                            actividad_data['_tipo_fuente'] = 'txt'
-                            actividad_data['_archivo_origen'] = archivo
-                            self.actividades[actividad_id] = actividad_data
-                            logger.info(f"📝 Cargada actividad TXT: {actividad_id}")
-                        else:
-                            # Agregar contenido TXT como enriquecimiento a la versión JSON
-                            self.actividades[actividad_id]['_contenido_txt_complementario'] = contenido_txt
-                            logger.info(f"🔗 Enriquecida actividad JSON con TXT: {actividad_id}")
-                        
-                except Exception as e:
-                    logger.error(f"❌ Error cargando TXT {archivo}: {e}")
-                    continue
-                    
-        except Exception as e:
-            logger.error(f"❌ Error listando directorio TXT {directorio}: {e}")
     
-    def _parsear_actividad_txt(self, contenido: str, actividad_id: str, archivo: str) -> dict:
-        """Parsea contenido TXT para crear estructura básica de actividad"""
-        lineas = contenido.split('\n')
-        
-        # Extraer título
-        titulo = ""
-        for linea in lineas[:10]:  # Buscar en las primeras 10 líneas
-            if "título" in linea.lower() or "Título" in linea:
-                titulo = linea.split(':', 1)[-1].strip(' "').strip()
-                break
-        
-        if not titulo:
-            titulo = f"Actividad {actividad_id.replace('k_', '').replace('_', ' ').title()}"
-        
-        # Extraer objetivo
-        objetivo = ""
-        for linea in lineas:
-            if "objetivo" in linea.lower():
-                objetivo = linea.split(':', 1)[-1].strip(' "').strip()
-                break
-        
-        if not objetivo:
-            objetivo = f"Actividad educativa basada en {actividad_id.replace('k_', '').replace('_', ' ')}"
-        
-        return {
-            'id': actividad_id.upper(),
-            'titulo': titulo,
-            'objetivo': objetivo,
-            'nivel_educativo': 'Primaria',
-            'duracion_minutos': 'Variable',
-            'contenido_completo': contenido,
-            'etapas': [],
-            'recursos': [],
-            'observaciones': f'Actividad cargada desde archivo TXT: {archivo}'
-        }
     
     def _generar_texto_enriquecido(self, actividad_id: str, actividad_data: dict) -> str:
         """
@@ -165,36 +95,24 @@ class EmbeddingsManager:
         texto_base.append(f"NIVEL: {actividad_data.get('nivel_educativo', '')}")
         texto_base.append(f"DURACIÓN: {actividad_data.get('duracion_minutos', '')}")
         
-        # Si es actividad TXT pura, usar contenido completo
-        if actividad_data.get('_tipo_fuente') == 'txt':
-            contenido_completo = actividad_data.get('contenido_completo', '')
-            if contenido_completo:
-                # Usar primeros 1000 caracteres del TXT completo
-                texto_base.append(f"CONTENIDO COMPLETO: {contenido_completo[:1000]}")
-        else:
-            # Para actividades JSON, procesar estructura normal
-            recursos = actividad_data.get('recursos', [])
-            if recursos:
-                texto_base.append(f"RECURSOS: {', '.join(recursos[:5])}")
-            
-            # Etapas y tareas
-            etapas = actividad_data.get('etapas', [])
-            for etapa in etapas[:3]:
-                texto_base.append(f"ETAPA: {etapa.get('nombre', '')}")
-                tareas = etapa.get('tareas', [])
-                for tarea in tareas[:2]:
-                    texto_base.append(f"TAREA: {tarea.get('descripcion', '')}")
-            
-            # Adaptaciones
-            observaciones = actividad_data.get('observaciones', '')
-            if observaciones:
-                texto_base.append(f"ADAPTACIONES: {observaciones[:200]}")
+        # Procesar estructura JSON
+        recursos = actividad_data.get('recursos', [])
+        if recursos:
+            texto_base.append(f"RECURSOS: {', '.join(recursos[:5])}")
         
-        # Si hay contenido TXT complementario, añadirlo
-        contenido_txt_complementario = actividad_data.get('_contenido_txt_complementario', '')
-        if contenido_txt_complementario:
-            texto_base.append(f"CONTEXTO PEDAGÓGICO EXTENDIDO: {contenido_txt_complementario[:500]}")
-            logger.debug(f"📖 Añadido contexto TXT complementario para {actividad_id}")
+        # Etapas y tareas
+        etapas = actividad_data.get('etapas', [])
+        for etapa in etapas[:3]:
+            texto_base.append(f"ETAPA: {etapa.get('nombre', '')}")
+            tareas = etapa.get('tareas', [])
+            for tarea in tareas[:2]:
+                texto_base.append(f"TAREA: {tarea.get('descripcion', '')}")
+        
+        # Adaptaciones
+        observaciones = actividad_data.get('observaciones', '')
+        if observaciones:
+            texto_base.append(f"ADAPTACIONES: {observaciones[:200]}")
+        
         
         texto_final = "\n".join(texto_base)
         self.textos_enriquecidos[actividad_id] = texto_final
@@ -269,12 +187,7 @@ class EmbeddingsManager:
                     if archivo_origen:
                         tipo_fuente = actividad_data.get('_tipo_fuente', 'unknown')
                         
-                        if tipo_fuente == 'json':
-                            # Los archivos JSON están en subdirectorio json_actividades
-                            archivo_path = os.path.join(self.actividades_base_path, "json_actividades", archivo_origen)
-                        else:
-                            # Los archivos TXT están en directorio base
-                            archivo_path = os.path.join(self.actividades_base_path, archivo_origen)
+                        archivo_path = os.path.join(self.actividades_base_path, "json_actividades", archivo_origen)
                         
                         hash_actual = self._calcular_hash_archivo(archivo_path)
                     else:
@@ -461,7 +374,41 @@ class EmbeddingsManager:
             
             # Ordenar por similitud descendente y filtrar por umbral mínimo
             similitudes_filtradas = [s for s in similitudes if s[1] > 0.2]  # Umbral mínimo
-            similitudes_ordenadas = sorted(similitudes_filtradas, key=lambda x: x[1], reverse=True)[:top_k]
+            
+            # MEJORA: Priorizar actividades JSON con asignaciones específicas
+            def calcular_prioridad_final(actividad_id, similitud, actividad_data):
+                """Calcula prioridad final considerando tipo de fuente y asignaciones específicas"""
+                prioridad = similitud
+                
+                # Boost para actividades JSON
+                if actividad_data.get('_tipo_fuente') == 'json':
+                    prioridad += 0.1
+                    
+                    # Boost adicional si tiene asignaciones específicas
+                    etapas = actividad_data.get('etapas', [])
+                    for etapa in etapas:
+                        if isinstance(etapa, dict):
+                            for tarea in etapa.get('tareas', []):
+                                if isinstance(tarea, dict):
+                                    asignaciones = tarea.get('asignaciones_especificas', {})
+                                    if ('asignaciones_individuales' in asignaciones or 
+                                        'asignacion_puestos' in asignaciones):
+                                        prioridad += 0.15  # Boost significativo para asignaciones específicas
+                                        logger.debug(f"🎯 Boost para {actividad_id}: tiene asignaciones específicas")
+                                        break
+                            else:
+                                continue
+                            break
+                
+                return min(1.0, prioridad)  # Cap at 1.0
+            
+            # Recalcular prioridades y reordenar
+            similitudes_con_prioridad = [
+                (act_id, calcular_prioridad_final(act_id, sim, act_data), act_data)
+                for act_id, sim, act_data in similitudes_filtradas
+            ]
+            
+            similitudes_ordenadas = sorted(similitudes_con_prioridad, key=lambda x: x[1], reverse=True)[:top_k]
             
             # Si no hay suficientes resultados, usar fallback híbrido
             if len(similitudes_ordenadas) < top_k:

@@ -923,3 +923,386 @@ class AgentePerfiladorEstudiantes(BaseAgent):
             recomendaciones.append("Grupo grande: formar múltiples equipos con rotación de roles")
         
         return recomendaciones[:5]  # Máximo 5 recomendaciones
+    
+    def _inferir_neurotipo_desde_perfil(self, perfil) -> str:
+        """
+        Infiere el neurotipo desde las adaptaciones y necesidades de apoyo del perfil
+        
+        Args:
+            perfil: Objeto Estudiante
+            
+        Returns:
+            Neurotipo inferido
+        """
+        adaptaciones_str = ' '.join(perfil.adaptaciones).lower()
+        necesidades_str = ' '.join(perfil.necesidades_apoyo).lower()
+        texto_completo = f"{adaptaciones_str} {necesidades_str}"
+        
+        if any(term in texto_completo for term in ['tea', 'autismo', 'estructuración', 'predictibilidad', 'rutinas_estructuradas']):
+            return 'TEA'
+        elif any(term in texto_completo for term in ['tdah', 'hiperactividad', 'movimiento', 'descansos_frecuentes']):
+            return 'TDAH'
+        elif any(term in texto_completo for term in ['altas capacidades', 'enriquecimiento', 'desafíos', 'retos_adicionales', 'superdotacion']):
+            return 'altas_capacidades'
+        elif any(term in texto_completo for term in ['dislexia']):
+            return 'dislexia'
+        elif any(term in texto_completo for term in ['discalculia']):
+            return 'discalculia'
+        else:
+            return 'típico'
+    
+    # =================== MÉTODOS DE DEBATE ENTRE AGENTES ===================
+    
+    def evaluar_propuesta_debate(self, propuesta: Dict, contexto: Dict = None, contexto_perfiles: List = None) -> Dict:
+        """
+        Evalúa una propuesta desde perspectiva pedagógica y de perfil de estudiantes
+        
+        Args:
+            propuesta: Propuesta del analizador para evaluar
+            contexto_perfiles: Lista de perfiles de estudiantes (opcional, usa self.perfiles_base si no se proporciona)
+            
+        Returns:
+            Evaluación pedagógica de la propuesta
+        """
+        self.logger.info(f"👥 Perfilador evaluando propuesta pedagógica")
+        
+        # Usar perfiles proporcionados o los propios
+        perfiles_a_usar = contexto_perfiles if contexto_perfiles is not None else self.perfiles_base
+        
+        # Analizar compatibilidad con perfiles existentes
+        compatibilidad = self._evaluar_compatibilidad_perfiles_debate(propuesta, perfiles_a_usar)
+        
+        # Evaluar adaptaciones necesarias para neurotipos
+        adaptaciones = self._evaluar_adaptaciones_neurotipos_debate(propuesta, perfiles_a_usar)
+        
+        # Evaluar viabilidad grupal
+        viabilidad_grupal = self._evaluar_viabilidad_grupal_debate(propuesta, perfiles_a_usar)
+        
+        evaluacion = {
+            'compatibilidad_perfiles': compatibilidad,
+            'adaptaciones_requeridas': adaptaciones,
+            'viabilidad_grupal': viabilidad_grupal,
+            'recomendaciones_pedagogicas': self._generar_recomendaciones_pedagogicas(propuesta, compatibilidad),
+            'conflictos_detectados': self._detectar_conflictos_pedagogicos_debate(propuesta, perfiles_a_usar),
+            'aprobacion_pedagogica': self._calcular_aprobacion_general(compatibilidad, adaptaciones, viabilidad_grupal)
+        }
+        
+        return evaluacion
+    
+    def _evaluar_compatibilidad_perfiles_debate(self, propuesta: Dict, perfiles_a_usar: List) -> Dict:
+        """Evalúa compatibilidad de la propuesta con perfiles de estudiantes para debate"""
+        if not perfiles_a_usar:
+            return {'puntuacion': 0.5, 'comentario': 'Sin perfiles para evaluar'}
+        
+        tipo_propuesto = propuesta.get('tipo_propuesto', 'desconocido')
+        estructura = propuesta.get('estructura_sugerida', {})
+        organizacion = estructura.get('organizacion', 'colaborativa')
+        
+        # Evaluar según neurotipos presentes
+        puntuaciones = []
+        comentarios = []
+        
+        for perfil in perfiles_a_usar:
+            neurotipo = self._inferir_neurotipo_desde_perfil(perfil)
+            
+            if neurotipo == 'TEA':
+                if organizacion in ['individual_con_apoyo', 'estructura_clara']:
+                    puntuaciones.append(0.8)
+                    comentarios.append(f"{perfil.nombre}: Compatible con TEA (estructura clara)")
+                else:
+                    puntuaciones.append(0.4)
+                    comentarios.append(f"{perfil.nombre}: Requiere adaptación para TEA")
+            
+            elif neurotipo == 'TDAH':
+                if 'rotacion' in str(propuesta) or 'dinamico' in str(propuesta):
+                    puntuaciones.append(0.9)
+                    comentarios.append(f"{perfil.nombre}: Excelente para TDAH (dinamismo)")
+                else:
+                    puntuaciones.append(0.6)
+                    comentarios.append(f"{perfil.nombre}: Necesita más dinamismo para TDAH")
+            
+            elif neurotipo == 'altas_capacidades':
+                complejidad = propuesta.get('estructura_sugerida', {}).get('complejidad', 'media')
+                if complejidad in ['alta', 'media-alta']:
+                    puntuaciones.append(0.9)
+                    comentarios.append(f"{perfil.nombre}: Apropiado para altas capacidades")
+                else:
+                    puntuaciones.append(0.5)
+                    comentarios.append(f"{perfil.nombre}: Puede requerir complejidad adicional")
+            
+            else:  # típico
+                puntuaciones.append(0.7)
+                comentarios.append(f"{perfil.nombre}: Compatible (perfil típico)")
+        
+        return {
+            'puntuacion_media': sum(puntuaciones) / len(puntuaciones) if puntuaciones else 0.5,
+            'detalles_perfiles': comentarios,
+            'neurotipos_detectados': [self._inferir_neurotipo_desde_perfil(p) for p in perfiles_a_usar]
+        }
+    
+    def _evaluar_adaptaciones_neurotipos_debate(self, propuesta: Dict, perfiles_a_usar: List) -> Dict:
+        """Evalúa qué adaptaciones específicas se necesitan para debate"""
+        adaptaciones = {
+            'TEA': [],
+            'TDAH': [],
+            'altas_capacidades': [],
+            'generales': []
+        }
+        
+        tipo_actividad = propuesta.get('tipo_propuesto', '')
+        estructura = propuesta.get('estructura_sugerida', {})
+        
+        # Adaptaciones para TEA
+        if any(self._inferir_neurotipo_desde_perfil(p) == 'TEA' for p in perfiles_a_usar):
+            adaptaciones['TEA'].extend([
+                'Proporcionar rutina clara y predecible',
+                'Materiales con apoyo visual',
+                'Tiempo extra para procesamiento',
+                'Ambiente menos estimulante'
+            ])
+        
+        # Adaptaciones para TDAH
+        if any(self._inferir_neurotipo_desde_perfil(p) == 'TDAH' for p in perfiles_a_usar):
+            adaptaciones['TDAH'].extend([
+                'Permitir movimiento durante la actividad',
+                'Cambios frecuentes de estación/actividad',
+                'Tareas más cortas y variadas',
+                'Elementos manipulativos'
+            ])
+        
+        # Adaptaciones para altas capacidades
+        if any(self._inferir_neurotipo_desde_perfil(p) == 'altas_capacidades' for p in perfiles_a_usar):
+            adaptaciones['altas_capacidades'].extend([
+                'Retos adicionales opcionales',
+                'Rol de mentorización de compañeros',
+                'Investigación extendida',
+                'Proyectos de mayor complejidad'
+            ])
+        
+        return adaptaciones
+    
+    def _evaluar_viabilidad_grupal_debate(self, propuesta: Dict, perfiles_a_usar: List) -> Dict:
+        """Evalúa si la propuesta funciona con el grupo específico para debate"""
+        estructura = propuesta.get('estructura_sugerida', {})
+        organizacion = estructura.get('organizacion', 'colaborativa')
+        
+        total_estudiantes = len(perfiles_a_usar) if perfiles_a_usar else 8
+        
+        viabilidad = {
+            'tamaño_optimo': True,
+            'diversidad_neurotipos': True,
+            'recursos_necesarios': 'standar',
+            'tiempo_sugerido': estructura.get('duracion_sugerida', '45-60 minutos')
+        }
+        
+        # Evaluar tamaño para organización propuesta
+        if organizacion == 'parejas_rotativas' and total_estudiantes % 2 != 0:
+            viabilidad['tamaño_optimo'] = False
+            viabilidad['observacion_tamaño'] = 'Número impar - necesario ajuste para parejas'
+        
+        return viabilidad
+    
+    def _detectar_conflictos_pedagogicos_debate(self, propuesta: Dict, perfiles_a_usar: List) -> List[str]:
+        """Detecta posibles conflictos pedagógicos en la propuesta para debate"""
+        conflictos = []
+        
+        tipo_actividad = propuesta.get('tipo_propuesto', '')
+        estructura = propuesta.get('estructura_sugerida', {})
+        
+        # Detectar conflictos potenciales
+        if tipo_actividad == 'gymnkana':
+            if any(self._inferir_neurotipo_desde_perfil(p) == 'TEA' for p in perfiles_a_usar):
+                conflictos.append("⚠️ Gymnkana puede ser estimulante en exceso para estudiantes TEA")
+        
+        duracion = estructura.get('duracion_sugerida', '')
+        if '90' in duracion or '2-3 sesiones' in duracion:
+            if any(self._inferir_neurotipo_desde_perfil(p) == 'TDAH' for p in perfiles_a_usar):
+                conflictos.append("⚠️ Duración extensa puede ser desafiante para TDAH")
+        
+        return conflictos
+    
+    def _evaluar_compatibilidad_perfiles(self, propuesta: Dict) -> Dict:
+        """Evalúa compatibilidad de la propuesta con perfiles de estudiantes"""
+        if not self.perfiles_base:
+            return {'puntuacion': 0.5, 'comentario': 'Sin perfiles para evaluar'}
+        
+        tipo_propuesto = propuesta.get('tipo_propuesto', 'desconocido')
+        estructura = propuesta.get('estructura_sugerida', {})
+        organizacion = estructura.get('organizacion', 'colaborativa')
+        
+        # Evaluar según neurotipos presentes
+        puntuaciones = []
+        comentarios = []
+        
+        for perfil in self.perfiles_base:
+            neurotipo = self._inferir_neurotipo_desde_perfil(perfil)
+            
+            if neurotipo == 'TEA':
+                if organizacion in ['individual_con_apoyo', 'estructura_clara']:
+                    puntuaciones.append(0.8)
+                    comentarios.append(f"{perfil.nombre}: Compatible con TEA (estructura clara)")
+                else:
+                    puntuaciones.append(0.4)
+                    comentarios.append(f"{perfil.nombre}: Requiere adaptación para TEA")
+            
+            elif neurotipo == 'TDAH':
+                if 'rotacion' in str(propuesta) or 'dinamico' in str(propuesta):
+                    puntuaciones.append(0.9)
+                    comentarios.append(f"{perfil.nombre}: Excelente para TDAH (dinamismo)")
+                else:
+                    puntuaciones.append(0.6)
+                    comentarios.append(f"{perfil.nombre}: Necesita más dinamismo para TDAH")
+            
+            elif neurotipo == 'altas_capacidades':
+                complejidad = propuesta.get('estructura_sugerida', {}).get('complejidad', 'media')
+                if complejidad in ['alta', 'media-alta']:
+                    puntuaciones.append(0.9)
+                    comentarios.append(f"{perfil.nombre}: Apropiado para altas capacidades")
+                else:
+                    puntuaciones.append(0.5)
+                    comentarios.append(f"{perfil.nombre}: Puede requerir complejidad adicional")
+            
+            else:  # típico
+                puntuaciones.append(0.7)
+                comentarios.append(f"{perfil.nombre}: Compatible (perfil típico)")
+        
+        return {
+            'puntuacion_media': sum(puntuaciones) / len(puntuaciones) if puntuaciones else 0.5,
+            'detalles_perfiles': comentarios,
+            'neurotipos_detectados': [self._inferir_neurotipo_desde_perfil(p) for p in self.perfiles_base]
+        }
+    
+    def _evaluar_adaptaciones_neurotipos(self, propuesta: Dict) -> Dict:
+        """Evalúa qué adaptaciones específicas se necesitan"""
+        adaptaciones = {
+            'TEA': [],
+            'TDAH': [],
+            'altas_capacidades': [],
+            'generales': []
+        }
+        
+        tipo_actividad = propuesta.get('tipo_propuesto', '')
+        estructura = propuesta.get('estructura_sugerida', {})
+        
+        # Adaptaciones para TEA
+        if any(self._inferir_neurotipo_desde_perfil(p) == 'TEA' for p in self.perfiles_base):
+            adaptaciones['TEA'].extend([
+                'Proporcionar rutina clara y predecible',
+                'Materiales con apoyo visual',
+                'Tiempo extra para procesamiento',
+                'Ambiente menos estimulante'
+            ])
+        
+        # Adaptaciones para TDAH
+        if any(self._inferir_neurotipo_desde_perfil(p) == 'TDAH' for p in self.perfiles_base):
+            adaptaciones['TDAH'].extend([
+                'Permitir movimiento durante la actividad',
+                'Cambios frecuentes de estación/actividad',
+                'Tareas más cortas y variadas',
+                'Elementos manipulativos'
+            ])
+        
+        # Adaptaciones para altas capacidades
+        if any(self._inferir_neurotipo_desde_perfil(p) == 'altas_capacidades' for p in self.perfiles_base):
+            adaptaciones['altas_capacidades'].extend([
+                'Retos adicionales opcionales',
+                'Rol de mentorización de compañeros',
+                'Investigación extendida',
+                'Proyectos de mayor complejidad'
+            ])
+        
+        return adaptaciones
+    
+    def _evaluar_viabilidad_grupal(self, propuesta: Dict) -> Dict:
+        """Evalúa si la propuesta funciona con el grupo específico"""
+        estructura = propuesta.get('estructura_sugerida', {})
+        organizacion = estructura.get('organizacion', 'colaborativa')
+        
+        total_estudiantes = len(self.perfiles_base) if self.perfiles_base else 8
+        
+        viabilidad = {
+            'tamaño_optimo': True,
+            'diversidad_neurotipos': True,
+            'recursos_necesarios': 'standar',
+            'tiempo_sugerido': estructura.get('duracion_sugerida', '45-60 minutos')
+        }
+        
+        # Evaluar tamaño para organización propuesta
+        if organizacion == 'parejas_rotativas' and total_estudiantes % 2 != 0:
+            viabilidad['tamaño_optimo'] = False
+            viabilidad['observacion_tamaño'] = 'Número impar - necesario ajuste para parejas'
+        
+        return viabilidad
+    
+    def _generar_recomendaciones_pedagogicas(self, propuesta: Dict, compatibilidad: Dict) -> List[str]:
+        """Genera recomendaciones pedagógicas específicas"""
+        recomendaciones = []
+        
+        puntuacion = compatibilidad.get('puntuacion_media', 0.5)
+        
+        if puntuacion < 0.6:
+            recomendaciones.append("⚠️ Propuesta requiere adaptaciones significativas")
+            recomendaciones.append("Considerar modificar la estructura para mayor inclusión")
+        
+        if puntuacion > 0.8:
+            recomendaciones.append("✅ Propuesta muy compatible con el grupo")
+            recomendaciones.append("Puede implementarse con adaptaciones mínimas")
+        
+        # Agregar recomendaciones específicas por neurotipos
+        neurotipos = compatibilidad.get('neurotipos_detectados', [])
+        if 'TEA' in neurotipos:
+            recomendaciones.append("📋 Incluir rutinas claras y material visual de apoyo")
+        
+        if 'TDAH' in neurotipos:
+            recomendaciones.append("🏃 Incorporar elementos de movimiento y variación")
+        
+        if 'altas_capacidades' in neurotipos:
+            recomendaciones.append("🎯 Preparar desafíos adicionales opcionales")
+        
+        return recomendaciones
+    
+    def _detectar_conflictos_pedagogicos(self, propuesta: Dict) -> List[str]:
+        """Detecta posibles conflictos pedagógicos en la propuesta"""
+        conflictos = []
+        
+        tipo_actividad = propuesta.get('tipo_propuesto', '')
+        estructura = propuesta.get('estructura_sugerida', {})
+        
+        # Detectar conflictos potenciales
+        if tipo_actividad == 'gymnkana':
+            if any(self._inferir_neurotipo_desde_perfil(p) == 'TEA' for p in self.perfiles_base):
+                conflictos.append("⚠️ Gymnkana puede ser estimulante en exceso para estudiantes TEA")
+        
+        duracion = estructura.get('duracion_sugerida', '')
+        if '90' in duracion or '2-3 sesiones' in duracion:
+            if any(self._inferir_neurotipo_desde_perfil(p) == 'TDAH' for p in self.perfiles_base):
+                conflictos.append("⚠️ Duración extensa puede ser desafiante para TDAH")
+        
+        return conflictos
+    
+    def _calcular_aprobacion_general(self, compatibilidad: Dict, adaptaciones: Dict, viabilidad: Dict) -> Dict:
+        """Calcula aprobación general de la propuesta"""
+        puntuacion_compatibilidad = compatibilidad.get('puntuacion_media', 0.5)
+        
+        # Factores de ajuste
+        factor_viabilidad = 1.0 if viabilidad.get('tamaño_optimo', True) else 0.8
+        factor_adaptaciones = 0.9 if any(adaptaciones.values()) else 1.0
+        
+        puntuacion_final = puntuacion_compatibilidad * factor_viabilidad * factor_adaptaciones
+        
+        if puntuacion_final >= 0.8:
+            estado = 'APROBADO'
+            mensaje = 'Propuesta aprobada con alta compatibilidad pedagógica'
+        elif puntuacion_final >= 0.6:
+            estado = 'APROBADO_CON_ADAPTACIONES'
+            mensaje = 'Propuesta viable con adaptaciones recomendadas'
+        else:
+            estado = 'REQUIERE_REVISION'
+            mensaje = 'Propuesta necesita modificaciones significativas'
+        
+        return {
+            'estado': estado,
+            'puntuacion': puntuacion_final,
+            'mensaje': mensaje,
+            'rechazo': estado == 'REQUIERE_REVISION'
+        }

@@ -28,15 +28,310 @@ class AgenteAnalizadorTareas(BaseAgent):
         # Inicializar EmbeddingsManager si no se proporciona
         if embeddings_manager is None:
             import os
-            # Ruta base a las actividades (JSON + TXT)
+            # Ruta base a las actividades JSON
             script_dir = os.path.dirname(os.path.abspath(__file__))
             base_dir = os.path.dirname(script_dir)
-            actividades_base_path = os.path.join(base_dir, "..", "data", "actividades")
+            proyecto_root = os.path.dirname(base_dir)
+            actividades_base_path = os.path.join(proyecto_root, "data", "actividades")
             
             self.embeddings_manager = EmbeddingsManager(actividades_base_path, ollama_integrator)
         else:
             self.embeddings_manager = embeddings_manager
     
+    def _detectar_tipo_actividad(self, prompt: str) -> Dict:
+        """
+        Detecta el tipo de actividad solicitada basándose en palabras clave
+        
+        Args:
+            prompt: Descripción de la actividad solicitada
+            
+        Returns:
+            Diccionario con tipo detectado, confianza y palabras clave encontradas
+            {"tipo": "gymnkana", "confianza": 0.85, "palabras_clave": [...]}
+        """
+        # Definir tipos de actividad y sus palabras clave características
+        tipos_actividad = {
+            'gymnkana': {
+                'palabras_clave': ['gymnkana', 'feria', 'puestos', 'rotación', 'circuito', 'pruebas', 'estaciones', 'retos'],
+                'peso': 1.0
+            },
+            'proyecto': {
+                'palabras_clave': ['proyecto', 'construir', 'crear', 'modelo', 'producto final', 'diseñar', 'elaborar'],
+                'peso': 1.0
+            },
+            'taller': {
+                'palabras_clave': ['taller', 'fábrica', 'laboratorio', 'exploración', 'materiales', 'experimento', 'manipular'],
+                'peso': 1.0
+            },
+            'investigacion': {
+                'palabras_clave': ['investigar', 'investigación', 'estudiar', 'analizar', 'buscar información', 'documentar'],
+                'peso': 0.9
+            },
+            'presentacion': {
+                'palabras_clave': ['presentar', 'exponer', 'mostrar', 'comunicar', 'compartir resultados'],
+                'peso': 0.8
+            }
+        }
+        
+        prompt_lower = prompt.lower()
+        resultados = {}
+        
+        # Calcular puntuación para cada tipo
+        for tipo, config in tipos_actividad.items():
+            palabras_encontradas = []
+            puntuacion = 0
+            
+            for palabra in config['palabras_clave']:
+                if palabra in prompt_lower:
+                    palabras_encontradas.append(palabra)
+                    puntuacion += config['peso']
+            
+            # Normalizar puntuación por número de palabras clave posibles
+            max_puntuacion = len(config['palabras_clave']) * config['peso']
+            confianza = min(1.0, puntuacion / max_puntuacion) if max_puntuacion > 0 else 0
+            
+            if palabras_encontradas:  # Solo incluir si encontró alguna palabra
+                resultados[tipo] = {
+                    'confianza': confianza,
+                    'palabras_encontradas': palabras_encontradas,
+                    'puntuacion_raw': puntuacion
+                }
+        
+        # Determinar el tipo con mayor confianza
+        if resultados:
+            tipo_principal = max(resultados.keys(), key=lambda k: resultados[k]['confianza'])
+            
+            return {
+                'tipo': tipo_principal,
+                'confianza': resultados[tipo_principal]['confianza'],
+                'palabras_clave': resultados[tipo_principal]['palabras_encontradas'],
+                'tipos_detectados': {k: v['confianza'] for k, v in resultados.items()}
+            }
+        else:
+            # Fallback si no se detecta ningún tipo específico
+            return {
+                'tipo': 'general',
+                'confianza': 0.5,
+                'palabras_clave': [],
+                'tipos_detectados': {}
+            }
+    
+    def _extraer_elementos_reutilizables(self, actividades: List) -> Dict:
+        """
+        Extrae elementos específicos reutilizables de múltiples actividades
+        
+        Args:
+            actividades: Lista de actividades (dict o objetos Activity)
+            
+        Returns:
+            Diccionario con elementos organizados por categoría:
+            {
+                "puestos": [...],
+                "materiales": [...], 
+                "adaptaciones": [...],
+                "metodologias": [...]
+            }
+        """
+        elementos = {
+            'puestos': set(),
+            'materiales': set(),
+            'adaptaciones': set(),
+            'metodologias': set(),
+            'competencias': set(),
+            'recursos_digitales': set()
+        }
+        
+        # Patrones para identificar elementos específicos
+        patrones_extraccion = {
+            'puestos': [
+                r'puesto\s+\d+[:\-]?\s*([^\.]+)',
+                r'estación\s+\d+[:\-]?\s*([^\.]+)',
+                r'reto\s+\d+[:\-]?\s*([^\.]+)',
+                r'actividad\s+\d+[:\-]?\s*([^\.]+)'
+            ],
+            'materiales': [
+                r'material(?:es)?[:\-]?\s*([^\.]+)',
+                r'necesario[s]?[:\-]?\s*([^\.]+)',
+                r'recursos[:\-]?\s*([^\.]+)'
+            ],
+            'adaptaciones': [
+                r'(?:para|adaptación)\s+(?:TEA|TDAH|altas capacidades)[:\-]?\s*([^\.]+)',
+                r'estudiantes?\s+con\s+[^\.]+[:\-]?\s*([^\.]+)',
+                r'apoyo\s+visual[:\-]?\s*([^\.]+)'
+            ]
+        }
+        
+        for actividad in actividades:
+            # Convertir a diccionario si es necesario
+            if hasattr(actividad, '__dict__'):
+                actividad_dict = actividad.__dict__
+            elif hasattr(actividad, 'to_dict'):
+                actividad_dict = actividad.to_dict()
+            else:
+                actividad_dict = actividad
+            
+            # Extraer texto completo de la actividad
+            texto_completo = self._extraer_texto_completo_actividad(actividad_dict)
+            
+            # Aplicar patrones de extracción
+            for categoria, patrones in patrones_extraccion.items():
+                for patron in patrones:
+                    matches = re.findall(patron, texto_completo, re.IGNORECASE)
+                    for match in matches:
+                        elemento_limpio = match.strip().strip(',.:;')
+                        if len(elemento_limpio) > 3:  # Filtrar elementos muy cortos
+                            elementos[categoria].add(elemento_limpio)
+            
+            # Extraer competencias específicas
+            competencias = actividad_dict.get('competencias', '')
+            if isinstance(competencias, str):
+                comp_list = [c.strip() for c in competencias.split(',')]
+                elementos['competencias'].update(comp_list)
+            elif isinstance(competencias, list):
+                elementos['competencias'].update(competencias)
+            
+            # Extraer metodologías de las etapas
+            etapas = actividad_dict.get('etapas', [])
+            for etapa in etapas:
+                if isinstance(etapa, dict):
+                    nombre_etapa = etapa.get('nombre', '')
+                    if 'metodología' in nombre_etapa.lower() or 'método' in nombre_etapa.lower():
+                        elementos['metodologias'].add(nombre_etapa)
+        
+        # Convertir sets a listas ordenadas y filtrar elementos duplicados similares
+        resultado = {}
+        for categoria, conjunto in elementos.items():
+            lista_filtrada = self._filtrar_elementos_similares(list(conjunto))
+            resultado[categoria] = sorted(lista_filtrada)
+        
+        return resultado
+    
+    def _extraer_texto_completo_actividad(self, actividad_dict: Dict) -> str:
+        """
+        Extrae todo el texto relevante de una actividad para análisis
+        
+        Args:
+            actividad_dict: Diccionario con datos de actividad
+            
+        Returns:
+            String con todo el texto concatenado
+        """
+        textos = []
+        
+        # Campos principales de texto
+        campos_texto = ['titulo', 'objetivo', 'descripcion', 'observaciones']
+        for campo in campos_texto:
+            valor = actividad_dict.get(campo, '')
+            if valor:
+                textos.append(str(valor))
+        
+        # Extraer texto de etapas y tareas
+        etapas = actividad_dict.get('etapas', [])
+        for etapa in etapas:
+            if isinstance(etapa, dict):
+                textos.append(etapa.get('nombre', ''))
+                textos.append(etapa.get('descripcion', ''))
+                
+                tareas = etapa.get('tareas', [])
+                for tarea in tareas:
+                    if isinstance(tarea, dict):
+                        textos.append(tarea.get('nombre', ''))
+                        textos.append(tarea.get('descripcion', ''))
+        
+        return ' '.join(filter(None, textos))
+    
+    def _filtrar_elementos_similares(self, elementos: List[str]) -> List[str]:
+        """
+        Filtra elementos muy similares para evitar duplicación
+        
+        Args:
+            elementos: Lista de elementos a filtrar
+            
+        Returns:
+            Lista filtrada sin duplicados similares
+        """
+        if not elementos:
+            return []
+        
+        elementos_filtrados = []
+        
+        for elemento in elementos:
+            es_similar = False
+            elemento_lower = elemento.lower()
+            
+            # Verificar si es muy similar a alguno ya incluido
+            for incluido in elementos_filtrados:
+                incluido_lower = incluido.lower()
+                
+                # Verificar similitud por substring (uno contiene al otro)
+                if (len(elemento_lower) > 10 and elemento_lower in incluido_lower) or \
+                   (len(incluido_lower) > 10 and incluido_lower in elemento_lower):
+                    es_similar = True
+                    break
+                
+                # Verificar similitud por palabras comunes
+                palabras_elemento = set(elemento_lower.split())
+                palabras_incluido = set(incluido_lower.split())
+                if len(palabras_elemento) > 1 and len(palabras_incluido) > 1:
+                    interseccion = palabras_elemento & palabras_incluido
+                    union = palabras_elemento | palabras_incluido
+                    similitud = len(interseccion) / len(union) if union else 0
+                    if similitud > 0.7:  # 70% de similitud
+                        es_similar = True
+                        break
+            
+            if not es_similar:
+                elementos_filtrados.append(elemento)
+        
+        return elementos_filtrados
+    
+    def analizar_actividad_completa(self, prompt: str, incluir_elementos_reutilizables: bool = True) -> Dict:
+        """
+        Método público para análisis completo de actividad que integra todas las mejoras
+        
+        Args:
+            prompt: Descripción de la actividad solicitada
+            incluir_elementos_reutilizables: Si incluir extracción de elementos reutilizables
+            
+        Returns:
+            Diccionario completo con tipo detectado, actividad seleccionada y elementos
+        """
+        self._log_processing_start(f"Análisis completo para: '{prompt[:50]}...'")
+        
+        # 1. Detectar tipo de actividad
+        tipo_detectado = self._detectar_tipo_actividad(prompt)
+        
+        # 2. Seleccionar y adaptar actividad
+        resultado_actividad = self.seleccionar_y_adaptar_actividad(prompt)
+        
+        # 3. Extraer tareas usando el método híbrido existente
+        actividad = resultado_actividad.get('actividad', {})
+        tareas_extraidas = self.extraer_tareas_hibrido(actividad, prompt)
+        
+        # 4. Compilar resultado completo
+        resultado_completo = {
+            'tipo_detectado': tipo_detectado,
+            'actividad_seleccionada': resultado_actividad,
+            'tareas_extraidas': [
+                {
+                    'id': tarea.id,
+                    'descripcion': tarea.descripcion,
+                    'competencias_requeridas': tarea.competencias_requeridas,
+                    'complejidad': tarea.complejidad,
+                    'tipo': tarea.tipo,
+                    'tiempo_estimado': tarea.tiempo_estimado
+                } for tarea in tareas_extraidas
+            ],
+            'num_tareas': len(tareas_extraidas)
+        }
+        
+        # 5. Añadir elementos reutilizables si se solicita
+        if incluir_elementos_reutilizables and 'elementos_reutilizables' in resultado_actividad:
+            resultado_completo['elementos_reutilizables'] = resultado_actividad['elementos_reutilizables']
+        
+        self._log_processing_end(f"Análisis completo: {tipo_detectado['tipo']}, {len(tareas_extraidas)} tareas")
+        return resultado_completo
+
     def extraer_tareas_hibrido(self, actividad_data: Dict, prompt_usuario: str = "", contexto_hibrido=None) -> List[Tarea]:
         """
        Extrae tareas usando la mejor estrategia disponible. Las tareas son actividades concretas que los estudiantes deben realizar 
@@ -89,11 +384,15 @@ class AgenteAnalizadorTareas(BaseAgent):
         
         # ESTRATEGIA 2: Extraer directamente desde JSON (PRIORIDAD ALTA)
         if self._tiene_estructura_json_valida(actividad_data):
-            self.logger.info("🎯 Estrategia 2: Extracción directa desde JSON")
-            tareas = self._extraer_tareas_desde_json(actividad_data)
+            self.logger.info("🎯 Estrategia 2: Extracción directa desde JSON ADAPTATIVA")
+            # Extraer contexto dinámico del contexto híbrido
+            contexto_dinamico = self._extraer_contexto_dinamico(contexto_hibrido)
+            tareas = self._extraer_tareas_desde_json(actividad_data, contexto_dinamico)
             if tareas:
-                self._log_processing_end(f"✅ Extraídas {len(tareas)} tareas desde JSON")
+                self._log_processing_end(f"✅ Extraídas {len(tareas)} tareas desde JSON adaptativo")
                 return tareas
+        else:
+            self.logger.warning(f"⚠️ Actividad no tiene estructura JSON válida. Claves disponibles: {list(actividad_data.keys()) if isinstance(actividad_data, dict) else type(actividad_data)}")
         
         # ESTRATEGIA 3: Usar plantilla estructurada con LLM
         self.logger.info("🎯 Estrategia 3: Plantilla estructurada con LLM")
@@ -457,37 +756,393 @@ ANÁLISIS:"""
             any(isinstance(etapa, dict) and 'tareas' in etapa for etapa in actividad['etapas'])
         )
     
-    def _extraer_tareas_desde_json(self, actividad: Dict) -> List[Tarea]:
-        """Extrae tareas directamente desde estructura JSON"""
+    def _extraer_tareas_desde_json(self, actividad: Dict, contexto_dinamico: Dict = None) -> List[Tarea]:
+        """Extrae tareas directamente desde estructura JSON adaptándose al contexto dinámico del usuario"""
         tareas = []
         contador = 1
+        
+        # Obtener contexto dinámico de modalidades de trabajo
+        modalidades_por_fase = self._extraer_modalidades_contexto(contexto_dinamico)
+        self.logger.info(f"🎯 Modalidades detectadas por fase: {modalidades_por_fase}")
         
         for etapa in actividad.get('etapas', []):
             if not isinstance(etapa, dict):
                 continue
                 
             nombre_etapa = etapa.get('nombre', f'Etapa {contador}')
+            modalidad_fase = self._determinar_modalidad_para_etapa(nombre_etapa, modalidades_por_fase)
             
             for tarea_data in etapa.get('tareas', []):
                 if not isinstance(tarea_data, dict):
                     continue
                 
+                # MEJORA: Extraer también asignaciones específicas si existen
+                asignaciones_especificas = tarea_data.get('asignaciones_especificas', {})
+                
+                # Verificar si hay asignaciones individuales
+                if 'asignaciones_individuales' in asignaciones_especificas:
+                    # Extraer tareas específicas por estudiante ADAPTADAS al contexto
+                    tareas_especificas = self._extraer_tareas_especificas_por_estudiante(
+                        asignaciones_especificas['asignaciones_individuales'], 
+                        nombre_etapa, 
+                        contador,
+                        modalidad_fase  # NUEVO: Pasar modalidad dinámica
+                    )
+                    tareas.extend(tareas_especificas)
+                    contador += len(tareas_especificas)
+                    
+                elif 'asignacion_puestos' in asignaciones_especificas:
+                    # Extraer tareas específicas por puesto ADAPTADAS al contexto
+                    tareas_puestos = self._extraer_tareas_especificas_por_puesto(
+                        asignaciones_especificas['asignacion_puestos'], 
+                        nombre_etapa, 
+                        contador,
+                        modalidad_fase  # NUEVO: Pasar modalidad dinámica
+                    )
+                    tareas.extend(tareas_puestos)
+                    contador += len(tareas_puestos)
+                    
+                else:
+                    # Tarea general adaptada al contexto
+                    descripcion_completa = f"{tarea_data.get('nombre', '')} {tarea_data.get('descripcion', '')}"
+                    
+                    tarea = Tarea(
+                        id=f"tarea_{contador:02d}",
+                        descripcion=tarea_data.get('descripcion', tarea_data.get('nombre', f'Tarea {contador}')),
+                        competencias_requeridas=self._extraer_habilidades(descripcion_completa),
+                        complejidad=self._extraer_complejidad(descripcion_completa, actividad.get('objetivo', '')),
+                        tipo=self._adaptar_tipo_a_modalidad(modalidad_fase),  # NUEVO: Adaptativo
+                        dependencias=[],  # Se calculan después si es necesario
+                        tiempo_estimado=self._calcular_tiempo_desde_json(tarea_data, actividad)
+                    )
+                    
+                    tareas.append(tarea)
+                    contador += 1
+                    
+                    self.logger.debug(f"📝 Extraída tarea JSON general: {tarea.descripcion[:50]}...")
+        
+        self.logger.info(f"✅ Total tareas extraídas desde JSON: {len(tareas)}")
+        return tareas
+    
+    def _extraer_tareas_especificas_por_estudiante(self, asignaciones_individuales: List[Dict], nombre_etapa: str, contador_base: int, modalidad_fase: str = 'individual') -> List[Tarea]:
+        """Extrae tareas específicas por estudiante desde asignaciones individuales"""
+        tareas = []
+        contador = contador_base
+        
+        for asignacion in asignaciones_individuales:
+            if not isinstance(asignacion, dict):
+                continue
+                
+            alumno = asignacion.get('alumno', f'Estudiante {contador}')
+            comunidades = asignacion.get('comunidades_asignadas', [])
+            adaptaciones = asignacion.get('adaptaciones', [])
+            tiempo = asignacion.get('tiempo_estimado', '20 minutos')
+            
+            # Crear descripción específica para este estudiante
+            if comunidades:
+                descripcion = f"{alumno}: Trabajar con {', '.join(comunidades)}"
+            else:
+                descripcion = f"{alumno}: {asignacion.get('criterio_asignacion', 'Tarea específica')}"
+            
+            # Extraer competencias de las adaptaciones y criterio
+            criterio_completo = f"{asignacion.get('criterio_asignacion', '')} {' '.join(adaptaciones)}"
+            
+            # ADAPTATIVO: Ajustar descripción y tipo según modalidad del usuario
+            descripcion_adaptada, tipo_adaptado = self._adaptar_tarea_a_modalidad(
+                descripcion, alumno, modalidad_fase, asignaciones_individuales, contador
+            )
+            
+            tarea = Tarea(
+                id=f"tarea_{contador:02d}_{alumno.replace(' ', '_').replace('.', '').lower()}",
+                descripcion=descripcion_adaptada,
+                competencias_requeridas=self._extraer_habilidades(criterio_completo),
+                complejidad=self._calcular_complejidad_desde_asignacion(asignacion),
+                tipo=tipo_adaptado,  # DINÁMICO: Basado en contexto del usuario
+                dependencias=[],
+                tiempo_estimado=self._parsear_tiempo_estimado(tiempo)
+            )
+            
+            tareas.append(tarea)
+            contador += 1
+            
+            self.logger.debug(f"📝 Extraída tarea específica: {alumno} -> {descripcion[:50]}...")
+        
+        return tareas
+    
+    def _extraer_tareas_especificas_por_puesto(self, asignacion_puestos: List[Dict], nombre_etapa: str, contador_base: int, modalidad_fase: str = 'colaborativa') -> List[Tarea]:
+        """Extrae tareas específicas por puesto desde asignaciones de puestos"""
+        tareas = []
+        contador = contador_base
+        
+        for puesto_data in asignacion_puestos:
+            if not isinstance(puesto_data, dict):
+                continue
+                
+            puesto = puesto_data.get('puesto', f'Puesto {contador}')
+            pareja = puesto_data.get('pareja', [])
+            tareas_especificas = puesto_data.get('tareas_especificas', [])
+            
+            # Crear una tarea para cada tarea específica del puesto
+            for i, tarea_especifica in enumerate(tareas_especificas):
+                if isinstance(pareja, list) and len(pareja) >= 2:
+                    descripcion = f"Pareja {pareja[0]}-{pareja[1]} en {puesto}: {tarea_especifica}"
+                else:
+                    descripcion = f"Equipo {puesto}: {tarea_especifica}"
+                
+                # ADAPTATIVO: Ajustar descripción según modalidad del usuario
+                descripcion_adaptada = self._adaptar_descripcion_puesto_a_modalidad(
+                    descripcion, puesto, pareja, modalidad_fase
+                )
+                
                 tarea = Tarea(
-                    id=f"tarea_{contador:02d}",
-                    descripcion=tarea_data.get('descripcion', tarea_data.get('nombre', f'Tarea {contador}')),
-                    competencias_requeridas=self._inferir_competencias_desde_json(tarea_data, actividad),
-                    complejidad=self._inferir_complejidad_desde_json(tarea_data),
-                    tipo=self._normalizar_tipo_desde_json(tarea_data.get('formato_asignacion', 'colaborativa')),
-                    dependencias=[],  # Se calculan después si es necesario
-                    tiempo_estimado=self._calcular_tiempo_desde_json(tarea_data, actividad)
+                    id=f"tarea_{contador:02d}_{puesto.replace(' ', '_').lower()}_{i+1}",
+                    descripcion=descripcion_adaptada,
+                    competencias_requeridas=self._extraer_habilidades(f"{puesto} {tarea_especifica}"),
+                    complejidad=self._calcular_complejidad_desde_puesto(puesto_data),
+                    tipo=self._adaptar_tipo_a_modalidad(modalidad_fase),  # DINÁMICO
+                    dependencias=[],
+                    tiempo_estimado=15  # Tiempo estimado por tarea específica
                 )
                 
                 tareas.append(tarea)
                 contador += 1
                 
-                self.logger.debug(f"📝 Extraída tarea JSON: {tarea.descripcion[:50]}...")
+                self.logger.debug(f"📝 Extraída tarea de puesto: {puesto} -> {tarea_especifica[:50]}...")
         
         return tareas
+    
+    def _calcular_complejidad_desde_asignacion(self, asignacion: Dict) -> int:
+        """Calcula complejidad basada en la asignación individual"""
+        # Buscar pistas de complejidad en el criterio y adaptaciones
+        criterio = asignacion.get('criterio_asignacion', '').lower()
+        adaptaciones = ' '.join(asignacion.get('adaptaciones', [])).lower()
+        justificacion = asignacion.get('justificacion', '').lower()
+        
+        texto_completo = f"{criterio} {adaptaciones} {justificacion}"
+        
+        if any(term in texto_completo for term in ['altas capacidades', 'mayor complejidad', 'superado']):
+            return 4
+        elif any(term in texto_completo for term in ['tea', 'tdah', 'apoyo', 'estructura']):
+            return 2
+        elif any(term in texto_completo for term in ['medio', 'sencillo', 'definido']):
+            return 3
+        else:
+            return 3  # Complejidad por defecto
+    
+    def _calcular_complejidad_desde_puesto(self, puesto_data: Dict) -> int:
+        """Calcula complejidad basada en el puesto de trabajo"""
+        puesto = puesto_data.get('puesto', '').lower()
+        tareas_especificas = puesto_data.get('tareas_especificas', [])
+        
+        # Determinar complejidad por tipo de puesto
+        if 'geometría' in puesto or 'matemática' in puesto:
+            return 4
+        elif 'organizar' in ' '.join(tareas_especificas).lower():
+            return 3
+        elif 'decorar' in ' '.join(tareas_especificas).lower():
+            return 2
+        else:
+            return 3
+    
+    def _parsear_tiempo_estimado(self, tiempo_str: str) -> int:
+        """Parsea tiempo estimado desde string a minutos"""
+        if not tiempo_str:
+            return 20
+            
+        import re
+        # Buscar números en el string
+        numeros = re.findall(r'\d+', str(tiempo_str))
+        if numeros:
+            return int(numeros[0])
+        else:
+            return 20  # Por defecto
+    
+    # =================== MÉTODOS ADAPTATIVOS AL CONTEXTO DINÁMICO ===================
+    
+    def _extraer_contexto_dinamico(self, contexto_hibrido) -> Dict:
+        """Extrae contexto dinámico del contexto híbrido"""
+        if not contexto_hibrido:
+            return {}
+        
+        # Buscar en metadatos del contexto híbrido
+        metadatos = contexto_hibrido.metadatos if hasattr(contexto_hibrido, 'metadatos') else {}
+        
+        # Buscar estructura_fases en diferentes ubicaciones
+        contexto = {}
+        
+        # Opción 1: Directamente en metadatos
+        if 'estructura_fases' in metadatos:
+            contexto['estructura_fases'] = metadatos['estructura_fases']
+        
+        # Opción 2: En input_estructurado
+        if 'input_estructurado' in metadatos:
+            input_data = metadatos['input_estructurado']
+            if isinstance(input_data, dict) and 'estructura_fases' in input_data:
+                contexto['estructura_fases'] = input_data['estructura_fases']
+        
+        # Opción 3: Buscar en todo el contexto híbrido si tiene to_dict
+        if hasattr(contexto_hibrido, 'to_dict'):
+            datos_completos = contexto_hibrido.to_dict()
+            for key, value in datos_completos.items():
+                if isinstance(value, dict) and 'estructura_fases' in value:
+                    contexto['estructura_fases'] = value['estructura_fases']
+                    break
+        
+        self.logger.debug(f"🔍 Contexto dinámico extraído: {list(contexto.keys())}")
+        return contexto
+    
+    def _extraer_modalidades_contexto(self, contexto_dinamico: Dict) -> Dict[str, str]:
+        """Extrae modalidades de trabajo por fase desde el contexto dinámico"""
+        modalidades = {}
+        
+        if not contexto_dinamico:
+            return {'default': 'colaborativa'}
+        
+        # Buscar en estructura_fases.fases_detalladas
+        estructura = contexto_dinamico.get('estructura_fases', {})
+        fases_detalladas = estructura.get('fases_detalladas', [])
+        
+        for fase in fases_detalladas:
+            nombre = fase.get('nombre', '').lower()
+            modalidad = fase.get('modalidad', 'colaborativa')
+            modalidades[nombre] = modalidad
+            
+        # Si no hay fases detalladas, usar modalidad general
+        if not modalidades:
+            modalidades_generales = contexto_dinamico.get('modalidades', [])
+            if modalidades_generales:
+                modalidades['default'] = modalidades_generales[0] if modalidades_generales else 'colaborativa'
+            else:
+                modalidades['default'] = 'colaborativa'
+        
+        return modalidades
+    
+    def _determinar_modalidad_para_etapa(self, nombre_etapa: str, modalidades_por_fase: Dict[str, str]) -> str:
+        """Determina la modalidad de trabajo para una etapa específica"""
+        nombre_lower = nombre_etapa.lower()
+        
+        # Buscar coincidencia exacta o parcial
+        for fase, modalidad in modalidades_por_fase.items():
+            if fase in nombre_lower or any(word in nombre_lower for word in fase.split()):
+                return modalidad
+        
+        # Mapeo por palabras clave de la etapa
+        if 'preparación' in nombre_lower or 'introducción' in nombre_lower:
+            return modalidades_por_fase.get('preparacion', modalidades_por_fase.get('default', 'colaborativa'))
+        elif 'ejecución' in nombre_lower or 'principal' in nombre_lower:
+            return modalidades_por_fase.get('ejecucion', modalidades_por_fase.get('default', 'colaborativa'))
+        elif 'reflexión' in nombre_lower or 'evaluación' in nombre_lower:
+            return modalidades_por_fase.get('reflexion', modalidades_por_fase.get('default', 'colaborativa'))
+        
+        # Fallback a modalidad por defecto
+        return modalidades_por_fase.get('default', 'colaborativa')
+    
+    def _adaptar_tipo_a_modalidad(self, modalidad: str) -> str:
+        """Convierte modalidad del usuario a tipo de tarea"""
+        modalidad_map = {
+            'individual': 'individual',
+            'parejas': 'colaborativa',
+            'grupos_pequeños': 'colaborativa', 
+            'grupos_grandes': 'colaborativa',
+            'toda_la_clase': 'colaborativa',
+            'colaborativa': 'colaborativa'
+        }
+        return modalidad_map.get(modalidad, 'colaborativa')
+    
+    def _adaptar_tarea_a_modalidad(self, descripcion_base: str, alumno: str, modalidad_fase: str, 
+                                 todas_asignaciones: List[Dict], contador: int) -> tuple[str, str]:
+        """Adapta una tarea individual al contexto de modalidad del usuario"""
+        
+        if modalidad_fase == 'parejas':
+            # Buscar pareja para este alumno
+            pareja = self._encontrar_pareja_para_alumno(alumno, todas_asignaciones, contador)
+            if pareja:
+                descripcion_adaptada = f"Pareja {alumno}-{pareja}: {descripcion_base.replace(f'{alumno}: ', '')}"
+                return descripcion_adaptada, 'colaborativa'
+            else:
+                # Si no hay pareja, mantener individual pero indicar que debería tener pareja
+                descripcion_adaptada = f"{alumno} (buscar pareja): {descripcion_base.replace(f'{alumno}: ', '')}"
+                return descripcion_adaptada, 'individual'
+                
+        elif modalidad_fase == 'grupos_pequeños':
+            # Crear grupo de 3-4 estudiantes
+            grupo = self._crear_grupo_pequeño_para_alumno(alumno, todas_asignaciones, contador)
+            descripcion_adaptada = f"Grupo {'-'.join(grupo)}: {descripcion_base.replace(f'{alumno}: ', '')}"
+            return descripcion_adaptada, 'colaborativa'
+            
+        elif modalidad_fase == 'individual':
+            # Mantener como está
+            return descripcion_base, 'individual'
+            
+        else:  # toda_la_clase, grupos_grandes, etc.
+            descripcion_adaptada = f"Clase completa - {alumno} responsable de: {descripcion_base.replace(f'{alumno}: ', '')}"
+            return descripcion_adaptada, 'colaborativa'
+    
+    def _adaptar_descripcion_puesto_a_modalidad(self, descripcion_base: str, puesto: str, 
+                                              pareja: List, modalidad_fase: str) -> str:
+        """Adapta descripción de puesto a la modalidad especificada por el usuario"""
+        
+        # Extraer la tarea específica
+        if ': ' in descripcion_base:
+            tarea_especifica = descripcion_base.split(': ', 1)[1]
+        else:
+            tarea_especifica = descripcion_base
+        
+        if modalidad_fase == 'individual':
+            # Convertir a asignación individual
+            if isinstance(pareja, list) and len(pareja) > 0:
+                return f"{pareja[0]} (individual) en {puesto}: {tarea_especifica}"
+            else:
+                return f"Estudiante individual en {puesto}: {tarea_especifica}"
+                
+        elif modalidad_fase == 'parejas':
+            # Mantener como pareja
+            if isinstance(pareja, list) and len(pareja) >= 2:
+                return f"Pareja {pareja[0]}-{pareja[1]} en {puesto}: {tarea_especifica}"
+            else:
+                return f"Pareja en {puesto}: {tarea_especifica}"
+                
+        elif modalidad_fase in ['grupos_pequeños', 'grupos_grandes']:
+            # Expandir a grupo más grande
+            return f"Grupo en {puesto}: {tarea_especifica}"
+            
+        else:  # toda_la_clase
+            return f"Clase completa - puesto {puesto}: {tarea_especifica}"
+    
+    def _encontrar_pareja_para_alumno(self, alumno: str, asignaciones: List[Dict], contador: int) -> str:
+        """Encuentra pareja para un alumno basándose en las asignaciones disponibles"""
+        # Buscar el siguiente alumno en la lista para formar pareja
+        alumno_index = None
+        for i, asignacion in enumerate(asignaciones):
+            if asignacion.get('alumno') == alumno:
+                alumno_index = i
+                break
+        
+        if alumno_index is not None and alumno_index + 1 < len(asignaciones):
+            return asignaciones[alumno_index + 1].get('alumno', f'Compañero_{contador+1}')
+        
+        return None
+    
+    def _crear_grupo_pequeño_para_alumno(self, alumno: str, asignaciones: List[Dict], contador: int) -> List[str]:
+        """Crea un grupo pequeño (3-4 estudiantes) para un alumno"""
+        grupo = [alumno]
+        
+        # Encontrar índice del alumno actual
+        alumno_index = None
+        for i, asignacion in enumerate(asignaciones):
+            if asignacion.get('alumno') == alumno:
+                alumno_index = i
+                break
+        
+        if alumno_index is not None:
+            # Añadir 2-3 compañeros más
+            for i in range(1, 4):  # Intentar añadir hasta 3 más
+                if alumno_index + i < len(asignaciones):
+                    siguiente_alumno = asignaciones[alumno_index + i].get('alumno')
+                    if siguiente_alumno:
+                        grupo.append(siguiente_alumno)
+        
+        return grupo
     
     def _generar_tareas_con_plantilla(self, actividad: Dict, prompt_usuario: str) -> List[Tarea]:
         """Genera tareas usando plantilla JSON estructurada"""
@@ -612,8 +1267,9 @@ Solo tareas concretas y realizables. Sin explicaciones adicionales."""
         elif isinstance(duracion, str) and any(num in duracion for num in ['2', '3']):
             return 30  # División entre múltiples sesiones
         
-        # Por defecto basado en complejidad
-        complejidad = self._inferir_complejidad_desde_json(tarea_data)
+        # Por defecto basado en complejidad usando método existente
+        descripcion_completa = f"{tarea_data.get('nombre', '')} {tarea_data.get('descripcion', '')}"
+        complejidad = self._extraer_complejidad(descripcion_completa, actividad.get('objetivo', ''))
         return min(60, max(15, complejidad * 12))  # 15-60 minutos
     
     def _parse_json_tareas(self, respuesta: str) -> List[Tarea]:
@@ -685,7 +1341,11 @@ Solo tareas concretas y realizables. Sin explicaciones adicionales."""
         self._log_processing_start(f"Seleccionando actividad para: '{prompt[:50]}...'")
         
         try:
-            # 1. Buscar actividades similares usando embeddings
+            # 1. NUEVO: Detectar tipo de actividad solicitada
+            tipo_detectado = self._detectar_tipo_actividad(prompt)
+            self.logger.info(f"🔍 Tipo detectado: {tipo_detectado['tipo']} (confianza: {tipo_detectado['confianza']:.2f})")
+            
+            # 2. Buscar actividades similares usando embeddings
             actividades_candidatas = self.embeddings_manager.encontrar_actividad_similar(prompt, top_k=3)
             
             if not actividades_candidatas:
@@ -718,6 +1378,16 @@ Solo tareas concretas y realizables. Sin explicaciones adicionales."""
             
             resultado['actividad_fuente'] = mejor_actividad_id
             
+            # 4. NUEVO: Extraer elementos reutilizables de actividades candidatas
+            actividades_para_extraccion = [data for _, _, data in actividades_candidatas]
+            elementos_reutilizables = self._extraer_elementos_reutilizables(actividades_para_extraccion)
+            
+            # 5. Enriquecer resultado con información detectada
+            resultado['tipo_detectado'] = tipo_detectado
+            resultado['elementos_reutilizables'] = elementos_reutilizables
+            resultado['actividades_analizadas'] = len(actividades_candidatas)
+            
+            self.logger.info(f"🔧 Elementos extraídos: {sum(len(v) for v in elementos_reutilizables.values())} total")
             self._log_processing_end(f"Actividad seleccionada: {resultado['estrategia']}")
             return resultado
             
@@ -1050,3 +1720,110 @@ Responde SOLO con la actividad adaptada, NO explicaciones adicionales.
                 tiempo_estimado=20
             )
         ]
+    
+    # =================== MÉTODOS DE DEBATE ENTRE AGENTES ===================
+    
+    def generar_propuesta_debate(self, tema: str, contexto: Dict) -> Dict:
+        """
+        Genera propuesta inicial para debates entre agentes
+        
+        Args:
+            tema: Tema del debate (tipo_actividad, combinacion_elementos, etc.)
+            contexto: Contexto de la decisión crítica
+            
+        Returns:
+            Propuesta estructurada para el debate
+        """
+        self.logger.info(f"🎯 Analizador generando propuesta para debate: {tema}")
+        
+        if tema == "tipo_actividad":
+            return self._propuesta_tipo_actividad(contexto)
+        elif tema == "combinacion_elementos":
+            return self._propuesta_combinacion_elementos(contexto)
+        else:
+            return self._propuesta_generica(contexto)
+    
+    def _propuesta_tipo_actividad(self, contexto: Dict) -> Dict:
+        """Propuesta específica para determinar tipo de actividad"""
+        prompt_usuario = contexto.get('prompt_usuario', '')
+        
+        # Usar detector existente
+        tipo_detectado = self._detectar_tipo_actividad(prompt_usuario)
+        
+        # Buscar actividades similares
+        actividades_candidatas = self.embeddings_manager.encontrar_actividad_similar(prompt_usuario, top_k=3)
+        
+        # Convertir formato de actividades candidatas (Tuple[str, float, dict] -> dict)
+        candidatas_formateadas = []
+        for actividad_id, similitud, actividad_data in actividades_candidatas:
+            candidatas_formateadas.append({
+                'id': actividad_id,
+                'titulo': actividad_data.get('titulo', 'Sin título'),
+                'similitud': similitud
+            })
+        
+        propuesta = {
+            'tipo_propuesto': tipo_detectado['tipo'],
+            'confianza': tipo_detectado['confianza'],
+            'justificacion': f"Detectado '{tipo_detectado['tipo']}' por palabras clave: {tipo_detectado['palabras_clave']}",
+            'actividades_candidatas': candidatas_formateadas,
+            'estructura_sugerida': self._sugerir_estructura_por_tipo(tipo_detectado['tipo'])
+        }
+        
+        return propuesta
+    
+    def _propuesta_combinacion_elementos(self, contexto: Dict) -> Dict:
+        """Propuesta para combinar elementos de múltiples actividades"""
+        actividades_seleccionadas = contexto.get('actividades_seleccionadas', [])
+        prompt_usuario = contexto.get('prompt_usuario', '')
+        
+        # Extraer elementos reutilizables de cada actividad
+        elementos_combinables = self._extraer_elementos_reutilizables(actividades_seleccionadas)
+        
+        propuesta = {
+            'elementos_propuestos': elementos_combinables,
+            'estrategia_combinacion': 'hibridacion_inteligente',
+            'justificacion': f"Combinando {len(actividades_seleccionadas)} actividades para personalizar según prompt",
+            'estructura_hibrida': self._diseñar_estructura_hibrida(elementos_combinables, prompt_usuario)
+        }
+        
+        return propuesta
+    
+    def _propuesta_generica(self, contexto: Dict) -> Dict:
+        """Propuesta genérica para otros tipos de debate"""
+        return {
+            'propuesta': 'análisis_requerido',
+            'justificacion': 'Requiere análisis específico del contexto proporcionado',
+            'recomendacion': 'Solicitar información adicional para propuesta específica'
+        }
+    
+    def _sugerir_estructura_por_tipo(self, tipo: str) -> Dict:
+        """Sugiere estructura básica según el tipo de actividad detectado"""
+        estructuras = {
+            'gymnkana': {
+                'fases': ['preparacion', 'rotacion_puestos', 'evaluacion'],
+                'organizacion': 'parejas_rotativas',
+                'duracion_sugerida': '60-90 minutos'
+            },
+            'proyecto': {
+                'fases': ['planificacion', 'desarrollo', 'presentacion'],
+                'organizacion': 'grupos_pequenos',
+                'duracion_sugerida': '2-3 sesiones'
+            },
+            'taller': {
+                'fases': ['introduccion', 'experimentacion', 'reflexion'],
+                'organizacion': 'individual_con_apoyo',
+                'duracion_sugerida': '45-60 minutos'
+            }
+        }
+        
+        return estructuras.get(tipo, estructuras['taller'])  # taller como fallback
+    
+    def _diseñar_estructura_hibrida(self, elementos: Dict, prompt: str) -> Dict:
+        """Diseña estructura híbrida combinando elementos de múltiples actividades"""
+        return {
+            'tipo_hibrido': 'actividad_personalizada',
+            'elementos_clave': list(elementos.keys()),
+            'adaptacion_prompt': f"Personalizada para: {prompt[:50]}...",
+            'complejidad_resultante': 'media-alta'
+        }

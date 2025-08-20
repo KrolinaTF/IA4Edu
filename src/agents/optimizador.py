@@ -3,6 +3,7 @@ Agente Optimizador de Asignaciones (Assignment Optimizer Agent).
 """
 
 import logging
+import re
 from typing import Dict, List, Any, Optional
 from dataclasses import asdict
 
@@ -212,7 +213,24 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
             
             # Caso 2: Diccionario con estructura de actividad (del analizador)
             elif isinstance(tareas_input, dict):
-                if 'actividad' in tareas_input:
+                if 'tareas_extraidas' in tareas_input:
+                    # Resultado del debate híbrido - usar tareas extraídas directamente
+                    tareas_extraidas = tareas_input['tareas_extraidas']
+                    if isinstance(tareas_extraidas, list):
+                        for i, tarea in enumerate(tareas_extraidas):
+                            if isinstance(tarea, dict):
+                                tareas_normalizadas.append(tarea)
+                            elif hasattr(tarea, '__dict__'):
+                                tareas_normalizadas.append(tarea.__dict__)
+                            else:
+                                tareas_normalizadas.append({
+                                    'id': f'tarea_{i+1:02d}',
+                                    'descripcion': str(tarea),
+                                    'complejidad': 3,
+                                    'tipo': 'colaborativa',
+                                    'tiempo_estimado': 30
+                                })
+                elif 'actividad' in tareas_input:
                     # Extraer tareas de la actividad JSON
                     actividad = tareas_input['actividad']
                     tareas_normalizadas = self._extraer_tareas_de_actividad(actividad)
@@ -1082,3 +1100,261 @@ class AgenteOptimizadorAsignaciones(BaseAgent):
         if json_data and 'asignaciones' in json_data:
             return json_data['asignaciones']
         return {}
+    
+    # =================== MÉTODOS DE DEBATE ENTRE AGENTES ===================
+    
+    def evaluar_viabilidad_debate(self, propuesta: Dict, evaluacion: Dict, contexto: Dict) -> Dict:
+        """
+        Evalúa viabilidad práctica de una propuesta desde perspectiva de recursos y optimización
+        
+        Args:
+            propuesta: Propuesta inicial del analizador
+            evaluacion: Evaluación pedagógica del perfilador
+            contexto: Contexto adicional para la evaluación
+            
+        Returns:
+            Evaluación de viabilidad práctica
+        """
+        self.logger.info(f"⚙️ Optimizador evaluando viabilidad práctica")
+        
+        # Evaluar recursos necesarios
+        recursos = self._evaluar_recursos_necesarios(propuesta)
+        
+        # Evaluar complejidad logística
+        logistica = self._evaluar_complejidad_logistica(propuesta)
+        
+        # Evaluar tiempo requerido vs disponible
+        tiempo = self._evaluar_viabilidad_tiempo(propuesta, contexto)
+        
+        # Evaluar escalabilidad
+        escalabilidad = self._evaluar_escalabilidad(propuesta)
+        
+        # Evaluar conflictos con evaluación pedagógica
+        conflictos = self._detectar_conflictos_evaluacion(propuesta, evaluacion)
+        
+        viabilidad = {
+            'recursos_necesarios': recursos,
+            'complejidad_logistica': logistica,
+            'viabilidad_tiempo': tiempo,
+            'escalabilidad': escalabilidad,
+            'conflictos_detectados': conflictos,
+            'modificaciones_sugeridas': self._generar_modificaciones_viabilidad(recursos, logistica, tiempo),
+            'aprobacion_practica': self._calcular_aprobacion_practica(recursos, logistica, tiempo, escalabilidad)
+        }
+        
+        return viabilidad
+    
+    def _evaluar_recursos_necesarios(self, propuesta: Dict) -> Dict:
+        """Evalúa recursos materiales y humanos necesarios"""
+        tipo_actividad = propuesta.get('tipo_propuesto', '')
+        estructura = propuesta.get('estructura_sugerida', {})
+        
+        recursos = {
+            'materiales': [],
+            'espacios': [],
+            'personal_adicional': False,
+            'complejidad_preparacion': 'media',
+            'costo_estimado': 'bajo'
+        }
+        
+        # Evaluar según tipo de actividad
+        if tipo_actividad == 'gymnkana':
+            recursos['materiales'] = ['múltiples puestos', 'materiales variados', 'señalización']
+            recursos['espacios'] = ['aula amplia o múltiples espacios']
+            recursos['complejidad_preparacion'] = 'alta'
+            recursos['costo_estimado'] = 'medio'
+        
+        elif tipo_actividad == 'taller':
+            recursos['materiales'] = ['materiales específicos', 'herramientas']
+            recursos['espacios'] = ['aula con mesas de trabajo']
+            recursos['complejidad_preparacion'] = 'media'
+            recursos['costo_estimado'] = 'medio'
+        
+        elif tipo_actividad == 'proyecto':
+            recursos['materiales'] = ['materiales construcción', 'herramientas básicas']
+            recursos['espacios'] = ['espacio trabajo colaborativo']
+            recursos['complejidad_preparacion'] = 'baja'
+            recursos['costo_estimado'] = 'bajo'
+        
+        # Evaluar si necesita personal adicional
+        organizacion = estructura.get('organizacion', '')
+        if 'rotativa' in organizacion or 'multiple' in organizacion:
+            recursos['personal_adicional'] = True
+        
+        return recursos
+    
+    def _evaluar_complejidad_logistica(self, propuesta: Dict) -> Dict:
+        """Evalúa complejidad de coordinación y logística"""
+        estructura = propuesta.get('estructura_sugerida', {})
+        organizacion = estructura.get('organizacion', 'colaborativa')
+        
+        logistica = {
+            'coordinacion_requerida': 'media',
+            'preparacion_previa': 'estándar',
+            'flexibilidad_horaria': True,
+            'adaptabilidad_espacios': True,
+            'riesgos_logisticos': []
+        }
+        
+        # Evaluar según organización
+        if organizacion == 'parejas_rotativas':
+            logistica['coordinacion_requerida'] = 'alta'
+            logistica['preparacion_previa'] = 'compleja'
+            logistica['riesgos_logisticos'].append('Sincronización de rotaciones')
+        
+        if 'grupos_pequenos' in organizacion:
+            logistica['coordinacion_requerida'] = 'media'
+            logistica['riesgos_logisticos'].append('Gestión de múltiples grupos simultáneos')
+        
+        # Evaluar duración
+        duracion = estructura.get('duracion_sugerida', '45-60 minutos')
+        if '90' in duracion or 'sesiones' in duracion:
+            logistica['flexibilidad_horaria'] = False
+            logistica['riesgos_logisticos'].append('Requiere bloques largos de tiempo')
+        
+        return logistica
+    
+    def _evaluar_viabilidad_tiempo(self, propuesta: Dict, contexto: Dict) -> Dict:
+        """Evalúa si el tiempo propuesto es viable"""
+        estructura = propuesta.get('estructura_sugerida', {})
+        duracion_propuesta = estructura.get('duracion_sugerida', '45-60 minutos')
+        
+        # Obtener tiempo disponible del contexto
+        tiempo_disponible = contexto.get('tiempo_disponible', '45 minutos')
+        
+        tiempo = {
+            'duracion_propuesta': duracion_propuesta,
+            'tiempo_disponible': tiempo_disponible,
+            'compatible': True,
+            'ajustes_necesarios': [],
+            'eficiencia_temporal': 'alta'
+        }
+        
+        # Evaluar compatibilidad
+        if 'sesiones' in duracion_propuesta and 'sesión' in tiempo_disponible:
+            tiempo['compatible'] = False
+            tiempo['ajustes_necesarios'].append('Comprimir a una sesión')
+            tiempo['eficiencia_temporal'] = 'baja'
+        
+        if '90' in duracion_propuesta and '45' in tiempo_disponible:
+            tiempo['compatible'] = False
+            tiempo['ajustes_necesarios'].append('Reducir duración a 45 minutos')
+            tiempo['eficiencia_temporal'] = 'media'
+        
+        return tiempo
+    
+    def _evaluar_escalabilidad(self, propuesta: Dict) -> Dict:
+        """Evalúa si la propuesta se puede adaptar a diferentes contextos"""
+        escalabilidad = {
+            'adaptable_tamaño_grupo': True,
+            'reutilizable': True,
+            'modificable': True,
+            'transferible': True,
+            'limitaciones': []
+        }
+        
+        tipo_actividad = propuesta.get('tipo_propuesto', '')
+        estructura = propuesta.get('estructura_sugerida', {})
+        
+        # Evaluar limitaciones específicas
+        if tipo_actividad == 'gymnkana':
+            escalabilidad['adaptable_tamaño_grupo'] = False
+            escalabilidad['limitaciones'].append('Requiere número específico de estudiantes')
+        
+        organizacion = estructura.get('organizacion', '')
+        if 'parejas' in organizacion:
+            escalabilidad['adaptable_tamaño_grupo'] = False
+            escalabilidad['limitaciones'].append('Optimizada para números pares')
+        
+        return escalabilidad
+    
+    def _detectar_conflictos_evaluacion(self, propuesta: Dict, evaluacion: Dict) -> List[str]:
+        """Detecta conflictos entre propuesta y evaluación pedagógica"""
+        conflictos = []
+        
+        if not evaluacion:
+            return conflictos
+        
+        # Revisar si hay rechazo pedagógico
+        aprobacion = evaluacion.get('aprobacion_pedagogica', {})
+        if aprobacion.get('rechazo', False):
+            conflictos.append(f"⚠️ Rechazo pedagógico: {aprobacion.get('mensaje', 'Sin detalles')}")
+        
+        # Revisar conflictos detectados por el perfilador
+        conflictos_pedagogicos = evaluacion.get('conflictos_detectados', [])
+        if conflictos_pedagogicos:
+            conflictos.extend([f"📚 {conf}" for conf in conflictos_pedagogicos])
+        
+        # Revisar si las adaptaciones requeridas son complejas
+        adaptaciones = evaluacion.get('adaptaciones_requeridas', {})
+        total_adaptaciones = sum(len(adapt) for adapt in adaptaciones.values())
+        if total_adaptaciones > 6:
+            conflictos.append("🔧 Número elevado de adaptaciones requeridas")
+        
+        return conflictos
+    
+    def _generar_modificaciones_viabilidad(self, recursos: Dict, logistica: Dict, tiempo: Dict) -> List[str]:
+        """Genera modificaciones para mejorar viabilidad"""
+        modificaciones = []
+        
+        # Modificaciones por recursos
+        if recursos.get('complejidad_preparacion') == 'alta':
+            modificaciones.append("📦 Simplificar preparación de materiales")
+        
+        if recursos.get('costo_estimado') == 'alto':
+            modificaciones.append("💰 Usar materiales más económicos o reutilizables")
+        
+        # Modificaciones por logística
+        if logistica.get('coordinacion_requerida') == 'alta':
+            modificaciones.append("👥 Reducir complejidad de coordinación")
+        
+        if not logistica.get('flexibilidad_horaria'):
+            modificaciones.append("⏰ Ajustar a bloques de tiempo estándar")
+        
+        # Modificaciones por tiempo
+        if not tiempo.get('compatible'):
+            modificaciones.extend([f"🕒 {ajuste}" for ajuste in tiempo.get('ajustes_necesarios', [])])
+        
+        return modificaciones
+    
+    def _calcular_aprobacion_practica(self, recursos: Dict, logistica: Dict, tiempo: Dict, escalabilidad: Dict) -> Dict:
+        """Calcula aprobación práctica general"""
+        
+        # Factores de puntuación
+        factor_recursos = 1.0
+        if recursos.get('complejidad_preparacion') == 'alta':
+            factor_recursos -= 0.2
+        if recursos.get('costo_estimado') == 'alto':
+            factor_recursos -= 0.2
+        
+        factor_logistica = 1.0
+        if logistica.get('coordinacion_requerida') == 'alta':
+            factor_logistica -= 0.15
+        if not logistica.get('flexibilidad_horaria'):
+            factor_logistica -= 0.15
+        
+        factor_tiempo = 1.0 if tiempo.get('compatible') else 0.6
+        
+        factor_escalabilidad = 1.0
+        if escalabilidad.get('limitaciones'):
+            factor_escalabilidad -= 0.1 * len(escalabilidad['limitaciones'])
+        
+        puntuacion_final = (factor_recursos + factor_logistica + factor_tiempo + factor_escalabilidad) / 4
+        puntuacion_final = max(0.0, min(1.0, puntuacion_final))
+        
+        if puntuacion_final >= 0.8:
+            estado = 'VIABLE'
+            mensaje = 'Propuesta viable con recursos estándar'
+        elif puntuacion_final >= 0.6:
+            estado = 'VIABLE_CON_MODIFICACIONES'
+            mensaje = 'Propuesta viable con adaptaciones menores'
+        else:
+            estado = 'REQUIERE_SIMPLIFICACION'
+            mensaje = 'Propuesta necesita simplificación significativa'
+        
+        return {
+            'estado': estado,
+            'puntuacion': puntuacion_final,
+            'mensaje': mensaje,
+            'rechazo': estado == 'REQUIERE_SIMPLIFICACION'
+        }

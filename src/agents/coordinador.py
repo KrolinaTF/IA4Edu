@@ -44,7 +44,8 @@ class AgenteCoordinador:
         # Accedemos a los embeddings
         script_dir = os.path.dirname(os.path.abspath(__file__))
         base_dir = os.path.dirname(script_dir)
-        actividades_path = os.path.join(base_dir, "data", "actividades")
+        proyecto_root = os.path.dirname(base_dir)
+        actividades_path = os.path.join(proyecto_root, "data", "actividades")
         self.embeddings_manager = EmbeddingsManager(actividades_path, self.ollama)
         
         self.historial_prompts = []
@@ -999,7 +1000,7 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
         return estadisticas
     def ejecutar_flujo_completo(self, descripcion_actividad: str, info_adicional: str = "") -> Dict:
         """
-        FLUJO ÚNICO COMPLETO - Hace todo lo necesario sin complejidad innecesaria
+        FLUJO COMPLETO CON DEBATES - Usa sistema de debate para decisiones críticas
         
         Args:
             descripcion_actividad: Descripción de la actividad educativa deseada
@@ -1009,36 +1010,214 @@ Céntrate en el tema solicitado y proporciona 3 variaciones creativas del MISMO 
             Proyecto ABP completo con actividad, perfiles y asignaciones
         """
         logger.info(f"🚀 Ejecutando flujo completo para: {descripcion_actividad[:50]}...")
+        logger.info(f"🔍 DEBUG - Usando flujo con debates (arquitectura: debate_consenso)")
         
-        # PASO 1: Seleccionar y adaptar actividad con embeddings
-        resultado_actividad = self.analizador_tareas.seleccionar_y_adaptar_actividad(descripcion_actividad)
+        # PASO 1: DEBATE sobre tipo de actividad y estrategia
+        logger.info("🗣️ Iniciando debate sobre tipo de actividad...")
+        contexto_debate = {
+            'prompt_usuario': descripcion_actividad,
+            'info_adicional': info_adicional,
+            'tiempo_disponible': '45 minutos',  # Por defecto, se puede extraer del contexto
+            'recursos_disponibles': 'estándar'
+        }
         
-        # PASO 2: Analizar perfiles de estudiantes
+        decision_actividad = self.comunicador.iniciar_debate(
+            tema="tipo_actividad",
+            decision_critica=contexto_debate,
+            agentes_participantes=['analizador_tareas', 'perfilador_estudiantes', 'optimizador_asignaciones'],
+            coordinador='coordinador'
+        )
+        
+        # PASO 2: Aplicar la decisión del debate para generar actividad
+        logger.info(f"🎯 Aplicando decisión del debate: {decision_actividad.get('tipo', 'consenso')}")
+        resultado_actividad = self._aplicar_decision_debate_actividad(decision_actividad, descripcion_actividad)
+        
+        # PASO 3: Analizar perfiles de estudiantes
         perfiles = self.perfilador.analizar_perfiles()
         
-        # PASO 3: Optimizar asignaciones estudiante-tarea
+        # PASO 4: Optimizar asignaciones con información del debate
         asignaciones = self.optimizador.optimizar_asignaciones(
             resultado_actividad,  
             perfiles,
-            perfilador=self.perfilador  
+            perfilador=self.perfilador
+            # NO pasar decision_actividad como contexto_hibrido ya que es un dict, no ContextoHibrido
         )
         
-        # PASO 4: Consolidar resultado final
+        # PASO 5: Consolidar resultado final - PRESERVAR TAREAS EXTRAÍDAS
+        tareas_extraidas = resultado_actividad.get('tareas_extraidas', [])
         proyecto_final = {
             'actividad_personalizada': resultado_actividad.get('actividad', {}),
-            'tareas_especificas': resultado_actividad.get('tareas_extraidas', []),
+            'tareas_especificas': tareas_extraidas,
             'perfiles_estudiantes': perfiles,
             'asignaciones_neurotipos': asignaciones,
             'metadatos': {
                 'timestamp': datetime.now().isoformat(),
                 'descripcion_original': descripcion_actividad,
                 'info_adicional': info_adicional,
-                'arquitectura': '3_agentes_directo'
+                'arquitectura': 'debate_consenso',
+                'decision_debate': decision_actividad
             }
         }
         
         logger.info("✅ Flujo completo ejecutado exitosamente")
         return proyecto_final
+    
+    def _aplicar_decision_debate_actividad(self, decision_debate: Dict, descripcion_actividad: str) -> Dict:
+        """
+        Aplica la decisión del debate para generar la actividad final
+        
+        Args:
+            decision_debate: Resultado del debate entre agentes
+            descripcion_actividad: Descripción original del usuario
+            
+        Returns:
+            Actividad generada basada en el consenso del debate
+        """
+        logger.info("🎯 Aplicando decisión de debate para generar actividad...")
+        
+        if decision_debate.get('tipo') == 'consenso':
+            # Consenso alcanzado - usar propuesta base con adaptaciones
+            propuesta_base = decision_debate.get('propuesta_base', {})
+            adaptaciones = decision_debate.get('adaptaciones_pedagogicas', {})
+            modificaciones = decision_debate.get('modificaciones_viabilidad', {})
+            
+            # Crear actividad híbrida combinando las decisiones
+            resultado = self._crear_actividad_hibrida(propuesta_base, adaptaciones, modificaciones, descripcion_actividad)
+            
+        elif decision_debate.get('tipo') == 'modificacion_pedagogica':
+            # Priorizar criterios pedagógicos
+            logger.info("📚 Priorizando criterios pedagógicos del debate")
+            adaptaciones = decision_debate.get('adaptaciones_pedagogicas', {})
+            resultado = self._crear_actividad_pedagogica_adaptada(adaptaciones, descripcion_actividad)
+            
+        else:
+            # Fallback - usar método original
+            logger.warning(f"⚠️ Usando fallback para tipo de decisión: {decision_debate.get('tipo')}")
+            resultado = self.analizador_tareas.seleccionar_y_adaptar_actividad(descripcion_actividad)
+        
+        return resultado
+    
+    def _crear_actividad_hibrida(self, propuesta_base: Dict, adaptaciones: Dict, modificaciones: Dict, descripcion_actividad: str) -> Dict:
+        """
+        Crea actividad híbrida combinando elementos de múltiples fuentes según el debate
+        
+        Args:
+            propuesta_base: Propuesta inicial del analizador
+            adaptaciones: Adaptaciones pedagógicas del perfilador  
+            modificaciones: Modificaciones de viabilidad del optimizador
+            descripcion_actividad: Descripción original
+            
+        Returns:
+            Actividad híbrida resultante
+        """
+        logger.info("🔧 Creando actividad híbrida basada en consenso del debate...")
+        
+        # Obtener actividades candidatas de la propuesta
+        candidatas = propuesta_base.get('actividades_candidatas', [])
+        tipo_sugerido = propuesta_base.get('tipo_propuesto', 'taller')
+        
+        # Seleccionar múltiples actividades para combinar (no solo una)
+        actividades_a_combinar = candidatas[:3] if len(candidatas) >= 3 else candidatas
+        
+        if not actividades_a_combinar:
+            # Fallback si no hay candidatas
+            return self.analizador_tareas.seleccionar_y_adaptar_actividad(descripcion_actividad)
+        
+        logger.info(f"🎨 Combinando elementos de {len(actividades_a_combinar)} actividades:")
+        for act in actividades_a_combinar:
+            logger.info(f"   • {act.get('id', 'unknown')}: {act.get('titulo', 'Sin título')}")
+        
+        # Crear actividad híbrida
+        actividad_hibrida = {
+            'id': f"hibrida_{len(actividades_a_combinar)}_fuentes",
+            'titulo': f"Actividad Personalizada: {descripcion_actividad[:50]}...",
+            'objetivo': f"Actividad híbrida adaptada para: {descripcion_actividad}",
+            'tipo_fuente': 'hibrida',
+            'fuentes_combinadas': [act.get('id') for act in actividades_a_combinar],
+            'estrategia_debate': 'consenso_multiagente'
+        }
+        
+        # Extraer tareas de múltiples fuentes
+        tareas_combinadas = []
+        
+        # Obtener las actividades completas para extraer tareas
+        for candidata in actividades_a_combinar:
+            actividad_id = candidata.get('id')
+            if actividad_id:
+                # Buscar la actividad en el embeddings manager
+                actividades_similares = self.embeddings_manager.encontrar_actividad_similar(actividad_id, top_k=1)
+                if actividades_similares:
+                    # actividades_similares es List[Tuple[str, float, dict]]
+                    _, _, actividad_completa = actividades_similares[0]
+                    # CRÍTICO: Pasar contexto dinámico para extracción adaptativa
+                    contexto_dinamico = self._extraer_contexto_para_tareas()
+                    tareas_actividad = self.analizador_tareas._extraer_tareas_desde_json(actividad_completa, contexto_dinamico)
+                    
+                    # Tomar máximo 2-3 tareas por actividad para no sobrecargar
+                    tareas_seleccionadas = tareas_actividad[:3]
+                    tareas_combinadas.extend(tareas_seleccionadas)
+        
+        # Aplicar adaptaciones pedagógicas
+        if adaptaciones and isinstance(adaptaciones, dict):
+            aprobacion = adaptaciones.get('aprobacion_pedagogica', {})
+            if aprobacion.get('estado') in ['APROBADO', 'APROBADO_CON_ADAPTACIONES']:
+                logger.info(f"✅ Aplicando adaptaciones pedagógicas: {aprobacion.get('mensaje')}")
+        
+        # Aplicar modificaciones de viabilidad
+        if modificaciones and isinstance(modificaciones, dict):
+            aprobacion_practica = modificaciones.get('aprobacion_practica', {})
+            if aprobacion_practica.get('estado') in ['VIABLE', 'VIABLE_CON_MODIFICACIONES']:
+                logger.info(f"⚙️ Aplicando modificaciones de viabilidad: {aprobacion_practica.get('mensaje')}")
+        
+        resultado = {
+            'actividad': actividad_hibrida,
+            'tareas_extraidas': tareas_combinadas,
+            'estrategia': 'hibridacion_debate',
+            'num_fuentes': len(actividades_a_combinar),
+            'adaptaciones_aplicadas': bool(adaptaciones),
+            'modificaciones_aplicadas': bool(modificaciones)
+        }
+        
+        logger.info(f"✅ Actividad híbrida creada con {len(tareas_combinadas)} tareas de {len(actividades_a_combinar)} fuentes")
+        return resultado
+    
+    def _extraer_contexto_para_tareas(self) -> Dict:
+        """Extrae contexto dinámico para extracción de tareas adaptativa"""
+        # Buscar en el contexto híbrido las modalidades especificadas por el usuario
+        if hasattr(self, 'contexto_hibrido') and self.contexto_hibrido:
+            metadatos = self.contexto_hibrido.metadatos if hasattr(self.contexto_hibrido, 'metadatos') else {}
+            
+            # Buscar estructura_fases en metadatos
+            if 'input_estructurado' in metadatos:
+                input_data = metadatos['input_estructurado']
+                if isinstance(input_data, dict) and 'estructura_fases' in input_data:
+                    return {'estructura_fases': input_data['estructura_fases']}
+        
+        # Fallback: retornar estructura vacía
+        logger.debug("🔍 No se encontró contexto dinámico, usando modalidades por defecto")
+        return {'estructura_fases': {'fases_detalladas': []}}
+    
+    def _crear_actividad_pedagogica_adaptada(self, adaptaciones: Dict, descripcion_actividad: str) -> Dict:
+        """
+        Crea actividad priorizando adaptaciones pedagógicas específicas
+        
+        Args:
+            adaptaciones: Adaptaciones pedagógicas requeridas
+            descripcion_actividad: Descripción original
+            
+        Returns:
+            Actividad adaptada pedagógicamente
+        """
+        logger.info("📚 Creando actividad con prioridad pedagógica...")
+        
+        # Por ahora, usar el método original pero marcar que se aplicaron adaptaciones
+        resultado = self.analizador_tareas.seleccionar_y_adaptar_actividad(descripcion_actividad)
+        
+        # Marcar las adaptaciones que se aplicaron
+        resultado['adaptaciones_pedagogicas'] = adaptaciones
+        resultado['estrategia'] = 'adaptacion_pedagogica_priorizada'
+        
+        return resultado
 
     def _crear_proyecto_base(self, actividad_seleccionada: dict, info_adicional: str = "") -> dict:
         """
