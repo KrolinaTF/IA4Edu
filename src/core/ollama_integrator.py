@@ -1,9 +1,10 @@
 """
-Integrador simplificado con Ollama API.
+Integrador simplificado con APIs de LLM (Ollama local y Groq).
 """
 
 import logging
 import requests
+import os
 from typing import Dict, Any, Optional
 
 # Importar configuración centralizada
@@ -12,50 +13,65 @@ from config import OLLAMA_CONFIG
 logger = logging.getLogger("SistemaAgentesABP.OllamaIntegrator")
 
 class OllamaIntegrator:
-    """Integrador simplificado con Ollama API"""
+    """Integrador unificado para APIs de LLM (Ollama local y Groq)"""
     
     def __init__(self, host: str = None, port: int = None, model: str = None, 
                  embedding_model: str = None, timeout: int = None):
         """
-        Inicializa el integrador con Ollama
+        Inicializa el integrador con configuración flexible
         
         Args:
             host: Host donde se ejecuta Ollama (usa config si no se especifica)
-            port: Puerto de Ollama (usa config si no se especifica)
+            port: Puerto de Ollama (usa config si no se especifica)  
             model: Modelo principal para generación de texto (usa config si no se especifica)
             embedding_model: Modelo específico para embeddings (usa config si no se especifica)
             timeout: Timeout para requests (usa config si no se especifica)
         """
-        # Usar configuración centralizada como fallback
+        # Inicializar variables de estado
+        self.llm_disponible = False
+        self.ollama_disponible = False
+        
+        # Configuración del provider
+        self.provider = OLLAMA_CONFIG.get("provider", "ollama")
+        
+        # Configuración para Groq
+        if self.provider == "groq":
+            self.groq_api_key = OLLAMA_CONFIG.get("groq_api_key")
+            self.groq_model = OLLAMA_CONFIG.get("groq_model", "mixtral-8x7b-32768")
+            self.groq_base_url = OLLAMA_CONFIG.get("groq_base_url", "https://api.groq.com/openai/v1")
+            
+            if not self.groq_api_key:
+                logger.error("❌ GROQ_API_KEY no encontrada en variables de entorno")
+                self.llm_disponible = False
+        
+        # Configuración para Ollama (siempre para embeddings)
         self.host = host or OLLAMA_CONFIG["host"]
         self.port = port or OLLAMA_CONFIG["port"]
-        self.model = model or OLLAMA_CONFIG["model"]
         self.embedding_model = embedding_model or OLLAMA_CONFIG["embedding_model"]
         self.timeout = timeout or OLLAMA_CONFIG.get("timeout", 60)
+        self.ollama_base_url = f"http://{self.host}:{self.port}"
+        self.base_url = self.ollama_base_url  # Para compatibilidad
         
-        self.base_url = f"http://{self.host}:{self.port}"
+        # Para compatibilidad
+        self.model = model or (OLLAMA_CONFIG.get("groq_model") if self.provider == "groq" else OLLAMA_CONFIG.get("model", "mistral"))
         
-        # Conectar directamente con Ollama API usando requests
+        # Crear sesión HTTP
         self.session = requests.Session()
         
-        # Probar conexión con Ollama
-        try:
-            response = self.session.get(f"{self.base_url}/api/tags", timeout=5)
-            if response.status_code == 200:
-                logger.info(f"✅ Conectado exitosamente a Ollama en {self.base_url}")
-                logger.info(f"📋 Modelo configurado: {self.model} | Embeddings: {self.embedding_model}")
-                self.ollama_disponible = True
-            else:
-                logger.error(f"❌ Error conectando a Ollama: {response.status_code}")
-                self.ollama_disponible = False
-        except Exception as e:
-            logger.error(f"❌ No se pudo conectar a Ollama en {self.base_url}: {e}")
-            self.ollama_disponible = False
+        # Configurar headers para Groq
+        if self.provider == "groq":
+            self.session.headers.update({
+                "Authorization": f"Bearer {self.groq_api_key}",
+                "Content-Type": "application/json"
+            })
+        
+        # Probar conexiones
+        self._test_connections()
             
     def generar_respuesta(self, prompt: str, max_tokens: int = 500, temperatura: float = 0.7, 
                           stop_tokens: Optional[list] = None) -> str:
         """
-        Genera respuesta usando Ollama
+        Genera respuesta usando el provider configurado (Groq u Ollama)
         
         Args:
             prompt: Prompt para el LLM
@@ -66,44 +82,12 @@ class OllamaIntegrator:
         Returns:
             Respuesta generada
         """
-        if self.ollama_disponible:
-            try:
-                payload = {
-                    "model": self.model,
-                    "prompt": prompt,
-                    "stream": False,
-                    "options": {
-                        "temperature": temperatura,
-                        "num_predict": max_tokens,
-                        "stop": stop_tokens or []
-                    }
-                }
-                
-                response = self.session.post(
-                    f"{self.base_url}/api/generate",
-                    json=payload,
-                    timeout=self.timeout
-                )
-                
-                if response.status_code == 200:
-                    result = response.json()
-                    respuesta = result.get("response", "").strip()
-                    
-                    if respuesta:
-                        logger.debug(f"✅ Respuesta generada ({len(respuesta)} chars)")
-                        return respuesta
-                    else:
-                        logger.warning("⚠️ Respuesta vacía de Ollama")
-                        return self._respuesta_fallback()
-                else:
-                    logger.error(f"❌ Error en API de Ollama: {response.status_code}")
-                    return self._respuesta_fallback()
-                    
-            except Exception as e:
-                logger.error(f"❌ Error generando respuesta: {e}")
-                return self._respuesta_fallback()
+        if self.provider == "groq" and self.llm_disponible:
+            return self._generar_respuesta_groq(prompt, max_tokens, temperatura, stop_tokens)
+        elif self.provider == "ollama" and self.ollama_disponible:
+            return self._generar_respuesta_ollama(prompt, max_tokens, temperatura, stop_tokens)
         else:
-            logger.warning("⚠️ Ollama no disponible, usando respuesta fallback")
+            logger.warning(f"⚠️ Provider {self.provider} no disponible, usando respuesta fallback")
             return self._respuesta_fallback()
     
     def _respuesta_fallback(self) -> str:
@@ -163,16 +147,143 @@ class OllamaIntegrator:
         
         return self.generar_respuesta(prompt, max_tokens=800, temperatura=0.5)
     
+    def _test_connections(self) -> None:
+        """Prueba las conexiones según el provider configurado"""
+        try:
+            if self.provider == "groq":
+                # Test Groq API
+                if not self.groq_api_key:
+                    logger.error("❌ GROQ_API_KEY no configurada")
+                    self.llm_disponible = False
+                    return
+                    
+                test_payload = {
+                    "model": self.groq_model,
+                    "messages": [{"role": "user", "content": "test"}],
+                    "max_tokens": 5
+                }
+                
+                response = self.session.post(
+                    f"{self.groq_base_url}/chat/completions",
+                    json=test_payload,
+                    timeout=10
+                )
+                
+                if response.status_code == 200:
+                    logger.info("✅ Conexión a Groq API exitosa")
+                    self.llm_disponible = True
+                else:
+                    logger.error(f"❌ Error conectando a Groq: {response.status_code} - {response.text}")
+                    self.llm_disponible = False
+            
+            # Test Ollama para embeddings (siempre necesario)
+            try:
+                response = self.session.get(f"{self.ollama_base_url}/api/tags", timeout=5)
+                if response.status_code == 200:
+                    logger.info("✅ Conexión a Ollama exitosa (embeddings)")
+                    self.ollama_disponible = True
+                else:
+                    logger.warning("⚠️ Ollama no disponible, usando embeddings fallback")
+                    self.ollama_disponible = False
+            except Exception as e:
+                logger.warning(f"⚠️ No se pudo conectar a Ollama: {e}")
+                self.ollama_disponible = False
+                
+        except Exception as e:
+            logger.error(f"❌ Error en test de conexiones: {e}")
+            if self.provider == "groq":
+                self.llm_disponible = False
+            self.ollama_disponible = False
+    
+    def _generar_respuesta_groq(self, prompt: str, max_tokens: int, temperatura: float, 
+                                stop_tokens: Optional[list]) -> str:
+        """Genera respuesta usando Groq API"""
+        try:
+            payload = {
+                "model": self.groq_model,
+                "messages": [
+                    {"role": "user", "content": prompt}
+                ],
+                "max_tokens": max_tokens,
+                "temperature": temperatura,
+                "stop": stop_tokens or None
+            }
+            
+            response = self.session.post(
+                f"{self.groq_base_url}/chat/completions",
+                json=payload,
+                timeout=self.timeout
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                respuesta = result["choices"][0]["message"]["content"].strip()
+                
+                if respuesta:
+                    logger.debug(f"✅ Respuesta Groq generada ({len(respuesta)} chars)")
+                    return respuesta
+                else:
+                    logger.warning("⚠️ Respuesta vacía de Groq")
+                    return self._respuesta_fallback()
+            else:
+                logger.error(f"❌ Error en API de Groq: {response.status_code} - {response.text}")
+                return self._respuesta_fallback()
+                
+        except Exception as e:
+            logger.error(f"❌ Error generando respuesta Groq: {e}")
+            return self._respuesta_fallback()
+    
+    def _generar_respuesta_ollama(self, prompt: str, max_tokens: int, temperatura: float, 
+                                  stop_tokens: Optional[list]) -> str:
+        """Genera respuesta usando Ollama local"""
+        try:
+            payload = {
+                "model": self.model,
+                "prompt": prompt,
+                "stream": False,
+                "options": {
+                    "temperature": temperatura,
+                    "num_predict": max_tokens,
+                    "stop": stop_tokens or []
+                }
+            }
+            
+            response = self.session.post(
+                f"{self.ollama_base_url}/api/generate",
+                json=payload,
+                timeout=self.timeout
+            )
+            
+            if response.status_code == 200:
+                result = response.json()
+                respuesta = result.get("response", "").strip()
+                
+                if respuesta:
+                    logger.debug(f"✅ Respuesta Ollama generada ({len(respuesta)} chars)")
+                    return respuesta
+                else:
+                    logger.warning("⚠️ Respuesta vacía de Ollama")
+                    return self._respuesta_fallback()
+            else:
+                logger.error(f"❌ Error en API de Ollama: {response.status_code}")
+                return self._respuesta_fallback()
+                
+        except Exception as e:
+            logger.error(f"❌ Error generando respuesta Ollama: {e}")
+            return self._respuesta_fallback()
+    
     def listar_modelos(self) -> list:
         """
-        Lista los modelos disponibles en Ollama
+        Lista los modelos disponibles según el provider
         
         Returns:
             Lista de modelos disponibles
         """
-        if self.ollama_disponible:
+        if self.provider == "groq":
+            return ["mixtral-8x7b-32768", "llama3-70b-8192", "llama3-8b-8192"]
+        elif self.ollama_disponible:
             try:
-                response = self.session.get(f"{self.base_url}/api/tags", timeout=5)
+                response = self.session.get(f"{self.ollama_base_url}/api/tags", timeout=5)
                 if response.status_code == 200:
                     result = response.json()
                     models = [model.get('name') for model in result.get('models', [])]
@@ -188,16 +299,19 @@ class OllamaIntegrator:
     
     def verificar_disponibilidad(self) -> bool:
         """
-        Verifica si Ollama está disponible
+        Verifica si el provider está disponible
         
         Returns:
-            True si Ollama está disponible, False en caso contrario
+            True si el provider está disponible, False en caso contrario
         """
-        try:
-            response = self.session.get(f"{self.base_url}/api/tags", timeout=5)
-            return response.status_code == 200
-        except:
-            return False
+        if self.provider == "groq":
+            return self.llm_disponible
+        else:
+            try:
+                response = self.session.get(f"{self.ollama_base_url}/api/tags", timeout=5)
+                return response.status_code == 200
+            except:
+                return False
     
     def cambiar_modelo(self, nuevo_modelo: str) -> bool:
         """
@@ -240,7 +354,7 @@ class OllamaIntegrator:
             }
             
             response = self.session.post(
-                f"{self.base_url}/api/embed",
+                f"{self.ollama_base_url}/api/embed",
                 json=payload,
                 timeout=self.timeout
             )

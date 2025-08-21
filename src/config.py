@@ -6,6 +6,10 @@ Contiene constantes, ajustes y parámetros configurables.
 import os
 import logging
 from typing import Dict, Any
+from dotenv import load_dotenv
+
+# Cargar variables de entorno del archivo .env
+load_dotenv()
 
 # Configuración de rutas
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -13,12 +17,20 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 TEMP_DIR = os.path.join(BASE_DIR, "temp")
 EXAMPLES_DIR = os.path.join(DATA_DIR, "actividades")
 
-# === CONFIGURACIÓN OLLAMA CENTRALIZADA ===
+# === CONFIGURACIÓN LLM CENTRALIZADA ===
+# Configuración para Groq API
 OLLAMA_CONFIG = {
+    "provider": "groq",  # "ollama" o "groq" - Usando Groq API
+    "groq_api_key": os.getenv("GROQ_API_KEY"),
+    "groq_model": "openai/gpt-oss-120b",  # Modelo de Groq para generación
+    "groq_base_url": "https://api.groq.com/openai/v1",
+    
+    # Configuración Ollama (para embeddings locales)
     "host": "192.168.1.10",
     "port": 11434,
-    "model": "mistral",  # PUNTO ÚNICO para cambiar modelo
-    "embedding_model": "nomic-embed-text",
+    "model": "mistral",  # Modelo por defecto para Ollama
+    "embedding_model": "nomic-embed-text",  # Solo para embeddings
+    
     "timeout": 60
 }
 

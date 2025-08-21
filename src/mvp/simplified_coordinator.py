@@ -33,6 +33,18 @@ class SimplifiedCoordinator:
         # Integrador LLM
         self.ollama = ollama_integrator or OllamaIntegrator()
         
+        # Log para mostrar qué modelo se está usando
+        provider = self.ollama.provider
+        if provider == "groq":
+            modelo_actual = self.ollama.groq_model
+            logger.info(f"🤖 Usando modelo GROQ: {modelo_actual}")
+        else:
+            modelo_actual = self.ollama.model
+            logger.info(f"🤖 Usando modelo OLLAMA: {modelo_actual} en {self.ollama.host}:{self.ollama.port}")
+        
+        # También log del modelo de embeddings
+        logger.info(f"🔗 Modelo de embeddings: {self.ollama.embedding_model} (Ollama local)")
+        
         # Gestor de embeddings para ejemplos
         script_dir = os.path.dirname(os.path.abspath(__file__))
         base_dir = os.path.dirname(script_dir)
@@ -42,6 +54,12 @@ class SimplifiedCoordinator:
         
         # Cargar perfiles de estudiantes
         self.student_profiles = self._load_student_profiles()
+        
+        # Guardar información de agrupación para refinamientos
+        self.last_grouping_info = None
+        
+        # Registro de problemas comunes para aprender
+        self.common_issues = []
         
         logger.info("🚀 SimplifiedCoordinator inicializado")
     
@@ -81,35 +99,41 @@ class SimplifiedCoordinator:
         logger.info(f"🎯 Generando actividad para: '{user_request[:50]}...'")
         
         try:
-            # 1. Buscar ejemplos relevantes
+            # 1. Detectar modo de agrupación solicitado
+            grouping_info = self._detect_grouping_mode(user_request + " " + additional_details)
+            self.last_grouping_info = grouping_info  # Guardar para refinamientos
+            
+            # 2. Buscar ejemplos relevantes
             ejemplos_relevantes = self._find_relevant_examples(user_request)
             
-            # 2. Crear prompt directo (sin plantilla compleja)
+            # 3. Crear prompt directo con información de agrupación
             prompt_directo = self._create_direct_prompt(
                 user_request, 
                 ejemplos_relevantes, 
-                additional_details
+                additional_details,
+                grouping_info
             )
             
-            # 3. Generar con LLM
+            # 4. Generar con LLM
             response = self.ollama.generar_respuesta(
                 prompt_directo, 
                 max_tokens=1500, 
                 temperatura=0.7
             )
             
-            # 4. Procesar respuesta y crear estructura final
+            # 5. Procesar respuesta y crear estructura final
             activity_result = self._process_llm_response(response, user_request)
             
-            # 5. Crear asignaciones específicas para los 8 estudiantes
-            activity_result = self._assign_students_to_tasks(activity_result)
+            # 6. Crear asignaciones específicas según modo de agrupación
+            activity_result = self._assign_students_to_tasks(activity_result, grouping_info)
             
-            # 6. Añadir metadatos
+            # 7. Añadir metadatos
             activity_result['metadatos'] = {
                 'timestamp': datetime.now().isoformat(),
                 'sistema': 'SimplifiedCoordinator',
                 'version': '1.0',
                 'prompt_original': user_request,
+                'modo_agrupacion': grouping_info,
                 'ejemplos_utilizados': [ej[0] for ej in ejemplos_relevantes]
             }
             
@@ -119,6 +143,90 @@ class SimplifiedCoordinator:
         except Exception as e:
             logger.error(f"❌ Error generando actividad: {e}")
             return self._create_fallback_activity(user_request)
+    
+    def _detect_grouping_mode(self, text: str) -> Dict[str, Any]:
+        """
+        Detecta el modo de agrupación solicitado en el texto
+        
+        Args:
+            text: Texto del usuario (request + detalles)
+            
+        Returns:
+            Diccionario con información de agrupación
+        """
+        text_lower = text.lower()
+        
+        # Detección por fases
+        grouping_info = {
+            'preparacion': {'modo': 'parejas', 'tamaño': 2},
+            'ejecucion': {'modo': 'parejas', 'tamaño': 2},
+            'general': {'modo': 'parejas', 'tamaño': 2}
+        }
+        
+        # Patrones para detectar modos
+        individual_patterns = [
+            'individual', 'cada uno', 'por separado', 'solos', 'cada estudiante',
+            'cada uno prepare', 'cada cual', 'por su cuenta', 'independientemente',
+            'cada persona', 'cada niño', 'cada niña', 'de forma individual'
+        ]
+        pairs_patterns = ['parejas', 'en pareja', 'de a dos', 'duplas', 'pares']
+        group_patterns = ['grupos', 'equipos', 'en grupo']
+        
+        # Detectar menciones de fases
+        prep_patterns = ['preparación', 'preparacion', 'primera fase', 'fase 1', 'inicio']
+        exec_patterns = ['ejecución', 'ejecucion', 'segunda fase', 'fase 2', 'desarrollo']
+        
+        # Analizar solicitud general
+        if any(pattern in text_lower for pattern in individual_patterns):
+            grouping_info['general']['modo'] = 'individual'
+            grouping_info['general']['tamaño'] = 1
+        elif any(pattern in text_lower for pattern in group_patterns):
+            # Buscar tamaño de grupo
+            import re
+            size_match = re.search(r'grupos?\s+de\s+(\d+)', text_lower)
+            if size_match:
+                group_size = int(size_match.group(1))
+            else:
+                group_size = 4  # Default
+            grouping_info['general']['modo'] = 'grupos'
+            grouping_info['general']['tamaño'] = group_size
+        
+        # Detectar si hay instrucciones específicas por fase
+        for line in text_lower.split('.'):
+            # Fase de preparación
+            if any(p in line for p in prep_patterns):
+                if any(p in line for p in individual_patterns):
+                    grouping_info['preparacion']['modo'] = 'individual'
+                    grouping_info['preparacion']['tamaño'] = 1
+                elif any(p in line for p in group_patterns):
+                    size_match = re.search(r'grupos?\s+de\s+(\d+)', line)
+                    grouping_info['preparacion']['modo'] = 'grupos'
+                    grouping_info['preparacion']['tamaño'] = int(size_match.group(1)) if size_match else 4
+                elif any(p in line for p in pairs_patterns):
+                    grouping_info['preparacion']['modo'] = 'parejas'
+                    grouping_info['preparacion']['tamaño'] = 2
+            
+            # Fase de ejecución
+            elif any(p in line for p in exec_patterns):
+                if any(p in line for p in individual_patterns):
+                    grouping_info['ejecucion']['modo'] = 'individual'
+                    grouping_info['ejecucion']['tamaño'] = 1
+                elif any(p in line for p in group_patterns):
+                    size_match = re.search(r'grupos?\s+de\s+(\d+)', line)
+                    grouping_info['ejecucion']['modo'] = 'grupos'
+                    grouping_info['ejecucion']['tamaño'] = int(size_match.group(1)) if size_match else 4
+                elif any(p in line for p in pairs_patterns):
+                    grouping_info['ejecucion']['modo'] = 'parejas'
+                    grouping_info['ejecucion']['tamaño'] = 2
+        
+        # Si no hay instrucciones específicas por fase, usar general
+        if grouping_info['preparacion'] == {'modo': 'parejas', 'tamaño': 2}:
+            grouping_info['preparacion'] = grouping_info['general'].copy()
+        if grouping_info['ejecucion'] == {'modo': 'parejas', 'tamaño': 2}:
+            grouping_info['ejecucion'] = grouping_info['general'].copy()
+        
+        logger.info(f"🔍 Modo de agrupación detectado: {grouping_info}")
+        return grouping_info
     
     def _find_relevant_examples(self, user_request: str) -> List[tuple]:
         """
@@ -147,14 +255,15 @@ class SimplifiedCoordinator:
             return []
     
     def _create_direct_prompt(self, user_request: str, ejemplos: List[tuple], 
-                            additional_details: str) -> str:
+                            additional_details: str, grouping_info: Dict[str, Any]) -> str:
         """
-        Crea prompt directo para el LLM (sin plantilla compleja)
+        Crea prompt directo para el LLM con información de agrupación
         
         Args:
             user_request: Solicitud del usuario
             ejemplos: Ejemplos relevantes encontrados
             additional_details: Detalles adicionales
+            grouping_info: Información sobre modo de agrupación
             
         Returns:
             Prompt directo para el LLM
@@ -172,7 +281,20 @@ class SimplifiedCoordinator:
         # Crear información de estudiantes
         estudiantes_info = self._create_students_context()
         
-        # Prompt directo sin instrucciones complejas
+        # Crear descripción de agrupaciones según lo solicitado
+        agrupacion_prep = grouping_info['preparacion']
+        agrupacion_ejec = grouping_info['ejecucion']
+        
+        agrupacion_instrucciones = f"""
+MODO DE AGRUPACIÓN:
+- Fase de Preparación: Trabajo {agrupacion_prep['modo']} {f'(grupos de {agrupacion_prep["tamaño"]})' if agrupacion_prep['modo'] == 'grupos' else ''}
+- Fase de Ejecución: Trabajo {agrupacion_ejec['modo']} {f'(grupos de {agrupacion_ejec["tamaño"]})' if agrupacion_ejec['modo'] == 'grupos' else ''}"""
+        
+        # Ajustar formato de ejemplo según agrupación
+        ejemplo_asignacion_prep = self._get_assignment_example(agrupacion_prep['modo'], agrupacion_prep['tamaño'])
+        ejemplo_asignacion_ejec = self._get_assignment_example(agrupacion_ejec['modo'], agrupacion_ejec['tamaño'])
+        
+        # Prompt directo usando formato Markdown
         prompt = f"""Crea una actividad educativa ABP (Aprendizaje Basado en Proyectos) para 4º de Primaria.
 
 SOLICITUD DEL PROFESOR:
@@ -185,53 +307,82 @@ SOLICITUD DEL PROFESOR:
 ESTUDIANTES DEL AULA (8 estudiantes):
 {estudiantes_info}
 
+{agrupacion_instrucciones}
+
 INSTRUCCIONES:
 1. Crea una actividad concreta y específica basada en la solicitud
 2. Divide en 2 fases: Preparación y Ejecución
-3. Cada fase debe tener tareas específicas para parejas de estudiantes
+3. Asigna estudiantes según el modo de agrupación indicado para cada fase
 4. Incluye adaptaciones para TEA, TDAH y altas capacidades
 5. Sé específico: si pides rutas geográficas, nombra lugares reales
 6. Si pides roles, define roles concretos (no genéricos)
 
-RESPONDE EN FORMATO JSON:
-{{
-  "titulo": "Título específico de la actividad",
-  "objetivo": "Objetivo educativo claro",
-  "duracion": "2 sesiones de 45 minutos",
-  "fases": [
-    {{
-      "nombre": "Preparación",
-      "descripcion": "Descripción específica de qué se hace",
-      "tareas": [
-        {{
-          "nombre": "Tarea específica 1",
-          "descripcion": "Descripción detallada y concreta",
-          "parejas_asignadas": ["Pareja 1: Elena y Ana", "Pareja 2: Luis y Hugo"],
-          "detalles_especificos": "Detalles concretos (lugares, roles, materiales específicos)"
-        }}
-      ]
-    }},
-    {{
-      "nombre": "Ejecución",
-      "descripcion": "Descripción específica de la fase principal",
-      "tareas": [
-        {{
-          "nombre": "Tarea específica 2",
-          "descripcion": "Descripción detallada y concreta",
-          "parejas_asignadas": ["Pareja 3: María y Emma", "Pareja 4: Alex y Sara"],
-          "detalles_especificos": "Detalles concretos y específicos"
-        }}
-      ]
-    }}
-  ],
-  "adaptaciones": {{
-    "TEA": ["Adaptación específica 1", "Adaptación específica 2"],
-    "TDAH": ["Adaptación específica 1", "Adaptación específica 2"],
-    "altas_capacidades": ["Desafío específico 1", "Desafío específico 2"]
-  }}
-}}"""
+RESPONDE EN FORMATO MARKDOWN usando esta estructura exacta:
+
+# [Título específico de la actividad]
+
+## Información General
+- **Objetivo**: [Objetivo educativo claro]
+- **Duración**: 2 sesiones de 45 minutos
+- **Modo de trabajo**: {agrupacion_prep['modo']} en preparación, {agrupacion_ejec['modo']} en ejecución
+
+## Fase 1: Preparación
+**Modo de agrupación**: {agrupacion_prep['modo']}
+**Descripción**: [Descripción específica de qué se hace]
+
+### Tareas:
+1. **[Nombre de la tarea]**
+   - Descripción: [Descripción detallada y concreta]
+   - Asignaciones: {ejemplo_asignacion_prep}
+   - Detalles específicos: [Detalles concretos]
+
+## Fase 2: Ejecución  
+**Modo de agrupación**: {agrupacion_ejec['modo']}
+**Descripción**: [Descripción específica de la fase principal]
+
+### Tareas:
+1. **[Nombre de la tarea]**
+   - Descripción: [Descripción detallada y concreta]
+   - Asignaciones: {ejemplo_asignacion_ejec}
+   - Detalles específicos: [Detalles concretos y específicos]
+
+## Adaptaciones por Neurotipo
+
+### TEA (Trastorno del Espectro Autista)
+- [Adaptaciones específicas para TEA]
+
+### TDAH (Trastorno por Déficit de Atención e Hiperactividad)
+- [Adaptaciones específicas para TDAH]
+
+### Altas Capacidades
+- [Desafíos específicos para altas capacidades]"""
 
         return prompt
+    
+    def _get_assignment_example(self, modo: str, tamaño: int) -> str:
+        """
+        Genera ejemplo de asignación según el modo de agrupación para Markdown
+        
+        Args:
+            modo: Modo de agrupación ('individual', 'parejas', 'grupos')
+            tamaño: Tamaño del grupo
+            
+        Returns:
+            String con ejemplo de asignación para Markdown
+        """
+        if modo == 'individual':
+            return 'Elena, Ana, Luis, Hugo, María, Emma, Alex, Sara'
+        elif modo == 'parejas':
+            return 'Elena y Ana, Luis y Hugo, María y Emma, Alex y Sara'
+        elif modo == 'grupos':
+            if tamaño == 3:
+                return 'Elena, Ana y Luis; Hugo, María y Emma; Alex y Sara (grupo de 2)'
+            elif tamaño == 4:
+                return 'Elena, Ana, Luis y Hugo; María, Emma, Alex y Sara'
+            else:
+                return 'Grupo 1: Elena, Ana, Luis; Grupo 2: Hugo, María, Emma; Grupo 3: Alex, Sara'
+        else:
+            return 'Elena y Ana, Luis y Hugo, María y Emma, Alex y Sara'
     
     def _create_students_context(self) -> str:
         """
@@ -264,50 +415,138 @@ RESPONDE EN FORMATO JSON:
     
     def _process_llm_response(self, response: str, user_request: str) -> Dict[str, Any]:
         """
-        Procesa respuesta del LLM y crea estructura
+        Procesa respuesta del LLM en formato Markdown y crea estructura
         
         Args:
-            response: Respuesta cruda del LLM
+            response: Respuesta cruda del LLM en Markdown
             user_request: Solicitud original del usuario
             
         Returns:
             Estructura procesada de la actividad
         """
         try:
-            # Intentar extraer JSON
-            json_match = self._extract_json_from_response(response)
-            if json_match:
-                activity = json.loads(json_match)
-                logger.info("✅ JSON extraído y parseado correctamente")
-                return activity
-            else:
-                logger.warning("⚠️ No se pudo extraer JSON, creando estructura desde texto")
-                return self._create_structure_from_text(response, user_request)
+            # Parsear Markdown directamente
+            activity = self._parse_markdown_response(response)
+            logger.info("✅ Markdown parseado correctamente")
+            return activity
                 
         except Exception as e:
-            logger.error(f"❌ Error procesando respuesta: {e}")
+            logger.error(f"❌ Error parseando Markdown: {e}")
+            logger.error(f"🔍 Respuesta completa del LLM: {response[:1000]}...")
             return self._create_fallback_activity(user_request)
     
-    def _extract_json_from_response(self, response: str) -> Optional[str]:
+    def _parse_markdown_response(self, response: str) -> Dict[str, Any]:
         """
-        Extrae JSON de la respuesta del LLM
+        Parsea respuesta en formato Markdown y la convierte a estructura
         
         Args:
-            response: Respuesta del LLM
+            response: Respuesta en Markdown del LLM
             
         Returns:
-            JSON extraído o None
+            Diccionario con estructura de actividad
         """
         import re
         
-        # Buscar JSON entre llaves
-        json_pattern = r'\{.*\}'
-        match = re.search(json_pattern, response, re.DOTALL)
+        activity = {
+            "titulo": "Actividad ABP",
+            "objetivo": "",
+            "duracion": "2 sesiones de 45 minutos",
+            "fases": [],
+            "adaptaciones": {}
+        }
         
-        if match:
-            return match.group(0)
+        lines = response.split('\n')
+        current_section = None
+        current_phase = None
+        current_task = None
         
-        return None
+        for line in lines:
+            line = line.strip()
+            
+            if not line:
+                continue
+                
+            # Título principal (# Título)
+            if line.startswith('# '):
+                activity["titulo"] = line[2:].strip()
+            
+            # Información General
+            elif '**Objetivo**:' in line:
+                activity["objetivo"] = line.split('**Objetivo**:')[1].strip()
+            elif '**Duración**:' in line:
+                activity["duracion"] = line.split('**Duración**:')[1].strip()
+            
+            # Fases
+            elif line.startswith('## Fase '):
+                phase_name = line[3:].strip()
+                current_phase = {
+                    "nombre": phase_name,
+                    "descripcion": "",
+                    "modo_agrupacion": "",
+                    "tareas": []
+                }
+                activity["fases"].append(current_phase)
+                current_section = "fase"
+            
+            elif line.startswith('**Descripción**:') and current_phase:
+                current_phase["descripcion"] = line.split('**Descripción**:')[1].strip()
+            
+            elif line.startswith('**Modo de agrupación**:') and current_phase:
+                current_phase["modo_agrupacion"] = line.split('**Modo de agrupación**:')[1].strip()
+            
+            # Tareas
+            elif re.match(r'^\d+\.\s*\*\*.*\*\*', line) and current_phase:
+                task_name = re.findall(r'\*\*(.*?)\*\*', line)[0]
+                current_task = {
+                    "nombre": task_name,
+                    "descripcion": "",
+                    "asignaciones": [],
+                    "detalles_especificos": ""
+                }
+                current_phase["tareas"].append(current_task)
+            
+            elif line.startswith('- Descripción:') and current_task:
+                current_task["descripcion"] = line.split('- Descripción:')[1].strip()
+            elif line.startswith('- Asignaciones:') and current_task:
+                asignaciones_text = line.split('- Asignaciones:')[1].strip()
+                # Parsear las asignaciones (pueden estar en diferentes formatos)
+                current_task["asignaciones"] = self._parse_assignments(asignaciones_text)
+            elif line.startswith('- Detalles específicos:') and current_task:
+                current_task["detalles_especificos"] = line.split('- Detalles específicos:')[1].strip()
+            
+            # Adaptaciones
+            elif line.startswith('### TEA'):
+                current_section = "TEA"
+            elif line.startswith('### TDAH'):
+                current_section = "TDAH"
+            elif line.startswith('### Altas Capacidades'):
+                current_section = "altas_capacidades"
+            elif line.startswith('- ') and current_section in ["TEA", "TDAH", "altas_capacidades"]:
+                if current_section not in activity["adaptaciones"]:
+                    activity["adaptaciones"][current_section] = []
+                activity["adaptaciones"][current_section].append(line[2:].strip())
+        
+        return activity
+    
+    def _parse_assignments(self, assignments_text: str) -> List[str]:
+        """
+        Parsea el texto de asignaciones en una lista
+        
+        Args:
+            assignments_text: Texto con asignaciones
+            
+        Returns:
+            Lista de asignaciones
+        """
+        import re
+        
+        # Remover corchetes si existen
+        assignments_text = assignments_text.strip('[]"\'')
+        
+        # Separar por comas
+        assignments = [a.strip().strip('"\'') for a in assignments_text.split(',')]
+        
+        return assignments
     
     def _create_structure_from_text(self, response: str, user_request: str) -> Dict[str, Any]:
         """
@@ -369,12 +608,13 @@ RESPONDE EN FORMATO JSON:
             "respuesta_completa_llm": response
         }
     
-    def _assign_students_to_tasks(self, activity: Dict[str, Any]) -> Dict[str, Any]:
+    def _assign_students_to_tasks(self, activity: Dict[str, Any], grouping_info: Dict[str, Any]) -> Dict[str, Any]:
         """
-        Asigna estudiantes específicos a tareas (usando perfiles reales)
+        Asigna estudiantes específicos a tareas según modo de agrupación
         
         Args:
             activity: Actividad generada
+            grouping_info: Información sobre modo de agrupación
             
         Returns:
             Actividad con asignaciones específicas
@@ -382,92 +622,49 @@ RESPONDE EN FORMATO JSON:
         if not self.student_profiles.get('estudiantes'):
             return activity
         
-        estudiantes = self.student_profiles['estudiantes']
+        # Importar ProfileManager para usar sus métodos de agrupación
+        from mvp.profile_manager import ProfileManager
+        profile_manager = ProfileManager()
         
-        # Crear parejas optimizadas
-        parejas = self._create_optimal_pairs(estudiantes)
-        
-        # Asignar parejas a fases
-        activity['asignaciones_estudiantes'] = {}
-        
+        # Procesar cada fase con su modo de agrupación
         for i, fase in enumerate(activity.get('fases', [])):
-            for j, tarea in enumerate(fase.get('tareas', [])):
-                # Asignar parejas disponibles
-                parejas_asignadas = []
+            fase_nombre = fase.get('nombre', '').lower()
+            
+            # Determinar modo de agrupación para esta fase
+            if 'preparación' in fase_nombre or 'preparacion' in fase_nombre:
+                modo_info = grouping_info['preparacion']
+            elif 'ejecución' in fase_nombre or 'ejecucion' in fase_nombre:
+                modo_info = grouping_info['ejecucion']
+            else:
+                modo_info = grouping_info['general']
+            
+            # Crear agrupaciones según el modo
+            agrupaciones = profile_manager.create_optimal_groupings(
+                modo_info['modo'], 
+                modo_info['tamaño']
+            )
+            
+            # Asignar estudiantes a todas las tareas de la fase
+            for tarea in fase.get('tareas', []):
+                if modo_info['modo'] == 'individual':
+                    # Todos trabajan en cada tarea individualmente
+                    tarea['asignaciones'] = [est[0] for est in agrupaciones]
+                elif modo_info['modo'] == 'parejas':
+                    # Todas las parejas trabajan en cada tarea
+                    tarea['asignaciones'] = [f"{pareja[0]} y {pareja[1]}" for pareja in agrupaciones]
+                else:  # grupos
+                    # Todos los grupos trabajan en cada tarea
+                    tarea['asignaciones'] = [f"Grupo {i+1}: {', '.join(grupo)}" 
+                                           for i, grupo in enumerate(agrupaciones)]
                 
-                if i == 0:  # Preparación
-                    if j < len(parejas):
-                        pareja = parejas[j]
-                        parejas_asignadas.append(f"{pareja[0]['nombre']} y {pareja[1]['nombre']}")
-                else:  # Ejecución
-                    if j + 2 < len(parejas):
-                        pareja = parejas[j + 2]
-                        parejas_asignadas.append(f"{pareja[0]['nombre']} y {pareja[1]['nombre']}")
-                
-                tarea['parejas_asignadas'] = parejas_asignadas
+                # Mantener compatibilidad con campo antiguo
+                tarea['parejas_asignadas'] = tarea.get('asignaciones', [])
+            
+            # Añadir modo de agrupación a la fase
+            fase['modo_agrupacion'] = modo_info['modo']
         
         return activity
     
-    def _create_optimal_pairs(self, estudiantes: List[Dict]) -> List[tuple]:
-        """
-        Crea parejas optimizadas considerando neurotipos
-        
-        Args:
-            estudiantes: Lista de estudiantes
-            
-        Returns:
-            Lista de parejas optimizadas
-        """
-        parejas = []
-        estudiantes_disponibles = estudiantes.copy()
-        
-        # Estrategia: emparejar estudiantes con necesidades especiales con típicos
-        tea_estudiantes = [e for e in estudiantes_disponibles if 'TEA' in e.get('diagnostico_formal', '')]
-        tdah_estudiantes = [e for e in estudiantes_disponibles if 'TDAH' in e.get('diagnostico_formal', '')]
-        altas_cap_estudiantes = [e for e in estudiantes_disponibles if 'altas_capacidades' in e.get('diagnostico_formal', '')]
-        tipicos = [e for e in estudiantes_disponibles if e.get('diagnostico_formal', 'ninguno') == 'ninguno']
-        
-        # Emparejar TEA con típicos de alta tolerancia a frustración
-        for tea_est in tea_estudiantes:
-            compañero = None
-            for tipico in tipicos:
-                if tipico.get('tolerancia_frustracion') == 'alta':
-                    compañero = tipico
-                    break
-            
-            if compañero:
-                parejas.append((tea_est, compañero))
-                tipicos.remove(compañero)
-                estudiantes_disponibles.remove(tea_est)
-                estudiantes_disponibles.remove(compañero)
-        
-        # Emparejar TDAH con estudiantes que toleren dinamismo
-        for tdah_est in tdah_estudiantes:
-            compañero = None
-            for tipico in tipicos:
-                parejas.append((tdah_est, tipico))
-                tipicos.remove(tipico)
-                estudiantes_disponibles.remove(tdah_est)
-                estudiantes_disponibles.remove(tipico)
-                break
-        
-        # Emparejar altas capacidades con estudiantes colaborativos
-        for ac_est in altas_cap_estudiantes:
-            compañero = None
-            for est in estudiantes_disponibles:
-                if est != ac_est:
-                    parejas.append((ac_est, est))
-                    estudiantes_disponibles.remove(ac_est)
-                    estudiantes_disponibles.remove(est)
-                    break
-        
-        # Emparejar resto
-        while len(estudiantes_disponibles) >= 2:
-            est1 = estudiantes_disponibles.pop(0)
-            est2 = estudiantes_disponibles.pop(0)
-            parejas.append((est1, est2))
-        
-        return parejas
     
     def _create_fallback_activity(self, user_request: str) -> Dict[str, Any]:
         """
@@ -520,61 +717,236 @@ RESPONDE EN FORMATO JSON:
             }
         }
     
+    def _analyze_feedback_intent(self, feedback: str) -> Dict[str, Any]:
+        """
+        Analiza dinámicamente qué está pidiendo el feedback
+        
+        Args:
+            feedback: Feedback del profesor
+            
+        Returns:
+            Análisis estructurado del feedback
+        """
+        import re
+        feedback_lower = feedback.lower()
+        
+        analysis = {
+            'summary': [],
+            'tipo_cambio': [],
+            'elementos_mencionados': [],
+            'requiere_cambio_agrupacion': False
+        }
+        
+        # Detectar tipos de peticiones
+        if any(word in feedback_lower for word in ['no entiendo', 'no está claro', 'confuso', 'no comprendo']):
+            analysis['summary'].append("El profesor necesita mayor claridad")
+            analysis['tipo_cambio'].append('clarificacion')
+        
+        if any(word in feedback_lower for word in ['mecánica', 'dinámica', 'cómo funciona', 'en qué consiste']):
+            analysis['summary'].append("Se requiere explicar mejor la mecánica/funcionamiento")
+            analysis['tipo_cambio'].append('explicar_mecanica')
+        
+        if any(word in feedback_lower for word in ['juego', 'reglas', 'objetivo del juego', 'ganar', 'puntos']):
+            analysis['summary'].append("Falta definir reglas o estructura del juego")
+            analysis['tipo_cambio'].append('definir_juego')
+        
+        if any(word in feedback_lower for word in ['equipos', 'grupos', 'parejas', 'individual']):
+            analysis['summary'].append("Hay mención de modo de trabajo")
+            analysis['tipo_cambio'].append('modo_agrupacion')
+            analysis['requiere_cambio_agrupacion'] = True
+        
+        if any(word in feedback_lower for word in ['materiales', 'recursos', 'necesito', 'qué usar']):
+            analysis['summary'].append("Se requiere especificar materiales")
+            analysis['tipo_cambio'].append('materiales')
+        
+        if any(word in feedback_lower for word in ['tiempo', 'duración', 'cuánto dura', 'más tiempo', 'menos tiempo']):
+            analysis['summary'].append("Se requiere ajustar duración")
+            analysis['tipo_cambio'].append('duracion')
+        
+        # Análisis de preguntas específicas
+        questions = re.findall(r'¿([^?]+)\?', feedback)
+        if questions:
+            analysis['summary'].append(f"El profesor hace {len(questions)} preguntas específicas")
+            analysis['elementos_mencionados'].extend(questions)
+        
+        # Si no se detectó ningún tipo específico, es feedback general
+        if not analysis['tipo_cambio']:
+            analysis['tipo_cambio'].append('general')
+            analysis['summary'].append("Feedback general para mejorar la actividad")
+        
+        logger.info(f"📊 Análisis de feedback: {analysis['tipo_cambio']}")
+        return analysis
+    
+    def _generate_specific_instructions(self, feedback_analysis: Dict[str, Any]) -> str:
+        """
+        Genera instrucciones específicas basadas en el análisis del feedback
+        
+        Args:
+            feedback_analysis: Análisis del feedback
+            
+        Returns:
+            Instrucciones específicas para el LLM
+        """
+        instructions = []
+        
+        for tipo in feedback_analysis['tipo_cambio']:
+            if tipo == 'clarificacion':
+                instructions.append("- Explica con más detalle los aspectos que no están claros")
+                instructions.append("- Usa lenguaje simple y directo")
+            
+            elif tipo == 'explicar_mecanica':
+                instructions.append("- Describe paso a paso cómo funciona la actividad")
+                instructions.append("- Incluye: inicio, desarrollo, finalización")
+                instructions.append("- Especifica qué hace cada participante en cada momento")
+            
+            elif tipo == 'definir_juego':
+                instructions.append("- Define las reglas del juego claramente")
+                instructions.append("- Especifica: objetivo del juego, cómo se juega, turnos (si aplica)")
+                instructions.append("- Explica cómo se determina el ganador o cómo se completa")
+                instructions.append("- Incluye ejemplos concretos de jugadas o situaciones")
+            
+            elif tipo == 'modo_agrupacion':
+                instructions.append("- Revisa y corrige el modo de agrupación mencionado")
+                instructions.append("- Asegura coherencia entre descripción y asignaciones")
+                instructions.append("- Si dice 'equipos/grupos', las asignaciones deben ser grupos")
+            
+            elif tipo == 'materiales':
+                instructions.append("- Lista TODOS los materiales necesarios")
+                instructions.append("- Especifica cantidades exactas")
+                instructions.append("- Incluye materiales alternativos si es posible")
+            
+            elif tipo == 'duracion':
+                instructions.append("- Ajusta la duración según lo solicitado")
+                instructions.append("- Redistribuye el tiempo entre las fases si es necesario")
+        
+        # Si hay preguntas específicas
+        if feedback_analysis['elementos_mencionados']:
+            instructions.append("\nRESPONDE ESPECÍFICAMENTE estas preguntas:")
+            for pregunta in feedback_analysis['elementos_mencionados']:
+                instructions.append(f"- ¿{pregunta}?")
+        
+        return '\n'.join(instructions)
+    
+    def _update_grouping_from_feedback(self, feedback: str) -> None:
+        """
+        Actualiza la información de agrupación basándose en el feedback
+        
+        Args:
+            feedback: Feedback del profesor
+        """
+        feedback_lower = feedback.lower()
+        import re
+        
+        # Detectar cambios en agrupación
+        if 'equipos' in feedback_lower or 'grupos' in feedback_lower:
+            # Buscar tamaño específico
+            size_match = re.search(r'grupos?\s+de\s+(\d+)', feedback_lower)
+            group_size = int(size_match.group(1)) if size_match else 4
+            
+            # Actualizar para fase mencionada o general
+            if 'ejecución' in feedback_lower or 'ejecucion' in feedback_lower:
+                self.last_grouping_info['ejecucion'] = {'modo': 'grupos', 'tamaño': group_size}
+            elif 'preparación' in feedback_lower or 'preparacion' in feedback_lower:
+                self.last_grouping_info['preparacion'] = {'modo': 'grupos', 'tamaño': group_size}
+            else:
+                # Aplicar a ambas fases si no se especifica
+                self.last_grouping_info['general'] = {'modo': 'grupos', 'tamaño': group_size}
+                self.last_grouping_info['ejecucion'] = {'modo': 'grupos', 'tamaño': group_size}
+                self.last_grouping_info['preparacion'] = {'modo': 'grupos', 'tamaño': group_size}
+        
+        elif any(pattern in feedback_lower for pattern in [
+            'individual', 'cada uno', 'cada uno prepare', 'por separado', 
+            'cada cual', 'por su cuenta', 'independientemente'
+        ]):
+            if 'ejecución' in feedback_lower or 'ejecucion' in feedback_lower:
+                self.last_grouping_info['ejecucion'] = {'modo': 'individual', 'tamaño': 1}
+            elif 'preparación' in feedback_lower or 'preparacion' in feedback_lower:
+                self.last_grouping_info['preparacion'] = {'modo': 'individual', 'tamaño': 1}
+            else:
+                # Si no especifica fase, aplicar a ambas
+                self.last_grouping_info['general'] = {'modo': 'individual', 'tamaño': 1}
+                self.last_grouping_info['preparacion'] = {'modo': 'individual', 'tamaño': 1}
+                self.last_grouping_info['ejecucion'] = {'modo': 'individual', 'tamaño': 1}
+        
+        elif 'parejas' in feedback_lower:
+            if 'ejecución' in feedback_lower or 'ejecucion' in feedback_lower:
+                self.last_grouping_info['ejecucion'] = {'modo': 'parejas', 'tamaño': 2}
+            elif 'preparación' in feedback_lower or 'preparacion' in feedback_lower:
+                self.last_grouping_info['preparacion'] = {'modo': 'parejas', 'tamaño': 2}
+        
+        logger.info(f"📊 Grouping info actualizado: {self.last_grouping_info}")
+    
     def refine_activity(self, current_activity: Dict[str, Any], feedback: str) -> Dict[str, Any]:
         """
-        Refina actividad existente basándose en feedback del profesor
+        Refina actividad con análisis inteligente y validación
         
         Args:
             current_activity: Actividad actual
             feedback: Feedback del profesor
             
         Returns:
-            Actividad refinada
+            Actividad refinada y validada
         """
         logger.info(f"🔄 Refinando actividad basándose en feedback")
         
         try:
-            # Crear prompt de refinamiento
-            refinement_prompt = self._create_refinement_prompt(current_activity, feedback)
+            # 1. Analizar el feedback
+            feedback_analysis = self._analyze_feedback_intent(feedback)
             
-            # Generar refinamiento con LLM
+            # 2. Actualizar grouping_info si es necesario
+            if feedback_analysis['requiere_cambio_agrupacion']:
+                self._update_grouping_from_feedback(feedback)
+            
+            # 3. Crear prompt mejorado
+            refinement_prompt = self._create_refinement_prompt_v2(
+                current_activity, 
+                feedback,
+                feedback_analysis
+            )
+            
+            # 4. Generar refinamiento con LLM
             response = self.ollama.generar_respuesta(
                 refinement_prompt,
                 max_tokens=1500,
-                temperatura=0.6  # Menos creatividad, más precisión
+                temperatura=0.6
             )
             
-            # Procesar respuesta
+            # 5. Procesar respuesta
             refined_activity = self._process_refinement_response(response, current_activity, feedback)
             
-            # Añadir metadatos de refinamiento
+            # 6. Validar y corregir inconsistencias
+            refined_activity = self._validate_and_fix_activity(refined_activity, feedback_analysis)
+            
+            # 7. Añadir metadatos de refinamiento
             if 'historial_refinamientos' not in refined_activity:
                 refined_activity['historial_refinamientos'] = []
             
             refined_activity['historial_refinamientos'].append({
                 'timestamp': datetime.now().isoformat(),
                 'feedback': feedback,
-                'cambios_aplicados': 'Refinamiento basado en feedback del profesor'
+                'analisis': feedback_analysis['summary'],
+                'cambios_aplicados': 'Refinamiento con análisis inteligente y validación'
             })
             
-            logger.info(f"✅ Actividad refinada exitosamente")
+            logger.info(f"✅ Actividad refinada y validada exitosamente")
             return refined_activity
             
         except Exception as e:
             logger.error(f"❌ Error refinando actividad: {e}")
-            # Devolver actividad original si falla el refinamiento
             return current_activity
     
-    def _create_refinement_prompt(self, current_activity: Dict[str, Any], feedback: str) -> str:
+    def _create_refinement_prompt_v2(self, current_activity: Dict[str, Any], 
+                                    feedback: str, feedback_analysis: Dict[str, Any]) -> str:
         """
-        Crea prompt para refinamiento basado en feedback
+        Crea prompt mejorado para refinamiento con análisis dinámico
         
         Args:
             current_activity: Actividad actual
             feedback: Feedback del profesor
+            feedback_analysis: Análisis del feedback
             
         Returns:
-            Prompt de refinamiento
+            Prompt de refinamiento mejorado
         """
         # Convertir actividad actual a texto legible
         activity_summary = self._activity_to_text(current_activity)
@@ -582,52 +954,206 @@ RESPONDE EN FORMATO JSON:
         # Información de estudiantes
         estudiantes_info = self._create_students_context()
         
-        prompt = f"""Mejora la siguiente actividad ABP basándote en el feedback específico del profesor.
+        # Generar instrucciones específicas
+        specific_instructions = self._generate_specific_instructions(feedback_analysis)
+        
+        # Información de agrupación si es relevante
+        grouping_context = ""
+        modo_prep = 'parejas'  # Default
+        modo_ejec = 'parejas'  # Default
+        
+        if self.last_grouping_info:
+            modo_prep = self.last_grouping_info['preparacion']['modo']
+            modo_ejec = self.last_grouping_info['ejecucion']['modo']
+            
+            if 'modo_agrupacion' in feedback_analysis['tipo_cambio']:
+                grouping_context = f"""
+INFORMACIÓN DE AGRUPACIÓN ACTUALIZADA:
+- Preparación: {self.last_grouping_info['preparacion']['modo']} (tamaño: {self.last_grouping_info['preparacion']['tamaño']})
+- Ejecución: {self.last_grouping_info['ejecucion']['modo']} (tamaño: {self.last_grouping_info['ejecucion']['tamaño']})
+"""
+        
+        prompt = f"""TAREA: Mejorar la actividad basándote ESPECÍFICAMENTE en el feedback del profesor.
 
 ACTIVIDAD ACTUAL:
 {activity_summary}
 
 FEEDBACK DEL PROFESOR:
-{feedback}
+"{feedback}"
+
+ANÁLISIS DEL FEEDBACK:
+{'. '.join(feedback_analysis['summary'])}
+
+CAMBIOS REQUERIDOS:
+{specific_instructions}
 
 ESTUDIANTES DEL AULA:
 {estudiantes_info}
+{grouping_context}
 
-INSTRUCCIONES:
-1. Mantén lo que está funcionando bien
-2. Aplica ESPECÍFICAMENTE los cambios sugeridos en el feedback
-3. Conserva la estructura JSON original
-4. Mejora solo los aspectos mencionados en el feedback
-5. Sé específico y concreto en los cambios
+INSTRUCCIONES CRÍTICAS:
+1. MANTÉN todo lo que NO se menciona en el feedback
+2. MODIFICA SOLO los aspectos mencionados en el feedback
+3. Si el feedback pide clarificación, AÑADE detalles sin eliminar lo existente
+4. Si el feedback señala inconsistencias, CORRIGE manteniendo coherencia
+5. Las asignaciones deben coincidir con el modo de agrupación declarado
 
-RESPONDE CON LA ACTIVIDAD MEJORADA EN FORMATO JSON:
+RESPONDE con la actividad mejorada en formato JSON manteniendo la estructura original:
 {{
-  "titulo": "Título mejorado si es necesario",
-  "objetivo": "Objetivo refinado",
-  "duracion": "Duración ajustada si es necesario", 
+  "titulo": "Título (modificar solo si el feedback lo solicita)",
+  "objetivo": "Objetivo (modificar solo si el feedback lo solicita)",
+  "duracion": "Duración (modificar solo si el feedback lo solicita)",
   "fases": [
     {{
-      "nombre": "Fase mejorada",
-      "descripcion": "Descripción refinada",
+      "nombre": "Preparación",
+      "descripcion": "Descripción mejorada según feedback",
+      "modo_agrupacion": "{modo_prep}",
       "tareas": [
         {{
-          "nombre": "Tarea específica mejorada",
-          "descripcion": "Descripción más detallada según feedback",
-          "parejas_asignadas": ["Mantener asignaciones o mejorarlas"],
-          "detalles_especificos": "Detalles específicos mejorados según feedback"
+          "nombre": "Tarea específica",
+          "descripcion": "Descripción detallada y mejorada",
+          "detalles_especificos": "Detalles concretos mejorados"
+        }}
+      ]
+    }},
+    {{
+      "nombre": "Ejecución", 
+      "descripcion": "Descripción mejorada según feedback",
+      "modo_agrupacion": "{modo_ejec}",
+      "tareas": [
+        {{
+          "nombre": "Tarea de ejecución",
+          "descripcion": "Descripción mejorada",
+          "detalles_especificos": "Detalles específicos"
         }}
       ]
     }}
   ],
   "adaptaciones": {{
-    "TEA": ["Adaptaciones mejoradas"],
-    "TDAH": ["Adaptaciones mejoradas"], 
-    "altas_capacidades": ["Desafíos mejorados"]
+    "TEA": "Adaptaciones para TEA mejoradas según feedback",
+    "TDAH": "Adaptaciones para TDAH mejoradas según feedback",
+    "altas_capacidades": "Desafíos para altas capacidades mejorados según feedback"
   }},
-  "mejoras_aplicadas": "Resumen de cambios realizados basados en feedback"
+  "mejoras_aplicadas": "Resumen específico de qué cambios se hicieron basados en el feedback"
 }}"""
 
         return prompt
+    
+    def _validate_and_fix_activity(self, activity: Dict[str, Any], 
+                                  feedback_analysis: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Valida y corrige inconsistencias en la actividad refinada
+        
+        Args:
+            activity: Actividad a validar
+            feedback_analysis: Análisis del feedback para contexto
+            
+        Returns:
+            Actividad validada y corregida
+        """
+        issues_found = []
+        
+        # Validar cada fase
+        for fase in activity.get('fases', []):
+            fase_nombre = fase.get('nombre', '').lower()
+            modo_declarado = fase.get('modo_agrupacion', '')
+            
+            # Determinar modo esperado según grouping_info
+            if self.last_grouping_info:
+                if 'preparación' in fase_nombre or 'preparacion' in fase_nombre:
+                    modo_esperado = self.last_grouping_info['preparacion']['modo']
+                    tamaño_esperado = self.last_grouping_info['preparacion']['tamaño']
+                elif 'ejecución' in fase_nombre or 'ejecucion' in fase_nombre:
+                    modo_esperado = self.last_grouping_info['ejecucion']['modo']
+                    tamaño_esperado = self.last_grouping_info['ejecucion']['tamaño']
+                else:
+                    modo_esperado = self.last_grouping_info['general']['modo']
+                    tamaño_esperado = self.last_grouping_info['general']['tamaño']
+            else:
+                modo_esperado = modo_declarado
+                tamaño_esperado = 2  # Default
+            
+            # Validar coherencia del modo declarado
+            if modo_declarado and modo_declarado != modo_esperado:
+                logger.warning(f"⚠️ Inconsistencia: fase '{fase_nombre}' declara '{modo_declarado}' pero debería ser '{modo_esperado}'")
+                fase['modo_agrupacion'] = modo_esperado
+                issues_found.append(f"Modo de {fase_nombre} corregido a {modo_esperado}")
+            
+            # Validar y corregir asignaciones en tareas
+            for tarea in fase.get('tareas', []):
+                asignaciones = tarea.get('asignaciones', tarea.get('parejas_asignadas', []))
+                
+                if asignaciones:
+                    # Detectar modo real de las asignaciones
+                    modo_real = self._detect_assignment_mode(asignaciones)
+                    
+                    # Si hay inconsistencia, corregir
+                    if modo_real != modo_esperado:
+                        logger.warning(f"⚠️ Asignaciones inconsistentes en '{tarea.get('nombre', 'tarea')}': modo real '{modo_real}' vs esperado '{modo_esperado}'")
+                        
+                        # Regenerar asignaciones correctas
+                        from mvp.profile_manager import ProfileManager
+                        pm = ProfileManager()
+                        nuevas_asignaciones = pm.create_optimal_groupings(modo_esperado, tamaño_esperado)
+                        
+                        # Formatear según el modo
+                        if modo_esperado == 'individual':
+                            tarea['asignaciones'] = [est[0] for est in nuevas_asignaciones]
+                        elif modo_esperado == 'parejas':
+                            tarea['asignaciones'] = [f"{pareja[0]} y {pareja[1]}" for pareja in nuevas_asignaciones]
+                        elif modo_esperado == 'grupos':
+                            tarea['asignaciones'] = [f"Grupo {i+1}: {', '.join(grupo)}" 
+                                                   for i, grupo in enumerate(nuevas_asignaciones)]
+                        
+                        # Mantener compatibilidad
+                        tarea['parejas_asignadas'] = tarea['asignaciones']
+                        issues_found.append(f"Asignaciones de '{tarea.get('nombre', 'tarea')}' corregidas a {modo_esperado}")
+        
+        # Log de correcciones
+        if issues_found:
+            logger.info(f"✅ Corregidas {len(issues_found)} inconsistencias: {', '.join(issues_found)}")
+            
+            # Guardar para aprender
+            self.common_issues.extend(issues_found)
+            
+            # Añadir a metadatos
+            if 'validacion' not in activity:
+                activity['validacion'] = {}
+            activity['validacion']['correcciones_aplicadas'] = issues_found
+            activity['validacion']['timestamp'] = datetime.now().isoformat()
+        
+        return activity
+    
+    def _detect_assignment_mode(self, asignaciones: List[str]) -> str:
+        """
+        Detecta el modo real de las asignaciones
+        
+        Args:
+            asignaciones: Lista de asignaciones
+            
+        Returns:
+            Modo detectado ('individual', 'parejas', 'grupos')
+        """
+        if not asignaciones:
+            return 'desconocido'
+        
+        # Analizar primera asignación
+        primera = str(asignaciones[0])
+        
+        # Individual: no tiene conectores
+        if ' y ' not in primera and ',' not in primera and 'Grupo' not in primera:
+            return 'individual'
+        
+        # Parejas: tiene " y " pero no comas
+        elif ' y ' in primera and ',' not in primera:
+            return 'parejas'
+        
+        # Grupos: tiene "Grupo" o múltiples comas
+        elif 'Grupo' in primera or primera.count(',') >= 2:
+            return 'grupos'
+        
+        # Por defecto
+        return 'parejas'
     
     def _activity_to_text(self, activity: Dict[str, Any]) -> str:
         """
@@ -695,48 +1221,21 @@ RESPONDE CON LA ACTIVIDAD MEJORADA EN FORMATO JSON:
                     logger.info("✅ Refinamiento JSON válido")
                     return refined_activity
             
-            # Si no hay JSON válido, hacer refinamiento manual
-            logger.warning("⚠️ JSON inválido en refinamiento, aplicando cambios manuales")
-            return self._manual_refinement(original_activity, feedback, response)
+            # Si no hay JSON válido, devolver original con nota
+            logger.warning("⚠️ JSON inválido en refinamiento, devolviendo actividad original")
+            refined = original_activity.copy()
+            refined['refinamiento_fallido'] = {
+                'feedback_original': feedback,
+                'respuesta_llm': response[:300],  # Primeros 300 chars
+                'timestamp': datetime.now().isoformat(),
+                'motivo': 'JSON inválido en respuesta del LLM'
+            }
+            return refined
             
         except Exception as e:
             logger.error(f"❌ Error procesando refinamiento: {e}")
             return original_activity
     
-    def _manual_refinement(self, original_activity: Dict[str, Any], feedback: str, llm_response: str) -> Dict[str, Any]:
-        """
-        Aplica refinamiento manual cuando el JSON no es válido
-        
-        Args:
-            original_activity: Actividad original
-            feedback: Feedback del profesor
-            llm_response: Respuesta del LLM
-            
-        Returns:
-            Actividad con refinamientos manuales
-        """
-        refined = original_activity.copy()
-        
-        # Añadir información del refinamiento
-        refined['refinamiento_manual'] = {
-            'feedback_original': feedback,
-            'respuesta_llm': llm_response[:500],  # Primeros 500 chars
-            'timestamp': datetime.now().isoformat()
-        }
-        
-        # Modificaciones básicas basadas en keywords en feedback
-        feedback_lower = feedback.lower()
-        
-        if 'título' in feedback_lower or 'titulo' in feedback_lower:
-            refined['titulo'] = f"{original_activity.get('titulo', '')} - Refinado"
-        
-        if 'tiempo' in feedback_lower or 'duración' in feedback_lower:
-            if 'más' in feedback_lower:
-                refined['duracion'] = "3 sesiones de 45 minutos"
-            elif 'menos' in feedback_lower:
-                refined['duracion'] = "1 sesión de 45 minutos"
-        
-        return refined
 
     def save_activity(self, activity: Dict[str, Any], filename: str = None) -> str:
         """

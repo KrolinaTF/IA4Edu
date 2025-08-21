@@ -185,12 +185,48 @@ class ProfileManager:
         
         return adaptaciones
     
-    def create_optimal_pairs(self) -> List[tuple]:
+    def create_optimal_groupings(self, grouping_mode: str = "parejas", 
+                                 group_size: int = 2) -> List[List[str]]:
+        """
+        Crea agrupaciones optimizadas según el modo solicitado
+        
+        Args:
+            grouping_mode: Modo de agrupación ('individual', 'parejas', 'grupos')
+            group_size: Tamaño de los grupos (solo para modo 'grupos')
+            
+        Returns:
+            Lista de listas con las agrupaciones
+        """
+        if grouping_mode == "individual":
+            return self._create_individual_assignments()
+        elif grouping_mode == "parejas":
+            return self._create_optimal_pairs()
+        elif grouping_mode == "grupos":
+            return self._create_optimal_groups(group_size)
+        else:
+            logger.warning(f"Modo de agrupación desconocido: {grouping_mode}. Usando parejas.")
+            return self._create_optimal_pairs()
+    
+    def _create_individual_assignments(self) -> List[List[str]]:
+        """
+        Crea asignaciones individuales
+        
+        Returns:
+            Lista donde cada elemento es una lista con un solo estudiante
+        """
+        assignments = []
+        for profile in self.profiles:
+            assignments.append([profile.get('nombre', f'Estudiante {profile.get("id", "")}')])
+        
+        logger.info(f"👤 Creadas {len(assignments)} asignaciones individuales")
+        return assignments
+    
+    def _create_optimal_pairs(self) -> List[List[str]]:
         """
         Crea parejas optimizadas considerando neurotipos
         
         Returns:
-            Lista de tuplas con parejas optimizadas
+            Lista de listas con parejas optimizadas
         """
         parejas = []
         estudiantes_disponibles = self.profiles.copy()
@@ -205,7 +241,7 @@ class ProfileManager:
         for especial in especiales:
             if tipicos:
                 tipico = tipicos.pop(0)
-                parejas.append((especial['nombre'], tipico['nombre']))
+                parejas.append([especial['nombre'], tipico['nombre']])
                 estudiantes_disponibles.remove(especial)
                 estudiantes_disponibles.remove(tipico)
         
@@ -213,17 +249,76 @@ class ProfileManager:
         while len(estudiantes_disponibles) >= 2:
             est1 = estudiantes_disponibles.pop(0)
             est2 = estudiantes_disponibles.pop(0)
-            parejas.append((est1['nombre'], est2['nombre']))
+            parejas.append([est1['nombre'], est2['nombre']])
         
         # Si queda uno solo, añadirlo a la última pareja (grupo de 3)
         if estudiantes_disponibles:
             ultimo = estudiantes_disponibles[0]
             if parejas:
-                ultima_pareja = parejas[-1]
-                parejas[-1] = (ultima_pareja[0], ultima_pareja[1], ultimo['nombre'])
+                parejas[-1].append(ultimo['nombre'])
         
         logger.info(f"👥 Creadas {len(parejas)} parejas optimizadas")
         return parejas
+    
+    def _create_optimal_groups(self, group_size: int = 4) -> List[List[str]]:
+        """
+        Crea grupos optimizados del tamaño especificado
+        
+        Args:
+            group_size: Tamaño deseado de los grupos
+            
+        Returns:
+            Lista de listas con grupos optimizados
+        """
+        grupos = []
+        estudiantes_disponibles = self.profiles.copy()
+        
+        # Obtener estudiantes por neurotipo
+        especiales = [e for e in estudiantes_disponibles 
+                     if e.get('diagnostico_formal', 'ninguno') != 'ninguno']
+        tipicos = [e for e in estudiantes_disponibles 
+                  if e.get('diagnostico_formal', 'ninguno') == 'ninguno']
+        
+        # Distribuir equitativamente neurotipos en grupos
+        while len(estudiantes_disponibles) >= group_size:
+            grupo = []
+            
+            # Intentar incluir al menos un estudiante con necesidades especiales por grupo
+            if especiales and len(grupo) < group_size:
+                especial = especiales.pop(0)
+                grupo.append(especial['nombre'])
+                estudiantes_disponibles.remove(especial)
+            
+            # Completar con estudiantes típicos
+            while len(grupo) < group_size and tipicos:
+                tipico = tipicos.pop(0)
+                grupo.append(tipico['nombre'])
+                estudiantes_disponibles.remove(tipico)
+            
+            # Si aún falta, completar con cualquier estudiante disponible
+            while len(grupo) < group_size and estudiantes_disponibles:
+                estudiante = estudiantes_disponibles.pop(0)
+                grupo.append(estudiante['nombre'])
+            
+            grupos.append(grupo)
+        
+        # Distribuir estudiantes restantes en grupos existentes
+        for i, estudiante in enumerate(estudiantes_disponibles):
+            grupos[i % len(grupos)].append(estudiante['nombre'])
+        
+        logger.info(f"👥 Creados {len(grupos)} grupos de ~{group_size} estudiantes")
+        return grupos
+    
+    def create_optimal_pairs(self) -> List[tuple]:
+        """
+        Método legacy para compatibilidad - crea parejas optimizadas
+        
+        Returns:
+            Lista de tuplas con parejas optimizadas
+        """
+        pairs = self._create_optimal_pairs()
+        # Convertir a tuplas para mantener compatibilidad
+        return [tuple(pair) for pair in pairs]
     
     def get_student_by_name(self, nombre: str) -> Optional[Dict[str, Any]]:
         """

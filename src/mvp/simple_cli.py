@@ -184,19 +184,49 @@ def mostrar_actividad(activity):
     print(f"🎯 Objetivo: {activity.get('objetivo', 'Sin objetivo')}")
     print(f"⏱️ Duración: {activity.get('duracion', 'No especificada')}")
     
+    # Mostrar información de agrupación si está disponible
+    metadatos = activity.get('metadatos', {})
+    modo_agrupacion = metadatos.get('modo_agrupacion', {})
+    if modo_agrupacion:
+        print(f"\n📊 MODO DE AGRUPACIÓN:")
+        if modo_agrupacion.get('preparacion'):
+            prep = modo_agrupacion['preparacion']
+            print(f"   Preparación: {prep['modo']}" + 
+                  (f" (grupos de {prep['tamaño']})" if prep['modo'] == 'grupos' else ""))
+        if modo_agrupacion.get('ejecucion'):
+            ejec = modo_agrupacion['ejecucion']
+            print(f"   Ejecución: {ejec['modo']}" + 
+                  (f" (grupos de {ejec['tamaño']})" if ejec['modo'] == 'grupos' else ""))
+    
     fases = activity.get('fases', [])
     for i, fase in enumerate(fases, 1):
         print(f"\n📌 FASE {i}: {fase.get('nombre', 'Sin nombre')}")
         print(f"   Descripción: {fase.get('descripcion', 'Sin descripción')}")
+        
+        # Mostrar modo de agrupación de la fase si está disponible
+        modo_fase = fase.get('modo_agrupacion', '')
+        if modo_fase:
+            print(f"   👥 Modo de trabajo: {modo_fase}")
         
         tareas = fase.get('tareas', [])
         for j, tarea in enumerate(tareas, 1):
             print(f"\n   🔸 Tarea {j}: {tarea.get('nombre', 'Sin nombre')}")
             print(f"      📝 {tarea.get('descripcion', 'Sin descripción')}")
             
-            parejas = tarea.get('parejas_asignadas', [])
-            if parejas:
-                print(f"      👥 Parejas: {', '.join(parejas)}")
+            # Mostrar asignaciones (nuevo campo) o parejas (campo legacy)
+            asignaciones = tarea.get('asignaciones', tarea.get('parejas_asignadas', []))
+            if asignaciones:
+                # Detectar tipo de agrupación por el contenido
+                if isinstance(asignaciones, list) and asignaciones:
+                    if ' y ' in str(asignaciones[0]):
+                        print(f"      👥 Parejas: {', '.join(asignaciones)}")
+                    elif 'Grupo' in str(asignaciones[0]):
+                        print(f"      👥 Grupos:")
+                        for grupo in asignaciones:
+                            print(f"         • {grupo}")
+                    else:
+                        # Asignaciones individuales
+                        print(f"      👤 Trabajo individual: {', '.join(asignaciones)}")
             
             detalles = tarea.get('detalles_especificos', '')
             if detalles:
@@ -207,7 +237,16 @@ def mostrar_actividad(activity):
         print(f"\n🔧 ADAPTACIONES:")
         for neurotipo, lista_adaptaciones in adaptaciones.items():
             if lista_adaptaciones:
-                print(f"   {neurotipo}: {', '.join(lista_adaptaciones)}")
+                # Asegurar que lista_adaptaciones sea una lista
+                if isinstance(lista_adaptaciones, str):
+                    # Si es string, mostrarlo directamente
+                    print(f"   {neurotipo}: {lista_adaptaciones}")
+                elif isinstance(lista_adaptaciones, list):
+                    # Si es lista, joinear correctamente
+                    print(f"   {neurotipo}: {', '.join(lista_adaptaciones)}")
+                else:
+                    # Fallback para otros tipos
+                    print(f"   {neurotipo}: {str(lista_adaptaciones)}")
 
 def mostrar_perfiles(profile_manager):
     """Muestra información de perfiles de estudiantes"""

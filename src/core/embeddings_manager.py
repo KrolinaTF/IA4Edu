@@ -40,13 +40,16 @@ class EmbeddingsManager:
         logger.info(f"✅ EmbeddingsManager inicializado con {len(self.actividades)} actividades")
     
     def _cargar_actividades_json_y_txt(self) -> None:
-        """Carga actividades JSON del directorio json_actividades"""
+        """Carga actividades JSON del directorio json_actividades y plantillas"""
         try:
             json_path = os.path.join(self.actividades_base_path, "json_actividades")
             if os.path.exists(json_path):
                 self._cargar_actividades_json_desde_directorio(json_path)
             
-            logger.info(f"✅ Cargadas {len(self.actividades)} actividades JSON")
+            # Cargar plantillas como fuente adicional
+            self._cargar_plantillas()
+            
+            logger.info(f"✅ Cargadas {len(self.actividades)} actividades y plantillas")
             
         except Exception as e:
             logger.error(f"❌ Error en carga de actividades: {e}")
@@ -74,7 +77,37 @@ class EmbeddingsManager:
         except Exception as e:
             logger.error(f"❌ Error listando directorio JSON {directorio}: {e}")
     
-    
+    def _cargar_plantillas(self) -> None:
+        """Carga plantillas específicas para estructurar actividades"""
+        try:
+            # Ruta a plantilla_guiada.json
+            plantilla_path = os.path.join(self.actividades_base_path, "plantilla_guiada.json")
+            if os.path.exists(plantilla_path):
+                with open(plantilla_path, 'r', encoding='utf-8') as f:
+                    plantilla_data = json.load(f)
+                    plantilla_data['_tipo_fuente'] = 'plantilla'
+                    plantilla_data['_archivo_origen'] = 'plantilla_guiada.json'
+                    self.actividades['plantilla_guiada'] = plantilla_data
+                    logger.info(f"📋 Cargada plantilla: plantilla_guiada")
+            
+            # Ruta a plantilla_actividad.txt  
+            plantilla_txt_path = os.path.join(self.actividades_base_path, "poc_datos", "actividades_completas", "plantilla_actividad.txt")
+            if os.path.exists(plantilla_txt_path):
+                with open(plantilla_txt_path, 'r', encoding='utf-8') as f:
+                    contenido_txt = f.read()
+                    # Crear estructura similar a JSON para consistencia
+                    plantilla_txt_data = {
+                        'titulo': 'Plantilla de Estructura por Roles',
+                        'objetivo': 'Proporcionar estructura organizativa para actividades con roles específicos',
+                        'contenido_plantilla': contenido_txt,
+                        '_tipo_fuente': 'plantilla',
+                        '_archivo_origen': 'plantilla_actividad.txt'
+                    }
+                    self.actividades['plantilla_roles'] = plantilla_txt_data
+                    logger.info(f"📋 Cargada plantilla: plantilla_roles")
+            
+        except Exception as e:
+            logger.error(f"❌ Error cargando plantillas: {e}")
     
     def _generar_texto_enriquecido(self, actividad_id: str, actividad_data: dict) -> str:
         """
@@ -89,7 +122,11 @@ class EmbeddingsManager:
         """
         texto_base = []
         
-        # Información básica
+        # Verificar si es una plantilla
+        if actividad_data.get('_tipo_fuente') == 'plantilla':
+            return self._generar_texto_plantilla(actividad_id, actividad_data)
+        
+        # Información básica para actividades normales
         texto_base.append(f"TÍTULO: {actividad_data.get('titulo', '')}")
         texto_base.append(f"OBJETIVO: {actividad_data.get('objetivo', '')}")
         texto_base.append(f"NIVEL: {actividad_data.get('nivel_educativo', '')}")
@@ -116,6 +153,60 @@ class EmbeddingsManager:
         
         texto_final = "\n".join(texto_base)
         self.textos_enriquecidos[actividad_id] = texto_final
+        
+        return texto_final
+    
+    def _generar_texto_plantilla(self, plantilla_id: str, plantilla_data: dict) -> str:
+        """
+        Genera texto especializado para plantillas
+        
+        Args:
+            plantilla_id: ID de la plantilla  
+            plantilla_data: Datos de la plantilla
+            
+        Returns:
+            Texto optimizado para embedding de plantillas
+        """
+        texto_plantilla = []
+        
+        # Identificar como plantilla
+        texto_plantilla.append(f"TIPO: PLANTILLA DE ESTRUCTURA")
+        texto_plantilla.append(f"TÍTULO: {plantilla_data.get('titulo', '')}")
+        texto_plantilla.append(f"OBJETIVO: {plantilla_data.get('objetivo', '')}")
+        
+        # Para plantilla_guiada.json - extraer las preguntas clave
+        if 'etapas' in plantilla_data:
+            texto_plantilla.append("CARACTERÍSTICAS: Estructura completa con adaptaciones específicas")
+            texto_plantilla.append("ESPECIALIDADES: adaptaciones TEA, TDAH, altas capacidades")
+            texto_plantilla.append("PREGUNTAS CLAVE: apoyos visuales, movimiento, retos adicionales")
+            
+            # Extraer instrucciones específicas
+            etapas = plantilla_data.get('etapas', [])
+            for etapa in etapas:
+                tareas = etapa.get('tareas', [])
+                for tarea in tareas:
+                    estrategias = tarea.get('estrategias_adaptacion', {})
+                    preguntas = estrategias.get('preguntas_clave_adaptacion', [])
+                    for pregunta in preguntas[:3]:  # Solo primeras 3
+                        pregunta_limpia = pregunta.replace('[RESPONDER: ', '').replace(']', '')
+                        texto_plantilla.append(f"GUÍA: {pregunta_limpia}")
+        
+        # Para plantilla_actividad.txt - extraer estructura por roles
+        elif 'contenido_plantilla' in plantilla_data:
+            texto_plantilla.append("CARACTERÍSTICAS: Estructura por roles y secciones")
+            texto_plantilla.append("ESPECIALIDADES: reparto justificado, roles específicos, materiales por rol")
+            contenido = plantilla_data.get('contenido_plantilla', '')
+            
+            # Extraer secciones clave
+            if '=== SECCIONES/ESTACIONES/ROLES/TAREAS ===' in contenido:
+                texto_plantilla.append("ESTRUCTURA: roles específicos, estaciones de trabajo")
+            if '=== REPARTO REALIZADO ===' in contenido:
+                texto_plantilla.append("CAPACIDAD: asignación pedagógicamente justificada")
+            if '=== MATERIALES/CONTENIDOS POR ROL ===' in contenido:
+                texto_plantilla.append("ORGANIZACIÓN: materiales específicos por rol")
+        
+        texto_final = "\n".join(texto_plantilla)
+        self.textos_enriquecidos[plantilla_id] = texto_final
         
         return texto_final
     
