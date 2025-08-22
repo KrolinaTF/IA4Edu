@@ -1,0 +1,238 @@
+{
+  "estudiantes": [
+    {
+      "id": "001",
+      "nombre": "Alex M.",
+      "diagnostico_formal": "ninguno",
+      "nivel_apoyo": "bajo",
+      "estilo_aprendizaje": [
+        "visual"
+      ],
+      "canal_preferido": "visual",
+      "temperamento": "reflexivo",
+      "tolerancia_frustracion": "media",
+      "intereses": [
+        "ciencias",
+        "lectura"
+      ],
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "EN_PROCESO"
+      },
+      "lengua": {
+        "tiempos_verbales": "CONSEGUIDO",
+        "textos_informativos": "CONSEGUIDO"
+      },
+      "ciencias": {
+        "metodo_cientifico": "EN_PROCESO"
+      }
+    },
+    {
+      "id": "002",
+      "nombre": "María L.",
+      "diagnostico_formal": "ninguno",
+      "nivel_apoyo": "bajo",
+      "estilo_aprendizaje": [
+        "auditivo"
+      ],
+      "canal_preferido": "auditivo",
+      "temperamento": "reflexivo",
+      "tolerancia_frustracion": "alta",
+      "intereses": [
+        "lectura",
+        "escritura"
+      ],
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "CONSEGUIDO"
+      },
+      "lengua": {
+        "tiempos_verbales": "SUPERADO",
+        "textos_informativos": "CONSEGUIDO"
+      },
+      "ciencias": {
+        "metodo_cientifico": "CONSEGUIDO"
+      }
+    },
+    {
+      "id": "003",
+      "nombre": "Elena R.",
+      "diagnostico_formal": "TEA_nivel_1",
+      "nivel_apoyo": "alto",
+      "estilo_aprendizaje": [
+        "visual"
+      ],
+      "canal_preferido": "visual",
+      "temperamento": "reflexivo",
+      "tolerancia_frustracion": "baja",
+      "intereses": [
+        "patrones",
+        "orden",
+        "ciencias"
+      ],
+      "necesidades_especiales": [
+        "apoyo visual",
+        "estructuración",
+        "predictibilidad"
+      ],
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "CONSEGUIDO"
+      },
+      "lengua": {
+        "tiempos_verbales": "EN_PROCESO",
+        "textos_informativos": "EN_PROCESO"
+      },
+      "ciencias": {
+        "metodo_cientifico": "CONSEGUIDO"
+      }
+    },
+    {
+      "id": "004",
+      "nombre": "Luis T.",
+      "diagnostico_formal": "TDAH_combinado",
+      "nivel_apoyo": "alto",
+      "estilo_aprendizaje": [
+        "kinestesico"
+      ],
+      "canal_preferido": "kinestesico",
+      "temperamento": "impulsivo",
+      "tolerancia_frustracion": "baja",
+      "intereses": [
+        "deportes",
+        "movimiento",
+        "experimentos"
+      ],
+      "necesidades_especiales": [
+        "movimiento",
+        "fraccionamiento tareas",
+        "descansos"
+      ],
+      "matematicas": {
+        "numeros_10000": "EN_PROCESO",
+        "operaciones_complejas": "INICIADO"
+      },
+      "lengua": {
+        "tiempos_verbales": "INICIADO",
+        "textos_informativos": "EN_PROCESO"
+      },
+      "ciencias": {
+        "metodo_cientifico": "EN_PROCESO"
+      }
+    },
+    {
+      "id": "005",
+      "nombre": "Ana V.",
+      "diagnostico_formal": "altas_capacidades",
+      "nivel_apoyo": "medio",
+      "estilo_aprendizaje": [
+        "auditivo"
+      ],
+      "canal_preferido": "auditivo",
+      "temperamento": "reflexivo",
+      "tolerancia_frustracion": "media",
+      "intereses": [
+        "matemáticas",
+        "lectura",
+        "investigación"
+      ],
+      "necesidades_especiales": [
+        "enriquecimiento",
+        "desafíos",
+        "autonomía"
+      ],
+      "matematicas": {
+        "numeros_10000": "SUPERADO",
+        "operaciones_complejas": "SUPERADO"
+      },
+      "lengua": {
+        "tiempos_verbales": "SUPERADO",
+        "textos_informativos": "SUPERADO"
+      },
+      "ciencias": {
+        "metodo_cientifico": "SUPERADO"
+      }
+    },
+    {
+      "id": "006",
+      "nombre": "Sara M.",
+      "diagnostico_formal": "ninguno",
+      "nivel_apoyo": "bajo",
+      "estilo_aprendizaje": [
+        "auditivo"
+      ],
+      "canal_preferido": "auditivo",
+      "temperamento": "equilibrado",
+      "tolerancia_frustracion": "alta",
+      "intereses": [
+        "arte",
+        "trabajo_en_grupo"
+      ],
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "EN_PROCESO"
+      },
+      "lengua": {
+        "tiempos_verbales": "CONSEGUIDO",
+        "textos_informativos": "CONSEGUIDO"
+      },
+      "ciencias": {
+        "metodo_cientifico": "EN_PROCESO"
+      }
+    },
+    {
+      "id": "007",
+      "nombre": "Emma K.",
+      "diagnostico_formal": "ninguno",
+      "nivel_apoyo": "bajo",
+      "estilo_aprendizaje": [
+        "visual"
+      ],
+      "canal_preferido": "visual",
+      "temperamento": "reflexivo",
+      "tolerancia_frustracion": "alta",
+      "intereses": [
+        "lectura",
+        "arte"
+      ],
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "CONSEGUIDO"
+      },
+      "lengua": {
+        "tiempos_verbales": "SUPERADO",
+        "textos_informativos": "SUPERADO"
+      },
+      "ciencias": {
+        "metodo_cientifico": "CONSEGUIDO"
+      }
+    },
+    {
+      "id": "008",
+      "nombre": "Hugo P.",
+      "diagnostico_formal": "ninguno",
+      "nivel_apoyo": "medio",
+      "estilo_aprendizaje": [
+        "visual"
+      ],
+      "canal_preferido": "visual",
+      "temperamento": "equilibrado",
+      "tolerancia_frustracion": "media",
+      "intereses": [
+        "ciencias",
+        "experimentos"
+      ],
+      "matematicas": {
+        "numeros_10000": "CONSEGUIDO",
+        "operaciones_complejas": "EN_PROCESO"
+      },
+      "lengua": {
+        "tiempos_verbales": "CONSEGUIDO",
+        "textos_informativos": "EN_PROCESO"
+      },
+      "ciencias": {
+        "metodo_cientifico": "CONSEGUIDO"
+      }
+    }
+  ]
+}
