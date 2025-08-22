@@ -1,135 +1,292 @@
-Objetivo de Aprendizaje
-El objetivo principal de esta actividad es que los estudiantes apliquen y fortalezcan sus habilidades matemáticas en un contexto de resolución de problemas colaborativo y significativo, adaptado a sus niveles de competencia y estilos de aprendizaje. Específicamente, se busca que:
+# Actividad
+"Feria Matemática de Acertijos"
 
-Refuercen la comprensión y aplicación de fracciones y volumen en contextos prácticos.
+## Tipo de actividad
+Matemáticas Aplicadas - Feria Educativa Semanal
 
-Desarrollen la comprensión del concepto de área y su cálculo mediante unidades no convencionales.
+## Información General
+- **Participantes:** 8 estudiantes de 4º Primaria
+- **Duración:** 5 días (Lunes a Viernes)
+- **Modalidad:** Trabajo colaborativo en parejas con rotaciones
 
-Reconozcan y clasifiquen figuras geométricas y su vocabulario asociado.
+## Objetivos Globales
+- Estudiantes apliquen y fortalezcan sus habilidades matemáticas 
+- Resolución de problemas colaborativo y significativo
+- Adaptado a sus niveles de competencia y estilos de aprendizaje
 
-Apliquen el razonamiento lógico-matemático para resolver ecuaciones con símbolos.
+### Objetivos Específicos
+- Reforzar la comprensión y aplicación de fracciones y volumen en contextos prácticos
+- Desarrollar la comprensión del concepto de área y su cálculo mediante unidades no convencionales
+- Reconocer y clasificar figuras geométricas y su vocabulario asociado
+- Aplicar el razonamiento lógico-matemático para resolver ecuaciones con símbolos
+- Fomentar la colaboración y comunicación efectiva dentro de las parejas y entre grupos
+- Desarrollar la perseverancia y la tolerancia a la frustración al enfrentar desafíos
+- Ejercitar la autonomía y la autorregulación al gestionar su propio proceso de resolución
+- Mejorar las habilidades de orientación espacial y reconstrucción de mapas
 
-Fomenten la colaboración y comunicación efectiva dentro de las parejas y entre grupos más grandes.
+### Aspectos Curriculares Transversales
+- **Ciencias Naturales:** Propiedades del agua (volumen), la forma de los objetos
+- **Lengua Castellana:** Vocabulario geométrico, descripción de procesos de resolución, comunicación oral
+- **Habilidades del Siglo XXI:** Pensamiento crítico, resolución de problemas, colaboración
 
-Desarrollen la perseverancia y la tolerancia a la frustración al enfrentar desafíos.
+### Descripción General
+La actividad se desarrolla a lo largo de la semana y culmina el viernes en una Feria Matemática. 
 
-Ejerciten la autonomía y la autorregulación al gestionar su propio proceso de resolución.
+## LUNES: Taller de Formas Geométricas
 
-Mejoren las habilidades de orientación espacial y reconstrucción de mapas.
+### Objetivos del Día
+- Reconocer y clasificar figuras geométricas
+- Crear material de trabajo para la feria final
+- Desarrollar vocabulario geométrico
 
-Además, la actividad incorpora aspectos curriculares transversales como:
+### Reparto de Tareas
+- **Trabajo individual y en parejas**
+- Todos los estudiantes participan en ambas actividades del día
+- Roles flexibles según preferencias y capacidades
 
-Ciencias Naturales: Propiedades del agua (volumen), la forma de los objetos.
+### Materiales Necesarios
+- Figuras geométricas recortables y montables
+- Etiquetas y rotuladores
+- Botes o carpetas para organizar
+- Dados de varias caras (opcional)
+- Objetos variados del aula
 
-Lengua Castellana: Vocabulario geométrico, descripción de procesos de resolución, comunicación oral.
+### Desarrollo del Día
 
-Habilidades del Siglo XXI: Pensamiento crítico, resolución de problemas, colaboración.
+#### Actividad 1: Recortables y Montables
+- Crear figuras geométricas recortables y montables
+- Hacer etiquetas con los nombres y guardarlas en un bote o carpeta
 
-Descripción de la Actividad
-La actividad se llevará a lo largo de la semana que culminará el viernes en una Feria Matemática. 
+#### Actividad 2: Caza de Formas en el Aula
+- Encontrar objetos en el aula (se puede favorecer con dados de varias caras)
+- Categorizarlos, creando dos tarjetas por objeto: nombre y forma geométrica
+- Guardar las tarjetas en otro bote o carpeta 
 
-Rol del Profesor
-El docente irá presentando las actividades sin hacer referencia a que vayan a ser utilizadas más adelante. Simplemente permitiendo que se despierte o no su curiosidad y estas cosas son las que iremos viendo del desarrollo del aula. 
+## MARTES: Dinámica de Cálculo de Áreas
 
-Gestión del Aula durante la Actividad:
-Observación Activa y Guía Discreta: Circulará por las estaciones, observando las dinámicas de las parejas y los desafíos individuales. Proporcionará pistas indirectas a través de preguntas abiertas ("¿Habéis probado a...? ¿Qué pasaría si...?"), en lugar de dar soluciones.
+### Objetivos del Día
+- Explorar diferentes formas de calcular áreas
+- Comprender el concepto de unidades de medida no convencionales
+- Crear material para el puesto de áreas en la feria
 
-Gestión del Clima Emocional: Monitoreará la frustración y el aburrimiento. Recordará la importancia del tono tranquilo y respetuoso entre los compañeros, y el valor del esfuerzo. Puede sugerir pequeños "descansos cerebrales" si percibe altos niveles de ansiedad, especialmente para Elena y Luis.
+### Reparto de Tareas
+- **Experimentación grupal** con diferentes materiales
+- **Trabajo individual** creando tarjetas de objetos y unidades
+- Aproximadamente 3 tarjetas por estudiante
 
-Fomento de la Autonomía: Evitará la sobreintervención. Su objetivo es que los estudiantes encuentren sus propias soluciones y estrategias.
+### Materiales Necesarios
+- Cuerdas para círculos y rectas
+- Bloques de dominó, imanix
+- Folios para medir superficies
+- Tarjetas en blanco
+- Rotuladores
+- Botes o carpetas para organizar
 
-Gestión del Tiempo: Aunque la actividad es flexible, el docente puede dar avisos de tiempo para que las parejas avancen y no se queden atascadas demasiado tiempo en un reto.
+### Desarrollo del Día
 
-Registro de Observaciones: Anotará qué estrategias utiliza cada pareja, qué desafíos surgen, y cómo colaboran, para la evaluación formativa posterior.
+#### Experimentación con Áreas
+- Jugar con diferentes formas de calcular cuánto ocupan las cosas
+- Ejemplo: Una superficie puede ocupar un folio y 5 imanix
+- Explorar con cuerdas, bloques, y otros materiales
 
-Planteamiento de la Actividad:
-Narrativa Inmersiva: Presentará la actividad con una historia de piratas y tesoros, enfatizando que el verdadero tesoro es el conocimiento y la capacidad de resolver misterios.
+#### Creación de Tarjetas
+- **Tarjetas de objetos:** "el libro de ciencias", "el respaldo de las sillas" (libertad creativa)
+- **Tarjetas de unidades de medida:** imanix, dominó, cuerda
+- Guardar todas las tarjetas en botes o carpetas organizadas 
 
-Preparación de Estaciones: Asegurará que cada estación esté perfectamente preparada con los materiales adecuados y las instrucciones visuales/auditivas necesarias.
+## MIÉRCOLES: Dinámica de Lógica Matemática
 
+### Objetivos del Día
+- Aplicar razonamiento lógico-matemático
+- Resolver ecuaciones con símbolos
+- Crear problemas lógicos propios
 
-Agrupamientos y Tareas/Roles Específicos por Pareja
-Las parejas se han formado buscando un equilibrio entre niveles de apoyo, canales preferentes y temperamentos, fomentando la ayuda mutua y el desafío óptimo para ambos miembros. Los roles dentro de cada pareja serán flexibles, permitiendo a los estudiantes decidir cómo se dividen el trabajo.
- 
-Preparación de la actividad: 
+### Reparto de Tareas
+- **Actividad grupal** resolviendo problemas en la pizarra
+- **Trabajo individual** creando problemas propios
+- Validación del profesor para todos los ejercicios
 
-Durante la semana iremos preparando los materiales que vamos a necesitar.
-Se pedirá que traigan botellas durante la semana y el jueves las trabajaremos.  
+### Materiales Necesarios
+- Pizarra y rotuladores
+- Tarjetas en blanco para crear problemas
+- Símbolos variados (estrella, luna, sol, etc.)
+- Botes o carpetas para organizar
 
-Lunes: Taller formas geométricas. 1.Recortables y montables. Hacer etiquetas con los nombres y guardarlas en un bote, carpeta... 2. Encontrar objetos en el aula (se puede favorecer por ejemplo, con dados de varias caras), categorizarlos, creandos dos tarjetas por objeto: nombre y forma geométrica. Y se guardan las tarjetas en otro bote o carpeta. 
+### Desarrollo del Día
 
-Martes: Haremos una dinámica de cómo calcular áreas con diferentes materiales, con cuerdas para círculos y rectas, con bloques de dominó, imanix, la idea es jugar con diferentes formas de calcular cuánto ocupan las cosas. Una superficie puede ocupar un folio y 5 imanix. Dentro de esta actividad, dejaremos hechas, como 3 por estudiante, tarjetas con nombres de objetos del aula que podríamos medir con cualquier cosa. Por ejemplo puede haber tarjetas en las que ponga, "el libro de ciencias" o "el respaldo de las sillas", se deja libertad. Estas tarjetas también se guardan en un bote o carpetita.  Así mismo, se crearán tarjetas con los objetos que puedan servir de unidades de medida (los imanix, dominó, cuerda) que también se guardan. 
+#### Resolución Grupal
+Ejemplos de actividades típicas:
+- estrella + estrella = 16
+- estrella + luna = 25
+- luna − sol = 10
+- sol × estrella + luna = ?
 
-Miércoles:
-Dinámica de lógica: 
-Sacaremos diferentes actividades típicas de:
-estrella+estrella=16
+#### Actividad en Pizarra
+- Resolver varias ecuaciones entre todos
+- Explicar procesos de razonamiento
 
-estrella+luna=25
+#### Creación Individual
+- Cada estudiante crea al menos un problema propio
+- Se incluyen problemas adicionales si hay tiempo
+- Todos los ejercicios deben ser validados antes de incluirlos en el bote 
 
-luna−sol=10
+## JUEVES: Preparación de la Feria y Revelación
 
-sol×estrella+luna=?
+### Objetivos del Día
+- Catalogar y organizar botellas recopiladas
+- Revelar la actividad final: ¡Feria Matemática!
+- Organizar equipos y preparar puestos
+- Crear paneles informativos y decoración
 
-Se puede hacer una actividad grupal de ir haciéndo varias en la pizarra entre todos primero. Y luego se les pide que traten de crear una ellos. Se deja el tiempo necesario hasta que todos han hecho por lo menos, una. Si en ese tiempo alguien hace más, se incluirán en su respectivo bote o carpeta. Todos los ejercicios han de ser validados antes de incluirlos. Dependiendo del ritmo se pueden hacer más. 
+### Reparto de Tareas
+- **Alex y María:** equipo equilibrado, pareja funcionalmente similar
+- **Elena y Emma:** Elena puede experimentar tensión, Emma aporta tranquilidad
+- **Ana y Hugo:** ambos buenos argumentando, buscarán lógica mediante conversación
+- **Sara y Luis:** Sara aporta argumentación, Luis aporta opciones creativas
 
-Jueves:
-Botellas y revelación. 
-Durante la semana habremos ido recopilando botellas en algún espacio del aula. Hoy las vamos a contar y catalogar. 
-La idea es tener varias garrafas por ejemplo de 6 y 8 litros. Las dejaremos aparte y crearemos tarjetas de cantidades que podrían entrar (por ejemplo, 4,75L, 5,5L, 7,60L) bote totales
-Todas las que sean como de 1,5L (aprox) para abajo, las iremos cogiendo una a una y escribiremos un cartelito por cada una con el volumen en decimales y fracciones, por ejemplo 0,5L y 1/2L. Y esos cartelitos se guardan también en un bote o carpeta. bote cálculos
- 
-Una vez cerrado el material, se revela la actividad: !Haremos una Feria Matemática!
+### Materiales Necesarios
+- Botellas recopiladas durante la semana
+- Garrafas de 6 y 8 litros
+- Tarjetas para catalogar volúmenes
+- Materiales para paneles informativos
+- Decoración para los puestos
 
-Se explican los puestos brevemente. 
+### Desarrollo del Día
 
-Garrafas. 
-Se sacará una tarjeta del bote cantidades y dos tarjetas de las botellas. Cada equipo tendrá que elegir una garrafa y usar las dos botellas pequeñas que correspondan a sus tarjetas para rellenar la garrafa. 
+#### Catalogación de Botellas
+- Contar y catalogar todas las botellas recopiladas
+- **Garrafas grandes:** Separar garrafas de 6 y 8 litros
+- **Tarjetas de cantidades:** Crear tarjetas con volúmenes posibles (4,75L, 5,5L, 7,60L)
+- **Botellas pequeñas:** Etiquetar cada botella ≤ 1,5L con volumen en decimales y fracciones (ej: 0,5L y 1/2L)
 
-Geometría.
-Se descolocan las figuras geométricas. 
-Cada equipo tendrá que colocar cada figura geométrica con su nombre correspondiente. Además, sacará 5 tarjetas de nombre de objeto y tendrá a disposición otra tanda de nombes de formas donde elegir. 
+#### ¡Revelación de la Feria Matemática!
 
-Lógica:
-Cada equipo sacará 2 (o 3, dependiendo de cuántas se crearan) de las actividades que diseñaron ellos mismos y tendrán que resolverlas. 
+**Explicación de los 4 Puestos:**
 
-Áreas:
-Cogerán una tarjeta de objeto de aula y dos tarjetas de unidades de medida. Tendrán que encontrar la manera de describir en términos de las unidades que les hayan salido, cuánto ocupa el objeto. 
+1. **Puesto Garrafas:**
+   - Sacar una tarjeta de cantidades y dos de botellas
+   - Elegir una garrafa y usar las botellas para rellenarla
 
-Repartiremos un puesto por grupo: 
+2. **Puesto Geometría:**
+   - Colocar figuras geométricas con sus nombres correspondientes
+   - Sacar 5 tarjetas de objetos y emparejar con formas
 
-Alex y María: equipo equilibrado, pareja bastante parecida a nivel funcional. 
+3. **Puesto Lógica:**
+   - Resolver 2-3 problemas creados por ellos mismos
 
-Elena y Emma: tarea que puede generar tensión a Elena y Emma es muy tranquila. 
+4. **Puesto Áreas:**
+   - Sacar tarjeta de objeto y dos de unidades de medida
+   - Describir cuánto ocupa el objeto en esas unidades
 
-Ana y Hugo: ambos van a incurrir en conversación para llegar a una lógica. Buenos argumentando. 
+#### Organización de la Feria
+- Cada equipo elige un puesto (aleatoriamente o por preferencia)
+- Crear panel informativo explicando el puesto asignado
+- Preparar materiales: garrafas, carpetas, botes, decoración
+- Organizar el espacio físico 
 
-Sara y Luis: Sara ayudará con buena argumentación y Luis creará opciones creativas. 
+## VIERNES: Feria Matemática
 
-Cada equipo elige un puesto o coge una tarjetita aleatoria y el resto del día lo dedicaremos a organizar la feria. Primeramente cada equipo tendrá que crear un panel informativo de en qué consiste el puesto. Evaluaremos como van integrando la información. Ayudaremos a que cada uno tenga claro, al menos, su puesto. Así podrán crear las tarjetas con sentido. Después seguiremos decorando y colocando: dejar las garrafas preparadas, las carpetas o botes de cada puesto, hacer dibujos, etc. 
+### Objetivos del Día
+- Aplicar todos los conocimientos adquiridos durante la semana
+- Trabajar colaborativamente en los puestos de la feria
+- Desarrollar competencias de resolución de problemas
+- Celebrar el aprendizaje matemático
 
-Viernes:
+### Reparto de Tareas
+- **Rotación por equipos** entre los 4 puestos
+- **Asignación aleatoria** del puesto inicial (tarjetas o números)
+- **Validación del profesor** en cada prueba
 
-Ya tenemos todo preparado y debería haber al menos algo de expectación. 
+### Materiales Necesarios
+- Todos los materiales preparados durante la semana
+- Sistema de tarjetas para asignación de puestos
+- Frases de matemáticos famosos (en trozos)
+- Acertijo final para resolver en grupo
 
-Cada equipo puede coger una tarjeta de puesto, o coger un número y será el orden para elegir. 
-La idea es incluir muchos aspectos de probabilidad y aleatoriedad en la dinámica. 
-Cada equipo empieza en un puesto y luego rotan en un sentido o otro. En este momento hay que dar cierta libertad al juego, pero tratando de mantener un volumen adecuado. Aquí el profesor tendrá que ir validando la realización de cada prueba. Los grupos tendrán que esperar a que el/la profe esté disponible para ir a revisar y mientras deberán repasar sus resultados. 
+### Desarrollo del Día
 
-Al acabar cada ronda, reciben por ejemplo, un trozo de frase de algún matemático famoso o referente a la magia de las matemáticas. Una vez que tienen todos sus trozos construyen su frase. 
-O al acabar todas las pruebas cada equipo recibe un trozo de acertijo que tienen que resolver entre todo el aula. 
+#### Organización Inicial
+- Cada equipo coge una tarjeta de puesto o un número para determinar el orden de elección
+- La dinámica incluye aspectos de probabilidad y aleatoriedad
+- Cada equipo empieza en un puesto y luego rotan
 
+#### Dinámica de la Feria
+- **Libertad controlada:** Dar libertad al juego manteniendo volumen adecuado
+- **Validación del profesor:** Los grupos esperan validación antes de continuar
+- **Tiempo de repaso:** Mientras esperan, revisan sus resultados
 
+#### Sistema de Recompensas
+**Opción A:** Al acabar cada ronda, reciben un trozo de frase de algún matemático famoso. Una vez que tienen todos sus trozos, construyen su frase completa.
 
-Adaptaciones: 
+**Opción B:** Al acabar todas las pruebas, cada equipo recibe un trozo de acertijo que deben resolver entre toda el aula.
 
-Elena siempre debería tener a disposición sus cascos y estrategias de regulación (por ejemplo, llevar un trozo de plastilina en la mano). 
-El aula debe disponer de diferentes materiales que les sirvan de estrategia de organización, cuadernos, lápices, cuentas, etc. 
-Para Luis es una actividad movida, motivante y estructurada. 
-Para Ana es un reto donde además, juega el papel de la aleatoriedad. 
+## Adaptaciones Específicas
 
+### Adaptaciones Generales
+- **Rol del profesor:** Presentar actividades sin revelar su propósito final, permitiendo que despierte la curiosidad natural
+- **Gestión del aula:** Observación activa y guía discreta con preguntas abiertas ("¿Habéis probado a...? ¿Qué pasaría si...?")
+- **Clima emocional:** Monitorear frustración y aburrimiento, sugerir "descansos cerebrales" si es necesario
+- **Autonomía:** Evitar sobreintervención, fomentar que encuentren sus propias soluciones
+- **Gestión del tiempo:** Dar avisos para evitar que se queden atascados demasiado tiempo
 
-Proporcionar múltiples medios de representación (El "Qué" del Aprendizaje): tienen las garrafas y tienen las tarjetas, o los simbolos y las cuentas, las formas geométricas estrictas y las del "mundo", junto con nombres escritos. Numerosos materiales con los que medir áreas... 
+### Adaptaciones Individuales
+
+**Elena (TEA):**
+- Cascos y estrategias de regulación disponibles (ej: plastilina en la mano)
+- Materiales organizativos: cuadernos, lápices, cuentas
+- Atención especial durante tensión en parejas
+
+**Luis (TDAH):**
+- Actividad movida, motivante y estructurada
+- Oportunidades frecuentes de movimiento y cambio de foco
+
+**Ana (Altas Capacidades):**
+- Reto intelectual con componente de aleatoriedad
+- Oportunidades para argumentar y desarrollar lógica compleja
+
+### Múltiples Medios de Representación
+- **Materiales concretos:** garrafas, tarjetas, símbolos, cuentas
+- **Formas geométricas:** tanto estrictas como del "mundo real"
+- **Textos escritos:** nombres, etiquetas, instrucciones
+- **Materiales variados:** para medir áreas de diferentes maneras
+- **Acción física:** verter agua, mover fichas, colocar carteles facilita comprensión concreta
+
+## Preparación Previa del Profesor
+
+### LUNES: Taller de Formas Geométricas
+- Preparar figuras geométricas recortables y montables
+- Organizar etiquetas y material de escritura
+- Preparar botes/carpetas para organización
+- Conseguir dados de varias caras (opcional)
+- Seleccionar objetos variados del aula
+
+### MARTES: Dinámica de Cálculo de Áreas
+- Preparar cuerdas de diferentes longitudes
+- Conseguir bloques de dominó, imanix, otros materiales de medida
+- Preparar folios y material de escritura
+- Organizar botes/carpetas para tarjetas
+- Crear tarjetas en blanco para objetos y unidades
+
+### MIÉRCOLES: Dinámica de Lógica Matemática
+- Preparar ejemplos de problemas lógicos con símbolos
+- Organizar pizarra y rotuladores
+- Preparar tarjetas en blanco para creación de problemas
+- Crear símbolos variados (estrella, luna, sol, etc.)
+- Sistema de validación de ejercicios
+
+### JUEVES: Preparación de la Feria
+- **Recopilación previa:** Solicitar botellas durante toda la semana
+- Conseguir garrafas grandes (6L, 8L)
+- Preparar materiales para paneles informativos
+- Organizar decoración para puestos
+- Preparar sistema de catalogación
+
+### VIERNES: Feria Matemática
+- Organizar espacio físico para 4 puestos
+- Preparar sistema de tarjetas para asignación aleatoria
+- Crear frases de matemáticos famosos cortadas en trozos
+- Preparar acertijo final para resolución grupal
+- Establecer sistema de validación y rotación 
 
 Todos: La propia acción de verter agua, mover fichas, colocar carteles facilita la comprensión concreta.
 
@@ -178,4 +335,42 @@ Capacidad de reflexión y de pensamiento abstracto. Durante la semana, si empiez
 
 La Curiosidad como Motor
 
-Autonomía en la Resolución: El docente no da las soluciones, lo que empodera a los estudiantes a confiar en sus propias capacidades para encontrar las respuestas.
+Autonomía en la Resolución: El docente no da las soluciones, lo que empodera a los estudiantes a confiar en sus propias capacidades para encontrar las respuestas.## Estrategias Metodológicas Complementarias
+
+### Múltiples Medios de Acción y Expresión
+- **Expresión Oral:** Discusión de estrategias en pareja, justificación de respuestas al profesor, explicación de conceptos
+- **Expresión Escrita/Dibujo:** Registro de cálculos, diagramas, esquemas, listas de fracciones, dibujos de soluciones de área
+- **Manipulación:** Solución física de los problemas (llenar garrafas, cubrir áreas)
+
+### Autoregulación
+- **Gestión del tiempo:** Reloj en el aula
+- **Estrategias de afrontamiento:** Herramientas para la frustración (pausas, respiración, pedir ayuda)
+- **Pausas estratégicas:** Entre ronda y ronda para procesar la información
+- **Elección:** Las parejas pueden decidir cómo organizan el trabajo
+
+### Múltiples Medios de Implicación
+- **Colaboración y Pertenencia:** Trabajo en pareja y resolución conjunta
+- **Novedad y Curiosidad:** Toda la actividad está diseñada para despertar curiosidad
+- **Retroalimentación Inmediata:** La validación del profesor fomenta la auto-corrección
+- **Autonomía en la Resolución:** El docente no da soluciones, empodera a los estudiantes
+
+## Ideas de Extensión
+
+### Premios y Tesoros de Conocimiento
+Si hay opción de incorporar material nuevo al aula, puede incluirse un libro de curiosidades matemáticas con datos interesantes y acertijos nuevos.
+
+Los premios pueden ser "tesoros de conocimiento". Al acabar la última ronda, cada equipo recibe un "dato mágico":
+
+- **Pi (π):** "El número Pi es infinito y nos ayuda a calcular circunferencias. Se usa desde las pirámides hasta los viajes espaciales." (Con dígitos de Pi)
+
+- **Energía:** "¿Sabías que un rayo contiene tanta energía como 100 bombillas encendidas durante un día? La electricidad se mide con números muy grandes y muy pequeños." (Con ilustración)
+
+- **Geometría natural:** "Las abejas construyen hexágonos perfectos. Esta forma es la más eficiente para guardar miel, ¡ocupa mínimo espacio y usa mínimo material!" (Con imagen de panal)
+
+- **Neurociencia:** "Nuestro cerebro pesa solo un 2% del cuerpo, ¡pero consume un 20% de toda la energía! Es una máquina increíble para resolver problemas."
+
+### Conexión con Intereses
+Si es posible, intentar que el dato final conecte con intereses generales del grupo (ciencia, naturaleza, cuerpo humano, etc.).
+
+### Desarrollo del Pensamiento Abstracto
+Durante la semana, los estudiantes desarrollan capacidad de reflexión. Al organizar la actividad el jueves, van recreando posibles opciones, conocen materiales y posibilidades, lo que fomenta la curiosidad como motor del aprendizaje.
