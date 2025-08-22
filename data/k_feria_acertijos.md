@@ -1,0 +1,181 @@
+Objetivo de Aprendizaje
+El objetivo principal de esta actividad es que los estudiantes apliquen y fortalezcan sus habilidades matemáticas en un contexto de resolución de problemas colaborativo y significativo, adaptado a sus niveles de competencia y estilos de aprendizaje. Específicamente, se busca que:
+
+Refuercen la comprensión y aplicación de fracciones y volumen en contextos prácticos.
+
+Desarrollen la comprensión del concepto de área y su cálculo mediante unidades no convencionales.
+
+Reconozcan y clasifiquen figuras geométricas y su vocabulario asociado.
+
+Apliquen el razonamiento lógico-matemático para resolver ecuaciones con símbolos.
+
+Fomenten la colaboración y comunicación efectiva dentro de las parejas y entre grupos más grandes.
+
+Desarrollen la perseverancia y la tolerancia a la frustración al enfrentar desafíos.
+
+Ejerciten la autonomía y la autorregulación al gestionar su propio proceso de resolución.
+
+Mejoren las habilidades de orientación espacial y reconstrucción de mapas.
+
+Además, la actividad incorpora aspectos curriculares transversales como:
+
+Ciencias Naturales: Propiedades del agua (volumen), la forma de los objetos.
+
+Lengua Castellana: Vocabulario geométrico, descripción de procesos de resolución, comunicación oral.
+
+Habilidades del Siglo XXI: Pensamiento crítico, resolución de problemas, colaboración.
+
+Descripción de la Actividad
+La actividad se llevará a lo largo de la semana que culminará el viernes en una Feria Matemática. 
+
+Rol del Profesor
+El docente irá presentando las actividades sin hacer referencia a que vayan a ser utilizadas más adelante. Simplemente permitiendo que se despierte o no su curiosidad y estas cosas son las que iremos viendo del desarrollo del aula. 
+
+Gestión del Aula durante la Actividad:
+Observación Activa y Guía Discreta: Circulará por las estaciones, observando las dinámicas de las parejas y los desafíos individuales. Proporcionará pistas indirectas a través de preguntas abiertas ("¿Habéis probado a...? ¿Qué pasaría si...?"), en lugar de dar soluciones.
+
+Gestión del Clima Emocional: Monitoreará la frustración y el aburrimiento. Recordará la importancia del tono tranquilo y respetuoso entre los compañeros, y el valor del esfuerzo. Puede sugerir pequeños "descansos cerebrales" si percibe altos niveles de ansiedad, especialmente para Elena y Luis.
+
+Fomento de la Autonomía: Evitará la sobreintervención. Su objetivo es que los estudiantes encuentren sus propias soluciones y estrategias.
+
+Gestión del Tiempo: Aunque la actividad es flexible, el docente puede dar avisos de tiempo para que las parejas avancen y no se queden atascadas demasiado tiempo en un reto.
+
+Registro de Observaciones: Anotará qué estrategias utiliza cada pareja, qué desafíos surgen, y cómo colaboran, para la evaluación formativa posterior.
+
+Planteamiento de la Actividad:
+Narrativa Inmersiva: Presentará la actividad con una historia de piratas y tesoros, enfatizando que el verdadero tesoro es el conocimiento y la capacidad de resolver misterios.
+
+Preparación de Estaciones: Asegurará que cada estación esté perfectamente preparada con los materiales adecuados y las instrucciones visuales/auditivas necesarias.
+
+
+Agrupamientos y Tareas/Roles Específicos por Pareja
+Las parejas se han formado buscando un equilibrio entre niveles de apoyo, canales preferentes y temperamentos, fomentando la ayuda mutua y el desafío óptimo para ambos miembros. Los roles dentro de cada pareja serán flexibles, permitiendo a los estudiantes decidir cómo se dividen el trabajo.
+ 
+Preparación de la actividad: 
+
+Durante la semana iremos preparando los materiales que vamos a necesitar.
+Se pedirá que traigan botellas durante la semana y el jueves las trabajaremos.  
+
+Lunes: Taller formas geométricas. 1.Recortables y montables. Hacer etiquetas con los nombres y guardarlas en un bote, carpeta... 2. Encontrar objetos en el aula (se puede favorecer por ejemplo, con dados de varias caras), categorizarlos, creandos dos tarjetas por objeto: nombre y forma geométrica. Y se guardan las tarjetas en otro bote o carpeta. 
+
+Martes: Haremos una dinámica de cómo calcular áreas con diferentes materiales, con cuerdas para círculos y rectas, con bloques de dominó, imanix, la idea es jugar con diferentes formas de calcular cuánto ocupan las cosas. Una superficie puede ocupar un folio y 5 imanix. Dentro de esta actividad, dejaremos hechas, como 3 por estudiante, tarjetas con nombres de objetos del aula que podríamos medir con cualquier cosa. Por ejemplo puede haber tarjetas en las que ponga, "el libro de ciencias" o "el respaldo de las sillas", se deja libertad. Estas tarjetas también se guardan en un bote o carpetita.  Así mismo, se crearán tarjetas con los objetos que puedan servir de unidades de medida (los imanix, dominó, cuerda) que también se guardan. 
+
+Miércoles:
+Dinámica de lógica: 
+Sacaremos diferentes actividades típicas de:
+estrella+estrella=16
+
+estrella+luna=25
+
+luna−sol=10
+
+sol×estrella+luna=?
+
+Se puede hacer una actividad grupal de ir haciéndo varias en la pizarra entre todos primero. Y luego se les pide que traten de crear una ellos. Se deja el tiempo necesario hasta que todos han hecho por lo menos, una. Si en ese tiempo alguien hace más, se incluirán en su respectivo bote o carpeta. Todos los ejercicios han de ser validados antes de incluirlos. Dependiendo del ritmo se pueden hacer más. 
+
+Jueves:
+Botellas y revelación. 
+Durante la semana habremos ido recopilando botellas en algún espacio del aula. Hoy las vamos a contar y catalogar. 
+La idea es tener varias garrafas por ejemplo de 6 y 8 litros. Las dejaremos aparte y crearemos tarjetas de cantidades que podrían entrar (por ejemplo, 4,75L, 5,5L, 7,60L) bote totales
+Todas las que sean como de 1,5L (aprox) para abajo, las iremos cogiendo una a una y escribiremos un cartelito por cada una con el volumen en decimales y fracciones, por ejemplo 0,5L y 1/2L. Y esos cartelitos se guardan también en un bote o carpeta. bote cálculos
+ 
+Una vez cerrado el material, se revela la actividad: !Haremos una Feria Matemática!
+
+Se explican los puestos brevemente. 
+
+Garrafas. 
+Se sacará una tarjeta del bote cantidades y dos tarjetas de las botellas. Cada equipo tendrá que elegir una garrafa y usar las dos botellas pequeñas que correspondan a sus tarjetas para rellenar la garrafa. 
+
+Geometría.
+Se descolocan las figuras geométricas. 
+Cada equipo tendrá que colocar cada figura geométrica con su nombre correspondiente. Además, sacará 5 tarjetas de nombre de objeto y tendrá a disposición otra tanda de nombes de formas donde elegir. 
+
+Lógica:
+Cada equipo sacará 2 (o 3, dependiendo de cuántas se crearan) de las actividades que diseñaron ellos mismos y tendrán que resolverlas. 
+
+Áreas:
+Cogerán una tarjeta de objeto de aula y dos tarjetas de unidades de medida. Tendrán que encontrar la manera de describir en términos de las unidades que les hayan salido, cuánto ocupa el objeto. 
+
+Repartiremos un puesto por grupo: 
+
+Alex y María: equipo equilibrado, pareja bastante parecida a nivel funcional. 
+
+Elena y Emma: tarea que puede generar tensión a Elena y Emma es muy tranquila. 
+
+Ana y Hugo: ambos van a incurrir en conversación para llegar a una lógica. Buenos argumentando. 
+
+Sara y Luis: Sara ayudará con buena argumentación y Luis creará opciones creativas. 
+
+Cada equipo elige un puesto o coge una tarjetita aleatoria y el resto del día lo dedicaremos a organizar la feria. Primeramente cada equipo tendrá que crear un panel informativo de en qué consiste el puesto. Evaluaremos como van integrando la información. Ayudaremos a que cada uno tenga claro, al menos, su puesto. Así podrán crear las tarjetas con sentido. Después seguiremos decorando y colocando: dejar las garrafas preparadas, las carpetas o botes de cada puesto, hacer dibujos, etc. 
+
+Viernes:
+
+Ya tenemos todo preparado y debería haber al menos algo de expectación. 
+
+Cada equipo puede coger una tarjeta de puesto, o coger un número y será el orden para elegir. 
+La idea es incluir muchos aspectos de probabilidad y aleatoriedad en la dinámica. 
+Cada equipo empieza en un puesto y luego rotan en un sentido o otro. En este momento hay que dar cierta libertad al juego, pero tratando de mantener un volumen adecuado. Aquí el profesor tendrá que ir validando la realización de cada prueba. Los grupos tendrán que esperar a que el/la profe esté disponible para ir a revisar y mientras deberán repasar sus resultados. 
+
+Al acabar cada ronda, reciben por ejemplo, un trozo de frase de algún matemático famoso o referente a la magia de las matemáticas. Una vez que tienen todos sus trozos construyen su frase. 
+O al acabar todas las pruebas cada equipo recibe un trozo de acertijo que tienen que resolver entre todo el aula. 
+
+
+
+Adaptaciones: 
+
+Elena siempre debería tener a disposición sus cascos y estrategias de regulación (por ejemplo, llevar un trozo de plastilina en la mano). 
+El aula debe disponer de diferentes materiales que les sirvan de estrategia de organización, cuadernos, lápices, cuentas, etc. 
+Para Luis es una actividad movida, motivante y estructurada. 
+Para Ana es un reto donde además, juega el papel de la aleatoriedad. 
+
+
+Proporcionar múltiples medios de representación (El "Qué" del Aprendizaje): tienen las garrafas y tienen las tarjetas, o los simbolos y las cuentas, las formas geométricas estrictas y las del "mundo", junto con nombres escritos. Numerosos materiales con los que medir áreas... 
+
+Todos: La propia acción de verter agua, mover fichas, colocar carteles facilita la comprensión concreta.
+
+Proporcionar múltiples medios de acción y expresión (El "Cómo" del Aprendizaje):
+
+Expresión Oral: Discusión de estrategias en pareja, justificación de respuestas al profesor, explicación de conceptos.
+
+Expresión Escrita/Dibujo: Registro de cálculos, diagramas, esquemas, listas de fracciones, dibujos de las soluciones de área.
+
+Manipulación: Solución física de los problemas (llenar garrafas, cubrir áreas).
+
+Autoregulación:
+
+Gestión del tiempo: Reloj en el aula. 
+
+Estrategias de afrontamiento: Se recordarán herramientas para la frustración (pausas, respiración, pedir ayuda). En los momentos entre ronda y ronda, se pueden hacer pausas estratégicas, parales un poco, antes de seguir. 
+
+Elección: Dentro de cada reto, las parejas podrán decidir cómo se organizan el trabajo.
+
+Proporcionar múltiples medios de implicación (El "Por qué" del Aprendizaje):
+
+Colaboración y Pertenencia: El trabajo en pareja y la posterior resolución conjunta.
+
+Novedad y Curiosidad: toda la actividad está diseñada para despertar curiosidad y puesta en conciencia.
+
+Retroalimentación Inmediata y Formativa: La validación del profesor en cada reto ofrece retroalimentación instantánea, y la incapacidad de avanzar sin una respuesta correcta fomenta la auto-corrección.
+
+
+
+
+Si hay opción de incorporar material nuevo al aula. Puede haber un premio de la feria que sea nuevo un libro para el aula, de curiosidades matemáticas, con datos interesantes y acertijos nuevos.
+
+Los premios pueden ser "tesoros de conocimiento". Al acabar la última ronda, cada equipo recibe un "dato mágico" o una pregunta sobre una curiosidad que cuestionarse. 
+
+"El número Pi (π) es un número infinito que nos ayuda a calcular la circunferencia de cualquier círculo. Se usa desde la construcción de las pirámides hasta los viajes al espacio." (Con un número largo de Pi escrito)
+
+"¿Sabías que un rayo puede contener tanta energía como 100 bombillas encendidas durante un día? La electricidad es una forma de energía que se mide con números muy grandes y muy pequeños." (Con un dibujo de un rayo y una bombilla).
+
+"Las abejas construyen sus panales con hexágonos perfectos. Esta forma geométrica es la más eficiente para guardar miel, ¡porque ocupa el mínimo espacio y usa el mínimo material!" (Con una imagen de un panal y un hexágono).
+
+"Nuestro cerebro pesa solo un 2% de nuestro cuerpo, ¡pero consume un 20% de toda la energía que usamos! Es una máquina increíble para resolver problemas, como los que habéis resuelto hoy."
+
+Conexión con Intereses: Si es posible, se puede intentar que el dato final conecte con un interés general del grupo (ciencia, naturaleza, el cuerpo humano, etc.).
+
+Capacidad de reflexión y de pensamiento abstracto. Durante la semana, si empiezan a ver que algo se cuece, y al organizar la actividad el jueves, van recreando posibles opciones que les pueden tocar, conocen los materiales, y las posibilidades. 
+
+La Curiosidad como Motor
+
+Autonomía en la Resolución: El docente no da las soluciones, lo que empodera a los estudiantes a confiar en sus propias capacidades para encontrar las respuestas.
