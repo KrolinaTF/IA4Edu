@@ -59,7 +59,7 @@ class AnalystAgent:
         # Gemini para análisis básico usando litellm
         self.llm = ChatLiteLLM(
             model="gemini/gemini-1.5-flash",
-            api_key=os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY"),
+            api_key=os.getenv("GEMINI_API_KEY") or os.getenv("LLM_API_KEY"),
             temperature=0.7
         )
         self.agent = Agent(
