@@ -106,9 +106,10 @@ class ResearcherAgent:
         )
         self.agent = Agent(
             role='Investigador de Actividades',
-            goal='Buscar en la biblioteca de actividades ejemplos relevantes que sirvan de inspiración para el diseño',
-            backstory="""Eres un investigador educativo especializado en metodologías de aprendizaje por proyectos. 
-            Tienes acceso a una biblioteca de actividades exitosas y puedes identificar patrones y estrategias 
+            goal='Buscar en la biblioteca de actividades ejemplos relevantes que sirvan de inspiración para el diseño. Crear soluciones ingeniosas orientadas a cada aula con toda su diversidad',
+            backstory="""Eres un investigador educativo especializado en metodologías de aprendizaje en múltiples contextos educativos. 
+            Tienes acceso a una biblioteca de actividades exitosas, además de una gran inventiva y experiencia a la hora de crear contextos adaptados
+            gracias a ello, puedes identificar patrones y estrategias 
             que funcionan bien para diferentes neurotipos.""",
             verbose=True,
             allow_delegation=False,
@@ -172,9 +173,11 @@ class DesignerAgent:
         self.agent = Agent(
             role='Diseñador de Actividades Inclusivas',
             goal='Crear una actividad completa siguiendo el template, con adaptaciones específicas para cada estudiante',
-            backstory="""Eres un diseñador educativo experto en crear actividades de aprendizaje por proyectos inclusivas. 
+            backstory="""Eres un diseñador educativo experto en crear actividades de pedagógicas inclusivas en cualquier contexto educativo. 
+            Has de definir muy bien la actividad de una manera comprensible para el/la docente, de manera que pueda explicar con claridad a 
+            los estudiantes qué van a hacer.
             Tu especialidad es aplicar el paradigma de adaptación de terreno, diseñando desde el inicio para acomodar 
-            todos los neurotipos sin modificaciones posteriores.""",
+            todos los neurotipos siempre que sea posible y crear las adaptaciones individuales solo cuando no exista forma de adaptar la propia actividad.""",
             verbose=True,
             allow_delegation=False,
             llm=self.llm
@@ -201,6 +204,10 @@ class DesignerAgent:
             - Objetivos de aprendizaje específicos
             - Objetivos de inclusión
             - Competencias clave a desarrollar
+            - Elige una organización que optimice las tareas de los/as estudiantes y haz un reparto de las tareas para cada estudiante, grupo o pareja 
+            según corresponda. Justifica la elección.
+            - Crea ejemplos para cada fase y, si es necesario, para cada grupo en cada fase, orientados a que el/la docente 
+            tenga claro qué se va a hacer en cada fase y qué va a hacer cada estudiante en cada fase.
             
             3. FASES DE LA ACTIVIDAD:
             Para cada fase incluir:
@@ -211,8 +218,10 @@ class DesignerAgent:
             - Adaptaciones específicas por neurotipo
             
             4. ASIGNACIÓN DE ESTUDIANTES:
+            - Dependiendo del tipo de actividad, decidir si es individual, en parejas o grupos.
             - Formar grupos/parejas considerando los perfiles de los 8 estudiantes
-            - Asignar roles específicos que aprovechen las fortalezas de cada uno
+            - Repartir las tareas específicas que realizará cada estudiante, o grupo/pareja de estudiantes en cada una de las fases.
+            - Si la actividad lo requiere, asignar roles específicos que aprovechen las fortalezas de cada uno
             - Justificar las decisiones de agrupación
             
             5. MATERIALES Y RECURSOS:
@@ -226,9 +235,22 @@ class DesignerAgent:
             - Rúbrica inclusiva
             
             IMPORTANTE: Aplica el paradigma de adaptación de terreno diseñando desde el inicio para todos los neurotipos.
-            Crea adaptaciones ESPECÍFICAS para cada uno de los 8 estudiantes usando sus perfiles individuales.""",
+            Crea adaptaciones ESPECÍFICAS para cada uno de los 8 estudiantes usando sus perfiles individuales. Esto significa tareas concretas en la actividad, 
+            no adaptaciones genéricas. Tienes que responderte a esta pregunta: para la adaptación que necesita esta persona ¿qué tarea puede realizar específicamente en esta actividad concreta?
+            Da ejemplos de esas tareas específicas y orientaciones de como llevarlas a cabo. 
+            El/la docente ha de conocer qué va a hacer exactamente cada estudiante en cada fase de la actividad.
+            
+            FORMATO DE SALIDA: Genera la actividad en formato Markdown estructurado y bien formateado, usando:
+            - # para el título principal
+            - ## para secciones principales
+            - ### para subsecciones
+            - Listas con - o * para elementos
+            - **Negrita** para resaltar elementos importantes
+            - Tablas markdown cuando sea apropiado para organizar información
+            
+            La estructura debe ser clara y fácil de leer.""",
             agent=self.agent,
-            expected_output="Actividad completa estructurada según el template con adaptaciones específicas para cada estudiante",
+            expected_output="Documento Markdown completo y bien estructurado con la actividad y todas las adaptaciones específicas para cada estudiante",
             context=[analysis_result, research_result] if isinstance(analysis_result, Task) else []
         )
 
@@ -245,7 +267,7 @@ class RefinementAgent:
             goal='Revisar y mejorar la actividad basándose en feedback del profesor',
             backstory="""Eres un especialista en mejora continua de diseños educativos. Tu trabajo es tomar el feedback 
             del profesor y transformarlo en mejoras concretas de la actividad, manteniendo siempre el enfoque inclusivo 
-            y el paradigma de adaptación de terreno.""",
+            y el paradigma de adaptación de terreno. Para ello, tendrás en cuenta las necesidades del aula y los perfiles de los estudiantes""",
             verbose=True,
             allow_delegation=False,
             llm=self.llm
@@ -263,7 +285,7 @@ class RefinementAgent:
             
             Tu trabajo es:
             1. Analizar el feedback del profesor identificando áreas específicas de mejora
-            2. Revisar la actividad existente manteniendo los elementos que funcionan
+            2. Revisar la actividad existente manteniendo los elementos que funcionan. Es decir, a no ser que se diga lo contrario, se mantiene la información de la actividad que se ha generado hasta ahora.
             3. Implementar las mejoras solicitadas sin perder el enfoque inclusivo
             4. Asegurar que las adaptaciones para cada neurotipo siguen siendo efectivas
             5. Verificar que la actividad mantiene coherencia pedagógica
@@ -272,9 +294,12 @@ class RefinementAgent:
             - Actividad revisada con las mejoras implementadas
             - Explicación de los cambios realizados
             - Justificación de cómo los cambios mantienen o mejoran la inclusividad
-            - Recomendaciones adicionales si las hay""",
+            - Recomendaciones adicionales si las hay
+            
+            FORMATO DE SALIDA: Genera la actividad refinada en formato Markdown estructurado,
+            manteniendo el mismo formato claro y organizado que la actividad original.""",
             agent=self.agent,
-            expected_output="Actividad mejorada basada en el feedback del profesor con explicación de cambios",
+            expected_output="Documento Markdown completo con la actividad educativa refinada y mejorada",
             context=[activity_design] if isinstance(activity_design, Task) else []
         )
 

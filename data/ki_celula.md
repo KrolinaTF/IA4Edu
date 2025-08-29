@@ -24,6 +24,7 @@ Mural Colaborativo
 - Cartulinas o folios para etiquetas, rotuladores finos
 - Reloj de aula visible para todos
 
+
 ## Tareas
 
 ### Reparto

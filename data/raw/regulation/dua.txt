@@ -1,0 +1,1712 @@
+GUÍA DE ADAPTACIONES
+CURRICULARES
+Consejería de Educación y Ciencia
+Colección de Materiales Curriculares
+para la Educación Primaria
+Este libro esta impreso en papel ecológico
+Edita: MINISTERIO DE EDUCACIÓN Y CIENCIA. JUNTA DE ANDALUCÍA.
+CONSERJERÍA DE EDUCACIÓN Y CIENCIA.
+Dirección General de Evaluación Educativa y Formación del Profesorado.
+I.S.B.N.: 84-8051-029-3
+84-8051-024-2 (Obra completa).
+Maquetación: Cromoarte.
+D. Legal: SE. 1219-1992.
+2
+Guía de adaptaciones curriculares
+Índice
+Introducción ................................................................................................................................... 5
+EL MARCO CONCEPTUAL ...................................................................................................... 7
+Aspectos generales ................................................................................................................... 7
+Niveles de concreción ............................................................................................................... 9
+Toma de decisiones ................................................................................................................. 19
+Tipos de adaptaciones ............................................................................................................. 21
+Factores que configurar el estilo de aprendizaje ..................................................................... 24
+LA INDIVIDUALIZACIÓN DE LA ENSEÑANZA.
+EL CONTINUO DE LAS ADAPTACIONES CURRICULARES. ......................................... 33
+Las adaptaciones curriculares no significativas ...................................................................... 34
+Las adaptaciones curriculares significativas ........................................................................... 36
+Las adaptaciones de acceso al currículum ............................................................................. 39
+Alumnos con necesidades educativas especiales ................................................................... 41
+ANEXO:
+ALGUNOS FACTORES QUE CONFIGURAN EL ESTILO DE APRENDIZAJE ............... 45
+3
+Colección de Materiales Curriculares
+para la Educación Primaria
+4
+Guía de adaptaciones curriculares
+Este documento sobre Adaptaciones Curriculares está dirigido, en primer lugar, a los profesores y
+a las profesoras tutores de la etapa de Educación Primaria, así como al profesorado de apoyo y
+especialistas que trabajan también en ese mismo tramo educativo de la Educación Obligatoria. En
+segundo lugar, esta dirigido a los especialistas que colaboran con este profesorado en tareas de
+orientación educativa y apoyo psicopedagógico. En último termino, puede ser utilizado por cualquier
+persona interesada en entender el sentido y alcance que en el contexto del desarrollo del currículum
+se da al término “adaptaciones curriculares”.
+Este documento pretende alcanzar tres objetivos. En primer lugar, ayudar a sus destinatarios a
+revisar su forma de pensar y de actuar con relación a los alumnos experimentan dificultades para
+aprender los contenidos escolares. En segundo lugar, aspira a proporcionar una estrategia y unos
+criterios de actuación -las adaptaciones curriculares- que guíen efectivamente al profesorado en su
+acción educativa frente a estos alumnos; y en tercer lugar, pretende clarificar los distintos tipos de
+situaciones que por lo general aparecerán, explicitando que alumnos precisaran adaptaciones y de
+que tipo, que se persigue con ellas, en que consisten y que se le pide al profesorado en cada caso.
+Está organizado en dos partes. En la primera se presenta el “marco conceptual”, en el que se
+incluyen las reflexiones y la estrategia que se dirige a cubrir los dos primeros objetivos. En la
+segunda, que tiene un carácter más concreto, práctico y orientador, se tratará de alcanzar el tercer
+objetivo.
+5
+Colección de Materiales Curriculares
+para la Educación Primaria
+6
+Guía de adaptaciones curriculares
+EL MARCO CONCEPTUAL
+El objetivo de esta primera parte es revisar como se enfoca desde él la atención a la
+diversidad, así como el sentido que se da, de acuerdo con esta preocupación, a las
+dificultades de aprendizaje la respuesta que ha de darse desde la enseñanza a tales
+dificultades de aprendizaje. Para ello se analiza el continuo de situaciones que se
+pueden encontrar, las causas que pueden explicarlas y la estrategia de actuación que
+ha de seguirse.
+El currículum y la atención a la diversidad de los alumnos
+Definir el currículum supone establecer las intenciones que un sistema educativo tiene para con su
+alumnado. Es decir, supone seleccionar, de entre todo lo que es posible aprender, aquello que se va
+a aprender en las instituciones educativas. En el currículum se responde, por lo tanto, a las preguntas
+relativas al que, cómo y cuando enseñar y evaluar.
+Dar respuesta a estas preguntas exige necesariamente reflexionar acerca de las características de
+los alumnos que tienen que realizar los aprendizajes. El análisis de los rasgos fundamentales de
+aquel a quien se enseña es imprescindible para poder ajustar la enseñanza. El proceso de enseñanza
+y aprendizaje tendrá éxito en la medida en que los dos polos estén correctamente articulados, es
+decir, en tanto en cuanto el profesor adecue su intervención a la manera peculiar de aprender que
+tenga el alumno. Desde este punto de vista, la individualización de esta enseñanza es la meta que
+todo sistema educativo persigue, a la vez que la mayor dificultad con la que se enfrenta.
+La historia de la educación puede verse, entre otras posibles perspectivas, como la historia de la
+extensión de los servicios educativos a una población progresivamente más amplia, con el
+correspondiente aumento de la diversidad del alumnado y la creciente dificultad en la individualización
+de la enseñanza. Es evidente que a los preceptores les resultaba más sencillo adecuarse a las
+características de su pupilo, de lo que en este momento le resulta al profesorado responder a la
+diversidad de necesidades que se manifiestan en cualquier aula. El avance social que esta extensión
+claramente supone, exige mejorar también los métodos de enseñanza y los recursos con los que
+cuenta el sistema educativo.
+Si difícil le es al docente ajustarse a la diversidad de todos los alumnos, más difícil aun es establecer
+desde la Administración Educativa un currículum que responda a las necesidades del conjunto de la
+7
+Colección de Materiales Curriculares
+para la Educación Primaria
+población escolar. Y sin embargo es necesario hacerlo, si se quiere asegurar la igualdad de
+oportunidades de todo alumno a recibir una educación que le permita incorporarse a la sociedad
+como un ciudadano con plenos derechos y deberes. La Administración Educativa debe, por lo
+tanto, establecer aquellas enseñanzas que considera que cualquier alumno o alumna debe aprender
+y, en consecuencia. todo centro escolar debe impartir.
+Esta contradicción puede en parte resolverse si el currículum que la Administración prescribe es lo
+suficientemente abierto, flexible y general como para responder a las necesidades que son comunes
+al conjunto de la población escolar y dejar que sean los docentes, que son quienes conocen los
+rasgos peculiares de su alumnado, los que vayan concretando las intenciones educativas en sucesivos
+pasos ajustándose progresivamente a las necesidades específicas de los distintos alumnos y alumnas.
+Esta finalidad es la que persigue el modelo que se ha adoptado en la propuesta curricular de la
+Reforma. Los sucesivos niveles de concreción que se proponen son precisamente un instrumento
+para ir adecuando el currículum a contextos cada vez más concretos y, por ello, más específicos..
+8
+Guía de adaptaciones curriculares
+CUADRO I
+Como se ilustra en el cuadro I, cuando la Administración autonómica fija su currículum, tiene como
+referente los alumnos y alumnas de sus centros escolares, y es a los rasgos que todos ellos comparten
+-que, sin embargo, pueden no ser los mismos en el resto del país- a los que intenta ajustarse. Al
+elaborar un centro concreto su Proyecto curricular lo que hace es identificar que necesidades
+específicas tiene su alumnado y adecuar el currículum básico de la Administración a sus
+peculiaridades. Cuando ya cada profesor diseña su programación, reflexiona acerca de cómo
+concretar las intenciones que el conjunto del centro se ha marcado, para que se ajusten a las
+características de su grupo-aula. Por ultimo, este mismo profesor tiene a menudo que reajustar su
+programación cuando alguno de sus alumnos tiene unas necesidades peculiares que exigen
+actuaciones más individualizadas. En este momento resulta necesario también llevar a cabo una
+adaptación del currículum previsto en la programación del grupo, en función de rasgos individuales
+de ese alumno.
+De este principio básico, que se podría resumir en la idea de que “a mayor nivel de concreción,
+mayor posibilidad de adaptación”, se deduce otro igualmente fundamental: cuanto más se tenga en
+cuenta la atención a la diversidad en los niveles altos del diseño del currículum, menos necesarias
+y menos significativas serán las modificaciones que haya que realizar en las adaptaciones curriculares
+individualizadas.
+Así, la mejor manera de atender a la diversidad será elaborar un Proyecto curricular que permita
+individualizar la enseñanza. Es decir, responder a las preguntas sobre la diversidad que, articulan
+las decisiones que el conjunto del equipo docente de un centro debe tomar, teniendo siempre presente
+que los alumnos y alumnas son diferentes entre sí.
+9
+Colección de Materiales Curriculares
+para la Educación Primaria
+En este sentido, se esta respondiendo a la diversidad desde el inicio, cuando los objetivos de etapa
+recogen todo tipo de capacidades, cuando la secuencia de contenidos se adecua a los diferentes
+ritmos de aprendizaje, cuando se adoptan metodologías diversas y cuando se decide evaluar a
+todos los alumnos en función del progreso que han realizado con respecto a su nivel inicial. Cuando
+así se actúa no cabe la menor duda de que se esta evitando con ello que aparezcan gran parte de
+los problemas de aprendizaje que ahora presentan muchos alumnos.
+No obstante, a pesar de que un equipo docente elabore un Proyecto curricular sensible a la diversidad,
+seguirán apareciendo dificultades de aprendizaje en los alumnos, aunque estas sean menos
+significativas y numerosas.
+Las dificultades de aprendizaje pueden analizarse, por lo tanto, como un continuo, en uno de cuyos
+polos estarían los alumnos a los que todo maestro diariamente da respuesta a través de actividades
+de refuerzo y de una mayor atención en general, y en el polo opuesto los alumnos para los cuales
+los recursos ordinarios con los que se cuenta en los centros no son suficientes, exigiendo su enseñanza
+la incorporación de medidas extraordinarias.
+En paralelo con el continuo de las dificultades aparece, entonces, el continuo de la significatividad
+de las adaptaciones que es necesario hacer en cada caso: a mayor dificultad, mayor nivel de
+adaptación curricular, o, dicho de otro modo, mayor necesidad de medidas extraordinarias.
+Cuando las dificultades no son muy importantes las medidas habituales de individualización de la
+enseñanza son suficientes para dar respuesta a las necesidades del alumno; cuando las dificultades
+son generales y permanentes es preciso llevar a cabo adaptaciones significativas. En este caso se
+considera que los alumnos tienen necesidades educativas especiales en tanto exigen del sistema
+medidas educativas extraordinarias.
+Es importante ser conscientes de que la frontera entre lo que se considera ordinario y extraordinario
+no es nítida. En este sentido lo que en un centro puede percibirse como una dificultad de aprendizaje
+normal, dado que el equipo educativo ya cuenta con unas medidas que responden sensiblemente a
+la diversidad, puede ser considerado en otro centro como un problema grave que exija medidas
+excepcionales.
+Adaptar el proceso de enseñanza exige, en este sentido, actúan en dos ámbito distintos. En primer
+lugar es preciso que el alumno cuente con todos aquellos recursos necesarios para poder acceder
+al currículum ordinario, ya que muchas veces la dificultad del alumno no esta propiamente en lo que
+tiene que aprender, sino en los medios con los que cuenta el sistema educativo para enseñárselo.
+Así, por ejemplo, la dificultad de un niño con una lengua distinta de la que habitualmente se utiliza
+como vehículo de enseñanza, o la de un alumno sordo o paralítico cerebral, no se debe a los
+contenidos educativos, sino a la presencia de otros medios de comunicación o a la ausencia de
+barreras arquitectónicas.
+A todo este conjunto de modificaciones en los elementos materiales de la enseñanza, así como a los
+recursos personales de profesionales especialmente preparados para trabajar en este campo que
+habitualmente suelen conllevar, se le denomina adaptaciones de acceso al currículum.
+Sin embargo, no siempre es suficiente con hacer adaptaciones de este tipo para dar respuesta a las
+necesidades de los alumnos; en la mayoría de las ocasiones es necesario adaptar también lo que se
+debe enseñar, es decir, el currículum propiamente. Las adaptaciones en los elementos básicos del
+currículum suponen modificar los métodos de enseñanza, los contenidos o incluso los objetivos que
+se consideran adecuados para la mayoría del alumnado.
+En las sucesivas partes del documento se analizan en detalle las dificultades de aprendizaje, sus
+10
+Guía de adaptaciones curriculares
+causas y su mayor o menor significatividad, así como la estrategia más adecuada para llevar a cabo
+las adaptaciones tanto en las condiciones de acceso al curriculo como en sus elementos básicos.
+Las dificultades de aprendizaje
+Tal y como ya se ha señalado en distintas ocasiones, el objetivo de la educación escolar es que el
+alumnado desarrolle aquellas capacidades que le permitan conformar su propia y esencial identidad
+y vivir en sociedad. De no ser por la intervención activa, planificada e intencional de la educación
+escolar, nada aseguraría que tendrían lugar los aprendizajes necesarios para alcanzar dicho objetivo.
+El énfasis que una y otra vez se pone en los procesos de enseñanza y aprendizaje se justifica en esa
+consideración; si los alumnos y alumnas no adquieren por si solos, espontáneamente, esas
+capacidades, es necesario que las aprendan, lo cual es posible gracias a los procesos de enseñanza
+que el profesorado desarrolla a tal fin.
+La preocupación por asegurar que todos los alumnos aprendan los contenidos básicos establecidos
+y progresen a lo largo de los ciclos y etapas que establece el Currículum oficial se debe convertir,
+por tanto, en un principio fundamental de todos los agentes educativos, y especialmente del
+profesorado, que es el responsable primero de la acción educativa. En la medida que la educación
+obligatoria es un derecho de todos los alumnos, resulta obligado hacer todo lo posible para que
+todos los alumnos aprendan y progresen, y, por tanto, se trata de buscar y agotar todas la vías,
+métodos y medios de enseñanza que permitan a los alumnos aprender y alcanzar los objetivos
+educativos.
+¿Qué recursos se necesitan para alcanzar este objetivo de que todos los alumnos progresen
+adecuadamente? Tal y como se ha comentado, una primera condición imprescindible es la existencia
+de un currículum que permita adaptaciones y ajustes, en función de las características individuales
+de los alumnos. Por supuesto se necesitan recursos humanos y materiales adicionales, tiempo y
+condiciones para revisar la propia practica. Además de estos, otros recursos fundamentales son
+precisamente aquellos que ayudan al profesorado a comprender mejor el aprendizaje y la enseñanza
+y como introducir cambios en esta para adaptar contenidos o ritmos.
+Este es precisamente el objetivo básico del presente documento: ayudar al profesorado a entender
+mejor los procesos de enseñanza y aprendizaje, y facilitarle una estrategia de actuación que le
+permita introducir los cambios necesarios en el caso de los alumnos y alumnas que experimentan
+dificultades para aprender.
+Para satisfacer este objetivo es necesaria una doble reflexión.. Conviene en primer lugar señalar
+cuando y donde empiezan lo que podríamos llamar simplemente “diferencias individuales” y cuando
+y donde esas diferencias alcanzan el grado de verdaderas dificultades que algunos alumnos y
+alumnas experimentan ante determinados contenidos. Pero tal vez más importante que esta distinción,
+que a la larga será siempre un tanto arbitraria e imprecisa, resulta fundamental revisar y reflexionar
+sosegadamente sobre la forma de pensar y de actuar que se ha tenido y, generalmente, se tiene con
+respecto al origen y forma de intervenir ante tales dificultades de aprendizaje.
+¿Cuándo hablamos de dificultades de aprendizaje?
+Es un hecho inherente a la condición humana la existencia de diferencias individuales a la hora de
+aprender. Niños, jóvenes o adultos se diferencian notablemente en aspectos tales como las
+preferencias a la hora de aprender unos contenidos frente a otros; en cuanto a la dedicación,
+esfuerzo o atención que se pone en las tareas a aprender; en cuanto a la rapidez por transferir lo
+aprendido de una área a otra o a la cantidad de repeticiones necesarias para consolidar o retener un
+aprendizaje, por citar sólo algunas de las dimensiones en las que aparecen tales diferencias.
+11
+Colección de Materiales Curriculares
+para la Educación Primaria
+No cabe duda de que la existencia de tales diferencias, el hecho de que los alumnos no sean
+homogéneos en cuanto aprendices, hace difícil la tarea de enseñar. Ello ha obligado al profesorado
+a ser, a desarrollar estrategias y métodos igualmente diversos, y a permitir ritmos distintos y niveles
+de consecución diferentes dentro de los objetivos generales de su enseñanza. Pero esta situación,
+por lo general, no ha preocupado al profesorado, en la medida que los alumnos han ido progresando.
+Pero todos los profesores se han encontrado con alumnos que no aprenden aun después de haber
+puesto en marcha y agotado los recursos ordinarios que tienen a su alcance (cambios metodológicos,
+materiales distintos, más tiempo...), y en los que se puede apreciar con claridad un “desfase>, entre
+ellos y sus compañeros en cuanto a los aprendizajes básicos que por su edad deberían haber
+alcanzado En todos los casos son alumnos que requieren una ayuda especial o extra para resolver
+sus dificultades.
+La pregunta que más preocupa ahora no es la de cómo diferenciarlos de los otros alumnos, pues se
+trata de una diferencia enormemente “relativa”, sino la misma que se hacia más arriba: ¿cómo
+asegurar también, en su caso, un aprendizaje y un progreso efectivo?, y para ello, ¿cómo organizar
+esa “ayuda extra”, hacia donde dirigirla?
+La respuesta depende mucho de como se entiende el aprendizaje y como ha de actuarse en
+consecuencia. Y estos son temas que han cambiado significativamente, gracias a la investigación
+educativa y a la experiencia acumulada por muchos profesores y profesoras. Es preciso entonces,
+aunque sea brevemente, revisar como se entiende el aprendizaje y la enseñanza, si se pretende
+intervenir en el caso de los alumnos y alumnas con problemas de aprendizaje. El currículum ha
+concretado sus propuestas, desde el punto de vista psicopedagógico, en lo que se ha venido a
+llamar “la concepción constructivista del aprendizaje y de la enseñanza”..
+La concepción constructivista del aprendizaje y de la enseñanza
+En otros documentos ya se ha hecho explícita la concepción del aprendizaje escolar y de la enseñanza
+sobre la que se fundamenta el currículum oficial. De esta concepción se deduce que es el alumno
+quien construye sus propios aprendizajes, pero que ello sólo es posible gracias a la mediación, a las
+ayudas que le proporciona el profesor u otras personas, como pueden ser sus propios compañeros.
+La intervención educativa es, por tanto, un proceso interactivo: de ahí también que se hable
+continuamente del proceso de enseñanza y aprendizaje como polos inseparables. Que el alumno
+aprenda o no, no depende solamente de el, sino del grado en el que las ayudas del profesor estén
+ajustadas al nivel que muestra el alumno en cada tarea de aprendizaje. Si el ajuste es apropiado, el
+alumno aprenderá y progresara, cualquiera que sea su nivel actual. Pero si no se produce tal
+adaptación entre lo que el alumno es capaz de hacer aquí y ahora y las ayudas que le ofrece el
+profesor a través de sus estrategias de enseñanza, se producirá, sin duda, una detención en el
+aprendizaje. Tradicionalmente esta “detención” ha sido vista como “dificultades de aprendizaje”
+del alumno, cuando sin embargo, como se esta viendo, no es el único responsable de esta situación.
+Acorde con lo que se sabe del aprendizaje, ahora se debería decir, sin embargo, que se trata
+igualmente de una dificultad “interactiva”: en parte puede estar en el alumno y en parte puede estar
+en la enseñanza que se le esta ofreciendo.
+Esta es una cuestión central en la que la forma de pensar y actuar del profesorado tiene, por tanto,
+que cambiar radicalmente. En efecto, todavía para muchos el aprendizaje y la enseñanza se ve
+como una tarea en la que el profesorado ofrece a los alumnos contenidos más o menos terminados,
+que estos incorporan a su bagaje de conocimientos, destrezas o valores. Y sobre todo, y desde el
+punto de vista que nos preocupa, las dificultades de aprendizaje se han visto como dificultades del
+alumno para incorporar tales contenidos a través de las enseñanzas habituales del profesorado, y
+12
+Guía de adaptaciones curriculares
+tienen su origen en limitaciones personales o deficiencias del alumno. Este ha sido precisamente el
+esquema predominante en la educación de los alumnos con deficiencias o discapacidades y es
+responsable en buena medida de las bajas expectativas en las que se ha visto envuelta su educación.
+Es evidente que los alumnos con deficiencias presentan dificultades de aprendizaje asociadas a sus
+limitaciones físicas, sensoriales o intelectuales. Pero estas tampoco explican por sí solas las
+posibilidades o limitaciones para aprender. De nuevo es el grado de ajuste del contenido, la secuencia
+y la forma de enseñar lo que explicara su nivel de progreso a través del currículum. Y esta forma
+de pensar es igualmente valida para todos los alumnos y alumnas, cualesquiera que sea el nivel de
+sus dificultades para aprender. No se pretende decir que las dificultades de aprendizaje no existen,
+o que el alumno no tiene ninguna responsabilidad, o que en el no radican factores que explican en
+parte esas dificultades. Lo que se pretende transmitir es que una enorme cantidad de esas dificultades
+pueden compensarse por una acción educativa ajustada, adaptada al nivel de los alumnos que
+experimentan esas dificultades.
+Para responder a las dificultades de aprendizaje lo que se necesita, por tanto, no es tratar de
+clasificar a los alumnos o centrarse exclusivamente en sus limitaciones o problemas, en lo que no
+pueden hacer. En primer lugar, lo que se tiene que hacer es tratar de verlas como un problema
+interactivo, que no depende exclusivamente de las condiciones del alumno, sino que también esta
+relacionado con las estrategias de enseñanza. Lógicamente no se trata ahora de pasar de
+“culpabilizar” al alumno por su falta de progreso a “culpabilizar” al profesor por lo mismo. Nada
+más lejos de la actitud y sentimiento que se debe fomentar entre el profesorado ante estas situaciones.
+Se trata de entender que aprender es una tarea compleja y difícil, que en algunos casos se complica
+además mucho más, por las condiciones personales de los alumnos y por el contexto social en el
+que estos se desarrollan. Pero la tarea de enseñar conlleva la responsabilidad de hacer todo lo que
+esté al alcance del profesorado y de la Administración Educativa para tratar de promover el máximo
+progreso posible entre todos los alumnos, y para ello no se puede dejar de revisar el grado de
+interacción que existe entre las características del alumno que experimenta dificultades y las
+experiencias de aprendizaje que se le proponen.
+Por eso, en segundo lugar, y sobre todo, lo que se necesita es una estrategia adecuada para dar
+respuesta a la necesidad de aprendizaje de cada alumno. Si se observara a cualquier profesor
+experimentado trabajando con un alumno, se comprobaría que tiene una estrategia para dar respuesta
+a la necesidad de aprendizaje de ese alumno. El profesor observa lo que hace y modifica su
+enseñanza de acuerdo con ello. Por ejemplo, el profesor aumentara o disminuirá el ritmo de la
+enseñanza, cambiara las palabras de una explicación o la respuesta que pide, en función de lo que
+infiere sobre la forma de responder del alumno. El profesor experimentado ha desarrollado una
+estrategia para hacer esto. Pero ¿qué ocurre si el problema es más complejo o si se quiere ayudar
+a un profesor que no tenga tanta experiencia? Al desarrollo de esta estrategia de actuación se le ha
+llamado de distintas formas en el contexto del currículum oficial (individualización, personalización...),
+y de forma genérica Adaptaciones Curriculares, y como tal se desarrollara en el apartado “La
+estrategia de las adaptaciones curriculares”, de esta primera parte.
+Vaya por delante simplemente que, al igual que las diferencias individuales y las dificultades de
+aprendizaje forman un continuo, lo mismo puede decirse de las “adaptaciones”, que van desde
+ajustes o modificaciones sencillas de la programación del aula para algunos alumnos, hasta cambios
+significativos y generalizados que se apartan considerablemente del trabajo que se desarrolla para
+la mayoría del alumnado.
+La clave de esta estrategia es un profesorado reflexivo que entiende su actividad profesional- la
+enseñanza- como una tarea compleja y difícil para la que no existen respuestas “prefabricadas”.
+13
+Colección de Materiales Curriculares
+para la Educación Primaria
+En efecto, una de las conclusiones a las que ha llegado la investigación sobre los procesos de
+enseñanza y aprendizaje es que estos caen más en la categoría de procesos singulares, complejos,
+inciertos e inestables, que en la categoría de simples problemas instrumentales. Ante esta situación,
+y puestos a querer facilitar el aprendizaje de cualquier alumno, se precisan dos condiciones
+inseparables: en primer lugar, una actitud de indagación, de búsqueda, de experimentación, que
+permita ver y sentir estos problemas, esta complejidad e incertidumbre, como un reto, como un
+desafío profesional, y no como un obstáculo penoso. La experiencia de muchos profesores y
+profesoras, tanto como la misma investigación, ha demostrado repetidas veces que el profesorado
+que acepta este desafío se convierte en breve plazo en mejor profesor para todos sus alumnos y no
+sólo para aquellos con dificultades. Lo que puede parecer una carga y unas tareas que no le
+corresponden- tratar de adaptar la enseñanza a la características de cada alumno- deviene en una
+fuente de estímulo y satisfacción profesional.
+En segundo lugar se precisan, por supuesto, ideas, principios y técnicas que permitan orientar y
+dirigir la enseñanza, de forma que facilite su desarrollo con probabilidades de éxito. El apartado “La
+estrategia de las adaptaciones curriculares” responde a estas ideas y principios que servirán para
+desarrollar la estrategia general que ayudara a adaptar el currículum en función de las necesidades
+de aprendizaje de cada alumno.
+La estrategia de las adaptaciones curriculares
+La existencia de una diversidad entre el alumnado en términos de capacidades, intereses o
+motivaciones para aprender llama a una enseñanza que tiene que ser igualmente diversa, y que lo
+es como resultado de un profesorado que intenta adaptar los medios a su alcance (objetivos,
+contenidos, métodos de enseñanza, organización del aula, evaluación...) para ajustarse a las
+necesidades de aprendizaje de sus alumnos. No se trata de una tarea sencilla en absoluto, pues el
+equilibrio entre lo que debe ser igual para todos (en terminas de las capacidades a las que se
+aspira), y a efectos de evitar discriminaciones de cualquier tipo, y lo que debe ser individual y
+distinto para cada cual (en termines de ajuste a las características de cada alumno), es siempre
+difícil de alcanzar. De alguna forma se podría decir que esa búsqueda de equilibrio es lo que se
+persigue con el proceso de adaptaciones curriculares y ese y no otro es el sentido y significado
+genérico que tiene este termino en el contexto del currículum oficial.
+Cuando se habla de adaptaciones curriculares se esta hablando sobre todo, y en primer lugar, de
+una estrategia de planificación y de actuación docente, y en ese sentido de un proceso para tratar
+de responder a las necesidades de aprendizaje de cada alumno. Pero si antes se decía que el
+aprendizaje y la enseñanza son tareas complejas e inciertas, no se puede pensar, por tanto, en una
+estrategia infalible o mecánica que asegure el éxito en todos los casos. La estrategia de actuación
+que se va a comentar esta fundamentada en una serie de criterios para guiar la toma de decisiones
+con respecto a que es lo que el alumno o alumna debe aprender, cómo y cuando, y cual es la mejor
+forma de organizar la enseñanza para que todos salgan beneficiados. Sólo en último termino las
+adaptaciones son un producto, una programación que contiene objetivos y contenidos diferentes
+para unos alumnos, estrategias de evaluación diversificadas, posibles secuencias o temporalizaciones
+distintas y organizaciones escolares específicas.
+Este documento se centrara sobre todo en la estrategia y los criterios que deben guiar el proceso de
+adaptaciones curriculares, y enceste sentido su máxima utilidad es la de una guía para revisar y
+reflexionar sobre la propia practica docente. Se quiere resaltar igualmente que la estrategia que se
+va a exponer es la misma y, por tanto, igualmente útil tanto en el caso de los alumnos que experimentan
+dificultades de aprendizaje de manera más transitoria como para el caso de los alumnos con
+dificultades más permanentes.
+14
+Guía de adaptaciones curriculares
+La individualización de la enseñanza como objetivo para todos los alumnos
+Se ha dicho ya varias veces que la preocupación por conseguir un aprendizaje y un progreso
+adecuado debe alcanzar a todos los alumnos. Ello sólo es posible desde la preocupación por
+individualizar la enseñanza, intentando en todo momento que cada cual alcance, de acuerdo con su
+posibilidades, las capacidades propias de la educación escolar. Para ello la estrategia no es ofrecer
+lo mismo a todos, sino actuar diferente, dando más ayuda a quien más lo necesita y utilizando si es
+preciso métodos y estrategias docentes ajustadas a cada caso.
+No es justo excluir a ningún alumno de esta finalidad por muy graves que sean sus dificultades.
+Siempre se puede avanzar, siempre se puede aprender, y esta en manos de todos (profesorado,
+especialistas, Administración...) hacer posible esta empresa. Ahora bien, aun deseándolo y
+persiguiendo los mismos objetivos para todos ellos, no debe interpretarse como que todos los alumnos
+podrán aprender lo mismo. En algunos casos, lo que ciertos alumnos podrán aprender diferirá
+significativamente de lo que podrán aprender la mayoría. Pero ello no es motivo para no tratar de
+seguir individualizando su enseñanza buscando igualmente su máximo progreso personal.
+Dicho en otros términos, algunos alumnos y alumnas con necesidades educativas especiales sólo
+podrán aprender y progresar en capacidades básicas para su desarrollo individual y social, a costa
+de hacerlo recibiendo un currículum que se apartara sensible y significativamente del que recibirá
+la mayoría. Y aunque el objetivo de la educación escolar obligatoria sea que esa separación o
+distancia entre lo que aprenden unos y otros sea la menor posible, es preciso reconocer que en
+algunos casos serán necesarias adaptaciones muy significativas del currículum oficial.
+Las adaptaciones curriculares son, por tanto, un continuo. En un extremo estancan aquellos cambios
+habituales que el profesorado introduce en su enseñanza para dar respuesta a la existencia de
+diferencias individuales en el estilo de aprender de los alumnos, o dificultades de aprendizaje
+transitorias. Estas “variaciones” caben sin grandes dificultades en su estrategia general. En todos
+estos casos, los alumnos receptores de tales adaptaciones están recibiendo una enseñanza que,
+siendo diferente en algunos aspectos, persigue alcanzar para estos alumnos los mismos niveles de
+consecución, en todas o en la mayoría de las áreas del currículum, que se esperan también para sus
+compañeros.
+En el otro extremo estarán las adaptaciones que se apartan significativamente del currículum o
+“adaptaciones significativas,>. Seria, por ejemplo, el caso de algunos alumnos con dificultades de
+aprendizaje más permanentes y severas debidas a limitaciones personales o a una historia escolar
+y social difícil y negativa, y que estarán recibiendo una enseñanza que se diferencia notablemente
+de la que recibirían sus compañeros de clase o edad, en termines, por ejemplo, de contenidos a
+aprender, niveles de aprendizaje esperados, o incluso de áreas curriculares enteras que pondrán no
+cursarse. También se trata de un nivel de “individualización” de la enseñanza, y es lo que ellos
+necesitan para progresar. En su caso lo injusto seria ofertarles la misma enseñanza que se oferta a
+los alumnos sin tales dificultades. Pero los “peligros” que acechan en este extremo del continuo
+pueden llegar a desvirtuar su finalidad.
+Así, por ejemplo, se puede llegar con facilidad a renunciar antes de lo necesario a objetivos que el
+alumno o alumna podría alcanzar de acuerdo con sus posibilidades, por no explorar exhaustivamente
+todas las posibilidades de enseñanza, o por no haber hecho una buena evaluación de las condiciones
+educativas y de las características del alumno que le facilitan o impiden aprender. Por eso, y como
+se vera más adelante, la estrategia que se va a desarrollar insiste en todos los casos en estos
+extremos, al tiempo que se han previsto una serie de salvaguardas legales para minimizar esta
+posibilidad.
+15
+Colección de Materiales Curriculares
+para la Educación Primaria
+Hasta aquí se ha realizado una primera aproximación al concepto de adaptaciones curriculares
+entendido como la tarea de buscar la necesaria individualización de la enseñanza y se ha visto
+también el“rango” dentro del cual se desarrolla dicha estrategia: desde los ajustes y cambios habituales
+que el profesorado realiza cotidianamente en el aula en respuesta a las diferencias propias de su
+alumnado desde el punto de vista de su capacidad para aprender, hasta los cambios y adaptaciones
+profundas que obligan al profesorado, en los casos de alumnos con dificultades de aprendizaje más
+graves y permanentes, a separarse significativamente del currículum que desarrolla para la mayoría
+de sus alumnos.
+En el apartado siguiente se van a comentar detenidamente los pasos y criterios necesarios para
+realizar adaptaciones curriculares. Estos contenidos proceden, en buena medida, de la investigación,
+educativa y, en concreto, aspectos significativos del texto que se va a desarrollar están basados en
+el trabajo de Peter Evans y otros (1). Pero en ultimo termino, y lo que es más importante, proceden
+de la experiencia y reflexión de muchos profesores y profesoras que los han puesto en practica con
+éxito.
+Las adaptaciones curriculares como estrategia de actuación docente
+La estrategia que se va a comentar esta pensada para ayudar al profesor a detallar con precisión
+hacia dónde y cómo dirigir la ayuda adicional o extra que va a necesitar ese alumno o alumna que
+esta experimentando dificultades de aprendizaje. Esta diseñada como una secuencia de preguntas
+sobre la que el profesorado debe volver repetidas veces hasta que el alumno aprende el(los)
+contenido(s) deseado(s) en el nivel esperado y alcanza satisfactoriamente un objetivo educativo
+propuesto (2). se asume, como se señalaba anteriormente, que se parte de un profesorado reflexivo,
+que esta indagando sobre su propia acción educativa y que aprende de las respuestas de sus
+alumnos.
+(1) EVANS, P., y otros (1989): Alumnos con dificultades de aprendizaje en la Educación Primaria. C. N. R. E. E. / M. E.
+C., Madrid, 1992.
+(2) En el desarrollo de esta estrategia se va a hablar de objetivo educativo en un sentido amplio, y se asume que lo dicho
+seria igualmente valido aplicado tanto a un objetivo didáctico como a un objetivo de área o ciclo.
+16
+Guía de adaptaciones curriculares
+Como se señalara también más adelante, tan importante es saber seguir autónomamente la secuencia
+de preguntas que se plantean, como saber y estar preparado para reconocer cuando se requiere
+más información, asesoramiento o la participación de otros profesionales. Como se ha dicho repetidas
+veces, la estrategia es la misma cualquiera que sea la dificultad de los alumnos, lo cual no implica
+que se aplique con facilidad en todos los casos. Esta ayuda adicional que precisan los alumnos con
+dificultades de aprendizaje es la que pueden prestar en ocasiones los otros profesores, el profesorado
+de apoyo, el orientador u orientadora del centro, las familias e incluso los propios alumnos. En
+ultimo extremo se trata también de las ayudas y de los procedimientos específicos designados para
+el caso de los alumnos con necesidades educativas especiales.
+Desarrollo de la estrategia
+La estrategia consta de cinco preguntas que deben formularse secuencialmente, más una pregunta
+adicional en el caso de que la ayuda no funcione. En los apartados siguientes se irá analizando
+detenidamente el sentido y alcance de cada una de las preguntas.
+lª ¿Qué es exactamente lo que el alumno no consigue hacer, y su profesor
+quisiera que lograra?; esto es: ¿cómo detectar que objetivo debería trabajar
+el alumno?
+2 ª¿Cuáles son los contenidos (conceptos, procedimientos y actitudes) que, siendo
+necesarios para alcanzar ese objetivo, ya posee el alumno?; esto es: cuál es
+el punto de partida para la ayuda?
+3 ªDe los siguientes pasos para ayudar al alumno a alcanzar ese objetivo, ¿cuál
+es el más estratégico?; esto es: ¿cuál es el primer paso en la secuencia de los
+aprendizajes que conduce hacia la consecución del objetivo?
+4ª¿Cuáles son las decisiones metodológicas más adecuadas al alumno para
+ayudarle a dar ese paso?
+5ª¿La ayuda que se le ha dado ha permitido al alumno dar ese paso hacia el
+objetivo?
+Si la respuesta es afirmativa, hay que prepararse para continuar con el siguiente paso hacia el
+objetivo y seguir el proceso otra vez a partir de la pregunta tercera.
+Si la respuesta es negativa, ¿de que manera la evaluación del aprendizaje del alumno muestra al
+profesor cual de las preguntas previas ha sido respondida inapropiadamente? y ¿qué alternativa de
+ayuda nos sugiere la respuesta del alumno?
+Antes de entrar en el análisis pormenorizado de cada una de las preguntas procede hacer una doble
+reflexión.. En primer lugar, conviene hacer una lectura de estas preguntas desde los términos más
+propiamente curriculares que se han utilizado en otros documentos de estos materiales para el
+desarrollo curricular y lógicamente en el currículum oficial de la etapa. En segundo lugar, interesa
+prever que el orden de revisión que se propone cuando la quinta pregunta se contesta negativamente
+no es arbitrario, sino que esta sujeto también a una lógica y a unos criterios que resultan igualmente
+relevantes para la finalidad de las adaptaciones curriculares.
+Por lo que respecta a la primera de las reflexiones, y que queda sintetizada en el cuadro II, parece
+oportuno explicitar que la primera pregunta hace referencia a la necesidad de reflexionar sobre los
+objetivos de la enseñanza, esto es, sobre el que enseñar.
+17
+Colección de Materiales Curriculares
+para la Educación Primaria
+La segunda pregunta lleva la atención sobre la necesidad tantas veces comentada de la evaluación
+como un proceso inseparable de la enseñanza, y en este caso sobre la evaluación inicial como
+requisito imprescindible para asegurar una enseñanza ajustada desde sus inicios.
+La tercera pregunta hace referencia a la importante cuestión de la secuencia de los aprendizajes,
+esto es, a la pregunta del cuando enseñar.
+La cuarta pregunta refleja con mayor claridad las cuestiones relativas al como enseñar, especialmente
+en lo referente a las opciones metodológicas y al diseño de actividades de aprendizaje.
+Por último, la quinta pregunta de la estrategia nos recuerda de nuevo la necesidad lógica de una
+evaluación, que permite discernir lo que el alumno ha aprendido y cómo lo ha hecho como base
+para la adaptación de las decisiones tomadas anteriormente, o para la continuación del proceso
+hasta la consecución del objetivo esperado.
+18
+Guía de adaptaciones curriculares
+CUADRO II
+TOMA DE DECISIONES Y ELEMENTOS DEL CURRÍCULUM
+PROCESO DE TOMA DE
+DECISIONES
+ELEMENTOS BÁSICOS DEL
+CURRÍCULUM
+1°. ¿Qué es exactamente lo que el alumno
+no consigue hacer?
+QUÉ ENSEÑAR
+(Objetivos).
+2ª. ¿Cuál es el punto de partida para la
+ayuda?
+EVALUACIÓN INICIAL
+(Competencia curricular. Estilo de
+aprendizaje).
+3ª. ¿Cuál es el primer paso en la
+secuencia de los aprendizajes que
+conduce a la consecución del objetivo?
+3ª. ¿Cuál es el primer CUÁNDO
+ENSEÑAR ?
+(Secuencia de los aprendizajes)
+4º. ¿Cuáles son las decisiones
+metodológicas más adecuadas para el
+alumno?
+CÓMO ENSEÑAR
+(Opciones metodológicas. Diseño de
+actividades de aprendizaje).
+5ª. ¿La ayuda que se le ha dado al alumno
+le ha permitido alcanzar el objetivo?
+EVALUACIÓN
+(Grado de aprendizaje).
+SI: Vuelve a 3ª.
+N0: Revisa decisiones.
+19
+Colección de Materiales Curriculares
+para la Educación Primaria
+Se apuntaba que la segunda reflexión que precisaba hacerse se dirigía hacia el orden de revisión
+que se propone cuando la evaluación realizada (pregunta quinta) hace pensar que el alumno o
+alumna en cuestión no ha aprendido el contenido que configura el primer paso hacia el objetivo
+propuesto.
+Ese orden de revisión no es arbitrario. Al contrario, la lógica del proceso de adaptaciones, tal y
+como se ha defendido hasta aquí (el delicado equilibrio entre comprensividad y diversidad), aconseja
+que se revisen en primer lugar tanto las estrategias como la propia evaluación inicial del alumno, o
+las decisiones relativas al cómo enseñar o las relativas al cuando, antes que revisar y adaptar en su
+caso las decisiones relativas al que enseñar, sobre todo cuando estas presuponen eliminación de
+contenidos u objetivos. Dicho en otros términos, no habrán de modificarse los contenidos de enseñanza
+ni los objetivos hasta que se tuviera la certeza de que no es suficiente con adaptaciones de nivel
+inferior (adaptaciones en la metodología, organización, secuencia...).
+Ya se avanzó que el concepto de adaptaciones curriculares refleja sobre todo una estrategia de
+actuación y planificación docente y que por ello destaca su carácter procesual. Pero es obvio que
+en último termino de tal proceso de reflexión y actuación resultan unos productos, unas adaptaciones
+concretas; una programación que contiene objetivos o contenidos diferentes. secuencias de
+aprendizaje distintas, materiales o actividades especificas o procedimientos de evaluación adaptados
+a las características peculiares de algunos alumnos. Es en este sentido en el que también resulta
+lícito y correcto hablar de adaptaciones en los elementos básicos del currículum bien sean estas
+adaptaciones en los contenidos u objetivos, o adaptaciones metodológicas, como también refleja el
+cuadro III.
+Un último comentario al respecto. A la luz del análisis anterior cabria hablar también de adaptaciones
+en la evaluación, y, en efecto, asá cabe hacerse cuando lo que se realiza es revisar los procedimientos
+y/o instrumentos de evaluación, para evitar que una inadecuación de estos enmascare lo que el
+alumno realmente es capaz de hacer o lo que haya podido aprender
+En las páginas siguientes se va a proceder a un análisis algo más pormenorizado de cada una de las
+preguntas. Conviene anticipar que a pesar de su formulación no se quiere transmitir la idea de un
+estrategia mecánica y rígida, sino todo lo contrario. Se debe pensar en ella como algo dinámico y
+flexible, como preguntas no necesariamente secuenciales, sino también simultáneas, que se amplían
+con otras adicionales cuando es necesario, y sin olvidar en ningún momento que las divisiones que
+se hacen de los aprendizajes en tareas o metas intermedias son en buena medida arbitrarias y
+útiles, sobre todo para facilitar un plan de acción ante problemas especialmente difíciles y complejos.
+20
+Guía de adaptaciones curriculares
+CUADRO III
+¿Qué es exactamente lo que el alumno no consigue hacer?
+Determinar con la mayor precisión posible que es lo que quisiéramos que el alumno aprendiera-y
+que en este momento no consigue-es el primer paso para ajustar adecuadamente la ayuda que se
+debe dar al alumno. “Si un viaje no tiene un destino claro, es probable que nunca lleguemos a el.”
+A este respecto son dos las consideraciones fundamentales que hay que hacer.
+En primer lugar debe preocupar la precisión a la hora de señalar lo que el alumno no es capaz de
+hacer y lo que quisiéramos que hiciera o alcanzara. En demasiadas ocasiones nos conformamos
+con formulaciones sumamente imprecisas o generales: “Gerardo no es capaz de leer”; “Inés no
+multiplica bien”, “Alberto no comprende la historia”. La lectura, la multiplicación o la comprensión
+de hechos históricos son procesos complejos en los que intervienen componentes o requisitos más
+elementales, pero que son indispensables para esos aprendizajes. La dificultad de Gerardo puede
+venir de diferentes factores; puede que no segmente bien las palabras, que su vocabulario sea muy
+limitado o que se trabe en determinadas sílabas. La ayuda que precisara Gerardo en cada caso
+será bien distinta, y de ahí que determinar con precisión lo que el alumno o alumna no hace, pero
+quisiéramos que aprendiera, es el primer paso para una intervención positiva.
+Para poder precisar el objetivo a alcanzar será útil recordar el dicho que expone: “Si quieres
+enseñar latín a Juan, tendrás que saber latín y conocer a Juan.” Con ello se quiere recordar que
+para ayudar a Juan, a Gerardo o a Inés, el profesorado debe comprender y estar familiarizado con
+la naturaleza de la materia o contenidos que quiere enseñar. Dicho en otras palabras, la primera
+condición para responder a las dificultades de aprendizaje es profundizar en el conocimiento sobre
+cual es la secuencia razonable de adquisición de ese contenido, que procesos o conocimientos
+previos son relevantes y necesarios y que contenidos ayudan, aunque no sean, tal vez,
+imprescindibles. Ello permitirá concretar las preocupaciones y, por tanto, los objetivos de cada
+intervención. Se diría, por ejemplo, que Gerardo tiene un vocabulario limitado, que se debe ampliar
+21
+Colección de Materiales Curriculares
+para la Educación Primaria
+progresivamente para que pueda leer y comprender ideas sencillas; que Inés tiene dificultades con
+la multiplicación de números decimales, que debe trabajar para que sea capaz de resolver problemas
+de fracciones simples; o que Alberto encuentra especiales dificultades a la hora de coordinar dos
+cronologías diferentes, necesarias para aprender el tiempo histórico.
+Pero también se debe “conocer a Juan”, pues el conocimiento de la lógica interna de los contenidos
+(estructura, secuencia de aprendizaje más apropiada, requisitos...) no es suficiente. Es necesario
+adaptarse al estilo y a las características de Juan, e incluso puede ser necesario modificar la propia
+secuencia en función de las experiencias educativas previas de Juan. Y en este punto entra también
+el segundo factor a considerar a la hora de establecer un objetivo para la intervención. No basta
+con ser precisos: también es una cuestión de prioridades.
+Las dificultades de aprendizaje nunca vienen solas, y en general los alumnos que las experimentan
+muestran un desfase entre ellos y sus compañeros que puede afectar a varios contenidos de una
+misma área curricular o a varias áreas distintas. Por lo general, el profesorado se encontrara, por
+tanto, frente a varias tareas u objetivos distintos (¡y seguro que importantes!), que le gustaria
+alcanzar con este o aquel alumno que esta teniendo dificultades para aprender. Priorizar un objetivo
+frente a otro dependerá sobre todo del “conocimiento de Juan”, esto es, del alumno en cuestión, de
+lo que se considera que puede serle más beneficioso. Tampoco aquí hay criterios absolutos. Un
+criterio razonable en un momento determinado puede ser que lo que hace el alumno no se diferencie
+substancialmente de lo que hace el resto de sus compañeros. Pero para otro lo importante puede
+ser que aprenda suficientemente algunos contenidos instrumentales básicos o específicos, sin los
+cuales posteriormente no podía participar en ninguna actividad con sus compañeros.
+La elección de un objetivo tampoco estará influida solamente por el conocimiento de los bagajes.
+carencias y necesidades prioritarias del alumno, sino también por el conocimiento de los recursos
+que estén accesibles. Si una escuela tiene buenos recursos para el trabajo que se propone hacer, es
+más probable que su profesorado se anime a seguir adelante con más facilidad, que si no los
+tuviera. La elección de un objetivo debe ser realista desde el punto de vista de las propias posibilidades
+como enseñante y de los recursos del centro escolar.
+En algunas ocasiones, por ejemplo en el caso de alumnos con dificultades más permanentes, es
+recomendable además implicar a los padres a la hora de establecer tales prioridades. Ellos podrán
+compartir con el profesorado las dudas y ansiedades a la hora de decidir lo más conveniente.
+Hacerlo así permitirá trabajar en un clima de confianza que será imprescindible en momentos de
+duda o incertidumbre.
+Los criterios que se deben manejar a la hora de determinar el objetivo de la intervención- precisión,
+prioridad, realismo y colaboración- llevan irremediablemente al segundo y decisivo paso de la
+estrategia, que no es otro que el de realizar una evaluación lo más rigurosa y precisa posible, tanto
+del alumno como del contexto educativo, que permita dilucidar cual es el punto de partida para la
+ayuda que aquel precisa.
+¿Cuál es el punto de partida para la ayuda?
+Para que cualquier enseñanza sea efectiva, y por tanto para que el aprendizaje tenga lugar, es
+fundamental que parta de lo que el alumno es capaz de hacer. Sólo a partir de ahí el alumno podrá
+construir con seguridad nuevos aprendizajes. Este es uno de los principios más importantes de la
+enseñanza efectiva, y, sin embargo, se descuida una y otra vez.
+Todo proceso de construcción se inicia y reinicia siempre desde el punto donde se dejó, desde lo
+que ya se tiene construido con garantía. Debe iniciarse partiendo de lo que el alumno ya es capaz
+de hacer. Se necesita, portante saber donde están los alumnos, cual es su base de conocimientos,
+22
+Guía de adaptaciones curriculares
+respecto a los contenidos y objetivos que se quieren enseñar, antes de programar las acciones a
+emprender: secuencia y orden de los contenidos, formas de organización y de enseñanza, tiempos
+que se van a invertir, etc.
+Como se habla de lo que el alumno o alumna es capaz de hacer con respecto a los contenidos de
+enseñanza que se recogen en el curriculo y no en términos generales o con respecto a capacidades
+más básicas, es por lo que en ocasiones se ha llamado a esta actividad evaluación curricular o
+evaluación de la competencia curricular.
+Antes de continuar conviene recordar algo que se señalaba más arriba: el carácter interactivo y
+simultáneo de las preguntas que conforman esta estrategia. Ahora se aprecia mejor lo que se
+pretendía decir. En efecto, se decide la meta o el objetivo que se quiere alcanzar con el alumno o
+alumna que esta teniendo dificultades con una tarea, en función de la evaluación que se hace de su
+competencia curricular. Es esta evaluación, junto con el conocimiento que se tiene del alumno y de
+la secuencia más apropiada para la enseñanza de esa tarea o contenido, la que permitirá priorizar
+y decidir con precisión cual es el primero -y los siguientes- pasos a dar.
+La evaluación de la competencia curricular implica, por tanto, determinar lo que es capaz de hacer
+el alumno en relación a los objetivos y contenidos de las áreas del currículum. Si como tal es
+necesaria en todas como paso previo en todos los procesos de enseñanza, resulta imprescindible
+cuando se trata de alumnos o alumnas con dificultades de aprendizaje.
+Esta evaluación es la que debe servir para responder a la pregunta: “De las destrezas, conocimientos
+o de la comprensión necesaria para alcanzar el objetivo propuesto, ¿cuáles tiene ya el alumno?”.
+A la hora de evaluar lo que el alumno o alumna ya es capaz de hacer conviene tener presente que
+el aprendizaje se produce gradualmente, no es algo de “todo o nada”. Por eso en el camino hacia
+ser capaz de hacer o conocer algo, por sí solo, se pasa por el ser capaz de hacerlo con algún tipo de
+ayuda. Precisamente ese espacio (es decir, esos contenidos y situaciones intermedias) entre lo que
+el alumno es capaz de hacer por sí solo y lo que es capaz de hacer con ayuda de otro (el profesor
+u otro compañero) debe constituir el objetivo prioritario de toda intervención. Si cuando se le propone
+una tarea u objetivo a un alumno, este no fuera capaz de hacerlo ni tan siquiera con ayuda, es muy
+probable que se le este proponiendo una actividad demasiado lejos de sus posibilidades, y en ese
+caso lo razonable sería volver un paso más atrás o buscar una tarea más sencilla.
+Ahora bien, para determinar el punto de partida se necesita saber no sólo lo que el alumno o alumna
+en cuestión es capaz de hacer, sino también como lo hace, es decir, aquellas características
+individuales con las que el alumno se enfrenta a las tareas escolares, su propia perspectiva ante el
+aprendizaje; dicho de otro modo: el sentido que da a lo que se le enseña, su manera de afrontar y
+responder a los contenidos y tareas escolares, sus preferencias y motivaciones... Se trata lógicamente
+de un complejísimo entramado de procesos cognitivos, motivacionales, afectivos... que a modo
+descriptivo se podrían llamar estilo de aprendizaje y que a efectos de la estrategia que se esta
+comentando resulta útil denominar así.
+Lo que se propone es indagar todo lo posible sobre una serie de factores que la experiencia de
+muchos profesores y la investigación educativa han demostrado que juegan un papel relevante a la
+hora de favorecer o interferir en las posibilidades de aprendizaje de los alumnos. No tenerlos
+presentes o despreciarlos es cerrarse de antemano la posibilidad de encontrar soluciones a los
+problemas de aprendizaje. En el cuadro IV se recogen algunos de estos factores que configuran el
+estilo de aprendizaje, y en el Anexo se desarrolla con cierto detalle el sentido de cada uno.
+23
+Colección de Materiales Curriculares
+para la Educación Primaria
+CUADRO IV
+ALGUNOS FACTORES QUE CONFIGURAN
+EL ESTILO DE APRENDIZAJE
+• ¿En qué agrupamientos trabaja mejor el alumno?
+• ¿Cuánto tiempo puede permanecer concentrado?
+• ¿Qué refuerza al niño?
+• ¿Cuál es el autoconcepto que tiene el alumno?
+Esta lista de factores (autoconcepto, motivación, atención...), constitutiva de eso que se ha venido
+en llamar “estilo de aprendizaje”, no es en absoluto exhaustiva. Las propias intuiciones, la observación
+de los alumnos y el contacto con los compañeros que también conocen a esos alumnos, deben
+servir en cada caso para determinar cuales de estos factores son más relevantes o si existen otros
+factores a considerar.
+Por supuesto, en algunos casos, en los más complejos o graves se precisará y se hará necesaria la
+ayuda de especialistas, a quienes habrá que acudir para completar el análisis o para desarrollarlo de
+manera más pormenorizada y rigurosa, como se exige por ejemplo en el caso de los alumnos con
+necesidades educativas especiales (véase el apartado “Alumnos con necesidades educativas
+especiales”).
+En cualquiera de los casos, toda la información que se haya acumulado hasta aquí será de vital
+importancia para decidir el siguiente paso en la estrategia que se esta desarrollando.
+¿Cuál es el primer paso en el camino que conduce hacia la consecución del objetivo?
+La estrategia que se ofrece intenta ayudar a elaborar planes de actuación con alumnos que tienen
+dificultades para aprender. Hasta aquí se ha sugerido que, basados en el conocimiento que se tiene
+del área en la que el alumno o alumna esta experimentando dificultades y en el conocimiento de su
+“estilo de aprendizaje”, se hayan tomado dos decisiones: decidir cual es el objetivo que se quiere
+alcanzar a corto o medio plazo y averiguar que es lo que ya sabe o es capaz de hacer con relación
+a él. Lo que se esta asumiendo es que entre ambos puntos, lo que ya es capaz de hacer y aquello
+nuevo que se pretende conseguir, hay una serie de pasos u objetivos intermedios, que dependerán
+lógicamente del objetivo elegido, su complejidad, dificultad, etc. Se abren, por tanto, una serie de
+opciones y decisiones de suma importancia. Para que se produzcan progresos hacia el objetivo
+deseado, el siguiente paso debe estar al alcance del alumno desde el punto en que se encuentra en
+este momento. También debe estar suficientemente claro, tanto para el alumno como para el profesor,
+de modo que ambos puedan comprobar fácilmente cuando se están produciendo progresos. Veamos
+con algún detalle estas condiciones.
+Para el análisis que nos preocupa vale la pena considerar el aprendizaje como una capacidad que el
+profesor debe llegar a “compartir” con el alumno. El maestro conoce o es capaz de hacer algo que el
+alumno desconoce o es incapaz de realizar. La enseñanza viene a ser el proceso mediante el cual el
+profesor consigue “compartir” ese conocimiento con el alumno. Como ya se ha comentado, no se debe
+entender ese proceso como algo de “todo o nada”, como algo que se entrega ya acabado ni como un
+proceso instantáneo y definitivo, de una vez por todas, sino como un proceso gradual.
+24
+Guía de adaptaciones curriculares
+En este sentido se podía conceptualizar al alumno como alguien que esta adquiriendo un conjunto
+creciente de procedimientos y conceptos que puede emplear por si solo, sin ayudas. Pero además
+hay otro conjunto de procedimientos y conceptos, mayor que el anterior, que puede emplear con
+ayuda. Y, por ultimo, hay muchos aspectos de esos conocimientos y habilidades que el alumno aun
+no puede adquirir ni con ayuda. La tarea del profesor consiste en ampliar el numero de los elementos
+del conjunto de lo que el alumno puede usar autónomamente. Para ello, y si siguiéramos con el si
+mil, el proceso de “compartir” debería empezar en el limite de lo que el alumno puede hacer con
+ayuda. Haciéndolo así estamos “construyendo” sobre lo que conoce y llevándolo hacia algo nuevo.
+Esto, que en apariencia resulta abstracto y difícil, en la practica no lo es tanto, a poco que se este
+atento a las respuestas del alumno. Será el primero en informarnos, directa o indirectamente a
+través de su ejecución, del grado en el que se están ajustando las actividades de enseñanza a su
+nivel de aprendizaje, y si, por tanto, los objetivos intermedios elegidos son apropiados, excesivos o
+repetitivos.
+La falta de atención y concentración en las tareas o ejercicios que se le proponen al alumno es una
+primera pista que nos debe poner sobreaviso de que tal alumno o alumna pudiera no estar siendo
+capaz de relacionar lo que ya sabe o es capaz de hacer, con la nueva tarea o ejercicio que se le
+propone. Con mucha frecuencia también lo que nos indica que la enseñanza puede estar un tanto
+“desajustada” con respecto a las posibilidades del alumno es cuando este parece realizar
+correctamente el trabajo que se le propone en algunas ocasiones, pero en otras no. sin duda alguna,
+un cierto titubeo inicial es normal en todas las fases iniciales de cualquier aprendizaje, y, por tanto,
+no debe asociarse inmediatamente con una dificultad o desajuste entre lo que el alumno puede
+aprender y la enseñanza que se le esta ofertando. Pero, ciertamente, en ocasiones puede ser la
+pista que nos avise de que el alumno puede no haber aprendido o consolidado suficientemente unas
+tareas o conceptos que resultan imprescindibles para otras que supongan haber dominado las
+primeras.
+Volviendo al proceso que se estaba comentando, se puede decir que es el profesor el que sabe
+dónde se quiere llegar, esto es, que es lo que el alumno debe aprender. Sin embargo, ello no debe
+ser motivo para ocultar o no informar al alumno de ese propósito. Si este no tiene claro adonde se
+pretende llegar, difícilmente podrá valorar si se están produciendo progresos, y, por tanto, puede
+perderse la motivación que procede de saber precisamente que se esta progresando. Con mucha
+frecuencia los profesores hurtan esa información -de que se quiere conseguir- a los alumnos,
+obligándolos de alguna forma a una constante dependencia del profesor, cuando uno de los objetivos
+indirectos que se deben buscar a través de la enseñanza es, precisamente, que los alumnos sean
+progresivamente más autónomos, que sean capaces de aprender a aprender.
+Para que los alumnos tengan claro si se producen progresos, como para que los profesores sean
+conscientes de lo mismo, se debe perseguir que la formulación de esos objetivos sea lo más precisa
+que se pueda. Esa búsqueda de precisión tiene un doble efecto positivo. En primer lugar, servirá
+para evaluar los progresos, pero servirá también, en segundo lugar, para concretar los objetivos
+intermedios que se están eligiendo.
+En efecto, como ya se ha comentando, con mucha frecuencia se proponen objetivos demasiado
+ambiguos o generales, y que a la larga no ayudan en casi nada. Que “María Luisa aprenda a leer,>,
+o que “Antonio resuelva bien los problemas de matemáticas” no resulta muy útil para determinar
+cómo ayudar a ambos en sus dificultades. Se debe intentar ser precisos en las condiciones y en el
+grado o nivel en el que se quiere que se produzcan tales aprendizajes. No es lo mismo que Luisa
+pueda leer textos sencillos, conocidos, con imágenes... a que lo haga sobre un cuento nuevo para
+ella. Como tampoco es lo mismo que Antonio resuelva ejercicios de ecuaciones simples, a que
+generalice esa capacidad a hechos y situaciones de la vida cotidiana.
+25
+Colección de Materiales Curriculares
+para la Educación Primaria
+Si se tiene explicitado con claridad y precisión el primer paso que se quiere dar en el camino hacia
+el objetivo que se persigue, y si se considera que esta situado en un nivel apropiado para el alumno
+con respecto a lo que es capaz de hacer con ayuda y sin ayuda, sólo estrategias metodológicas,
+estrategias y actividades de enseñanza que se consideren más apropiadas. Ese es el cuarto paso de
+la estrategia, y se analizara enseguida. Pero permítasenos explicitar una vez más, que probablemente
+no sea la ultima, que todos estos pasos y preguntas no son en absoluto tan rígidos y secuenciales
+como aparecen en esta descripción. se trata de preguntas simultáneas, de idas y venidas continuas
+de una a otra, y que en la cabeza del profesorado con experiencia forman parte de sus estrategias
+habituales. Es fundamental que se preste atención “al fondo”, a las ideas fuerza que subyacen a
+esta estrategia, y no a la forma que adopta en esta presentación.
+¿Cuáles son las estrategias metodológicas más adecuadas para ayudar al alumno a alcanzar
+el siguiente paso ?
+Una de las consecuencias más claras que se derivan de lo que se sabe sobre el aprendizaje y la
+enseñanza es que no es posible prescribir el método de enseñanza valido para todo el alumnado y
+para todos los contenidos. Aunque las leyes y principios del aprendizaje son idénticos para todos y
+en este sentido todos los alumnos son iguales, también es cierto que cada aprendiz es diferente,
+tiene su propio “estilo de aprendizaje”, como se señala anteriormente. Cada alumno tiene sus
+puntos fuertes y débiles, su base de conocimientos y destrezas puede ser distinta, se motiva por
+cuestiones diferentes y es capaz de concentrarse en unas tareas con más facilidad que en otras.
+A tenor de lo dicho, las mejores metodologías de enseñanza son las que se ajustan a lo que se sabe
+de cómo aprenden los alumnos y a las características de cada aprendiz y como resultado de ello le
+hace progresar.
+El currículum oficial no ha prescrito ningún método de enseñanza, aunque si ha señalado los principios
+básicos a los que debe ajustarse toda opción metodológica, y en ese sentido trata de estimular la
+autonomía del profesorado, para que dentro de los medios a su alcance elija aquellas opciones que
+considere convenientes para sus alumnos.
+Si la metodología debe respetar lo que sabemos sobre el aprendizaje y ajustarse al estilo de cada
+alumno, es bueno entonces que se tengan presentes las características metodológicas que hacen
+posible esta doble adecuación. Así, y en primer lugar, es muy positiva la globalización, sobre todo en
+las primeras etapas educativas. La globalización facilita la relación entre los contenidos, que es
+precisamente uno de los obstáculos con el que se encuentran muchos alumnos con dificultades
+para aprender.
+La metodología elegida ha de favorecer siempre la participación activa del alumno. El acento no
+puede estar ya en el aprendizaje memorísticos de hechos o conceptos, sino en la creación de un
+entorno que estimule al alumno a construir su propio conocimiento, y dentro del cual el profesorado
+pueda conducir al alumno hacia cotas más altas de independencia y de capacidad para aprender a
+aprender.
+La metodología debe contribuir a motivar a los alumnos para que quieran y sientan la necesidad de
+aprender. En este sentido debe servir para despertar por sí misma la curiosidad y el interés del
+alumnado, pero al mismo tiempo hay que evitar que sea una ocasión para que el alumno, o alumna,
+con dificultades se sienta rechazado, comparado indebidamente con otros o herido en su autoestima
+personal. Con sumo acierto se ha dicho que “para que un niño encuentre sentido a lo que debe
+hacer es necesario que conozca lo que debe hacer, que sienta que el puede hacerlo y que encuentre
+interesante hacerlo”.
+26
+Guía de adaptaciones curriculares
+La metodología debe servir para promover en el mayor grado posible la comunicación e interacción
+entre profesores y alumnos, y alumnos entre sí. Las opciones metodológicas “unidireccionales”, en
+las que sólo es el profesor el que habla y los alumnos unicamente escuchan, resultan claramente
+insuficientes. Han de favorecerse opciones y organizaciones escolares en las que el profesor pueda
+hacer eso, pero también trabajar con pequeños grupos de alumnos o con uno individualmente,
+aunque sea en pequeños períodos de tiempo. Y sobre todo es fundamental que los alumnos puedan
+interaccionar entre sí y trabajar cooperativamente, ayudándose mutuamente, tutorandose o buscando
+de forma conjunta la resolución de problemas o tareas escolares.
+La enseñanza es vista cada vez menos como una acción solitaria del profesor, y cada vez más
+como una acción colectiva en la que los equipos de profesores del ciclo o etapa, junto con el
+profesorado de apoyo y los especialistas, deben colaborar entre sí en beneficio de todos los alumnos.
+En este sentido también es bueno pensar en las opciones metodológicas de forma que faciliten la
+incorporación de otros profesores, en especial del profesorado de apoyo. La existencia de este
+profesorado en muchos centros va a facilitar enormemente la respuesta educativa de los alumnos
+con dificultades de aprendizaje. Pero esa respuesta no puede ser siempre la de sacar a este alumnado
+fuera del aula. una gran cantidad de ayuda puede prestársele al alumno dentro del aula, para la cual
+es imprescindible sin embargo, que la metodología adoptada lo permita.
+Por ultimo, la elección de un método ha de hacerse también con visión realista y de forma equilibrada,
+en el sentido de que sea positiva no solo para los alumnos que en un momento u otro experimentan
+dificultades para aprender, sino para la globalidad del grupo-clase. Se habla de realismo en el
+sentido de elegir alternativas que estén al alcance de los recursos del propio centro educativo, así
+como de los propios conocimientos y habilidades para desarrollar tales metodologías con garantías
+de éxito.
+El rechazo a una opción metodológica “monolítica” no es incompatible con la necesidad de una
+cierta continuidad metodología a lo largo de los sucesivos ciclos y etapas. Las dificultades de
+muchos alumnos se ven precisamente acentuadas por la ausencia de esta continuidad en la forma
+de enseñar, tan decisiva en algunos contenidos instrumentales básicos, o para fomentar en los
+alumnos determinados hábitos y valores (autonomía, cuidado por las cosas, trabajo en grupo...).
+Esta continuidad es la que debe ser considerada en el proyecto curricular de etapa como un factor
+fundamental para facilitar la enseñanza de todos los alumnos en general y la de los alumnos con
+dificultades de aprendizaje en particular.
+En definitiva, la opción por un método u otro debe estar presidida por un criterio de flexibilidad y
+diversidad, lejos, por tanto, de las concepciones homogeneizadoras en las que todos los alumnos
+hacen lo mismo, al mismo tiempo y de la misma forma.
+Las decisiones tomadas hasta aquí con respecto a los puntos anteriores de la estrategia determinaran
+cuando es el momento de hacerse la ultima pregunta de la misma.
+¿ La ayuda que se le ha dado al alumno, le ha capacitado para dar el primer paso hacia el
+objetivo previsto ?
+El ciclo de preguntas que constituyen esta estrategia llega momentáneamente a su fin. La respuesta
+a esta última será tanto más fácil cuanto más clara y precisa haya sido la definición del “siguiente
+paso” que se proponía en la tercera pregunta.
+Si la respuesta es afirmativa, esto es, el alumno ha progresado en la dirección del objetivo propuesto,
+el ciclo vuelve a la tercera pregunta, es decir, a escoger un nuevo paso entre lo que el alumno ya es
+capaz de hacer y la meta más a medio o largo plazo que se quiere alcanzar.
+27
+Colección de Materiales Curriculares
+para la Educación Primaria
+Si la respuesta es negativa, o sea, que el alumno no ha progresado como se esperaba- y esta es una
+conclusión a la que ha de llegarse rápidamente para evitar frustraciones tanto en el alumno como
+en el profesor-, lo más probable es que la respuesta a alguna de las preguntas anteriores haya sido
+errónea. El profesor necesitará preguntarse a sí mismo:
+• ¿Fue correcto el punto de partida?
+• ¿Era muy difícil el siguiente paso?
+• ¿EI tiempo y el método elegidos se ajustaban al estilo de aprendizaje del alumno?
+• ¿Elegimos el objetivo de trabajo adecuado para el alumno en este momento?
+Recuérdese de nuevo que el orden en este proceso de revisión no debe ser arbitrario, y que debe
+plantearse modificar el objetivo de la enseñanza cuando se han agotado razonablemente todas las
+otras posibles adaptaciones. Mientras permanezca en el profesor la actitud de indagación que se
+vería como básica a la hora de enfrentarse a las dificultades de aprendizaje, estas y otras preguntas
+similares le servirán para buscar un nuevo método, realizar más a fondo la evaluación de la
+competencia curricular del alumno o precisar más el peso de alguno de los factores que condicionan
+su estilo de aprendizaje.
+Como se señalaba en su momento, tan importante como el repaso de estas preguntas es el hecho
+de que el profesor este preparado para reconocer cuando requiere más información o asesoramiento.
+Esto es lo que suele ser necesario en el caso de los alumnos con necesidades educativas especiales,
+quienes, además de toda la ayuda extra que pueda proporcionarles el profesorado por si solo a
+través de esta estrategia, pueden necesitar unos recursos muy específicos o que se modifique
+significativamente la oferta curricular que se les hace.
+Los pasos que hasta aquí se han comentado constituyen un intento de someter a un mayor control
+y rigurosidad la estrategia habitual que siguen los profesores con experiencia cuando se enfrentan
+con alumnos o alumnas que experimentan mayores dificultades que sus compañeros para aprender.
+Con ello no se quiere decir que desarrollar habitualmente este trabajo con todos los alumnos que lo
+necesiten sea algo sencillo. Al principio puede resultar complicado y como todo proceso de cambio
+requiere tiempo, pero como tarea a aprender por parte del profesorado es algo que se sitúa en la
+zona de lo que se puede conseguir con ayuda y si se consiguen ciertas condiciones.
+Algunas de estas condiciones tienen que ver con tareas bajo el control directo le cada profesor,
+otras dependerán de su capacidad para actuar coordinadamente junto con los demás profesores
+como un equipo docente, y las últimas están ligadas a todo aquello que favorece o dificulta los
+procesos de cambio. En el apartado siguiente se van a analizar precisamente estas condiciones
+para poder hacer viable esta estrategia de las adaptaciones curriculares, vista desde la perspectiva
+de la búsqueda de una autentica individualización de la enseñanza para todos los alumnos, y en
+especial para aquellos que experimentan dificultades para aprender y que por ello están más
+expuestos a perder los beneficios que la educación escolar proporciona a las personas.
+Las condiciones para el desarrollo de las adaptaciones curriculares
+Se ha hecho referencia a tres tipos de condiciones, diferenciando entre aquellas que están
+individualmente bajo el control personal de cada profesor o profesora, las que dependen del trabajo
+que como equipo docente se desarrolla en el centro y las que se relacionan con los procesos de
+cambio. Entre las primeras parece importante resaltar, sobre todo, la necesidad de una actitud
+renovada y de una constancia en las tareas de evaluación y registro del progreso de los alumnos,
+las cuales vienen a ser elementos imprescindibles para desarrollar las adaptaciones curriculares.
+28
+Guía de adaptaciones curriculares
+En efecto, una nueva concepción de la evaluación es una de las consecuencias más evidentes que
+se derivan de la forma de entender el aprendizaje y la enseñanza que se quiere promover a través
+del currículum oficial. Por lo general, la evaluación se ha entendido exclusivamente como el medio
+para comprobar -puntual o periódicamente- que los alumnos han alcanzado los resultados esperados
+de aprendizaje. Se trata, por tanto, de un modelo de evaluación centrado siempre en el alumno.
+Además, con demasiada frecuencia ha sido una evaluación de carácter normativo, estandarizada,
+en la que los alumnos son sistemáticamente comparados con una supuesta “normas general de
+rendimientos y logros que se fija, por lo común, a partir de los rendimientos medios alcanzados por
+los alumnos de su edad o de su grupo.
+Pero si, como se ha visto, la enseñanza debe estar ajustada a las características individuales de
+cada grupo, y este es un proceso continuo y cambiante, se necesita un proceso paralelo a la
+enseñanza, también continuo e individualizado, que la oriente desde el principio y que permita guiar
+el proceso de enseñanza y aprendizaje de cada alumno en función de sus propias necesidades. Esto
+es, si cabe, más cierto y necesario aun en el caso de los alumnos con dificultades de aprendizaje, en
+quienes precisamente se esta produciendo un “desajuste” entre sus capacidades y la enseñanza
+que se les esta ofertando. Este es el nuevo sentido de la evaluación, que debe acompañarse con
+aquella actitud de indagación y desafío que se comentaba en su momento. Al plantear así la evaluación
+también se esta ampliando su foco de atención, que ya no puede ser solamente el alumno, sino
+también los procesos de enseñanza y la propia practica docente del profesorado, desde su contexto
+más próximo al alumno (métodos didácticos, organización del aula, diseño y desarrollo de las unidades
+didácticas, contenidos...) hasta el contexto amplio en la que esta se desarrolla (la coordinación con
+otros profesores y especialistas, la continuidad y coherencia de los planteamientos educativos entre
+ciclos y etapas, el funcionamiento interno como equipo pedagógico, la colaboración con los padres
+de los alumnos...).
+En otros documentos de estos Materiales para el desarrollo curricular ya se han dado orientaciones
+generales sobre el que, cómo y cuando evaluar. Ahora sólo resta insistir en la importancia de la
+evaluación así entendida en todo el continuo de las adaptaciones curriculares. Viene a ser algo así
+como la llave o clave de todo el proceso de adaptaciones, tanto para las habituales que realiza el
+profesor normalmente como para aquellas otras significativas que precisan los alumnos con
+necesidades educativas especiales.
+Una evaluación que aspira a ser rigurosa, continua e individualizada, al servicio del proceso de
+enseñanza y aprendizaje, debe estar acompañada de unas tareas de registro del progreso de los
+alumnos, que deben estar igualmente animadas por la voluntad de continuidad y rigor. Con cuanta
+frecuencia, sin embargo, se confían las observaciones, análisis o propuestas de intervención a la
+memoria.
+El proceso de plasmar por escrito, en primer lugar, los objetivos que se quieren conseguir, y después
+los avances y logros que van consiguiendo los alumnos, no cabe duda que consume tiempo y
+esfuerzo. Sin embargo, se sabe con certeza que los beneficios que ello proporciona compensan con
+creces el esfuerzo y el tiempo que precisan. La elaboración de registros y “hojas de seguimiento”
+de los aprendizajes de los alumnos obliga en primer lugar a ser precisos en la concreción de los
+objetivos, que, como se recordara, era uno de los componentes básicos de la estrategia de
+adaptaciones. Indudablemente, ello facilita la colaboración y comunicación con los otros profesores
+y, en su caso, especialistas que trabajan con el niño, especialmente en lo referente a sus avances.
+El tiempo invertido permite así no perder tiempo repitiendo algo que el alumno ya sabe o es capaz
+de hacer, o, por el contrario, fijando una tarea muy complicada para su nivel actual de competencia
+curricular.
+29
+Colección de Materiales Curriculares
+para la Educación Primaria
+No siendo rigurosos en el seguimiento y registro de los aprendizajes también se corre el riesgo de
+pasar por alto progresos que, aunque pequeños, pueden ser muy importantes para el alumno, aunque
+sea solamente desde el punto de vista de su motivación. También facilita la relación y comunicación
+con los padres del alumno. Con cuanta frecuencia sólo se habla con los padres de alumnos
+problemáticos para comunicarles solamente las dificultades de sus hijos. La practica habitual de
+registrar los avances permite mostrar a las familias lo que se va logrando con sus hijos, y mantener
+de esta forma vivo y motivado el proceso de colaboración con ellas, que tan necesario es en
+algunos casos.
+El segundo bloque de condiciones necesarias para poder desarrollar las adaptaciones curriculares
+tiene que ver sobre todo con la capacidad y disposición del profesorado para actuar como un
+equipo pedagógico que adopta una organización y establece un sistema de funcionamiento escolar
+que facilita, guía y potencia la acción educativa de cada profesor en particular y la de la institución
+educativa en su conjunto.
+Ya se ha señalado en varias ocasiones que el aprendizaje y la enseñanza son tareas complejas,
+difíciles e inciertas. No es fácil estar seguro al cien por cien de las decisiones con respecto al
+currículum: “¿es esta la mejor secuencia de aprendizaje?, “¿es este el mejor método?, ¿debería ser
+más directivo en esta tarea?, ¿Qué contenidos son más prioritarios?...”. Además, la mayor parte
+de estas preguntas no deberían tener contestación solamente en el aquí y ahora de cada profesor,
+sino también en relación con lo que se ha hecho antes y se hará después: “¿Qué método se siguió
+el curso pasado?, ¿qué contenidos se han trabajado anteriormente?, estan acostumbrados estos
+alumnos a trabajar de esta forma?...”. En último termino, y cuando se busca alcanzar un grado
+elevado de eficacia, la viabilidad de muchas decisiones curriculares depende de su coordinación
+con las decisiones que tienen que tomar otros profesores: “Para desarrollar este experimento de
+física o este estudio de campo en geografía necesito contar con dos o tres horas seguidas durante
+un par de semanas; Montare con la colaboración de los otros profesores?”.
+La condición a la que se esta haciendo referencia tiene que ver, en definitiva, con la idea de que los
+centros escolares deben organizarse como instituciones que permitan a cada profesor realizar su
+trabajo. En el contexto del desarrollo del currículum oficial esta condición se trata de garantizar a
+través de la necesidad que tienen todos los centros de elaborar Proyectos Curriculares de Centro
+y en su momento un Proyecto de Centro que los englobe y de identidad propia a cada centro. La
+finalidad de los Proyectos Curriculares es precisamente la de contextualizar el currículum oficial en
+función de las características de cada centro escolar concreto y articular una acción educativa
+coordinada y eficaz del equipo docente, así como garantizar la adecuada progresión y coherencia
+en la enseñanza de los contenidos educativos a lo largo de la escolaridad. (Véase la Guía de
+Proyectos Curriculares de Centro).
+Por tanto, como condición para el buen desarrollo de las adaptaciones curriculares, se ha de promover
+en el centro y se ha de participar en la elaboración y revisión frecuente de los Proyectos curriculares
+de etapa y, en general, en la mejora de la organización escolar. No se trata de poner en cuestión
+todos los aspectos del centro y de la vida escolar “ya”, sino de generar un proceso prudente y
+realista que sirva para detectar y priorizar los principales aspectos que deberían cambiarse.
+En este sentido, la investigación educativa ha demostrado, por ejemplo, que el tiempo del profesor
+es un elemento importante para asegurar el buen éxito de una estrategia como la que se viene
+comentando. En efecto, trabajando con alumnos con dificultades de aprendizaje se necesita tiempo:
+• Para transmitir al resto de los profesores, y a los especialistas si fuera menester, la información
+recogida sobre los alumnos.
+30
+Guía de adaptaciones curriculares
+• Para proponer ideas acerca de la solución de los problemas. Se necesita tiempo para reunirse y
+discutir sobre propuestas de actuación que se estiman positivas para el alumno o alumna en
+cuestión. Y ello (analizar y compartir) es importante no sólo porque obviamente beneficia al
+alumno, sino porque también beneficia al colegio como organización en funcionamiento, puesto
+que conlleva procedimientos que reducen la ansiedad del profesor y, por ende, aumentan su
+satisfacción.
+• Para elaborar materiales que no se pueden adquirir.
+• Para observar e interactúar con los alumnos, para evaluar con precisión el tipo de problema, en
+especial cuando este resulta complejo.
+• Para desarrollar los programas individuales que puede necesitar el alumno.
+Conseguir este tiempo no es un problema individual de cada profesor. Dependerá, en parte, de una
+organización y funcionamiento del centro que lo facilite y, en parte, del modo de llevar la clase.
+Las estrategias y condiciones para promover una organización del centro que facilite estas y otras
+tareas necesarias para desarrollar las adaptaciones curriculares son las estrategias y condiciones
+que se precisan para elaborar los Proyectos curriculares de etapa, y el lector debe dirigirse al
+documento que desarrolla esta temática para profundizar en su comprensión. No obstante, muchas
+de ellas tienen que ver directa o indirectamente con el tercer grupo de condiciones a las que se
+hacía referencia más arriba, y son aquellas que nos informan de los factores que facilitan o dificultan
+los procesos de cambio.
+El desarrollo de la estrategia que se esta comentando apunta una y otra vez hacia el hecho de que
+es necesario cambiar determinados aspectos; unas veces es la propia metodología u organización
+del aula, otras veces la secuencia o el tiempo habitual que siempre se ha seguido en la enseñanza
+de tal o cual contenido, y hace un momento se señalaban procesos o decisiones del funcionamiento
+general de la escuela (flujo de información, toma de decisiones, organización del tiempo...).
+Subyaciendo a todas esta, por tanto, la idea de cambio. ¿Y qué es lo que se sabe sobre los procesos
+de cambio? ¿Puede éste conocimiento ayudarnos en la tarea de responder mejor a las dificultades
+de aprendizaje de los alumnos? Afortunadamente existe un importante cuerpo de conocimientos
+sobre el funcionamiento de los procesos de cambio educativos, e indudablemente ello resulta de
+capital importancia para enfrentarse mejor a las preocupaciones que ahora tenemos.
+De modo sintético podría decirse que la experiencia y la investigación sobre los procesos de cambio
+han puesto de manifiesto lo siguiente:
+• Aprendizaje y cambio son procesos homólogos.
+• El cambio es un proceso y no algo puntual.
+• El cambio lleva tiempo.
+• El cambio puede crear confusión.
+• El cambio puede herir.
+Al señalar que el aprendizaje y el cambio son procesos homólogos se quiere poner de relieve que se
+debe aplicar a los procesos de cambio personales o grupales lo que sabemos sobre el aprendizaje.
+¿Cuales son las condiciones que ayudan a las personas a aprender? Partir de lo que ya se sabe,
+progresión adecuada, motivación, refuerzo constante...; cualesquiera que sean estas características,
+resultarán de indudable valor a la hora de pensar cómo mejorar la propia practica o cómo conseguir
+un mejor funcionamiento grupal como equipo docente.
+31
+Colección de Materiales Curriculares
+para la Educación Primaria
+Cuando se esta hablando de nuevas formas de pensar y de actuar en el aula y en el centro, en
+relación con las dificultades de aprendizaje, es evidente que se esta hablando de procesos y no de
+hechos puntuales en el tiempo, ni, por tanto, de situaciones que puedan cambiar de la noche a la
+mañana. Cualquier cambio lleva tiempo, y a la hora de enfrentarse a tales procesos con garantías
+de éxito es importante ser conscientes de que se requiere tiempo, especialmente para aprender las
+nuevas ideas, practicas y habilidades concretas que pueden ser necesarias, y para que cada cual
+asimile, personalice y de sentido a esas nuevas practicas. Las propuestas de temporalizaciones
+(que cada profesor se hace para sí, o las que se plantean colectivamente), cuando son poco realistas,
+pueden generar ansiedad y reacciones negativas con respecto a la tarea.
+Por otra parte, también es cierto que cuando se planifican los procesos de cambio todo parece
+sencillo y claro. Sin embargo, en la realidad y cuando los procesos se ponen en marcha, casi todo
+suele ser más confuso y difícil. Lo que expositivamente suena coherente no tarda en chocar en la
+practica con la experiencia acumulada durante años, con las preferencias y prejuicios de cada cual
+y con la necesidad de coordinar caracteres y personalidades diferentes, de forma que el proceso de
+clarificación y aceptación profunda resulta ser más complejo de lo esperado.
+Por último, a nadie se le escapa que al hablar de la naturaleza del cambio en las escuelas se esta
+hablando también de sus efectos sobre las personas. Hacer cambios requiere asumir riesgos, tal
+vez hacer algo nuevo que antes se había rechazado y ver ahora como negativas algunas de las
+acciones que durante anos se han realizado habitualmente.
+En definitiva, el cambio puede herir o perturbar la autoestima del profesorado en determinados
+momentos del proceso. Ser conscientes de ello y tratar de minimizar estas reacciones son condiciones
+necesarias para tratar de garantizar el éxito, tanto en la aplicación de la estrategia que hasta aquí se
+ha comentado como en la consecución de las condiciones optimas para su desarrollo efectivo.
+32
+Guía de adaptaciones curriculares
+LA INDIVIDUALIZACIÓN DE LA ENSEÑANZA.
+EL CONTINUO DE LAS ADAPTACIONES
+CURRICULARES.
+En la primera parte de este documento se ha intentado explicar el sentido de las adaptaciones
+curriculares en el contexto del desarrollo del currículum oficial, y se ha descrito con algún detalle la
+estrategia y los criterios generales de planificación y de actuación docente que pueden permitir al
+profesorado adaptar su enseñanza.
+Esta segunda parte intenta clarificar los distintos tipos de situaciones que pueden y suelen aparecer
+en los colegios de Educación Primaria, con respecto al grado y rango de las dificultades de aprendizaje
+que pueden experimentar los alumnos escolarizados habitualmente en tales centros. En este sentido.
+todo el profesorado es consciente de la existencia de tal rango, y que este abarca desde aquellas
+dificultades leves y transitorias, que se resuelven incluso de manera espontánea o con el recurso a
+medidas elementales de refuerzo o adaptación, hasta aquellas graves e incluso permanentes que
+tanto preocupan a los alumnos y al propio profesorado. En este sentido, en paralelo con el continuo
+de las dificultades, es lícito hablar, entonces, de un continuo en las adaptaciones curriculares desde
+el punto de vista de su incidencia sobre el currículum que precisa el alumno.
+Se pretende ejemplificar y reflexionar también sobre aspectos tales como: ¿qué se trataría de
+conseguir con tales adaptaciones? (en términos de niveles de consecución esperables de los objetivos
+educativos), ¿en qué podrían consistir y qué es lo que se le pide al profesorado tutor y de apoyo en
+cada caso?
+Es necesario insistir en el sentido orientador y ejemplificador de esta segunda parte. No podría ser
+de otra forma tras haber defendido el carácter interactivo de los procesos de enseñanza y aprendizaje
+y la inevitable diversidad de los profesores y del alumnado en términos de capacidades, intereses y
+motivaciones. No debe esperarse, por tanto, una recopilación exhaustiva de actuaciones o
+“adaptaciones” terminadas, sino ejemplos y criterios que, sin duda, deben ser de utilidad para
+responder a las dificultades de aprendizaje concretas que cualquier alumno puede presentar.
+Antes de ir haciendo explícito este continuo conviene detenerse, siquiera sea brevemente, a reflexionar
+sobre un aspecto de suma importancia en los procesos de enseñanza y en particular con los procesos
+de adaptación curricular, y que tiene que ver con la siempre difícil decisión entre lo que es deseable
+que sea igual para todos los alumnos- en términos de capacidades a alcanzar, experiencias y
+contenidos de aprendizaje-, para evitar discriminaciones que posteriormente pueden tener
+33
+Colección de Materiales Curriculares
+para la Educación Primaria
+repercusiones importantes en la historia escolar y personal de los alumnos, y lo que debe ser
+diferente para cada uno de ellos, en función de sus particulares capacidades, intereses o motivaciones.
+Esta “tensión” entre el deseo hacia la mayor comprensividad posible del currículum, y la necesidad
+de una individualización creciente del mismo para que pueda ajustarse a las características
+diferenciales de cada alumno, se hace cada vez mayor a medida que aparecen y se mantienen las
+dificultades de aprendizaje de los alumnos y se hace extrema en el caso de los alumnos con
+necesidades educativas especiales. Cuanto mayores son las dificultades, más necesario resulta
+hacer cambios sustanciales en el currículum individual del alumno que las experimenta y más
+significativa o notable se hace la diferencia entre la programación que el necesita y la del resto de
+los compañeros.
+Este conjunto de decisiones es, por tanto, el núcleo de las mayores dificultades y problemas que
+plantea al profesorado el proceso de adaptación curricular, y como tal es obvio que no puede ser
+resuelta “a priori”, ni en este ni en ningún otro documento, sino más bien a través de una actuación
+docente individual y colectivamente reflexiva.
+Esta parte esta organizada siguiendo la lógica de este continuo. En primer lugar se comentan las
+adaptaciones curriculares no significativas; en segundo lugar, las que se denominan adaptaciones
+curriculares significativas y las de acceso; y en tercer lugar, el capitulo revisa brevemente el concepto
+de alumnos con necesidades educativas especiales desde la perspectiva del tipo de adaptaciones
+que precisan.
+Las adaptaciones curriculares no significativas
+Al describir y revisar la estrategia general ha quedado de manifiesto que como resultado del proceso
+descrito el profesorado puede verse en la necesidad de realizar distintas adaptaciones concretas en
+los elementos básicos del curriculo (véase cuadro III).
+Resultan poco frecuentes y, sin embargo, son muy importantes las adaptaciones en la evaluación.
+Por lo general se tiende a evaluar a todos los alumnos de la misma manera (tanto en su vertiente de
+evaluación inicial como final) y concediéndoles el mismo tiempo, olvidando sus particulares “estilos
+de aprendizaje”. Así, por ejemplo, hay alumnos que se ponen extremadamente nerviosos si tienen
+que responder a la vista de sus compañeros (leer un texto para toda la clase, hacer un dibujo o
+recitar una poesía, completar unos problemas en la pizarra...), como los hay a los que les ocurre lo
+mismo cuando las tareas evaluadoras sólo son con el profesor.
+Decididamente unos alumnos son más rápidos, e incluso impulsivos a la hora de responder (y por
+ello pueden cometer muchos más errores, que no siempre representan, sin embargo, falta de
+comprensión), mientras que otros precisan de más tiempo para reflexionar y responder. Resulta
+evidente, entonces, que las actividades de evaluación homogéneas pueden enmascarar en buen
+grado los aprendizajes reales de un alumnado que es diverso a la hora de aprender, y las decisiones
+así tomadas resultan una base equivoca para la planificación de la enseñanza. Es en este sentido en
+el que resulta necesario adaptar los procedimientos e instrumentos de evaluación, adaptación que
+puede resultar de suma trascendencia en el caso de algunos alumnos con graves problemas en la
+comunicación, como se vera con algo de detalle al hablar de los alumnos con necesidades educativas
+especiales.
+En unos casos puede que básicamente sean adaptaciones metodológicas; el profesor decide ayudar
+más individualizadamente a un alumno o pequeño grupo de alumnos para afianzar unos contenidos,
+mientras sus compañeros completan la tarea en grupo o por si solos; y al tiempo intenta reforzar
+explícitamente y en todo lo posible los aciertos y péquenos progresos observados.
+34
+Guía de adaptaciones curriculares
+En otros casos son también adaptaciones en los contenidos; ello ocurre cuando se cambia, por
+ejemplo, la programación prevista y se rescata algo que en esos días ha captado especialmente la
+atención de ese alumno que, por lo general, atiende menos y que puede servir, sin embargo, para
+trabajar los mismos objetivos previstos. Se hacen también adaptaciones en los contenidos cada vez
+que hay que introducir contenidos ya trabajados anteriormente, u otros nuevos haciendo más
+pormenorizada la secuencia de aprendizaje; por ejemplo, para aquellos alumnos que un día parece
+que han comprendido algo y al día siguiente lo han olvidado (“las sumas llevando, las sílabas trabadas,
+las unidades de medida temporal...”). En estos casos se podía decir que lo que se esta planteando
+es cambiar la secuencia de contenidos prevista, sin que ello suponga renunciar al aprendizaje de los
+mismos ni a los objetivos a los que sirven.
+En ocasiones, el profesorado puede también decidir eliminar algunos contenidos que no considere
+básicos, para permitir precisamente al alumno profundizar sobre aquellos que si lo son y para evitar,
+por ejemplo, que aquel se “descuelgue” del ritmo de la clase o de actividades que pueden contribuir
+a su adaptación al grupo.
+Lógicamente, y en último termino, hay ocasiones en las que lo que resulta necesario es adaptar los
+objetivos de la enseñanza. No es difícil encontrarse con alumnos que tienen dificultades en un área
+en algunos contenidos especialmente, pero no en otras, y que en su conjunto todos consideran
+“buenos alumnos”. Son niños y niñas que por distintas razones (sociales, de capacidad o interés)
+tienen dificultades, por ejemplo, para la expresión artística, en otros casos con la lengua extranjera
+o en ocasiones con la educación física. A veces, las dificultades son algo más transversales, como
+en el caso de alumnos o alumnas con dificultades para la expresión o con muy pocas habilidades
+para la planificación o resolución de problemas.
+Es normal y deseable entonces que se considere necesario, por ejemplo, priorizar unas áreas ante
+otras (a veces en las que se tienen más dificultades, a veces en las otras para no reforzar un
+autoconcepto negativo); o priorizar unos objetivos (capacidades) frente a otros, por su carácter
+más básico, funcional o instrumental, y porque se estima que puede resultar imposible (o poco
+aconsejable) trabajarlos todos al mismo nivel en el contexto actual de las condiciones de enseñanza
+de ese grupo.
+Siguiendo con los ejemplos, estas consideraciones podrían llevar a la conveniencia para algunos
+alumnos de eliminar algunos contenidos del área de Educación Física, priorizar más los contenidos
+actitudinales y procedimentales en el caso del área de Educación Artística, o priorizar y reforzar en
+todas las áreas los contenidos más procedimentales relacionados con la planificación y resolución
+de problemas.
+En ocasiones esta priorización puede significar simplemente darle más peso y atención a los objetivos
+que se consideran básicos sin renunciar a trabajar los demás, o trasladar estos últimos al ciclo
+siguiente. Pero el profesorado conoce que en determinados momentos y con algunos alumnos,
+especialmente cuando son grandes sus dificultades de aprendizaje, la opción más aconsejable tiene
+que ser eliminar en mayor o menor medida algunos objetivos (y los consiguientes contenidos), a
+efectos de poder trabajar con el tiempo y la profundidad requerida aquellos otros que en función de
+las características del alumno resultan básicos o relevantes para él.
+Es evidente que esta ultima opción -la eliminación- resulta una alternativa que tiende a “desequilibrar”
+la relación entre comprensividad y diversidad, sobre todo cuanto más generalizada se plantee dicha
+eliminación y en mayor grado comprometa contenidos que son esenciales en las áreas curriculares
+(porque se aplican a mayor numero de situaciones, porque son necesarios para seguir progresando
+en el conocimiento del área o porque tienen mayor aplicación en la vida social).
+35
+Colección de Materiales Curriculares
+para la Educación Primaria
+Resulta obvio que es una decisión que no debe tomarse sin precauciones, desde el momento que
+todos los objetivos contribuyen a la consecución de las finalidades de etapa, y a la larga de la
+educación escolar, y en tanto que todos ellos representan capacidades importantes.
+La adaptación de objetivos, cuando lo que supone son eliminaciones de contenidos que son nucleares
+o esenciales en las arcas, o eliminaciones de los propios objetivos, representa, entonces, la frontera
+(en alguna medida siempre difusa) a partir de la cual podría hablarse de un currículum que empieza
+a separarse y diferenciarse “significativa mente” del previsto. Es en este sentido en el que podría
+hablarse de las otras adaptaciones comentadas (en la secuencia de los contenidos, en la metodología
+u organización escolar, en la evaluación) como adaptaciones no significativas, desde el momento en
+el que se considera que no se modifica substancialmente la programación propuesta para el grupo,
+y se entiende que se están trabajando con el alumno en cuestión las capacidades y objetivos previstos
+en el currículum
+Las adaptaciones curriculares “no significativas” constituyen, vistas ahora desde esta perspectiva,
+las acciones esperables de todo el profesorado en el ejercicio responsable de su acción tutorial y
+orientadora, y las mismas están plasmadas a su vez, indirectamente, en el documento de Orientaciones
+didácticas, en la medida que en ellas se recogen los criterios didácticos para una acción educativa
+eficaz.
+Las adaptaciones curriculares “significativas” constituyen, como se ha dicho, una opción necesaria,
+pero cuya aplicación debe ser prudente y cuidadosamente planificada. En la medida también en la
+que han sido menos tratadas en otros documentos, se justifica ahora revisar su alcance y significado
+con más detenimiento.
+Las adaptaciones curriculares significativas
+Es un hecho reconocido por todos que hoy por hoy existe en todos los niveles educativos un
+conjunto nada despreciable de alumnos cuyas dificultades para aprender van más allá de las que se
+han descrito hasta ahora. Tales dificultades no se circunscriben ya solamente a algunos contenidos
+determinados, o incluso a algún área curricular en su conjunto, sino que pueden llegar a afectar casi
+de manera generalizada a casi todas las áreas del currículum y experiencias de aprendizaje y, en
+consecuencia, ya no parece posible responder solamente con adaptaciones sencillas de la respuesta
+educativa habitual.
+En tal situación se suelen encontrar dos colectivos de alumnos diferentes, que no obstante comparten
+en buena medida las mismas consecuencias de estos hechos. Por una lado suelen ser alumnos que,
+sin tener una limitación personal, presentan una historia de aprendizaje repleta de fracasos y malas
+experiencias, y como resultado de lo cual muchas veces no han adquirido en el grado necesario los
+contenidos instrumentales básicos, arrastrando “lagunas” que a su vez les impiden aprender nuevos
+contenidos, todo lo cual genera una espiral creciente de desmotivación y desinterés por la vida
+escolar.
+Otro colectivo de alumnos distintos al anterior, que puede encontrarse no obstante en situaciones
+parecidas en cuanto al grado de sus dificultades de aprendizaje, es el formado por parte de los
+alumnos con deficiencias físicas, psíquicas o sensoriales que desde hace unos años están
+escolarizados en los centros de integración escolar, como consecuencia del Programa de Integración
+Escolar. Lo que ocurre en su caso es que estos alumnos y alumnas pueden tener graves dificultades
+para aprender por otras razones. En unos casos es por la carencia o pobreza de su lenguaje oral, lo
+cual dificulta entonces la comunicación eficaz con sus iguales y con el profesorado, y en definitiva
+los procesos de enseñanza y aprendizaje-que no son otra cosa sino procesos comunicativos-; esta
+es la situación en la que se pueden encontrar algunos alumnos con deficiencias motoras o los
+alumnos sordos profundos.
+36
+Guía de adaptaciones curriculares
+Otra situación es la de los alumnos o alumnas que tienen una limitación de su capacidad de
+aprendizaje, por ejemplo, por efecto de un daño cerebral o una deficiencia genética. También es
+cierto que en ambos casos sus dificultades pueden verse acrecentadas por una respuesta educativa
+desajustada a sus necesidades, de forma que no es extraño tampoco que estos alumnos vivan las
+tareas y situaciones escolares como algo penoso y desmotivador para ellos.
+Asociados a ambas situaciones aparecen entonces varios hechos que hacen difícil la tarea del
+profesorado, en términos de adaptación curricular. En primer lugar, obviamente aparece un “desfase”,
+la mayor parte de las veces creciente, entre la “competencia curricular” de esos alumnos (lo que
+son capaces de hacer respecto a objetivos y contenidos de las distintas áreas curriculares) y sus
+compañeros, haciendo cada vez menos sencilla la propuesta de una respuesta equilibrada en términos
+de lo que están haciendo sus iguales y lo que ellos precisarían individualmente. En segundo lugar, no
+es extraño que algunos de esos alumnos muestren comportamientos problemáticos, en términos de
+conducta y adaptación escolar, en respuesta a situaciones que no se ajustan a sus necesidades y
+que, muchas veces, hieren su autoconcepto y, en general, dejan de ser motivadoras o interesantes
+para ellos. Y, por ultimo, también es evidente que tales situaciones hacen que el profesorado este
+más preocupado y que viva su trabajo con más tensión.
+Estos problemas son también relativos, ya que no todos los profesores reaccionan igual ante tales
+dificultades, no todos los centros escolares tienen los mismos recursos y experiencia en el trabajo
+con los alumnos con mayores dificultades, ni todas las dificultades son idénticas. Es también una
+cuestión susceptible de ser analizada desde múltiples puntos de vista. Cabría analizar con detalle
+cuales son las causas principales que determinan tales dificultades extremas. Con frecuencia se ha
+hecho también el análisis de sus consecuencias y en consonancia se ha hablado de “fracaso escolar”
+en términos sociológicos, o de sus implicaciones para la personalidad y desarrollo del alumno o del
+profesor, y en este sentido se ha hablado en ocasiones del “malestar docente”, por citar sólo
+algunos de los puntos de vista posibles. Lógicamente también se ha pensado e investigado sobre las
+soluciones y medidas a adoptar para evitar lo que en cualquier caso es una situación muy negativa
+y preocupante tanto individual como socialmente.
+Este documento intenta, sobre todo, adoptar en lo posible esta ultima perspectiva, esto es, intentar
+centrarse en las soluciones que deben adoptarse, tanto por parte de la Administración, en términos
+de recursos adicionales, apoyos y ayudas para realizar las tareas más complejas y las respectivas
+medidas de ordenación, como por parte del profesorado individual y colectivamente considerado.
+En este sentido, tal y como ya se habla adelantado, la primera solución que se ha adoptado ha sido
+la de prever que estos alumnos pueden requerir medidas especiales de ordenación y de adaptación
+curricular, que se han denominado adaptaciones curriculares significativas y adaptaciones de acceso.
+¿Qué son las adaptaciones curriculares significativas? ¿Qué se persigue con estas
+adaptaciones?
+Por adaptaciones significativas se entienden aquellas que consisten principalmente en la eliminación
+de contenidos esenciales o nucleares y/u objetivos generales que se consideran básicos en las
+diferentes áreas curriculares y la consiguiente modificación de los respectivos criterios de evaluación.
+Ya no se trata, por tanto, de adaptaciones en la metodología de enseñanzas en la organización del
+aula y del clima escolar o en la adecuación o eliminación de algunos contenidos u objetivos parciales,
+sino también de la posibilidad de eliminaciones de contenidos y objetivos básicos en las áreas
+curriculares y, en definitiva, de modificaciones sustanciales del currículum en general. Se trata, por
+tanto, de una “ruptura,> evidente de ese equilibrio deseable para todos los alumnos entre
+comprensividad y diversidad, y que tiene como resultado un currículum que se aparta o puede
+apartarse muy significativamente del que reciben otros alumnos de la misma edad.
+37
+Colección de Materiales Curriculares
+para la Educación Primaria
+Se trata, por tanto, de una medida excepcional que tiene muy serias repercusiones para el alumno,
+desde el momento en el que entra en cuestión la posibilidad de alcanzar los objetivos de la educación
+obligatoria y la consiguiente titulación, con las repercusiones evidentes que ello tiene para la futura
+vida escolar y social de todos los alumnos. Ello es así desde el momento en el que se pueden dejar
+de cursar enseñanzas básicas que están diseñadas precisamente para posibilitar la adquisición final
+de los objetivos educativos.
+Sin embargo, esto no debe interpretarse como que la realización de adaptaciones significativas
+conlleva siempre, o de forma automática, la renuncia a alcanzar los objetivos generales de la etapa.
+La propuesta de adaptaciones curriculares significativas debe estar presidida y animada siempre
+por la intención de conseguir que tales alumnos adquieran las mismas capacidades que reflejan
+dichos objetivos y que son el referente último de la evaluación y titulación.
+¿Qué se le pide al profesorado con relación a las adaptaciones significativas? Como ya se ha
+adelantado, no se pide nada distinto a lo que ya se ha apuntado como estrategia general anteriormente
+(actuar ordenadamente en el proceso de ir seleccionando los objetivos de aprendizaje que permitan
+a cada alumno progresar en relación a su propio nivel), aunque si se espera que sea un proceso más
+riguroso, controlado y participativo. En ultimo termino también se espera que, como resultado de
+todo lo anterior, el numero y grado de las adaptaciones curriculares significativas sean las menos
+posibles.
+Se pide que se sea lo más riguroso posible, en primer lugar con respecto a la evaluación del alumno
+y del contexto de aprendizaje. En estos casos, además, no será suficiente con evaluar el nivel de
+competencia curricular, esto es, no será suficiente con saber dónde se sitúa alumno con respecto a
+los contenidos y objetivos curriculares. En estos casos también será preciso evaluar probablemente
+otros aspectos, para poder determinar con precisión cuales son las necesidades del alumno y, por
+tanto, cuales son las ayudas que precisa y cuales entonces las adaptaciones más pertinentes.
+Entre los otros factores que habrán de evaluarse figura en primer lugar lo que se podría llamar la
+capacidad de aprendizaje del alumno, que es algo más básico y que en parte condiciona el nivel
+actual y potencial de competencia curricular de todo alumno. También puede ser preciso conocer,
+como puede ocurrir en el caso de los alumnos con deficiencias físicas o sensoriales, el grado en que
+su afectación o perdida condiciona su capacidad y estilo de aprendizaje, y, en ultimo termino,
+importa conocer el contexto sociofamiliar en el que el alumno se desarrolla, ya que en definitiva
+todos estos factores pueden ser determinantes a la hora de proponer tales o cuales adaptaciones.
+Estas evaluaciones más especializadas (capacidad de aprendizaje, funcionamiento sensorial, motor,
+contexto sociofamiliar...) son responsabilidad de los profesionales de los Equipos de apoyo o de los
+orientadores de los centros, y con ellos deberá el profesorado colaborar, aportando sus propias
+observaciones al respecto. que pueden y deben ser de gran utilidad.
+Se pide también que el proceso este sujeto a un mayor control, sobre todo en lo que respecta a la
+tarea de explicitar y registrar las adaptaciones propuestas, especialmente con relación a los contenidos
+y objetivos a trabajar en las áreas curriculares en las que los alumnos muestran dificultades.
+Como consecuencia de todo lo anterior queda en evidencia la necesidad de una mayor participación
+y colaboración de todos en la propuesta de adaptaciones curriculares. Como se ha señalado, las
+decisiones que han de tomarse en el caso de los alumnos con dificultades graves de aprendizaje son
+complejas y difíciles. Suponen cambios sustanciales en el currículum y en la vida escolar de los
+alumnos, y son, por tanto, decisiones conflictivas. Si no existe un clima de colaboración, apoyo y
+respaldo mutuo entre el profesorado tutor y de apoyo, entre estos y los especialistas y entre todos
+junto con las familias, difícilmente podrán plantearse tales decisiones, todo lo cual redundara
+38
+Guía de adaptaciones curriculares
+negativamente en las necesidades de los alumnos. Por tanto, deben revisarse y potenciarse todas
+las medidas tendentes a conseguir en el centro educativo mayores niveles de participación y
+colaboración.
+Se decía más arriba que en último término lo que se espera del profesorado es que tienda a realizar
+el menor numero posible de adaptaciones significativas, o, dicho en los otros términos, que se han
+utilizado también en este documento, que intente ofrecer a todos los alumnos un currículum y unas
+experiencias de aprendizaje lo más normalizadoras posibles. Ello será más probablemente la medida
+exacta en la que se vaya adoptando la forma de pensar y la estrategia de actuación que se ha
+venido comentando en este documento.
+Junto con las adaptaciones que hasta aquí se han propuesto existen otras, que en adelante llamaremos
+adaptaciones de acceso, y que responden a las necesidades especificas de un grupo limitado de
+alumnos (especialmente de los alumnos con deficiencias motoras y de los alumnos ciegos o sordos)
+en lo que respecta a la provisión de algunos recursos y medios técnicos de acceso al currículo, y
+sobre todo con relación a la necesidad que tienen algunos de estos alumnos de sistemas
+complementarios o aumentativos de la comunicación oral. En el apartado siguiente se explican con
+detalle estas adaptaciones.
+Las adaptaciones de acceso al currículum
+Cabe pensar que hay alumnos que tienen dificultades de aprendizaje, simplemente porque tienen
+dificultades para acceder a las experiencias de enseñanza y aprendizaje. Esos problemas de acceso
+podrían clasificarse, en sentido figurado, en dificultades físicas o materiales y dificultades de
+comunicación. Un alumno en silla de ruedas que no puede acceder al aula, al laboratorio o que no
+pueda desplazarse con sus compañeros para una visita va a tener “dificultades para aprender>, o
+va a ver mermadas sus posibilidades de aprendizaje. Los alumnos ciegos o con baja visión, así
+como los alumnos hipoacústicos o sordos, requieren por lo general ambientes de aula y de centro
+especialmente “adaptados” a sus condiciones de visión o audición (buena luminosidad, pizarras
+especiales, eliminación de ruidos, mobiliario...), para sacar un máximo aprovechamiento de sus
+restos auditivos o visuales y en cualquier caso para facilitarles el aprendizaje. También hay medios
+técnicos (lupas, equipos de FM, ordenadores...) que facilitan el acceso, directa o indirectamente, a
+los contenidos y experiencias de aprendizaje. La provisión de estos recursos técnicos y la adaptación
+de las aulas y los centros a las condiciones de todos los alumnos son consideradas adaptaciones de
+acceso necesarias para facilitar el aprendizaje de algunos alumnos.
+Pero junto con estas dificultades de acceso más materiales o físicas existen otras más importantes
+y determinantes como son las dificultades de comunicación que algunos alumnos tienen, y que, por
+tanto, condicionan todo el proceso de enseñanza y aprendizaje, en tanto que este se basa en un
+proceso comunicativo entre profesores y alumnos y alumnos entre sí. Tales problemas de
+comunicación pueden aparecer con respecto a la comunicación escrita, a la comunicación oral o en
+ambas. En el primer caso se encuentran los alumnos ciegos, quienes de no tener “adaptados” los
+textos en Braille, y de no haber disfrutado de las oportunidades para aprender este sistema de
+comunicación, no pueden acceder a ninguna información escrita. Resulta obvio decir que sus
+dificultades de aprendizaje no son imputables a su capacidad para aprender, sino a unos medios de
+acceso inapropiados.
+La dificultad de los alumnos sordos y de algunos alumnos con deficiencias neuromotoras (algunos
+alumnos con parálisis cerebral, por ejemplo) para acceder a los aprendizajes reside, en su caso, en
+que tienen grandes dificultades para comunicarse oralmente. La capacidad de aprendizaje de estos
+alumnos no tiene por que estar afectada, y sus dificultades de aprendizaje descansan de nuevo en
+la ausencia de un sistema de comunicación adaptado a sus posibilidades y compartido por los
+39
+Colección de Materiales Curriculares
+para la Educación Primaria
+profesores y los compañeros. Ejemplos de sistemas aumentativos para alumnos con parálisis cerebral
+son el SPC y el BLISS (3), mientras que la Lengua de Signos representa un sistema alternativo
+para los alumnos sordos.
+Cuando un alumno requiere adaptaciones de acceso, sobre todo cuando lo que precisa es el
+aprendizaje de un sistema complementario o aumentativo de comunicación, es evidente que ello no
+puede hacerse sin la necesidad de recurrir simultáneamente a la realización de otras adaptaciones
+estrictamente curriculares, tanto en la metodología y organización del aula cuanto en la temporización
+y los contenidos y objetivos de su currículum. Ello es as(porque el aprendizaje de tales sistemas
+también lleva su tiempo y requiere de la programación de actividades y contenidos específicos, y
+porque en algunos casos las características del propio sistema hacen que se requiera más tiempo
+para cada actividad de enseñanza y aprendizaje (y, en consecuencia, que se aborden menos
+contenidos).
+Cuanto más temprano haya sido este aprendizaje, cuanto mayor sea el conocimiento de profesores
+y compañeros de estos sistemas, menos significativas tendrán que ser tales adaptaciones.
+La existencia de dificultades de comunicación hace especialmente difíciles, como ya se apuntaba
+más arriba, las tareas de evaluación del alumno, tanto en términos de competencia curricular como
+de capacidad para aprender, o estilo de aprendizaje. Ello es así porque en estos casos resulta
+complejo, en primer lugar, conocer lo que el alumno ha aprendido (sobre todo en relación con los
+contenidos conceptuales), porque puede tener dificultades para expresarlo.
+Pudiera ser también que, en efecto, el alumno no hubiera aprendido tal o cual contenido, pero puede
+seguir existiendo una duda razonable con respecto a si no lo aprendió porque no tenia la capacidad
+o competencia curricular adecuada, o porque el proceso de enseñanza resultó baldío al interferir en
+el las dificultades de comunicación. Por ultimo, pudiera ser que los propios procedimientos de
+evaluación enmascarasen la verdadera capacidad o competencia del alumno (piénsese en
+procedimientos de evaluación solamente orales o solamente escritos).
+Conviene recordar que esta preocupación por mejorar la evaluación en todos sus extremos es útil
+no sólo para el caso de los alumnos que ahora se esta comentando, sino que resulta provechosa
+para otros muchos alumnos que, sin tener deficiencias, tampoco es fácil determinar lo que han
+aprendido.
+Por todas estas razones, es especialmente importante revisar los procedimientos y técnicas de
+evaluación y en su caso adaptarlos a las características del alumno, antes de emitir juicios definitivos
+sobre el rendimiento y aprovechamiento de los alumnos que precisan adaptaciones de acceso.
+Cuando se habla de adaptar los instrumentos, procedimientos y criterios de evaluación, ha de
+entenderse que lo que se plantea no es “rebajar o reducir el nivel de exigencia o consecución
+esperado”, sino de buscar cuantos procedimientos puedan ayudarnos a discernir lo que el alumno
+ha aprendido y cómo lo ha hecho.
+(3) MAYER, J. R. (1981): Símbolos pictográficos para la comunicación no vocal. Madrid: Servicio de Publicaciones del
+M.E.C., 1985. y BLISS, K. Símbolos BLISS. Madrid: Servicio de Publicaciones del M.E.C., 1985.
+40
+Guía de adaptaciones curriculares
+A través de las adaptaciones de acceso se persigue que estos alumnos puedan participar en las
+actividades de enseñanza y aprendizaje como el resto de los compañeros, y por tanto se espera que
+puedan alcanzar los mismos objetivos educativos que sus compañeros. Cuando por las condiciones
+del alumno o alumna, y no solo ya por la necesidad de medios de acceso especiales, se precisen
+además adaptaciones significativas del currículum se debe perseguir, al igual que se señalaba
+anteriormente, que el alumno tenga acceso a un currículum lo más amplio y equilibrado posible, de
+forma que resulte relevante y funcional para el desempeño futuro de una vida social y laboral
+autónoma y satisfactoria
+Al igual que las adaptaciones significativas, la propuesta, realización y seguimiento de las adaptaciones
+de acceso estarán coordinadas por los Equipos Interdisciplinares de Sector u orientadores de los
+centros y deben estar sujetas a los mismos criterios de rigor, control y participación que ya se han
+señalado..
+Hasta aquí se ha intentado reflejar con algún detalle el continuo referido a posibilidades que pueden
+darse en el proceso de adaptación del currículum quedando ese rango configurado “grosso modo”,
+en un extremo portas adaptaciones no significativas y en el otro por las adaptaciones significativas,
+para los alumnos con mayores dificultades para aprender. Es evidente que cuando, por cualquier
+razón, estas dificultades son generalizadas y afectan al conjunto de las áreas curriculares, no sólo
+todo el proceso de adaptación se hace mucho más complejo, sino que los alumnos que experimentan
+tales dificultades corren mayores riesgos de recibir una oferta curricular desequilibrada y poco
+ajustada a sus necesidades.
+Para salvaguardar esta situación, se ha introducido en la LOGSE y en los decretos que la desarrollan
+el concepto de alumnos con necesidades educativas especiales, cuyo fin ultimo es tratar de garantizar
+también para estos alumnos que tienen dificultades de aprendizaje más graves una respuesta
+educativa de calidad. El objetivo del punto siguiente es analizar el alcance y sentido de este termino.
+Alumnos con necesidades educativas especiales
+El termino alumnos con necesidades educativas especiales se ha introducido en la LOGSE y en los
+decretos que la desarrollan para salvaguardar y garantizar una respuesta educativa ajustada para
+aquellos alumnos que por sus particulares circunstancias están en desventaja y tienen mayores
+dificultades para beneficiarse de la educación escolar.
+Es un término que tiene su origen en la educación especial, en el intento de evitar, en parte, el
+amplio conjunto de efectos negativos que ha tenido y tiene el uso de las categorías diagnosticas en
+la educación de los alumnos con deficiencias físicas, psíquicas o sensoriales. Se intenta con el
+poner el énfasis en la respuesta educativa-en términos de necesidades que estos alumnos precisan,
+y no tanto en sus limitaciones personales. Es lógico, sin embargo, que poco a poco se haya utilizado
+también para referirse a otros alumnos que, sin tener limitaciones o deficiencias personales, están
+igualmente en situación de desventaja y tienen también “necesidades especiales”, como podrían
+ser, en algunos casos, los alumnos procedentes de minorías étnicas o grupos sociales desfavorecidos.
+Es, por tanto, un término complejo y en cierta medida difuso, pues no se relaciona unívocamente
+con un grupo de alumnos concreto o especifico, y que puede tener muchas y variadas “lecturas”.
+Así, por un lado, es una manera de reconocer que todos los alumnos tienen necesidades educativas,
+y que todos son “especiales” desde el momento que requieren una respuesta ajustada a tales
+necesidades. Tiene una lectura de “normalización”, en su intento de evitar la discriminación y la
+carga peyorativa asociada a los términos negativos: deficiente, minusválido, discapacitado, subnormal.
+En cuanto a su amplitud, se ha planteado, con razón, que hasta un 20% de la población escolar
+puede llegar a tener temporalmente, en un momento u otro de su escolarización, serias dificultades
+41
+Colección de Materiales Curriculares
+para la Educación Primaria
+de aprendizaje, y en consecuencia tenían necesidad de una ayuda educativa especial en respuesta
+a la aparición de esas dificultades. Desde otras perspectivas se piensa en un porcentaje entre el
+2% y el 5% de la población escolar, y que representan a los alumnos con necesidades especiales
+más o menos permanentes, algo que en ultimo termino es relativo y dependiente del nivel de recursos
+y de la calidad general del sistema educativo de cada país (obviamente, cuanto peor es este, más
+alumnos se encontrarían en el planteamiento de las “necesidades especiales”).
+A partir de estas consideraciones se puede señalar<que un alumno tiene necesidades educativas
+especiales si, por cualquier causa, tiene dificultades de aprendizaje, mayores que el resto de los
+alumnos, para acceder a los aprendizajes que se determinan en el currículum que le corresponde
+por su edad, de forma que requiere, para compensar dichas dificultades, adaptaciones de acceso y/
+o adaptaciones significativas en varias áreas de ese currículum.
+Así definido, el concepto pone el énfasis, en primer lugar, en los procesos de aprendizaje, y en
+segundo lugar, en la respuesta o provisión educativa que requiere ese alumno.
+No es, por tanto, la existencia de deficiencias la que determina la consideración de que un alumno
+tiene necesidades educativas especiales, sino la existencia de dificultades para aprender los contenidos
+y objetivos que establece el currículum que por su edad le corresponde, lo que nos pone sobre la
+posibilidad de considerar a un alumno con necesidades especiales. Se habla de “posibilidad” porque
+no son tampoco por si solas las dificultades de aprendizaje las que determinan tal consideración,
+sino el grado de las mismas.
+En efecto, como se viene señalando desde el inicio de este documento, existen dificultades para
+aprender que son consustanciales con el propio proceso de aprendizaje de cualquier alumno, y que
+normalmente pueden ser resueltas y superadas por los medios ordinarios de los que dispone el
+profesorado.
+La consideración de que un alumno tiene necesidades educativas especiales empieza cuando se
+estima que tales dificultades no son solamente “mayores que las del resto de sus compañeros”, sino
+que también el profesorado, individual y colectivamente, ha agotado razonablemente todos los
+recursos ordinarios a su alcance para responder a ellas, y lo que se precisa entonces es una
+respuesta educativa especial, que se aparta y se diferencia significativamente de la que se oferta a
+la mayoría de los compañeros.
+Varias son las consideraciones que han de hacerse para entender el alcance de esta definición.. En
+primer lugar, es una decisión delicada que necesita la intervención de los Equipos de apoyo u
+orientadores de los centros, una de cuyas funciones especificas es, precisamente, la de realizar
+esta determinación en colaboración con el profesorado. A efecto entonces de ordenación y provisión
+de recursos y medidas curriculares especiales, sólo se consideraran alumnos con necesidades
+educativas especiales aquellos que hayan sido evaluados de esta forma en el Dictamen de
+Escolarización que a tal efecto deberán realizar los Equipos de apoyo o los orientadores de los
+centros.
+(4) Véase WARNOK, M. (1987): “Encuentro sobre necesidades de Educación especial”. Revista de Educación, numero
+extraordinario, 45-74.
+42
+Guía de adaptaciones curriculares
+Uno de los objetivos básicos del análisis compartido al que se hace mención es precisamente el de
+revisar hasta que punto se han agotado razonablemente, de forma tanto individual como colectiva,
+las medidas ordinarias que todo profesor tiene a su alcance. En efecto, desde el análisis interactivo
+que se ha realizado de los procesos de enseñanza y aprendizaje resulta evidente que ciertas dificultades
+de aprendizaje son más bien el resultado de una respuesta educativa desajustada (un ritmo de
+trabajo muy rapiño una organización de aula poco funcional, una metodología poco apropiada a la
+vista del estilo de aprendizaje del alumno, contenidos previos no trabajados suficientemente, etc.),
+que de limitaciones del alumno. Seria injusto, por tanto, hacer recaer sobre este las medidas de
+adaptación curricular significativas (cambios y/o eliminaciones de contenidos u objetivos educativos)
+sin haber realizado, en primera instancia, otras adaptaciones del contexto de enseñanza.
+Ciertamente ese contexto de enseñanza no depende exclusivamente de la voluntad individual de
+cada profesor, sino también de las medidas colectivas que desde el Proyecto curricular de Etapa se
+hayan tomado, y en especial las referidas al tratamiento de la diversidad. Por eso se insiste también
+en analizar, conjuntamente con los profesionales de los Equipos de apoyo u orientadores de los
+centros, tales medidas colectivas, antes de considerar la propuesta de adaptaciones curriculares
+significativas para un alumno o grupo de alumnos. Una organización racional de los apoyos, de los
+espacios escolares o del tiempo puede facilitar enormemente la atención a las necesidades especiales.
+La continuidad metodología, secuencias coherentes de contenidos y el desarrollo continuado de
+una evaluación formativa, cuestiones todas ellas dependientes del Proyecto curricular, posibilitan
+reducir sensiblemente el numero y grado de adaptaciones significativas.
+Estas consideraciones fundamentan también la decisión de que tales profesionales de los Equipos
+de apoyo progresivamente formen parte de la Comisión que en cada centro sea responsable de la
+coordinación de los Proyectos curriculares de etapa.
+Por último, conviene adelantar también que el proceso o los pasos para desarrollar tales medidas
+excepcionales de adaptación curricular no son sustancialmente distintos de los pasos que con carácter
+general se han comentado en la primera parte de este documento. La diferencia, como ya se
+adelantó estriba en planificar y desarrollar la estrategia con mayor rigor en lo que respecta, por un
+lado, a la evaluación del alumno y del contexto de aprendizaje; por otro, en lo que se refiere al
+control y seguimiento de las medidas adoptadas y, por ultimo, en cuanto a la participación del
+profesorado, especialistas y familia en todo el proceso.
+No obstante, conviene recordar especialmente lo que ya se avanzó al hablar del “orden” en el
+proceso de adaptación, unos criterios muy relevantes en estos casos. A modo de resumen, podría
+decirse que las adaptaciones o ajustes para los alumnos con necesidades educativas especiales,
+han de realizarse siempre de lo más general (Proyecto de Centro, Proyectos curriculares de etapa)
+a lo más individual (alumno). Pero cuando se llega a este ultimo nivel hay que proceder al contrario:
+no habría que modificar los contenidos hasta que se tuviera la certeza de que no es suficiente con
+adaptaciones de nivel inferior (adaptaciones en la metodología, organización, evaluación...). No se
+deberían cambiar o eliminar para un alumno con necesidades educativas especiales los objetivos
+generales de una etapa en tanto no se tuviera la certeza razonable de que la respuesta a sus
+dificultades de aprendizaje no pudiera ser abordada con cambios de metodología didáctica, adecuación
+o eliminación de bloques de contenido y adecuación o eliminación de objetivos de área o de las
+áreas mismas.
+En este contexto, las decisiones relacionadas con la promoción de los alumnos, o permanencia en
+el mismo curso, tienen una gran importancia. La aplicación del principio de normalización a esta
+situación aconseja que los alumnos con necesidades educativas especiales promocionen con su
+grupo de edad o de referencia, aunque no hayan aprendido los contenidos o adquirido los objetivos
+43
+Colección de Materiales Curriculares
+para la Educación Primaria
+que se tuvieran previstos para ellos, como garantía de una integración social necesaria y del
+mantenimiento de unas relaciones afectivas con el grupo y sus iguales, que son de gran trascendencia
+para todos los alumnos.
+Visto así las posibilidades de permanencia que establece la Ley (una vez durante la etapa de
+Educación Primaria) han de reservarse para cuando se estime que con ella pueden llegar a
+conseguirse realmente los objetivos previstos de un ciclo o de la etapa, o para reforzar de manera
+significativa aquellos aprendizajes instrumentales básicos (comunicación y expresión, calculo, habites
+de autonomía...), que posteriormente son la puerta de acceso a aprendizajes más complejos, y sin
+los cuales también resulta complicado pensar en una aceptación e integración social posterior en un
+grupo de iguales, que esta inmerso en tareas escolares en las que estos alumnos difícilmente pueden
+participar.
+Si aún haciendo uso de tales medidas de permanencia, y a tenor de sus características y de las del
+contexto educativo, se considera que el alumno no podrá seguir el currículum ordinario, lo que se
+espera es que las adaptaciones realizadas posibiliten en ultimo termino que el alumno tenga acceso
+a un currículum que, con relación al ordinario, sea lo más amplio y equilibrado posible, de forma que
+resulte relevante y funcional para el desempeño futuro de una vida social y laboral autónoma y
+satisfactoria.
+Con todas las medidas y posibilidades de adaptación curricular hasta aquí consideradas se aspira a
+que todos los alumnos con dificultades para aprender, sea cual sea el rango y la gravedad de estas,
+alcancen de la manera más satisfactoria posible los beneficios que reporta la educación escolar y
+se aproxime el objetivo de una Educación Primaria favorecedora del desarrollo individual y que sea
+al tiempo respetuosa con la diversidad.
+44
+Guía de adaptaciones curriculares
+ANEXO:
+ALGUNOS FACTORES QUE CONFIGURAN EL
+ESTILO DE APRENDIZAJE
+¿En qué agrupamientos trabaja mejor el alumno?
+Algunos alumnos tienen dificultad para centrar su atención cuando están sentados en una mesa
+junto con otros y prefieren trabajar solos. Otros perciben este aislamiento como un castigo. Entre
+estos, los hay que suelen sacar gran provecho del trabajo con un compañero o compañera y quienes
+al poco tiempo terminan molestando a los que están con el. Es fundamental observar estas situaciones
+y conocer que agrupamiento es el más indicado para el alumno o alumnos que ahora tienen dificultades
+para aprender. Es lógico que tal vez no se pueda tener al alumno todo el tiempo en la mejor
+situación, porque también se ha de ubicar bien a otros, pero si se debería asegurar que se encuentra
+en la situación más favorable cuando se tenga que trabajar en el objetivo que se haya propuesto
+para el, y en el momento en el que se le vaya a prestar la “ayuda extra” que necesita.
+¿Cuánto tiempo puede permanecer concentrado?
+No todos los alumnos son capaces de estar concentrados en una tarea la misma cantidad de
+tiempo. Esto es algo que todo el profesorado conoce perfectamente, como sabe que la capacidad
+de concentración de un alumno en una tarea depende fundamentalmente de la dificultad de la
+misma. Lo que conviene recordar ahora es que cuando un alumno empieza a experimentar
+dificultades en el aprendizaje, esta situación- aprender-genera en no pocos casos una reacción de
+rechazo que se traduce fácilmente en falta de concentración. Es imprescindible romper cuanto
+antes el circulo vicioso que ahí se genera: “El alumno no aprende porque no esta concentrado, pero
+no esta concentrado porque no aprende, porque no asocia esta actividad con algo gratificante y
+positivo.” En este sentido es importante jugar con el grado de dificultad de la tarea. Si esta tiene un
+grado adecuado a las posibilidades del alumno, es muy, probable que trabaje sobre ella durante más
+tiempo. Si la tarea que se le propone es demasiado difícil para el o ella, sólo se concentrara durante
+un breve rato y la abandonara con facilidad, dando al traste con las posibilidades de aprender.
+¿Qué actividades le interesan al alumno?
+Conviene no olvidar el argumento que se señalaba hace un momento. Cuando un alumno empieza
+a experimentar dificultades de aprendizaje de manera continuada, no es de extrañar que en el se
+genere un reacción de “evitación” de esa situación. Ello ocurre porque además, con frecuencia, la
+falta de aprendizaje va asociada con comentarios y reacciones de burla o desvalorización del
+45
+Colección de Materiales Curriculares
+para la Educación Primaria
+alumno por parte de los demás, todo lo cual contribuye enormemente a mermar la autoestima y
+autoconcepto de quien experimenta tales dificultades.
+Al igual que se señalaba anteriormente, se deben poner todos los esfuerzos y conocimientos en
+romper esa situación. Hay que ser capaces de “convencer” al alumno de que puede aprender y de
+que es positivo para el o ella. Para ello se debe estar atento en reconocer, a través de observaciones,
+que actividades le interesan más y tratar de “entrar” por esas actividades (en las que el alumno
+además se sentirá seguro), con objeto de facilitar la construcción de los aprendizajes que se consideren
+necesarios para aumentar su autoestima y la aceptación y posición entre sus compañeros. Recuerde
+se como regla que “debemos pertrecharnos con todos los factores favorables dentro y fuera del
+alumno a la hora de enfrentarnos a las dificultades de aprendizaje”.
+Nunca se produce el hecho de que un alumno no tenga interés por nada, aunque si es cierto que el
+rango de intereses de un alumno puede ser estrecho y sesgado. Este hecho también supone para el
+profesorado un reto profesional, en la medida que debe estar preparado no sólo para reconocer
+cuales son los intereses y motivaciones del alumnado, sino también para ampliarlos y enriquecerlos.
+¿Qué refuerza al niño?
+Algunos niños serán capaces de trabajar duramente para obtener una palabra de elogio de sus
+profesores y puede que se decepcionen desesperadamente cuando fracasen. Otros trabajaran con
+ahínco para conseguir privilegios, y los elogios no les interesaran demasiado. Aunque los premios o
+los halagos no son las únicas fuentes de motivación a las que se debe acudir, es un hecho que todos
+los alumnos encuentran que ciertos aspectos de su trabajo les son molestos y necesitan un reforzador
+externo para terminarlo. Cuando lo logran, obtienen una gran satisfacción que, a su vez, les motivara
+en el futuro. Por tanto, determinar que es lo que refuerza al alumno será de gran utilidad para
+asegurar determinados aprendizajes.
+A este respecto conviene no olvidar que se esta hablando de alumnos con dificultades de aprendizaje
+y, por tanto, de alumnos que tienen pocas oportunidades de obtener refuerzos por sus aprendizajes,
+ya que estos pueden “brillar por su
+ausencia”. De nuevo se debe construir la estrategia de enseñanza, con respecto al objetivo que
+queremos alcanzar con este o aquel alumno con dificultades, en pequeños pasos si es posible, y de
+forma que sea factible reforzar al alumno gradualmente. Si la tarea u objetivo es muy complejo o
+alargo plazo, es evidente que aumentaran las probabilidades de fracaso, y por tanto que disminuyan
+las posibilidades de sentirse reforzado. ; Y todos, profesores y alumnos, necesitan sentirse reforzados
+! Por tanto, es vital revisar las estrategias de enseñanza con estos alumnos para tratar de introducir
+en ellas el mayor numero de oportunidades para que se sientan reforzados y reconocidos.
+¿Cuál es el autoconcepto que tiene el alumno?
+Muchos alumnos con dificultades de aprendizaje se frustran fácilmente ante las tareas académicas
+y apenas muestran confianza en si mismos con respecto a ellas. Ello no es de extrañar. La institución
+escolar ha tendido a valorar sobre todo la “capacidad” personal (o su ausencia) a la hora de
+explicar los éxitos escolares (o, en su defecto los fracasos). El impacto psicológico de esta “atribución”
+es de enorme importancia y trascendencia escolar, pero lo es de manera muy diferente si lo que
+juzgamos es un éxito o un fracaso. ¿Por que? En primer lugar, porque la capacidad es vivida por
+todos nosotros como un factor personal, interno (algo que depende poco del “exterior”) estable;
+esto es, poco modificable y, por tanto, poco controlable “Poco podemos hacer por aumentar nuestra
+propia capacidad o inteligencia. Tenemos la que tenemos.”
+Cuando tenemos éxito en una tarea escolar (o en cualquier otra) y se lo atribuimos a nuestra
+capacidad (como reiteradamente se hace en la escuela), estamos reforzando espectacularmente
+46
+Guía de adaptaciones curriculares
+nuestro autoconcepto; nos venimos a decir: “He tenido éxito porque soy inteligente, y lo seguiré
+siendo porque se trata de algo que tendré para siempre.”
+¿Qué ocurre, sin embargo, si lo que se ha experimentados es un fracaso? La reacción suele tener
+igualmente impacto emocional, pero muy negativo. ¿porqué? Porque el alumno se esta diciendo a
+sí mismo (figuradamente): “He fracasado porque soy incapaz, y esto no depende de mi; no tengo
+más inteligencia, y esto es algo que no puedo modificar. No creo que lo vuelva a intentar.”
+Cuando se esta frente a un alumno con dificultades de aprendizaje se debe intentar discernir hasta
+que punto se encuentra en esta situación, y en su caso tratar de transformarla inmediatamente. De
+nuevo es fundamental que se gradúe apropiadamente la dificultad de las tareas a emprender y
+también que se valore por encima de la capacidad el esfuerzo realizado como explicación de éxitos
+y fracasos. Mientras que entendemos la capacidad como algo estable, el esfuerzo es algo que, sin
+embargo, se puede aumentar todo lo que se quiera, pues depende de nosotros mismos. No olvidemos
+que se trata de restablecer la confianza del alumno ante unas tareas-las relacionadas con el
+aprendizaje en general o con un área en particular-que de entrada le producen rechazo porque,
+psicológica y socialmente le colocan en inferioridad con los demás. Algo que tampoco los adultos
+aceptamos.
+47
+Colección de Materiales Curriculares
+para la Educación Primaria
+48

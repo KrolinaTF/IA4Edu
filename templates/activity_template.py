@@ -1,6 +1,13 @@
+"""
+Templates de datos para actividades educativas inclusivas.
+Este archivo contiene las estructuras de datos y constantes utilizadas
+para el diseño de actividades adaptadas a la neurodiversidad.
+"""
+
 from pydantic import BaseModel
 from typing import List, Dict, Optional
 
+# Modelos de datos para estructurar la información (opcional, para validación futura)
 class AdaptacionEstudiante(BaseModel):
     estudiante_id: str
     neurotipo: str
@@ -35,47 +42,6 @@ class AsignacionGrupo(BaseModel):
     tipo_agrupacion: str  # "parejas", "grupos_3", "grupos_4", "individual"
     justificacion_agrupacion: str
     roles_asignados: Dict[str, str]  # estudiante_id -> rol
-
-class PlantillaActividad(BaseModel):
-    # Información General
-    titulo: str
-    descripcion_general: str
-    materia: str
-    tema_principal: str
-    nivel_educativo: str
-    duracion_total: str
-    tipo_actividad: str
-    
-    # Objetivos
-    objetivos_aprendizaje: List[str]
-    objetivos_inclusion: List[str]
-    competencias_clave: List[str]
-    
-    # Estructura de la Actividad
-    fases: List[Fase]
-    
-    # Organización de Estudiantes
-    asignaciones_grupos: List[AsignacionGrupo]
-    
-    # Materiales y Recursos
-    materiales_base: List[str]
-    materiales_adaptacion: Dict[str, List[str]]  # neurotipo -> materiales específicos
-    recursos_digitales: List[str]
-    
-    # Evaluación
-    criterios_evaluacion_generales: List[str]
-    rubrica_inclusion: Dict[str, str]
-    estrategias_evaluacion_adaptadas: Dict[str, str]  # neurotipo -> estrategia
-    
-    # Adaptaciones Paradigma de Terreno
-    principios_diseño_universal: List[str]
-    adaptaciones_proactivas: Dict[str, str]  # neurotipo -> adaptaciones
-    estrategias_apoyo_pares: List[str]
-    
-    # Información Adicional
-    notas_implementacion: List[str]
-    recursos_profesor: List[str]
-    extension_actividades: List[str]
 
 # Preguntas clave para adaptaciones (constantes)
 PREGUNTAS_CLAVE_ADAPTACION = [
