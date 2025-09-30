@@ -1,8 +1,19 @@
 # IA4Edu
-
 🎓 **Asistente de IA para crear actividades de aprendizaje por proyectos inclusivas**
 
 Aplicación para el desarrollo de proyectos educativos teniendo en cuenta la diversidad del aula usando agentes de IA que diseñan actividades adaptadas para diferentes neurotipos (TEA, TDAH, Altas Capacidades, y desarrollo típico).
+
+En la DEMO se puede observar:
+- Cómo se puede acceder a los perfiles de los alumnos (sin currículo completo, solo representativo para MVP)
+- Cómo con un prompt muy sencillo se obtiene una actividad completa (con descripción, objetivos, reparto de grupos, reparto de tareas, etc.)
+- Cómo se puede revisar la actividad para incluir aspectos que puedan resultar interesantes.
+- Actividades guardadas, historial de actividad.  
+
+https://github.com/user-attachments/assets/ead64a62-817d-4eb6-adb9-6ab36726eb98
+
+
+
+
 
 ## 🚀 Instalación y Configuración
 
