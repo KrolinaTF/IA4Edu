@@ -25,7 +25,7 @@ https://github.com/user-attachments/assets/ead64a62-817d-4eb6-adb9-6ab36726eb98
 
 1. **Clonar el repositorio**
    ```bash
-   git clone https://github.com/tu-usuario/IA4Edu.git
+   git clone https://github.com/KrolinaTF/IA4Edu.git
    cd IA4Edu
    ```
 
